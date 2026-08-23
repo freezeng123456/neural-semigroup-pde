@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Network Architecture</title>
+<link rel="stylesheet" href="katex/katex/katex.min.css">
+<script src="katex/katex/katex.min.js"></script>
+<script src="katex/katex/contrib/auto-render.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1600px; height: 900px; background: #fff;
+    font-family: 'Segoe UI','Helvetica Neue',Arial,sans-serif; overflow: hidden; }
+  .c { width: 1600px; height: 900px; padding: 30px 40px 20px 40px; position: relative; }
+  .box { position: absolute; display:flex; align-items:center; justify-content:center;
+    border-radius:12px; font-size:20px; font-weight:500; border:2px solid;
+    box-shadow:0 2px 8px rgba(0,0,0,.06); z-index:2; text-align:center; padding:8px 14px; }
+  .bl  { background:#D6EAF8; border-color:#85C1E9; color:#1B4F72; }
+  .gr  { background:#D5F5E3; border-color:#82E0AA; color:#1E8449; }
+  .pu  { background:#E8DAEF; border-color:#C39BD3; color:#6C3483; }
+  .te  { background:#D1F2EB; border-color:#76D7C4; color:#117A65; }
+  .ye  { background:#F9E79F; border-color:#F4D03F; color:#7D6608; }
+  .or  { background:#FDEBD0; border-color:#F5CBA7; color:#935116; }
+  .rd  { background:#FADBD8; border-color:#F1948A; color:#922B21; }
+  .rk  { background:#FDEBD0; border-color:#B7950B; color:#7D6608; border-width:3px; }
+  .op { position:absolute; width:42px; height:42px; border-radius:50%;
+    background:#FADBD8; border:2.5px solid #C0392B;
+    display:flex; align-items:center; justify-content:center;
+    font-size:26px; font-weight:bold; color:#C0392B; z-index:3; }
+  .lb { position:absolute; font-size:15px; font-weight:600; z-index:2;
+    font-family:'Segoe UI',Arial,sans-serif; }
+  .gq { position:absolute; border-radius:10px; background:#EAFAF1; border:1.5px solid #27AE60;
+    color:#1E8449; font-size:16px; font-weight:500; padding:9px 16px; z-index:2; text-align:center; }
+  .m  { font-size:20px; }
+</style>
+</head>
+<body>
+<div class="c">
+
+  <!-- ═══ Row 1: Input / Output ═══ -->
+  <div class="box bl" style="left:0; top:10px; width:260px; height:56px;">
+    <span class="m">$u \in (0,1)^N$</span>
+  </div>
+  <div class="box gr" style="left:380px; top:10px; width:290px; height:56px;">
+    <span class="m">$z_0 = g^{-1}(u)$</span>
+  </div>
+  <div class="box or" style="left:960px; top:10px; width:160px; height:56px;">
+    <span class="m" style="font-weight:700;">$z_T$</span>
+  </div>
+  <div class="box bl" style="left:1260px; top:10px; width:260px; height:56px;">
+    <span class="m">$\hat{u} = g(z_T)$</span>
+  </div>
+
+  <!-- ═══ Row 2: Three paths (y=140..330) ═══ -->
+  <!-- V_θ path -->
+  <div class="lb" style="left:60px; top:110px; color:#8E44AD;">scalar MLP</div>
+  <div class="box pu" style="left:0; top:135px; width:270px; height:56px;">
+    <span class="m">$V_\theta(z_i)$</span>
+  </div>
+  <div class="box pu" style="left:20px; top:310px; width:230px; height:56px;">
+    <span class="m">$V'_\theta(z_i)$</span>
+  </div>
+
+  <!-- Interaction path -->
+  <div class="lb" style="left:430px; top:110px; color:#117A65;">learned embeddings</div>
+  <div class="box te" style="left:340px; top:135px; width:440px; height:56px;">
+    <span class="m">$a_{ij} = m_{ij}\,\mathrm{softplus}(e_i^\top e_j)$</span>
+  </div>
+  <div class="box te" style="left:350px; top:310px; width:420px; height:56px;">
+    <span class="m">$2\sum_j a_{ij}(z_i - z_j)$</span>
+  </div>
+
+  <!-- K_θ path -->
+  <div class="lb" style="left:980px; top:110px; color:#7D6608;">StencilMLP + softplus</div>
+  <div class="box ye" style="left:920px; top:135px; width:320px; height:56px;">
+    <span class="m">$k_{\theta,i}(z)$</span>
+  </div>
+  <div class="box ye" style="left:950px; top:310px; width:270px; height:56px;">
+    <span class="m">$K_\theta = \mathrm{diag}(k_i)$</span>
+  </div>
+
+  <!-- ═══ Row 3: Combine (y=480..560) ═══ -->
+  <div class="op" style="left:260px; top:490px;">+</div>
+  <div class="box rd" style="left:360px; top:480px; width:280px; height:56px;">
+    <span class="m">$[\nabla\Psi_\theta]_i$</span>
+  </div>
+  <div class="op" style="left:720px; top:490px;">$\times$</div>
+  <div class="op" style="left:850px; top:492px; width:38px; height:38px; font-size:24px;">$-$</div>
+  <div class="box or" style="left:940px; top:480px; width:220px; height:56px;">
+    <span class="m">$\frac{dz}{ds}$</span>
+  </div>
+  <div class="box rk" style="left:1220px; top:470px; width:280px; height:75px;">
+    <div style="font-size:22px; font-weight:700;">RK4 integrator</div>
+    <div style="font-size:15px; margin-top:3px;">30 steps: $z_0 \to z_T$</div>
+  </div>
+
+  <!-- ═══ Guarantees (right column, y=160..370) ═══ -->
+  <div class="gq" style="left:1300px; top:160px; width:260px;">
+    $g = \sigma \;\Rightarrow\;$ admissibility
+  </div>
+  <div class="gq" style="left:1300px; top:245px; width:260px;">
+    $K_\theta \succ 0 \;\Rightarrow\;$ dissipation
+  </div>
+  <div class="gq" style="left:1300px; top:330px; width:260px;">
+    ODE flow $\Rightarrow$ semigroup
+  </div>
+
+  <!-- ═══ SVG arrows ═══ -->
+  <svg style="position:absolute;top:0;left:0;width:1600px;height:900px;z-index:1;pointer-events:none;">
+    <defs>
+      <marker id="ah" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#555"/></marker>
+      <marker id="ag" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#aaa"/></marker>
+      <marker id="ap" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#8E44AD"/></marker>
+      <marker id="at" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#117A65"/></marker>
+      <marker id="ab" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#7D6608"/></marker>
+      <marker id="ar" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#C0392B"/></marker>
+    </defs>
+
+    <!-- u → z₀ -->
+    <line x1="264" y1="38" x2="376" y2="38" stroke="#555" stroke-width="2.5" marker-end="url(#ah)"/>
+    <text x="320" y="28" font-size="14" fill="#666" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif">logit</text>
+    <!-- zT → û -->
+    <line x1="1124" y1="38" x2="1256" y2="38" stroke="#555" stroke-width="2.5" marker-end="url(#ah)"/>
+    <text x="1190" y="28" font-size="14" fill="#666" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif">sigmoid</text>
+
+    <!-- z₀ splits (y=68..95) -->
+    <line x1="525" y1="68" x2="525" y2="92" stroke="#aaa" stroke-width="2" marker-end="url(#ag)"/>
+    <!-- to V_θ -->
+    <polyline points="525,92 135,92 135,131" fill="none" stroke="#aaa" stroke-width="2" marker-end="url(#ag)"/>
+    <!-- to inter (straight down) -->
+    <line x1="525" y1="92" x2="525" y2="131" stroke="#aaa" stroke-width="2" marker-end="url(#ag)"/>
+    <!-- to K_θ -->
+    <polyline points="525,92 1080,92 1080,131" fill="none" stroke="#aaa" stroke-width="2" marker-end="url(#ag)"/>
+
+    <!-- V → V' (y=193..306) -->
+    <line x1="135" y1="193" x2="135" y2="306" stroke="#8E44AD" stroke-width="2" marker-end="url(#ap)"/>
+    <!-- inter → coupling -->
+    <line x1="560" y1="193" x2="560" y2="306" stroke="#117A65" stroke-width="2" marker-end="url(#at)"/>
+    <!-- K → diag -->
+    <line x1="1085" y1="193" x2="1085" y2="306" stroke="#7D6608" stroke-width="2" marker-end="url(#ab)"/>
+
+    <!-- V' → + (route: down → right → down) -->
+    <polyline points="135,368 135,460 248,460 248,507" fill="none" stroke="#8E44AD" stroke-width="2" marker-end="url(#ap)"/>
+    <!-- coupling → + (route: down → left → down) -->
+    <polyline points="560,368 560,440 285,440 285,507" fill="none" stroke="#117A65" stroke-width="2" marker-end="url(#at)"/>
+
+    <!-- + → ∇Ψ -->
+    <line x1="304" y1="511" x2="356" y2="511" stroke="#C0392B" stroke-width="2.5" marker-end="url(#ar)"/>
+    <!-- ∇Ψ → × -->
+    <line x1="644" y1="511" x2="714" y2="511" stroke="#C0392B" stroke-width="2.5" marker-end="url(#ar)"/>
+    <!-- K_diag → × (route: down → left, BELOW dz/ds) -->
+    <polyline points="1085,368 1085,440 763,440 763,507" fill="none" stroke="#7D6608" stroke-width="2" marker-end="url(#ab)"/>
+    <!-- × → − -->
+    <line x1="764" y1="511" x2="844" y2="511" stroke="#C0392B" stroke-width="2.5" marker-end="url(#ar)"/>
+    <!-- − → dz/ds -->
+    <line x1="890" y1="511" x2="936" y2="511" stroke="#C0392B" stroke-width="2.5" marker-end="url(#ar)"/>
+    <!-- dz/ds → RK4 -->
+    <line x1="1164" y1="511" x2="1216" y2="511" stroke="#555" stroke-width="2.5" marker-end="url(#ah)"/>
+
+    <!-- RK4 → zT (route: right → up → left, AVOIDING guarantee boxes) -->
+    <polyline points="1400,508 1430,508 1430,38 1042,38" fill="none" stroke="#7D6608" stroke-width="2" marker-end="url(#ab)"/>
+  </svg>
+
+</div>
+
+<script>
+renderMathInElement(document.body, {
+  delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
+  throwOnError: false
+});
+</script>
+</body>
+</html>

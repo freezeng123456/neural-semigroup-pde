@@ -1,0 +1,37 @@
+{
+  "latent": {
+    "n_params": 9603,
+    "model": "Latent",
+    "rollout_mse_mean": 0.00014867634452764378,
+    "rollout_mse_std": 1.5024036397704968e-05,
+    "bound_viol_mean": 0.0,
+    "bound_viol_std": 0.0,
+    "semigroup_defect_mean": 3.20454433388323e-14,
+    "semigroup_defect_std": 6.0246615644001534e-15,
+    "n_valid": 50,
+    "energy_mono_frac_mean": 1.0,
+    "energy_mono_frac_std": 0.0
+  },
+  "baseline_resnet": {
+    "n_params": 41569,
+    "model": "BaselineResNet",
+    "rollout_mse_mean": 0.028578233406951772,
+    "rollout_mse_std": 0.0022085017040675736,
+    "bound_viol_mean": 0.0007233388125896454,
+    "bound_viol_std": 0.0011518598963971062,
+    "semigroup_defect_mean": 0.00020507736131548883,
+    "semigroup_defect_std": 1.487625584323564e-05,
+    "n_valid": 50
+  },
+  "fno": {
+    "n_params": 17521,
+    "model": "FNO",
+    "rollout_mse_mean": 0.0021018255707022037,
+    "rollout_mse_std": 0.001072092510536045,
+    "bound_viol_mean": 0.0004563158577075228,
+    "bound_viol_std": 0.0012221598978347432,
+    "semigroup_defect_mean": 2.185282586651738e-05,
+    "semigroup_defect_std": 8.324262793040154e-06,
+    "n_valid": 50
+  }
+}

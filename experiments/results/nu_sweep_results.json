@@ -1,0 +1,22 @@
+[
+  {
+    "nu": 0.005,
+    "rollout_mse_mean": 7.4947434679558e-05,
+    "rollout_mse_std": 1.2624237439834294e-05,
+    "bound_viol_mean": 0.0,
+    "semigroup_defect_mean": 5.809146349719519e-15,
+    "energy_mono_frac_mean": 1.0,
+    "best_epoch": 9,
+    "best_val_mse_train": 1.983032050679867e-05
+  },
+  {
+    "nu": 0.001,
+    "rollout_mse_mean": 6.318535359632449e-06,
+    "rollout_mse_std": 2.0436797867115248e-06,
+    "bound_viol_mean": 0.0,
+    "semigroup_defect_mean": 1.0215578166369866e-14,
+    "energy_mono_frac_mean": 1.0,
+    "best_epoch": 7,
+    "best_val_mse_train": 1.7221529769990697e-06
+  }
+]

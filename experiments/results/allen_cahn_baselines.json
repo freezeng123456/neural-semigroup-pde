@@ -1,0 +1,24 @@
+{
+  "baseline": {
+    "n_params": 41569,
+    "model": "Baseline_N64",
+    "rollout_mse_mean": 0.008924069133145168,
+    "rollout_mse_std": 0.005202378848702118,
+    "bound_viol_mean": 0.00995891208574176,
+    "bound_viol_std": 0.008108117311959309,
+    "semigroup_defect_mean": 0.0006300814816495403,
+    "semigroup_defect_std": 8.595581189641104e-05,
+    "n_valid": 50
+  },
+  "fno": {
+    "n_params": 9329,
+    "model": "FNO_N64",
+    "rollout_mse_mean": 0.020410793474384036,
+    "rollout_mse_std": 0.006995105062832151,
+    "bound_viol_mean": 0.0018573404122143985,
+    "bound_viol_std": 0.0014621786946927516,
+    "semigroup_defect_mean": 0.00051488277153112,
+    "semigroup_defect_std": 0.00015319289416005475,
+    "n_valid": 50
+  }
+}

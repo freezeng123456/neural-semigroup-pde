@@ -1,0 +1,14 @@
+{
+  "latent": {
+    "model": "Latent",
+    "rollout_mse_mean": 0.00014410575894856947,
+    "rollout_mse_std": 1.4234739490516517e-05,
+    "bound_viol_mean": 0.0,
+    "bound_viol_std": 0.0,
+    "semigroup_defect_mean": 1.2432754045027526e-14,
+    "semigroup_defect_std": 5.176277716631367e-15,
+    "n_valid": 50,
+    "energy_mono_frac_mean": 1.0,
+    "energy_mono_frac_std": 0.0
+  }
+}

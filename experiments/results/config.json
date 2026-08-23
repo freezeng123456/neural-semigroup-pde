@@ -1,0 +1,31 @@
+{
+  "N": 64,
+  "L": 10.0,
+  "nu": 0.1,
+  "r": 1.0,
+  "dt_pde": 0.005,
+  "n_train": 1000,
+  "n_val": 50,
+  "tau": 0.1,
+  "T_max": 2.0,
+  "hidden_V": [
+    64,
+    64
+  ],
+  "hidden_K": [
+    64,
+    64
+  ],
+  "stencil_radius": 3,
+  "beta_V": 0.0,
+  "n_epochs": 100,
+  "batch_size": 64,
+  "lr": 0.001,
+  "alpha_rollout": 0.1,
+  "alpha_energy": 0.01,
+  "alpha_bound": 0.1,
+  "weight_decay": 1e-05,
+  "rollout_steps": 20,
+  "checkpoint_dir": "checkpoints",
+  "results_dir": "results"
+}

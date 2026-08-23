@@ -1,0 +1,22 @@
+{
+  "baseline_resnet": {
+    "model": "ResNet",
+    "rollout_mse_mean": 0.08191175428021234,
+    "rollout_mse_std": 0.02513130658574983,
+    "bound_viol_mean": 0.06564229865829112,
+    "bound_viol_std": 0.0200336283644285,
+    "semigroup_defect_mean": 0.0012981264560949057,
+    "semigroup_defect_std": 0.0003141322742905971,
+    "n_valid": 50
+  },
+  "fno": {
+    "model": "FNO",
+    "rollout_mse_mean": 0.053122565720346765,
+    "rollout_mse_std": 0.03956611026644735,
+    "bound_viol_mean": 0.15423002433031796,
+    "bound_viol_std": 0.05401828960833049,
+    "semigroup_defect_mean": 0.0002656959321757313,
+    "semigroup_defect_std": 0.0001979035649001404,
+    "n_valid": 50
+  }
+}

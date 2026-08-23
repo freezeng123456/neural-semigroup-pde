@@ -1,0 +1,113 @@
+{
+  "fisher_kpp": {
+    "latent": {
+      "n_params": 9603,
+      "model": "Latent",
+      "rollout_mse_mean": 0.00015119670862742395,
+      "rollout_mse_std": 1.4548018683648042e-05,
+      "bound_viol_mean": 0.0,
+      "bound_viol_std": 0.0,
+      "semigroup_defect_mean": 1.4418617124908882e-14,
+      "semigroup_defect_std": 6.149765629747894e-15,
+      "n_valid": 50,
+      "energy_mono_frac_mean": 1.0,
+      "energy_mono_frac_std": 0.0
+    },
+    "baseline": {
+      "n_params": 41569,
+      "model": "BaselineResNet",
+      "rollout_mse_mean": 0.028578233406951772,
+      "rollout_mse_std": 0.0022085017040675736,
+      "bound_viol_mean": 0.0007233388125896454,
+      "bound_viol_std": 0.0011518598963971062,
+      "semigroup_defect_mean": 0.00020507736131548883,
+      "semigroup_defect_std": 1.487625584323564e-05,
+      "n_valid": 50
+    },
+    "fno": {
+      "n_params": 17521,
+      "model": "FNO",
+      "rollout_mse_mean": 0.0021018255707022037,
+      "rollout_mse_std": 0.001072092510536045,
+      "bound_viol_mean": 0.0004563158577075228,
+      "bound_viol_std": 0.0012221598978347432,
+      "semigroup_defect_mean": 2.185282586651738e-05,
+      "semigroup_defect_std": 8.324262793040154e-06,
+      "n_valid": 50
+    }
+  },
+  "allen_cahn": {
+    "latent": {
+      "n_params": 9603,
+      "model": "Latent",
+      "rollout_mse_mean": 0.06577077585973894,
+      "rollout_mse_std": 0.014303111940310014,
+      "bound_viol_mean": 0.0,
+      "bound_viol_std": 0.0,
+      "semigroup_defect_mean": 7.275396951555991e-14,
+      "semigroup_defect_std": 3.1153269500112315e-14,
+      "n_valid": 50,
+      "energy_mono_frac_mean": 1.0,
+      "energy_mono_frac_std": 0.0
+    },
+    "baseline": {
+      "n_params": 41569,
+      "model": "BaselineResNet",
+      "rollout_mse_mean": 0.008924069133145168,
+      "rollout_mse_std": 0.005202378848702118,
+      "bound_viol_mean": 0.00995891208574176,
+      "bound_viol_std": 0.008108117311959309,
+      "semigroup_defect_mean": 0.0006300814816495403,
+      "semigroup_defect_std": 8.595581189641104e-05,
+      "n_valid": 50
+    },
+    "fno": {
+      "n_params": 9329,
+      "model": "FNO",
+      "rollout_mse_mean": 0.020410793474384036,
+      "rollout_mse_std": 0.006995105062832151,
+      "bound_viol_mean": 0.0018573404122143985,
+      "bound_viol_std": 0.0014621786946927516,
+      "semigroup_defect_mean": 0.00051488277153112,
+      "semigroup_defect_std": 0.00015319289416005475,
+      "n_valid": 50
+    }
+  },
+  "burgers": {
+    "latent": {
+      "n_params": 9603,
+      "model": "Latent",
+      "rollout_mse_mean": 0.042504862709931326,
+      "rollout_mse_std": 0.026028757729755297,
+      "bound_viol_mean": 0.0,
+      "bound_viol_std": 0.0,
+      "semigroup_defect_mean": 8.148093311177717e-15,
+      "semigroup_defect_std": 1.1135140672746231e-15,
+      "n_valid": 50,
+      "energy_mono_frac_mean": 1.0,
+      "energy_mono_frac_std": 0.0
+    },
+    "baseline": {
+      "n_params": 165057,
+      "model": "BaselineResNet",
+      "rollout_mse_mean": 0.04491210509004305,
+      "rollout_mse_std": 0.02325380386094459,
+      "bound_viol_mean": 0.00010778798907995225,
+      "bound_viol_std": 0.0006161033545058072,
+      "semigroup_defect_mean": 0.0006532465235795826,
+      "semigroup_defect_std": 0.0002056179309379431,
+      "n_valid": 50
+    },
+    "fno": {
+      "n_params": 37089,
+      "model": "FNO",
+      "rollout_mse_mean": 0.03907898027603369,
+      "rollout_mse_std": 0.023913820771454694,
+      "bound_viol_mean": 0.0,
+      "bound_viol_std": 0.0,
+      "semigroup_defect_mean": 0.00042531490849796684,
+      "semigroup_defect_std": 0.00032283798434611777,
+      "n_valid": 50
+    }
+  }
+}

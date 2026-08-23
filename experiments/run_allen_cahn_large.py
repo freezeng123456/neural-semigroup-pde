@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+"""
+Train Allen-Cahn Latent with larger network (128x128) from scratch.
+Test if larger capacity can break through the val_mse=2.21e-2 plateau.
+"""
+import torch
+import numpy as np
+import os
+import sys
+import json
+import time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from models import LatentSemigroupNetBounded
+from training import train_model
+from evaluate import evaluate_full
+
+
+def main():
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"Device: {device}")
+
+    N = 64
+    tau = 0.1
+    n_epochs = 200
+    checkpoint_dir = "checkpoints/allen_cahn_large"
+    os.makedirs(checkpoint_dir, exist_ok=True)
+
+    data = torch.load("checkpoints/allen_cahn/data_N64.pt", map_location="cpu", weights_only=False)
+    train_u0, train_ut = data["train_u0"], data["train_ut"]
+    val_u0, val_trajs = data["val_u0"], data["val_trajs"]
+    print(f"Train: {train_u0.shape}, Val: {val_u0.shape}")
+
+    # Larger network
+    model = LatentSemigroupNetBounded(
+        N=N, m=-1.0, M=1.0,
+        hidden_V=[128, 128], hidden_K=[128, 128],
+        stencil_radius=3, beta_V=0.0,
+    )
+    n_params = sum(p.numel() for p in model.parameters())
+    print(f"Parameters: {n_params} (vs 9603 for 64x64)")
+
+    # Train from scratch with rollout + energy loss
+    print(f"\n{'='*70}")
+    print(f"TRAINING Allen-Cahn Latent 128x128: {n_epochs} epochs")
+    print(f"{'='*70}")
+
+    t0 = time.time()
+    history = train_model(
+        model, train_u0, train_ut, val_u0, val_trajs,
+        tau=tau, n_epochs=n_epochs, batch_size=64, lr=1e-3,
+        alpha_rollout=0.1, alpha_energy=0.01, alpha_bound=0.0,
+        alpha_V=0.0,
+        weight_decay=1e-5, checkpoint_dir=checkpoint_dir,
+        model_name="latent_128", device=device,
+        lower_bound=-1.0, upper_bound=1.0,
+    )
+    print(f"\nTraining: {time.time()-t0:.0f}s")
+
+    # Evaluate
+    best_ckpt = torch.load(os.path.join(checkpoint_dir, "latent_128_best.pt"),
+                            map_location=device, weights_only=False)
+    model.load_state_dict(best_ckpt["model_state_dict"])
+    model.to(device)
+
+    metrics, _ = evaluate_full(
+        model, val_u0, val_trajs, tau=tau,
+        rollout_steps=20, device=device, model_name="Latent_128",
+        lower_bound=-1.0, upper_bound=1.0,
+    )
+    print(f"\n{'='*70}")
+    print(f"RESULTS")
+    print(f"{'='*70}")
+    print(f"  Rollout MSE: {metrics['rollout_mse_mean']:.4e} ± {metrics['rollout_mse_std']:.4e}")
+    print(f"  Bound Viol:  {metrics['bound_viol_mean']:.4e}")
+    print(f"  SG Defect:   {metrics['semigroup_defect_mean']:.4e}")
+    print(f"  Energy Mono: {metrics.get('energy_mono_frac_mean', 0):.2f}")
+
+    os.makedirs("results", exist_ok=True)
+    with open("results/allen_cahn_latent_128.json", "w") as f:
+        json.dump({"n_params": n_params, **metrics}, f, indent=2)
+    print(f"\nSaved results/allen_cahn_latent_128.json")
+
+
+if __name__ == "__main__":
+    main()

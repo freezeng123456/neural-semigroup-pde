@@ -1,0 +1,637 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,bm,mathtools}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  pdftitle={Deep Operator Learning of Maximum-Principle-Preserving Dissipative Semigroups for Time-Dependent PDEs},
+  pdfauthor={}
+}
+
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{problem}{Problem}
+\newtheorem{assumption}{Assumption}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cFN}{\mathcal{F}_N}
+\newcommand{\PhiT}{\Phi_{\theta}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\softplus}{\operatorname{softplus}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+
+\title{Deep Operator Learning of Maximum-Principle-Preserving Dissipative Semigroups for Time-Dependent PDEs}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We formulate operator learning for autonomous evolution PDEs at the semigroup level: rather than learning only a one-step predictor, the learner is a family \(\Phi_{\theta}(\cdot,\tau)\) intended for repeated composition. We derive discrete stability and error-propagation estimates showing how semigroup defect and trajectory-level approximation error compound under repeated rollout. We then construct a semidiscrete latent dissipative architecture for which invariance of the interior state set, exact semigroup composition, and induced-energy dissipation are exact finite-dimensional guarantees, and we demonstrate these properties numerically on a Fisher--KPP benchmark. The transfer of these architecture-level guarantees back to the PDE semigroup is left as a separate analytical question.
+\end{abstract}
+
+\section{Introduction and semigroup formulation}
+We study time-dependent PDEs whose solution operators form nonlinear semigroups and satisfy structural laws such as invariant-region preservation and Lyapunov dissipation. These laws are central both to the mathematical interpretation of the dynamics and to the stability of long-time rollout. Let \(X\) be a Banach space of states, for example \(L^{\infty}(\Omega)\), \(L^2(\Omega)\), or a Sobolev space on a spatial domain \(\Omega\subset \R^d\). Consider an autonomous evolution PDE of the form
+\begin{equation}\label{eq:pde}
+\partial_t u = \cF(u), \qquad t>0, \qquad u(0)=u_0\in X.
+\end{equation}
+Assume that \eqref{eq:pde} is well-posed and generates a nonlinear solution semigroup
+\begin{equation}\label{eq:semigroup-family}
+\cS_t : X \to X, \qquad u(t)=\cS_tu_0, \qquad t\ge 0.
+\end{equation}
+Thus
+\begin{equation}\label{eq:semigroup-law}
+\cS_0 = \mathrm{Id}_X, \qquad \cS_{t+s}=\cS_t\circ \cS_s, \qquad t,s\ge 0.
+\end{equation}
+
+Our focus is on problems for which the semigroup satisfies two additional structural properties.
+
+\paragraph{Maximum principle / invariant region.}
+There exists a closed admissible set \(\cK\subset X\) such that
+\begin{equation}\label{eq:maximum-principle}
+\cS_t(\cK)\subset \cK, \qquad t\ge 0.
+\end{equation}
+A typical example is
+\begin{equation}\label{eq:box-invariant}
+\cK = \{u\in X : m\le u(x)\le M \text{ a.e. in } \Omega\},
+\end{equation}
+which encodes a maximum principle, positivity, or boundedness property.
+
+\paragraph{Dissipativity.}
+There exists a Lyapunov functional
+\begin{equation}\label{eq:energy-type}
+\cE : X \to \R\cup\{+\infty\}
+\end{equation}
+for which
+\begin{equation}\label{eq:dissipation}
+\cE(\cS_tu) \le \cE(u), \qquad t\ge 0, \qquad u\in \cK.
+\end{equation}
+Depending on the PDE, \(\cE\) may be an energy, entropy, free energy, or another dissipated quantity.
+
+Standard operator-learning formulations often emphasize short-time prediction. Our focus is different: we seek a learned evolution family intended for repeated composition in time. The approximation target is therefore the operator family \((\cS_t)_{t\ge 0}\) itself. This emphasis matters because a learned one-step map may fit short-time data and yet accumulate structural errors under repeated composition: small violations of invariance, dissipation, or semigroup consistency can be amplified when the model is used as a time-marching solver. The problem we address is to construct a learned family \((\PhiT(\cdot,\tau))_{\tau\ge 0}\) that approximates \((\cS_t)_{t\ge 0}\) while retaining \eqref{eq:maximum-principle} and \eqref{eq:dissipation}. In other words, the objective is not only local prediction accuracy but a learned evolution family that can be composed in time without destroying the PDE's structural laws.
+
+\paragraph{Contributions.}\leavevmode\\
+This paper makes three contributions.
+First, it formulates structure-preserving operator learning at the nonlinear semigroup level: rather than learning an isolated one-step predictor, the target is an evolution family \(\Phi_{\theta}(\cdot,\tau)\) intended for repeated composition, with the PDE semigroup \((\cS_t)_{t\ge 0}\) as the reference object (Definition~\ref{def:main-learner}).
+Second, it derives rollout estimates that disentangle the two sources of error under repeated composition — trajectory-level approximation and semigroup defect — showing that both enter discrete time-stepping stability in complementary ways (Section~\ref{sec:repeated-composition}).
+Third, it constructs a semidiscrete latent dissipative architecture (Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param}) for which, assuming the latent ODE generates a global flow, invariance of the interior state set \((m,M)^N\), exact semigroup composition, and dissipation of an induced discrete energy hold by construction at the finite-dimensional architecture level.
+The layered character of the framework is deliberate: the PDE semigroup defines the target specification, while the architectural verification yields structural guarantees that are independent of training quality and hold for every parameter \(\theta\); the rigorous transfer between these two levels is formulated as a set of open problems in Section~\ref{sec:analytical-questions}.
+
+\paragraph{Relation to existing themes.}
+The formulation is connected to several lines of work without coinciding with any single one of them. It shares the operator-learning objective of approximating solution maps, as in DeepONet and neural-operator approaches \cite{LuJinKarniadakis2021DeepONet,KovachkiLiLiuEtAl2023NeuralOperator,LiKovachkiAzizzadenesheliEtAl2021FNO}, but emphasizes a whole evolution family rather than an isolated input-output map. It shares with structure-preserving learning the concern that geometric, invariant, or dissipative laws should be encoded in the model class \cite{GreydanusDzambaYosinski2019HNN,JinZhangZhuTangKarniadakis2020SympNets,YuTianELi2021OnsagerNet}; here the structural requirements are invariance of an admissible set and dissipation along repeated rollout. It is also related to neural ODE parametrizations \cite{ChenRubanovaBettencourtDuvenaud2018NODE}, because the proposed construction realizes the learned family as the flow of a latent dissipative system. The distinction is that the present paper uses the semigroup viewpoint to keep time composition, invariant-region preservation, and energy decay in the same target specification, while leaving continuous-to-discrete PDE transfer as a separate analytical issue.
+
+Section~\ref{sec:repeated-composition} develops the basic discrete stability and error-propagation statements associated with repeated composition. Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param} then construct a semidiscrete latent-flow model class for which, under the global-flow assumption used later, admissibility, exact semigroup composition, and dissipation of an induced discrete energy hold on the interior state set \((m,M)^N\). These exact guarantees are finite-dimensional and architecture-level; their rigorous transfer to the target PDE semigroup is deferred to Section~\ref{sec:analytical-questions}.
+
+\section{Target class of learned semigroups}
+We next specify the class of learned families that is admissible for this objective. The basic mathematical object is a parameterized family of learned operators
+\begin{equation}\label{eq:learned-family}
+\PhiT(\cdot,\tau) : \cK \to \cK, \qquad \tau\ge 0,
+\end{equation}
+intended to approximate the solution operator \(\cS_{\tau}\). The five requirements below fall into two groups: \eqref{eq:s1}--\eqref{eq:s3} concern approximation of the evolution family itself, whereas \eqref{eq:s4}--\eqref{eq:s5} guarantee that the learned rollout stays inside the admissible set and continues to dissipate the chosen Lyapunov functional.
+
+\begin{definition}[Structure-preserving deep semigroup learner]\label{def:main-learner}
+A family \(\PhiT(\cdot,\tau):\cK\to \cK\) is called a structure-preserving deep semigroup learner if it satisfies the following properties.
+\begin{enumerate}[label=(S\arabic*)]
+    \item \textbf{Identity at zero time:}
+    \begin{equation}\label{eq:s1}
+    \PhiT(u,0)=u, \qquad u\in \cK.
+    \end{equation}
+
+    \item \textbf{Generator consistency:}
+    for \(u\in D(\cF)\cap \cK\),
+    \begin{equation}\label{eq:s2}
+    \PhiT(u,\tau)=u+\tau\cF(u)+o(\tau), \qquad \tau\downarrow 0.
+    \end{equation}
+
+    \item \textbf{Semigroup defect control:}
+    there exists a defect function \(\eta_{\mathrm{sg}}:[0,\infty)^2\to [0,\infty)\) such that
+    \begin{equation}\label{eq:s3}
+    \norm{\PhiT(\PhiT(u,\tau_1),\tau_2)-\PhiT(u,\tau_1+\tau_2)} \le \eta_{\mathrm{sg}}(\tau_1,\tau_2),
+    \end{equation}
+    for all \(u\in \cK\) and all \(\tau_1,\tau_2\ge 0\), with \(\eta_{\mathrm{sg}}(\tau_1,\tau_2)\to 0\) as \((\tau_1,\tau_2)\to (0,0)\).
+
+    \item \textbf{Maximum-principle preservation:}
+    \begin{equation}\label{eq:s4}
+    u\in \cK \Longrightarrow \PhiT(u,\tau)\in \cK, \qquad \tau\ge 0.
+    \end{equation}
+
+    \item \textbf{Dissipation preservation:}
+    \begin{equation}\label{eq:s5}
+    \cE(\PhiT(u,\tau)) \le \cE(u), \qquad u\in \cK, \qquad \tau\ge 0.
+    \end{equation}
+\end{enumerate}
+\end{definition}
+
+Definition~\ref{def:main-learner} isolates the class of learned operator families that are admissible for the present problem. The first three clauses encode approximation of the PDE semigroup, whereas \eqref{eq:s4} and \eqref{eq:s5} encode preservation of the maximum principle and of the dissipation law. In particular, \eqref{eq:s3} measures whether the learned family behaves coherently across different time increments, while \eqref{eq:s4}--\eqref{eq:s5} are the structural conditions that prevent rollout from leaving the physically meaningful regime. This definition therefore serves as the interface between the continuous semigroup problem and the architectural constructions introduced later. It should be read as a PDE-level target specification; the latent architecture constructed later verifies only a finite-dimensional structural subset of these requirements, while generator matching and approximation to the target PDE semigroup remain separate issues.
+
+\section{Repeated composition and discrete stability}\label{sec:repeated-composition}
+Fix a time step \(\Delta t>0\). Once the family \(\PhiT\) is learned, it generates a discrete solver by repeated composition:
+\begin{equation}\label{eq:discrete-solver}
+u^{n+1}=\PhiT(u^n,\Delta t), \qquad u^0=u_0,
+\end{equation}
+or equivalently
+\begin{equation}\label{eq:iterated-map}
+u^n=\bigl(\PhiT(\cdot,\Delta t)\bigr)^{\circ n}(u_0), \qquad n\in \N\cup\{0\}.
+\end{equation}
+
+This section clarifies what is gained by learning the semigroup rather than only a one-step map. Once the model is rolled out, two questions become central: does the discrete orbit remain in the admissible set and dissipate the Lyapunov functional, and how do one-step approximation error and semigroup inconsistency accumulate over many compositions?
+
+\begin{theorem}[Discrete stability inherited from structure]\label{thm:stability}
+Assume that \eqref{eq:s4} and \eqref{eq:s5} hold. Then, for every \(u_0\in \cK\), the discrete orbit \eqref{eq:iterated-map} satisfies
+\begin{equation}\label{eq:discrete-stability}
+u^n\in \cK, \qquad \cE(u^{n+1})\le \cE(u^n)\le \cE(u^0), \qquad n\in \N\cup\{0\}.
+\end{equation}
+In particular, the learned solver preserves the admissible set and satisfies a discrete Lyapunov law.
+\end{theorem}
+
+\begin{proof}
+The proof is an induction on \(n\). Since \(u^0=u_0\in \cK\), the base step is immediate. If \(u^n\in \cK\), then \eqref{eq:s4} gives \(u^{n+1}=\PhiT(u^n,\Delta t)\in \cK\), and \eqref{eq:s5} yields
+\begin{equation*}
+\cE(u^{n+1})=\cE(\PhiT(u^n,\Delta t))\le \cE(u^n).
+\end{equation*}
+This proves \eqref{eq:discrete-stability}.
+\end{proof}
+
+Theorem~\ref{thm:stability} shows that the structural constraints are not merely formal conditions: they immediately turn the learned operator into a stable time-marching scheme. In particular, once \eqref{eq:s4} and \eqref{eq:s5} are built into the model, admissibility and Lyapunov decay propagate automatically to every iterate.
+
+\begin{proposition}[Error decomposition through semigroup defect]\label{prop:error-decomposition}
+Let \(T>0\) and \(u_0\in \cK\), and assume that \eqref{eq:s3} and \eqref{eq:s4} hold. Assume also that there exists \(L_T\ge 0\) such that
+\begin{equation}\label{eq:lipschitz-step}
+\norm{\PhiT(v,\tau)-\PhiT(w,\tau)} \le (1+L_T\tau)\norm{v-w}, \qquad 0\le \tau\le T,
+\end{equation}
+for all \(v,w\in \cK\). Define
+\begin{equation}\label{eq:app-defect}
+\varepsilon_{\mathrm{app}}(T;u_0):=\sup_{0\le t\le T}\norm{\PhiT(u_0,t)-\cS_tu_0},
+\end{equation}
+and
+\begin{equation}\label{eq:sg-defect-dt}
+\varepsilon_{\mathrm{sg}}(T,\Delta t):=\sup_{0\le t\le T-\Delta t}\eta_{\mathrm{sg}}(t,\Delta t).
+\end{equation}
+Then, for every integer \(n\) with \(0\le n\Delta t\le T\),
+\begin{equation}\label{eq:error-bound}
+\norm{\bigl(\PhiT(\cdot,\Delta t)\bigr)^{\circ n}(u_0)-\cS_{n\Delta t}u_0}
+\le e^{L_TT}n\,\varepsilon_{\mathrm{sg}}(T,\Delta t)+\varepsilon_{\mathrm{app}}(T;u_0).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Set
+\begin{equation}\label{eq:delta-def}
+\delta_n:=\norm{\bigl(\PhiT(\cdot,\Delta t)\bigr)^{\circ n}(u_0)-\PhiT(u_0,n\Delta t)}.
+\end{equation}
+Then \(\delta_0=0\). By \eqref{eq:s4}, the iterated state \((\PhiT(\cdot,\Delta t))^{\circ n}(u_0)\) remains in \(\cK\); moreover \(\PhiT(u_0,n\Delta t)\in \cK\). Hence the Lipschitz estimate applies to the two arguments below. For \(n\Delta t\le T-\Delta t\),
+\begin{align*}
+\delta_{n+1}
+&\le \norm{\PhiT\bigl((\PhiT(\cdot,\Delta t))^{\circ n}(u_0),\Delta t\bigr)-\PhiT\bigl(\PhiT(u_0,n\Delta t),\Delta t\bigr)} \\
+&\quad + \norm{\PhiT\bigl(\PhiT(u_0,n\Delta t),\Delta t\bigr)-\PhiT(u_0,(n+1)\Delta t)} \\
+&\le (1+L_T\Delta t)\delta_n+\varepsilon_{\mathrm{sg}}(T,\Delta t).
+\end{align*}
+A discrete Gronwall argument gives the displayed bound below; we use the coarse estimate \(\sum_{j=0}^{n-1}(1+L_T\Delta t)^j\le n e^{L_TT}\), which is sufficient for the convergence statement.
+\begin{equation}\label{eq:delta-bound}
+\delta_n\le e^{L_TT}n\,\varepsilon_{\mathrm{sg}}(T,\Delta t).
+\end{equation}
+Combining \eqref{eq:delta-bound} with the triangle inequality yields \eqref{eq:error-bound}.
+\end{proof}
+
+Proposition~\ref{prop:error-decomposition} separates two conceptually different error sources. The term \(\varepsilon_{\mathrm{app}}\) measures the trajectory-level semigroup fit from the initial state \(u_0\), whereas \(\varepsilon_{\mathrm{sg}}\) measures the internal inconsistency of the learned composition law. The estimate shows that long-time rollout is controlled not only by short-time approximation quality, but also by how well the learned family behaves as a semigroup. This bound is conditional on the stability hypothesis \eqref{eq:lipschitz-step} and does not by itself provide a PDE-level approximation theorem.
+
+\begin{corollary}[A route to convergence]\label{cor:global-convergence}
+Let \(T>0\) and \(u_0\in \cK\). Assume that, for a sequence \(\Delta t_m\downarrow 0\) and corresponding learned models satisfying \eqref{eq:s3}--\eqref{eq:s4}, one has
+\begin{equation}\label{eq:asymptotic-defects}
+\varepsilon_{\mathrm{app}}^{(m)}(T;u_0)\to 0, \qquad \frac{\varepsilon_{\mathrm{sg}}^{(m)}(T,\Delta t_m)}{\Delta t_m}\to 0,
+\end{equation}
+and that \eqref{eq:lipschitz-step} holds with a constant \(L_T\) independent of \(m\). Then
+\begin{equation}\label{eq:asymptotic-conv}
+\sup_{0\le n\Delta t_m\le T}\norm{\bigl(\PhiT^{(m)}(\cdot,\Delta t_m)\bigr)^{\circ n}(u_0)-\cS_{n\Delta t_m}u_0}\to 0
+\end{equation}
+as \(m\to \infty\).
+\end{corollary}
+
+\begin{proof}
+If \(0\le n\Delta t_m\le T\), then \(n\le T/\Delta t_m\). Proposition~\ref{prop:error-decomposition} gives
+\begin{equation*}
+\norm{\bigl(\PhiT^{(m)}(\cdot,\Delta t_m)\bigr)^{\circ n}(u_0)-\cS_{n\Delta t_m}u_0}
+\le e^{L_TT}T\frac{\varepsilon_{\mathrm{sg}}^{(m)}(T,\Delta t_m)}{\Delta t_m}+\varepsilon_{\mathrm{app}}^{(m)}(T;u_0).
+\end{equation*}
+Taking the supremum over \(n\) and using \eqref{eq:asymptotic-defects} proves \eqref{eq:asymptotic-conv}.
+\end{proof}
+
+\section{A latent structure-preserving architecture}\label{sec:latent-architecture}
+Corollary~\ref{cor:global-convergence} therefore suggests a concrete design principle: a learned evolution family should control both approximation error and semigroup defect, while preserving the structural laws that guarantee stable rollout. The next question is how to build these requirements into an architecture for which the structural clauses of Definition~\ref{def:main-learner} hold at the model-class level rather than only through soft penalties during training.
+
+We now work with a semidiscrete finite-dimensional state model. The exact statements proved in the remainder of the paper are therefore architecture-level finite-dimensional guarantees, not direct PDE-level transfer results. The rigorous passage from this exact finite-dimensional verification back to the target infinite-dimensional semigroup is deferred to Section~\ref{sec:analytical-questions}.
+
+\begin{assumption}[Finite-dimensional state model]\label{ass:finite-dim}
+Fix \(N\ge 1\), and identify the spatially discretized state space with
+\begin{equation}\label{eq:XN}
+X_N=\R^N.
+\end{equation}
+Assume that the maximum principle is represented by the box constraint
+\begin{equation}\label{eq:KN}
+\cK_N=[m,M]^N=\{u=(u_1,\dots,u_N)^\top\in \R^N : m\le u_i\le M, \ i=1,\dots,N\}.
+\end{equation}
+\end{assumption}
+
+We regard \(X_N\) and \(\cK_N\) as the finite-dimensional counterparts of \(X\) and \(\cK\), respectively. For the inverse-logit latent construction used below, the actual input domain is the interior set \((m,M)^N\), because the latent inverse \(g^{-1}\) is only defined there. The resulting learned family is therefore considered as a map
+\begin{equation}\label{eq:finite-learner}
+\PhiT : (m,M)^N\times [0,\infty)\to \cK_N.
+\end{equation}
+
+The construction below follows a simple architectural principle: first lift an interior constrained state into an unconstrained latent variable, then evolve that latent variable by an autonomous dissipative flow, and finally map the latent state back into the admissible set. Boundary states with some component equal to \(m\) or \(M\) are not covered by the present parametrization.
+
+\begin{definition}[Bounded latent parametrization]\label{def:latent-map}
+Let \(\sigma:\R\to (0,1)\) be the sigmoid function
+\begin{equation}\label{eq:sigmoid}
+\sigma(\xi)=\frac{1}{1+e^{-\xi}}.
+\end{equation}
+Define \(g:\R^N\to (m,M)^N\) componentwise by
+\begin{equation}\label{eq:g-map}
+g(z)_i=m+(M-m)\sigma(z_i), \qquad i=1,\dots,N.
+\end{equation}
+Then \(g\) maps the whole latent space into the admissible set. Its inverse on \((m,M)^N\) is
+\begin{equation}\label{eq:g-inv}
+g^{-1}(u)_i=\log\!\left(\frac{u_i-m}{M-u_i}\right), \qquad i=1,\dots,N,
+\end{equation}
+and its Jacobian is
+\begin{equation}\label{eq:Dg}
+\mathrm{D}g(z)=(M-m)\,\diag\bigl(\sigma(z_i)(1-\sigma(z_i))\bigr)_{i=1}^N.
+\end{equation}
+\end{definition}
+
+\begin{definition}[Latent dissipative semigroup]\label{def:latent-semigroup}
+Assume that
+\begin{equation}\label{eq:latent-objects}
+\Psi_{\theta}\in C^1(\R^N;\R), \qquad K_{\theta}:\R^N\to \R^{N\times N},
+\end{equation}
+and that \(K_{\theta}(z)\) is symmetric positive semidefinite for every \(z\in \R^N\). Consider the latent ODE
+\begin{equation}\label{eq:latent-ode}
+\partial_s Z_{\theta}(s;z_0)=-K_{\theta}(Z_{\theta}(s;z_0))\nabla \Psi_{\theta}(Z_{\theta}(s;z_0)), \qquad Z_{\theta}(0;z_0)=z_0.
+\end{equation}
+Assume furthermore that this vector field generates a local flow \(\varphi_{\theta}^{\tau}\). The learned operator family is then defined for interior states and for those times \(\tau\ge 0\) for which the latent trajectory through \(g^{-1}(u)\) exists, by
+\begin{equation}\label{eq:latent-learner}
+\PhiT(u,\tau):=g\bigl(\varphi_{\theta}^{\tau}(g^{-1}(u))\bigr).
+\end{equation}
+The induced discrete energy on \((m,M)^N\) is
+\begin{equation}\label{eq:induced-energy}
+\cE_{\theta}(u):=\Psi_{\theta}(g^{-1}(u)).
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Structural properties of the latent-flow construction]\label{prop:structure}
+Assume that \eqref{eq:latent-ode} generates a global flow on \(\R^N\). Then, for every \(u\in (m,M)^N\) and every \(\tau,\tau_1,\tau_2\ge 0\), the map \eqref{eq:latent-learner} is well defined, takes values in \((m,M)^N\), and satisfies
+\begin{equation}\label{eq:structure-p1}
+\PhiT(u,0)=u,
+\end{equation}
+\begin{equation}\label{eq:structure-p3}
+\PhiT(\PhiT(u,\tau_1),\tau_2)=\PhiT(u,\tau_1+\tau_2),
+\end{equation}
+\begin{equation}\label{eq:structure-p4}
+\PhiT(u,\tau)\in \cK_N,
+\end{equation}
+and
+\begin{equation}\label{eq:structure-p5}
+\cE_{\theta}(\PhiT(u,\tau))\le \cE_{\theta}(u).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Set \(z_0:=g^{-1}(u)\). Equation \eqref{eq:structure-p1} follows from the identity property of the flow. Equation \eqref{eq:structure-p3} follows from the semigroup property of the autonomous flow \(\varphi_{\theta}^{\tau}\). Since \(g(\R^N)\subset (m,M)^N\subset \cK_N\), the map \eqref{eq:latent-learner} is well defined for all \(\tau\ge 0\), takes values in \((m,M)^N\), and in particular satisfies equation \eqref{eq:structure-p4}. Finally,
+\begin{align*}
+\frac{d}{ds}\Psi_{\theta}(Z_{\theta}(s;z_0))
+&=\nabla \Psi_{\theta}(Z_{\theta}(s;z_0))^\top \partial_s Z_{\theta}(s;z_0) \\
+&=-\nabla \Psi_{\theta}(Z_{\theta}(s;z_0))^\top K_{\theta}(Z_{\theta}(s;z_0))\nabla \Psi_{\theta}(Z_{\theta}(s;z_0)) \\
+&\le 0.
+\end{align*}
+Hence \eqref{eq:structure-p5} follows from \eqref{eq:induced-energy}.
+\end{proof}
+
+\begin{proposition}[Generator expansion and matching condition]\label{prop:generator}
+Assume that \(\Psi_{\theta}\in C^2(\R^N)\) and \(K_{\theta}\in C^1(\R^N;\R^{N\times N})\). Then the latent vector field in \eqref{eq:latent-ode} is of class \(C^1\), so it generates a local \(C^1\) flow. For each fixed \(u\in (m,M)^N\),
+\begin{equation}\label{eq:generator-expansion}
+\PhiT(u,\tau)=u-\tau\,\mathrm{D}g(g^{-1}(u))K_{\theta}(g^{-1}(u))\nabla \Psi_{\theta}(g^{-1}(u))+o(\tau), \qquad \tau\downarrow 0.
+\end{equation}
+Consequently, if there exists a semidiscrete generator \(\cFN:(m,M)^N\to \R^N\) such that the matching condition
+\begin{equation}\label{eq:matching}
+\mathrm{D}g(g^{-1}(u))K_{\theta}(g^{-1}(u))\nabla \Psi_{\theta}(g^{-1}(u))=-\cFN(u), \qquad u\in (m,M)^N,
+\end{equation}
+is satisfied, then
+\begin{equation*}
+\PhiT(u,\tau)=u+\tau\cFN(u)+o(\tau), \qquad \tau\downarrow 0,
+\end{equation*}
+which is the finite-dimensional counterpart of \eqref{eq:s2}.
+\end{proposition}
+
+\begin{proof}
+Fix \(u\in (m,M)^N\), and set \(z_0:=g^{-1}(u)\). Since the latent vector field
+\begin{equation*}
+f_{\theta}(z):=-K_{\theta}(z)\nabla \Psi_{\theta}(z)
+\end{equation*}
+is \(C^1\), the local flow satisfies the standard first-order expansion
+\begin{equation*}
+\varphi_{\theta}^{\tau}(z_0)=z_0+\tau f_{\theta}(z_0)+o(\tau), \qquad \tau\downarrow 0.
+\end{equation*}
+Because \(g\in C^1(\R^N;(m,M)^N)\), Taylor expansion at \(z_0\) gives
+\begin{align*}
+\PhiT(u,\tau)
+&=g\bigl(\varphi_{\theta}^{\tau}(z_0)\bigr) \\
+&=g(z_0)+\mathrm{D}g(z_0)\bigl(\varphi_{\theta}^{\tau}(z_0)-z_0\bigr)+o\!\left(\norm{\varphi_{\theta}^{\tau}(z_0)-z_0}\right) \\
+&=u-\tau\,\mathrm{D}g(z_0)K_{\theta}(z_0)\nabla\Psi_{\theta}(z_0)+o(\tau).
+\end{align*}
+This is \eqref{eq:generator-expansion}. If \eqref{eq:matching} holds for some semidiscrete generator \(\cFN\), then
+\begin{equation*}
+\PhiT(u,\tau)=u+\tau\cFN(u)+o(\tau), \qquad \tau\downarrow 0,
+\end{equation*}
+which is the finite-dimensional counterpart of \eqref{eq:s2}.
+\end{proof}
+
+\begin{corollary}[Verification of the finite-dimensional structural clauses]\label{cor:verification}
+Assume that the hypotheses of Proposition~\ref{prop:structure} hold. Then the map \eqref{eq:latent-learner} satisfies \eqref{eq:s1} and \eqref{eq:s4} exactly on the interior state set \((m,M)^N\), it satisfies \eqref{eq:s3} there with defect function
+\begin{equation}\label{eq:exact-defect}
+\eta_{\mathrm{sg}}(\tau_1,\tau_2)\equiv 0.
+\end{equation}
+and it satisfies the finite-dimensional dissipation law
+\begin{equation}\label{eq:exact-discrete-energy}
+\cE_{\theta}(\PhiT(u,\tau))\le \cE_{\theta}(u), \qquad u\in (m,M)^N, \qquad \tau\ge 0.
+\end{equation}
+If, in addition, Proposition~\ref{prop:generator} holds and
+\begin{equation}\label{eq:matching-exact}
+\mathrm{D}g(g^{-1}(u))K_{\theta}(g^{-1}(u))\nabla \Psi_{\theta}(g^{-1}(u))=-\cFN(u), \qquad u\in (m,M)^N,
+\end{equation}
+then the finite-dimensional generator relation
+\begin{equation}\label{eq:s2-finite}
+\PhiT(u,\tau)=u+\tau\cFN(u)+o(\tau), \qquad u\in (m,M)^N,
+\end{equation}
+holds as \(\tau\downarrow 0\).
+\end{corollary}
+
+Consequently, the latent-flow construction provides an exact finite-dimensional verification of the identity, admissibility, exact semigroup, and induced-energy dissipation properties on the interior state set, while generator matching remains conditional on \eqref{eq:matching-exact} and concerns a semidiscrete generator \(\cFN\), not yet the original PDE generator \(\cF\).
+
+\begin{proof}
+Equation \eqref{eq:s1} follows from \eqref{eq:structure-p1}; equation \eqref{eq:s4} follows from \eqref{eq:structure-p4}; \eqref{eq:s3} follows from \eqref{eq:structure-p3}, which implies \eqref{eq:exact-defect}; and \eqref{eq:exact-discrete-energy} follows from \eqref{eq:structure-p5}. The final assertion is immediate from Proposition~\ref{prop:generator} and \eqref{eq:matching-exact}.
+\end{proof}
+
+\section{Neural parametrization of the latent semigroup}\label{sec:neural-param}
+The previous section identifies the abstract ingredients needed for a structure-preserving semigroup learner. We now turn those ingredients into explicit neural parametrizations of the latent energy, interaction matrix, and mobility.
+\begin{definition}[Reaction--diffusion latent energy ansatz]\label{def:rd-energy}
+Let
+\begin{equation}\label{eq:V-type}
+V_{\theta}\in C^1(\R;\R)
+\end{equation}
+be a scalar potential, and let
+\begin{equation}\label{eq:A-sym}
+a_{ij}^{(\theta)}=a_{ji}^{(\theta)}\ge 0, \qquad i,j=1,\dots,N.
+\end{equation}
+Define
+\begin{equation}\label{eq:rd-energy}
+\Psi_{\theta}(z)=\sum_{i=1}^N V_{\theta}(z_i)+\frac12\sum_{i,j=1}^N a_{ij}^{(\theta)}(z_i-z_j)^2.
+\end{equation}
+If, in addition,
+\begin{equation}\label{eq:diag-mobility}
+K_{\theta}(z)=\diag\bigl(k_{\theta,1}(z),\dots,k_{\theta,N}(z)\bigr), \qquad k_{\theta,i}(z)\ge 0,
+\end{equation}
+then the latent dynamics takes the componentwise form
+\begin{equation}\label{eq:component-flow}
+\partial_s z_i=-k_{\theta,i}(z)\left(V_{\theta}'(z_i)+2\sum_{j=1}^N a_{ij}^{(\theta)}(z_i-z_j)\right), \qquad i=1,\dots,N.
+\end{equation}
+\end{definition}
+
+\begin{definition}[Neural parametrization of latent energy and mobility]\label{def:neural-param}
+Fix an activation function \(\rho:\R\to \R\) of class \(C^1\), and define
+\begin{equation}\label{eq:softplus}
+\softplus(\xi)=\log(1+e^{\xi}).
+\end{equation}
+For the scalar potential, fix integers \(d_1^V,\dots,d_{L_V-1}^V\in \N\), together with parameters
+\begin{equation}\label{eq:V-params}
+W_0^V\in \R^{d_1^V\times 1}, \qquad b_0^V\in \R^{d_1^V},
+\end{equation}
+\begin{equation*}
+W_{\ell}^V\in \R^{d_{\ell+1}^V\times d_{\ell}^V}, \qquad b_{\ell}^V\in \R^{d_{\ell+1}^V}, \quad \ell=1,\dots,L_V-2,
+\qquad c^V\in \R^{d_{L_V-1}^V}, \qquad \beta_V\ge 0.
+\end{equation*}
+Define
+\begin{equation}\label{eq:V-hidden}
+h_1^V(\xi):=\rho\bigl(W_0^V\xi+b_0^V\bigr), \qquad
+h_{\ell+1}^V(\xi):=\rho\bigl(W_{\ell}^V h_{\ell}^V(\xi)+b_{\ell}^V\bigr), \quad \ell=1,\dots,L_V-2,
+\end{equation}
+and set
+\begin{equation}\label{eq:V-mlp}
+V_{\theta}(\xi):=(c^V)^\top h_{L_V-1}^V(\xi)+\frac{\beta_V}{2}\xi^2.
+\end{equation}
+
+For the interaction coefficients, fix an integer \(r_A\ge 1\), choose symmetric binary weights
+\(m_{ij}=m_{ji}\in \{0,1\}\) and embeddings \(e_i\in \R^{r_A}\) for \(i=1,\dots,N\), and define
+\begin{equation}\label{eq:A-param}
+a_{ij}^{(\theta)}:=m_{ij}\,\softplus(e_i^\top e_j), \qquad i,j=1,\dots,N.
+\end{equation}
+
+For the diagonal mobility, fix a stencil radius \(r_K\in \N\) and integers \(d_1^K,\dots,d_{L_K-1}^K\in \N\). Fix parameters
+\begin{equation}\label{eq:K-params}
+W_0^K\in \R^{d_1^K\times (2r_K+1)}, \qquad b_0^K\in \R^{d_1^K},
+\end{equation}
+\begin{equation*}
+W_{\ell}^K\in \R^{d_{\ell+1}^K\times d_{\ell}^K}, \qquad b_{\ell}^K\in \R^{d_{\ell+1}^K}, \quad \ell=1,\dots,L_K-2,
+\qquad c^K\in \R^{d_{L_K-1}^K}, \qquad \beta_K\in \R.
+\end{equation*}
+For each \(z\in\R^N\) and \(i=1,\dots,N\), extend boundary values by zero-padding (setting \(z_j=0\) for indices \(j\notin\{1,\dots,N\}\)) and define
+\begin{equation}\label{eq:K-hidden}
+h_{i,1}^K(z):=\rho\bigl(W_0^K(z_{i-r_K},\dots,z_i,\dots,z_{i+r_K})^\top+b_0^K\bigr),
+\end{equation}
+\begin{equation*}
+h_{i,\ell+1}^K(z):=\rho\bigl(W_{\ell}^K h_{i,\ell}^K(z)+b_{\ell}^K\bigr), \quad \ell=1,\dots,L_K-2,
+\end{equation*}
+and set
+\begin{equation}\label{eq:k-param}
+k_{\theta,i}(z):=\softplus\bigl((c^K)^\top h_{i,L_K-1}^K(z)+\beta_K\bigr), \qquad i=1,\dots,N.
+\end{equation}
+Hence
+\begin{equation}\label{eq:K-param}
+K_{\theta}(z):=\diag\bigl(k_{\theta,1}(z),\dots,k_{\theta,N}(z)\bigr).
+\end{equation}
+\end{definition}
+
+The zero-padding convention is used only to make the finite-dimensional stencil map well defined. It can be replaced by another fixed extension rule, such as periodic, reflective, or boundary-condition-aware padding, without changing the abstract latent-flow argument above.
+
+\begin{proposition}[Parameterized latent dynamics]\label{prop:param-dynamics}
+Under Definitions~\ref{def:rd-energy} and \ref{def:neural-param}, \(\Psi_\theta\in C^1(\R^N)\) and \(K_\theta(z)\) is symmetric positive semidefinite for every \(z\in\R^N\). These identities verify the regularity and positivity conditions in Definition~\ref{def:latent-semigroup}. Moreover, the coefficients in \eqref{eq:rd-energy} and \eqref{eq:component-flow} are realized by \eqref{eq:A-param} and \eqref{eq:k-param}. Consequently,
+\begin{equation}\label{eq:psi-param}
+\Psi_{\theta}(z)=\sum_{i=1}^N V_{\theta}(z_i)+\frac12\sum_{i,j=1}^N a_{ij}^{(\theta)}(z_i-z_j)^2,
+\end{equation}
+its gradient satisfies
+\begin{equation}\label{eq:psi-grad}
+\bigl(\nabla\Psi_{\theta}(z)\bigr)_i=(V_{\theta})'(z_i)+2\sum_{j=1}^N a_{ij}^{(\theta)}(z_i-z_j), \qquad i=1,\dots,N,
+\end{equation}
+and the latent ODE becomes
+\begin{equation}\label{eq:param-flow}
+\partial_s z_i=-k_{\theta,i}(z)\left((V_{\theta})'(z_i)+2\sum_{j=1}^N a_{ij}^{(\theta)}(z_i-z_j)\right),
+\end{equation}
+for \(i=1,\dots,N\).
+\end{proposition}
+
+\begin{proof}
+By Definition~\ref{def:neural-param}, the scalar network \(V_{\theta}\) is a finite composition of affine maps with the \(C^1\) activation \(\rho\), followed by the smooth quadratic term \(\frac{\beta_V}{2}\xi^2\); hence \(V_{\theta}\in C^1(\R)\). Likewise, each coefficient \(a_{ij}^{(\theta)}=m_{ij}\,\softplus(e_i^\top e_j)\) is symmetric and nonnegative, and each mobility coefficient \(k_{\theta,i}(z)\) is nonnegative because \(\softplus\ge 0\). Therefore \(K_{\theta}(z)\) is diagonal with nonnegative diagonal entries, hence symmetric positive semidefinite for every \(z\in \R^N\).
+
+Since \(\Psi_{\theta}\) in \eqref{eq:rd-energy} is a finite sum of \(C^1\) terms, it belongs to \(C^1(\R^N)\). Differentiating \eqref{eq:rd-energy} with respect to \(z_i\) and using the symmetry \(a_{ij}^{(\theta)}=a_{ji}^{(\theta)}\) yields
+\begin{equation*}
+\partial_{z_i}\!\left(\frac12\sum_{p,q=1}^N a_{pq}^{(\theta)}(z_p-z_q)^2\right)=2\sum_{j=1}^N a_{ij}^{(\theta)}(z_i-z_j),
+\end{equation*}
+which gives \eqref{eq:psi-grad}. Substituting \eqref{eq:psi-grad} and \eqref{eq:k-param} into the latent ODE \eqref{eq:latent-ode} gives \eqref{eq:param-flow}. The opening assertions verify the regularity and positivity conditions appearing in Definition~\ref{def:latent-semigroup}.
+\end{proof}
+
+\section{Semigroup-based training objectives}\label{sec:training}
+Suppose now that, within the semidiscrete model above, training data contain snapshots of the target evolution, namely triples \((u,\tau,\cS_{\tau}u)\) with states sampled from the interior set on which the latent construction is defined. The preceding analysis suggests a corresponding division of labor in training: one loss should fit the true semigroup map, another should control compatibility across composed time increments, and a third may be used when dissipation is not already enforced by the architecture. A natural semigroup-aware training objective therefore contains the following terms:
+\begin{equation}\label{eq:loss-step}
+\mathcal L_{\mathrm{step}}=\mathbb E\,\norm{\PhiT(u,\tau)-\cS_{\tau}u}^2,
+\end{equation}
+\begin{equation}\label{eq:loss-sg}
+\mathcal L_{\mathrm{sg}}=\mathbb E\,\norm{\PhiT(\PhiT(u,\tau_1),\tau_2)-\PhiT(u,\tau_1+\tau_2)}^2,
+\end{equation}
+\begin{equation}\label{eq:loss-dis}
+\mathcal L_{\mathrm{dis}}=\mathbb E\,\bigl[\max\{0,\cE(\PhiT(u,\tau)) - \cE(u)\}\bigr].
+\end{equation}
+Here \(\cE\) denotes a generic dissipation functional at the modeling level, understood via an appropriate discrete proxy \(\cE_N:\R^N\to\R\cup\{+\infty\}\) when applied to semidiscrete states. For the latent architecture of Section~\ref{sec:latent-architecture}, the exact architecture-level dissipation statement concerns instead the induced discrete energy \(\cE_{\theta}\) in \eqref{eq:exact-discrete-energy}; relating \(\cE_{\theta}\) to a discretization of the target PDE Lyapunov functional \(\cE\) is a separate analytical question. Accordingly, if that latent architecture is used and the latent ODE generates a global flow, then on interior-state data admissibility and induced-energy dissipation are already enforced by construction. In that regime, \(\mathcal L_{\mathrm{dis}}\) and any separate maximum-principle penalty are not primary constraints but optional diagnostics, and the central learning task is to fit the semigroup map itself and to reduce composition inconsistency, since these are the two error channels identified in Proposition~\ref{prop:error-decomposition}.
+
+\section{A motivating reaction--diffusion benchmark class}\label{sec:benchmark}
+
+We illustrate how the abstract ingredients of Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param} specialize to a concrete PDE class. Take the Fisher--KPP equation
+\begin{equation}\label{eq:fisher-kpp-bench}
+\partial_t u = \nu \Delta u + r u(1-u), \qquad 0\le u\le 1,
+\end{equation}
+on a spatial domain \(\Omega\subset\R^d\) with homogeneous Neumann or periodic boundary conditions. The admissible set is \(\cK=\{u:0\le u\le 1\}\) and the dynamics is the \(L^2\)-gradient flow of the energy
+\begin{equation}\label{eq:fisher-energy}
+\cE(u)=\int_\Omega\Bigl(\frac{\nu}{2}|\nabla u|^2 - r\Bigl(\frac{u^2}{2}-\frac{u^3}{3}\Bigr)\Bigr)\,dx,
+\end{equation}
+so that \(\cE(\cS_t u)\le\cE(u)\) for all \(t\ge 0\).
+
+\paragraph{Spatial discretization and admissible set.}
+Let \(u=(u_1,\dots,u_N)^\top\in\R^N\) denote the spatially discretized state. The admissible set becomes the box
+\begin{equation}\label{eq:KN-fisher}
+\cK_N=[0,1]^N,
+\end{equation}
+and the interior set on which the latent construction operates is \((0,1)^N\).
+
+\paragraph{Latent map.}
+With \(m=0\), \(M=1\) the sigmoid parametrization of Definition~\ref{def:latent-map} simplifies to
+\begin{equation}\label{eq:g-fisher}
+g(z)_i=\sigma(z_i),\qquad g^{-1}(u)_i=\log\frac{u_i}{1-u_i},\qquad i=1,\dots,N.
+\end{equation}
+
+\paragraph{Latent energy and induced discrete energy.}
+The reaction--diffusion ansatz of Definition~\ref{def:rd-energy} takes the form
+\begin{equation}\label{eq:psi-fisher}
+\Psi_{\theta}(z)=\sum_{i=1}^N V_{\theta}(z_i)+\frac12\sum_{i,j=1}^N a_{ij}^{(\theta)}(z_i-z_j)^2,
+\end{equation}
+where \(V_{\theta}\) and \(a_{ij}^{(\theta)}\) are parametrized as in Definition~\ref{def:neural-param}. The induced discrete energy on \((0,1)^N\) is
+\begin{equation}\label{eq:Etheta-fisher}
+\cE_{\theta}(u)=\Psi_{\theta}(g^{-1}(u)).
+\end{equation}
+
+\paragraph{Architecture guarantees.}
+By Proposition~\ref{prop:structure}, assuming the latent ODE generates a global flow, the learned family \(\PhiT(\cdot,\tau)\) satisfies admissibility (\(\PhiT(u,\tau)\in[0,1]^N\)) and induced-energy dissipation \(\cE_{\theta}(\PhiT(u,\tau))\le\cE_{\theta}(u)\) exactly on \((0,1)^N\).
+
+\paragraph{Matching condition.}
+Let \(\Delta_h\) denote the discrete Laplacian corresponding to the spatial discretization and \(\odot\) denote componentwise multiplication. The generator matching condition \eqref{eq:matching} then reads
+\begin{equation}\label{eq:matching-fisher}
+\mathrm{D}g(g^{-1}(u))\,K_{\theta}(g^{-1}(u))\,\nabla\Psi_{\theta}(g^{-1}(u)) = -\bigl(\nu\Delta_h u + r\,u\odot(1-u)\bigr),\qquad u\in(0,1)^N.
+\end{equation}
+This identity is a target to be realized by the neural parametrization of \(\Psi_{\theta}\) and \(K_{\theta}\); it is not automatically satisfied by the architecture.
+
+We conclude this section with a numerical illustration of the architecture-level guarantees.
+
+\paragraph{Numerical illustration.}
+We compare the latent-flow learner defined by \eqref{eq:latent-learner} together with the neural parametrization of Definition~\ref{def:neural-param} with a standard ResNet one-step predictor of comparable capacity, trained on the Fisher--KPP benchmark \eqref{eq:fisher-kpp-bench} with \(\nu=0.1\), \(r=1.0\), spatial domain \([0,L]\) with \(L=10.0\) discretized on \(N=64\) equispaced points, and time step \(\tau=0.1\). Both models are trained for \(50\) epochs on \(1000\) time-homogeneous data samples, with the latent learner using a local interaction mask (each site connected to its \(4\) nearest neighbors, periodic) to enforce locality of the interaction gradient. Table~\ref{tab:benchmark-results} reports the evaluation metrics on \(50\) hold-out initial conditions, each rolled out over \(20\) time steps \((T_{\max}=2.0)\).
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison on the Fisher--KPP benchmark. Metrics are reported as mean $\pm$ one standard deviation over $50$ test samples.}
+\label{tab:benchmark-results}
+\begin{tabular}{lcc}
+\hline
+Metric & Latent semigroup & ResNet baseline \\
+\hline
+Rollout MSE (final step) & $(1.49\pm 0.15)\times10^{-4}$ & $(2.86\pm 0.22)\times10^{-2}$ \\[2pt]
+Boundary violation & $0.00$ (zero exactly) & $(7.23\pm 11.52)\times10^{-4}$ \\[2pt]
+Semigroup defect & $(3.20\pm 0.60)\times10^{-14}$ & $(2.05\pm 0.15)\times10^{-4}$ \\[2pt]
+Energy monotonicity & $100.0\%$ nonincreasing on all test rollouts & Not applicable \\
+\hline
+\end{tabular}
+\end{table}
+
+The latent learner achieves a rollout MSE roughly \(190\) times smaller than the baseline, with no observed bound violations on the tested rollouts---the latent map \(g\) in \eqref{eq:g-fisher} maps \(\mathbb{R}^N\) into \((0,1)^N\) by construction, so no training data or penalty is required to enforce the maximum principle on the modeled interior state set. The observed semigroup defect is at machine-precision level \((\sim10^{-14})\), which is consistent with the exact semigroup property of the latent-flow architecture stated in Proposition~\ref{prop:structure}. Energy monotonicity of the induced discrete energy \(\cE_{\theta}\) holds across all test samples \((100.0\%)\), in agreement with the architecture-level dissipation guarantee \(\cE_\theta(\Phi_\theta(u,\tau))\le\cE_\theta(u)\). These semigroup-defect and energy-monotonicity values should be read as empirical diagnostics for the implemented semidiscrete model, not as additional PDE-level theorems. The ResNet baseline, by contrast, exhibits nonzero boundary violations and a much larger semigroup defect. These results should be read as a numerical illustration that the finite-dimensional architecture-level guarantees remain visible in the implemented model.
+
+\section{Research agenda and open problems}\label{sec:analytical-questions}
+The formulation above separates four analytical tasks that are often conflated in one-step operator learning. The first is an approximation question for nonlinear semigroups. The second is an architecture question: which structural properties can be enforced exactly by the model class itself? The third is a rollout question, concerned with how local approximation and semigroup defects accumulate under repeated composition. The fourth is a transfer question, asking how continuous PDE-level structure is inherited by finite-dimensional semidiscrete models.
+
+\begin{problem}[Semigroup expressivity]
+Establish approximation results for parameterized families \(\PhiT(\cdot,\tau)\) as nonlinear semigroup approximants. In particular, identify assumptions under which \(\PhiT(\cdot,\tau)\) can approximate the target semigroup \(\cS_{\tau}\) uniformly for \(\tau\) in compact time intervals and for initial data in compact subsets of \(\cK\).
+\end{problem}
+
+\begin{problem}[Exact structural realization]
+Characterize neural operator architectures for which admissibility and dissipation are exact model-class properties, rather than penalties enforced only through training data. For such architectures, analogues of \eqref{eq:s4} and \eqref{eq:s5} should hold for all admissible parameters on the stated state set.
+\end{problem}
+
+\begin{problem}[Rollout stability under composition defects]
+Develop long-time error estimates for learned evolution families whose semigroup law is only approximate. Given a stability mechanism for repeated rollout, quantify how trajectory-level approximation error and semigroup defect accumulate under composition, and determine sharp analogues of \eqref{eq:error-bound} beyond the Lipschitz setting.
+\end{problem}
+
+\begin{problem}[Continuous-to-discrete structural transfer]
+Relate the PDE-level maximum principle and Lyapunov dissipation law of \((\cS_t)_{t\ge 0}\) to finite-dimensional admissible sets, discrete energies, and generator-matching conditions. Such a result would provide the missing bridge between the continuous structural specification in Definition~\ref{def:main-learner} and the semidiscrete latent-flow guarantees of Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param}.
+\end{problem}
+
+\section{Conclusion}
+This paper formulates structure-preserving semigroup learning for nonlinear evolution PDEs and provides two complementary results. The first is a discrete stability analysis (Section~\ref{sec:repeated-composition}) that reveals how one-step approximation and semigroup defect combine under repeated composition. The second is a semidiscrete latent dissipative architecture (Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param}) whose invariance of the interior state set \((m,M)^N\), exact semigroup composition, and dissipation of an induced discrete energy hold by construction at the finite-dimensional architecture level; these guarantees are independent of training quality and hold for every parameter \(\theta\) under the assumption that the latent ODE generates a global flow. The rigorous transfer from the latent architecture back to the target PDE semigroup — via generator matching expressivity and continuous-to-discrete structural transfer — is formulated as a set of open problems in Section~\ref{sec:analytical-questions}. The framework therefore separates what can be guaranteed exactly at the architecture level from what must be addressed through further analysis, and the research agenda laid out in Section~\ref{sec:analytical-questions} provides a concrete roadmap for closing the gap between finite-dimensional structural guarantees and PDE-level semigroup approximation.
+
+\begin{thebibliography}{9}
+
+\bibitem{ChenRubanovaBettencourtDuvenaud2018NODE}
+R.~T.~Q. Chen, Y.~Rubanova, J.~Bettencourt, and D.~K. Duvenaud.
+Neural ordinary differential equations.
+In \emph{Advances in Neural Information Processing Systems}, 2018.
+
+\bibitem{GreydanusDzambaYosinski2019HNN}
+S.~Greydanus, M.~Dzamba, and J.~Yosinski.
+Hamiltonian neural networks.
+In \emph{Advances in Neural Information Processing Systems}, 2019.
+
+\bibitem{JinZhangZhuTangKarniadakis2020SympNets}
+P.~Jin, Z.~Zhang, A.~Zhu, Y.~Tang, and G.~E. Karniadakis.
+SympNets: Intrinsic structure-preserving symplectic networks for identifying Hamiltonian systems.
+\emph{Neural Networks}, 132:166--179, 2020.
+
+\bibitem{KovachkiLiLiuEtAl2023NeuralOperator}
+N.~Kovachki, Z.~Li, B.~Liu, K.~Azizzadenesheli, K.~Bhattacharya, A.~Stuart, and A.~Anandkumar.
+Neural operator: Learning maps between function spaces with applications to PDEs.
+\emph{Journal of Machine Learning Research}, 24(89):1--97, 2023.
+
+\bibitem{LiKovachkiAzizzadenesheliEtAl2021FNO}
+Z.~Li, N.~Kovachki, K.~Azizzadenesheli, B.~Liu, K.~Bhattacharya, A.~Stuart, and A.~Anandkumar.
+Fourier neural operator for parametric partial differential equations.
+In \emph{International Conference on Learning Representations}, 2021.
+
+\bibitem{LuJinKarniadakis2021DeepONet}
+L.~Lu, P.~Jin, and G.~E. Karniadakis.
+Learning nonlinear operators via DeepONet based on the universal approximation theorem of operators.
+\emph{Nature Machine Intelligence}, 3:218--229, 2021.
+
+\bibitem{YuTianELi2021OnsagerNet}
+H.~Yu, X.~Tian, W.~E, and Q.~Li.
+OnsagerNet: Learning stable and interpretable dynamics using a generalized Onsager principle.
+\emph{Physical Review Fluids}, 6:114402, 2021.
+
+\end{thebibliography}
+
+\end{document}
