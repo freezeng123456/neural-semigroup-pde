@@ -24,16 +24,22 @@ The research objective is therefore broader than short-horizon prediction: learn
 
 This is a research prototype and an active mathematical draft. The repository contains the reviewed/fixed snapshot supplied with the project, including experiments, results, model checkpoints, figures, and paper/presentation sources.
 
-The current review identifies several items that still need to be resolved before the claims should be treated as publication-ready:
+The major-revision branch now resolves the review's central formulation and implementation issues:
 
-- exact semigroup composition belongs to the continuous latent ODE; an RK4 rollout has only approximate composition;
-- monotonicity is established for the learned latent energy, not automatically for the physical PDE energy;
-- the approximation result is currently stated more broadly than the implemented model class justifies;
-- the experiments use \(\beta_V=0\), so the stated global-flow/coercivity argument does not formally cover all reported configurations;
-- the corrected Fisher--KPP evaluation aligns the model horizon with the reference trajectory, but the full benchmark suite still needs to be rerun and audited;
-- the Allen--Cahn and Burgers tables in the draft contain placeholder entries, and viscous Burgers is treated as an empirical out-of-class benchmark rather than a pure gradient-flow example.
+- exact continuous flows, numerical RK4 maps, and their numerical composition defects are named separately;
+- learned-energy and optional physical-energy diagnostics use distinct result fields;
+- the transfer theorem now uses explicit projection/reconstruction maps and continuous Grönwall comparison, with numerical integration errors added separately;
+- the former universality statement is replaced by a proved componentwise error bound for architecture-compatible generators;
+- strict reference-time alignment is enforced in both evaluation and training-time validation;
+- a checkpoint-compatible `beta_V_floor` option supports genuinely coercive new configurations;
+- unified seeding, an architecture-only loss mode, and focused regression tests have been added;
+- missing Allen--Cahn/Burgers values are labeled “Not reported,” and Burgers is treated as an out-of-class transport stress test.
+
+The repository is not yet publication-ready: all comparative benchmark tables still require aligned, multi-seed reruns. Archived numerical values are retained for provenance and are not presented as corrected results.
 
 See [`REVIEW_AND_FIX_REPORT.md`](REVIEW_AND_FIX_REPORT.md) and [`review_mathematical_rigor.md`](review_mathematical_rigor.md) for the detailed audit.
+
+The concrete mathematical, code, validation, and rerun plan is documented in [`MAJOR_REVISION_SOLUTION.md`](MAJOR_REVISION_SOLUTION.md).
 
 ## Repository layout
 
@@ -67,5 +73,31 @@ For a clean maintenance workflow:
 2. rerun evaluation after changing time alignment or rollout code;
 3. report continuous-flow guarantees separately from numerical-integrator behavior;
 4. distinguish architectural invariants from empirical accuracy and from PDE-level transfer theorems.
+
+## Verification and revised Fisher--KPP run
+
+Create an environment with PyTorch, NumPy, and pytest, then run:
+
+```bash
+python3 -m pytest experiments/tests -q
+python3 -m compileall -q experiments
+```
+
+The revised Fisher--KPP runner exposes the controls needed by the review:
+
+```bash
+cd experiments
+python3 run_experiments.py \
+  --data-seed 42 \
+  --seed 42 \
+  --deterministic \
+  --architecture-only \
+  --beta-v-floor 0.1 \
+  --no-resume \
+  --checkpoint-dir checkpoints/fisher_kpp_revised_seed42 \
+  --results-dir results/fisher_kpp_revised_seed42
+```
+
+Use distinct output directories for every seed and configuration. A positive `--beta-v-floor` is required when a run is claimed to fall under the coercive global-flow criterion; it must not be conflated with archived `beta_V=0` checkpoints.
 
 No license is asserted in this snapshot because the source archive did not provide one. Add an explicit license before distributing the repository publicly.

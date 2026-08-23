@@ -9,10 +9,18 @@ Losses (from paper Section 6):
 """
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset
+import numpy as np
 import time
 import os
 import sys
+
+from evaluate import (
+    reference_start_time,
+    resolve_reference_stride,
+    validate_reference_timestamp,
+)
 
 
 # ============================================================
@@ -62,6 +70,8 @@ def train_model(
     model_name="model", device="cuda",
     resume_from=None,
     lower_bound=0.0, upper_bound=1.0,
+    reference_dt=None,
+    run_metadata=None,
 ):
     """
     Train a semigroup learner.
@@ -74,6 +84,11 @@ def train_model(
         tau: time step
         alpha_rollout, alpha_energy, alpha_bound: loss weights
         resume_from: path to checkpoint to resume from (optional)
+        reference_dt: spacing of stored validation snapshots.  If provided,
+            ``tau/reference_dt`` must be a positive integer; silent time-index
+            rounding is rejected.
+        run_metadata: optional JSON-like configuration copied into new
+            checkpoints for provenance.
     """
     os.makedirs(checkpoint_dir, exist_ok=True)
 
@@ -179,7 +194,8 @@ def train_model(
             val_metrics = evaluate_on_trajectories(
                 model, val_u0.to(device), val_trajs,
                 tau=tau, device=device,
-                lower_bound=lower_bound, upper_bound=upper_bound
+                lower_bound=lower_bound, upper_bound=upper_bound,
+                reference_dt=reference_dt,
             )
 
         # Logging
@@ -218,12 +234,14 @@ def train_model(
                 "best_val_mse": best_val_mse,
                 "val_metrics": val_metrics,
                 "history": history,
+                "run_metadata": run_metadata,
             }, os.path.join(checkpoint_dir, f"{model_name}_best.pt"))
 
     # Save final
     torch.save({
         "epoch": n_epochs,
         "model_state_dict": model.state_dict(),
+        "run_metadata": run_metadata,
     }, os.path.join(checkpoint_dir, f"{model_name}_final.pt"))
 
     # Save history
@@ -236,7 +254,8 @@ def train_model(
 
 def evaluate_on_trajectories(model, val_u0, val_trajs, tau, device="cuda",
                              rollout_steps=10,
-                             lower_bound=0.0, upper_bound=1.0):
+                             lower_bound=0.0, upper_bound=1.0,
+                             reference_dt=None):
     """
     Evaluate model on validation trajectories.
 
@@ -249,17 +268,28 @@ def evaluate_on_trajectories(model, val_u0, val_trajs, tau, device="cuda",
     rollout_mses = []
     bound_viols = []
     energy_monos = []
+    reference_stride = resolve_reference_stride(tau, reference_dt)
 
     for i, (t_true, u_true) in enumerate(val_trajs):
         u0 = val_u0[i:i+1].to(device)
         u_true = u_true.to(device)
+        if len(t_true) != len(u_true):
+            raise ValueError(
+                "reference timestamps and states must have the same length: "
+                f"got {len(t_true)} and {len(u_true)} for trajectory {i}"
+            )
+        start_time = reference_start_time(t_true)
 
         # Rollout
         u_pred = u0
         mse_sum = 0.0
         viol_sum = 0.0
         energy_ok = 0
-        total_steps = min(rollout_steps, len(t_true) - 1)
+        total_steps = min(
+            rollout_steps, (len(u_true) - 1) // reference_stride
+        )
+        if total_steps < 1:
+            continue
 
         E0 = None
         if hasattr(model, 'energy'):
@@ -267,7 +297,16 @@ def evaluate_on_trajectories(model, val_u0, val_trajs, tau, device="cuda",
 
         for step in range(total_steps):
             u_pred = model(u_pred, tau)
-            u_ref = u_true[step + 1:step + 2]
+            ref_idx = (step + 1) * reference_stride
+            expected_time = start_time + (step + 1) * float(tau)
+            validate_reference_timestamp(
+                t_true,
+                ref_idx,
+                expected_time,
+                rtol=1e-7,
+                atol=1e-10,
+            )
+            u_ref = u_true[ref_idx:ref_idx + 1]
 
             mse_sum += torch.mean((u_pred - u_ref) ** 2).item()
             viol_sum += (
@@ -285,12 +324,11 @@ def evaluate_on_trajectories(model, val_u0, val_trajs, tau, device="cuda",
         if hasattr(model, 'energy'):
             energy_monos.append(energy_ok / total_steps)
 
+    if not rollout_mses:
+        raise ValueError("no validation trajectory contains an aligned model step")
+
     return {
         "rollout_mse": float(np.mean(rollout_mses)),
         "bound_viol": float(np.mean(bound_viols)),
         "energy_mono_frac": float(np.mean(energy_monos)) if energy_monos else 0.0,
     }
-
-
-import numpy as np
-import torch.nn.functional as F

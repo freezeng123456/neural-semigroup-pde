@@ -20,9 +20,18 @@ import torch.nn.functional as F
 # ============================================================
 
 class ScalarMLP(nn.Module):
-    """MLP mapping R -> R, with softplus activation."""
-    def __init__(self, hidden_dims=[32, 32], beta=0.0):
+    """MLP mapping R -> R with an optional fixed coercive quadratic floor.
+
+    ``beta`` remains the trainable coefficient used by archived checkpoints.
+    ``beta_floor`` is deliberately a plain, non-trainable float so adding it
+    does not change the state-dict schema.  A positive floor therefore gives
+    a configuration-level coercivity guarantee without invalidating existing
+    checkpoints.
+    """
+    def __init__(self, hidden_dims=[32, 32], beta=0.0, beta_floor=0.0):
         super().__init__()
+        if beta_floor < 0:
+            raise ValueError(f"beta_floor must be non-negative, got {beta_floor}")
         dims = [1] + hidden_dims + [1]
         layers = []
         for i in range(len(dims) - 1):
@@ -31,10 +40,16 @@ class ScalarMLP(nn.Module):
                 layers.append(nn.Softplus())
         self.net = nn.Sequential(*layers)
         self.beta = nn.Parameter(torch.tensor(beta))
+        self.beta_floor = float(beta_floor)
+
+    @property
+    def effective_beta(self):
+        """Non-negative quadratic coefficient used by the potential."""
+        return self.beta.abs() + self.beta_floor
 
     def forward(self, x):
         """x: (..., 1) -> (..., 1)"""
-        return self.net(x) + 0.5 * self.beta.abs() * x.pow(2)
+        return self.net(x) + 0.5 * self.effective_beta * x.pow(2)
 
     def value_and_grad(self, x):
         """Compute V(x) and dV/dx analytically in one forward pass.
@@ -70,7 +85,7 @@ class ScalarMLP(nn.Module):
                 h = pre
 
         # Quadratic term: 0.5 * beta * x^2 => derivative = beta * x
-        beta = self.beta.abs()
+        beta = self.effective_beta
         val = h + 0.5 * beta * x_flat.pow(2)
         grad = dh + beta * x_flat
 
@@ -124,12 +139,15 @@ class LatentSemigroupNet(nn.Module):
     """
 
     def __init__(self, N=64, hidden_V=[32, 32], hidden_K=[32, 32],
-                 stencil_radius=3, beta_V=0.0, interaction_radius=2):
+                 stencil_radius=3, beta_V=0.0, beta_V_floor=0.0,
+                 interaction_radius=2):
         super().__init__()
         self.N = N
 
         # Scalar potential V: R -> R
-        self.V_net = ScalarMLP(hidden_V, beta=beta_V)
+        self.V_net = ScalarMLP(
+            hidden_V, beta=beta_V, beta_floor=beta_V_floor
+        )
 
         # Interaction coefficients a_ij via learned embeddings
         self.emb = nn.Parameter(torch.randn(N, 8) * 0.001)
@@ -435,13 +453,16 @@ class LatentSemigroupNetBounded(nn.Module):
     """
 
     def __init__(self, N=64, m=-1.0, M=1.0, hidden_V=[32, 32], hidden_K=[32, 32],
-                 stencil_radius=3, beta_V=0.0, interaction_radius=2):
+                 stencil_radius=3, beta_V=0.0, beta_V_floor=0.0,
+                 interaction_radius=2):
         super().__init__()
         self.N = N
         self.m = m
         self.M = M
 
-        self.V_net = ScalarMLP(hidden_V, beta=beta_V)
+        self.V_net = ScalarMLP(
+            hidden_V, beta=beta_V, beta_floor=beta_V_floor
+        )
         self.emb = nn.Parameter(torch.randn(N, 8) * 0.001)
 
         mask = torch.zeros(N, N)

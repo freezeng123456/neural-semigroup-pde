@@ -1,4 +1,7 @@
-\documentclass[hidelinks,review,onefignum,onetabnum]{siamart220329}
+\documentclass[hidelinks,review,nohypdvips,onefignum,onetabnum]{siamart220329}
+\makeatletter
+\providecommand{\headerps@out}[1]{}
+\makeatother
 
 \usepackage{booktabs}
 \usepackage{amssymb}
@@ -59,6 +62,7 @@
 \newcommand{\cE}{\mathcal{E}}
 \newcommand{\cF}{\mathcal{F}}
 \newcommand{\cFN}{\mathcal{F}_N}
+\newcommand{\cN}{\mathcal{N}}
 \newcommand{\PhiT}{\Phi_{\theta}}
 \newcommand{\diag}{\operatorname{diag}}
 \newcommand{\softplus}{\operatorname{softplus}}
@@ -72,7 +76,7 @@
 \maketitle
 
 \begin{abstract}
-We formulate operator learning for autonomous evolution PDEs at the semigroup level: rather than learning only a one-step predictor, the learner is a family \(\Phi_{\theta}(\cdot,\tau)\) intended for repeated composition. We derive discrete stability and error-propagation estimates showing how semigroup defect and trajectory-level approximation error compound under repeated time-stepping. We then construct a semidiscrete (spatially finite-dimensional, temporally continuous) latent dissipative architecture for which invariance of the interior state set, exact semigroup composition, and induced-energy dissipation are exact finite-dimensional guarantees. We prove a transfer theorem that relates the PDE semigroup to the latent architecture through a consistent semidiscrete discretization, and establish universal approximation for gradient-type generators. Numerical experiments on three benchmarks---Fisher--KPP, Allen--Cahn, and viscous Burgers---demonstrate the architectural guarantees, with comparisons against FNO and ResNet baselines showing $14$--$190\times$ accuracy improvements at short time horizons ($T=2$) and exact boundary compliance maintained over $200$-step repeated compositions where baselines exhibit numerical blowup or growing constraint violations.
+We formulate operator learning for autonomous evolution PDEs at the semigroup level: rather than learning only a one-step predictor, the learner is a family \(\Phi_{\theta}(\cdot,\tau)\) intended for repeated composition. We derive discrete stability estimates showing how trajectory-level approximation error and composition defect accumulate. We then construct a spatially finite-dimensional, temporally continuous latent dissipative architecture for which interior-state invariance, exact composition of the continuous flow, and dissipation of an induced learned energy hold conditionally on global existence. A revised transfer theorem separates the exact semidiscrete flow, the exact latent flow, spatial reconstruction, and numerical time integration; a componentwise error bound replaces the previous unqualified universality claim. Archived benchmark values are retained as pre-revision results, but they require rerunning under strict time alignment before supporting comparative accuracy claims. Fisher--KPP and Allen--Cahn are in-class reaction--diffusion examples, whereas viscous Burgers is reported only as an out-of-class transport stress test.
 \end{abstract}
 
 \section{Introduction and semigroup formulation}\label{sec:introduction}
@@ -116,13 +120,14 @@ Depending on the PDE, \(\cE\) may be an energy, entropy, free energy, or another
 Standard operator-learning formulations often emphasize short-time prediction. Our focus is different: we seek a learned evolution family intended for repeated composition in time. The approximation target is therefore the operator family \((\cS_t)_{t\ge 0}\) itself. This emphasis matters because a learned one-step map may fit short-time data and yet accumulate structural errors under repeated composition: small violations of invariance, dissipation, or semigroup consistency can be amplified when the model is used as a time-marching solver. The problem we address is to construct a learned family \((\PhiT(\cdot,\tau))_{\tau\ge 0}\) that approximates \((\cS_t)_{t\ge 0}\) while retaining \eqref{eq:maximum-principle} and \eqref{eq:dissipation}. In other words, the objective is not only local prediction accuracy but a learned evolution family that can be composed in time without destroying the PDE's structural laws.
 
 \paragraph{Contributions.}
-This paper makes three contributions.
+This paper makes four contributions.
 First, it formulates structure-preserving operator learning at the nonlinear semigroup level: rather than learning an isolated one-step predictor, the target is an evolution family \(\Phi_{\theta}(\cdot,\tau)\) intended for repeated composition, with the PDE semigroup \((\cS_t)_{t\ge 0}\) as the reference object (Definition~\ref{def:main-learner}).
 Second, it derives error-propagation estimates that decompose the two sources of error under repeated composition — trajectory-level approximation and semigroup defect — showing that both enter discrete time-stepping stability in complementary ways (Section~\ref{sec:repeated-composition}).
-Third, it constructs a semidiscrete latent dissipative architecture (Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param}) for which, assuming the latent ODE generates a global flow, invariance of the interior state set $(m,M)^N$, exact semigroup composition, and dissipation of an induced discrete energy hold by construction at the finite-dimensional architecture level. A Transfer Theorem (Theorem~\ref{thm:transfer}) rigorously connects the latent architecture to the target PDE semigroup through a consistent semidiscrete discretization, and universal approximation is established for gradient-type generators (Proposition~\ref{prop:universal-approx}).
-The layered character of the framework is deliberate: the PDE semigroup defines the target specification, while the architectural verification yields structural guarantees that are independent of training quality and hold for every parameter $\theta$; the rigorous transfer between these two levels is formulated as a set of open problems in Section~\ref{sec:analytical-questions}.
+Third, it constructs a semidiscrete latent dissipative architecture (Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param}) for which, assuming the latent ODE generates a global flow, invariance of the interior state set $(m,M)^N$, exact semigroup composition of the continuous flow, and dissipation of an induced learned energy hold by construction.
+Fourth, Theorem~\ref{thm:transfer} gives a conditional exact-flow comparison with explicit projection and reconstruction maps, while Proposition~\ref{prop:numerical-transfer} adds numerical integration errors separately. Proposition~\ref{prop:universal-approx} supplies a proved error bound for architecture-compatible generators; density of the implemented restricted component classes remains open.
+The layered character of the framework is deliberate: PDE, exact semidiscrete, exact latent, numerical, and empirical statements are not interchangeable.
 
-Section~\ref{sec:related-work} positions the present work relative to the literature. Section~\ref{sec:repeated-composition} develops the discrete stability and error-propagation analysis. Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param} construct the latent architecture and its neural parametrization. Section~\ref{sec:benchmark} presents numerical experiments. Sections~\ref{sec:transfer}--\ref{sec:expressivity} establish the transfer theorem and universal approximation results.
+Section~\ref{sec:related-work} positions the present work relative to the literature. Section~\ref{sec:repeated-composition} develops the discrete stability and error-propagation analysis. Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param} construct the latent architecture and its neural parametrization. Section~\ref{sec:benchmark} documents numerical experiments. Sections~\ref{sec:transfer}--\ref{sec:expressivity} give the conditional transfer and architecture-compatible component bounds.
 
 \section{Relation to existing work}\label{sec:related-work}
 
@@ -352,6 +357,10 @@ The induced discrete energy on $(m,M)^N$ is
 \end{equation}
 \end{definition}
 
+\begin{remark}[Learned, discrete, and physical energies]\label{rem:energy-distinction}
+The induced functional $\cE_\theta$ is a learned Lyapunov function. It is not automatically equal to a discrete physical energy $\cE_N$, nor does its monotonicity imply monotonicity of the PDE functional $\cE$. Establishing $\cE_\theta\approx\cE_N$, or separately evaluating both functionals, is an additional requirement. Accordingly, the experiments and code use distinct labels for learned-energy and physical-energy monotonicity.
+\end{remark}
+
 \begin{remark}[Regularity hierarchy]\label{rem:regularity}
 Definition~\ref{def:latent-semigroup} assumes $\Psi_{\theta}\in C^1$, which suffices for the structural properties (Proposition~\ref{prop:structure}). The global-flow existence result (Proposition~\ref{prop:global-flow}) and the Lipschitz verification (Proposition~\ref{prop:lipschitz}) require the stronger regularity $\Psi_{\theta}\in C^2$ and $K_{\theta}\in C^1$, which is ensured by the neural parametrization of Section~\ref{sec:neural-param} when the activation $\rho$ is $C^2$ (e.g., softplus or tanh).
 \end{remark}
@@ -376,8 +385,8 @@ so $\Psi_{\theta}(Z_{\theta}(s))\le \Psi_{\theta}(z_0)$ for all $s$ in the maxim
 For the neural parametrization of Section~\ref{sec:neural-param}, condition \eqref{eq:coercivity} holds if $\beta_V>0$ in \eqref{eq:V-mlp}, since the quadratic term $\frac{\beta_V}{2}\norm{z}^2$ dominates for large $\norm{z}$. The regularity $K_{\theta}\in C^1$ and positive semidefiniteness hold automatically for the softplus-based mobility parametrization of \eqref{eq:k-param}. These conditions are therefore verifiable for concrete neural parametrizations and do not constitute additional abstract assumptions.
 \end{remark}
 
-\begin{remark}[Empirical validity without coercivity]\label{rem:betaV-zero}
-The experiments reported in Section~\ref{sec:benchmark} use $\beta_V=0$ in \eqref{eq:V-mlp}, so the coercivity condition \eqref{eq:coercivity} is not satisfied and the global-flow guarantee of Proposition~\ref{prop:global-flow} does not formally apply. In practice, the learned potential $V_{\theta}$ remains bounded on the training distribution, and the RK4 integration with $M_{\mathrm{sub}}=30$ substeps on the finite time interval $[0,T_{\max}]$ does not encounter blowup. However, we do not have a theoretical guarantee of global flow existence for $\beta_V=0$, and the architectural guarantees of Proposition~\ref{prop:structure} (admissibility, exact semigroup, induced-energy dissipation) formally require the global-flow assumption. The experimental results are consistent with the guarantees holding empirically. The global-flow question with $\beta_V=0$ is a legitimate analytical concern that we leave as part of Problem~\ref{prob:expressivity} in Section~\ref{sec:analytical-questions}.
+\begin{remark}[Archived noncoercive configuration and revised option]\label{rem:betaV-zero}
+The archived checkpoints reported in Section~\ref{sec:benchmark} were initialized with $\beta_V=0$. They are therefore not covered by Proposition~\ref{prop:global-flow}; absence of numerical blowup on finitely many trajectories is only a diagnostic and is not evidence of global existence. The revised implementation adds a non-trainable coefficient floor $\beta_{V,\min}\ge0$ and uses the effective coefficient $\beta_V^{\mathrm{eff}}=\beta_{V,\min}+|\widetilde\beta_V|$. Selecting $\beta_{V,\min}>0$ prevents optimization from removing the quadratic term and makes the coercivity configuration explicit. Results from such a configuration must be reported separately rather than attributed retroactively to archived checkpoints.
 \end{remark}
 
 \begin{proposition}[Explicit global-flow criterion for the neural parametrization]\label{prop:explicit-global-flow}
@@ -488,7 +497,7 @@ Equation \eqref{eq:s1} follows from \eqref{eq:structure-p1}; equation \eqref{eq:
 \end{proof}
 
 \begin{remark}[Continuous-time vs.\ discrete-time semigroup]\label{rem:cont-vs-disc}
-The exact semigroup property \eqref{eq:exact-defect} ($\eta_{\mathrm{sg}}\equiv 0$) holds for the continuous-time latent flow $\PhiT(u,\tau)=g(\varphi_{\theta}^{\tau}(g^{-1}(u)))$, where $\varphi_{\theta}^{\tau}$ is the exact flow of the latent ODE \eqref{eq:latent-ode}. In practice, the latent ODE is integrated by a numerical scheme (e.g., fourth-order Runge--Kutta with $M_{\mathrm{sub}}$ substeps per $\tau$), which introduces a small integration error. The experiments in Section~\ref{sec:benchmark} use $M_{\mathrm{sub}}=30$ RK4 substeps, yielding a semigroup defect at the level of the ODE integrator accuracy ($\sim 10^{-14}$ for 30 RK4 substeps on the smooth latent dynamics). The exact semigroup guarantee is therefore an architecture-level property of the continuous-time formulation; the discrete-time implementation inherits it up to ODE integration accuracy.
+The exact semigroup property \eqref{eq:exact-defect} ($\eta_{\mathrm{sg}}\equiv 0$) holds only for the exact continuous-time latent flow. A fourth-order Runge--Kutta implementation generally has a nonzero numerical composition defect. The archived value near $10^{-14}$ for $M_{\mathrm{sub}}=30$ is a floating-point observation for one protocol, not an exact guarantee and not by itself a verified integrator-error estimate. The revised evaluator reports absolute and relative numerical defects and supports substep refinement while restoring the model's original substep count.
 \end{remark}
 
 \section{Neural parametrization of the latent semigroup}\label{sec:neural-param}
@@ -620,7 +629,7 @@ At $\tau=0$, the composition bound from the proof above gives $\norm{\PhiT(v,0)-
 
 \section{Benchmark experiments}\label{sec:benchmark}
 
-We illustrate how the abstract ingredients of Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param} specialize to three concrete PDE classes: the Fisher--KPP equation, the Allen--Cahn equation, and the viscous Burgers equation. The first two are reaction--diffusion problems with maximum-principle preservation and energy dissipation, while the third tests a stiffer transport-dominated PDE. The rigorous analytical framework (transfer theorem and universal approximation) is developed in Sections~\ref{sec:transfer}--\ref{sec:expressivity} below; the experiments in this section verify the architectural guarantees empirically before the full theory is presented.
+We illustrate how the abstract ingredients of Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param} apply to Fisher--KPP and Allen--Cahn reaction--diffusion equations. Viscous Burgers includes a transport term outside the pure latent gradient-flow model class and is included only as an empirical stress test. The numerical tables in this snapshot are archival: after correction of the reference-time alignment, every comparative value must be rerun before it is treated as revised evidence.
 
 \subsection{Semigroup-based training objectives}\label{subsec:training}
 Suppose now that training data contain snapshots of the target evolution, namely triples $(u,\tau,\cS_{\tau}u)$ with states sampled from the interior set on which the latent construction is defined. The training objective is the one-step prediction loss:
@@ -629,7 +638,7 @@ Suppose now that training data contain snapshots of the target evolution, namely
 \end{equation}
 
 \paragraph{Training strategy in the experiments.}
-For the latent architecture used below, the structural guarantees (admissibility, exact semigroup, induced-energy dissipation) hold by construction (under the global-flow assumption of Proposition~\ref{prop:global-flow}, which holds empirically for the tested trajectories (the ODE integration does not encounter blowup); see Remark~\ref{rem:betaV-zero}) for every parameter $\theta$. Consequently, the sole training objective is $\mathcal L_{\mathrm{step}}$. The semigroup property $\PhiT(\PhiT(u,\tau_1),\tau_2)=\PhiT(u,\tau_1+\tau_2)$ is enforced architecturally by the ODE flow (uniqueness of solutions), and the RK4 truncation error ($\sim 10^{-14}$ for 30 substeps) is negligible relative to the approximation error. Energy dissipation is verified as a post-training diagnostic check (not a training loss) to confirm that the architectural guarantee holds empirically.
+The archived Fisher--KPP runner used $\mathcal L_{\mathrm{step}}+0.1\mathcal L_{\mathrm{rollout}}+0.01\mathcal L_{\mathrm{learned\ energy}}$ for the latent model, so its accuracy cannot be described as obtained from the one-step loss alone. These auxiliary terms are not needed to define the exact continuous architecture, but they can affect optimization and empirical accuracy. The revised runner therefore records all loss weights and provides an architecture-only mode with both auxiliary weights set to zero. Learned-energy and physical-energy diagnostics are reported separately.
 
 \subsection{Fisher--KPP equation}\label{subsec:fisher-kpp}
 Take the Fisher--KPP equation
@@ -718,7 +727,7 @@ Training epochs & $100$ & $100$ & $100$ \\
 \hline
 \end{tabular}
 \end{table}
-${}^{\dagger}$All experiments use $\beta_V=0$; the global-flow assumption of Proposition~\ref{prop:global-flow} is not formally satisfied but holds empirically (see Remark~\ref{rem:betaV-zero}).
+${}^{\dagger}$Archived experiments use $\beta_V=0$ and are not covered by Proposition~\ref{prop:global-flow}; finite-trajectory stability is only an empirical diagnostic (Remark~\ref{rem:betaV-zero}).
 
 \paragraph{Training data.}
 For each benchmark, training data consist of triples $(u_0,\tau,\cS_{\tau}u_0)$ with $1000$ training samples and $50$ hold-out test samples.
@@ -730,7 +739,7 @@ The reference solution $\cS_{\tau}u_0$ is computed by a high-resolution numerica
 All experiments were conducted on a single NVIDIA GeForce RTX 5080 GPU. The latent learner requires $M_{\mathrm{sub}}=30$ RK4 substeps per time step, corresponding to 120 function evaluations per step (vs.\ 1 for FNO and ResNet). Despite this overhead, the latent learner's total training time is comparable to the baselines due to its smaller parameter count (9.6\,K vs.\ 17.5\,K for FNO and 41.6\,K for ResNet). The per-epoch training times are approximately $45$\,s for the latent learner, $30$\,s for FNO, and $35$\,s for ResNet on the Fisher--KPP benchmark ($N=64$, batch size 64).
 
 \paragraph{Reproducibility.}
-All experiments use the PyTorch default random initialization. The weight initialization for the latent architecture uses $\mathcal{N}(0, 0.001)$ for linear layer weights and zero biases, chosen for ODE stability at initialization. Random seeds are not fixed across runs; the reported means and standard deviations are computed over $50$ (Fisher--KPP) or $20$ (long-time rollout) independent validation trajectories, providing statistical robustness despite stochastic training.
+The archived runs did not fix every source of randomness. The revised runners seed Python, NumPy, PyTorch, and CUDA from one recorded seed and optionally request deterministic PyTorch algorithms. Linear latent weights retain the initialization $\mathcal{N}(0,0.001)$ with zero biases. Validation-trajectory variation is not a substitute for variation across independently trained seeds; revised comparative claims should therefore report multiple training seeds or explicitly identify a single-seed result.
 
 \subsection{Results}\label{subsec:results}
 
@@ -739,7 +748,7 @@ Table~\ref{tab:benchmark-results} reports the evaluation metrics on $50$ hold-ou
 
 \begin{table}[htbp]
 \centering
-\caption{Comparison on the Fisher--KPP benchmark ($50$ test samples, mean $\pm$ std). The latent learner's boundary violation, semigroup defect, and energy monotonicity values confirm the architecture-level guarantees of Propositions~\ref{prop:structure}--\ref{prop:global-flow}.}
+\caption{Archived Fisher--KPP results ($50$ test samples, mean $\pm$ std). The rollout values were produced before strict reference-time alignment was enforced and are retained for provenance, not as revised comparative evidence.}
 \label{tab:benchmark-results}
 \small
 \begin{tabular}{@{}lccc@{}}
@@ -749,14 +758,14 @@ Metric & Latent semigroup & FNO & ResNet baseline \\
 Parameters & 9.6\,K & 17.5\,K & 41.6\,K \\
 Rollout MSE (final) & $(1.49\pm 0.15)\times10^{-4}$ & $(2.10\pm 1.07)\times10^{-3}$ & $(2.86\pm 0.22)\times10^{-2}$ \\[2pt]
 Boundary violation & $0.00$\footnotemark[1] & $(4.56\pm 12.2)\times10^{-4}$ & $(7.23\pm 11.52)\times10^{-4}$ \\[2pt]
-Semigroup defect & $\sim 10^{-14}$ (ODE integrator) & $(2.19\pm 0.83)\times10^{-5}$ & $(2.05\pm 0.15)\times10^{-4}$ \\[2pt]
-Energy monotonicity & $100.0\%$ (exact) & Not applicable & Not applicable \\
+Numerical SG defect (archived MSE) & $\sim 10^{-14}$ & $(2.19\pm 0.83)\times10^{-5}$ & $(2.05\pm 0.15)\times10^{-4}$ \\[2pt]
+Learned-energy monotonicity & $100.0\%$ (archived diagnostic) & Not evaluated & Not evaluated \\
 \hline
 \end{tabular}
 \footnotetext{The boundary violation of zero is guaranteed by the sigmoid map $g\colon \R^N\to(m,M)^N$, which maps all states into the interior of the admissible set by construction. This guarantee holds provided the latent ODE generates a global flow (see Proposition~\ref{prop:global-flow} for sufficient conditions).}
 \end{table}
 
-The latent learner achieves a time-stepping MSE roughly $190$ times smaller than the baseline, with no observed bound violations on the tested trajectories---the latent map $g$ in \eqref{eq:g-fisher} maps $\mathbb{R}^N$ into $(0,1)^N$ by construction, so no training data or penalty is required to enforce the maximum principle on the modeled interior state set. The observed semigroup defect is at the ODE integrator accuracy level ($\sim10^{-14}$), which is consistent with the exact semigroup property of the continuous-time architecture integrated by RK4 substeps (Remark~\ref{rem:cont-vs-disc}). Energy monotonicity of the induced discrete energy $\cE_{\theta}$ holds across all test samples ($100.0\%$), in agreement with the architecture-level dissipation guarantee $\cE_\theta(\Phi_\theta(u,\tau))\le\cE_\theta(u)$. The ResNet baseline, by contrast, exhibits nonzero boundary violations and a much larger semigroup defect.
+The archived table reported a roughly $190$-fold MSE ratio, but the former evaluator advanced the model by $\tau=0.1$ while indexing the dense Fisher--KPP reference trajectory as though adjacent snapshots were separated by the same interval; they were separated by $0.005$. The ratio must therefore be recomputed. The zero bound-violation observation remains consistent with the bounded decoder on finite numerical trajectories, but the archived $\beta_V=0$ configuration is outside the stated coercive global-flow theorem. Likewise, the $100\%$ value concerns $\cE_\theta$, not the physical energy \eqref{eq:fisher-energy}, and the reported composition residual is numerical.
 
 \paragraph{Convergence under spatial refinement.}
 Table~\ref{tab:convergence-N} reports the final-step trajectory MSE for the latent learner on Fisher--KPP as the spatial resolution $N$ varies. The error decreases monotonically with $N$, consistent with the increasing expressiveness of the latent architecture. The successive refinement ratios are approximately $7.2\times$ ($N{=}16{\to}32$), $8.1\times$ ($N{=}32{\to}64$), and $3.9\times$ ($N{=}64{\to}128$). The first two doublings are consistent with an effective convergence rate of approximately third order in $1/N$ (since $\log_2(7.5)\approx 2.9$), while the reduced ratio at $N{=}128$ suggests that the optimizer or expressiveness ceiling begins to limit further improvement. A rigorous convergence-rate analysis is deferred to Problem~\ref{prob:expressivity}.
@@ -821,54 +830,54 @@ $20.0$ & $0.00$ & $(1.8\pm 0.4)\times10^{-2}$ & $(8.7\pm 2.3)\times10^{7}$ \\
 \end{table}
 
 \paragraph{Allen--Cahn benchmark.}
-Table~\ref{tab:allen-cahn-results} reports the same metrics on the Allen--Cahn equation \eqref{eq:allen-cahn-bench} with $\varepsilon=0.1$, $N=64$, $\Delta t=0.1$, $T_{\max}=2.0$. The latent learner again achieves exact admissibility and semigroup defect at the ODE integrator accuracy level ($\sim10^{-14}$), confirming that the architectural guarantees transfer to this second benchmark. The Allen--Cahn results are from a single-resolution evaluation; a spatial convergence study analogous to Table~\ref{tab:convergence-N} is deferred to future work.
+The Allen--Cahn rerun protocol uses $\varepsilon=0.1$, $N=64$, $\Delta t=0.1$, and $T_{\max}=2.0$. Complete revised metrics are not available in this snapshot, so Table~\ref{tab:allen-cahn-results} records their status rather than displaying fabricated placeholders.
 
 \begin{table}[htbp]
 \centering
-\caption{Comparison on the Allen--Cahn benchmark ($\varepsilon=0.1$, $N=64$, $\Delta t=0.1$, $T_{\max}=2.0$; $50$ test samples, mean $\pm$ std). Entries marked with $\cdots$ are in progress.}
+\caption{Status of the revised Allen--Cahn evaluation ($\varepsilon=0.1$, $N=64$, $\Delta t=0.1$, $T_{\max}=2.0$).}
 \label{tab:allen-cahn-results}
 \begin{tabular}{lccc}
 \hline
 Metric & Latent semigroup & FNO & ResNet baseline \\
 \hline
-Rollout MSE (final step) & $({\bf *}.{\bf **}\pm {\bf *}.{\bf **})\times10^{-{\bf *}}$ & $({\bf *}.{\bf **}\pm {\bf *}.{\bf **})\times10^{-{\bf *}}$ & $({\bf *}.{\bf **}\pm {\bf *}.{\bf **})\times10^{-{\bf *}}$ \\[2pt]
-Boundary violation & $0.00$\footnotemark[1] & $({\bf *}.{**}\pm {\bf *}.{**})\times10^{-{\bf *}}$ & $({\bf *}.{**}\pm {\bf *}.{**})\times10^{-{\bf *}}$ \\[2pt]
-Semigroup defect & $\sim 10^{-14}$ (ODE integrator) & $({\bf *}.{**}\pm {\bf *}.{**})\times10^{-{\bf *}}$ & $({\bf *}.{**}\pm {\bf *}.{**})\times10^{-{\bf *}}$ \\[2pt]
-Energy monotonicity & $100.0\%$ (exact) & Not applicable & Not applicable \\
+Rollout MSE (final step) & Not reported & Not reported & Not reported \\[2pt]
+Boundary violation & Not reported & Not reported & Not reported \\[2pt]
+Numerical SG defect & Not reported & Not reported & Not reported \\[2pt]
+Learned / physical energy & Not reported & Not evaluated & Not evaluated \\
 \hline
 \end{tabular}
 \end{table}
 
 \paragraph{Discussion.}
-These results demonstrate the practical value of architectural guarantees. At short time horizons ($T=2.0$), the latent learner achieves trajectory MSE roughly $14\times$ smaller than FNO and $190\times$ smaller than the ResNet baseline, while using the fewest parameters (9.6\,K vs.\ 17.5\,K for FNO and 41.6\,K for ResNet). At longer time horizons ($T=20$), the MSE of the latent learner and FNO converge to comparable levels ($\sim 0.41$ vs.\ $\sim 0.47$), reflecting the difficulty of long-time prediction for all methods. However, the critical distinction is in constraint compliance: the latent learner maintains exact boundary compliance ($0.00$ violation) at all time horizons by construction, while the FNO's violations grow to $1.8\%$ and the ResNet baseline exhibits numerical blowup ($\mathrm{MSE}\sim 10^{16}$, boundary violation $\sim 10^{7}$ at $T=20$). The boundary violation growth (Table~\ref{tab:boundary-growth}) quantifies this qualitative difference. The convergence study (Table~\ref{tab:convergence-N}) confirms that the latent learner's accuracy improves with spatial resolution, though a rigorous convergence rate analysis remains an open question (Problem~\ref{prob:expressivity} in Section~\ref{sec:analytical-questions}). We note that DeepONet and physics-informed variants of FNO are natural extensions for comparison in future work.
+The archived tables motivate the revised study but do not yet establish comparative accuracy under the corrected evaluator. The bounded decoder gives a clear finite-trajectory constraint mechanism, while claims about PDE accuracy, physical-energy decay, numerical composition error, or spatial rates require the aligned multi-seed reruns described in the accompanying revision plan.
 
 \subsection{Viscous Burgers equation}\label{subsec:burgers}
-As a third benchmark testing a stiffer PDE class, consider the viscous Burgers equation
+As an out-of-class transport stress test, consider the viscous Burgers equation
 \begin{equation}\label{eq:burgers-bench}
 \partial_t u + u\,\partial_x u = \nu\,\partial_{xx} u, \qquad -1\le u\le 1,
 \end{equation}
 on $[0,2\pi]$ with periodic boundary conditions and $\nu=0.01$. The admissible set is $\cK_N=[-1,1]^N$, and the energy $\cE(u)=\frac{1}{2}\int u^2\,dx$ satisfies $\cE(\cS_t u)\le \cE(u)$ for all $t\ge 0$, since the convective term $\int u\,u_x\,u\,dx=\frac{1}{3}\int \partial_x(u^3)\,dx=0$ under periodic boundary conditions. This benchmark is moderately stiffer than Fisher--KPP: the smaller viscosity $\nu=0.01$ permits near-shock formation, and the nonlinear convection term $u\,\partial_x u$ introduces genuine transport dynamics absent from the reaction--diffusion benchmarks. The Burgers benchmark uses $\Delta t=0.05$ (versus $\Delta t=0.1$ for Fisher--KPP) to accommodate the smaller viscosity coefficient.
 
-Table~\ref{tab:burgers-results} reports the evaluation metrics on $50$ hold-out initial conditions with $N=64$, $\Delta t=0.05$, and $T_{\max}=1.0$ ($20$ time steps), comparing the latent learner, FNO, and ResNet baseline. The latent learner achieves exact boundary compliance and semigroup defect at the ODE integrator accuracy level ($\sim10^{-14}$), confirming that the architectural guarantees transfer to this stiffer PDE class. The FNO and ResNet exhibit $15.4\%$ and $6.6\%$ boundary violations respectively. The higher absolute MSE values (compared to Fisher--KPP) reflect the intrinsic difficulty of the Burgers equation with $\nu=0.01$. A spatial convergence study analogous to Table~\ref{tab:convergence-N} is not reported here because the same latent architecture is used for both benchmarks (differing only in $m$, $M$, and the target generator); the convergence behavior observed for Fisher--KPP in Table~\ref{tab:convergence-N} carries over to the Burgers setting.
+The physical $L^2$ energy dissipates under periodic boundary conditions, but the convective term is not a pure gradient contribution of the implemented form. Consequently, neither the transfer theorem nor the expressivity result is claimed for this benchmark. Existing FNO and ResNet values are retained as archived baselines; the missing latent entries are reported as unavailable.
 
 \begin{table}[htbp]
 \centering
-\caption{Comparison on the viscous Burgers benchmark ($\nu=0.01$, $N=64$, $\Delta t=0.05$, $T_{\max}=1.0$; $50$ test samples, mean $\pm$ std). Latent learner entries marked with $\cdots$ are in progress; FNO and ResNet results are from the completed benchmark suite.}
+\caption{Archived baselines and current status for the out-of-class viscous Burgers stress test ($\nu=0.01$, $N=64$, $\Delta t=0.05$, $T_{\max}=1.0$).}
 \label{tab:burgers-results}
 \small
 \begin{tabular}{@{}lccc@{}}
 \hline
 Metric & Latent semigroup & FNO & ResNet \\
 \hline
-Rollout MSE (final) & $({\bf *}.{**}\pm {\bf *}.{**})\times10^{-{\bf *}}$ & $(5.31\pm 3.96)\times10^{-2}$ & $(8.19\pm 2.51)\times10^{-2}$ \\[2pt]
-Boundary violation & $0.00$\footnotemark[1] & $(1.54\pm 0.54)\times10^{-1}$ & $(6.56\pm 2.00)\times10^{-2}$ \\[2pt]
-Semigroup defect & $\sim 10^{-14}$ (ODE integrator) & $(2.66\pm 1.98)\times10^{-4}$ & $(1.30\pm 0.31)\times10^{-3}$ \\[2pt]
-Energy monotonicity & $100.0\%$ (exact) & Not applicable & Not applicable \\
+Rollout MSE (final) & Not reported & $(5.31\pm 3.96)\times10^{-2}$ & $(8.19\pm 2.51)\times10^{-2}$ \\[2pt]
+Boundary violation & Not reported & $(1.54\pm 0.54)\times10^{-1}$ & $(6.56\pm 2.00)\times10^{-2}$ \\[2pt]
+Numerical SG defect (archived MSE) & Not reported & $(2.66\pm 1.98)\times10^{-4}$ & $(1.30\pm 0.31)\times10^{-3}$ \\[2pt]
+Learned / physical energy & Not reported & Not evaluated & Not evaluated \\
 \hline
 \end{tabular}
 \end{table}
 
-Long-time Burgers rollout is deferred to future work, as the primary contribution of this benchmark is to demonstrate the architectural guarantees on a PDE with nonlinear transport dynamics.
+Long-time Burgers rollout and an architecture with an explicit skew transport component are deferred to future work.
 
 \subsection{Ablation study}\label{subsec:ablation}
 To isolate the contribution of each architectural component, we evaluate three variants of the latent semigroup learner on the Fisher--KPP benchmark (Table~\ref{tab:ablation}). The \emph{full} model uses the complete architecture of Definitions~\ref{def:rd-energy}--\ref{def:neural-param}. The \emph{no-interaction} variant sets the interaction coefficients $a_{ij}^{(\theta)}=0$ in \eqref{eq:rd-energy}, removing spatial coupling. The \emph{no-mobility} variant replaces the learned diagonal mobility $K_{\theta}(z)$ with the identity matrix, reducing the latent dynamics to a plain gradient flow.
@@ -889,9 +898,10 @@ No mobility ($K=I$) & $(6.81\pm 4.77)\times10^{-3}$ & $0.00$ \\
 \end{tabular}
 \end{table}
 
-The ablation reveals two findings. First, removing spatial interaction has negligible effect on Fisher--KPP, because the reaction term $ru(1-u)$ dominates the local dynamics and the nearest-neighbor coupling primarily smooths spatial heterogeneity. Second, removing the learned mobility degrades accuracy by roughly $36\times$, confirming that the spatially-varying mobility $K_{\theta}(z)$ plays a significant role in adapting the flow rate to local solution features. Crucially, all variants maintain exact boundary compliance ($0.00$ violation), demonstrating that the architectural guarantee of Proposition~\ref{prop:structure} is robust to component removal: the sigmoid map $g$ ensures admissibility regardless of the internal latent dynamics.
+In the archived ablation, removing spatial interaction changed the reported Fisher--KPP error little, whereas replacing the learned mobility produced a roughly $36$-fold error ratio. These observations are hypotheses for the aligned rerun, not causal conclusions: the variants must be trained across matched seeds before attributing the difference to a component. All finite numerical trajectories remained inside the decoder range.
 
-\section{Continuous-to-discrete structural transfer}\label{sec:transfer}
+\iffalse % Superseded transfer/expressivity draft retained for review provenance.
+\section{Continuous-to-discrete structural transfer}\label{sec:transfer-old}
 
 Having demonstrated the architectural guarantees empirically in Section~\ref{sec:benchmark}, we now turn to the rigorous analytical framework. This section provides the analytical bridge between the PDE-level semigroup and the finite-dimensional latent architecture. We formalize the assumptions on the PDE and its semidiscrete approximation, and then prove a transfer theorem that composes the two approximation layers.
 
@@ -1039,11 +1049,14 @@ Under the assumptions of Theorem~\ref{thm:transfer}, if the neural parametrizati
 with $\varepsilon_{\mathrm{match}}\to 0$ as the network widths increase, for generators within the class covered by Proposition~\ref{prop:universal-approx} (smooth gradient-type generators whose $\mathrm{D}g^{-1}\cdot \cFN$ is a gradient field on $(m,M)^N$).
 \end{corollary}
 
+\fi
+\input{major_revision_theory}
+
 \section{Research agenda and open problems}\label{sec:analytical-questions}
 The formulation above separates four analytical tasks that are often conflated in one-step operator learning. The first is an approximation question for nonlinear semigroups. The second is an architecture question: which structural properties can be enforced exactly by the model class itself? The third is a long-time composition question, concerned with how local approximation and semigroup defects accumulate under repeated composition. The fourth is a transfer question, asking how continuous PDE-level structure is inherited by finite-dimensional semidiscrete models.
 
 \begin{problem}[Semigroup expressivity]\label{prob:expressivity}
-Establish approximation results for parameterized families \(\PhiT(\cdot,\tau)\) as nonlinear semigroup approximants. In particular, identify assumptions under which \(\PhiT(\cdot,\tau)\) can approximate the target semigroup \(\cS_{\tau}\) uniformly for \(\tau\) in compact time intervals and for initial data in compact subsets of \(\cK\). A partial result is given in Proposition~\ref{prop:universal-approx} and Corollary~\ref{cor:resolve-prob1} above for gradient-type generators; extending this to general (non-gradient) generators remains open.
+Establish simultaneous component-density results for the exact shared-potential, Gram-constrained interaction, fixed-graph, and local-mobility classes. Proposition~\ref{prop:universal-approx} propagates component errors but does not prove that these errors can be driven to zero for arbitrary gradient-type generators; extending the architecture to non-gradient generators is a further problem.
 \end{problem}
 
 \begin{problem}[Exact structural realization]\label{prob:structural-realization}
@@ -1059,25 +1072,25 @@ Relate the PDE-level maximum principle and Lyapunov dissipation law of \((\cS_t)
 \end{problem}
 
 \section{Conclusion}
-This paper formulates structure-preserving semigroup learning for nonlinear evolution PDEs and establishes three main results.
+This paper formulates structure-preserving semigroup learning for nonlinear evolution PDEs and establishes a layered set of conditional results.
 
 \emph{First}, we derive a discrete stability analysis (Proposition~\ref{prop:error-decomposition}) that reveals how one-step approximation error and semigroup defect combine under repeated composition. This analysis (Section~\ref{sec:repeated-composition}) shows that the semigroup defect enters the long-time error bound with a factor of~$n$ (the number of composition steps), making semigroup consistency a first-order concern for long-time rollout, not merely a formal property.
 
 \emph{Second}, we construct a semidiscrete latent dissipative architecture (Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param}) for which invariance of the interior state set $(m,M)^N$, exact semigroup composition, and dissipation of an induced discrete energy are \emph{exact} architectural guarantees---holding for every parameter~$\theta$ and requiring no training penalty---provided the latent ODE generates a global flow (Proposition~\ref{prop:global-flow}). These guarantees are verified by construction at the finite-dimensional level and are independent of training quality.
 
-\emph{Third}, we prove a Transfer Theorem (Theorem~\ref{thm:transfer}) that rigorously connects the latent architecture to the target PDE semigroup through a consistent semidiscrete discretization. This result decomposes the full approximation chain into two layers---architecture-to-semidiscrete (controlled by the generator matching error~$\varepsilon_{\mathrm{match}}$) and semidiscrete-to-PDE (controlled by the spatial discretization error~$C(N)$)---and establishes a uniform approximation bound on compact time intervals. The expressivity of the neural parametrization for gradient-type generators is verified in Proposition~\ref{prop:universal-approx}, with the scope and limitations of this guarantee clarified in Remark~\ref{rem:ua-scope}.
+\emph{Third}, the revised Transfer Theorem (Theorem~\ref{thm:transfer}) compares the exact latent and exact semidiscrete flows by continuous Gronwall, with explicit projection, reconstruction, norm, and spatial-convergence hypotheses. Proposition~\ref{prop:numerical-transfer} adds numerical time-integration errors without calling them spatial errors or exact semigroup defects. Proposition~\ref{prop:universal-approx} then gives a componentwise generator bound for architecture-compatible targets; it is deliberately not a universal approximation theorem.
 
 \emph{Gap between architecture-level and PDE-level guarantees.}
-The architectural guarantees (admissibility, semigroup composition, energy dissipation) hold exactly at the finite-dimensional level and transfer to the PDE semigroup only up to the approximation errors quantified in Theorem~\ref{thm:transfer}. The convergence $\varepsilon_{\mathrm{match}}\to 0$ as network widths increase is established for gradient-type generators (Proposition~\ref{prop:universal-approx}) but remains open for general non-gradient generators (Problem~\ref{prob:expressivity}). Similarly, the global-flow assumption of Proposition~\ref{prop:global-flow} provides sufficient conditions for well-posedness of the latent ODE, but verifying these conditions for arbitrary trained parameters---or establishing alternative sufficient conditions---is an open question.
+The finite-dimensional guarantees concern the exact latent flow and the induced learned energy. They do not imply exact properties of RK4, decay of the physical PDE energy, or PDE accuracy without the hypotheses of Theorem~\ref{thm:transfer}. Component density remains open even within the restricted gradient class (Problem~\ref{prob:expressivity}), while transport-dominated systems such as Burgers require an extended generator class. The archived $\beta_V=0$ runs are also outside the coercive global-flow theorem; the revised code exposes a fixed positive floor for new theorem-covered runs.
 
 \emph{Directions for future work.}
 Several concrete extensions merit investigation:
 \begin{enumerate}[label=(\arabic*)]
     \item \textbf{Two-dimensional spatial domains.} The current architecture is formulated for one-dimensional spatial domains with local nearest-neighbor coupling. Extending to two-dimensional domains requires a spatial interaction structure (e.g., graph neural network coupling or convolutional mobility) that preserves the dissipative gradient-flow structure while scaling to larger state dimensions.
     \item \textbf{Tighter error bounds.} The Transfer Theorem bound scales linearly with $T$ through the factor $e^{L_TT}\,T$. Sharper estimates exploiting the dissipative structure of the latent flow---for example, contractivity of the linearized flow or exponential decay of perturbations---could yield bounds that do not grow (or grow more slowly) with the time horizon.
-    \item \textbf{Non-gradient generators.} Extending the expressivity result (Proposition~\ref{prop:universal-approx}) to general smooth generators, beyond the gradient-flow class, would broaden the applicability of the architecture to PDEs with advection, transport, or non-symmetric dynamics.
+    \item \textbf{Non-gradient generators.} Adding a skew component, for example $\dot z=(J_\theta-K_\theta)\nabla\Psi_\theta$ with $J_\theta^\top=-J_\theta$, would broaden applicability to PDEs with advection, transport, or non-symmetric dynamics.
     \item \textbf{Adaptive time stepping.} The current formulation uses a fixed step size $\Delta t$. An adaptive scheme that varies $\Delta t$ along the trajectory---exploiting the continuous-time latent flow---could improve efficiency for stiff or multiscale problems.
-    \item \textbf{Rigorous convergence rates.} The numerical experiments suggest spatial convergence rates of approximately third order in $1/N$ (Table~\ref{tab:convergence-N}), but a rigorous convergence-rate analysis relating the network width, the approximation error, and the PDE regularity remains open (Problem~\ref{prob:expressivity}).
+    \item \textbf{Rigorous convergence rates.} The archived resolution study suggests decreasing error, but an aligned multi-seed rerun and a proof relating spatial resolution, network width, optimization, and PDE regularity are still required.
 \end{enumerate}
 
 The framework therefore separates what can be guaranteed exactly at the architecture level from what must be addressed through further analysis, and the research agenda laid out in Section~\ref{sec:analytical-questions} provides a concrete roadmap for closing the gap between finite-dimensional structural guarantees and PDE-level semigroup approximation.

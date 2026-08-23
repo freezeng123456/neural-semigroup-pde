@@ -14,6 +14,29 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from models import LatentSemigroupNet, LatentSemigroupNetBounded, BaselineResNet, FNOBaseline
 from evaluate import evaluate_full
+from seed_utils import set_global_seed
+
+
+def periodic_gradient(u, domain_length):
+    dx = float(domain_length) / u.shape[-1]
+    return (torch.roll(u, shifts=-1, dims=-1) - u) / dx, dx
+
+
+def fisher_kpp_energy(u):
+    grad, dx = periodic_gradient(u, 10.0)
+    density = 0.5 * 0.1 * grad.square() - (0.5 * u.square() - u.pow(3) / 3.0)
+    return dx * density.sum(dim=-1)
+
+
+def allen_cahn_energy(u):
+    grad, dx = periodic_gradient(u, 2.0 * np.pi)
+    density = 0.5 * (0.1 ** 2) * grad.square() + 0.25 * (1.0 - u.square()).square()
+    return dx * density.sum(dim=-1)
+
+
+def burgers_l2_energy(u):
+    dx = 2.0 * np.pi / u.shape[-1]
+    return 0.5 * dx * u.square().sum(dim=-1)
 
 
 def load_checkpoint(model, path, device):
@@ -35,7 +58,7 @@ def evaluate_fisher_kpp(device):
 
     data = torch.load("checkpoints/data.pt", map_location="cpu", weights_only=False)
     val_u0, val_trajs = data["val_u0"], data["val_trajs"]
-    tau, N = 0.1, 64
+    tau, reference_dt, N = 0.1, 0.005, 64
     results = {}
 
     # Latent
@@ -44,7 +67,9 @@ def evaluate_fisher_kpp(device):
                                     stencil_radius=3, beta_V=0.0)
         model = load_checkpoint(model, "checkpoints/latent_best.pt", device)
         metrics, _ = evaluate_full(model, val_u0, val_trajs, tau=tau,
-                                    rollout_steps=20, device=device, model_name="Latent")
+                                    rollout_steps=20, device=device, model_name="Latent",
+                                    reference_dt=reference_dt,
+                                    physical_energy_fn=fisher_kpp_energy)
         results["latent"] = {"n_params": sum(p.numel() for p in model.parameters()), **metrics}
         print(f"  Latent MSE: {metrics['rollout_mse_mean']:.4e} ± {metrics['rollout_mse_std']:.4e}")
     else:
@@ -56,7 +81,9 @@ def evaluate_fisher_kpp(device):
         model = load_checkpoint(model, "checkpoints/baseline_best.pt", device)
         metrics, _ = evaluate_full(model, val_u0, val_trajs, tau=tau,
                                     rollout_steps=20, device=device, model_name="BaselineResNet",
-                                    lower_bound=0.0, upper_bound=1.0)
+                                    lower_bound=0.0, upper_bound=1.0,
+                                    reference_dt=reference_dt,
+                                    physical_energy_fn=fisher_kpp_energy)
         results["baseline"] = {"n_params": sum(p.numel() for p in model.parameters()), **metrics}
         print(f"  Baseline MSE: {metrics['rollout_mse_mean']:.4e} ± {metrics['rollout_mse_std']:.4e}")
     else:
@@ -68,7 +95,9 @@ def evaluate_fisher_kpp(device):
         model = load_checkpoint(model, "checkpoints/fno/fno_best.pt", device)
         metrics, _ = evaluate_full(model, val_u0, val_trajs, tau=tau,
                                     rollout_steps=20, device=device, model_name="FNO",
-                                    lower_bound=0.0, upper_bound=1.0)
+                                    lower_bound=0.0, upper_bound=1.0,
+                                    reference_dt=reference_dt,
+                                    physical_energy_fn=fisher_kpp_energy)
         results["fno"] = {"n_params": sum(p.numel() for p in model.parameters()), **metrics}
         print(f"  FNO MSE: {metrics['rollout_mse_mean']:.4e} ± {metrics['rollout_mse_std']:.4e}")
     else:
@@ -90,7 +119,9 @@ def evaluate_allen_cahn(device):
 
     data = torch.load(data_path, map_location="cpu", weights_only=False)
     val_u0, val_trajs = data["val_u0"], data["val_trajs"]
-    tau, N = 0.1, 64
+    # Allen--Cahn validation data are stored every model step, not every
+    # internal reference-solver step.
+    tau, reference_dt, N = 0.1, 0.1, 64
     checkpoint_dir = "checkpoints/allen_cahn"
     results = {}
     ckpt_path = "checkpoints/allen_cahn_new/latent_N64_best.pt"
@@ -102,7 +133,9 @@ def evaluate_allen_cahn(device):
         model = load_checkpoint(model, ckpt_path, device)
         metrics, _ = evaluate_full(model, val_u0, val_trajs, tau=tau,
                                     rollout_steps=20, device=device, model_name="Latent",
-                                    lower_bound=-1.0, upper_bound=1.0)
+                                    lower_bound=-1.0, upper_bound=1.0,
+                                    reference_dt=reference_dt,
+                                    physical_energy_fn=allen_cahn_energy)
         results["latent"] = {"n_params": sum(p.numel() for p in model.parameters()), **metrics}
         print(f"  Latent MSE: {metrics['rollout_mse_mean']:.4e} ± {metrics['rollout_mse_std']:.4e}")
     else:
@@ -117,7 +150,9 @@ def evaluate_allen_cahn(device):
         model = load_checkpoint(model, ckpt_path, device)
         metrics, _ = evaluate_full(model, val_u0, val_trajs, tau=tau,
                                     rollout_steps=20, device=device, model_name="BaselineResNet",
-                                    lower_bound=-1.0, upper_bound=1.0)
+                                    lower_bound=-1.0, upper_bound=1.0,
+                                    reference_dt=reference_dt,
+                                    physical_energy_fn=allen_cahn_energy)
         results["baseline"] = {"n_params": sum(p.numel() for p in model.parameters()), **metrics}
         print(f"  Baseline MSE: {metrics['rollout_mse_mean']:.4e}")
     else:
@@ -132,7 +167,9 @@ def evaluate_allen_cahn(device):
         model = load_checkpoint(model, ckpt_path, device)
         metrics, _ = evaluate_full(model, val_u0, val_trajs, tau=tau,
                                     rollout_steps=20, device=device, model_name="FNO",
-                                    lower_bound=-1.0, upper_bound=1.0)
+                                    lower_bound=-1.0, upper_bound=1.0,
+                                    reference_dt=reference_dt,
+                                    physical_energy_fn=allen_cahn_energy)
         results["fno"] = {"n_params": sum(p.numel() for p in model.parameters()), **metrics}
         print(f"  FNO MSE: {metrics['rollout_mse_mean']:.4e}")
     else:
@@ -154,7 +191,8 @@ def evaluate_burgers(device):
 
     data = torch.load(data_path, map_location="cpu", weights_only=False)
     val_u0, val_trajs = data["val_u0"], data["val_trajs"]
-    tau, N = 0.05, 64
+    # Burgers validation data are likewise stored every tau.
+    tau, reference_dt, N = 0.05, 0.05, 64
     results = {}
 
     # Latent
@@ -165,7 +203,9 @@ def evaluate_burgers(device):
         model = load_checkpoint(model, ckpt_path, device)
         metrics, _ = evaluate_full(model, val_u0, val_trajs, tau=tau,
                                     rollout_steps=20, device=device, model_name="Latent",
-                                    lower_bound=-1.0, upper_bound=1.0)
+                                    lower_bound=-1.0, upper_bound=1.0,
+                                    reference_dt=reference_dt,
+                                    physical_energy_fn=burgers_l2_energy)
         results["latent"] = {"n_params": sum(p.numel() for p in model.parameters()), **metrics}
         print(f"  Latent MSE: {metrics['rollout_mse_mean']:.4e} ± {metrics['rollout_mse_std']:.4e}")
     else:
@@ -178,7 +218,9 @@ def evaluate_burgers(device):
         model = load_checkpoint(model, ckpt_path, device)
         metrics, _ = evaluate_full(model, val_u0, val_trajs, tau=tau,
                                     rollout_steps=20, device=device, model_name="BaselineResNet",
-                                    lower_bound=-1.0, upper_bound=1.0)
+                                    lower_bound=-1.0, upper_bound=1.0,
+                                    reference_dt=reference_dt,
+                                    physical_energy_fn=burgers_l2_energy)
         results["baseline"] = {"n_params": sum(p.numel() for p in model.parameters()), **metrics}
         print(f"  Baseline MSE: {metrics['rollout_mse_mean']:.4e} ± {metrics['rollout_mse_std']:.4e}")
     else:
@@ -191,7 +233,9 @@ def evaluate_burgers(device):
         model = load_checkpoint(model, ckpt_path, device)
         metrics, _ = evaluate_full(model, val_u0, val_trajs, tau=tau,
                                     rollout_steps=20, device=device, model_name="FNO",
-                                    lower_bound=-1.0, upper_bound=1.0)
+                                    lower_bound=-1.0, upper_bound=1.0,
+                                    reference_dt=reference_dt,
+                                    physical_energy_fn=burgers_l2_energy)
         results["fno"] = {"n_params": sum(p.numel() for p in model.parameters()), **metrics}
         print(f"  FNO MSE: {metrics['rollout_mse_mean']:.4e} ± {metrics['rollout_mse_std']:.4e}")
     else:
@@ -201,12 +245,13 @@ def evaluate_burgers(device):
 
 
 def main():
+    set_global_seed(42, deterministic=False)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Device: {device}")
     if device == "cuda":
         print(f"GPU: {torch.cuda.get_device_name(0)}")
 
-    all_results = {}
+    all_results = {"metadata": {"seed": 42}}
 
     # Fisher-KPP
     all_results["fisher_kpp"] = evaluate_fisher_kpp(device)
@@ -229,6 +274,8 @@ def main():
     print("SUMMARY")
     print("=" * 70)
     for pde_name, pde_results in all_results.items():
+        if pde_name == "metadata":
+            continue
         print(f"\n{pde_name}:")
         if not pde_results:
             print("  (no results)")
