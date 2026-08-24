@@ -443,6 +443,148 @@ class FNOBaseline(nn.Module):
 
 
 # ============================================================
+# Time-conditioned baseline predictors
+# ============================================================
+
+def _broadcast_positive_tau(tau, u):
+    """Return ``tau`` as a positive ``(B, 1, N)`` conditioning channel.
+
+    A scalar tau is shared by the batch.  A one-dimensional tensor must have
+    exactly one value per input sample; accepting only ``(B,)`` here keeps
+    accidental broadcasting of incompatible shapes from going unnoticed.
+    The returned channel remains connected to tau's autograd graph.
+    """
+    if u.ndim != 2:
+        raise ValueError(f"u must have shape (B, N), got {tuple(u.shape)}")
+
+    batch_size, n_sites = u.shape
+    try:
+        tau_tensor = torch.as_tensor(tau, device=u.device)
+    except (TypeError, ValueError, RuntimeError) as exc:
+        raise ValueError(
+            "tau must be a scalar or a tensor with shape (B,)"
+        ) from exc
+
+    if tau_tensor.is_complex():
+        raise ValueError("tau must be a real-valued scalar or tensor")
+
+    if tau_tensor.ndim == 0:
+        tau_batch = tau_tensor.expand(batch_size)
+    elif tau_tensor.ndim == 1 and tau_tensor.shape[0] == batch_size:
+        tau_batch = tau_tensor
+    else:
+        raise ValueError(
+            f"tau must be a scalar or have shape ({batch_size},), "
+            f"got {tuple(tau_tensor.shape)}"
+        )
+
+    # Match the input dtype without detaching a tensor that requires grad.
+    tau_batch = tau_batch.to(dtype=u.dtype)
+    valid = torch.isfinite(tau_batch) & (tau_batch > 0)
+    if not bool(valid.all().item()):
+        raise ValueError("tau must contain only finite, strictly positive values")
+
+    return tau_batch.reshape(batch_size, 1, 1).expand(-1, 1, n_sites)
+
+
+class TimeConditionedResNet(nn.Module):
+    """1D ResNet baseline conditioned on a positive evolution time.
+
+    The input state and tau are concatenated as two channels: the first is
+    the spatial state and the second is tau broadcast uniformly over space.
+    The default ``width=18, blocks=3`` configuration is a small baseline
+    suitable for parameter-count comparisons with the latent model.
+
+    Args:
+        N: Number of spatial sites.  The convolutional layers also support
+            other spatial lengths at inference time.
+        width: Number of hidden convolutional channels.
+        blocks: Number of residual blocks.
+        kernel_size: Odd 1D convolution kernel size.
+        hidden_dim: Optional alias for ``width`` matching the legacy naming.
+        n_blocks: Optional alias for ``blocks`` matching the legacy naming.
+    """
+
+    def __init__(self, N=64, width=18, blocks=3, kernel_size=5,
+                 *, hidden_dim=None, n_blocks=None):
+        super().__init__()
+        if hidden_dim is not None:
+            width = hidden_dim
+        if n_blocks is not None:
+            blocks = n_blocks
+        if width <= 0:
+            raise ValueError(f"width must be positive, got {width}")
+        if blocks < 0:
+            raise ValueError(f"blocks must be non-negative, got {blocks}")
+        if kernel_size <= 0 or kernel_size % 2 == 0:
+            raise ValueError(
+                f"kernel_size must be a positive odd integer, got {kernel_size}"
+            )
+
+        self.N = N
+        self.width = width
+        self.blocks_count = blocks
+        self.enc = nn.Conv1d(2, width, kernel_size, padding=kernel_size // 2)
+        self.blocks = nn.Sequential(
+            *[ResBlock1D(width, kernel_size) for _ in range(blocks)]
+        )
+        self.dec = nn.Conv1d(width, 1, kernel_size, padding=kernel_size // 2)
+
+    def forward(self, u, tau):
+        """Map ``u`` at positive time ``tau`` to a tensor of shape ``(B, N)``."""
+        tau_channel = _broadcast_positive_tau(tau, u)
+        x = torch.cat((u.unsqueeze(1), tau_channel), dim=1)
+        h = self.enc(x)
+        h = self.blocks(h)
+        du = self.dec(h).squeeze(1)
+        return u + du
+
+
+class TimeConditionedFNO(nn.Module):
+    """1D Fourier Neural Operator baseline conditioned on a positive tau.
+
+    As in :class:`TimeConditionedResNet`, tau is supplied as a constant
+    spatial channel.  ``modes``/``layers`` are the concise names for the
+    Fourier-mode and block counts; ``n_modes``/``n_layers`` are accepted as
+    aliases so existing FNO-style call sites can opt into this new class
+    without changing their naming convention.
+    """
+
+    def __init__(self, N=64, width=16, modes=8, layers=4,
+                 *, n_modes=None, n_layers=None):
+        super().__init__()
+        if n_modes is not None:
+            modes = n_modes
+        if n_layers is not None:
+            layers = n_layers
+        if width <= 0:
+            raise ValueError(f"width must be positive, got {width}")
+        if modes <= 0:
+            raise ValueError(f"modes must be positive, got {modes}")
+        if layers < 0:
+            raise ValueError(f"layers must be non-negative, got {layers}")
+
+        self.N = N
+        self.width = width
+        self.modes = modes
+        self.layers = layers
+        # Lift (B, 2, N) -> (B, width, N); channels are u and broadcast tau.
+        self.lift = nn.Conv1d(2, width, 1)
+        self.blocks = nn.Sequential(
+            *[FNO1DBlock(width, modes) for _ in range(layers)]
+        )
+        self.project = nn.Conv1d(width, 1, 1)
+
+    def forward(self, u, tau):
+        """Map ``u`` at positive time ``tau`` to a tensor of shape ``(B, N)``."""
+        tau_channel = _broadcast_positive_tau(tau, u)
+        x = torch.cat((u.unsqueeze(1), tau_channel), dim=1)
+        x = self.lift(x)
+        x = self.blocks(x)
+        return self.project(x).squeeze(1)
+
+
+# ============================================================
 # Latent Semigroup Net for [m, M] (Burgers: [-1, 1])
 # ============================================================
 
