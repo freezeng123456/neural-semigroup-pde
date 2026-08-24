@@ -30,6 +30,20 @@ class BatchTrackingIdentity(IdentityWithParameter):
         return super().forward(u, tau)
 
 
+class TauConditionedAffine(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.rate = nn.Parameter(torch.tensor(0.5))
+        self.seen_tau_shapes = []
+
+    def forward(self, u, tau):
+        tau = torch.as_tensor(tau, device=u.device, dtype=u.dtype)
+        self.seen_tau_shapes.append(tuple(tau.shape))
+        if tau.ndim == 0:
+            tau = tau.expand(u.shape[0])
+        return u + self.rate * tau[:, None]
+
+
 def make_dense_identity_trajectory():
     times = torch.arange(5, dtype=torch.float32) * 0.05
     state = torch.tensor([0.25, 0.75], dtype=torch.float32)
@@ -143,4 +157,58 @@ def test_training_rejects_nonpositive_validation_interval(tmp_path):
             checkpoint_dir=str(tmp_path),
             device="cpu",
             validation_interval=0,
+        )
+
+
+def test_training_accepts_per_sample_tau(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        training,
+        "evaluate_on_trajectories",
+        lambda *args, **kwargs: {
+            "rollout_mse": 0.1,
+            "bound_viol": 0.0,
+            "energy_mono_frac": 0.0,
+        },
+    )
+    train_u0 = torch.zeros(6, 2)
+    train_tau = torch.tensor([0.05, 0.1, 0.2, 0.05, 0.1, 0.2])
+    train_ut = train_u0 + 2.0 * train_tau[:, None]
+    val_u0, trajectories = make_dense_identity_trajectory()
+    model = TauConditionedAffine()
+
+    history = training.train_model(
+        model,
+        train_u0=train_u0,
+        train_ut=train_ut,
+        train_tau=train_tau,
+        val_u0=val_u0,
+        val_trajs=trajectories,
+        tau=0.1,
+        n_epochs=1,
+        batch_size=3,
+        alpha_bound=0.0,
+        checkpoint_dir=str(tmp_path),
+        model_name="variable_tau",
+        device="cpu",
+        reference_dt=0.05,
+    )
+
+    assert history["validation_performed"] == [True]
+    assert (3,) in model.seen_tau_shapes
+    assert model.rate.item() != pytest.approx(0.5)
+
+
+def test_training_rejects_misaligned_train_tau_length(tmp_path):
+    val_u0, trajectories = make_dense_identity_trajectory()
+    with pytest.raises(ValueError, match="one value per training pair"):
+        training.train_model(
+            TauConditionedAffine(),
+            train_u0=val_u0.repeat(2, 1),
+            train_ut=val_u0.repeat(2, 1),
+            train_tau=torch.tensor([0.1]),
+            val_u0=val_u0,
+            val_trajs=trajectories,
+            n_epochs=1,
+            checkpoint_dir=str(tmp_path),
+            device="cpu",
         )

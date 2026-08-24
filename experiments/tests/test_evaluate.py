@@ -173,6 +173,7 @@ def test_batched_full_evaluation_matches_individual_evaluation():
 
     for key in (
         "rollout_mse_mean",
+        "rollout_rel_l2_mean",
         "bound_viol_mean",
         "numerical_semigroup_defect_mse_mean",
         "numerical_semigroup_defect_abs_l2_mean",
@@ -183,6 +184,25 @@ def test_batched_full_evaluation_matches_individual_evaluation():
             individual_metrics
         )
         assert batch_metrics[key] == pytest.approx(expected, rel=1e-6, abs=1e-12)
+
+
+def test_relative_l2_and_max_bound_metrics_are_reported():
+    times, states = make_reference(n_snapshots=5)
+    metrics, details = evaluate_full(
+        EulerDecayModel(),
+        torch.tensor([[1.2]]),
+        [(times, states * 1.2)],
+        tau=0.1,
+        rollout_steps=2,
+        reference_dt=0.05,
+        lower_bound=0.0,
+        upper_bound=1.0,
+        device="cpu",
+    )
+    assert metrics["rollout_rel_l2_mean"] >= 0.0
+    assert metrics["bound_viol_max"] > 0.0
+    assert len(details["per_step_rel_l2"]) == 2
+    assert len(details["per_step_bound_max"]) == 2
 
 
 def test_single_aligned_step_is_retained_without_semigroup_defect():

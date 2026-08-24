@@ -134,6 +134,29 @@ class FisherKPPSolver:
 
         return t_vals, u_vals
 
+    def solve_batch_final(self, u0, T):
+        """Return only the final state for a batch of initial conditions.
+
+        The ETD-RK4 operations are vectorized over all leading dimensions.
+        This is substantially faster than calling :meth:`solve` once per
+        sample when constructing a multi-time training set.
+        """
+        if u0.ndim < 2 or u0.shape[-1] != self.N:
+            raise ValueError(
+                f"u0 must have shape (..., {self.N}), got {tuple(u0.shape)}"
+            )
+        ratio = float(T) / float(self.dt)
+        n_steps = int(round(ratio))
+        if not np.isclose(ratio, n_steps, rtol=1e-10, atol=1e-12):
+            raise ValueError(
+                "T must be an integer multiple of dt; "
+                f"received T/dt={ratio:.17g}"
+            )
+        u_hat = torch.fft.rfft(u0.to(self.dtype), dim=-1)
+        for _ in range(n_steps):
+            u_hat = self.step(u_hat)
+        return torch.fft.irfft(u_hat, n=self.N, dim=-1)
+
 
 def generate_initial_conditions(N, n_samples, L=10.0):
     """
@@ -195,6 +218,47 @@ def generate_training_data(
             print(f"  val: {i+1}/{n_val}")
 
     return train_u0, train_ut, val_u0, val_trajs
+
+
+def generate_variable_tau_training_data(
+    N=64,
+    n_train=1000,
+    taus=(0.025, 0.05, 0.1, 0.2),
+    L=10.0,
+    nu=0.1,
+    r=1.0,
+    dt=0.005,
+):
+    """Generate a balanced set of ``(u0, tau, S_tau(u0))`` pairs.
+
+    Each initial condition receives exactly one time increment. Assignments
+    differ by at most one sample across requested increments and are shuffled
+    with the active PyTorch RNG, so the caller controls reproducibility via the
+    existing global seed utility. Labels are solved in batches grouped by tau.
+    """
+    n_train = int(n_train)
+    if n_train <= 0:
+        raise ValueError("n_train must be positive")
+    tau_values = tuple(float(value) for value in taus)
+    if not tau_values or any(not np.isfinite(value) or value <= 0 for value in tau_values):
+        raise ValueError("taus must contain finite, strictly positive values")
+    if len(set(tau_values)) != len(tau_values):
+        raise ValueError("taus must not contain duplicates")
+    for value in tau_values:
+        ratio = value / float(dt)
+        if not np.isclose(ratio, round(ratio), rtol=1e-10, atol=1e-12):
+            raise ValueError("every tau must be an integer multiple of dt")
+
+    train_u0 = generate_initial_conditions(N, n_train, L)
+    assignment = torch.arange(n_train, dtype=torch.long) % len(tau_values)
+    assignment = assignment[torch.randperm(n_train)]
+    train_tau = torch.tensor(tau_values, dtype=train_u0.dtype)[assignment]
+    train_ut = torch.empty_like(train_u0)
+    solver = FisherKPPSolver(N=N, L=L, nu=nu, r=r, dt=dt)
+    for tau_index, tau in enumerate(tau_values):
+        mask = assignment == tau_index
+        train_ut[mask] = solver.solve_batch_final(train_u0[mask], tau)
+    return train_u0, train_tau, train_ut
 
 
 if __name__ == "__main__":

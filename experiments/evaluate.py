@@ -678,10 +678,14 @@ def evaluate_full(
     )
     model.eval()
     per_step_mse = np.zeros(rollout_steps, dtype=float)
+    per_step_rel_l2 = np.zeros(rollout_steps, dtype=float)
     per_step_viol = np.zeros(rollout_steps, dtype=float)
+    per_step_bound_max = np.zeros(rollout_steps, dtype=float)
     per_step_counts = np.zeros(rollout_steps, dtype=int)
     rollout_mse = []
+    rollout_rel_l2 = []
     bound_viol = []
+    bound_viol_max = []
     learned_energy_mono = []
     physical_energy_mono = []
     sg_mse = []
@@ -714,7 +718,9 @@ def evaluate_full(
         batch_size = u0.shape[0]
         u_pred = u0
         sample_mse = torch.zeros(batch_size, dtype=torch.float64, device=device)
+        sample_rel_l2 = torch.zeros(batch_size, dtype=torch.float64, device=device)
         sample_viol = torch.zeros(batch_size, dtype=torch.float64, device=device)
+        sample_bound_max = torch.zeros(batch_size, dtype=torch.float64, device=device)
         learned_ok = torch.zeros(batch_size, dtype=torch.int64, device=device)
         physical_ok = torch.zeros(batch_size, dtype=torch.int64, device=device)
         sample_latent = None
@@ -743,15 +749,30 @@ def evaluate_full(
                                 sample_latent[key], current_latent[key]
                             )
             u_ref = references[step]
-            step_mse = (u_pred - u_ref).reshape(batch_size, -1).square().mean(dim=1)
+            flat_diff = (u_pred - u_ref).reshape(batch_size, -1)
+            flat_ref = u_ref.reshape(batch_size, -1)
+            step_mse = flat_diff.square().mean(dim=1)
+            step_rel_l2 = torch.linalg.vector_norm(flat_diff, dim=1) / torch.clamp(
+                torch.linalg.vector_norm(flat_ref, dim=1), min=1e-12
+            )
             step_viol = F.relu(lower_bound - u_pred).reshape(batch_size, -1).mean(dim=1)
             step_viol = step_viol + F.relu(u_pred - upper_bound).reshape(
                 batch_size, -1
             ).mean(dim=1)
+            step_bound_max = torch.maximum(
+                F.relu(lower_bound - u_pred).reshape(batch_size, -1).max(dim=1).values,
+                F.relu(u_pred - upper_bound).reshape(batch_size, -1).max(dim=1).values,
+            )
             sample_mse += step_mse
+            sample_rel_l2 += step_rel_l2
             sample_viol += step_viol
+            sample_bound_max = torch.maximum(sample_bound_max, step_bound_max)
             per_step_mse[step] += float(step_mse.sum().item())
+            per_step_rel_l2[step] += float(step_rel_l2.sum().item())
             per_step_viol[step] += float(step_viol.sum().item())
+            per_step_bound_max[step] = max(
+                per_step_bound_max[step], float(step_bound_max.max().item())
+            )
             per_step_counts[step] += batch_size
 
             if learned_previous is not None:
@@ -795,7 +816,9 @@ def evaluate_full(
                 energy_per_step_counts[step] += batch_size
 
         rollout_mse.extend((sample_mse / steps).detach().cpu().tolist())
+        rollout_rel_l2.extend((sample_rel_l2 / steps).detach().cpu().tolist())
         bound_viol.extend((sample_viol / steps).detach().cpu().tolist())
+        bound_viol_max.extend(sample_bound_max.detach().cpu().tolist())
         if sample_latent is not None:
             latent_l2_maxima.extend(sample_latent["latent_l2"].detach().cpu().tolist())
             latent_abs_maxima.extend(sample_latent["latent_abs"].detach().cpu().tolist())
@@ -848,8 +871,11 @@ def evaluate_full(
         "reference_stride": reference_stride,
         "rollout_mse_mean": float(np.mean(rollout_mse)),
         "rollout_mse_std": float(np.std(rollout_mse)),
+        "rollout_rel_l2_mean": float(np.mean(rollout_rel_l2)),
+        "rollout_rel_l2_std": float(np.std(rollout_rel_l2)),
         "bound_viol_mean": float(np.mean(bound_viol)),
         "bound_viol_std": float(np.std(bound_viol)),
+        "bound_viol_max": float(np.max(bound_viol_max)),
         "numerical_semigroup_defect_mse_mean": mean_or_nan(sg_mse),
         "numerical_semigroup_defect_mse_std": std_or_nan(sg_mse),
         "numerical_semigroup_defect_abs_l2_mean": mean_or_nan(sg_abs),
@@ -957,6 +983,7 @@ def evaluate_full(
 
     valid_mask = per_step_counts > 0
     per_step_mse[valid_mask] /= per_step_counts[valid_mask]
+    per_step_rel_l2[valid_mask] /= per_step_counts[valid_mask]
     per_step_viol[valid_mask] /= per_step_counts[valid_mask]
     learned_positive_per_step = np.full(rollout_steps, np.nan, dtype=float)
     physical_positive_per_step = np.full(rollout_steps, np.nan, dtype=float)
@@ -978,7 +1005,9 @@ def evaluate_full(
 
     details = {
         "per_step_mse": per_step_mse.tolist(),
+        "per_step_rel_l2": per_step_rel_l2.tolist(),
         "per_step_viol": per_step_viol.tolist(),
+        "per_step_bound_max": per_step_bound_max.tolist(),
         "per_step_counts": per_step_counts.tolist(),
         "evaluated_steps": evaluated_steps,
         "energy_positive_increment_semantics": (

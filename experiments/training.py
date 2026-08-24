@@ -72,6 +72,7 @@ def train_model(
     reference_dt=None,
     run_metadata=None,
     validation_interval=5,
+    train_tau=None,
 ):
     """
     Train a semigroup learner.
@@ -82,6 +83,9 @@ def train_model(
         val_u0: (N_val, N)
         val_trajs: list of (t, u) from PDE solver
         tau: time step
+        train_tau: optional positive tensor of shape ``(N_train,)``.  When
+            provided, each training pair uses its own time increment while
+            the scalar ``tau`` remains the validation/model-selection step.
         alpha_rollout, alpha_energy, alpha_bound: loss weights
         resume_from: path to checkpoint to resume from (optional)
         reference_dt: spacing of stored validation snapshots.  If provided,
@@ -101,7 +105,17 @@ def train_model(
     train_u0 = train_u0.to(device)
     train_ut = train_ut.to(device)
 
-    dataset = TensorDataset(train_u0, train_ut)
+    if train_tau is None:
+        dataset = TensorDataset(train_u0, train_ut)
+    else:
+        if len(train_tau) != len(train_u0):
+            raise ValueError("train_tau must have one value per training pair")
+        train_tau = torch.as_tensor(train_tau, device=device, dtype=train_u0.dtype)
+        if train_tau.ndim != 1:
+            raise ValueError("train_tau must have shape (N_train,)")
+        if not bool((torch.isfinite(train_tau) & (train_tau > 0)).all().item()):
+            raise ValueError("train_tau must contain finite, strictly positive values")
+        dataset = TensorDataset(train_u0, train_ut, train_tau)
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
     optimizer = torch.optim.AdamW(
@@ -149,37 +163,52 @@ def train_model(
         epoch_L3 = 0.0
         epoch_LV = 0.0
 
-        for u0_batch, ut_batch in loader:
+        for training_batch in loader:
+            if train_tau is None:
+                u0_batch, ut_batch = training_batch
+                batch_tau = tau
+            else:
+                u0_batch, ut_batch, batch_tau = training_batch
             u0_batch = u0_batch.to(device)
             ut_batch = ut_batch.to(device)
 
-            L1 = step_loss(model, u0_batch, ut_batch, tau)
+            L1 = step_loss(model, u0_batch, ut_batch, batch_tau)
             loss = L1
             epoch_L1 += L1.item()
 
             # Semigroup rollout loss
             if alpha_rollout > 0:
-                half = batch_size // 2
-                tau1 = tau * (0.5 + 0.5 * torch.rand(1).item())
-                tau2 = tau - tau1
-                L2 = rollout_loss(model, u0_batch[:half], tau1, tau2, tau)
+                half = max(1, u0_batch.shape[0] // 2)
+                if train_tau is None:
+                    tau_sum = tau
+                    tau1 = tau * (0.5 + 0.5 * torch.rand(1).item())
+                else:
+                    tau_sum = batch_tau[:half]
+                    fraction = 0.5 + 0.5 * torch.rand_like(tau_sum)
+                    tau1 = tau_sum * fraction
+                tau2 = tau_sum - tau1
+                L2 = rollout_loss(
+                    model, u0_batch[:half], tau1, tau2, tau_sum
+                )
                 loss = loss + alpha_rollout * L2
                 epoch_L2 += L2.item()
 
             # Energy loss (only for LatentSemigroupNet)
             if alpha_energy > 0 and hasattr(model, 'energy'):
-                L3 = energy_loss(model, u0_batch, tau)
+                L3 = energy_loss(model, u0_batch, batch_tau)
                 loss = loss + alpha_energy * L3
                 epoch_L3 += L3.item()
 
             # Bound loss (only for BaselineResNet — LatentNet has it by construction)
             if alpha_bound > 0 and not hasattr(model, 'encode'):
-                L_bound = bound_loss(model, u0_batch, tau, lower_bound, upper_bound)
+                L_bound = bound_loss(
+                    model, u0_batch, batch_tau, lower_bound, upper_bound
+                )
                 loss = loss + alpha_bound * L_bound
 
             # V_net auxiliary loss (direct gradient path, bypasses Hessian bottleneck)
             if alpha_V > 0 and hasattr(model, 'latent_V_values'):
-                L_V = model.latent_V_values(u0_batch, tau)
+                L_V = model.latent_V_values(u0_batch, batch_tau)
                 loss = loss + alpha_V * L_V
                 epoch_LV += L_V.item()
 
