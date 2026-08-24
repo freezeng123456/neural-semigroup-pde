@@ -1,0 +1,32 @@
+{
+  "run_id": "20260824-fisher-coercive-3seed-fcd9e39",
+  "repository": "freezeng123456/neural-semigroup-pde",
+  "commit": "fcd9e394ee87f229de57916271dcf42f0175bda4",
+  "entrypoint": "experiments/run_experiments.py",
+  "python": "/data/miniconda/envs/syngen/bin/python",
+  "host": "freezeng-2ho6ltsa0a",
+  "gpu_name": "Tesla T4",
+  "gpu_uuid": "GPU-09836420-eb5c-d16f-5028-26061ba64085",
+  "cuda_visible_devices": "0",
+  "cpu_count_visible": 90,
+  "model_dtype": "float32",
+  "seed": 123,
+  "data_seed": 42,
+  "deterministic": true,
+  "architecture_only": true,
+  "beta_v_floor": 0.1,
+  "n_epochs": 100,
+  "tau": 0.1,
+  "reference_dt": 0.005,
+  "ode_substep_counts": [
+    15,
+    30,
+    60
+  ],
+  "loss_weights": {
+    "alpha_rollout": 0.0,
+    "alpha_energy": 0.0,
+    "latent_alpha_bound": 0.0,
+    "baseline_alpha_bound": 0.1
+  }
+}

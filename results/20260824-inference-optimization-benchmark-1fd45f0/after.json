@@ -1,0 +1,78 @@
+{
+  "implementation_root": "/data/worktrees/neural-semigroup-1fd45f0",
+  "hostname": "freezeng-2ho6ltsa0a",
+  "device": "cuda",
+  "gpu": "Tesla T4",
+  "torch": "2.0.1+cu118",
+  "n_samples": 50,
+  "rollout_steps": 20,
+  "repeats": 1,
+  "validation_seconds": [
+    5.133581414818764
+  ],
+  "formal_evaluation_seconds": [
+    21.369894079864025
+  ],
+  "validation_metrics": {
+    "rollout_mse": 0.00013653710582582334,
+    "bound_viol": 0.0,
+    "energy_mono_frac": 1.0
+  },
+  "formal_metrics": {
+    "model": "model",
+    "tau": 0.1,
+    "reference_dt": 0.005,
+    "reference_stride": 20,
+    "rollout_mse_mean": 0.00013653710582582334,
+    "rollout_mse_std": 9.483456932244541e-05,
+    "bound_viol_mean": 0.0,
+    "bound_viol_std": 0.0,
+    "numerical_semigroup_defect_mse_mean": 1.3854117705037497e-15,
+    "numerical_semigroup_defect_mse_std": 1.8765964098002122e-16,
+    "numerical_semigroup_defect_abs_l2_mean": 2.940766853498644e-07,
+    "numerical_semigroup_defect_abs_l2_std": 1.9422535869179665e-08,
+    "numerical_semigroup_defect_rel_l2_mean": 6.582842345892459e-08,
+    "numerical_semigroup_defect_rel_l2_std": 3.884263906285787e-09,
+    "semigroup_defect_mean": 1.3854117705037497e-15,
+    "semigroup_defect_std": 1.8765964098002122e-16,
+    "semigroup_defect_semantics": "legacy alias for numerical_semigroup_defect_mse; not an exact-flow guarantee",
+    "numerical_semigroup_defect_status": "evaluated",
+    "numerical_semigroup_relative_denominator": "L2 norm of direct output, clamped below at 1e-12",
+    "learned_energy_status": "evaluated",
+    "physical_energy_status": "evaluated",
+    "learned_energy_semantics": "model.energy; not assumed to equal physical PDE energy",
+    "latent_diagnostics_status": "evaluated",
+    "n_valid": 50,
+    "min_evaluated_steps": 20,
+    "max_evaluated_steps": 20,
+    "learned_energy_mono_frac_mean": 1.0,
+    "learned_energy_mono_frac_std": 0.0,
+    "energy_mono_frac_mean": 1.0,
+    "energy_mono_frac_std": 0.0,
+    "physical_energy_mono_frac_mean": 1.0,
+    "physical_energy_mono_frac_std": 0.0,
+    "latent_l2_norm_max": 14.606611251831055,
+    "latent_abs_max": 2.944438934326172,
+    "latent_vector_field_l2_norm_max": 11.415276527404785,
+    "ode_substep_convergence": {
+      "status": "evaluated",
+      "original_ode_steps": 30,
+      "reference_ode_steps": 60,
+      "comparisons": [
+        {
+          "ode_steps": 15,
+          "reference_ode_steps": 60,
+          "absolute_l2": 2.586864695786062e-07,
+          "relative_l2": 6.422013143492222e-08
+        },
+        {
+          "ode_steps": 30,
+          "reference_ode_steps": 60,
+          "absolute_l2": 2.579612328190706e-07,
+          "relative_l2": 6.404008701110797e-08
+        }
+      ]
+    },
+    "ode_steps": 30
+  }
+}

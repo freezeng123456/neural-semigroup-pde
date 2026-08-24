@@ -1,0 +1,153 @@
+
+Device: cuda
+GPU: Tesla T4
+VRAM: 15.7 GB
+
+======================================================================
+GENERATING DATA
+======================================================================
+Generating 1000 training initial conditions...
+  train: 100/1000
+  train: 200/1000
+  train: 300/1000
+  train: 400/1000
+  train: 500/1000
+  train: 600/1000
+  train: 700/1000
+  train: 800/1000
+  train: 900/1000
+  train: 1000/1000
+Generating 50 validation trajectories...
+  val: 10/50
+  val: 20/50
+  val: 30/50
+  val: 40/50
+  val: 50/50
+Data saved to /data/runs/20260824-fisher-coercive-3seed-fcd9e39/seed_2026/checkpoints/data.pt
+Train: 1000 samples
+Val: 50 trajectories
+
+======================================================================
+TRAINING LatentSemigroupNet
+======================================================================
+Parameters: 9603
+Epoch   1/100 | L_step=4.3331e-04 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.6454e-02 bound_viol=0.0000e+00 | lr=1.00e-03 | 138s
+Epoch   5/100 | L_step=4.0365e-04 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.6134e-02 bound_viol=0.0000e+00 | lr=9.94e-04 | 690s
+Epoch  10/100 | L_step=9.6082e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.3025e-04 bound_viol=0.0000e+00 | lr=9.76e-04 | 1379s
+Epoch  15/100 | L_step=6.1124e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.9176e-05 bound_viol=0.0000e+00 | lr=9.46e-04 | 2069s
+Epoch  20/100 | L_step=5.8331e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.3065e-05 bound_viol=0.0000e+00 | lr=9.05e-04 | 2759s
+Epoch  25/100 | L_step=5.5910e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.1774e-05 bound_viol=0.0000e+00 | lr=8.54e-04 | 3450s
+Epoch  30/100 | L_step=5.4615e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=5.8849e-05 bound_viol=0.0000e+00 | lr=7.94e-04 | 4141s
+Epoch  35/100 | L_step=5.3178e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=5.8934e-05 bound_viol=0.0000e+00 | lr=7.27e-04 | 4831s
+Epoch  40/100 | L_step=5.2192e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=5.9036e-05 bound_viol=0.0000e+00 | lr=6.55e-04 | 5522s
+Epoch  45/100 | L_step=5.1279e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=5.9453e-05 bound_viol=0.0000e+00 | lr=5.78e-04 | 6211s
+Epoch  50/100 | L_step=5.0865e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=5.9967e-05 bound_viol=0.0000e+00 | lr=5.00e-04 | 6902s
+Epoch  55/100 | L_step=5.0670e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.0990e-05 bound_viol=0.0000e+00 | lr=4.22e-04 | 7592s
+Epoch  60/100 | L_step=4.9989e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.1284e-05 bound_viol=0.0000e+00 | lr=3.45e-04 | 8281s
+Epoch  65/100 | L_step=5.0425e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.1851e-05 bound_viol=0.0000e+00 | lr=2.73e-04 | 8971s
+Epoch  70/100 | L_step=5.0018e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.2293e-05 bound_viol=0.0000e+00 | lr=2.06e-04 | 9660s
+Epoch  75/100 | L_step=4.9746e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.2609e-05 bound_viol=0.0000e+00 | lr=1.46e-04 | 10349s
+Epoch  80/100 | L_step=4.9544e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.2850e-05 bound_viol=0.0000e+00 | lr=9.55e-05 | 11039s
+Epoch  85/100 | L_step=4.9388e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.3039e-05 bound_viol=0.0000e+00 | lr=5.45e-05 | 11729s
+Epoch  90/100 | L_step=4.9398e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.3052e-05 bound_viol=0.0000e+00 | lr=2.45e-05 | 12419s
+Epoch  95/100 | L_step=4.9861e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.3061e-05 bound_viol=0.0000e+00 | lr=6.16e-06 | 13109s
+Epoch 100/100 | L_step=4.9285e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=6.3073e-05 bound_viol=0.0000e+00 | lr=0.00e+00 | 13799s
+
+Training complete: 13799s, best_val_mse=5.8759e-05
+
+======================================================================
+TRAINING BaselineResNet
+======================================================================
+Parameters: 41569
+Epoch   1/100 | L_step=2.6153e-01 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=8.7566e-01 bound_viol=3.5948e-01 | lr=1.00e-03 | 1s
+Epoch   5/100 | L_step=6.6599e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.4848e-03 bound_viol=9.2054e-05 | lr=9.94e-04 | 3s
+Epoch  10/100 | L_step=3.2494e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=9.6967e-04 bound_viol=1.6830e-06 | lr=9.76e-04 | 7s
+Epoch  15/100 | L_step=3.0584e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=8.7859e-04 bound_viol=5.5514e-06 | lr=9.46e-04 | 10s
+Epoch  20/100 | L_step=2.6994e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=9.1419e-04 bound_viol=2.0068e-05 | lr=9.05e-04 | 13s
+Epoch  25/100 | L_step=1.8773e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=5.8191e-04 bound_viol=1.5244e-06 | lr=8.54e-04 | 16s
+Epoch  30/100 | L_step=1.1062e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=3.2710e-04 bound_viol=3.3550e-06 | lr=7.94e-04 | 19s
+Epoch  35/100 | L_step=6.9908e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1197e-04 bound_viol=1.4084e-07 | lr=7.27e-04 | 22s
+Epoch  40/100 | L_step=6.3514e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.2782e-04 bound_viol=0.0000e+00 | lr=6.55e-04 | 26s
+Epoch  45/100 | L_step=5.4719e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.2251e-04 bound_viol=0.0000e+00 | lr=5.78e-04 | 29s
+Epoch  50/100 | L_step=5.4524e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.1097e-04 bound_viol=0.0000e+00 | lr=5.00e-04 | 32s
+Epoch  55/100 | L_step=5.1442e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.0056e-04 bound_viol=0.0000e+00 | lr=4.22e-04 | 35s
+Epoch  60/100 | L_step=5.0272e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.0310e-04 bound_viol=0.0000e+00 | lr=3.45e-04 | 38s
+Epoch  65/100 | L_step=4.9975e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.0397e-04 bound_viol=0.0000e+00 | lr=2.73e-04 | 41s
+Epoch  70/100 | L_step=4.8838e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=9.1561e-05 bound_viol=0.0000e+00 | lr=2.06e-04 | 45s
+Epoch  75/100 | L_step=4.9223e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=9.1144e-05 bound_viol=0.0000e+00 | lr=1.46e-04 | 48s
+Epoch  80/100 | L_step=4.8191e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=8.9140e-05 bound_viol=0.0000e+00 | lr=9.55e-05 | 51s
+Epoch  85/100 | L_step=4.7823e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=8.9667e-05 bound_viol=0.0000e+00 | lr=5.45e-05 | 54s
+Epoch  90/100 | L_step=4.7628e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=8.9111e-05 bound_viol=0.0000e+00 | lr=2.45e-05 | 57s
+Epoch  95/100 | L_step=4.7551e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=8.8353e-05 bound_viol=0.0000e+00 | lr=6.16e-06 | 61s
+Epoch 100/100 | L_step=4.7403e-06 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=8.8448e-05 bound_viol=0.0000e+00 | lr=0.00e+00 | 64s
+
+Training complete: 64s, best_val_mse=8.8353e-05
+
+======================================================================
+EVALUATION
+======================================================================
+
+--- LatentSemigroupNet ---
+  tau: 1.0000e-01
+  reference_dt: 5.0000e-03
+  rollout_mse_mean: 1.2342e-04
+  rollout_mse_std: 7.9870e-05
+  bound_viol_mean: 0.0000e+00
+  bound_viol_std: 0.0000e+00
+  numerical_semigroup_defect_mse_mean: 1.3889e-15
+  numerical_semigroup_defect_mse_std: 1.7569e-16
+  numerical_semigroup_defect_abs_l2_mean: 2.9467e-07
+  numerical_semigroup_defect_abs_l2_std: 1.8470e-08
+  numerical_semigroup_defect_rel_l2_mean: 6.5991e-08
+  numerical_semigroup_defect_rel_l2_std: 3.8262e-09
+  semigroup_defect_mean: 1.3889e-15
+  semigroup_defect_std: 1.7569e-16
+  learned_energy_mono_frac_mean: 1.0000e+00
+  learned_energy_mono_frac_std: 0.0000e+00
+  energy_mono_frac_mean: 1.0000e+00
+  energy_mono_frac_std: 0.0000e+00
+  physical_energy_mono_frac_mean: 1.0000e+00
+  physical_energy_mono_frac_std: 0.0000e+00
+  latent_l2_norm_max: 1.4607e+01
+  latent_abs_max: 2.9444e+00
+  latent_vector_field_l2_norm_max: 1.1095e+01
+  beta_V_floor: 1.0000e-01
+  beta_V_effective: 1.0000e-01
+
+--- BaselineResNet ---
+  tau: 1.0000e-01
+  reference_dt: 5.0000e-03
+  rollout_mse_mean: 2.4472e-04
+  rollout_mse_std: 8.9051e-05
+  bound_viol_mean: 4.0378e-05
+  bound_viol_std: 1.1772e-04
+  numerical_semigroup_defect_mse_mean: 4.1018e-04
+  numerical_semigroup_defect_mse_std: 5.2007e-05
+  numerical_semigroup_defect_abs_l2_mean: 1.6166e-01
+  numerical_semigroup_defect_abs_l2_std: 1.0791e-02
+  numerical_semigroup_defect_rel_l2_mean: 4.2561e-02
+  numerical_semigroup_defect_rel_l2_std: 3.9715e-03
+  semigroup_defect_mean: 4.1018e-04
+  semigroup_defect_std: 5.2007e-05
+  physical_energy_mono_frac_mean: 1.0000e+00
+  physical_energy_mono_frac_std: 0.0000e+00
+
+======================================================================
+MODEL COMPARISON
+======================================================================
+Metric                                     LatentNet        Baseline
+----------------------------------------------------------------------
+Rollout MSE                               1.2342e-04      2.4472e-04
+Bound violation                           0.0000e+00      4.0378e-05
+Numerical SG defect (L2)                  2.9467e-07      1.6166e-01
+Learned-energy monotonicity               1.0000e+00             nan
+Physical-energy monotonicity              1.0000e+00      1.0000e+00
+======================================================================
+
+Results saved to /data/runs/20260824-fisher-coercive-3seed-fcd9e39/seed_2026/results/comparison.json
+
+======================================================================
+EXPERIMENT COMPLETE
+======================================================================
+Checkpoints: /data/runs/20260824-fisher-coercive-3seed-fcd9e39/seed_2026/checkpoints
+Results: /data/runs/20260824-fisher-coercive-3seed-fcd9e39/seed_2026/results

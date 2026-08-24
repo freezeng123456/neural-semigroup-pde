@@ -1,0 +1,43 @@
+{
+  "N": 64,
+  "L": 10.0,
+  "nu": 0.1,
+  "r": 1.0,
+  "dt_pde": 0.005,
+  "n_train": 1000,
+  "n_val": 50,
+  "tau": 0.1,
+  "T_max": 2.0,
+  "hidden_V": [
+    64,
+    64
+  ],
+  "hidden_K": [
+    64,
+    64
+  ],
+  "stencil_radius": 3,
+  "beta_V": 0.0,
+  "beta_V_floor": 0.1,
+  "n_epochs": 100,
+  "batch_size": 64,
+  "lr": 0.001,
+  "alpha_rollout": 0.0,
+  "alpha_energy": 0.0,
+  "alpha_bound": 0.1,
+  "weight_decay": 1e-05,
+  "rollout_steps": 20,
+  "ode_substep_counts": [
+    15,
+    30,
+    60
+  ],
+  "collect_latent_diagnostics": true,
+  "seed": 123,
+  "data_seed": 42,
+  "deterministic": true,
+  "architecture_only": true,
+  "checkpoint_dir": "/data/runs/20260824-fisher-coercive-3seed-fcd9e39/seed_123/checkpoints",
+  "results_dir": "/data/runs/20260824-fisher-coercive-3seed-fcd9e39/seed_123/results",
+  "data_cache_provenance": "generated"
+}

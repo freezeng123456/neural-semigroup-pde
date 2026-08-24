@@ -1,0 +1,114 @@
+{
+  "status": "complete",
+  "before_commit": "fcd9e394ee87f229de57916271dcf42f0175bda4",
+  "after_commit": "1fd45f0b732852a7b8d720a3898fed6146815621",
+  "n_samples": 50,
+  "rollout_steps": 20,
+  "validation_seconds_before": 285.70045567676425,
+  "validation_seconds_after": 5.133581414818764,
+  "validation_speedup": 55.653243338471654,
+  "formal_evaluation_seconds_before": 1036.5755062289536,
+  "formal_evaluation_seconds_after": 21.369894079864025,
+  "formal_evaluation_speedup": 48.50634740420526,
+  "all_metric_checks_within_tolerance": false,
+  "metric_checks": {
+    "validation_metrics.rollout_mse": {
+      "before": 0.00013653710790379134,
+      "after": 0.00013653710582582334,
+      "absolute_difference": 2.07796800599791e-12,
+      "relative_difference": 1.5219071488332068e-08,
+      "within_tolerance": true
+    },
+    "validation_metrics.bound_viol": {
+      "before": 0.0,
+      "after": 0.0,
+      "absolute_difference": 0.0,
+      "relative_difference": 0.0,
+      "within_tolerance": true
+    },
+    "validation_metrics.energy_mono_frac": {
+      "before": 1.0,
+      "after": 1.0,
+      "absolute_difference": 0.0,
+      "relative_difference": 0.0,
+      "within_tolerance": true
+    },
+    "formal_metrics.rollout_mse_mean": {
+      "before": 0.00013653710790379134,
+      "after": 0.00013653710582582334,
+      "absolute_difference": 2.07796800599791e-12,
+      "relative_difference": 1.5219071488332068e-08,
+      "within_tolerance": true
+    },
+    "formal_metrics.rollout_mse_std": {
+      "before": 9.483456813504238e-05,
+      "after": 9.483456932244541e-05,
+      "absolute_difference": 1.1874030269231825e-12,
+      "relative_difference": 1.2520782772294024e-08,
+      "within_tolerance": true
+    },
+    "formal_metrics.bound_viol_mean": {
+      "before": 0.0,
+      "after": 0.0,
+      "absolute_difference": 0.0,
+      "relative_difference": 0.0,
+      "within_tolerance": true
+    },
+    "formal_metrics.numerical_semigroup_defect_mse_mean": {
+      "before": 1.3847733723593155e-15,
+      "after": 1.3854117705037497e-15,
+      "absolute_difference": 6.383981444341199e-19,
+      "relative_difference": 0.0004610127239422906,
+      "within_tolerance": true
+    },
+    "formal_metrics.numerical_semigroup_defect_abs_l2_mean": {
+      "before": 2.938695970726713e-07,
+      "after": 2.940766853498644e-07,
+      "absolute_difference": 2.0708827719311825e-10,
+      "relative_difference": 0.0007046944605906517,
+      "within_tolerance": false
+    },
+    "formal_metrics.numerical_semigroup_defect_rel_l2_mean": {
+      "before": 6.578588233097094e-08,
+      "after": 6.582842345892459e-08,
+      "absolute_difference": 4.2541127953655676e-11,
+      "relative_difference": 0.000646660445164053,
+      "within_tolerance": true
+    },
+    "formal_metrics.learned_energy_mono_frac_mean": {
+      "before": 1.0,
+      "after": 1.0,
+      "absolute_difference": 0.0,
+      "relative_difference": 0.0,
+      "within_tolerance": true
+    },
+    "formal_metrics.physical_energy_mono_frac_mean": {
+      "before": 1.0,
+      "after": 1.0,
+      "absolute_difference": 0.0,
+      "relative_difference": 0.0,
+      "within_tolerance": true
+    },
+    "formal_metrics.latent_l2_norm_max": {
+      "before": 14.606611251831055,
+      "after": 14.606611251831055,
+      "absolute_difference": 0.0,
+      "relative_difference": 0.0,
+      "within_tolerance": true
+    },
+    "formal_metrics.latent_abs_max": {
+      "before": 2.944438934326172,
+      "after": 2.944438934326172,
+      "absolute_difference": 0.0,
+      "relative_difference": 0.0,
+      "within_tolerance": true
+    },
+    "formal_metrics.latent_vector_field_l2_norm_max": {
+      "before": 11.415276527404785,
+      "after": 11.415276527404785,
+      "absolute_difference": 0.0,
+      "relative_difference": 0.0,
+      "within_tolerance": true
+    }
+  }
+}
