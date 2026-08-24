@@ -211,6 +211,9 @@ def run_model(name, args, data, device):
         "architecture_only": True,
     }
 
+    if str(device).startswith("cuda"):
+        torch.cuda.reset_peak_memory_stats(device)
+        torch.cuda.synchronize(device)
     start = time.perf_counter()
     history = train_model(
         model,
@@ -236,8 +239,13 @@ def run_model(name, args, data, device):
         validation_interval=args.validation_interval,
     )
     if str(device).startswith("cuda"):
-        torch.cuda.synchronize()
+        torch.cuda.synchronize(device)
     training_seconds = time.perf_counter() - start
+    training_peak_memory_bytes = (
+        int(torch.cuda.max_memory_allocated(device))
+        if str(device).startswith("cuda")
+        else None
+    )
 
     best_path = os.path.join(checkpoint_dir, f"{name}_best.pt")
     checkpoint = torch.load(best_path, map_location=device, weights_only=False)
@@ -248,6 +256,10 @@ def run_model(name, args, data, device):
     evaluations = {}
     for eval_tau in eval_taus:
         rollout_steps = rollout_steps_for_horizon(args.eval_horizon, eval_tau)
+        if str(device).startswith("cuda"):
+            torch.cuda.reset_peak_memory_stats(device)
+            torch.cuda.synchronize(device)
+        evaluation_start = time.perf_counter()
         metrics, details = evaluate_full(
             model,
             data["val_u0"],
@@ -261,13 +273,30 @@ def run_model(name, args, data, device):
             collect_latent_diagnostics=name == "latent",
             equal_work_base_ode_steps=30 if name == "latent" else None,
         )
-        evaluations[str(eval_tau)] = {"metrics": metrics, "details": details}
+        if str(device).startswith("cuda"):
+            torch.cuda.synchronize(device)
+        evaluation_seconds = time.perf_counter() - evaluation_start
+        evaluation_peak_memory_bytes = (
+            int(torch.cuda.max_memory_allocated(device))
+            if str(device).startswith("cuda")
+            else None
+        )
+        evaluations[str(eval_tau)] = {
+            "metrics": metrics,
+            "details": details,
+            "evaluation_seconds": evaluation_seconds,
+            "peak_memory_bytes": evaluation_peak_memory_bytes,
+        }
 
     result = {
         "model": name,
         "parameter_count": parameter_count,
         "checkpoint_epoch": checkpoint.get("epoch"),
         "training_seconds": training_seconds,
+        "training_peak_memory_bytes": training_peak_memory_bytes,
+        "training_examples_per_second": (
+            args.epochs * args.n_train / training_seconds
+        ),
         "optimizer_updates": args.epochs * math.ceil(args.n_train / args.batch_size),
         "examples_seen": args.epochs * args.n_train,
         "history": history,
