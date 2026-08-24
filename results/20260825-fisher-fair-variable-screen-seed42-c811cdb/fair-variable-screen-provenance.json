@@ -1,0 +1,27 @@
+{
+  "run_id": "20260825-fisher-fair-variable-screen-seed42-c811cdb",
+  "purpose": "Single-seed reduced-data variable-time screen for parameter-matched Fisher-KPP models",
+  "repository": "https://github.com/freezeng123456/neural-semigroup-pde",
+  "commit": "c811cdb5bf67a3789dca487f7d1007538d9904fe",
+  "entrypoint": "experiments/run_fisher_fair.py",
+  "host": "freezeng-2ho6ltsa0a",
+  "python": "/data/miniconda/envs/syngen/bin/python",
+  "torch": "2.0.1+cu118",
+  "device": "Tesla T4",
+  "screen_only": true,
+  "parameters": {
+    "regime": "variable",
+    "models": ["latent", "resnet", "fno"],
+    "seed": 42,
+    "data_seed": 42,
+    "deterministic": true,
+    "n_train": 256,
+    "n_val": 12,
+    "epochs": 100,
+    "batch_size": 64,
+    "train_taus": [0.025, 0.05, 0.1, 0.2],
+    "eval_taus": [0.025, 0.05, 0.075, 0.1, 0.15, 0.2],
+    "eval_horizon": 0.6,
+    "validation_interval": 5
+  }
+}

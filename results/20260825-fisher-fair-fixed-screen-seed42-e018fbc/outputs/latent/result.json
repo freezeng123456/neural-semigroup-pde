@@ -1,0 +1,259 @@
+{
+  "model": "latent",
+  "parameter_count": 9603,
+  "checkpoint_epoch": 10,
+  "training_seconds": 31.69609533250332,
+  "optimizer_updates": 40,
+  "examples_seen": 2560,
+  "history": {
+    "epoch": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "L_step": [
+      0.0004397124794195406,
+      0.00043227343121543527,
+      0.00042518789996393025,
+      0.0004195366200292483,
+      0.0004152101755607873,
+      0.00041225602763006464,
+      0.0004103488608961925,
+      0.0004092705130460672,
+      0.0004087362758582458,
+      0.0004085133841726929
+    ],
+    "L_rollout": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "L_energy": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "L_V": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "val_mse": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      0.004731724213343114,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      0.004688228573650122
+    ],
+    "val_bound_viol": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      0.0,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      0.0
+    ],
+    "val_energy_mono": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      1.0,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      1.0
+    ],
+    "validation_performed": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  "evaluations": {
+    "0.1": {
+      "metrics": {
+        "model": "latent",
+        "tau": 0.1,
+        "reference_dt": 0.005,
+        "reference_stride": 20,
+        "rollout_mse_mean": 0.004688228573650122,
+        "rollout_mse_std": 0.0005665916716122794,
+        "rollout_rel_l2_mean": 0.11839769737174115,
+        "rollout_rel_l2_std": 0.0095938819618033,
+        "bound_viol_mean": 0.0,
+        "bound_viol_std": 0.0,
+        "bound_viol_max": 0.0,
+        "numerical_semigroup_defect_mse_mean": 1.7115476575115645e-15,
+        "numerical_semigroup_defect_mse_std": 2.699038535446645e-16,
+        "numerical_semigroup_defect_abs_l2_mean": 3.279919245831782e-07,
+        "numerical_semigroup_defect_abs_l2_std": 2.5729138228681203e-08,
+        "numerical_semigroup_defect_rel_l2_mean": 8.989216541503235e-08,
+        "numerical_semigroup_defect_rel_l2_std": 6.6385725887125045e-09,
+        "semigroup_defect_mean": 1.7115476575115645e-15,
+        "semigroup_defect_std": 2.699038535446645e-16,
+        "semigroup_defect_semantics": "legacy alias for numerical_semigroup_defect_mse; not an exact-flow guarantee",
+        "numerical_semigroup_defect_semantics": "production_fixed_ode_steps: every direct/composed model call uses model.ode_steps; a two-call composition therefore receives twice the RK4 work of its direct counterpart",
+        "numerical_semigroup_defect_status": "evaluated",
+        "numerical_semigroup_relative_denominator": "L2 norm of direct output, clamped below at 1e-12",
+        "learned_energy_status": "evaluated",
+        "physical_energy_status": "evaluated",
+        "learned_energy_semantics": "model.energy; not assumed to equal physical PDE energy",
+        "learned_energy_positive_increment_semantics": "max(E[k+1] - E[k], 0) per valid sample-step transition; computed without the 1e-6 monotonicity tolerance",
+        "physical_energy_positive_increment_semantics": "max(E_physical[k+1] - E_physical[k], 0) per valid sample-step transition; computed without the 1e-6 monotonicity tolerance",
+        "equal_work_semigroup_defect_status": "evaluated",
+        "equal_work_semigroup_defect_semantics": "equal_work_base_step: for pair (i,j), direct uses (i+j)*base_ode_steps RK4 substeps and composition uses i*base_ode_steps followed by j*base_ode_steps; total work matches",
+        "equal_work_semigroup_defect_base_ode_steps": 30,
+        "latent_diagnostics_status": "evaluated",
+        "n_valid": 12,
+        "min_evaluated_steps": 5,
+        "max_evaluated_steps": 5,
+        "learned_energy_mono_frac_mean": 1.0,
+        "learned_energy_mono_frac_std": 0.0,
+        "energy_mono_frac_mean": 1.0,
+        "energy_mono_frac_std": 0.0,
+        "physical_energy_mono_frac_mean": 0.15000000099341074,
+        "physical_energy_mono_frac_std": 0.33788558412294045,
+        "learned_energy_positive_increment_mean": 0.0,
+        "learned_energy_positive_increment_max": 0.0,
+        "physical_energy_positive_increment_mean": 0.00023196140925089517,
+        "physical_energy_positive_increment_max": 0.0008562207221984863,
+        "equal_work_semigroup_defect_mse_mean": 7.411365176116533e-16,
+        "equal_work_semigroup_defect_mse_std": 1.17891762825375e-16,
+        "equal_work_semigroup_defect_abs_l2_mean": 2.1454328091863317e-07,
+        "equal_work_semigroup_defect_abs_l2_std": 1.7052116180541397e-08,
+        "equal_work_semigroup_defect_rel_l2_mean": 5.8813320732061434e-08,
+        "equal_work_semigroup_defect_rel_l2_std": 4.529276109062174e-09,
+        "latent_l2_norm_max": 13.169777870178223,
+        "latent_abs_max": 2.944438934326172,
+        "latent_vector_field_l2_norm_max": 1.5357012748718262,
+        "ode_steps": 30
+      },
+      "details": {
+        "per_step_mse": [
+          0.00041561810454974574,
+          0.0016776584088802338,
+          0.003807583823800087,
+          0.006819743042190869,
+          0.010720538596312204
+        ],
+        "per_step_rel_l2": [
+          0.04285675287246704,
+          0.08303012450536092,
+          0.12073091665903728,
+          0.15610010425249735,
+          0.18927059570948282
+        ],
+        "per_step_viol": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "per_step_bound_max": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "per_step_counts": [
+          12,
+          12,
+          12,
+          12,
+          12
+        ],
+        "evaluated_steps": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "energy_positive_increment_semantics": "per-step mean of max(E[k+1] - E[k], 0) over valid sample transitions; NaN marks an unavailable step",
+        "learned_energy_positive_increment_per_step": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "learned_energy_max_positive_increment_per_step": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_energy_positive_increment_per_step": [
+          0.0002458443244298299,
+          0.00023973484834035239,
+          0.00023286044597625732,
+          0.00022497276465098062,
+          0.00021639466285705566
+        ],
+        "physical_energy_max_positive_increment_per_step": [
+          0.0008562207221984863,
+          0.0008546710014343262,
+          0.0008494257926940918,
+          0.0008413791656494141,
+          0.0008314847946166992
+        ]
+      }
+    }
+  }
+}

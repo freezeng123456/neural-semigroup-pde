@@ -1,0 +1,53 @@
+Epoch   1/100 | L_step=2.9776e-01 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | validation=not_run | lr=1.00e-03 | 0s
+Epoch   5/100 | L_step=1.6725e-02 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=9.9444e-03 bound_viol=3.0155e-03 | lr=9.94e-04 | 0s
+Epoch  10/100 | L_step=1.2487e-03 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.1892e-02 bound_viol=2.0829e-03 | lr=9.76e-04 | 1s
+Epoch  15/100 | L_step=3.2737e-04 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.6629e-03 bound_viol=5.9216e-04 | lr=9.46e-04 | 1s
+Epoch  20/100 | L_step=1.3699e-04 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.3067e-03 bound_viol=1.2061e-04 | lr=9.05e-04 | 1s
+Epoch  25/100 | L_step=8.1108e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=8.2261e-04 bound_viol=1.1507e-05 | lr=8.54e-04 | 1s
+Epoch  30/100 | L_step=5.6331e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=5.8910e-04 bound_viol=1.6946e-06 | lr=7.94e-04 | 1s
+Epoch  35/100 | L_step=4.3231e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=4.5362e-04 bound_viol=0.0000e+00 | lr=7.27e-04 | 1s
+Epoch  40/100 | L_step=3.6298e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=3.7724e-04 bound_viol=0.0000e+00 | lr=6.55e-04 | 1s
+Epoch  45/100 | L_step=3.2834e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=3.4065e-04 bound_viol=0.0000e+00 | lr=5.78e-04 | 1s
+Epoch  50/100 | L_step=3.1120e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=3.2188e-04 bound_viol=0.0000e+00 | lr=5.00e-04 | 2s
+Epoch  55/100 | L_step=3.0289e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=3.0881e-04 bound_viol=0.0000e+00 | lr=4.22e-04 | 2s
+Epoch  60/100 | L_step=2.9626e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=3.0195e-04 bound_viol=0.0000e+00 | lr=3.45e-04 | 2s
+Epoch  65/100 | L_step=2.9101e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.9887e-04 bound_viol=0.0000e+00 | lr=2.73e-04 | 2s
+Epoch  70/100 | L_step=2.8760e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.9393e-04 bound_viol=0.0000e+00 | lr=2.06e-04 | 2s
+Epoch  75/100 | L_step=2.8544e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.9031e-04 bound_viol=0.0000e+00 | lr=1.46e-04 | 2s
+Epoch  80/100 | L_step=2.8402e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.8778e-04 bound_viol=0.0000e+00 | lr=9.55e-05 | 2s
+Epoch  85/100 | L_step=2.8328e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.8692e-04 bound_viol=0.0000e+00 | lr=5.45e-05 | 2s
+Epoch  90/100 | L_step=2.8257e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.8643e-04 bound_viol=0.0000e+00 | lr=2.45e-05 | 3s
+Epoch  95/100 | L_step=2.8234e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.8656e-04 bound_viol=0.0000e+00 | lr=6.16e-06 | 3s
+Epoch 100/100 | L_step=2.8228e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.8651e-04 bound_viol=0.0000e+00 | lr=0.00e+00 | 3s
+
+Training complete: 3s, best_val_mse=2.8643e-04
+Epoch   1/100 | L_step=4.6670e-01 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | validation=not_run | lr=1.00e-03 | 0s
+Epoch   5/100 | L_step=3.1054e-01 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=3.3358e-01 bound_viol=7.2566e-02 | lr=9.94e-04 | 0s
+Epoch  10/100 | L_step=4.0473e-02 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=4.2306e-02 bound_viol=0.0000e+00 | lr=9.76e-04 | 1s
+Epoch  15/100 | L_step=1.6251e-03 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.2014e-02 bound_viol=5.4338e-03 | lr=9.46e-04 | 1s
+Epoch  20/100 | L_step=4.1843e-04 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=1.4213e-03 bound_viol=1.9286e-06 | lr=9.05e-04 | 1s
+Epoch  25/100 | L_step=1.3060e-04 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=3.1412e-03 bound_viol=0.0000e+00 | lr=8.54e-04 | 2s
+Epoch  30/100 | L_step=3.9854e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.0391e-03 bound_viol=0.0000e+00 | lr=7.94e-04 | 2s
+Epoch  35/100 | L_step=2.6344e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.2631e-03 bound_viol=4.9132e-07 | lr=7.27e-04 | 2s
+Epoch  40/100 | L_step=2.1539e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1614e-03 bound_viol=0.0000e+00 | lr=6.55e-04 | 2s
+Epoch  45/100 | L_step=1.8952e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1611e-03 bound_viol=0.0000e+00 | lr=5.78e-04 | 3s
+Epoch  50/100 | L_step=1.7184e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1488e-03 bound_viol=0.0000e+00 | lr=5.00e-04 | 3s
+Epoch  55/100 | L_step=1.5836e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1407e-03 bound_viol=0.0000e+00 | lr=4.22e-04 | 3s
+Epoch  60/100 | L_step=1.4800e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1359e-03 bound_viol=0.0000e+00 | lr=3.45e-04 | 4s
+Epoch  65/100 | L_step=1.4015e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1313e-03 bound_viol=0.0000e+00 | lr=2.73e-04 | 4s
+Epoch  70/100 | L_step=1.3438e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1299e-03 bound_viol=0.0000e+00 | lr=2.06e-04 | 4s
+Epoch  75/100 | L_step=1.3032e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1262e-03 bound_viol=0.0000e+00 | lr=1.46e-04 | 5s
+Epoch  80/100 | L_step=1.2758e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1252e-03 bound_viol=0.0000e+00 | lr=9.55e-05 | 5s
+Epoch  85/100 | L_step=1.2588e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1247e-03 bound_viol=0.0000e+00 | lr=5.45e-05 | 5s
+Epoch  90/100 | L_step=1.2496e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1242e-03 bound_viol=0.0000e+00 | lr=2.45e-05 | 6s
+Epoch  95/100 | L_step=1.2457e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1241e-03 bound_viol=0.0000e+00 | lr=6.16e-06 | 6s
+Epoch 100/100 | L_step=1.2449e-05 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.1241e-03 bound_viol=0.0000e+00 | lr=0.00e+00 | 6s
+
+Training complete: 6s, best_val_mse=1.4213e-03
+{
+  "output_dir": "/data/runs/20260825-fisher-fair-fixed-screen-seed42-e018fbc/outputs-baseline100",
+  "models": {
+    "resnet": 10117,
+    "fno": 9345
+  }
+}

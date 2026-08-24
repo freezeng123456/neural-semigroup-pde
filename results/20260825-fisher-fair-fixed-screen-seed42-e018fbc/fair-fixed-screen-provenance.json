@@ -1,0 +1,26 @@
+{
+  "run_id": "20260825-fisher-fair-fixed-screen-seed42-e018fbc",
+  "purpose": "Single-seed reduced-cost implementation screen for parameter-matched fixed-time Fisher-KPP models",
+  "repository": "https://github.com/freezeng123456/neural-semigroup-pde",
+  "commit": "e018fbcc8c529799b16c37c299fbf3d92ffd3d4a",
+  "entrypoint": "experiments/run_fisher_fair.py",
+  "host": "freezeng-2ho6ltsa0a",
+  "python": "/data/miniconda/envs/syngen/bin/python",
+  "torch": "2.0.1+cu118",
+  "device": "Tesla T4",
+  "screen_only": true,
+  "parameters": {
+    "regime": "fixed",
+    "models": ["latent", "resnet", "fno"],
+    "seed": 42,
+    "data_seed": 42,
+    "deterministic": true,
+    "n_train": 256,
+    "n_val": 12,
+    "epochs": 10,
+    "batch_size": 64,
+    "fixed_tau": 0.1,
+    "eval_horizon": 0.5,
+    "validation_interval": 5
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "model": "fno",
+  "parameter_count": 9345,
+  "checkpoint_epoch": 10,
+  "training_seconds": 0.6371487118303776,
+  "optimizer_updates": 40,
+  "examples_seen": 2560,
+  "history": {
+    "epoch": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "L_step": [
+      0.4666999727487564,
+      0.4277116730809212,
+      0.39165592193603516,
+      0.358501635491848,
+      0.3288491666316986,
+      0.3035929352045059,
+      0.2836414873600006,
+      0.26960284262895584,
+      0.2613377720117569,
+      0.257777139544487
+    ],
+    "L_rollout": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "L_energy": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "L_V": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "val_mse": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      0.3618952706456185,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      0.3075666449964047
+    ],
+    "val_bound_viol": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      0.09825094528496266,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      0.04794761960705121
+    ],
+    "val_energy_mono": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      0.0,
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      0.0
+    ],
+    "validation_performed": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true
+    ]
+  },
+  "evaluations": {
+    "0.1": {
+      "metrics": {
+        "model": "fno",
+        "tau": 0.1,
+        "reference_dt": 0.005,
+        "reference_stride": 20,
+        "rollout_mse_mean": 0.3075666449964047,
+        "rollout_mse_std": 0.011470276295280498,
+        "rollout_rel_l2_mean": 1.0828164180119833,
+        "rollout_rel_l2_std": 0.004768436268380939,
+        "bound_viol_mean": 0.04794761960705121,
+        "bound_viol_std": 1.182813128979015e-05,
+        "bound_viol_max": 0.06559671461582184,
+        "numerical_semigroup_defect_mse_mean": 0.0003333504355396144,
+        "numerical_semigroup_defect_mse_std": 5.4892299521719895e-05,
+        "numerical_semigroup_defect_abs_l2_mean": 0.14550943424304327,
+        "numerical_semigroup_defect_abs_l2_std": 0.011713937640814135,
+        "numerical_semigroup_defect_rel_l2_mean": 0.45532533278067905,
+        "numerical_semigroup_defect_rel_l2_std": 0.028140883901020416,
+        "semigroup_defect_mean": 0.0003333504355396144,
+        "semigroup_defect_std": 5.4892299521719895e-05,
+        "semigroup_defect_semantics": "legacy alias for numerical_semigroup_defect_mse; not an exact-flow guarantee",
+        "numerical_semigroup_defect_semantics": "production_fixed_ode_steps: every direct/composed model call uses model.ode_steps; a two-call composition therefore receives twice the RK4 work of its direct counterpart",
+        "numerical_semigroup_defect_status": "evaluated",
+        "numerical_semigroup_relative_denominator": "L2 norm of direct output, clamped below at 1e-12",
+        "learned_energy_status": "not_evaluated",
+        "physical_energy_status": "evaluated",
+        "learned_energy_semantics": "model.energy; not assumed to equal physical PDE energy",
+        "learned_energy_positive_increment_semantics": "max(E[k+1] - E[k], 0) per valid sample-step transition; computed without the 1e-6 monotonicity tolerance",
+        "physical_energy_positive_increment_semantics": "max(E_physical[k+1] - E_physical[k], 0) per valid sample-step transition; computed without the 1e-6 monotonicity tolerance",
+        "equal_work_semigroup_defect_status": "not_requested",
+        "equal_work_semigroup_defect_semantics": "equal_work_base_step: for pair (i,j), direct uses (i+j)*base_ode_steps RK4 substeps and composition uses i*base_ode_steps followed by j*base_ode_steps; total work matches",
+        "equal_work_semigroup_defect_base_ode_steps": null,
+        "latent_diagnostics_status": "not_evaluated",
+        "n_valid": 12,
+        "min_evaluated_steps": 5,
+        "max_evaluated_steps": 5,
+        "physical_energy_mono_frac_mean": 0.800000011920929,
+        "physical_energy_mono_frac_std": 0.0,
+        "physical_energy_positive_increment_mean": 0.11761179268360138,
+        "physical_energy_positive_increment_max": 0.643022894859314
+      },
+      "details": {
+        "per_step_mse": [
+          0.2560594479242961,
+          0.28985003630320233,
+          0.30998531977335614,
+          0.3304007053375244,
+          0.3515377442042033
+        ],
+        "per_step_rel_l2": [
+          1.062656084696452,
+          1.0907047589619954,
+          1.0892089207967122,
+          1.0868814786275227,
+          1.0846308867136638
+        ],
+        "per_step_viol": [
+          0.040014264484246574,
+          0.04978375633557638,
+          0.04997746149698893,
+          0.049981266260147095,
+          0.0499813457330068
+        ],
+        "per_step_bound_max": [
+          0.06559671461582184,
+          0.05121169984340668,
+          0.05005761981010437,
+          0.04998581111431122,
+          0.04998160898685455
+        ],
+        "per_step_counts": [
+          12,
+          12,
+          12,
+          12,
+          12
+        ],
+        "evaluated_steps": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "energy_positive_increment_semantics": "per-step mean of max(E[k+1] - E[k], 0) over valid sample transitions; NaN marks an unavailable step",
+        "physical_energy_positive_increment_per_step": [
+          0.5880589485168457,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "physical_energy_max_positive_increment_per_step": [
+          0.643022894859314,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  }
+}

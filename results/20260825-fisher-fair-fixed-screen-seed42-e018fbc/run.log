@@ -1,0 +1,23 @@
+Epoch   1/10 | L_step=4.3971e-04 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | validation=not_run | lr=9.76e-04 | 3s
+Epoch   5/10 | L_step=4.1521e-04 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=4.7317e-03 bound_viol=0.0000e+00 | lr=5.00e-04 | 16s
+Epoch  10/10 | L_step=4.0851e-04 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=4.6882e-03 bound_viol=0.0000e+00 | lr=0.00e+00 | 31s
+
+Training complete: 31s, best_val_mse=4.6882e-03
+Epoch   1/10 | L_step=2.9776e-01 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | validation=not_run | lr=9.76e-04 | 0s
+Epoch   5/10 | L_step=1.0394e-02 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=2.7276e-02 bound_viol=5.0262e-03 | lr=5.00e-04 | 0s
+Epoch  10/10 | L_step=7.0153e-04 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=7.5678e-03 bound_viol=2.4944e-03 | lr=0.00e+00 | 1s
+
+Training complete: 1s, best_val_mse=7.5678e-03
+Epoch   1/10 | L_step=4.6670e-01 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | validation=not_run | lr=9.76e-04 | 0s
+Epoch   5/10 | L_step=3.2885e-01 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=3.6190e-01 bound_viol=9.8251e-02 | lr=5.00e-04 | 0s
+Epoch  10/10 | L_step=2.5778e-01 L_roll=0.0000e+00 L_energy=0.0000e+00 L_V=0.0000e+00 | val_mse=3.0757e-01 bound_viol=4.7948e-02 | lr=0.00e+00 | 1s
+
+Training complete: 1s, best_val_mse=3.0757e-01
+{
+  "output_dir": "/data/runs/20260825-fisher-fair-fixed-screen-seed42-e018fbc/outputs",
+  "models": {
+    "latent": 9603,
+    "resnet": 10117,
+    "fno": 9345
+  }
+}
