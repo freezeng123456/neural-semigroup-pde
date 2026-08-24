@@ -15,6 +15,45 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
+def _broadcast_positive_tau(tau, u):
+    """Return ``tau`` as a positive ``(B, 1, N)`` conditioning channel.
+
+    A scalar tau is shared by the batch. A one-dimensional tensor must have
+    exactly one value per input sample. The returned channel remains connected
+    to tau's autograd graph.
+    """
+    if u.ndim != 2:
+        raise ValueError(f"u must have shape (B, N), got {tuple(u.shape)}")
+
+    batch_size, n_sites = u.shape
+    try:
+        tau_tensor = torch.as_tensor(tau, device=u.device)
+    except (TypeError, ValueError, RuntimeError) as exc:
+        raise ValueError(
+            "tau must be a scalar or a tensor with shape (B,)"
+        ) from exc
+
+    if tau_tensor.is_complex():
+        raise ValueError("tau must be a real-valued scalar or tensor")
+
+    if tau_tensor.ndim == 0:
+        tau_batch = tau_tensor.expand(batch_size)
+    elif tau_tensor.ndim == 1 and tau_tensor.shape[0] == batch_size:
+        tau_batch = tau_tensor
+    else:
+        raise ValueError(
+            f"tau must be a scalar or have shape ({batch_size},), "
+            f"got {tuple(tau_tensor.shape)}"
+        )
+
+    tau_batch = tau_batch.to(dtype=u.dtype)
+    valid = torch.isfinite(tau_batch) & (tau_batch > 0)
+    if not bool(valid.all().item()):
+        raise ValueError("tau must contain only finite, strictly positive values")
+
+    return tau_batch.reshape(batch_size, 1, 1).expand(-1, 1, n_sites)
+
+
 # ============================================================
 # Utility layers
 # ============================================================
@@ -270,7 +309,7 @@ class LatentSemigroupNet(nn.Module):
         # Compute a_ij once per forward pass (120x savings)
         a_full = F.softplus(torch.mm(self.emb, self.emb.t()))
         a_ij = a_full * self.interaction_mask
-        dt = tau / self.ode_steps
+        dt = _broadcast_positive_tau(tau, z)[:, 0, :1] / self.ode_steps
         for _ in range(self.ode_steps):
             z = self.rk4_step(z, dt, a_ij)
         return self.decode(z)
@@ -286,7 +325,7 @@ class LatentSemigroupNet(nn.Module):
             V_loss: scalar, mean of V(z_i)^2 over trajectory
         """
         z = self.encode(u)
-        dt = tau / self.ode_steps
+        dt = _broadcast_positive_tau(tau, z)[:, 0, :1] / self.ode_steps
         V_squares = []
         for _ in range(self.ode_steps):
             V_val = self.V_net(z.unsqueeze(-1)).squeeze(-1)  # (B, N)
@@ -445,47 +484,6 @@ class FNOBaseline(nn.Module):
 # ============================================================
 # Time-conditioned baseline predictors
 # ============================================================
-
-def _broadcast_positive_tau(tau, u):
-    """Return ``tau`` as a positive ``(B, 1, N)`` conditioning channel.
-
-    A scalar tau is shared by the batch.  A one-dimensional tensor must have
-    exactly one value per input sample; accepting only ``(B,)`` here keeps
-    accidental broadcasting of incompatible shapes from going unnoticed.
-    The returned channel remains connected to tau's autograd graph.
-    """
-    if u.ndim != 2:
-        raise ValueError(f"u must have shape (B, N), got {tuple(u.shape)}")
-
-    batch_size, n_sites = u.shape
-    try:
-        tau_tensor = torch.as_tensor(tau, device=u.device)
-    except (TypeError, ValueError, RuntimeError) as exc:
-        raise ValueError(
-            "tau must be a scalar or a tensor with shape (B,)"
-        ) from exc
-
-    if tau_tensor.is_complex():
-        raise ValueError("tau must be a real-valued scalar or tensor")
-
-    if tau_tensor.ndim == 0:
-        tau_batch = tau_tensor.expand(batch_size)
-    elif tau_tensor.ndim == 1 and tau_tensor.shape[0] == batch_size:
-        tau_batch = tau_tensor
-    else:
-        raise ValueError(
-            f"tau must be a scalar or have shape ({batch_size},), "
-            f"got {tuple(tau_tensor.shape)}"
-        )
-
-    # Match the input dtype without detaching a tensor that requires grad.
-    tau_batch = tau_batch.to(dtype=u.dtype)
-    valid = torch.isfinite(tau_batch) & (tau_batch > 0)
-    if not bool(valid.all().item()):
-        raise ValueError("tau must contain only finite, strictly positive values")
-
-    return tau_batch.reshape(batch_size, 1, 1).expand(-1, 1, n_sites)
-
 
 class TimeConditionedResNet(nn.Module):
     """1D ResNet baseline conditioned on a positive evolution time.
@@ -685,7 +683,7 @@ class LatentSemigroupNetBounded(nn.Module):
         z = self.encode(u)
         a_full = F.softplus(torch.mm(self.emb, self.emb.t()))
         a_ij = a_full * self.interaction_mask
-        dt = tau / self.ode_steps
+        dt = _broadcast_positive_tau(tau, z)[:, 0, :1] / self.ode_steps
         for _ in range(self.ode_steps):
             z = self.rk4_step(z, dt, a_ij)
         return self.decode(z)
@@ -693,7 +691,7 @@ class LatentSemigroupNetBounded(nn.Module):
     def latent_V_values(self, u, tau):
         """Collect V(z_i)^2 along trajectory for auxiliary loss."""
         z = self.encode(u)
-        dt = tau / self.ode_steps
+        dt = _broadcast_positive_tau(tau, z)[:, 0, :1] / self.ode_steps
         V_squares = []
         for _ in range(self.ode_steps):
             V_val = self.V_net(z.unsqueeze(-1)).squeeze(-1)
