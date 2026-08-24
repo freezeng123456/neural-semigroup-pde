@@ -1,0 +1,78 @@
+{
+  "json": "results/reference_audit.json",
+  "csv": "results/reference_audit.csv",
+  "aggregates": [
+    {
+      "kind": "float32_vs_float64",
+      "resolution": 64,
+      "dt": 0.005,
+      "mean_relative_l2": 1.3222514177508573e-06,
+      "max_relative_l2": 3.0051098709928626e-06,
+      "std_relative_l2": 6.922389123179767e-07,
+      "n_samples": 20
+    },
+    {
+      "kind": "production_vs_fine",
+      "resolution": 64,
+      "dt": 0.005,
+      "mean_relative_l2": 3.9163463421232965e-05,
+      "max_relative_l2": 0.00014819939905949151,
+      "std_relative_l2": 5.870512768385431e-05,
+      "n_samples": 20
+    },
+    {
+      "kind": "spatial",
+      "resolution": 64,
+      "dt": 0.0005,
+      "mean_relative_l2": 3.831809464728649e-05,
+      "max_relative_l2": 0.00014580164486222862,
+      "std_relative_l2": 5.8978825831403435e-05,
+      "n_samples": 20
+    },
+    {
+      "kind": "spatial",
+      "resolution": 128,
+      "dt": 0.0005,
+      "mean_relative_l2": 8.115416916078175e-06,
+      "max_relative_l2": 7.159315931728766e-05,
+      "std_relative_l2": 1.682705817881202e-05,
+      "n_samples": 20
+    },
+    {
+      "kind": "spatial",
+      "resolution": 256,
+      "dt": 0.0005,
+      "mean_relative_l2": 2.021107053729787e-06,
+      "max_relative_l2": 9.213286094322859e-06,
+      "std_relative_l2": 3.432940930725792e-06,
+      "n_samples": 20
+    },
+    {
+      "kind": "temporal",
+      "resolution": 512,
+      "dt": 0.001,
+      "mean_relative_l2": 1.9410938976274776e-13,
+      "max_relative_l2": 4.192183404747493e-13,
+      "std_relative_l2": 1.0734878119103904e-13,
+      "n_samples": 20
+    },
+    {
+      "kind": "temporal",
+      "resolution": 512,
+      "dt": 0.002,
+      "mean_relative_l2": 1.813448866529448e-12,
+      "max_relative_l2": 3.807036717081158e-12,
+      "std_relative_l2": 9.668015045378455e-13,
+      "n_samples": 20
+    },
+    {
+      "kind": "temporal",
+      "resolution": 512,
+      "dt": 0.005,
+      "mean_relative_l2": 2.881863283605121e-11,
+      "max_relative_l2": 6.06236923796879e-11,
+      "std_relative_l2": 1.543203887851288e-11,
+      "n_samples": 20
+    }
+  ]
+}

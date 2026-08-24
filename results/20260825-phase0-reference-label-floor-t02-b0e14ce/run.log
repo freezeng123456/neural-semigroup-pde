@@ -1,0 +1,78 @@
+{
+  "json": "results/reference_audit.json",
+  "csv": "results/reference_audit.csv",
+  "aggregates": [
+    {
+      "kind": "float32_vs_float64",
+      "resolution": 64,
+      "dt": 0.005,
+      "mean_relative_l2": 4.1291137950614246e-07,
+      "max_relative_l2": 7.810976622450429e-07,
+      "std_relative_l2": 1.6515690531075426e-07,
+      "n_samples": 20
+    },
+    {
+      "kind": "production_vs_fine",
+      "resolution": 64,
+      "dt": 0.005,
+      "mean_relative_l2": 6.253400786361862e-05,
+      "max_relative_l2": 0.0002764778023089945,
+      "std_relative_l2": 9.878404842786646e-05,
+      "n_samples": 20
+    },
+    {
+      "kind": "spatial",
+      "resolution": 64,
+      "dt": 0.0005,
+      "mean_relative_l2": 6.22649528951879e-05,
+      "max_relative_l2": 0.00027670687808222584,
+      "std_relative_l2": 9.892424651878667e-05,
+      "n_samples": 20
+    },
+    {
+      "kind": "spatial",
+      "resolution": 128,
+      "dt": 0.0005,
+      "mean_relative_l2": 1.389910672124085e-05,
+      "max_relative_l2": 7.417887085343119e-05,
+      "std_relative_l2": 2.3693046025402783e-05,
+      "n_samples": 20
+    },
+    {
+      "kind": "spatial",
+      "resolution": 256,
+      "dt": 0.0005,
+      "mean_relative_l2": 3.092589137164346e-06,
+      "max_relative_l2": 1.4972017313538219e-05,
+      "std_relative_l2": 5.277150406987758e-06,
+      "n_samples": 20
+    },
+    {
+      "kind": "temporal",
+      "resolution": 512,
+      "dt": 0.001,
+      "mean_relative_l2": 1.3525774573774344e-13,
+      "max_relative_l2": 3.558041085882863e-13,
+      "std_relative_l2": 9.664525512388024e-14,
+      "n_samples": 20
+    },
+    {
+      "kind": "temporal",
+      "resolution": 512,
+      "dt": 0.002,
+      "mean_relative_l2": 1.2199671444157264e-12,
+      "max_relative_l2": 3.198007227326985e-12,
+      "std_relative_l2": 8.756077091781311e-13,
+      "n_samples": 20
+    },
+    {
+      "kind": "temporal",
+      "resolution": 512,
+      "dt": 0.005,
+      "mean_relative_l2": 1.9236438370344317e-11,
+      "max_relative_l2": 5.066802155488968e-11,
+      "std_relative_l2": 1.37837450253287e-11,
+      "n_samples": 20
+    }
+  ]
+}

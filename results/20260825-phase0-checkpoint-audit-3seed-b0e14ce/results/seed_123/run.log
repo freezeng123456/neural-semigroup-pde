@@ -1,0 +1,1957 @@
+{
+  "audit_schema_version": 1,
+  "audit_kind": "phase0_numerical_semigroup_rk4",
+  "semantics": {
+    "production_defect": "fixed ode_steps per model call; direct and composed paths do not receive equal total RK4 work",
+    "equal_work_defect": "base-step matched; direct and composed paths receive the same total RK4 substep count",
+    "sweep": "one checkpoint reused for all ode_steps; no retraining"
+  },
+  "hostname": "freezeng-2ho6ltsa0a",
+  "device": "cuda",
+  "gpu": "Tesla T4",
+  "torch_version": "2.0.1+cu118",
+  "checkpoint": "/data/runs/20260824-fisher-coercive-3seed-fcd9e39/seed_123/checkpoints/latent_best.pt",
+  "data": "/data/runs/20260824-fisher-coercive-3seed-fcd9e39/seed_123/checkpoints/data.pt",
+  "checkpoint_epoch": 40,
+  "model": {
+    "model_kind": "latent",
+    "N": 64,
+    "hidden_V": [
+      64,
+      64
+    ],
+    "hidden_K": [
+      64,
+      64
+    ],
+    "stencil_radius": 3,
+    "interaction_radius": 2,
+    "beta_V": 0.0,
+    "beta_V_floor": 0.1,
+    "lower_bound": 0.0,
+    "upper_bound": 1.0
+  },
+  "tau": 0.1,
+  "reference_dt": 0.005,
+  "reference_dt_source": "checkpoint_metadata",
+  "n_samples": 50,
+  "sweep_samples": 1,
+  "rollout_steps": 20,
+  "max_pairs": 20,
+  "ode_steps": [
+    5,
+    10,
+    15,
+    30,
+    60,
+    120
+  ],
+  "equal_work_base_ode_steps": 30,
+  "physical_energy": "fisher-kpp",
+  "physical_energy_config": {
+    "domain_length": 10.0,
+    "nu": 0.1,
+    "reaction_rate": 1.0,
+    "epsilon": 0.1
+  },
+  "formal_evaluation_seconds": 27.723729200661182,
+  "ode_steps_sweep_seconds": 206.2915242537856,
+  "formal_metrics": {
+    "model": "latent_best.pt",
+    "tau": 0.1,
+    "reference_dt": 0.005,
+    "reference_stride": 20,
+    "rollout_mse_mean": 0.00012127017766977135,
+    "rollout_mse_std": 7.98039046748008e-05,
+    "bound_viol_mean": 0.0,
+    "bound_viol_std": 0.0,
+    "numerical_semigroup_defect_mse_mean": 1.3976797340788246e-15,
+    "numerical_semigroup_defect_mse_std": 1.8622165760367582e-16,
+    "numerical_semigroup_defect_abs_l2_mean": 2.9565091153926914e-07,
+    "numerical_semigroup_defect_abs_l2_std": 1.949268132654219e-08,
+    "numerical_semigroup_defect_rel_l2_mean": 6.61775656141117e-08,
+    "numerical_semigroup_defect_rel_l2_std": 3.939055192962359e-09,
+    "semigroup_defect_mean": 1.3976797340788246e-15,
+    "semigroup_defect_std": 1.8622165760367582e-16,
+    "semigroup_defect_semantics": "legacy alias for numerical_semigroup_defect_mse; not an exact-flow guarantee",
+    "numerical_semigroup_defect_semantics": "production_fixed_ode_steps: every direct/composed model call uses model.ode_steps; a two-call composition therefore receives twice the RK4 work of its direct counterpart",
+    "numerical_semigroup_defect_status": "evaluated",
+    "numerical_semigroup_relative_denominator": "L2 norm of direct output, clamped below at 1e-12",
+    "learned_energy_status": "evaluated",
+    "physical_energy_status": "evaluated",
+    "learned_energy_semantics": "model.energy; not assumed to equal physical PDE energy",
+    "learned_energy_positive_increment_semantics": "max(E[k+1] - E[k], 0) per valid sample-step transition; computed without the 1e-6 monotonicity tolerance",
+    "physical_energy_positive_increment_semantics": "max(E_physical[k+1] - E_physical[k], 0) per valid sample-step transition; computed without the 1e-6 monotonicity tolerance",
+    "equal_work_semigroup_defect_status": "evaluated",
+    "equal_work_semigroup_defect_semantics": "equal_work_base_step: for pair (i,j), direct uses (i+j)*base_ode_steps RK4 substeps and composition uses i*base_ode_steps followed by j*base_ode_steps; total work matches",
+    "equal_work_semigroup_defect_base_ode_steps": 30,
+    "latent_diagnostics_status": "not_evaluated",
+    "n_valid": 50,
+    "min_evaluated_steps": 20,
+    "max_evaluated_steps": 20,
+    "learned_energy_mono_frac_mean": 1.0,
+    "learned_energy_mono_frac_std": 0.0,
+    "energy_mono_frac_mean": 1.0,
+    "energy_mono_frac_std": 0.0,
+    "physical_energy_mono_frac_mean": 1.0,
+    "physical_energy_mono_frac_std": 0.0,
+    "learned_energy_positive_increment_mean": 0.0,
+    "learned_energy_positive_increment_max": 0.0,
+    "physical_energy_positive_increment_mean": 0.0,
+    "physical_energy_positive_increment_max": 0.0,
+    "equal_work_semigroup_defect_mse_mean": 6.761388419519108e-16,
+    "equal_work_semigroup_defect_mse_std": 8.220021865941533e-17,
+    "equal_work_semigroup_defect_abs_l2_mean": 2.0357782091195986e-07,
+    "equal_work_semigroup_defect_abs_l2_std": 1.286811430134715e-08,
+    "equal_work_semigroup_defect_rel_l2_mean": 4.553468642143344e-08,
+    "equal_work_semigroup_defect_rel_l2_std": 2.976340357302321e-09,
+    "ode_steps": 30
+  },
+  "formal_details": {
+    "per_step_mse": [
+      4.278650740161538e-06,
+      1.3687515165656805e-05,
+      2.5954602751880884e-05,
+      3.9433492347598075e-05,
+      5.2987122908234594e-05,
+      6.594449281692505e-05,
+      7.80403707176447e-05,
+      8.934199810028077e-05,
+      0.00010016021318733693,
+      0.00011094524525105953,
+      0.00012217638082802297,
+      0.00013425489887595177,
+      0.00014741593971848488,
+      0.0001616702228784561,
+      0.0001767848990857601,
+      0.00019230667501688004,
+      0.00020761992782354356,
+      0.00022202899679541588,
+      0.00023485429584980011,
+      0.0002455176040530205
+    ],
+    "per_step_viol": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_step_counts": [
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50,
+      50
+    ],
+    "evaluated_steps": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "energy_positive_increment_semantics": "per-step mean of max(E[k+1] - E[k], 0) over valid sample transitions; NaN marks an unavailable step",
+    "learned_energy_positive_increment_per_step": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "learned_energy_max_positive_increment_per_step": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "physical_energy_positive_increment_per_step": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "physical_energy_max_positive_increment_per_step": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "ode_steps_sweep": {
+    "status": "evaluated",
+    "original_ode_steps": 30,
+    "ode_steps": [
+      5,
+      10,
+      15,
+      30,
+      60,
+      120
+    ],
+    "reference_ode_steps": 120,
+    "semantics": "same checkpoint reused; only ode_steps changes temporarily; no retraining",
+    "comparisons": [
+      {
+        "ode_steps": 5,
+        "reference_ode_steps": 120,
+        "absolute_l2": 3.393901124582044e-07,
+        "relative_l2": 8.425158171121438e-08
+      },
+      {
+        "ode_steps": 10,
+        "reference_ode_steps": 120,
+        "absolute_l2": 3.6934895319973293e-07,
+        "relative_l2": 9.16886904178682e-08
+      },
+      {
+        "ode_steps": 15,
+        "reference_ode_steps": 120,
+        "absolute_l2": 3.7723049217675e-07,
+        "relative_l2": 9.364523378962986e-08
+      },
+      {
+        "ode_steps": 30,
+        "reference_ode_steps": 120,
+        "absolute_l2": 3.8617446307398495e-07,
+        "relative_l2": 9.58655235194783e-08
+      },
+      {
+        "ode_steps": 60,
+        "reference_ode_steps": 120,
+        "absolute_l2": 4.058515230553894e-07,
+        "relative_l2": 1.007502348215894e-07
+      },
+      {
+        "ode_steps": 120,
+        "reference_ode_steps": 120,
+        "absolute_l2": 0.0,
+        "relative_l2": 0.0
+      }
+    ],
+    "sweep": [
+      {
+        "ode_steps": 5,
+        "reference_ode_steps": 120,
+        "absolute_l2": 3.393901124582044e-07,
+        "relative_l2": 8.425158171121438e-08,
+        "production_fixed_ode_steps_defect": {
+          "status": "evaluated",
+          "semantics": "production_fixed_ode_steps",
+          "base_ode_steps": null,
+          "n_pairs": 20,
+          "mse": 4.924298382252834e-12,
+          "absolute_l2": 1.3506031791621353e-05,
+          "relative_l2": 2.8630083761527203e-06,
+          "per_sample_mse": [
+            4.924298382252834e-12
+          ],
+          "per_sample_absolute_l2": [
+            1.3506031791621353e-05
+          ],
+          "per_sample_relative_l2": [
+            2.8630083761527203e-06
+          ]
+        },
+        "equal_work_base_step_defect": {
+          "status": "evaluated",
+          "semantics": "equal_work_base_step",
+          "base_ode_steps": 5,
+          "n_pairs": 20,
+          "mse": 7.111065526535282e-16,
+          "absolute_l2": 2.072237776928887e-07,
+          "relative_l2": 4.555772292746951e-08,
+          "pair_work": [
+            {
+              "i": 1,
+              "j": 1,
+              "direct_ode_steps": 10,
+              "composed_ode_steps": [
+                5,
+                5
+              ],
+              "direct_total_ode_steps": 10,
+              "composed_total_ode_steps": 10
+            },
+            {
+              "i": 1,
+              "j": 2,
+              "direct_ode_steps": 15,
+              "composed_ode_steps": [
+                5,
+                10
+              ],
+              "direct_total_ode_steps": 15,
+              "composed_total_ode_steps": 15
+            },
+            {
+              "i": 1,
+              "j": 3,
+              "direct_ode_steps": 20,
+              "composed_ode_steps": [
+                5,
+                15
+              ],
+              "direct_total_ode_steps": 20,
+              "composed_total_ode_steps": 20
+            },
+            {
+              "i": 2,
+              "j": 1,
+              "direct_ode_steps": 15,
+              "composed_ode_steps": [
+                10,
+                5
+              ],
+              "direct_total_ode_steps": 15,
+              "composed_total_ode_steps": 15
+            },
+            {
+              "i": 2,
+              "j": 2,
+              "direct_ode_steps": 20,
+              "composed_ode_steps": [
+                10,
+                10
+              ],
+              "direct_total_ode_steps": 20,
+              "composed_total_ode_steps": 20
+            },
+            {
+              "i": 2,
+              "j": 3,
+              "direct_ode_steps": 25,
+              "composed_ode_steps": [
+                10,
+                15
+              ],
+              "direct_total_ode_steps": 25,
+              "composed_total_ode_steps": 25
+            },
+            {
+              "i": 3,
+              "j": 1,
+              "direct_ode_steps": 20,
+              "composed_ode_steps": [
+                15,
+                5
+              ],
+              "direct_total_ode_steps": 20,
+              "composed_total_ode_steps": 20
+            },
+            {
+              "i": 3,
+              "j": 2,
+              "direct_ode_steps": 25,
+              "composed_ode_steps": [
+                15,
+                10
+              ],
+              "direct_total_ode_steps": 25,
+              "composed_total_ode_steps": 25
+            },
+            {
+              "i": 3,
+              "j": 3,
+              "direct_ode_steps": 30,
+              "composed_ode_steps": [
+                15,
+                15
+              ],
+              "direct_total_ode_steps": 30,
+              "composed_total_ode_steps": 30
+            },
+            {
+              "i": 4,
+              "j": 1,
+              "direct_ode_steps": 25,
+              "composed_ode_steps": [
+                20,
+                5
+              ],
+              "direct_total_ode_steps": 25,
+              "composed_total_ode_steps": 25
+            },
+            {
+              "i": 4,
+              "j": 2,
+              "direct_ode_steps": 30,
+              "composed_ode_steps": [
+                20,
+                10
+              ],
+              "direct_total_ode_steps": 30,
+              "composed_total_ode_steps": 30
+            },
+            {
+              "i": 4,
+              "j": 3,
+              "direct_ode_steps": 35,
+              "composed_ode_steps": [
+                20,
+                15
+              ],
+              "direct_total_ode_steps": 35,
+              "composed_total_ode_steps": 35
+            },
+            {
+              "i": 5,
+              "j": 1,
+              "direct_ode_steps": 30,
+              "composed_ode_steps": [
+                25,
+                5
+              ],
+              "direct_total_ode_steps": 30,
+              "composed_total_ode_steps": 30
+            },
+            {
+              "i": 5,
+              "j": 2,
+              "direct_ode_steps": 35,
+              "composed_ode_steps": [
+                25,
+                10
+              ],
+              "direct_total_ode_steps": 35,
+              "composed_total_ode_steps": 35
+            },
+            {
+              "i": 5,
+              "j": 3,
+              "direct_ode_steps": 40,
+              "composed_ode_steps": [
+                25,
+                15
+              ],
+              "direct_total_ode_steps": 40,
+              "composed_total_ode_steps": 40
+            },
+            {
+              "i": 6,
+              "j": 1,
+              "direct_ode_steps": 35,
+              "composed_ode_steps": [
+                30,
+                5
+              ],
+              "direct_total_ode_steps": 35,
+              "composed_total_ode_steps": 35
+            },
+            {
+              "i": 6,
+              "j": 2,
+              "direct_ode_steps": 40,
+              "composed_ode_steps": [
+                30,
+                10
+              ],
+              "direct_total_ode_steps": 40,
+              "composed_total_ode_steps": 40
+            },
+            {
+              "i": 6,
+              "j": 3,
+              "direct_ode_steps": 45,
+              "composed_ode_steps": [
+                30,
+                15
+              ],
+              "direct_total_ode_steps": 45,
+              "composed_total_ode_steps": 45
+            },
+            {
+              "i": 7,
+              "j": 1,
+              "direct_ode_steps": 40,
+              "composed_ode_steps": [
+                35,
+                5
+              ],
+              "direct_total_ode_steps": 40,
+              "composed_total_ode_steps": 40
+            },
+            {
+              "i": 7,
+              "j": 2,
+              "direct_ode_steps": 45,
+              "composed_ode_steps": [
+                35,
+                10
+              ],
+              "direct_total_ode_steps": 45,
+              "composed_total_ode_steps": 45
+            }
+          ],
+          "per_sample_mse": [
+            7.111065526535282e-16
+          ],
+          "per_sample_absolute_l2": [
+            2.072237776928887e-07
+          ],
+          "per_sample_relative_l2": [
+            4.555772292746951e-08
+          ]
+        }
+      },
+      {
+        "ode_steps": 10,
+        "reference_ode_steps": 120,
+        "absolute_l2": 3.6934895319973293e-07,
+        "relative_l2": 9.16886904178682e-08,
+        "production_fixed_ode_steps_defect": {
+          "status": "evaluated",
+          "semantics": "production_fixed_ode_steps",
+          "base_ode_steps": null,
+          "n_pairs": 20,
+          "mse": 1.0915877915657936e-14,
+          "absolute_l2": 7.090636131579231e-07,
+          "relative_l2": 1.5204042824734643e-07,
+          "per_sample_mse": [
+            1.0915877915657936e-14
+          ],
+          "per_sample_absolute_l2": [
+            7.090636131579231e-07
+          ],
+          "per_sample_relative_l2": [
+            1.5204042824734643e-07
+          ]
+        },
+        "equal_work_base_step_defect": {
+          "status": "evaluated",
+          "semantics": "equal_work_base_step",
+          "base_ode_steps": 10,
+          "n_pairs": 20,
+          "mse": 6.344317538395296e-16,
+          "absolute_l2": 1.9408835782996903e-07,
+          "relative_l2": 4.2658292898067884e-08,
+          "pair_work": [
+            {
+              "i": 1,
+              "j": 1,
+              "direct_ode_steps": 20,
+              "composed_ode_steps": [
+                10,
+                10
+              ],
+              "direct_total_ode_steps": 20,
+              "composed_total_ode_steps": 20
+            },
+            {
+              "i": 1,
+              "j": 2,
+              "direct_ode_steps": 30,
+              "composed_ode_steps": [
+                10,
+                20
+              ],
+              "direct_total_ode_steps": 30,
+              "composed_total_ode_steps": 30
+            },
+            {
+              "i": 1,
+              "j": 3,
+              "direct_ode_steps": 40,
+              "composed_ode_steps": [
+                10,
+                30
+              ],
+              "direct_total_ode_steps": 40,
+              "composed_total_ode_steps": 40
+            },
+            {
+              "i": 2,
+              "j": 1,
+              "direct_ode_steps": 30,
+              "composed_ode_steps": [
+                20,
+                10
+              ],
+              "direct_total_ode_steps": 30,
+              "composed_total_ode_steps": 30
+            },
+            {
+              "i": 2,
+              "j": 2,
+              "direct_ode_steps": 40,
+              "composed_ode_steps": [
+                20,
+                20
+              ],
+              "direct_total_ode_steps": 40,
+              "composed_total_ode_steps": 40
+            },
+            {
+              "i": 2,
+              "j": 3,
+              "direct_ode_steps": 50,
+              "composed_ode_steps": [
+                20,
+                30
+              ],
+              "direct_total_ode_steps": 50,
+              "composed_total_ode_steps": 50
+            },
+            {
+              "i": 3,
+              "j": 1,
+              "direct_ode_steps": 40,
+              "composed_ode_steps": [
+                30,
+                10
+              ],
+              "direct_total_ode_steps": 40,
+              "composed_total_ode_steps": 40
+            },
+            {
+              "i": 3,
+              "j": 2,
+              "direct_ode_steps": 50,
+              "composed_ode_steps": [
+                30,
+                20
+              ],
+              "direct_total_ode_steps": 50,
+              "composed_total_ode_steps": 50
+            },
+            {
+              "i": 3,
+              "j": 3,
+              "direct_ode_steps": 60,
+              "composed_ode_steps": [
+                30,
+                30
+              ],
+              "direct_total_ode_steps": 60,
+              "composed_total_ode_steps": 60
+            },
+            {
+              "i": 4,
+              "j": 1,
+              "direct_ode_steps": 50,
+              "composed_ode_steps": [
+                40,
+                10
+              ],
+              "direct_total_ode_steps": 50,
+              "composed_total_ode_steps": 50
+            },
+            {
+              "i": 4,
+              "j": 2,
+              "direct_ode_steps": 60,
+              "composed_ode_steps": [
+                40,
+                20
+              ],
+              "direct_total_ode_steps": 60,
+              "composed_total_ode_steps": 60
+            },
+            {
+              "i": 4,
+              "j": 3,
+              "direct_ode_steps": 70,
+              "composed_ode_steps": [
+                40,
+                30
+              ],
+              "direct_total_ode_steps": 70,
+              "composed_total_ode_steps": 70
+            },
+            {
+              "i": 5,
+              "j": 1,
+              "direct_ode_steps": 60,
+              "composed_ode_steps": [
+                50,
+                10
+              ],
+              "direct_total_ode_steps": 60,
+              "composed_total_ode_steps": 60
+            },
+            {
+              "i": 5,
+              "j": 2,
+              "direct_ode_steps": 70,
+              "composed_ode_steps": [
+                50,
+                20
+              ],
+              "direct_total_ode_steps": 70,
+              "composed_total_ode_steps": 70
+            },
+            {
+              "i": 5,
+              "j": 3,
+              "direct_ode_steps": 80,
+              "composed_ode_steps": [
+                50,
+                30
+              ],
+              "direct_total_ode_steps": 80,
+              "composed_total_ode_steps": 80
+            },
+            {
+              "i": 6,
+              "j": 1,
+              "direct_ode_steps": 70,
+              "composed_ode_steps": [
+                60,
+                10
+              ],
+              "direct_total_ode_steps": 70,
+              "composed_total_ode_steps": 70
+            },
+            {
+              "i": 6,
+              "j": 2,
+              "direct_ode_steps": 80,
+              "composed_ode_steps": [
+                60,
+                20
+              ],
+              "direct_total_ode_steps": 80,
+              "composed_total_ode_steps": 80
+            },
+            {
+              "i": 6,
+              "j": 3,
+              "direct_ode_steps": 90,
+              "composed_ode_steps": [
+                60,
+                30
+              ],
+              "direct_total_ode_steps": 90,
+              "composed_total_ode_steps": 90
+            },
+            {
+              "i": 7,
+              "j": 1,
+              "direct_ode_steps": 80,
+              "composed_ode_steps": [
+                70,
+                10
+              ],
+              "direct_total_ode_steps": 80,
+              "composed_total_ode_steps": 80
+            },
+            {
+              "i": 7,
+              "j": 2,
+              "direct_ode_steps": 90,
+              "composed_ode_steps": [
+                70,
+                20
+              ],
+              "direct_total_ode_steps": 90,
+              "composed_total_ode_steps": 90
+            }
+          ],
+          "per_sample_mse": [
+            6.344317538395296e-16
+          ],
+          "per_sample_absolute_l2": [
+            1.9408835782996903e-07
+          ],
+          "per_sample_relative_l2": [
+            4.2658292898067884e-08
+          ]
+        }
+      },
+      {
+        "ode_steps": 15,
+        "reference_ode_steps": 120,
+        "absolute_l2": 3.7723049217675e-07,
+        "relative_l2": 9.364523378962986e-08,
+        "production_fixed_ode_steps_defect": {
+          "status": "evaluated",
+          "semantics": "production_fixed_ode_steps",
+          "base_ode_steps": null,
+          "n_pairs": 20,
+          "mse": 1.3660947373317356e-15,
+          "absolute_l2": 2.914998731284868e-07,
+          "relative_l2": 6.393031526386039e-08,
+          "per_sample_mse": [
+            1.3660947373317356e-15
+          ],
+          "per_sample_absolute_l2": [
+            2.914998731284868e-07
+          ],
+          "per_sample_relative_l2": [
+            6.393031526386039e-08
+          ]
+        },
+        "equal_work_base_step_defect": {
+          "status": "evaluated",
+          "semantics": "equal_work_base_step",
+          "base_ode_steps": 15,
+          "n_pairs": 20,
+          "mse": 7.6518653584128145e-16,
+          "absolute_l2": 2.1794049587242625e-07,
+          "relative_l2": 4.7978950590277236e-08,
+          "pair_work": [
+            {
+              "i": 1,
+              "j": 1,
+              "direct_ode_steps": 30,
+              "composed_ode_steps": [
+                15,
+                15
+              ],
+              "direct_total_ode_steps": 30,
+              "composed_total_ode_steps": 30
+            },
+            {
+              "i": 1,
+              "j": 2,
+              "direct_ode_steps": 45,
+              "composed_ode_steps": [
+                15,
+                30
+              ],
+              "direct_total_ode_steps": 45,
+              "composed_total_ode_steps": 45
+            },
+            {
+              "i": 1,
+              "j": 3,
+              "direct_ode_steps": 60,
+              "composed_ode_steps": [
+                15,
+                45
+              ],
+              "direct_total_ode_steps": 60,
+              "composed_total_ode_steps": 60
+            },
+            {
+              "i": 2,
+              "j": 1,
+              "direct_ode_steps": 45,
+              "composed_ode_steps": [
+                30,
+                15
+              ],
+              "direct_total_ode_steps": 45,
+              "composed_total_ode_steps": 45
+            },
+            {
+              "i": 2,
+              "j": 2,
+              "direct_ode_steps": 60,
+              "composed_ode_steps": [
+                30,
+                30
+              ],
+              "direct_total_ode_steps": 60,
+              "composed_total_ode_steps": 60
+            },
+            {
+              "i": 2,
+              "j": 3,
+              "direct_ode_steps": 75,
+              "composed_ode_steps": [
+                30,
+                45
+              ],
+              "direct_total_ode_steps": 75,
+              "composed_total_ode_steps": 75
+            },
+            {
+              "i": 3,
+              "j": 1,
+              "direct_ode_steps": 60,
+              "composed_ode_steps": [
+                45,
+                15
+              ],
+              "direct_total_ode_steps": 60,
+              "composed_total_ode_steps": 60
+            },
+            {
+              "i": 3,
+              "j": 2,
+              "direct_ode_steps": 75,
+              "composed_ode_steps": [
+                45,
+                30
+              ],
+              "direct_total_ode_steps": 75,
+              "composed_total_ode_steps": 75
+            },
+            {
+              "i": 3,
+              "j": 3,
+              "direct_ode_steps": 90,
+              "composed_ode_steps": [
+                45,
+                45
+              ],
+              "direct_total_ode_steps": 90,
+              "composed_total_ode_steps": 90
+            },
+            {
+              "i": 4,
+              "j": 1,
+              "direct_ode_steps": 75,
+              "composed_ode_steps": [
+                60,
+                15
+              ],
+              "direct_total_ode_steps": 75,
+              "composed_total_ode_steps": 75
+            },
+            {
+              "i": 4,
+              "j": 2,
+              "direct_ode_steps": 90,
+              "composed_ode_steps": [
+                60,
+                30
+              ],
+              "direct_total_ode_steps": 90,
+              "composed_total_ode_steps": 90
+            },
+            {
+              "i": 4,
+              "j": 3,
+              "direct_ode_steps": 105,
+              "composed_ode_steps": [
+                60,
+                45
+              ],
+              "direct_total_ode_steps": 105,
+              "composed_total_ode_steps": 105
+            },
+            {
+              "i": 5,
+              "j": 1,
+              "direct_ode_steps": 90,
+              "composed_ode_steps": [
+                75,
+                15
+              ],
+              "direct_total_ode_steps": 90,
+              "composed_total_ode_steps": 90
+            },
+            {
+              "i": 5,
+              "j": 2,
+              "direct_ode_steps": 105,
+              "composed_ode_steps": [
+                75,
+                30
+              ],
+              "direct_total_ode_steps": 105,
+              "composed_total_ode_steps": 105
+            },
+            {
+              "i": 5,
+              "j": 3,
+              "direct_ode_steps": 120,
+              "composed_ode_steps": [
+                75,
+                45
+              ],
+              "direct_total_ode_steps": 120,
+              "composed_total_ode_steps": 120
+            },
+            {
+              "i": 6,
+              "j": 1,
+              "direct_ode_steps": 105,
+              "composed_ode_steps": [
+                90,
+                15
+              ],
+              "direct_total_ode_steps": 105,
+              "composed_total_ode_steps": 105
+            },
+            {
+              "i": 6,
+              "j": 2,
+              "direct_ode_steps": 120,
+              "composed_ode_steps": [
+                90,
+                30
+              ],
+              "direct_total_ode_steps": 120,
+              "composed_total_ode_steps": 120
+            },
+            {
+              "i": 6,
+              "j": 3,
+              "direct_ode_steps": 135,
+              "composed_ode_steps": [
+                90,
+                45
+              ],
+              "direct_total_ode_steps": 135,
+              "composed_total_ode_steps": 135
+            },
+            {
+              "i": 7,
+              "j": 1,
+              "direct_ode_steps": 120,
+              "composed_ode_steps": [
+                105,
+                15
+              ],
+              "direct_total_ode_steps": 120,
+              "composed_total_ode_steps": 120
+            },
+            {
+              "i": 7,
+              "j": 2,
+              "direct_ode_steps": 135,
+              "composed_ode_steps": [
+                105,
+                30
+              ],
+              "direct_total_ode_steps": 135,
+              "composed_total_ode_steps": 135
+            }
+          ],
+          "per_sample_mse": [
+            7.6518653584128145e-16
+          ],
+          "per_sample_absolute_l2": [
+            2.1794049587242625e-07
+          ],
+          "per_sample_relative_l2": [
+            4.7978950590277236e-08
+          ]
+        }
+      },
+      {
+        "ode_steps": 30,
+        "reference_ode_steps": 120,
+        "absolute_l2": 3.8617446307398495e-07,
+        "relative_l2": 9.58655235194783e-08,
+        "production_fixed_ode_steps_defect": {
+          "status": "evaluated",
+          "semantics": "production_fixed_ode_steps",
+          "base_ode_steps": null,
+          "n_pairs": 20,
+          "mse": 1.7428766974897218e-15,
+          "absolute_l2": 3.299754496310925e-07,
+          "relative_l2": 7.279087554934449e-08,
+          "per_sample_mse": [
+            1.7428766974897218e-15
+          ],
+          "per_sample_absolute_l2": [
+            3.299754496310925e-07
+          ],
+          "per_sample_relative_l2": [
+            7.279087554934449e-08
+          ]
+        },
+        "equal_work_base_step_defect": {
+          "status": "evaluated",
+          "semantics": "equal_work_base_step",
+          "base_ode_steps": 30,
+          "n_pairs": 20,
+          "mse": 6.487865800153259e-16,
+          "absolute_l2": 1.9773897008690255e-07,
+          "relative_l2": 4.3736630317425806e-08,
+          "pair_work": [
+            {
+              "i": 1,
+              "j": 1,
+              "direct_ode_steps": 60,
+              "composed_ode_steps": [
+                30,
+                30
+              ],
+              "direct_total_ode_steps": 60,
+              "composed_total_ode_steps": 60
+            },
+            {
+              "i": 1,
+              "j": 2,
+              "direct_ode_steps": 90,
+              "composed_ode_steps": [
+                30,
+                60
+              ],
+              "direct_total_ode_steps": 90,
+              "composed_total_ode_steps": 90
+            },
+            {
+              "i": 1,
+              "j": 3,
+              "direct_ode_steps": 120,
+              "composed_ode_steps": [
+                30,
+                90
+              ],
+              "direct_total_ode_steps": 120,
+              "composed_total_ode_steps": 120
+            },
+            {
+              "i": 2,
+              "j": 1,
+              "direct_ode_steps": 90,
+              "composed_ode_steps": [
+                60,
+                30
+              ],
+              "direct_total_ode_steps": 90,
+              "composed_total_ode_steps": 90
+            },
+            {
+              "i": 2,
+              "j": 2,
+              "direct_ode_steps": 120,
+              "composed_ode_steps": [
+                60,
+                60
+              ],
+              "direct_total_ode_steps": 120,
+              "composed_total_ode_steps": 120
+            },
+            {
+              "i": 2,
+              "j": 3,
+              "direct_ode_steps": 150,
+              "composed_ode_steps": [
+                60,
+                90
+              ],
+              "direct_total_ode_steps": 150,
+              "composed_total_ode_steps": 150
+            },
+            {
+              "i": 3,
+              "j": 1,
+              "direct_ode_steps": 120,
+              "composed_ode_steps": [
+                90,
+                30
+              ],
+              "direct_total_ode_steps": 120,
+              "composed_total_ode_steps": 120
+            },
+            {
+              "i": 3,
+              "j": 2,
+              "direct_ode_steps": 150,
+              "composed_ode_steps": [
+                90,
+                60
+              ],
+              "direct_total_ode_steps": 150,
+              "composed_total_ode_steps": 150
+            },
+            {
+              "i": 3,
+              "j": 3,
+              "direct_ode_steps": 180,
+              "composed_ode_steps": [
+                90,
+                90
+              ],
+              "direct_total_ode_steps": 180,
+              "composed_total_ode_steps": 180
+            },
+            {
+              "i": 4,
+              "j": 1,
+              "direct_ode_steps": 150,
+              "composed_ode_steps": [
+                120,
+                30
+              ],
+              "direct_total_ode_steps": 150,
+              "composed_total_ode_steps": 150
+            },
+            {
+              "i": 4,
+              "j": 2,
+              "direct_ode_steps": 180,
+              "composed_ode_steps": [
+                120,
+                60
+              ],
+              "direct_total_ode_steps": 180,
+              "composed_total_ode_steps": 180
+            },
+            {
+              "i": 4,
+              "j": 3,
+              "direct_ode_steps": 210,
+              "composed_ode_steps": [
+                120,
+                90
+              ],
+              "direct_total_ode_steps": 210,
+              "composed_total_ode_steps": 210
+            },
+            {
+              "i": 5,
+              "j": 1,
+              "direct_ode_steps": 180,
+              "composed_ode_steps": [
+                150,
+                30
+              ],
+              "direct_total_ode_steps": 180,
+              "composed_total_ode_steps": 180
+            },
+            {
+              "i": 5,
+              "j": 2,
+              "direct_ode_steps": 210,
+              "composed_ode_steps": [
+                150,
+                60
+              ],
+              "direct_total_ode_steps": 210,
+              "composed_total_ode_steps": 210
+            },
+            {
+              "i": 5,
+              "j": 3,
+              "direct_ode_steps": 240,
+              "composed_ode_steps": [
+                150,
+                90
+              ],
+              "direct_total_ode_steps": 240,
+              "composed_total_ode_steps": 240
+            },
+            {
+              "i": 6,
+              "j": 1,
+              "direct_ode_steps": 210,
+              "composed_ode_steps": [
+                180,
+                30
+              ],
+              "direct_total_ode_steps": 210,
+              "composed_total_ode_steps": 210
+            },
+            {
+              "i": 6,
+              "j": 2,
+              "direct_ode_steps": 240,
+              "composed_ode_steps": [
+                180,
+                60
+              ],
+              "direct_total_ode_steps": 240,
+              "composed_total_ode_steps": 240
+            },
+            {
+              "i": 6,
+              "j": 3,
+              "direct_ode_steps": 270,
+              "composed_ode_steps": [
+                180,
+                90
+              ],
+              "direct_total_ode_steps": 270,
+              "composed_total_ode_steps": 270
+            },
+            {
+              "i": 7,
+              "j": 1,
+              "direct_ode_steps": 240,
+              "composed_ode_steps": [
+                210,
+                30
+              ],
+              "direct_total_ode_steps": 240,
+              "composed_total_ode_steps": 240
+            },
+            {
+              "i": 7,
+              "j": 2,
+              "direct_ode_steps": 270,
+              "composed_ode_steps": [
+                210,
+                60
+              ],
+              "direct_total_ode_steps": 270,
+              "composed_total_ode_steps": 270
+            }
+          ],
+          "per_sample_mse": [
+            6.487865800153259e-16
+          ],
+          "per_sample_absolute_l2": [
+            1.9773897008690255e-07
+          ],
+          "per_sample_relative_l2": [
+            4.3736630317425806e-08
+          ]
+        }
+      },
+      {
+        "ode_steps": 60,
+        "reference_ode_steps": 120,
+        "absolute_l2": 4.058515230553894e-07,
+        "relative_l2": 1.007502348215894e-07,
+        "production_fixed_ode_steps_defect": {
+          "status": "evaluated",
+          "semantics": "production_fixed_ode_steps",
+          "base_ode_steps": null,
+          "n_pairs": 20,
+          "mse": 2.5871666344234575e-15,
+          "absolute_l2": 4.0382482779932616e-07,
+          "relative_l2": 8.933162121138594e-08,
+          "per_sample_mse": [
+            2.5871666344234575e-15
+          ],
+          "per_sample_absolute_l2": [
+            4.0382482779932616e-07
+          ],
+          "per_sample_relative_l2": [
+            8.933162121138594e-08
+          ]
+        },
+        "equal_work_base_step_defect": {
+          "status": "evaluated",
+          "semantics": "equal_work_base_step",
+          "base_ode_steps": 60,
+          "n_pairs": 20,
+          "mse": 8.278534214109436e-16,
+          "absolute_l2": 2.2653325970622973e-07,
+          "relative_l2": 4.976518752641823e-08,
+          "pair_work": [
+            {
+              "i": 1,
+              "j": 1,
+              "direct_ode_steps": 120,
+              "composed_ode_steps": [
+                60,
+                60
+              ],
+              "direct_total_ode_steps": 120,
+              "composed_total_ode_steps": 120
+            },
+            {
+              "i": 1,
+              "j": 2,
+              "direct_ode_steps": 180,
+              "composed_ode_steps": [
+                60,
+                120
+              ],
+              "direct_total_ode_steps": 180,
+              "composed_total_ode_steps": 180
+            },
+            {
+              "i": 1,
+              "j": 3,
+              "direct_ode_steps": 240,
+              "composed_ode_steps": [
+                60,
+                180
+              ],
+              "direct_total_ode_steps": 240,
+              "composed_total_ode_steps": 240
+            },
+            {
+              "i": 2,
+              "j": 1,
+              "direct_ode_steps": 180,
+              "composed_ode_steps": [
+                120,
+                60
+              ],
+              "direct_total_ode_steps": 180,
+              "composed_total_ode_steps": 180
+            },
+            {
+              "i": 2,
+              "j": 2,
+              "direct_ode_steps": 240,
+              "composed_ode_steps": [
+                120,
+                120
+              ],
+              "direct_total_ode_steps": 240,
+              "composed_total_ode_steps": 240
+            },
+            {
+              "i": 2,
+              "j": 3,
+              "direct_ode_steps": 300,
+              "composed_ode_steps": [
+                120,
+                180
+              ],
+              "direct_total_ode_steps": 300,
+              "composed_total_ode_steps": 300
+            },
+            {
+              "i": 3,
+              "j": 1,
+              "direct_ode_steps": 240,
+              "composed_ode_steps": [
+                180,
+                60
+              ],
+              "direct_total_ode_steps": 240,
+              "composed_total_ode_steps": 240
+            },
+            {
+              "i": 3,
+              "j": 2,
+              "direct_ode_steps": 300,
+              "composed_ode_steps": [
+                180,
+                120
+              ],
+              "direct_total_ode_steps": 300,
+              "composed_total_ode_steps": 300
+            },
+            {
+              "i": 3,
+              "j": 3,
+              "direct_ode_steps": 360,
+              "composed_ode_steps": [
+                180,
+                180
+              ],
+              "direct_total_ode_steps": 360,
+              "composed_total_ode_steps": 360
+            },
+            {
+              "i": 4,
+              "j": 1,
+              "direct_ode_steps": 300,
+              "composed_ode_steps": [
+                240,
+                60
+              ],
+              "direct_total_ode_steps": 300,
+              "composed_total_ode_steps": 300
+            },
+            {
+              "i": 4,
+              "j": 2,
+              "direct_ode_steps": 360,
+              "composed_ode_steps": [
+                240,
+                120
+              ],
+              "direct_total_ode_steps": 360,
+              "composed_total_ode_steps": 360
+            },
+            {
+              "i": 4,
+              "j": 3,
+              "direct_ode_steps": 420,
+              "composed_ode_steps": [
+                240,
+                180
+              ],
+              "direct_total_ode_steps": 420,
+              "composed_total_ode_steps": 420
+            },
+            {
+              "i": 5,
+              "j": 1,
+              "direct_ode_steps": 360,
+              "composed_ode_steps": [
+                300,
+                60
+              ],
+              "direct_total_ode_steps": 360,
+              "composed_total_ode_steps": 360
+            },
+            {
+              "i": 5,
+              "j": 2,
+              "direct_ode_steps": 420,
+              "composed_ode_steps": [
+                300,
+                120
+              ],
+              "direct_total_ode_steps": 420,
+              "composed_total_ode_steps": 420
+            },
+            {
+              "i": 5,
+              "j": 3,
+              "direct_ode_steps": 480,
+              "composed_ode_steps": [
+                300,
+                180
+              ],
+              "direct_total_ode_steps": 480,
+              "composed_total_ode_steps": 480
+            },
+            {
+              "i": 6,
+              "j": 1,
+              "direct_ode_steps": 420,
+              "composed_ode_steps": [
+                360,
+                60
+              ],
+              "direct_total_ode_steps": 420,
+              "composed_total_ode_steps": 420
+            },
+            {
+              "i": 6,
+              "j": 2,
+              "direct_ode_steps": 480,
+              "composed_ode_steps": [
+                360,
+                120
+              ],
+              "direct_total_ode_steps": 480,
+              "composed_total_ode_steps": 480
+            },
+            {
+              "i": 6,
+              "j": 3,
+              "direct_ode_steps": 540,
+              "composed_ode_steps": [
+                360,
+                180
+              ],
+              "direct_total_ode_steps": 540,
+              "composed_total_ode_steps": 540
+            },
+            {
+              "i": 7,
+              "j": 1,
+              "direct_ode_steps": 480,
+              "composed_ode_steps": [
+                420,
+                60
+              ],
+              "direct_total_ode_steps": 480,
+              "composed_total_ode_steps": 480
+            },
+            {
+              "i": 7,
+              "j": 2,
+              "direct_ode_steps": 540,
+              "composed_ode_steps": [
+                420,
+                120
+              ],
+              "direct_total_ode_steps": 540,
+              "composed_total_ode_steps": 540
+            }
+          ],
+          "per_sample_mse": [
+            8.278534214109436e-16
+          ],
+          "per_sample_absolute_l2": [
+            2.2653325970622973e-07
+          ],
+          "per_sample_relative_l2": [
+            4.976518752641823e-08
+          ]
+        }
+      },
+      {
+        "ode_steps": 120,
+        "reference_ode_steps": 120,
+        "absolute_l2": 0.0,
+        "relative_l2": 0.0,
+        "production_fixed_ode_steps_defect": {
+          "status": "evaluated",
+          "semantics": "production_fixed_ode_steps",
+          "base_ode_steps": null,
+          "n_pairs": 20,
+          "mse": 3.990124457377937e-15,
+          "absolute_l2": 5.011652319808491e-07,
+          "relative_l2": 1.1058681792519565e-07,
+          "per_sample_mse": [
+            3.990124457377937e-15
+          ],
+          "per_sample_absolute_l2": [
+            5.011652319808491e-07
+          ],
+          "per_sample_relative_l2": [
+            1.1058681792519565e-07
+          ]
+        },
+        "equal_work_base_step_defect": {
+          "status": "evaluated",
+          "semantics": "equal_work_base_step",
+          "base_ode_steps": 120,
+          "n_pairs": 20,
+          "mse": 6.225922449401642e-16,
+          "absolute_l2": 1.9630824965588545e-07,
+          "relative_l2": 4.318688340276822e-08,
+          "pair_work": [
+            {
+              "i": 1,
+              "j": 1,
+              "direct_ode_steps": 240,
+              "composed_ode_steps": [
+                120,
+                120
+              ],
+              "direct_total_ode_steps": 240,
+              "composed_total_ode_steps": 240
+            },
+            {
+              "i": 1,
+              "j": 2,
+              "direct_ode_steps": 360,
+              "composed_ode_steps": [
+                120,
+                240
+              ],
+              "direct_total_ode_steps": 360,
+              "composed_total_ode_steps": 360
+            },
+            {
+              "i": 1,
+              "j": 3,
+              "direct_ode_steps": 480,
+              "composed_ode_steps": [
+                120,
+                360
+              ],
+              "direct_total_ode_steps": 480,
+              "composed_total_ode_steps": 480
+            },
+            {
+              "i": 2,
+              "j": 1,
+              "direct_ode_steps": 360,
+              "composed_ode_steps": [
+                240,
+                120
+              ],
+              "direct_total_ode_steps": 360,
+              "composed_total_ode_steps": 360
+            },
+            {
+              "i": 2,
+              "j": 2,
+              "direct_ode_steps": 480,
+              "composed_ode_steps": [
+                240,
+                240
+              ],
+              "direct_total_ode_steps": 480,
+              "composed_total_ode_steps": 480
+            },
+            {
+              "i": 2,
+              "j": 3,
+              "direct_ode_steps": 600,
+              "composed_ode_steps": [
+                240,
+                360
+              ],
+              "direct_total_ode_steps": 600,
+              "composed_total_ode_steps": 600
+            },
+            {
+              "i": 3,
+              "j": 1,
+              "direct_ode_steps": 480,
+              "composed_ode_steps": [
+                360,
+                120
+              ],
+              "direct_total_ode_steps": 480,
+              "composed_total_ode_steps": 480
+            },
+            {
+              "i": 3,
+              "j": 2,
+              "direct_ode_steps": 600,
+              "composed_ode_steps": [
+                360,
+                240
+              ],
+              "direct_total_ode_steps": 600,
+              "composed_total_ode_steps": 600
+            },
+            {
+              "i": 3,
+              "j": 3,
+              "direct_ode_steps": 720,
+              "composed_ode_steps": [
+                360,
+                360
+              ],
+              "direct_total_ode_steps": 720,
+              "composed_total_ode_steps": 720
+            },
+            {
+              "i": 4,
+              "j": 1,
+              "direct_ode_steps": 600,
+              "composed_ode_steps": [
+                480,
+                120
+              ],
+              "direct_total_ode_steps": 600,
+              "composed_total_ode_steps": 600
+            },
+            {
+              "i": 4,
+              "j": 2,
+              "direct_ode_steps": 720,
+              "composed_ode_steps": [
+                480,
+                240
+              ],
+              "direct_total_ode_steps": 720,
+              "composed_total_ode_steps": 720
+            },
+            {
+              "i": 4,
+              "j": 3,
+              "direct_ode_steps": 840,
+              "composed_ode_steps": [
+                480,
+                360
+              ],
+              "direct_total_ode_steps": 840,
+              "composed_total_ode_steps": 840
+            },
+            {
+              "i": 5,
+              "j": 1,
+              "direct_ode_steps": 720,
+              "composed_ode_steps": [
+                600,
+                120
+              ],
+              "direct_total_ode_steps": 720,
+              "composed_total_ode_steps": 720
+            },
+            {
+              "i": 5,
+              "j": 2,
+              "direct_ode_steps": 840,
+              "composed_ode_steps": [
+                600,
+                240
+              ],
+              "direct_total_ode_steps": 840,
+              "composed_total_ode_steps": 840
+            },
+            {
+              "i": 5,
+              "j": 3,
+              "direct_ode_steps": 960,
+              "composed_ode_steps": [
+                600,
+                360
+              ],
+              "direct_total_ode_steps": 960,
+              "composed_total_ode_steps": 960
+            },
+            {
+              "i": 6,
+              "j": 1,
+              "direct_ode_steps": 840,
+              "composed_ode_steps": [
+                720,
+                120
+              ],
+              "direct_total_ode_steps": 840,
+              "composed_total_ode_steps": 840
+            },
+            {
+              "i": 6,
+              "j": 2,
+              "direct_ode_steps": 960,
+              "composed_ode_steps": [
+                720,
+                240
+              ],
+              "direct_total_ode_steps": 960,
+              "composed_total_ode_steps": 960
+            },
+            {
+              "i": 6,
+              "j": 3,
+              "direct_ode_steps": 1080,
+              "composed_ode_steps": [
+                720,
+                360
+              ],
+              "direct_total_ode_steps": 1080,
+              "composed_total_ode_steps": 1080
+            },
+            {
+              "i": 7,
+              "j": 1,
+              "direct_ode_steps": 960,
+              "composed_ode_steps": [
+                840,
+                120
+              ],
+              "direct_total_ode_steps": 960,
+              "composed_total_ode_steps": 960
+            },
+            {
+              "i": 7,
+              "j": 2,
+              "direct_ode_steps": 1080,
+              "composed_ode_steps": [
+                840,
+                240
+              ],
+              "direct_total_ode_steps": 1080,
+              "composed_total_ode_steps": 1080
+            }
+          ],
+          "per_sample_mse": [
+            6.225922449401642e-16
+          ],
+          "per_sample_absolute_l2": [
+            1.9630824965588545e-07
+          ],
+          "per_sample_relative_l2": [
+            4.318688340276822e-08
+          ]
+        }
+      }
+    ]
+  }
+}
