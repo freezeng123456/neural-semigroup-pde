@@ -17,9 +17,8 @@ import os
 import sys
 
 from evaluate import (
-    reference_start_time,
-    resolve_reference_stride,
-    validate_reference_timestamp,
+    evaluate_per_sample,
+    prepare_aligned_rollout_batches,
 )
 
 
@@ -72,6 +71,7 @@ def train_model(
     lower_bound=0.0, upper_bound=1.0,
     reference_dt=None,
     run_metadata=None,
+    validation_interval=5,
 ):
     """
     Train a semigroup learner.
@@ -89,7 +89,12 @@ def train_model(
             rounding is rejected.
         run_metadata: optional JSON-like configuration copied into new
             checkpoints for provenance.
+        validation_interval: run full trajectory validation every this many
+            epochs.  The final epoch is always validated.
     """
+    validation_interval = int(validation_interval)
+    if validation_interval <= 0:
+        raise ValueError("validation_interval must be positive")
     os.makedirs(checkpoint_dir, exist_ok=True)
 
     model = model.to(device)
@@ -106,7 +111,8 @@ def train_model(
 
     history = {"epoch": [], "L_step": [], "L_rollout": [], "L_energy": [],
                "L_V": [],
-               "val_mse": [], "val_bound_viol": [], "val_energy_mono": []}
+               "val_mse": [], "val_bound_viol": [], "val_energy_mono": [],
+               "validation_performed": []}
 
     best_val_mse = float("inf")
     start_epoch = 1
@@ -124,6 +130,10 @@ def train_model(
             best_val_mse = ckpt["best_val_mse"]
         if "history" in ckpt:
             history = ckpt["history"]
+            history.setdefault(
+                "validation_performed",
+                [True] * len(history.get("epoch", [])),
+            )
         print(f"Resumed from {resume_from} at epoch {start_epoch}")
         if start_epoch > n_epochs:
             print(f"Already completed {n_epochs} epochs, skipping training")
@@ -188,11 +198,16 @@ def train_model(
         avg_L3 = epoch_L3 / n_batches
         avg_LV = epoch_LV / n_batches
 
-        # Validation
-        with torch.no_grad():
+        # Full rollout validation is intentionally sparse because the latent
+        # ODE model expands every prediction into many RK4 vector-field calls.
+        # The final epoch is always validated even when it is not a multiple
+        # of the requested interval.
+        should_validate = epoch % validation_interval == 0 or epoch == n_epochs
+        val_metrics = None
+        if should_validate:
             model.eval()
             val_metrics = evaluate_on_trajectories(
-                model, val_u0.to(device), val_trajs,
+                model, val_u0, val_trajs,
                 tau=tau, device=device,
                 lower_bound=lower_bound, upper_bound=upper_bound,
                 reference_dt=reference_dt,
@@ -204,27 +219,41 @@ def train_model(
         history["L_rollout"].append(avg_L2)
         history["L_energy"].append(avg_L3)
         history["L_V"].append(avg_LV)
-        history["val_mse"].append(val_metrics["rollout_mse"])
-        history["val_bound_viol"].append(val_metrics["bound_viol"])
-        history["val_energy_mono"].append(val_metrics.get("energy_mono_frac", 0.0))
+        history["validation_performed"].append(should_validate)
+        history["val_mse"].append(
+            val_metrics["rollout_mse"] if val_metrics is not None else float("nan")
+        )
+        history["val_bound_viol"].append(
+            val_metrics["bound_viol"] if val_metrics is not None else float("nan")
+        )
+        history["val_energy_mono"].append(
+            val_metrics.get("energy_mono_frac", 0.0)
+            if val_metrics is not None
+            else float("nan")
+        )
 
         if epoch % 5 == 0 or epoch == 1:
             elapsed = time.time() - t_start
+            validation_text = "validation=not_run"
+            if val_metrics is not None:
+                validation_text = (
+                    f"val_mse={val_metrics['rollout_mse']:.4e} "
+                    f"bound_viol={val_metrics['bound_viol']:.4e}"
+                )
             print(
                 f"Epoch {epoch:3d}/{n_epochs} | "
                 f"L_step={avg_L1:.4e} "
                 f"L_roll={avg_L2:.4e} "
                 f"L_energy={avg_L3:.4e} "
                 f"L_V={avg_LV:.4e} | "
-                f"val_mse={val_metrics['rollout_mse']:.4e} "
-                f"bound_viol={val_metrics['bound_viol']:.4e} | "
+                f"{validation_text} | "
                 f"lr={scheduler.get_last_lr()[0]:.2e} | "
                 f"{elapsed:.0f}s"
             )
             sys.stdout.flush()
 
         # Save best
-        if val_metrics["rollout_mse"] < best_val_mse:
+        if val_metrics is not None and val_metrics["rollout_mse"] < best_val_mse:
             best_val_mse = val_metrics["rollout_mse"]
             torch.save({
                 "epoch": epoch,
@@ -252,6 +281,7 @@ def train_model(
     return history
 
 
+@torch.no_grad()
 def evaluate_on_trajectories(model, val_u0, val_trajs, tau, device="cuda",
                              rollout_steps=10,
                              lower_bound=0.0, upper_bound=1.0,
@@ -268,61 +298,46 @@ def evaluate_on_trajectories(model, val_u0, val_trajs, tau, device="cuda",
     rollout_mses = []
     bound_viols = []
     energy_monos = []
-    reference_stride = resolve_reference_stride(tau, reference_dt)
-
-    for i, (t_true, u_true) in enumerate(val_trajs):
-        u0 = val_u0[i:i+1].to(device)
-        u_true = u_true.to(device)
-        if len(t_true) != len(u_true):
-            raise ValueError(
-                "reference timestamps and states must have the same length: "
-                f"got {len(t_true)} and {len(u_true)} for trajectory {i}"
-            )
-        start_time = reference_start_time(t_true)
-
-        # Rollout
-        u_pred = u0
-        mse_sum = 0.0
-        viol_sum = 0.0
-        energy_ok = 0
-        total_steps = min(
-            rollout_steps, (len(u_true) - 1) // reference_stride
+    _reference_stride, rollout_batches, _evaluated_steps = (
+        prepare_aligned_rollout_batches(
+            val_u0,
+            val_trajs,
+            tau,
+            rollout_steps,
+            reference_dt,
         )
-        if total_steps < 1:
-            continue
+    )
+    has_energy = callable(getattr(model, "energy", None))
 
-        E0 = None
-        if hasattr(model, 'energy'):
-            E0 = model.energy(u_pred).item()
+    for rollout_batch in rollout_batches:
+        total_steps = rollout_batch["steps"]
+        u_pred = rollout_batch["initial_states"].to(device)
+        references = rollout_batch["references"].to(device)
+        batch_size = u_pred.shape[0]
+        mse_sum = torch.zeros(batch_size, dtype=torch.float64, device=device)
+        viol_sum = torch.zeros(batch_size, dtype=torch.float64, device=device)
+        energy_ok = torch.zeros(batch_size, dtype=torch.int64, device=device)
+        previous_energy = (
+            evaluate_per_sample(model.energy, u_pred) if has_energy else None
+        )
 
         for step in range(total_steps):
             u_pred = model(u_pred, tau)
-            ref_idx = (step + 1) * reference_stride
-            expected_time = start_time + (step + 1) * float(tau)
-            validate_reference_timestamp(
-                t_true,
-                ref_idx,
-                expected_time,
-                rtol=1e-7,
-                atol=1e-10,
-            )
-            u_ref = u_true[ref_idx:ref_idx + 1]
+            u_ref = references[step]
+            mse_sum += (u_pred - u_ref).reshape(batch_size, -1).square().mean(dim=1)
+            step_viol = F.relu(lower_bound - u_pred).reshape(batch_size, -1).mean(dim=1)
+            step_viol += F.relu(u_pred - upper_bound).reshape(batch_size, -1).mean(dim=1)
+            viol_sum += step_viol
 
-            mse_sum += torch.mean((u_pred - u_ref) ** 2).item()
-            viol_sum += (
-                torch.mean(F.relu(lower_bound - u_pred)) + torch.mean(F.relu(u_pred - upper_bound))
-            ).item()
+            if previous_energy is not None:
+                current_energy = evaluate_per_sample(model.energy, u_pred)
+                energy_ok += current_energy <= previous_energy + 1e-6
+                previous_energy = current_energy
 
-            if E0 is not None and hasattr(model, 'energy'):
-                E_new = model.energy(u_pred).item()
-                if E_new <= E0 + 1e-6:
-                    energy_ok += 1
-                E0 = E_new
-
-        rollout_mses.append(mse_sum / total_steps)
-        bound_viols.append(viol_sum / total_steps)
-        if hasattr(model, 'energy'):
-            energy_monos.append(energy_ok / total_steps)
+        rollout_mses.extend((mse_sum / total_steps).cpu().tolist())
+        bound_viols.extend((viol_sum / total_steps).cpu().tolist())
+        if previous_energy is not None:
+            energy_monos.extend((energy_ok.float() / total_steps).cpu().tolist())
 
     if not rollout_mses:
         raise ValueError("no validation trajectory contains an aligned model step")

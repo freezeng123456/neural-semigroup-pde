@@ -49,6 +49,16 @@ class LatentDiagnosticModel(EulerDecayModel):
         return -z
 
 
+class BatchTrackingDecayModel(EulerDecayModel):
+    def __init__(self, ode_steps=4):
+        super().__init__(ode_steps=ode_steps)
+        self.batch_sizes = []
+
+    def forward(self, u, tau):
+        self.batch_sizes.append(u.shape[0])
+        return super().forward(u, tau)
+
+
 def make_reference(n_snapshots=9, reference_dt=0.05):
     times = torch.arange(n_snapshots, dtype=torch.float64) * reference_dt
     states = torch.exp(-times).to(torch.float32).unsqueeze(1)
@@ -77,6 +87,69 @@ def test_evaluation_uses_actual_aligned_step_counts():
     assert metrics["min_evaluated_steps"] == 2
     assert details["per_step_counts"] == [1, 1, 0, 0]
     assert details["evaluated_steps"] == [2]
+
+
+def test_full_evaluation_batches_rollout_and_semigroup_inference():
+    model = BatchTrackingDecayModel()
+    times, states = make_reference(n_snapshots=5)
+    val_u0 = torch.tensor([[1.0], [0.8], [0.6]])
+    trajectories = []
+    for scale in (1.0, 0.8, 0.6):
+        trajectories.append((times, states * scale))
+    metrics, details = evaluate_full(
+        model,
+        val_u0,
+        trajectories,
+        tau=0.1,
+        rollout_steps=2,
+        reference_dt=0.05,
+        device="cpu",
+    )
+    assert metrics["n_valid"] == 3
+    assert details["per_step_counts"] == [3, 3]
+    assert model.batch_sizes
+    assert set(model.batch_sizes) == {3}
+
+
+def test_batched_full_evaluation_matches_individual_evaluation():
+    times, states = make_reference(n_snapshots=9)
+    scales = (1.0, 0.8, 0.6)
+    val_u0 = torch.tensor([[scale] for scale in scales])
+    trajectories = [(times, states * scale) for scale in scales]
+    batch_metrics, _ = evaluate_full(
+        EulerDecayModel(),
+        val_u0,
+        trajectories,
+        tau=0.1,
+        rollout_steps=4,
+        reference_dt=0.05,
+        device="cpu",
+    )
+    individual_metrics = []
+    for sample_idx in range(len(scales)):
+        metrics, _ = evaluate_full(
+            EulerDecayModel(),
+            val_u0[sample_idx : sample_idx + 1],
+            [trajectories[sample_idx]],
+            tau=0.1,
+            rollout_steps=4,
+            reference_dt=0.05,
+            device="cpu",
+        )
+        individual_metrics.append(metrics)
+
+    for key in (
+        "rollout_mse_mean",
+        "bound_viol_mean",
+        "numerical_semigroup_defect_mse_mean",
+        "numerical_semigroup_defect_abs_l2_mean",
+        "numerical_semigroup_defect_rel_l2_mean",
+        "learned_energy_mono_frac_mean",
+    ):
+        expected = sum(metrics[key] for metrics in individual_metrics) / len(
+            individual_metrics
+        )
+        assert batch_metrics[key] == pytest.approx(expected, rel=1e-6, abs=1e-12)
 
 
 def test_single_aligned_step_is_retained_without_semigroup_defect():

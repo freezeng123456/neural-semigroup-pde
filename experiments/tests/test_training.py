@@ -1,3 +1,4 @@
+import math
 import sys
 from pathlib import Path
 
@@ -19,6 +20,16 @@ class IdentityWithParameter(nn.Module):
         return u + self.anchor * 0.0
 
 
+class BatchTrackingIdentity(IdentityWithParameter):
+    def __init__(self):
+        super().__init__()
+        self.batch_sizes = []
+
+    def forward(self, u, tau):
+        self.batch_sizes.append(u.shape[0])
+        return super().forward(u, tau)
+
+
 def make_dense_identity_trajectory():
     times = torch.arange(5, dtype=torch.float32) * 0.05
     state = torch.tensor([0.25, 0.75], dtype=torch.float32)
@@ -38,6 +49,24 @@ def test_training_validation_uses_reference_stride():
         reference_dt=0.05,
     )
     assert metrics["rollout_mse"] == pytest.approx(0.0)
+
+
+def test_training_validation_batches_compatible_trajectories():
+    val_u0, trajectories = make_dense_identity_trajectory()
+    val_u0 = val_u0.repeat(3, 1)
+    trajectories = trajectories * 3
+    model = BatchTrackingIdentity()
+    metrics = training.evaluate_on_trajectories(
+        model,
+        val_u0,
+        trajectories,
+        tau=0.1,
+        rollout_steps=2,
+        device="cpu",
+        reference_dt=0.05,
+    )
+    assert metrics["rollout_mse"] == pytest.approx(0.0)
+    assert model.batch_sizes == [3, 3]
 
 
 def test_architecture_only_training_skips_auxiliary_losses(monkeypatch, tmp_path):
@@ -68,3 +97,50 @@ def test_architecture_only_training_skips_auxiliary_losses(monkeypatch, tmp_path
     )
     assert history["L_rollout"] == [0.0]
     assert history["L_energy"] == [0.0]
+
+
+def test_training_validates_every_five_epochs_and_on_final(monkeypatch, tmp_path):
+    validation_calls = []
+
+    def fake_validation(*args, **kwargs):
+        validation_calls.append(1)
+        return {"rollout_mse": 0.25, "bound_viol": 0.0, "energy_mono_frac": 0.0}
+
+    monkeypatch.setattr(training, "evaluate_on_trajectories", fake_validation)
+    val_u0, trajectories = make_dense_identity_trajectory()
+    history = training.train_model(
+        IdentityWithParameter(),
+        train_u0=val_u0.repeat(2, 1),
+        train_ut=val_u0.repeat(2, 1),
+        val_u0=val_u0,
+        val_trajs=trajectories,
+        tau=0.1,
+        n_epochs=6,
+        batch_size=2,
+        alpha_bound=0.0,
+        checkpoint_dir=str(tmp_path),
+        model_name="sparse_validation",
+        device="cpu",
+        reference_dt=0.05,
+        validation_interval=5,
+    )
+    assert len(validation_calls) == 2
+    assert history["validation_performed"] == [False, False, False, False, True, True]
+    assert all(math.isnan(value) for value in history["val_mse"][:4])
+    assert history["val_mse"][4:] == [0.25, 0.25]
+
+
+def test_training_rejects_nonpositive_validation_interval(tmp_path):
+    val_u0, trajectories = make_dense_identity_trajectory()
+    with pytest.raises(ValueError, match="validation_interval must be positive"):
+        training.train_model(
+            IdentityWithParameter(),
+            train_u0=val_u0,
+            train_ut=val_u0,
+            val_u0=val_u0,
+            val_trajs=trajectories,
+            n_epochs=1,
+            checkpoint_dir=str(tmp_path),
+            device="cpu",
+            validation_interval=0,
+        )

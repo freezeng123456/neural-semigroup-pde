@@ -49,6 +49,12 @@ def parse_args():
         "--architecture-only", action="store_true",
         help="disable auxiliary rollout and learned-energy losses",
     )
+    parser.add_argument(
+        "--validation-interval",
+        type=int,
+        default=5,
+        help="run full rollout validation every N epochs (final epoch is always validated)",
+    )
     parser.add_argument("--no-resume", action="store_true")
     parser.add_argument("--checkpoint-dir", default="checkpoints")
     parser.add_argument("--results-dir", default="results")
@@ -103,6 +109,7 @@ def main():
         "alpha_energy": 0.0 if args.architecture_only else 0.01,
         "alpha_bound": 0.1,
         "weight_decay": 1e-5,
+        "validation_interval": args.validation_interval,
 
         # Evaluation
         "rollout_steps": 20,
@@ -122,6 +129,8 @@ def main():
 
     if config["beta_V_floor"] < 0:
         raise ValueError("--beta-v-floor must be non-negative")
+    if config["validation_interval"] <= 0:
+        raise ValueError("--validation-interval must be positive")
 
     # Set device
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -240,6 +249,7 @@ def main():
         resume_from=resume_latent,
         reference_dt=config["dt_pde"],
         run_metadata=config,
+        validation_interval=config["validation_interval"],
     )
 
     # Load best checkpoint
@@ -274,6 +284,7 @@ def main():
         device=device,
         reference_dt=config["dt_pde"],
         run_metadata=config,
+        validation_interval=config["validation_interval"],
     )
 
     # Load best checkpoint

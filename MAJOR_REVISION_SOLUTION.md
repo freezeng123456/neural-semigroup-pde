@@ -252,12 +252,19 @@ Completed in source:
 - checkpoint-compatible `beta_V_floor` in the main bounded and unbounded latent models;
 - unified seed helper and a revised Fisher--KPP command-line runner with deterministic, architecture-only, coercive-floor, no-resume, and isolated-output controls;
 - corrected transfer/expressivity manuscript sections, calibrated experiment claims, and removal of fabricated placeholders;
-- fourteen CPU regression tests covering alignment, denominators, energy semantics, numerical composition fields, one-step trajectories, timestamp failures, substep restoration (including exceptions), coercive-floor compatibility, deterministic seeding, latent diagnostics, and architecture-only loss paths.
+- nineteen CPU regression tests covering alignment, denominators, energy semantics, numerical composition fields, one-step trajectories, timestamp failures, substep restoration (including exceptions), coercive-floor compatibility, deterministic seeding, latent diagnostics, architecture-only loss paths, batched inference, numerical equivalence, and validation scheduling.
+- batched rollout validation and batched formal inference, including per-sample
+  semigroup-defect aggregation and compatibility grouping for variable horizons;
+- configurable sparse validation with a default interval of five epochs and an
+  unconditional final-epoch validation; skipped epochs remain explicit in the
+  saved history rather than inheriting stale values;
+- a fixed-checkpoint inference benchmark entry point for comparing commits on
+  the same device and data.
 
 Verified locally:
 
 ```text
-python -m pytest experiments/tests -q     14 passed
+python -m pytest experiments/tests -q     19 passed
 python3 -m compileall -q experiments      passed
 git diff --check                          passed
 Tectonic manuscript build                 passed; no undefined references

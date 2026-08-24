@@ -33,6 +33,9 @@ The major-revision branch now resolves the review's central formulation and impl
 - strict reference-time alignment is enforced in both evaluation and training-time validation;
 - a checkpoint-compatible `beta_V_floor` option supports genuinely coercive new configurations;
 - unified seeding, an architecture-only loss mode, and focused regression tests have been added;
+- compatible validation trajectories and formal-evaluation samples are grouped
+  into inference batches, while full training validation defaults to every five
+  epochs with a mandatory final-epoch check;
 - missing Allen--Cahn/Burgers values are labeled “Not reported,” and Burgers is treated as an out-of-class transport stress test.
 
 The repository is not yet publication-ready: all comparative benchmark tables still require aligned, multi-seed reruns. Archived numerical values are retained for provenance and are not presented as corrected results.
@@ -93,11 +96,17 @@ python3 run_experiments.py \
   --deterministic \
   --architecture-only \
   --beta-v-floor 0.1 \
+  --validation-interval 5 \
   --no-resume \
   --checkpoint-dir checkpoints/fisher_kpp_revised_seed42 \
   --results-dir results/fisher_kpp_revised_seed42
 ```
 
 Use distinct output directories for every seed and configuration. A positive `--beta-v-floor` is required when a run is claimed to fall under the coercive global-flow criterion; it must not be conflated with archived `beta_V=0` checkpoints.
+
+`--validation-interval 5` records skipped validation epochs as `NaN` together
+with a `validation_performed` mask. The final epoch is always validated. The
+batched evaluator preserves per-sample statistics, strict timestamp checks,
+variable rollout horizons, and numerical-semigroup-defect semantics.
 
 No license is asserted in this snapshot because the source archive did not provide one. Add an explicit license before distributing the repository publicly.
