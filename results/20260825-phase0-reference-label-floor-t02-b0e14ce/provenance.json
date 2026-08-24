@@ -1,0 +1,22 @@
+{
+  "run_id": "20260825-phase0-reference-label-floor-t02-b0e14ce",
+  "purpose": "Production Fisher-KPP label error versus float64 fine-grid reference at t=0.2",
+  "repository": "https://github.com/freezeng123456/neural-semigroup-pde",
+  "commit": "b0e14cec276a52e641dd657fb2e347849bd8acc7",
+  "entrypoint": "experiments/reference_audit.py",
+  "host": "freezeng-2ho6ltsa0a",
+  "python": "/data/miniconda/envs/syngen/bin/python",
+  "torch": "2.0.1+cu118",
+  "parameters": {
+    "n_samples": 20,
+    "seed": 42,
+    "resolutions": [64, 128, 256, 512],
+    "dts": [0.005, 0.002, 0.001, 0.0005],
+    "final_time": 0.2,
+    "L": 10.0,
+    "nu": 0.1,
+    "r": 1.0
+  },
+  "production_label": {"N": 64, "dt": 0.005, "dtype": "float32"},
+  "fine_reference": {"N": 512, "dt": 0.0005, "dtype": "float64"}
+}

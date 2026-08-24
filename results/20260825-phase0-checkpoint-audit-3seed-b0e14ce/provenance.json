@@ -1,0 +1,30 @@
+{
+  "run_id": "20260825-phase0-checkpoint-audit-3seed-b0e14ce",
+  "purpose": "No-retraining three-seed RK4 and equal-work semigroup audit",
+  "repository": "https://github.com/freezeng123456/neural-semigroup-pde",
+  "commit": "b0e14cec276a52e641dd657fb2e347849bd8acc7",
+  "entrypoint": "experiments/phase0_audit.py",
+  "source_run": "/data/runs/20260824-fisher-coercive-3seed-fcd9e39",
+  "checkpoint_sha256": {
+    "42": "1c8cf460efd4a5d0af67ddaf6d5bd0ffc0a263803f20e1676c253053fb3c3194",
+    "123": "1ce987f634a97b248f77ca30a4c7014c4fddafbd23f99d5eda3df2dc2067cbdf",
+    "2026": "56c1ad84c79849976e6880d4855fd0c40a9022a4c889fd2f4212714fa49fe09d"
+  },
+  "data_seed": 42,
+  "data_sha256_all_seeds": "e768260cf7d70a8ea552e3176a94c098d6ad5b1a1041f277144b1e708b655b01",
+  "host": "freezeng-2ho6ltsa0a",
+  "python": "/data/miniconda/envs/syngen/bin/python",
+  "torch": "2.0.1+cu118",
+  "device": "Tesla T4",
+  "parameters": {
+    "seeds": [42, 123, 2026],
+    "n_samples": 50,
+    "sweep_samples": 1,
+    "tau": 0.1,
+    "rollout_steps": 20,
+    "max_pairs": 20,
+    "ode_steps": [5, 10, 15, 30, 60, 120],
+    "equal_work_base_ode_steps": 30,
+    "physical_energy": "fisher-kpp"
+  }
+}
