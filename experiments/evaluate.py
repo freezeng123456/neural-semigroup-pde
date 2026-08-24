@@ -12,6 +12,9 @@ import torch
 import torch.nn.functional as F
 
 
+DEFAULT_PHASE0_ODE_STEPS = (5, 10, 15, 30, 60, 120)
+
+
 def resolve_reference_stride(tau, reference_dt, *, rtol=1e-7, atol=1e-10):
     """Return the exact stored-snapshot stride for one model step.
 
@@ -213,6 +216,83 @@ def _latent_norm_snapshot(model, u):
     }
 
 
+def normalize_ode_steps(substep_counts):
+    """Normalize and validate an RK4 ``ode_steps`` sweep.
+
+    The helper is public so the Phase-0 CLI and tests use exactly the same
+    validation rules.  Counts are returned in increasing order with
+    duplicates removed.  Non-integral values are rejected instead of being
+    silently truncated by ``int``.
+    """
+    try:
+        raw_counts = list(substep_counts)
+    except TypeError as exc:
+        raise ValueError("substep_counts must be an iterable of positive integers") from exc
+    if not raw_counts:
+        raise ValueError("substep_counts must contain at least one positive integer")
+
+    counts = set()
+    for raw_count in raw_counts:
+        try:
+            numeric_count = float(raw_count)
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                f"ode_steps must be a positive integer, got {raw_count!r}"
+            ) from exc
+        if not np.isfinite(numeric_count) or numeric_count <= 0:
+            raise ValueError(
+                f"ode_steps must be a positive integer, got {raw_count!r}"
+            )
+        count = int(numeric_count)
+        if numeric_count != count:
+            raise ValueError(
+                f"ode_steps must be a positive integer, got {raw_count!r}"
+            )
+        counts.add(count)
+    return tuple(sorted(counts))
+
+
+def _empty_semigroup_defect(status, reason, *, semantics, base_ode_steps=None):
+    """Create a schema-stable empty semigroup diagnostic."""
+    return {
+        "status": status,
+        "reason": reason,
+        "semantics": semantics,
+        "base_ode_steps": base_ode_steps,
+        "n_pairs": 0,
+        "mse": float("nan"),
+        "absolute_l2": float("nan"),
+        "relative_l2": float("nan"),
+    }
+
+
+def _iter_semigroup_pairs(steps, max_pairs):
+    """Yield the same bounded, non-zero-time pair schedule used by production."""
+    steps = int(steps)
+    pair_stride = max(1, steps // max_pairs)
+    n_pairs = 0
+    for i in range(1, steps, pair_stride):
+        for j in range(1, min(4, steps - i + 1)):
+            if i + j > steps:
+                continue
+            yield i, j
+            n_pairs += 1
+            if n_pairs >= max_pairs:
+                return
+
+
+def _forward_at_ode_steps(model, u, tau, ode_steps):
+    """Run one model call at a temporary ``ode_steps`` value and restore it."""
+    if not hasattr(model, "ode_steps"):
+        raise AttributeError("model does not expose ode_steps")
+    original_steps = model.ode_steps
+    model.ode_steps = int(ode_steps)
+    try:
+        return model(u, tau)
+    finally:
+        model.ode_steps = original_steps
+
+
 @torch.no_grad()
 def compute_numerical_semigroup_defect(
     model,
@@ -224,67 +304,63 @@ def compute_numerical_semigroup_defect(
     max_pairs=20,
     relative_eps=1e-12,
 ):
-    """Measure composition error of the model's numerical time integrator."""
+    """Measure the production fixed-``ode_steps`` composition error.
+
+    This is the historical diagnostic.  Every call to ``model`` receives its
+    requested physical time while the model's own fixed ``ode_steps`` value
+    is left unchanged.  Consequently, a direct ``(i + j) * tau`` call uses
+    ``model.ode_steps`` RK4 steps, whereas the composed path uses twice that
+    amount.  It is retained for backward compatibility and is intentionally
+    distinct from :func:`compute_equal_work_semigroup_defect`.
+    """
     if max_pairs <= 0:
         raise ValueError("max_pairs must be positive")
     if relative_eps <= 0:
         raise ValueError("relative_eps must be positive")
+    steps = int(steps)
     if steps < 2:
-        return {
-            "status": "not_evaluated",
-            "reason": "at least two rollout steps are required",
-            "n_pairs": 0,
-            "mse": float("nan"),
-            "absolute_l2": float("nan"),
-            "relative_l2": float("nan"),
-        }
+        return _empty_semigroup_defect(
+            "not_evaluated",
+            "at least two rollout steps are required",
+            semantics="production_fixed_ode_steps",
+        )
 
     u0 = u0.to(device)
     mse_values = []
     abs_values = []
     rel_values = []
     n_pairs = 0
-    pair_stride = max(1, steps // max_pairs)
-
     # Start at one model step so the diagnostic does not spend pairs testing
     # only the numerical identity at t=0.
-    for i in range(1, steps, pair_stride):
-        for j in range(1, min(4, steps - i + 1)):
-            if i + j > steps:
-                continue
-            direct = model(u0, (i + j) * tau)
-            composed = model(model(u0, i * tau), j * tau)
-            diff = composed - direct
+    for i, j in _iter_semigroup_pairs(steps, max_pairs):
+        direct = model(u0, (i + j) * tau)
+        composed = model(model(u0, i * tau), j * tau)
+        diff = composed - direct
 
-            batch_size = diff.shape[0]
-            mse_values.append(diff.reshape(batch_size, -1).square().mean(dim=1))
-            diff_norm = torch.linalg.vector_norm(diff.reshape(diff.shape[0], -1), dim=1)
-            direct_norm = torch.linalg.vector_norm(
-                direct.reshape(direct.shape[0], -1), dim=1
-            )
-            abs_values.append(diff_norm)
-            rel_values.append(diff_norm / torch.clamp(direct_norm, min=relative_eps))
-            n_pairs += 1
-            if n_pairs >= max_pairs:
-                break
-        if n_pairs >= max_pairs:
-            break
+        batch_size = diff.shape[0]
+        mse_values.append(diff.reshape(batch_size, -1).square().mean(dim=1))
+        diff_norm = torch.linalg.vector_norm(diff.reshape(diff.shape[0], -1), dim=1)
+        direct_norm = torch.linalg.vector_norm(
+            direct.reshape(direct.shape[0], -1), dim=1
+        )
+        abs_values.append(diff_norm)
+        rel_values.append(diff_norm / torch.clamp(direct_norm, min=relative_eps))
+        n_pairs += 1
 
     if not mse_values:
-        return {
-            "status": "not_evaluated",
-            "reason": "no valid composition pairs",
-            "n_pairs": 0,
-            "mse": float("nan"),
-            "absolute_l2": float("nan"),
-            "relative_l2": float("nan"),
-        }
+        return _empty_semigroup_defect(
+            "not_evaluated",
+            "no valid composition pairs",
+            semantics="production_fixed_ode_steps",
+        )
 
     per_sample_mse = torch.stack(mse_values, dim=0).mean(dim=0)
     per_sample_abs = torch.stack(abs_values, dim=0).mean(dim=0)
     per_sample_rel = torch.stack(rel_values, dim=0).mean(dim=0)
     return {
         "status": "evaluated",
+        "semantics": "production_fixed_ode_steps",
+        "base_ode_steps": None,
         "n_pairs": n_pairs,
         "mse": float(per_sample_mse.mean().item()),
         "absolute_l2": float(per_sample_abs.mean().item()),
@@ -292,6 +368,239 @@ def compute_numerical_semigroup_defect(
         "per_sample_mse": per_sample_mse.detach().cpu().tolist(),
         "per_sample_absolute_l2": per_sample_abs.detach().cpu().tolist(),
         "per_sample_relative_l2": per_sample_rel.detach().cpu().tolist(),
+    }
+
+
+@torch.no_grad()
+def compute_equal_work_semigroup_defect(
+    model,
+    u0,
+    tau,
+    steps,
+    device="cpu",
+    *,
+    base_ode_steps=None,
+    max_pairs=20,
+    relative_eps=1e-12,
+):
+    """Measure composition error with an equal RK4 base step/work budget.
+
+    ``base_ode_steps`` is the number of RK4 substeps used for one model
+    interval ``tau``.  A pair ``(i, j)`` therefore evaluates the direct path
+    with ``(i + j) * base_ode_steps`` substeps, and the composed path with
+    ``i * base_ode_steps`` followed by ``j * base_ode_steps`` substeps.  Both
+    paths use exactly ``(i + j) * base_ode_steps`` RK4 substeps in total.
+
+    The model's original ``ode_steps`` value is restored even when a forward
+    call raises.  This diagnostic is deliberately separate from
+    :func:`compute_numerical_semigroup_defect`, whose production semantics use
+    the model's fixed step count for every requested duration.
+    """
+    if max_pairs <= 0:
+        raise ValueError("max_pairs must be positive")
+    if relative_eps <= 0:
+        raise ValueError("relative_eps must be positive")
+    steps = int(steps)
+    if not hasattr(model, "ode_steps"):
+        return _empty_semigroup_defect(
+            "not_evaluated",
+            "model does not expose ode_steps",
+            semantics="equal_work_base_step",
+            base_ode_steps=base_ode_steps,
+        )
+
+    original_steps = model.ode_steps
+    if base_ode_steps is None:
+        base_ode_steps = original_steps
+    normalized_base = normalize_ode_steps((base_ode_steps,))[0]
+    base_ode_steps = normalized_base
+    if steps < 2:
+        return _empty_semigroup_defect(
+            "not_evaluated",
+            "at least two rollout steps are required",
+            semantics="equal_work_base_step",
+            base_ode_steps=base_ode_steps,
+        )
+
+    u0 = u0.to(device)
+    mse_values = []
+    abs_values = []
+    rel_values = []
+    pair_work = []
+    n_pairs = 0
+    for i, j in _iter_semigroup_pairs(steps, max_pairs):
+        direct_steps = (i + j) * base_ode_steps
+        first_steps = i * base_ode_steps
+        second_steps = j * base_ode_steps
+
+        direct = _forward_at_ode_steps(model, u0, (i + j) * tau, direct_steps)
+        first = _forward_at_ode_steps(model, u0, i * tau, first_steps)
+        composed = _forward_at_ode_steps(model, first, j * tau, second_steps)
+        diff = composed - direct
+
+        batch_size = diff.shape[0]
+        mse_values.append(diff.reshape(batch_size, -1).square().mean(dim=1))
+        diff_norm = torch.linalg.vector_norm(diff.reshape(batch_size, -1), dim=1)
+        direct_norm = torch.linalg.vector_norm(
+            direct.reshape(direct.shape[0], -1), dim=1
+        )
+        abs_values.append(diff_norm)
+        rel_values.append(diff_norm / torch.clamp(direct_norm, min=relative_eps))
+        pair_work.append(
+            {
+                "i": i,
+                "j": j,
+                "direct_ode_steps": direct_steps,
+                "composed_ode_steps": [first_steps, second_steps],
+                "direct_total_ode_steps": direct_steps,
+                "composed_total_ode_steps": first_steps + second_steps,
+            }
+        )
+        n_pairs += 1
+
+    # All calls above restore independently; this explicit assignment also
+    # protects against future changes that might introduce a non-local call.
+    model.ode_steps = original_steps
+
+    if not mse_values:
+        return _empty_semigroup_defect(
+            "not_evaluated",
+            "no valid composition pairs",
+            semantics="equal_work_base_step",
+            base_ode_steps=base_ode_steps,
+        )
+
+    per_sample_mse = torch.stack(mse_values, dim=0).mean(dim=0)
+    per_sample_abs = torch.stack(abs_values, dim=0).mean(dim=0)
+    per_sample_rel = torch.stack(rel_values, dim=0).mean(dim=0)
+    return {
+        "status": "evaluated",
+        "semantics": "equal_work_base_step",
+        "base_ode_steps": base_ode_steps,
+        "n_pairs": n_pairs,
+        "mse": float(per_sample_mse.mean().item()),
+        "absolute_l2": float(per_sample_abs.mean().item()),
+        "relative_l2": float(per_sample_rel.mean().item()),
+        "pair_work": pair_work,
+        "per_sample_mse": per_sample_mse.detach().cpu().tolist(),
+        "per_sample_absolute_l2": per_sample_abs.detach().cpu().tolist(),
+        "per_sample_relative_l2": per_sample_rel.detach().cpu().tolist(),
+    }
+
+
+@torch.no_grad()
+def evaluate_ode_steps_sweep(
+    model,
+    u0,
+    tau,
+    substep_counts,
+    device="cpu",
+    *,
+    relative_eps=1e-12,
+    semigroup_steps=None,
+    max_pairs=20,
+    include_defects=False,
+):
+    """Run a no-retraining RK4 ``ode_steps`` convergence audit.
+
+    The same checkpoint/model parameters are reused for every count.  The
+    model's original ``ode_steps`` value is restored on success and failure.
+    When ``include_defects`` is true, each row also contains the production
+    fixed-``ode_steps`` defect and the equal-work base-step defect at that
+    count.  ``semigroup_steps`` is required in that mode because defect
+    diagnostics need a finite pair horizon.
+    """
+    if not hasattr(model, "ode_steps"):
+        return {
+            "status": "not_evaluated",
+            "reason": "model does not expose ode_steps",
+            "comparisons": [],
+            "sweep": [],
+        }
+
+    counts = normalize_ode_steps(substep_counts)
+    if len(counts) < 2 or counts[0] <= 0:
+        raise ValueError("substep_counts must contain at least two positive integers")
+    if include_defects and semigroup_steps is None:
+        raise ValueError("semigroup_steps is required when include_defects=True")
+    if include_defects and max_pairs <= 0:
+        raise ValueError("max_pairs must be positive")
+
+    original_steps = model.ode_steps
+    outputs = {}
+    try:
+        for count in counts:
+            outputs[count] = _forward_at_ode_steps(
+                model, u0.to(device), tau, count
+            ).detach().clone()
+
+        finest = counts[-1]
+        reference = outputs[finest]
+        reference_norm = torch.linalg.vector_norm(
+            reference.reshape(reference.shape[0], -1), dim=1
+        )
+        comparisons = []
+        for count in counts:
+            diff = outputs[count] - reference
+            diff_norm = torch.linalg.vector_norm(
+                diff.reshape(diff.shape[0], -1), dim=1
+            )
+            comparisons.append(
+                {
+                    "ode_steps": count,
+                    "reference_ode_steps": finest,
+                    "absolute_l2": torch.mean(diff_norm).item(),
+                    "relative_l2": torch.mean(
+                        diff_norm / torch.clamp(reference_norm, min=relative_eps)
+                    ).item(),
+                }
+            )
+
+        sweep = []
+        for comparison in comparisons:
+            row = dict(comparison)
+            if include_defects:
+                count = comparison["ode_steps"]
+                current_steps = model.ode_steps
+                model.ode_steps = count
+                try:
+                    production_defect = compute_numerical_semigroup_defect(
+                        model,
+                        u0,
+                        tau,
+                        semigroup_steps,
+                        device=device,
+                        max_pairs=max_pairs,
+                        relative_eps=relative_eps,
+                    )
+                finally:
+                    model.ode_steps = current_steps
+                equal_work_defect = compute_equal_work_semigroup_defect(
+                    model,
+                    u0,
+                    tau,
+                    semigroup_steps,
+                    device=device,
+                    base_ode_steps=count,
+                    max_pairs=max_pairs,
+                    relative_eps=relative_eps,
+                )
+                row["production_fixed_ode_steps_defect"] = production_defect
+                row["equal_work_base_step_defect"] = equal_work_defect
+            sweep.append(row)
+    finally:
+        model.ode_steps = original_steps
+
+    return {
+        "status": "evaluated",
+        "original_ode_steps": int(original_steps),
+        "ode_steps": list(counts),
+        "reference_ode_steps": counts[-1],
+        "semantics": (
+            "same checkpoint reused; only ode_steps changes temporarily; no retraining"
+        ),
+        "comparisons": comparisons,
+        "sweep": sweep,
     }
 
 
@@ -305,52 +614,29 @@ def evaluate_ode_substep_convergence(
     *,
     relative_eps=1e-12,
 ):
-    """Compare outputs at several ``model.ode_steps`` resolutions."""
-    if not hasattr(model, "ode_steps"):
-        return {
-            "status": "not_evaluated",
-            "reason": "model does not expose ode_steps",
-            "comparisons": [],
-        }
-
-    counts = sorted({int(count) for count in substep_counts})
-    if len(counts) < 2 or counts[0] <= 0:
-        raise ValueError("substep_counts must contain at least two positive integers")
-
-    original_steps = model.ode_steps
-    outputs = {}
-    try:
-        for count in counts:
-            model.ode_steps = count
-            outputs[count] = model(u0.to(device), tau).detach().clone()
-    finally:
-        model.ode_steps = original_steps
-
-    finest = counts[-1]
-    reference = outputs[finest]
-    reference_norm = torch.linalg.vector_norm(
-        reference.reshape(reference.shape[0], -1), dim=1
+    """Backward-compatible wrapper for the original convergence API."""
+    audit = evaluate_ode_steps_sweep(
+        model,
+        u0,
+        tau,
+        substep_counts,
+        device=device,
+        relative_eps=relative_eps,
+        include_defects=False,
     )
-    comparisons = []
-    for count in counts[:-1]:
-        diff = outputs[count] - reference
-        diff_norm = torch.linalg.vector_norm(diff.reshape(diff.shape[0], -1), dim=1)
-        comparisons.append(
-            {
-                "ode_steps": count,
-                "reference_ode_steps": finest,
-                "absolute_l2": torch.mean(diff_norm).item(),
-                "relative_l2": torch.mean(
-                    diff_norm / torch.clamp(reference_norm, min=relative_eps)
-                ).item(),
-            }
-        )
-
     return {
-        "status": "evaluated",
-        "original_ode_steps": int(original_steps),
-        "reference_ode_steps": finest,
-        "comparisons": comparisons,
+        "status": audit["status"],
+        **({"reason": audit["reason"]} if "reason" in audit else {}),
+        **(
+            {
+                "original_ode_steps": audit["original_ode_steps"],
+                "reference_ode_steps": audit["reference_ode_steps"],
+                "comparisons": audit["comparisons"][:-1],
+                "semantics": audit["semantics"],
+            }
+            if audit["status"] == "evaluated"
+            else {"comparisons": []}
+        ),
     }
 
 
@@ -371,8 +657,15 @@ def evaluate_full(
     collect_latent_diagnostics=False,
     alignment_rtol=1e-7,
     alignment_atol=1e-10,
+    equal_work_base_ode_steps=None,
 ):
-    """Evaluate rollouts with strict physical-time alignment."""
+    """Evaluate rollouts with strict physical-time alignment.
+
+    Existing ``numerical_semigroup_defect_*`` fields retain their production
+    fixed-``ode_steps`` meaning.  Passing ``equal_work_base_ode_steps`` adds a
+    separate ``equal_work_semigroup_defect_*`` family whose direct and
+    composed paths use the same total RK4 work.
+    """
     rollout_steps = int(rollout_steps)
     reference_stride, rollout_batches, evaluated_steps = prepare_aligned_rollout_batches(
         val_u0,
@@ -394,10 +687,25 @@ def evaluate_full(
     sg_mse = []
     sg_abs = []
     sg_rel = []
+    equal_work_sg_mse = []
+    equal_work_sg_abs = []
+    equal_work_sg_rel = []
     latent_l2_maxima = []
     latent_abs_maxima = []
     vector_field_l2_maxima = []
+    learned_energy_positive_increments = []
+    physical_energy_positive_increments = []
+    learned_positive_per_step_sum = np.zeros(rollout_steps, dtype=float)
+    physical_positive_per_step_sum = np.zeros(rollout_steps, dtype=float)
+    learned_positive_per_step_max = np.full(rollout_steps, np.nan, dtype=float)
+    physical_positive_per_step_max = np.full(rollout_steps, np.nan, dtype=float)
+    energy_per_step_counts = np.zeros(rollout_steps, dtype=int)
     has_learned_energy = callable(getattr(model, "energy", None))
+    equal_work_requested = equal_work_base_ode_steps is not None
+    if equal_work_requested:
+        equal_work_base_ode_steps = normalize_ode_steps(
+            (equal_work_base_ode_steps,)
+        )[0]
 
     for rollout_batch in rollout_batches:
         steps = rollout_batch["steps"]
@@ -448,12 +756,43 @@ def evaluate_full(
 
             if learned_previous is not None:
                 learned_current = evaluate_per_sample(model.energy, u_pred)
-                learned_ok += learned_current <= learned_previous + 1e-6
+                learned_delta = learned_current - learned_previous
+                learned_positive = torch.clamp_min(learned_delta, 0.0)
+                learned_ok += learned_delta <= 1e-6
+                learned_energy_positive_increments.extend(
+                    learned_positive.detach().cpu().tolist()
+                )
+                learned_positive_per_step_sum[step] += float(
+                    learned_positive.sum().item()
+                )
+                learned_positive_per_step_max[step] = np.nanmax(
+                    [
+                        learned_positive_per_step_max[step],
+                        float(learned_positive.max().item()),
+                    ]
+                )
                 learned_previous = learned_current
             if physical_previous is not None:
                 physical_current = evaluate_per_sample(physical_energy_fn, u_pred)
-                physical_ok += physical_current <= physical_previous + 1e-6
+                physical_delta = physical_current - physical_previous
+                physical_positive = torch.clamp_min(physical_delta, 0.0)
+                physical_ok += physical_delta <= 1e-6
+                physical_energy_positive_increments.extend(
+                    physical_positive.detach().cpu().tolist()
+                )
+                physical_positive_per_step_sum[step] += float(
+                    physical_positive.sum().item()
+                )
+                physical_positive_per_step_max[step] = np.nanmax(
+                    [
+                        physical_positive_per_step_max[step],
+                        float(physical_positive.max().item()),
+                    ]
+                )
                 physical_previous = physical_current
+
+            if learned_previous is not None or physical_previous is not None:
+                energy_per_step_counts[step] += batch_size
 
         rollout_mse.extend((sample_mse / steps).detach().cpu().tolist())
         bound_viol.extend((sample_viol / steps).detach().cpu().tolist())
@@ -475,6 +814,19 @@ def evaluate_full(
             sg_mse.extend(defect["per_sample_mse"])
             sg_abs.extend(defect["per_sample_absolute_l2"])
             sg_rel.extend(defect["per_sample_relative_l2"])
+        if equal_work_requested:
+            equal_work_defect = compute_equal_work_semigroup_defect(
+                model,
+                u0,
+                tau,
+                steps,
+                device=device,
+                base_ode_steps=equal_work_base_ode_steps,
+            )
+            if equal_work_defect["status"] == "evaluated":
+                equal_work_sg_mse.extend(equal_work_defect["per_sample_mse"])
+                equal_work_sg_abs.extend(equal_work_defect["per_sample_absolute_l2"])
+                equal_work_sg_rel.extend(equal_work_defect["per_sample_relative_l2"])
 
     n_valid = len(rollout_mse)
     if n_valid == 0:
@@ -509,6 +861,11 @@ def evaluate_full(
         "semigroup_defect_semantics": (
             "legacy alias for numerical_semigroup_defect_mse; not an exact-flow guarantee"
         ),
+        "numerical_semigroup_defect_semantics": (
+            "production_fixed_ode_steps: every direct/composed model call uses "
+            "model.ode_steps; a two-call composition therefore receives twice "
+            "the RK4 work of its direct counterpart"
+        ),
         "numerical_semigroup_defect_status": (
             "evaluated" if sg_mse else "not_evaluated"
         ),
@@ -518,6 +875,27 @@ def evaluate_full(
         "learned_energy_status": "evaluated" if learned_energy_mono else "not_evaluated",
         "physical_energy_status": "evaluated" if physical_energy_mono else "not_evaluated",
         "learned_energy_semantics": "model.energy; not assumed to equal physical PDE energy",
+        "learned_energy_positive_increment_semantics": (
+            "max(E[k+1] - E[k], 0) per valid sample-step transition; "
+            "computed without the 1e-6 monotonicity tolerance"
+        ),
+        "physical_energy_positive_increment_semantics": (
+            "max(E_physical[k+1] - E_physical[k], 0) per valid sample-step "
+            "transition; computed without the 1e-6 monotonicity tolerance"
+        ),
+        "equal_work_semigroup_defect_status": (
+            "not_requested" if not equal_work_requested else (
+                "evaluated" if equal_work_sg_mse else "not_evaluated"
+            )
+        ),
+        "equal_work_semigroup_defect_semantics": (
+            "equal_work_base_step: for pair (i,j), direct uses "
+            "(i+j)*base_ode_steps RK4 substeps and composition uses "
+            "i*base_ode_steps followed by j*base_ode_steps; total work matches"
+        ),
+        "equal_work_semigroup_defect_base_ode_steps": (
+            None if equal_work_base_ode_steps is None else int(equal_work_base_ode_steps)
+        ),
         "latent_diagnostics_status": (
             "evaluated" if latent_l2_maxima else "not_evaluated"
         ),
@@ -537,6 +915,39 @@ def evaluate_full(
             np.mean(physical_energy_mono)
         )
         metrics["physical_energy_mono_frac_std"] = float(np.std(physical_energy_mono))
+    if learned_energy_positive_increments:
+        metrics["learned_energy_positive_increment_mean"] = float(
+            np.mean(learned_energy_positive_increments)
+        )
+        metrics["learned_energy_positive_increment_max"] = float(
+            np.max(learned_energy_positive_increments)
+        )
+    if physical_energy_positive_increments:
+        metrics["physical_energy_positive_increment_mean"] = float(
+            np.mean(physical_energy_positive_increments)
+        )
+        metrics["physical_energy_positive_increment_max"] = float(
+            np.max(physical_energy_positive_increments)
+        )
+    if equal_work_requested:
+        metrics["equal_work_semigroup_defect_mse_mean"] = mean_or_nan(
+            equal_work_sg_mse
+        )
+        metrics["equal_work_semigroup_defect_mse_std"] = std_or_nan(
+            equal_work_sg_mse
+        )
+        metrics["equal_work_semigroup_defect_abs_l2_mean"] = mean_or_nan(
+            equal_work_sg_abs
+        )
+        metrics["equal_work_semigroup_defect_abs_l2_std"] = std_or_nan(
+            equal_work_sg_abs
+        )
+        metrics["equal_work_semigroup_defect_rel_l2_mean"] = mean_or_nan(
+            equal_work_sg_rel
+        )
+        metrics["equal_work_semigroup_defect_rel_l2_std"] = std_or_nan(
+            equal_work_sg_rel
+        )
     if latent_l2_maxima:
         metrics["latent_l2_norm_max"] = float(np.max(latent_l2_maxima))
         metrics["latent_abs_max"] = float(np.max(latent_abs_maxima))
@@ -547,6 +958,17 @@ def evaluate_full(
     valid_mask = per_step_counts > 0
     per_step_mse[valid_mask] /= per_step_counts[valid_mask]
     per_step_viol[valid_mask] /= per_step_counts[valid_mask]
+    learned_positive_per_step = np.full(rollout_steps, np.nan, dtype=float)
+    physical_positive_per_step = np.full(rollout_steps, np.nan, dtype=float)
+    energy_valid_mask = energy_per_step_counts > 0
+    learned_positive_per_step[energy_valid_mask] = (
+        learned_positive_per_step_sum[energy_valid_mask]
+        / energy_per_step_counts[energy_valid_mask]
+    )
+    physical_positive_per_step[energy_valid_mask] = (
+        physical_positive_per_step_sum[energy_valid_mask]
+        / energy_per_step_counts[energy_valid_mask]
+    )
     if ode_substep_counts is not None:
         metrics["ode_substep_convergence"] = evaluate_ode_substep_convergence(
             model, val_u0[:1], tau, ode_substep_counts, device=device
@@ -559,7 +981,25 @@ def evaluate_full(
         "per_step_viol": per_step_viol.tolist(),
         "per_step_counts": per_step_counts.tolist(),
         "evaluated_steps": evaluated_steps,
+        "energy_positive_increment_semantics": (
+            "per-step mean of max(E[k+1] - E[k], 0) over valid sample transitions; "
+            "NaN marks an unavailable step"
+        ),
     }
+    if learned_energy_positive_increments:
+        details["learned_energy_positive_increment_per_step"] = (
+            learned_positive_per_step.tolist()
+        )
+        details["learned_energy_max_positive_increment_per_step"] = (
+            learned_positive_per_step_max.tolist()
+        )
+    if physical_energy_positive_increments:
+        details["physical_energy_positive_increment_per_step"] = (
+            physical_positive_per_step.tolist()
+        )
+        details["physical_energy_max_positive_increment_per_step"] = (
+            physical_positive_per_step_max.tolist()
+        )
     return metrics, details
 
 

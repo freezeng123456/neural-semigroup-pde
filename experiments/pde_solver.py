@@ -15,17 +15,32 @@ import numpy as np
 class FisherKPPSolver:
     """Spectral ETD-RK4 solver for 1D Fisher-KPP with periodic BC."""
 
-    def __init__(self, N=64, L=10.0, nu=0.1, r=1.0, dt=0.01):
+    def __init__(
+        self,
+        N=64,
+        L=10.0,
+        nu=0.1,
+        r=1.0,
+        dt=0.01,
+        dtype=torch.float32,
+    ):
+        if int(N) <= 1:
+            raise ValueError("N must be greater than one")
+        if not np.isfinite(dt) or float(dt) <= 0:
+            raise ValueError("dt must be a positive finite number")
+        if dtype not in (torch.float32, torch.float64):
+            raise ValueError("FisherKPPSolver supports float32 or float64")
         self.N = N
         self.L = L
         self.nu = nu
         self.r = r
         self.dt = dt
+        self.dtype = dtype
         self.dx = L / N
 
         # Fourier wavenumbers (RFFT: N//2+1 for even N)
         k_rfft = 2.0 * np.pi * np.fft.rfftfreq(N, d=self.dx)
-        self.k = torch.tensor(k_rfft, dtype=torch.float32)
+        self.k = torch.tensor(k_rfft, dtype=dtype)
         self.k2 = self.k ** 2
 
         # Linear operator in Fourier space (diffusion)
@@ -84,16 +99,25 @@ class FisherKPPSolver:
             t: tensor (n_save,)
             u: tensor (n_save, N)
         """
-        n_steps = int(T / self.dt)
+        ratio = float(T) / float(self.dt)
+        n_steps = int(round(ratio))
+        if not np.isclose(ratio, n_steps, rtol=1e-10, atol=1e-12):
+            raise ValueError(
+                "T must be an integer multiple of dt; "
+                f"received T/dt={ratio:.17g}"
+            )
+        if int(save_every) <= 0:
+            raise ValueError("save_every must be positive")
+        save_every = int(save_every)
         if n_steps == 0:
-            return torch.tensor([0.0]), u0.unsqueeze(0)
+            return torch.tensor([0.0], dtype=self.dtype), u0.to(self.dtype).unsqueeze(0)
 
         n_save = n_steps // save_every + 1
 
-        t_vals = torch.zeros(n_save)
-        u_vals = torch.zeros(n_save, self.N)
+        t_vals = torch.zeros(n_save, dtype=self.dtype)
+        u_vals = torch.zeros(n_save, self.N, dtype=self.dtype)
 
-        u_phys = u0.clone()
+        u_phys = u0.to(self.dtype).clone()
         u_hat = torch.fft.rfft(u_phys)
 
         t_vals[0] = 0.0
