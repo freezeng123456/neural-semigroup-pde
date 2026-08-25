@@ -146,11 +146,16 @@ class StencilMLP(nn.Module):
         self.net = nn.Sequential(*layers)
 
     def forward(self, z):
-        """z: (batch, N) -> (batch, N) with zero-padding"""
+        """z: (batch, N) -> (batch, N) with periodic padding.
+
+        The PDE solvers and the interaction mask use periodic boundaries.  The
+        mobility stencil must use the same topology so a cyclic spatial shift
+        of an input produces the corresponding shift of the output.
+        """
         B, N = z.shape
         r = self.radius
-        # Pad
-        z_pad = F.pad(z.unsqueeze(1), (r, r), mode='constant', value=0.0).squeeze(1)
+        # Periodically wrap neighbouring sites at the two domain boundaries.
+        z_pad = F.pad(z.unsqueeze(1), (r, r), mode='circular').squeeze(1)
         # Extract patches: (B, N, 2r+1)
         patches = z_pad.unfold(1, 2*r+1, 1)
         # MLP per site

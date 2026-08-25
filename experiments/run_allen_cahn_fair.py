@@ -141,7 +141,11 @@ def build_parser():
         "--beta-v-floor",
         type=float,
         default=0.1,
-        help="strictly positive fixed coercive floor for the latent potential",
+        help=(
+            "non-negative fixed quadratic floor for the latent potential; "
+            "zero is an Allen--Cahn diagnostic setting without the "
+            "positive z-coercivity guarantee"
+        ),
     )
     parser.add_argument(
         "--alpha-rollout", type=parse_nonnegative_float, default=0.0
@@ -237,8 +241,8 @@ def validate_args(args):
         raise ValueError("lr must be finite and strictly positive")
     if args.validation_interval <= 0:
         raise ValueError("validation interval must be positive")
-    if not math.isfinite(args.beta_v_floor) or args.beta_v_floor <= 0:
-        raise ValueError("beta-v-floor must be strictly positive")
+    if not math.isfinite(args.beta_v_floor) or args.beta_v_floor < 0:
+        raise ValueError("beta-v-floor must be finite and non-negative")
     _validate_unique_times(args.train_taus, "train-taus")
     _validate_unique_times(args.eval_taus, "eval-taus")
     reference_steps_for_duration(args.eval_horizon, args.reference_dt)
@@ -540,6 +544,28 @@ def allen_cahn_free_energy(u, L, epsilon):
     return energy[0] if squeeze else energy
 
 
+def latent_structure_metadata(args):
+    """Record the latent constraints independently of the data cache.
+
+    The frozen reference data do not depend on this choice, but it materially
+    changes the structural prior used by the latent model.  In particular,
+    an Allen--Cahn diagnostic with a zero floor intentionally gives up the
+    positive quadratic coercivity-in-z guarantee.
+    """
+    beta_v_floor = float(args.beta_v_floor)
+    has_floor = beta_v_floor > 0.0
+    return {
+        "state_bounds": [LOWER_BOUND, UPPER_BOUND],
+        "decoder": "u=m+(M-m)*sigmoid(z)",
+        "beta_v_floor": beta_v_floor,
+        "has_positive_z_coercivity_floor": has_floor,
+        "z_coercivity_status": (
+            "positive_quadratic_floor" if has_floor else "disabled_diagnostic"
+        ),
+        "mobility_stencil_boundary": "circular_periodic",
+    }
+
+
 def model_config(name, args):
     if name == "latent":
         return {
@@ -649,6 +675,7 @@ def write_data_provenance(args, cache_path, cache_status, validation):
         "data_cache": os.path.abspath(cache_path),
         "data_cache_sha256": _sha256_file(cache_path),
         "data_generation_config": data_config(args),
+        "latent_structure": latent_structure_metadata(args),
         "validation": validation,
         "source": {
             "git_commit": _git_commit(),
@@ -682,6 +709,7 @@ def run_model(name, args, data, device, provenance):
         "validation_interval": args.validation_interval,
         "bounds": [LOWER_BOUND, UPPER_BOUND],
         "beta_V_floor": args.beta_v_floor,
+        "latent_structure": latent_structure_metadata(args),
         "architecture_only": architecture_only,
         "auxiliary_loss_weights": {
             "alpha_rollout": args.alpha_rollout,
@@ -789,6 +817,7 @@ def run_model(name, args, data, device, provenance):
         "optimizer_updates": args.epochs * math.ceil(args.n_train / args.batch_size),
         "examples_seen": args.epochs * args.n_train,
         "architecture_only": architecture_only,
+        "latent_structure": latent_structure_metadata(args),
         "history": history,
         "evaluations": evaluations,
     }
@@ -865,6 +894,7 @@ def main(argv=None):
         "environment": _device_provenance(device),
         "source_hashes": _source_hashes(),
         "data_provenance": os.path.abspath(data_provenance_path),
+        "latent_structure": latent_structure_metadata(args),
     }
     _write_json(os.path.join(args.output_dir, "provenance.json"), provenance)
 
@@ -900,6 +930,7 @@ def main(argv=None):
         "data_generation_config": data["data_generation_config"],
         "parameter_budget": parameter_report,
         "data_provenance": data_provenance,
+        "latent_structure": latent_structure_metadata(args),
         "results": results,
     }
     _write_json(os.path.join(args.output_dir, "summary.json"), summary)

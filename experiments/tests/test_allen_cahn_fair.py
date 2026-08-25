@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 import torch
 
+from experiments.models import StencilMLP
 from experiments.run_allen_cahn_fair import (
     LOWER_BOUND,
     UPPER_BOUND,
@@ -16,6 +17,7 @@ from experiments.run_allen_cahn_fair import (
     main,
     reference_steps_for_duration,
     rollout_steps_for_horizon,
+    validate_args,
     validate_data_cache,
 )
 
@@ -92,6 +94,39 @@ def test_parser_defaults_match_fair_protocol():
     assert args.alpha_bound == 0.0
     assert args.alpha_v == 0.0
     assert args.prepare_data_only is False
+
+
+def test_beta_v_floor_allows_zero_diagnostic_but_rejects_negative_values():
+    zero_floor = build_parser().parse_args(
+        [
+            "--regime", "fixed", "--output-dir", "out", "--data-cache", "data.pt",
+            "--beta-v-floor", "0",
+        ]
+    )
+    validate_args(zero_floor)
+    assert zero_floor.beta_v_floor == 0.0
+
+    negative_floor = build_parser().parse_args(
+        [
+            "--regime", "fixed", "--output-dir", "out", "--data-cache", "data.pt",
+            "--beta-v-floor", "-0.01",
+        ]
+    )
+    with pytest.raises(ValueError, match="non-negative"):
+        validate_args(negative_floor)
+
+
+def test_periodic_stencil_is_equivariant_to_cyclic_spatial_shifts():
+    torch.manual_seed(7)
+    stencil = StencilMLP(radius=3, hidden_dims=[8, 8])
+    state = torch.randn(3, 64)
+    shifted = torch.roll(state, shifts=1, dims=-1)
+    assert torch.allclose(
+        stencil(shifted),
+        torch.roll(stencil(state), shifts=1, dims=-1),
+        rtol=1e-6,
+        atol=1e-6,
+    )
 
 
 def test_horizons_and_reference_grid_require_exact_alignment():
