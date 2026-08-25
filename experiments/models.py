@@ -869,6 +869,42 @@ class PeriodicStencilDecodedInteractionLatentSemigroupNetBounded(
         return self.decode(z)
 
 
+class PhysicsAnchoredPeriodicDecodedInteractionLatentSemigroupNetBounded(
+    PeriodicStencilDecodedInteractionLatentSemigroupNetBounded
+):
+    """Periodic decoded interaction with a fixed Allen--Cahn reaction energy.
+
+    The fixed term ``(1-u^2)^2 / 4`` supplies the known double-well geometry
+    while the scalar MLP remains a learnable residual.  Its derivative is
+    ``u^3-u`` and is pulled back through the decoder analytically.  This keeps
+    the same positive latent mobility and structure-preserving ODE, but tests
+    whether the learned scalar potential was failing to discover the reaction
+    energy from one-step data.
+    """
+
+    def psi(self, z):
+        u = self.decode(z)
+        residual = self.V_net(z.unsqueeze(-1)).squeeze(-1).sum(dim=1)
+        physical_potential = 0.25 * (1.0 - u.square()).square().sum(dim=1)
+        a_ij = self._interaction_matrix()
+        diff = u.unsqueeze(2) - u.unsqueeze(1)
+        interaction = 0.5 * (a_ij * diff.pow(2)).sum(dim=(1, 2))
+        return residual + physical_potential + interaction
+
+    def grad_psi(self, z, a_ij=None):
+        _V_val, dV_dz = self.V_net.value_and_grad(z.unsqueeze(-1))
+        grad_residual = dV_dz.squeeze(-1)
+        sigmoid_z = torch.sigmoid(z)
+        u = self.m + (self.M - self.m) * sigmoid_z
+        du_dz = (self.M - self.m) * sigmoid_z * (1.0 - sigmoid_z)
+        grad_physical_potential = du_dz * (u.pow(3) - u)
+        if a_ij is None:
+            a_ij = self._interaction_matrix()
+        diff = u.unsqueeze(2) - u.unsqueeze(1)
+        grad_interaction = 2.0 * du_dz * (a_ij * diff).sum(dim=2)
+        return grad_residual + grad_physical_potential + grad_interaction
+
+
 class DecodedInteractionJacobianMobilityLatentSemigroupNetBounded(
     DecodedInteractionLatentSemigroupNetBounded
 ):

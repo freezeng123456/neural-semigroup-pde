@@ -57,6 +57,7 @@ from models import (  # noqa: E402
     DecodedInteractionLatentSemigroupNetBounded,
     DecodedInteractionJacobianMobilityLatentSemigroupNetBounded,
     DecodedStateEnergyLatentSemigroupNetBounded,
+    PhysicsAnchoredPeriodicDecodedInteractionLatentSemigroupNetBounded,
     PeriodicStencilDecodedInteractionLatentSemigroupNetBounded,
     LatentSemigroupNetBounded,
     TimeConditionedFNO,
@@ -76,6 +77,7 @@ MODEL_NAMES = (
     "latent_decoded_interaction_jacobian_mobility",
     "latent_decoded_energy",
     "latent_periodic_decoded_interaction",
+    "latent_physics_anchored_periodic",
     "resnet",
     "fno",
 )
@@ -758,6 +760,24 @@ def model_config(name, args):
             "interaction_energy": "quadratic_decoded_state_differences",
             "interaction_parameterization": "shared_periodic_distance_stencil",
         }
+    if name == "latent_physics_anchored_periodic":
+        return {
+            "class": "PhysicsAnchoredPeriodicDecodedInteractionLatentSemigroupNetBounded",
+            "kwargs": {
+                "N": args.N,
+                "m": LOWER_BOUND,
+                "M": UPPER_BOUND,
+                "hidden_V": [64, 64],
+                "hidden_K": [64, 64],
+                "stencil_radius": 3,
+                "interaction_radius": 2,
+                "beta_V": 0.0,
+                "beta_V_floor": args.beta_v_floor,
+            },
+            "interaction_energy": "quadratic_decoded_state_differences",
+            "interaction_parameterization": "shared_periodic_distance_stencil",
+            "fixed_physical_potential": "(1-u^2)^2/4",
+        }
     if name == "resnet":
         return {
             "class": "TimeConditionedResNet",
@@ -784,6 +804,8 @@ def build_model(name, args):
         return DecodedStateEnergyLatentSemigroupNetBounded(**kwargs)
     if name == "latent_periodic_decoded_interaction":
         return PeriodicStencilDecodedInteractionLatentSemigroupNetBounded(**kwargs)
+    if name == "latent_physics_anchored_periodic":
+        return PhysicsAnchoredPeriodicDecodedInteractionLatentSemigroupNetBounded(**kwargs)
     if name == "resnet":
         return TimeConditionedResNet(**kwargs)
     if name == "fno":
@@ -1007,6 +1029,7 @@ def run_model(name, args, data, device, provenance):
                 "latent_decoded_interaction_jacobian_mobility",
                 "latent_decoded_energy",
                 "latent_periodic_decoded_interaction",
+                "latent_physics_anchored_periodic",
             ),
             equal_work_base_ode_steps=(
                 30
@@ -1016,6 +1039,7 @@ def run_model(name, args, data, device, provenance):
                     "latent_decoded_interaction_jacobian_mobility",
                     "latent_decoded_energy",
                     "latent_periodic_decoded_interaction",
+                    "latent_physics_anchored_periodic",
                 )
                 else None
             ),
