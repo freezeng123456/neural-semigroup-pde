@@ -12,6 +12,7 @@ from models import (
     DecodedStateEnergyLatentSemigroupNetBounded,
     LatentSemigroupNet,
     LatentSemigroupNetBounded,
+    PeriodicStencilDecodedInteractionLatentSemigroupNetBounded,
     ScalarMLP,
 )
 
@@ -97,3 +98,19 @@ def test_decoded_state_energy_gradient_matches_autograd():
     analytical = model.grad_psi(z)
     autograd = torch.autograd.grad(model.psi(z).sum(), z)[0]
     assert torch.allclose(analytical, autograd, rtol=1e-5, atol=1e-6)
+
+
+def test_periodic_stencil_interaction_is_translation_equivariant():
+    torch.manual_seed(7)
+    model = PeriodicStencilDecodedInteractionLatentSemigroupNetBounded(
+        N=8, hidden_V=[4, 4], hidden_K=[4, 4], interaction_radius=2
+    )
+    z = torch.randn(2, 8)
+    shifted = torch.roll(z, shifts=1, dims=1)
+    matrix = model._interaction_matrix()
+    assert torch.allclose(matrix, torch.roll(torch.roll(matrix, 1, 0), 1, 1))
+    assert torch.allclose(
+        model.grad_psi(shifted), torch.roll(model.grad_psi(z), 1, dims=1),
+        rtol=1e-5,
+        atol=1e-6,
+    )

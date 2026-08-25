@@ -793,6 +793,82 @@ class DecodedStateEnergyLatentSemigroupNetBounded(
         return grad_V + grad_interaction
 
 
+class PeriodicStencilDecodedInteractionLatentSemigroupNetBounded(
+    DecodedInteractionLatentSemigroupNetBounded
+):
+    """Decoded interaction with shared periodic distance coefficients.
+
+    The default interaction matrix is generated from positional embeddings,
+    which can introduce site-dependent coefficients on a periodic PDE.  This
+    variant replaces that matrix by one positive coefficient per periodic
+    distance in the local interaction radius.  It is translation equivariant
+    by construction while retaining the decoded-state energy and analytic
+    gradient.
+    """
+
+    def __init__(self, N=64, m=-1.0, M=1.0, hidden_V=[32, 32], hidden_K=[32, 32],
+                 stencil_radius=3, beta_V=0.0, beta_V_floor=0.0,
+                 interaction_radius=2):
+        super().__init__(
+            N=N,
+            m=m,
+            M=M,
+            hidden_V=hidden_V,
+            hidden_K=hidden_K,
+            stencil_radius=stencil_radius,
+            beta_V=beta_V,
+            beta_V_floor=beta_V_floor,
+            interaction_radius=interaction_radius,
+        )
+        del self._parameters["emb"]
+        self.interaction_logits = nn.Parameter(torch.zeros(interaction_radius))
+        index = torch.arange(self.N)
+        raw_distance = (index[:, None] - index[None, :]).abs()
+        distance = torch.minimum(raw_distance, self.N - raw_distance)
+        self.register_buffer("periodic_distance", distance)
+
+    def _interaction_matrix(self):
+        coefficients = F.softplus(self.interaction_logits)
+        matrix = torch.zeros_like(self.periodic_distance, dtype=coefficients.dtype)
+        for offset, coefficient in enumerate(coefficients, start=1):
+            matrix = matrix + coefficient * (self.periodic_distance == offset)
+        return matrix
+
+    def psi(self, z):
+        V_sum = self.V_net(z.unsqueeze(-1)).squeeze(-1).sum(dim=1)
+        a_ij = self._interaction_matrix()
+        u = self.decode(z)
+        diff = u.unsqueeze(2) - u.unsqueeze(1)
+        interaction = 0.5 * (a_ij * diff.pow(2)).sum(dim=(1, 2))
+        return V_sum + interaction
+
+    def grad_psi(self, z, a_ij=None):
+        _V_val, dV_dz = self.V_net.value_and_grad(z.unsqueeze(-1))
+        grad_V = dV_dz.squeeze(-1)
+        if a_ij is None:
+            a_ij = self._interaction_matrix()
+        sigmoid_z = torch.sigmoid(z)
+        u = self.m + (self.M - self.m) * sigmoid_z
+        du_dz = (self.M - self.m) * sigmoid_z * (1.0 - sigmoid_z)
+        diff = u.unsqueeze(2) - u.unsqueeze(1)
+        grad_interaction = 2.0 * du_dz * (a_ij * diff).sum(dim=2)
+        return grad_V + grad_interaction
+
+    def latent_dynamics(self, z, a_ij=None):
+        if a_ij is None:
+            a_ij = self._interaction_matrix()
+        k, g = self._dynamics_and_grad(z, a_ij)
+        return -k * g
+
+    def forward(self, u, tau):
+        z = self.encode(u)
+        a_ij = self._interaction_matrix()
+        dt = _broadcast_positive_tau(tau, z)[:, 0, :1] / self.ode_steps
+        for _ in range(self.ode_steps):
+            z = self.rk4_step(z, dt, a_ij)
+        return self.decode(z)
+
+
 class DecodedInteractionJacobianMobilityLatentSemigroupNetBounded(
     DecodedInteractionLatentSemigroupNetBounded
 ):

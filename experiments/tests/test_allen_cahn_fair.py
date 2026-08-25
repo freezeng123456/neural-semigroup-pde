@@ -199,6 +199,7 @@ def test_model_budget_and_bounded_latent_output():
         "latent_decoded_interaction_jacobian_mobility", args
     )
     decoded_energy = build_model("latent_decoded_energy", args)
+    periodic_decoded = build_model("latent_periodic_decoded_interaction", args)
     resnet = build_model("resnet", args)
     fno = build_model("fno", args)
     counts = {
@@ -212,6 +213,9 @@ def test_model_budget_and_bounded_latent_output():
         "latent_decoded_energy": sum(
             parameter.numel() for parameter in decoded_energy.parameters()
         ),
+        "latent_periodic_decoded_interaction": sum(
+            parameter.numel() for parameter in periodic_decoded.parameters()
+        ),
         "resnet": sum(parameter.numel() for parameter in resnet.parameters()),
         "fno": sum(parameter.numel() for parameter in fno.parameters()),
     }
@@ -219,6 +223,7 @@ def test_model_budget_and_bounded_latent_output():
     assert counts["latent_decoded_interaction"] == counts["latent"]
     assert counts["latent_decoded_interaction_jacobian_mobility"] == counts["latent"]
     assert counts["latent_decoded_energy"] == counts["latent"]
+    assert counts["latent_periodic_decoded_interaction"] < counts["latent"]
     assert abs(counts["resnet"] - counts["latent"]) <= 550
     assert abs(counts["fno"] - counts["latent"]) <= 300
 
@@ -242,6 +247,11 @@ def test_model_budget_and_bounded_latent_output():
     )(u, 0.02)
     assert float(decoded_energy_output.detach().min()) >= LOWER_BOUND
     assert float(decoded_energy_output.detach().max()) <= UPPER_BOUND
+    periodic_output = build_model(
+        "latent_periodic_decoded_interaction", _tiny_args(Path("/tmp"))
+    )(u, 0.02)
+    assert float(periodic_output.detach().min()) >= LOWER_BOUND
+    assert float(periodic_output.detach().max()) <= UPPER_BOUND
 
 
 def test_physical_free_energy_is_distinct_and_vectorized():
