@@ -6,7 +6,12 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from models import LatentSemigroupNet, LatentSemigroupNetBounded, ScalarMLP
+from models import (
+    DecodedInteractionLatentSemigroupNetBounded,
+    LatentSemigroupNet,
+    LatentSemigroupNetBounded,
+    ScalarMLP,
+)
 
 
 def test_coercive_floor_is_positive_and_checkpoint_compatible():
@@ -46,3 +51,19 @@ def test_coercive_floor_is_positive_and_checkpoint_compatible():
 def test_negative_coercive_floor_is_rejected():
     with pytest.raises(ValueError, match="non-negative"):
         ScalarMLP(beta_floor=-0.1)
+
+
+def test_decoded_interaction_gradient_matches_autograd_energy_gradient():
+    torch.manual_seed(3)
+    model = DecodedInteractionLatentSemigroupNetBounded(
+        N=8,
+        m=-1.0,
+        M=1.0,
+        hidden_V=[4, 4],
+        hidden_K=[4, 4],
+        interaction_radius=2,
+    )
+    z = torch.randn(2, 8, requires_grad=True)
+    analytical = model.grad_psi(z)
+    autograd = torch.autograd.grad(model.psi(z).sum(), z)[0]
+    assert torch.allclose(analytical, autograd, rtol=1e-5, atol=1e-6)

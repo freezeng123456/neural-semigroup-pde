@@ -54,6 +54,7 @@ if str(EXPERIMENTS_DIR) not in sys.path:
 
 from evaluate import evaluate_full  # noqa: E402
 from models import (  # noqa: E402
+    DecodedInteractionLatentSemigroupNetBounded,
     LatentSemigroupNetBounded,
     TimeConditionedFNO,
     TimeConditionedResNet,
@@ -66,7 +67,8 @@ from seed_utils import set_global_seed  # noqa: E402
 from training import train_model  # noqa: E402
 
 
-MODEL_NAMES = ("latent", "resnet", "fno")
+MODEL_NAMES = ("latent", "latent_decoded_interaction", "resnet", "fno")
+DEFAULT_MODEL_NAMES = ("latent", "resnet", "fno")
 LOWER_BOUND = -1.0
 UPPER_BOUND = 1.0
 DEFAULT_TRAIN_TAUS = (0.025, 0.05, 0.1, 0.2)
@@ -105,7 +107,10 @@ def build_parser():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--regime", choices=("fixed", "variable"), required=True)
     parser.add_argument(
-        "--models", nargs="+", choices=MODEL_NAMES, default=list(MODEL_NAMES)
+        "--models",
+        nargs="+",
+        choices=MODEL_NAMES,
+        default=list(DEFAULT_MODEL_NAMES),
     )
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--data-cache", required=True)
@@ -675,6 +680,22 @@ def model_config(name, args):
                 "beta_V_floor": args.beta_v_floor,
             },
         }
+    if name == "latent_decoded_interaction":
+        return {
+            "class": "DecodedInteractionLatentSemigroupNetBounded",
+            "kwargs": {
+                "N": args.N,
+                "m": LOWER_BOUND,
+                "M": UPPER_BOUND,
+                "hidden_V": [64, 64],
+                "hidden_K": [64, 64],
+                "stencil_radius": 3,
+                "interaction_radius": 2,
+                "beta_V": 0.0,
+                "beta_V_floor": args.beta_v_floor,
+            },
+            "interaction_energy": "quadratic_decoded_state_differences",
+        }
     if name == "resnet":
         return {
             "class": "TimeConditionedResNet",
@@ -693,6 +714,8 @@ def build_model(name, args):
     kwargs = config["kwargs"]
     if name == "latent":
         return LatentSemigroupNetBounded(**kwargs)
+    if name == "latent_decoded_interaction":
+        return DecodedInteractionLatentSemigroupNetBounded(**kwargs)
     if name == "resnet":
         return TimeConditionedResNet(**kwargs)
     if name == "fno":
@@ -910,8 +933,14 @@ def run_model(name, args, data, device, provenance):
             upper_bound=UPPER_BOUND,
             reference_dt=args.reference_dt,
             physical_energy_fn=physical_energy,
-            collect_latent_diagnostics=name == "latent",
-            equal_work_base_ode_steps=30 if name == "latent" else None,
+            collect_latent_diagnostics=name in (
+                "latent", "latent_decoded_interaction"
+            ),
+            equal_work_base_ode_steps=(
+                30
+                if name in ("latent", "latent_decoded_interaction")
+                else None
+            ),
         )
         if is_cuda:
             torch.cuda.synchronize(device)

@@ -711,3 +711,47 @@ class LatentSemigroupNetBounded(nn.Module):
             u = self.forward(u, tau)
             traj.append(u)
         return torch.stack(traj, dim=0)
+
+
+class DecodedInteractionLatentSemigroupNetBounded(LatentSemigroupNetBounded):
+    """Bounded latent gradient flow with interactions in physical coordinates.
+
+    The standard bounded latent model penalizes ``(z_i - z_j)^2``.  For
+    Allen--Cahn, however, the gradient portion of the physical free energy is
+    naturally expressed through differences of the bounded state ``u``.  This
+    variant retains the same decoder, diagonal positive mobility, learned
+    scalar potential, RK4 flow, and therefore the same admissibility,
+    learned-energy dissipation, and autonomous-semigroup guarantees.  It only
+    changes the interaction energy to
+
+    ``1/2 sum_ij a_ij (decode(z_i) - decode(z_j))^2``.
+
+    The interaction gradient is computed analytically so this structural
+    ablation does not reintroduce an autograd/Hessian bottleneck.
+    """
+
+    def psi(self, z):
+        V_sum = self.V_net(z.unsqueeze(-1)).squeeze(-1).sum(dim=1)
+        a_full = F.softplus(torch.mm(self.emb, self.emb.t()))
+        a_ij = a_full * self.interaction_mask
+        u = self.decode(z)
+        diff = u.unsqueeze(2) - u.unsqueeze(1)
+        interaction = 0.5 * (a_ij * diff.pow(2)).sum(dim=(1, 2))
+        return V_sum + interaction
+
+    def grad_psi(self, z, a_ij=None):
+        """Analytical ``grad_z Psi`` for the decoded-state interaction."""
+        _V_val, dV_dz = self.V_net.value_and_grad(z.unsqueeze(-1))
+        grad_V = dV_dz.squeeze(-1)
+        if a_ij is None:
+            a_full = F.softplus(torch.mm(self.emb, self.emb.t()))
+            a_ij = a_full * self.interaction_mask
+
+        sigmoid_z = torch.sigmoid(z)
+        u = self.m + (self.M - self.m) * sigmoid_z
+        du_dz = (self.M - self.m) * sigmoid_z * (1.0 - sigmoid_z)
+        diff = u.unsqueeze(2) - u.unsqueeze(1)
+        # a_ij is symmetric because it is generated as emb @ emb.T.  The
+        # derivative of 1/2 sum_ij a_ij (u_i-u_j)^2 therefore has factor 2.
+        grad_interaction = 2.0 * du_dz * (a_ij * diff).sum(dim=2)
+        return grad_V + grad_interaction

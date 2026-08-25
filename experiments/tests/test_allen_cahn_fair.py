@@ -194,14 +194,19 @@ def test_model_budget_and_bounded_latent_output():
         ]
     )
     latent = build_model("latent", args)
+    decoded_interaction = build_model("latent_decoded_interaction", args)
     resnet = build_model("resnet", args)
     fno = build_model("fno", args)
     counts = {
         "latent": sum(parameter.numel() for parameter in latent.parameters()),
+        "latent_decoded_interaction": sum(
+            parameter.numel() for parameter in decoded_interaction.parameters()
+        ),
         "resnet": sum(parameter.numel() for parameter in resnet.parameters()),
         "fno": sum(parameter.numel() for parameter in fno.parameters()),
     }
     assert counts["latent"] == 9603
+    assert counts["latent_decoded_interaction"] == counts["latent"]
     assert abs(counts["resnet"] - counts["latent"]) <= 550
     assert abs(counts["fno"] - counts["latent"]) <= 300
 
@@ -210,6 +215,11 @@ def test_model_budget_and_bounded_latent_output():
     output = bounded(u, 0.02)
     assert float(output.detach().min()) >= LOWER_BOUND
     assert float(output.detach().max()) <= UPPER_BOUND
+    decoded_output = build_model(
+        "latent_decoded_interaction", _tiny_args(Path("/tmp"))
+    )(u, 0.02)
+    assert float(decoded_output.detach().min()) >= LOWER_BOUND
+    assert float(decoded_output.detach().max()) <= UPPER_BOUND
 
 
 def test_physical_free_energy_is_distinct_and_vectorized():
