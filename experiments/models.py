@@ -757,6 +757,42 @@ class DecodedInteractionLatentSemigroupNetBounded(LatentSemigroupNetBounded):
         return grad_V + grad_interaction
 
 
+class DecodedStateEnergyLatentSemigroupNetBounded(
+    DecodedInteractionLatentSemigroupNetBounded
+):
+    """Decoded interaction and scalar potential with an analytic pullback.
+
+    The preceding decoded-interaction ablation changed only the gradient part
+    of the energy, leaving the learned scalar potential as ``V(z)``.  This
+    variant isolates the remaining energy-coordinate mismatch by evaluating
+    that scalar potential in the bounded state, ``V(u)``, and multiplying its
+    derivative by ``du/dz``.  It keeps the original positive stencil mobility;
+    the decoder-Jacobian mobility is deliberately not combined with this test.
+    """
+
+    def psi(self, z):
+        u = self.decode(z)
+        V_sum = self.V_net(u.unsqueeze(-1)).squeeze(-1).sum(dim=1)
+        a_full = F.softplus(torch.mm(self.emb, self.emb.t()))
+        a_ij = a_full * self.interaction_mask
+        diff = u.unsqueeze(2) - u.unsqueeze(1)
+        interaction = 0.5 * (a_ij * diff.pow(2)).sum(dim=(1, 2))
+        return V_sum + interaction
+
+    def grad_psi(self, z, a_ij=None):
+        u = self.decode(z)
+        _V_val, dV_du = self.V_net.value_and_grad(u.unsqueeze(-1))
+        sigmoid_z = torch.sigmoid(z)
+        du_dz = (self.M - self.m) * sigmoid_z * (1.0 - sigmoid_z)
+        grad_V = du_dz * dV_du.squeeze(-1)
+        if a_ij is None:
+            a_full = F.softplus(torch.mm(self.emb, self.emb.t()))
+            a_ij = a_full * self.interaction_mask
+        diff = u.unsqueeze(2) - u.unsqueeze(1)
+        grad_interaction = 2.0 * du_dz * (a_ij * diff).sum(dim=2)
+        return grad_V + grad_interaction
+
+
 class DecodedInteractionJacobianMobilityLatentSemigroupNetBounded(
     DecodedInteractionLatentSemigroupNetBounded
 ):

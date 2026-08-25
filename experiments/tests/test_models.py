@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from models import (
     DecodedInteractionLatentSemigroupNetBounded,
     DecodedInteractionJacobianMobilityLatentSemigroupNetBounded,
+    DecodedStateEnergyLatentSemigroupNetBounded,
     LatentSemigroupNet,
     LatentSemigroupNetBounded,
     ScalarMLP,
@@ -80,3 +81,19 @@ def test_jacobian_mobility_is_positive_and_finite():
     assert torch.isfinite(K).all()
     assert torch.isfinite(grad).all()
     assert (K > 0).all()
+
+
+def test_decoded_state_energy_gradient_matches_autograd():
+    torch.manual_seed(5)
+    model = DecodedStateEnergyLatentSemigroupNetBounded(
+        N=8,
+        m=-1.0,
+        M=1.0,
+        hidden_V=[4, 4],
+        hidden_K=[4, 4],
+        interaction_radius=2,
+    )
+    z = torch.randn(2, 8, requires_grad=True)
+    analytical = model.grad_psi(z)
+    autograd = torch.autograd.grad(model.psi(z).sum(), z)[0]
+    assert torch.allclose(analytical, autograd, rtol=1e-5, atol=1e-6)

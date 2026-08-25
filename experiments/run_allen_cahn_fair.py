@@ -56,6 +56,7 @@ from evaluate import evaluate_full  # noqa: E402
 from models import (  # noqa: E402
     DecodedInteractionLatentSemigroupNetBounded,
     DecodedInteractionJacobianMobilityLatentSemigroupNetBounded,
+    DecodedStateEnergyLatentSemigroupNetBounded,
     LatentSemigroupNetBounded,
     TimeConditionedFNO,
     TimeConditionedResNet,
@@ -72,6 +73,7 @@ MODEL_NAMES = (
     "latent",
     "latent_decoded_interaction",
     "latent_decoded_interaction_jacobian_mobility",
+    "latent_decoded_energy",
     "resnet",
     "fno",
 )
@@ -720,6 +722,23 @@ def model_config(name, args):
             "interaction_energy": "quadratic_decoded_state_differences",
             "mobility": "positive_stencil_over_decoder_jacobian_squared",
         }
+    if name == "latent_decoded_energy":
+        return {
+            "class": "DecodedStateEnergyLatentSemigroupNetBounded",
+            "kwargs": {
+                "N": args.N,
+                "m": LOWER_BOUND,
+                "M": UPPER_BOUND,
+                "hidden_V": [64, 64],
+                "hidden_K": [64, 64],
+                "stencil_radius": 3,
+                "interaction_radius": 2,
+                "beta_V": 0.0,
+                "beta_V_floor": args.beta_v_floor,
+            },
+            "interaction_energy": "quadratic_decoded_state_differences",
+            "potential_coordinate": "decoded_state_with_chain_rule",
+        }
     if name == "resnet":
         return {
             "class": "TimeConditionedResNet",
@@ -742,6 +761,8 @@ def build_model(name, args):
         return DecodedInteractionLatentSemigroupNetBounded(**kwargs)
     if name == "latent_decoded_interaction_jacobian_mobility":
         return DecodedInteractionJacobianMobilityLatentSemigroupNetBounded(**kwargs)
+    if name == "latent_decoded_energy":
+        return DecodedStateEnergyLatentSemigroupNetBounded(**kwargs)
     if name == "resnet":
         return TimeConditionedResNet(**kwargs)
     if name == "fno":
@@ -963,6 +984,7 @@ def run_model(name, args, data, device, provenance):
                 "latent",
                 "latent_decoded_interaction",
                 "latent_decoded_interaction_jacobian_mobility",
+                "latent_decoded_energy",
             ),
             equal_work_base_ode_steps=(
                 30
@@ -970,6 +992,7 @@ def run_model(name, args, data, device, provenance):
                     "latent",
                     "latent_decoded_interaction",
                     "latent_decoded_interaction_jacobian_mobility",
+                    "latent_decoded_energy",
                 )
                 else None
             ),
