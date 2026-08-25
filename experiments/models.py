@@ -755,3 +755,29 @@ class DecodedInteractionLatentSemigroupNetBounded(LatentSemigroupNetBounded):
         # derivative of 1/2 sum_ij a_ij (u_i-u_j)^2 therefore has factor 2.
         grad_interaction = 2.0 * du_dz * (a_ij * diff).sum(dim=2)
         return grad_V + grad_interaction
+
+
+class DecodedInteractionJacobianMobilityLatentSemigroupNetBounded(
+    DecodedInteractionLatentSemigroupNetBounded
+):
+    """Decoded-interaction flow with a physical-coordinate mobility pullback.
+
+    Let ``u = decode(z)`` and write the energy in physical state coordinates.
+    Then ``grad_z Psi = (du/dz) grad_u E``.  A physical-state gradient flow
+    ``u_dot = -K_u grad_u E`` is represented in latent coordinates by
+    ``z_dot = -K_u (du/dz)^(-2) grad_z Psi``.  The standard positive stencil
+    mobility has to learn this state-dependent Jacobian factor indirectly.
+    This variant supplies it explicitly and leaves the learnable, positive
+    local physical mobility unchanged.  Clamping prevents numerical overflow
+    at the sigmoid's asymptotes while retaining positive mobility and learned
+    energy dissipation.
+    """
+
+    def _dynamics_and_grad(self, z, a_ij):
+        base_mobility = F.softplus(self.K_net(z)) + 5e-3
+        sigmoid_z = torch.sigmoid(z)
+        du_dz = (self.M - self.m) * sigmoid_z * (1.0 - sigmoid_z)
+        jacobian_sq = du_dz.pow(2).clamp_min(float(self.eps))
+        K = base_mobility / jacobian_sq
+        grad_Psi = self.grad_psi(z, a_ij=a_ij)
+        return K, grad_Psi

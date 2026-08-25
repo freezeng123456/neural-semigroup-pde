@@ -55,6 +55,7 @@ if str(EXPERIMENTS_DIR) not in sys.path:
 from evaluate import evaluate_full  # noqa: E402
 from models import (  # noqa: E402
     DecodedInteractionLatentSemigroupNetBounded,
+    DecodedInteractionJacobianMobilityLatentSemigroupNetBounded,
     LatentSemigroupNetBounded,
     TimeConditionedFNO,
     TimeConditionedResNet,
@@ -67,7 +68,13 @@ from seed_utils import set_global_seed  # noqa: E402
 from training import train_model  # noqa: E402
 
 
-MODEL_NAMES = ("latent", "latent_decoded_interaction", "resnet", "fno")
+MODEL_NAMES = (
+    "latent",
+    "latent_decoded_interaction",
+    "latent_decoded_interaction_jacobian_mobility",
+    "resnet",
+    "fno",
+)
 DEFAULT_MODEL_NAMES = ("latent", "resnet", "fno")
 LOWER_BOUND = -1.0
 UPPER_BOUND = 1.0
@@ -696,6 +703,23 @@ def model_config(name, args):
             },
             "interaction_energy": "quadratic_decoded_state_differences",
         }
+    if name == "latent_decoded_interaction_jacobian_mobility":
+        return {
+            "class": "DecodedInteractionJacobianMobilityLatentSemigroupNetBounded",
+            "kwargs": {
+                "N": args.N,
+                "m": LOWER_BOUND,
+                "M": UPPER_BOUND,
+                "hidden_V": [64, 64],
+                "hidden_K": [64, 64],
+                "stencil_radius": 3,
+                "interaction_radius": 2,
+                "beta_V": 0.0,
+                "beta_V_floor": args.beta_v_floor,
+            },
+            "interaction_energy": "quadratic_decoded_state_differences",
+            "mobility": "positive_stencil_over_decoder_jacobian_squared",
+        }
     if name == "resnet":
         return {
             "class": "TimeConditionedResNet",
@@ -716,6 +740,8 @@ def build_model(name, args):
         return LatentSemigroupNetBounded(**kwargs)
     if name == "latent_decoded_interaction":
         return DecodedInteractionLatentSemigroupNetBounded(**kwargs)
+    if name == "latent_decoded_interaction_jacobian_mobility":
+        return DecodedInteractionJacobianMobilityLatentSemigroupNetBounded(**kwargs)
     if name == "resnet":
         return TimeConditionedResNet(**kwargs)
     if name == "fno":
@@ -934,11 +960,17 @@ def run_model(name, args, data, device, provenance):
             reference_dt=args.reference_dt,
             physical_energy_fn=physical_energy,
             collect_latent_diagnostics=name in (
-                "latent", "latent_decoded_interaction"
+                "latent",
+                "latent_decoded_interaction",
+                "latent_decoded_interaction_jacobian_mobility",
             ),
             equal_work_base_ode_steps=(
                 30
-                if name in ("latent", "latent_decoded_interaction")
+                if name in (
+                    "latent",
+                    "latent_decoded_interaction",
+                    "latent_decoded_interaction_jacobian_mobility",
+                )
                 else None
             ),
         )

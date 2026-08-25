@@ -195,6 +195,9 @@ def test_model_budget_and_bounded_latent_output():
     )
     latent = build_model("latent", args)
     decoded_interaction = build_model("latent_decoded_interaction", args)
+    jacobian_mobility = build_model(
+        "latent_decoded_interaction_jacobian_mobility", args
+    )
     resnet = build_model("resnet", args)
     fno = build_model("fno", args)
     counts = {
@@ -202,11 +205,15 @@ def test_model_budget_and_bounded_latent_output():
         "latent_decoded_interaction": sum(
             parameter.numel() for parameter in decoded_interaction.parameters()
         ),
+        "latent_decoded_interaction_jacobian_mobility": sum(
+            parameter.numel() for parameter in jacobian_mobility.parameters()
+        ),
         "resnet": sum(parameter.numel() for parameter in resnet.parameters()),
         "fno": sum(parameter.numel() for parameter in fno.parameters()),
     }
     assert counts["latent"] == 9603
     assert counts["latent_decoded_interaction"] == counts["latent"]
+    assert counts["latent_decoded_interaction_jacobian_mobility"] == counts["latent"]
     assert abs(counts["resnet"] - counts["latent"]) <= 550
     assert abs(counts["fno"] - counts["latent"]) <= 300
 
@@ -220,6 +227,11 @@ def test_model_budget_and_bounded_latent_output():
     )(u, 0.02)
     assert float(decoded_output.detach().min()) >= LOWER_BOUND
     assert float(decoded_output.detach().max()) <= UPPER_BOUND
+    jacobian_output = build_model(
+        "latent_decoded_interaction_jacobian_mobility", _tiny_args(Path("/tmp"))
+    )(u, 0.02)
+    assert float(jacobian_output.detach().min()) >= LOWER_BOUND
+    assert float(jacobian_output.detach().max()) <= UPPER_BOUND
 
 
 def test_physical_free_energy_is_distinct_and_vectorized():
