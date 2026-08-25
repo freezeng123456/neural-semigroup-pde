@@ -151,6 +151,24 @@ def build_parser():
         "--alpha-rollout", type=parse_nonnegative_float, default=0.0
     )
     parser.add_argument(
+        "--alpha-trajectory",
+        type=parse_nonnegative_float,
+        default=0.0,
+        help=(
+            "weight of the reference-supervised repeated-step endpoint loss; "
+            "requires fixed-time training and --trajectory-horizon"
+        ),
+    )
+    parser.add_argument(
+        "--trajectory-horizon",
+        type=float,
+        default=0.0,
+        help=(
+            "physical endpoint used by the reference-supervised repeated-step "
+            "loss; must be an exact multiple of fixed-tau and reference-dt"
+        ),
+    )
+    parser.add_argument(
         "--alpha-energy", type=parse_nonnegative_float, default=0.0
     )
     parser.add_argument("--alpha-bound", type=parse_nonnegative_float, default=0.0)
@@ -198,7 +216,7 @@ def reference_steps_for_duration(duration, reference_dt):
 
 def data_config(args):
     """Return the complete frozen data-generation/split configuration."""
-    return {
+    config = {
         "pde": "allen-cahn",
         "regime": args.regime,
         "data_seed": args.data_seed,
@@ -216,6 +234,12 @@ def data_config(args):
         "n_val": args.n_val,
         "bounds": [LOWER_BOUND, UPPER_BOUND],
     }
+    # Keep legacy step-only cache identities stable.  A positive trajectory
+    # horizon changes the frozen reference targets and therefore belongs to
+    # the cache key.
+    if args.trajectory_horizon > 0:
+        config["trajectory_horizon"] = args.trajectory_horizon
+    return config
 
 
 def _validate_unique_times(values, name):
@@ -254,10 +278,35 @@ def validate_args(args):
     for tau in eval_taus:
         rollout_steps_for_horizon(args.eval_horizon, tau)
         reference_steps_for_duration(tau, args.reference_dt)
-    for value_name in ("alpha_rollout", "alpha_energy", "alpha_bound", "alpha_v"):
+    for value_name in (
+        "alpha_rollout",
+        "alpha_trajectory",
+        "alpha_energy",
+        "alpha_bound",
+        "alpha_v",
+    ):
         value = getattr(args, value_name)
         if not math.isfinite(value) or value < 0:
             raise ValueError(f"{value_name} must be finite and non-negative")
+    if not math.isfinite(args.trajectory_horizon) or args.trajectory_horizon < 0:
+        raise ValueError("trajectory-horizon must be finite and non-negative")
+    if args.alpha_trajectory > 0:
+        if args.regime != "fixed":
+            raise ValueError(
+                "alpha-trajectory currently requires --regime fixed"
+            )
+        trajectory_steps = rollout_steps_for_horizon(
+            args.trajectory_horizon, args.fixed_tau
+        )
+        if trajectory_steps < 2:
+            raise ValueError(
+                "trajectory-horizon must cover at least two fixed-tau steps"
+            )
+        reference_steps_for_duration(args.trajectory_horizon, args.reference_dt)
+    elif args.trajectory_horizon != 0:
+        raise ValueError(
+            "trajectory-horizon requires a positive alpha-trajectory"
+        )
 
 
 def _new_solver(args):
@@ -326,10 +375,20 @@ def generate_data(args):
             train_u0,
             reference_steps_for_duration(args.fixed_tau, args.reference_dt),
         )
+        train_rollout_ut = None
+        if args.alpha_trajectory > 0:
+            train_rollout_ut = _solve_batch_final(
+                solver,
+                train_u0,
+                reference_steps_for_duration(
+                    args.trajectory_horizon, args.reference_dt
+                ),
+            )
     else:
         train_tau, train_ut = _generate_variable_training_data(
             args, solver, train_u0
         )
+        train_rollout_ut = None
 
     # The validation stream is generated after the training stream, so the
     # data seed fixes both the split and the order of every initial condition.
@@ -344,6 +403,7 @@ def generate_data(args):
         "train_u0": train_u0,
         "train_tau": train_tau,
         "train_ut": train_ut,
+        "train_rollout_ut": train_rollout_ut,
         "val_u0": val_u0,
         "val_trajs": val_trajs,
         "data_generation_config": data_config(args),
@@ -385,17 +445,30 @@ def validate_data_cache(data, args):
     if data.get("data_generation_config") != expected_config:
         raise ValueError("data cache configuration does not match this run")
     required = ("train_u0", "train_ut", "val_u0", "val_trajs")
+    if args.alpha_trajectory > 0:
+        required = (*required, "train_rollout_ut")
     missing = [key for key in required if key not in data]
     if missing:
         raise ValueError(f"data cache is missing required fields: {missing}")
 
     train_u0 = data["train_u0"]
     train_ut = data["train_ut"]
+    train_rollout_ut = data.get("train_rollout_ut")
     val_u0 = data["val_u0"]
     if tuple(train_u0.shape) != (args.n_train, args.N):
         raise ValueError(f"unexpected train_u0 shape: {tuple(train_u0.shape)}")
     if tuple(train_ut.shape) != (args.n_train, args.N):
         raise ValueError(f"unexpected train_ut shape: {tuple(train_ut.shape)}")
+    if args.alpha_trajectory > 0:
+        if tuple(train_rollout_ut.shape) != (args.n_train, args.N):
+            raise ValueError(
+                "unexpected train_rollout_ut shape: "
+                f"{tuple(train_rollout_ut.shape)}"
+            )
+    elif train_rollout_ut is not None:
+        raise ValueError(
+            "step-only cache must not contain train_rollout_ut"
+        )
     if tuple(val_u0.shape) != (args.n_val, args.N):
         raise ValueError(f"unexpected val_u0 shape: {tuple(val_u0.shape)}")
     for name, tensor in (("train_u0", train_u0), ("train_ut", train_ut), ("val_u0", val_u0)):
@@ -404,6 +477,16 @@ def validate_data_cache(data, args):
     for name, tensor in (("train_u0", train_u0), ("train_ut", train_ut), ("val_u0", val_u0)):
         if float(tensor.min()) < LOWER_BOUND - 1e-4 or float(tensor.max()) > UPPER_BOUND + 1e-4:
             raise ValueError(f"{name} leaves the Allen-Cahn admissible bounds [-1, 1]")
+    if args.alpha_trajectory > 0:
+        if not torch.is_tensor(train_rollout_ut) or not torch.isfinite(train_rollout_ut).all():
+            raise ValueError("train_rollout_ut must be a finite tensor")
+        if (
+            float(train_rollout_ut.min()) < LOWER_BOUND - 1e-4
+            or float(train_rollout_ut.max()) > UPPER_BOUND + 1e-4
+        ):
+            raise ValueError(
+                "train_rollout_ut leaves the Allen-Cahn admissible bounds [-1, 1]"
+            )
 
     train_tau = data.get("train_tau")
     if args.regime == "fixed":
@@ -463,11 +546,21 @@ def validate_data_cache(data, args):
     return {
         "train_u0_shape": list(train_u0.shape),
         "train_ut_shape": list(train_ut.shape),
+        "train_rollout_ut_shape": (
+            list(train_rollout_ut.shape)
+            if train_rollout_ut is not None
+            else None
+        ),
         "val_u0_shape": list(val_u0.shape),
         "validation_trajectory_length": expected_steps + 1,
         "train_tau_counts": train_tau_counts,
         "train_u0_range": [float(train_u0.min()), float(train_u0.max())],
         "train_ut_range": [float(train_ut.min()), float(train_ut.max())],
+        "train_rollout_ut_range": (
+            [float(train_rollout_ut.min()), float(train_rollout_ut.max())]
+            if train_rollout_ut is not None
+            else None
+        ),
         "val_u0_range": [float(val_u0.min()), float(val_u0.max())],
     }
 
@@ -610,7 +703,13 @@ def build_model(name, args):
 def _architecture_only(args):
     return all(
         getattr(args, name) == 0.0
-        for name in ("alpha_rollout", "alpha_energy", "alpha_bound", "alpha_v")
+        for name in (
+            "alpha_rollout",
+            "alpha_trajectory",
+            "alpha_energy",
+            "alpha_bound",
+            "alpha_v",
+        )
     )
 
 
@@ -713,11 +812,24 @@ def run_model(name, args, data, device, provenance):
         "architecture_only": architecture_only,
         "auxiliary_loss_weights": {
             "alpha_rollout": args.alpha_rollout,
+            "alpha_trajectory": args.alpha_trajectory,
             "alpha_energy": args.alpha_energy,
             "alpha_bound": args.alpha_bound,
             "alpha_v": args.alpha_v,
         },
         "no_resume": args.no_resume,
+        "trajectory_supervision": {
+            "enabled": args.alpha_trajectory > 0,
+            "horizon": args.trajectory_horizon,
+            "model_steps": (
+                rollout_steps_for_horizon(
+                    args.trajectory_horizon, args.fixed_tau
+                )
+                if args.alpha_trajectory > 0
+                else None
+            ),
+            "target": "frozen_reference_endpoint",
+        },
         "provenance": provenance,
     }
 
@@ -738,6 +850,13 @@ def run_model(name, args, data, device, provenance):
         batch_size=args.batch_size,
         lr=args.lr,
         alpha_rollout=args.alpha_rollout,
+        alpha_trajectory=args.alpha_trajectory,
+        train_rollout_ut=data.get("train_rollout_ut"),
+        trajectory_steps=(
+            rollout_steps_for_horizon(args.trajectory_horizon, args.fixed_tau)
+            if args.alpha_trajectory > 0
+            else None
+        ),
         alpha_energy=args.alpha_energy,
         alpha_bound=args.alpha_bound,
         alpha_V=args.alpha_v,

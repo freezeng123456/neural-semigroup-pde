@@ -44,6 +44,17 @@ class TauConditionedAffine(nn.Module):
         return u + self.rate * tau[:, None]
 
 
+class FixedIncrement(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.increment = nn.Parameter(torch.tensor(1.0))
+
+    def forward(self, u, tau):
+        return u + self.increment * torch.as_tensor(
+            tau, device=u.device, dtype=u.dtype
+        )
+
+
 def make_dense_identity_trajectory():
     times = torch.arange(5, dtype=torch.float32) * 0.05
     state = torch.tensor([0.25, 0.75], dtype=torch.float32)
@@ -83,6 +94,15 @@ def test_training_validation_batches_compatible_trajectories():
     assert model.batch_sizes == [3, 3]
 
 
+def test_reference_trajectory_loss_uses_the_pde_endpoint_after_repeated_steps():
+    model = FixedIncrement()
+    u0 = torch.zeros(3, 2)
+    target = torch.full_like(u0, 0.3)
+    assert training.trajectory_loss(model, u0, target, 0.1, 3).item() == pytest.approx(0.0)
+    with pytest.raises(ValueError, match="at least two"):
+        training.trajectory_loss(model, u0, target, 0.1, 1)
+
+
 def test_architecture_only_training_skips_auxiliary_losses(monkeypatch, tmp_path):
     def forbidden(*args, **kwargs):
         raise AssertionError("an auxiliary loss was evaluated despite zero weight")
@@ -111,6 +131,43 @@ def test_architecture_only_training_skips_auxiliary_losses(monkeypatch, tmp_path
     )
     assert history["L_rollout"] == [0.0]
     assert history["L_energy"] == [0.0]
+    assert history["L_trajectory"] == [0.0]
+
+
+def test_training_accepts_reference_trajectory_supervision(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        training,
+        "evaluate_on_trajectories",
+        lambda *args, **kwargs: {
+            "rollout_mse": 0.1,
+            "bound_viol": 0.0,
+            "energy_mono_frac": 0.0,
+        },
+    )
+    val_u0, trajectories = make_dense_identity_trajectory()
+    model = FixedIncrement()
+    train_u0 = torch.zeros(4, 2)
+    train_ut = torch.full_like(train_u0, 0.1)
+    train_rollout_ut = torch.full_like(train_u0, 0.3)
+    history = training.train_model(
+        model,
+        train_u0=train_u0,
+        train_ut=train_ut,
+        train_rollout_ut=train_rollout_ut,
+        alpha_trajectory=0.1,
+        trajectory_steps=3,
+        val_u0=val_u0,
+        val_trajs=trajectories,
+        tau=0.1,
+        n_epochs=1,
+        batch_size=2,
+        alpha_bound=0.0,
+        checkpoint_dir=str(tmp_path),
+        model_name="trajectory_supervision",
+        device="cpu",
+        reference_dt=0.05,
+    )
+    assert history["L_trajectory"][0] == pytest.approx(0.0)
 
 
 def test_training_validates_every_five_epochs_and_on_final(monkeypatch, tmp_path):

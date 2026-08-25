@@ -90,6 +90,8 @@ def test_parser_defaults_match_fair_protocol():
     assert args.validation_interval == 5
     assert args.beta_v_floor > 0
     assert args.alpha_rollout == 0.0
+    assert args.alpha_trajectory == 0.0
+    assert args.trajectory_horizon == 0.0
     assert args.alpha_energy == 0.0
     assert args.alpha_bound == 0.0
     assert args.alpha_v == 0.0
@@ -139,6 +141,41 @@ def test_horizons_and_reference_grid_require_exact_alignment():
         rollout_steps_for_horizon(1.2, 0.25)
     with pytest.raises(ValueError, match="integer multiple"):
         reference_steps_for_duration(0.023, 0.005)
+
+
+def test_reference_trajectory_supervision_requires_fixed_aligned_multistep_horizon(
+    tmp_path,
+):
+    valid = build_parser().parse_args(
+        [
+            "--regime", "fixed", "--output-dir", str(tmp_path / "out"),
+            "--data-cache", str(tmp_path / "data.pt"), "--fixed-tau", "0.02",
+            "--reference-dt", "0.01", "--eval-horizon", "0.04",
+            "--alpha-trajectory", "0.1", "--trajectory-horizon", "0.04",
+        ]
+    )
+    validate_args(valid)
+
+    one_step = build_parser().parse_args(
+        [
+            "--regime", "fixed", "--output-dir", str(tmp_path / "out"),
+            "--data-cache", str(tmp_path / "data.pt"), "--fixed-tau", "0.02",
+            "--reference-dt", "0.01", "--eval-horizon", "0.04",
+            "--alpha-trajectory", "0.1", "--trajectory-horizon", "0.02",
+        ]
+    )
+    with pytest.raises(ValueError, match="at least two"):
+        validate_args(one_step)
+
+    variable = build_parser().parse_args(
+        [
+            "--regime", "variable", "--output-dir", str(tmp_path / "out"),
+            "--data-cache", str(tmp_path / "data.pt"), "--reference-dt", "0.005",
+            "--alpha-trajectory", "0.1", "--trajectory-horizon", "0.2",
+        ]
+    )
+    with pytest.raises(ValueError, match="requires --regime fixed"):
+        validate_args(variable)
 
 
 def test_model_budget_and_bounded_latent_output():
@@ -207,6 +244,20 @@ def test_data_generation_is_frozen_balanced_and_strictly_aligned(tmp_path):
     assert len(data["val_trajs"][0][0]) == 5
     assert torch.all(data["val_u0"] >= LOWER_BOUND)
     assert torch.all(data["val_u0"] <= UPPER_BOUND)
+
+
+def test_fixed_data_contains_a_frozen_reference_rollout_target(tmp_path):
+    argv = _tiny_argv(tmp_path, regime="fixed") + [
+        "--alpha-trajectory", "0.1", "--trajectory-horizon", "0.04",
+    ]
+    args = build_parser().parse_args(argv)
+    validate_args(args)
+    data = generate_data(args)
+    validation = validate_data_cache(data, args)
+    assert data_config(args)["trajectory_horizon"] == 0.04
+    assert data["train_rollout_ut"].shape == data["train_u0"].shape
+    assert validation["train_rollout_ut_shape"] == [4, 8]
+    assert validation["train_rollout_ut_range"] is not None
 
 
 def test_prepare_data_only_reuses_validated_cache_without_checkpoints(tmp_path):

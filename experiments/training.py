@@ -4,6 +4,7 @@ Training loop with semigroup-based loss functions.
 Losses (from paper Section 6):
     L_step    = E || Phi(u, tau) - S_tau(u) ||^2
     L_rollout = E || Phi(Phi(u, tau1), tau2) - Phi(u, tau1+tau2) ||^2
+    L_trajectory = E || Phi^K(u, tau) - S_{K tau}(u) ||^2
     L_energy  = E max(0, E_theta(Phi(u, tau)) - E_theta(u))
     L_reg     = weight decay
 """
@@ -40,6 +41,23 @@ def rollout_loss(model, u0, tau1, tau2, tau_sum):
     return torch.mean((u2 - u_sum) ** 2)
 
 
+def trajectory_loss(model, u0, u_target, tau, rollout_steps):
+    """Reference-supervised error after repeated learned model steps.
+
+    Unlike :func:`rollout_loss`, this loss is grounded in a frozen PDE
+    reference endpoint.  It therefore measures whether repeated application
+    of the learned map follows the intended dynamics, rather than merely
+    whether the learned map composes with itself.
+    """
+    rollout_steps = int(rollout_steps)
+    if rollout_steps < 2:
+        raise ValueError("trajectory rollout_steps must be at least two")
+    prediction = u0
+    for _ in range(rollout_steps):
+        prediction = model(prediction, tau)
+    return torch.mean((prediction - u_target) ** 2)
+
+
 def energy_loss(model, u0, tau):
     """Energy monotonicity violation."""
     E0 = model.energy(u0)
@@ -73,6 +91,9 @@ def train_model(
     run_metadata=None,
     validation_interval=5,
     train_tau=None,
+    train_rollout_ut=None,
+    alpha_trajectory=0.0,
+    trajectory_steps=None,
 ):
     """
     Train a semigroup learner.
@@ -86,7 +107,12 @@ def train_model(
         train_tau: optional positive tensor of shape ``(N_train,)``.  When
             provided, each training pair uses its own time increment while
             the scalar ``tau`` remains the validation/model-selection step.
-        alpha_rollout, alpha_energy, alpha_bound: loss weights
+        alpha_rollout: weight for learned semigroup-composition consistency.
+        alpha_trajectory: weight for a reference-supervised repeated-step
+            endpoint loss.  This is supported for a fixed scalar ``tau``
+            only; ``train_rollout_ut`` must contain the matching PDE endpoint
+            and ``trajectory_steps`` must be at least two.
+        alpha_energy, alpha_bound: other loss weights
         resume_from: path to checkpoint to resume from (optional)
         reference_dt: spacing of stored validation snapshots.  If provided,
             ``tau/reference_dt`` must be a positive integer; silent time-index
@@ -105,8 +131,35 @@ def train_model(
     train_u0 = train_u0.to(device)
     train_ut = train_ut.to(device)
 
+    if alpha_trajectory < 0:
+        raise ValueError("alpha_trajectory must be non-negative")
+    if alpha_trajectory > 0:
+        if train_tau is not None:
+            raise ValueError(
+                "reference trajectory loss currently requires a fixed scalar tau"
+            )
+        if train_rollout_ut is None:
+            raise ValueError(
+                "train_rollout_ut is required when alpha_trajectory is positive"
+            )
+        if tuple(train_rollout_ut.shape) != tuple(train_u0.shape):
+            raise ValueError("train_rollout_ut must have the same shape as train_u0")
+        if trajectory_steps is None or int(trajectory_steps) < 2:
+            raise ValueError(
+                "trajectory_steps must be an integer of at least two when "
+                "alpha_trajectory is positive"
+            )
+        train_rollout_ut = train_rollout_ut.to(device)
+    elif train_rollout_ut is not None or trajectory_steps is not None:
+        raise ValueError(
+            "train_rollout_ut and trajectory_steps require alpha_trajectory > 0"
+        )
+
     if train_tau is None:
-        dataset = TensorDataset(train_u0, train_ut)
+        if alpha_trajectory > 0:
+            dataset = TensorDataset(train_u0, train_ut, train_rollout_ut)
+        else:
+            dataset = TensorDataset(train_u0, train_ut)
     else:
         if len(train_tau) != len(train_u0):
             raise ValueError("train_tau must have one value per training pair")
@@ -123,7 +176,7 @@ def train_model(
     )
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, n_epochs)
 
-    history = {"epoch": [], "L_step": [], "L_rollout": [], "L_energy": [],
+    history = {"epoch": [], "L_step": [], "L_rollout": [], "L_trajectory": [], "L_energy": [],
                "L_V": [],
                "val_mse": [], "val_bound_viol": [], "val_energy_mono": [],
                "validation_performed": []}
@@ -148,6 +201,10 @@ def train_model(
                 "validation_performed",
                 [True] * len(history.get("epoch", [])),
             )
+            history.setdefault(
+                "L_trajectory",
+                [0.0] * len(history.get("epoch", [])),
+            )
         print(f"Resumed from {resume_from} at epoch {start_epoch}")
         if start_epoch > n_epochs:
             print(f"Already completed {n_epochs} epochs, skipping training")
@@ -160,15 +217,21 @@ def train_model(
         epoch_loss = 0.0
         epoch_L1 = 0.0
         epoch_L2 = 0.0
+        epoch_Ltrajectory = 0.0
         epoch_L3 = 0.0
         epoch_LV = 0.0
 
         for training_batch in loader:
             if train_tau is None:
-                u0_batch, ut_batch = training_batch
+                if alpha_trajectory > 0:
+                    u0_batch, ut_batch, rollout_ut_batch = training_batch
+                else:
+                    u0_batch, ut_batch = training_batch
+                    rollout_ut_batch = None
                 batch_tau = tau
             else:
                 u0_batch, ut_batch, batch_tau = training_batch
+                rollout_ut_batch = None
             u0_batch = u0_batch.to(device)
             ut_batch = ut_batch.to(device)
 
@@ -192,6 +255,19 @@ def train_model(
                 )
                 loss = loss + alpha_rollout * L2
                 epoch_L2 += L2.item()
+
+            # Reference-supervised repeated-step loss.  Keep this distinct
+            # from L_rollout above: L_rollout has no PDE target.
+            if alpha_trajectory > 0:
+                L_trajectory = trajectory_loss(
+                    model,
+                    u0_batch,
+                    rollout_ut_batch,
+                    batch_tau,
+                    trajectory_steps,
+                )
+                loss = loss + alpha_trajectory * L_trajectory
+                epoch_Ltrajectory += L_trajectory.item()
 
             # Energy loss (only for LatentSemigroupNet)
             if alpha_energy > 0 and hasattr(model, 'energy'):
@@ -224,6 +300,7 @@ def train_model(
         n_batches = len(loader)
         avg_L1 = epoch_L1 / n_batches
         avg_L2 = epoch_L2 / n_batches
+        avg_Ltrajectory = epoch_Ltrajectory / n_batches
         avg_L3 = epoch_L3 / n_batches
         avg_LV = epoch_LV / n_batches
 
@@ -246,6 +323,7 @@ def train_model(
         history["epoch"].append(epoch)
         history["L_step"].append(avg_L1)
         history["L_rollout"].append(avg_L2)
+        history["L_trajectory"].append(avg_Ltrajectory)
         history["L_energy"].append(avg_L3)
         history["L_V"].append(avg_LV)
         history["validation_performed"].append(should_validate)
@@ -273,6 +351,7 @@ def train_model(
                 f"Epoch {epoch:3d}/{n_epochs} | "
                 f"L_step={avg_L1:.4e} "
                 f"L_roll={avg_L2:.4e} "
+                f"L_traj={avg_Ltrajectory:.4e} "
                 f"L_energy={avg_L3:.4e} "
                 f"L_V={avg_LV:.4e} | "
                 f"{validation_text} | "
