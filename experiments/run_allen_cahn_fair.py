@@ -33,6 +33,7 @@ Prepare a shared cache once, without creating model checkpoints::
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import math
@@ -876,6 +877,81 @@ def _write_json(path, payload):
         json.dump(payload, handle, indent=2, allow_nan=True)
 
 
+def _write_metrics_csv(path, results):
+    """Write one flat, machine-readable evaluation row per model and tau.
+
+    ``result.json`` deliberately retains the complete nested evaluation trace,
+    whereas this file is the compact cell-level artifact consumed by generic
+    launchers and result collectors.  Keeping both avoids making a successful
+    training run depend on a launcher knowing the runner's private directory
+    layout.
+    """
+    identity_fields = (
+        "model",
+        "tau",
+        "parameter_count",
+        "checkpoint_epoch",
+        "training_seconds",
+        "training_peak_memory_bytes",
+        "training_examples_per_second",
+        "optimizer_updates",
+        "examples_seen",
+        "evaluation_seconds",
+        "evaluation_peak_memory_bytes",
+    )
+    rows = []
+    for model_name, result in results.items():
+        evaluations = result.get("evaluations", {})
+        if not evaluations:
+            raise ValueError(f"cannot write metrics.csv: {model_name} has no evaluations")
+        for tau, evaluation in evaluations.items():
+            metrics = evaluation.get("metrics")
+            if not isinstance(metrics, dict) or not metrics:
+                raise ValueError(
+                    f"cannot write metrics.csv: {model_name} tau={tau} has no metrics"
+                )
+            row = {
+                "model": model_name,
+                "tau": float(tau),
+                "parameter_count": result["parameter_count"],
+                "checkpoint_epoch": result["checkpoint_epoch"],
+                "training_seconds": result["training_seconds"],
+                "training_peak_memory_bytes": result["training_peak_memory_bytes"],
+                "training_examples_per_second": result[
+                    "training_examples_per_second"
+                ],
+                "optimizer_updates": result["optimizer_updates"],
+                "examples_seen": result["examples_seen"],
+                "evaluation_seconds": evaluation["evaluation_seconds"],
+                "evaluation_peak_memory_bytes": evaluation["peak_memory_bytes"],
+            }
+            for key, value in metrics.items():
+                if key not in row:
+                    row[key] = value
+            rows.append(row)
+
+    if not rows:
+        raise ValueError("cannot write metrics.csv: no model evaluations were recorded")
+    metric_fields = sorted(
+        {key for row in rows for key in row}.difference(identity_fields)
+    )
+    path = Path(path)
+    temporary_path = path.with_name(f".{path.name}.tmp")
+    try:
+        with open(temporary_path, "w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(
+                handle,
+                fieldnames=[*identity_fields, *metric_fields],
+                extrasaction="raise",
+            )
+            writer.writeheader()
+            writer.writerows(rows)
+        os.replace(temporary_path, path)
+    finally:
+        if temporary_path.exists():
+            temporary_path.unlink()
+
+
 def write_data_provenance(args, cache_path, cache_status, validation):
     """Write the intentionally short provenance artifact for cache preparation."""
     os.makedirs(args.output_dir, exist_ok=True)
@@ -1184,6 +1260,7 @@ def main(argv=None):
         "results": results,
     }
     _write_json(os.path.join(args.output_dir, "summary.json"), summary)
+    _write_metrics_csv(os.path.join(args.output_dir, "metrics.csv"), results)
     print(
         json.dumps(
             {
