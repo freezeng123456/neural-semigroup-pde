@@ -14,7 +14,12 @@ import torch
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from evaluate import evaluate_full
-from models import LatentSemigroupNet, TimeConditionedFNO, TimeConditionedResNet
+from models import (
+    LatentSemigroupNet,
+    QueryTimeConditionedLatentFlow,
+    TimeConditionedFNO,
+    TimeConditionedResNet,
+)
 from pde_solver import (
     FisherKPPSolver,
     generate_initial_conditions,
@@ -24,7 +29,7 @@ from seed_utils import set_global_seed
 from training import train_model
 
 
-MODEL_NAMES = ("latent", "resnet", "fno")
+MODEL_NAMES = ("latent", "latent_query_time", "resnet", "fno")
 
 
 def parse_float_list(value):
@@ -171,11 +176,43 @@ def build_model(name, args):
             beta_V=0.0,
             beta_V_floor=args.beta_v_floor,
         )
+    if name == "latent_query_time":
+        return QueryTimeConditionedLatentFlow(
+            N=args.N,
+            hidden_V=[64, 64],
+            hidden_K=[64, 64],
+            stencil_radius=3,
+            interaction_radius=2,
+            beta_V=0.0,
+            beta_V_floor=args.beta_v_floor,
+        )
     if name == "resnet":
         return TimeConditionedResNet(N=args.N, width=18, blocks=3)
     if name == "fno":
         return TimeConditionedFNO(N=args.N, width=16, modes=8, layers=4)
     raise ValueError(f"unsupported model: {name}")
+
+
+def temporal_structure_metadata(name):
+    """Describe whether a model is a cross-query-time semigroup candidate."""
+    if name == "latent":
+        return {
+            "kind": "autonomous_time_homogeneous_gradient_flow",
+            "continuous_cross_tau_semigroup": True,
+            "query_time_conditioning": False,
+        }
+    if name == "latent_query_time":
+        return {
+            "kind": "query_time_conditioned_gradient_flow",
+            "continuous_cross_tau_semigroup": False,
+            "query_time_conditioning": "mobility_stencil",
+            "energy_dissipation": "holds for each fixed positive query time",
+        }
+    return {
+        "kind": "direct_time_conditioned_operator",
+        "continuous_cross_tau_semigroup": False,
+        "query_time_conditioning": True,
+    }
 
 
 def fisher_energy(args):
@@ -209,6 +246,12 @@ def run_model(name, args, data, device):
         "lr": args.lr,
         "validation_interval": args.validation_interval,
         "architecture_only": True,
+        "temporal_structure": temporal_structure_metadata(name),
+        "auxiliary_loss_weights": {
+            "alpha_rollout": 0.0,
+            "alpha_energy": 0.0,
+            "alpha_bound": 0.0,
+        },
     }
 
     if str(device).startswith("cuda"):
@@ -228,7 +271,9 @@ def run_model(name, args, data, device):
         lr=args.lr,
         alpha_rollout=0.0,
         alpha_energy=0.0,
-        alpha_bound=0.0 if name == "latent" else 0.1,
+        # This screen attributes temporal structure, so no model receives an
+        # extra training loss that its matched competitor does not receive.
+        alpha_bound=0.0,
         weight_decay=1e-5,
         checkpoint_dir=checkpoint_dir,
         model_name=name,
@@ -270,8 +315,10 @@ def run_model(name, args, data, device):
             model_name=name,
             reference_dt=args.reference_dt,
             physical_energy_fn=fisher_energy(args),
-            collect_latent_diagnostics=name == "latent",
-            equal_work_base_ode_steps=30 if name == "latent" else None,
+            collect_latent_diagnostics=name in ("latent", "latent_query_time"),
+            equal_work_base_ode_steps=(
+                30 if name in ("latent", "latent_query_time") else None
+            ),
         )
         if str(device).startswith("cuda"):
             torch.cuda.synchronize(device)
@@ -299,6 +346,7 @@ def run_model(name, args, data, device):
         ),
         "optimizer_updates": args.epochs * math.ceil(args.n_train / args.batch_size),
         "examples_seen": args.epochs * args.n_train,
+        "temporal_structure": temporal_structure_metadata(name),
         "history": history,
         "evaluations": evaluations,
     }

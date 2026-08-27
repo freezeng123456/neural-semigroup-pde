@@ -14,7 +14,10 @@ from models import (
     LatentSemigroupNetBounded,
     PhysicsAnchoredPeriodicDecodedInteractionLatentSemigroupNetBounded,
     PeriodicStencilDecodedInteractionLatentSemigroupNetBounded,
+    QueryTimeConditionedLatentFlow,
+    QueryTimeConditionedPhysicsAnchoredPeriodicLatentFlowBounded,
     ScalarMLP,
+    TimeConditionedStencilMLP,
 )
 
 
@@ -126,3 +129,73 @@ def test_physics_anchored_gradient_matches_autograd():
     analytical = model.grad_psi(z)
     autograd = torch.autograd.grad(model.psi(z).sum(), z)[0]
     assert torch.allclose(analytical, autograd, rtol=1e-5, atol=1e-6)
+
+
+def test_time_conditioned_stencil_is_periodic_and_uses_query_time():
+    stencil = TimeConditionedStencilMLP(radius=1, hidden_dims=[1])
+    linears = [layer for layer in stencil.net if isinstance(layer, torch.nn.Linear)]
+    with torch.no_grad():
+        for parameter in stencil.parameters():
+            parameter.zero_()
+        # Make the simple one-hidden-unit network depend only on the final
+        # input feature, which is the broadcast query-time channel.
+        linears[0].weight[0, -1] = 1.0
+        linears[-1].weight[0, 0] = 1.0
+
+    z = torch.randn(2, 8)
+    shifted = torch.roll(z, shifts=1, dims=1)
+    short = stencil(z, 0.1)
+    long = stencil(z, 0.2)
+    assert not torch.allclose(short, long)
+    assert torch.allclose(
+        stencil(shifted, 0.1), torch.roll(short, shifts=1, dims=1)
+    )
+
+
+def test_query_time_control_starts_from_autonomous_mobility_and_preserves_bounds():
+    torch.manual_seed(29)
+    autonomous = PhysicsAnchoredPeriodicDecodedInteractionLatentSemigroupNetBounded(
+        N=8, hidden_V=[4, 4], hidden_K=[4, 4], interaction_radius=2
+    )
+    torch.manual_seed(29)
+    control = QueryTimeConditionedPhysicsAnchoredPeriodicLatentFlowBounded(
+        N=8, hidden_V=[4, 4], hidden_K=[4, 4], interaction_radius=2
+    )
+    z = torch.randn(2, 8)
+    a_ij = autonomous._interaction_matrix()
+    autonomous_k, autonomous_grad = autonomous._dynamics_and_grad(z, a_ij)
+    control_k, control_grad = control._dynamics_and_grad(z, a_ij, tau=0.1)
+    assert torch.allclose(control_k, autonomous_k)
+    assert torch.allclose(control_grad, autonomous_grad)
+    assert control.latent_dynamics_requires_tau is True
+    with pytest.raises(ValueError, match="require the positive query tau"):
+        control.latent_dynamics(z)
+
+    u = torch.linspace(-0.9, 0.9, 16).reshape(2, 8)
+    output = control(u, 0.1)
+    assert output.shape == u.shape
+    assert torch.all(output > -1.0)
+    assert torch.all(output < 1.0)
+
+
+def test_generic_query_time_control_matches_base_mobility_at_initialization():
+    torch.manual_seed(37)
+    autonomous = LatentSemigroupNet(
+        N=8, hidden_V=[4, 4], hidden_K=[4, 4], interaction_radius=2
+    )
+    torch.manual_seed(37)
+    control = QueryTimeConditionedLatentFlow(
+        N=8, hidden_V=[4, 4], hidden_K=[4, 4], interaction_radius=2
+    )
+    z = torch.randn(2, 8)
+    a_ij = torch.nn.functional.softplus(autonomous.emb @ autonomous.emb.T)
+    a_ij = a_ij * autonomous.interaction_mask
+    autonomous_k, autonomous_grad = autonomous._dynamics_and_grad(z, a_ij)
+    control_k, control_grad = control._dynamics_and_grad(z, a_ij, tau=0.1)
+    assert torch.allclose(control_k, autonomous_k)
+    assert torch.allclose(control_grad, autonomous_grad)
+
+    u = torch.rand(2, 8) * 0.8 + 0.1
+    output = control(u, torch.tensor([0.05, 0.1]))
+    assert torch.all(output > 0.0)
+    assert torch.all(output < 1.0)

@@ -199,14 +199,25 @@ def evaluate_per_sample(function, batch):
     raise ValueError("functional must return one scalar per sample")
 
 
-def _latent_norm_snapshot(model, u):
-    """Return latent-state and vector-field norms for every batch item."""
+def _latent_norm_snapshot(model, u, *, tau=None):
+    """Return latent-state and vector-field norms for every batch item.
+
+    Most latent models expose an autonomous ``latent_dynamics(z)``.  A
+    query-time-conditioned control can instead explicitly advertise that its
+    dynamics require the evaluated ``tau``.  Passing that query here keeps the
+    diagnostic honest without changing the autonomous-model API.
+    """
     encode = getattr(model, "encode", None)
     dynamics = getattr(model, "latent_dynamics", None)
     if not callable(encode) or not callable(dynamics):
         return None
     z = encode(u)
-    dz = dynamics(z)
+    if getattr(model, "latent_dynamics_requires_tau", False):
+        if tau is None:
+            return None
+        dz = dynamics(z, tau=tau)
+    else:
+        dz = dynamics(z)
     z_flat = z.reshape(z.shape[0], -1)
     dz_flat = dz.reshape(dz.shape[0], -1)
     return {
@@ -725,7 +736,7 @@ def evaluate_full(
         physical_ok = torch.zeros(batch_size, dtype=torch.int64, device=device)
         sample_latent = None
         if collect_latent_diagnostics:
-            snapshot = _latent_norm_snapshot(model, u_pred)
+            snapshot = _latent_norm_snapshot(model, u_pred, tau=tau)
             if snapshot is not None:
                 sample_latent = {key: value.clone() for key, value in snapshot.items()}
         learned_previous = (
@@ -739,7 +750,7 @@ def evaluate_full(
         for step in range(steps):
             u_pred = model(u_pred, tau)
             if collect_latent_diagnostics:
-                current_latent = _latent_norm_snapshot(model, u_pred)
+                current_latent = _latent_norm_snapshot(model, u_pred, tau=tau)
                 if current_latent is not None:
                     if sample_latent is None:
                         sample_latent = current_latent

@@ -15,6 +15,7 @@ from experiments.run_allen_cahn_fair import (
     generate_data,
     load_or_generate_data,
     main,
+    model_config,
     reference_steps_for_duration,
     rollout_steps_for_horizon,
     validate_args,
@@ -201,6 +202,9 @@ def test_model_budget_and_bounded_latent_output():
     decoded_energy = build_model("latent_decoded_energy", args)
     periodic_decoded = build_model("latent_periodic_decoded_interaction", args)
     physics_anchored = build_model("latent_physics_anchored_periodic", args)
+    query_time_control = build_model(
+        "latent_physics_anchored_periodic_query_time", args
+    )
     resnet = build_model("resnet", args)
     fno = build_model("fno", args)
     counts = {
@@ -220,6 +224,9 @@ def test_model_budget_and_bounded_latent_output():
         "latent_physics_anchored_periodic": sum(
             parameter.numel() for parameter in physics_anchored.parameters()
         ),
+        "latent_physics_anchored_periodic_query_time": sum(
+            parameter.numel() for parameter in query_time_control.parameters()
+        ),
         "resnet": sum(parameter.numel() for parameter in resnet.parameters()),
         "fno": sum(parameter.numel() for parameter in fno.parameters()),
     }
@@ -231,6 +238,11 @@ def test_model_budget_and_bounded_latent_output():
     assert counts["latent_physics_anchored_periodic"] == counts[
         "latent_periodic_decoded_interaction"
     ]
+    assert (
+        counts["latent_physics_anchored_periodic_query_time"]
+        - counts["latent_physics_anchored_periodic"]
+        == 64
+    )
     assert abs(counts["resnet"] - counts["latent"]) <= 550
     assert abs(counts["fno"] - counts["latent"]) <= 300
 
@@ -264,6 +276,26 @@ def test_model_budget_and_bounded_latent_output():
     )(u, 0.02)
     assert float(physics_output.detach().min()) >= LOWER_BOUND
     assert float(physics_output.detach().max()) <= UPPER_BOUND
+    query_time_output = build_model(
+        "latent_physics_anchored_periodic_query_time", _tiny_args(Path("/tmp"))
+    )(u, 0.02)
+    assert float(query_time_output.detach().min()) >= LOWER_BOUND
+    assert float(query_time_output.detach().max()) <= UPPER_BOUND
+
+
+def test_query_time_control_is_explicitly_marked_non_semigroup_but_physics_matched():
+    args = build_parser().parse_args(
+        [
+            "--regime", "variable", "--output-dir", "out", "--data-cache", "data.pt",
+        ]
+    )
+    model = build_model(
+        "latent_physics_anchored_periodic_query_time", args
+    )
+    config = model_config("latent_physics_anchored_periodic_query_time", args)
+    assert model.latent_dynamics_requires_tau is True
+    assert config["fixed_physical_potential"] == "(1-u^2)^2/4"
+    assert config["temporal_structure"]["continuous_cross_tau_semigroup"] is False
 
 
 def test_physical_free_energy_is_distinct_and_vectorized():

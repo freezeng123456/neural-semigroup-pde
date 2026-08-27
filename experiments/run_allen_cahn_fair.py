@@ -60,6 +60,7 @@ from models import (  # noqa: E402
     DecodedStateEnergyLatentSemigroupNetBounded,
     PhysicsAnchoredPeriodicDecodedInteractionLatentSemigroupNetBounded,
     PeriodicStencilDecodedInteractionLatentSemigroupNetBounded,
+    QueryTimeConditionedPhysicsAnchoredPeriodicLatentFlowBounded,
     LatentSemigroupNetBounded,
     TimeConditionedFNO,
     TimeConditionedResNet,
@@ -79,6 +80,7 @@ MODEL_NAMES = (
     "latent_decoded_energy",
     "latent_periodic_decoded_interaction",
     "latent_physics_anchored_periodic",
+    "latent_physics_anchored_periodic_query_time",
     "resnet",
     "fno",
 )
@@ -87,7 +89,18 @@ LOWER_BOUND = -1.0
 UPPER_BOUND = 1.0
 DEFAULT_TRAIN_TAUS = (0.025, 0.05, 0.1, 0.2)
 DEFAULT_EVAL_TAUS = (0.025, 0.05, 0.075, 0.1, 0.15, 0.2)
-PARAMETER_TOLERANCES = {"resnet": 550, "fno": 300}
+PARAMETER_TOLERANCES = {
+    "resnet": 550,
+    "fno": 300,
+    # The query-time control adds exactly one tau input to the first 64-wide
+    # mobility layer (64 parameters) while retaining the entire physics-aware
+    # energy and RK4 architecture.
+    "latent_physics_anchored_periodic_query_time": 128,
+}
+STRUCTURAL_REFERENCE_PRIORITY = (
+    "latent_physics_anchored_periodic",
+    "latent",
+)
 
 
 def parse_float_list(value):
@@ -778,6 +791,35 @@ def model_config(name, args):
             "interaction_energy": "quadratic_decoded_state_differences",
             "interaction_parameterization": "shared_periodic_distance_stencil",
             "fixed_physical_potential": "(1-u^2)^2/4",
+            "temporal_structure": {
+                "kind": "autonomous_time_homogeneous_gradient_flow",
+                "continuous_cross_tau_semigroup": True,
+                "query_time_conditioning": False,
+            },
+        }
+    if name == "latent_physics_anchored_periodic_query_time":
+        return {
+            "class": "QueryTimeConditionedPhysicsAnchoredPeriodicLatentFlowBounded",
+            "kwargs": {
+                "N": args.N,
+                "m": LOWER_BOUND,
+                "M": UPPER_BOUND,
+                "hidden_V": [64, 64],
+                "hidden_K": [64, 64],
+                "stencil_radius": 3,
+                "interaction_radius": 2,
+                "beta_V": 0.0,
+                "beta_V_floor": args.beta_v_floor,
+            },
+            "interaction_energy": "quadratic_decoded_state_differences",
+            "interaction_parameterization": "shared_periodic_distance_stencil",
+            "fixed_physical_potential": "(1-u^2)^2/4",
+            "temporal_structure": {
+                "kind": "query_time_conditioned_gradient_flow",
+                "continuous_cross_tau_semigroup": False,
+                "query_time_conditioning": "mobility_stencil",
+                "energy_dissipation": "holds for each fixed positive query time",
+            },
         }
     if name == "resnet":
         return {
@@ -807,6 +849,8 @@ def build_model(name, args):
         return PeriodicStencilDecodedInteractionLatentSemigroupNetBounded(**kwargs)
     if name == "latent_physics_anchored_periodic":
         return PhysicsAnchoredPeriodicDecodedInteractionLatentSemigroupNetBounded(**kwargs)
+    if name == "latent_physics_anchored_periodic_query_time":
+        return QueryTimeConditionedPhysicsAnchoredPeriodicLatentFlowBounded(**kwargs)
     if name == "resnet":
         return TimeConditionedResNet(**kwargs)
     if name == "fno":
@@ -1106,6 +1150,7 @@ def run_model(name, args, data, device, provenance):
                 "latent_decoded_energy",
                 "latent_periodic_decoded_interaction",
                 "latent_physics_anchored_periodic",
+                "latent_physics_anchored_periodic_query_time",
             ),
             equal_work_base_ode_steps=(
                 30
@@ -1116,6 +1161,7 @@ def run_model(name, args, data, device, provenance):
                     "latent_decoded_energy",
                     "latent_periodic_decoded_interaction",
                     "latent_physics_anchored_periodic",
+                    "latent_physics_anchored_periodic_query_time",
                 )
                 else None
             ),
@@ -1154,8 +1200,15 @@ def run_model(name, args, data, device, provenance):
 def _parameter_budget_report(names, counts, *, spatial_grid=None):
     report = {name: {"parameter_count": counts[name]} for name in names}
     report["spatial_grid"] = spatial_grid
-    if "latent" not in counts:
-        return {"status": "not_checked_without_latent_reference", "models": report}
+    reference_name = next(
+        (name for name in STRUCTURAL_REFERENCE_PRIORITY if name in counts), None
+    )
+    if reference_name is None:
+        return {
+            "status": "not_checked_without_structural_reference",
+            "models": report,
+        }
+    report["reference_model"] = reference_name
     if spatial_grid is not None and int(spatial_grid) != 64:
         return {
             "status": "recorded_without_enforcement_outside_protocol_N64",
@@ -1163,12 +1216,14 @@ def _parameter_budget_report(names, counts, *, spatial_grid=None):
         }
     for name, tolerance in PARAMETER_TOLERANCES.items():
         if name in counts:
-            report[name]["latent_difference"] = counts[name] - counts["latent"]
+            report[name]["reference_difference"] = (
+                counts[name] - counts[reference_name]
+            )
             report[name]["allowed_absolute_difference"] = tolerance
     report["status"] = (
         "within_protocol_tolerance"
         if all(
-            abs(counts[name] - counts["latent"]) <= tolerance
+            abs(counts[name] - counts[reference_name]) <= tolerance
             for name, tolerance in PARAMETER_TOLERANCES.items()
             if name in counts
         )

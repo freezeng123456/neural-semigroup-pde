@@ -163,6 +163,51 @@ class StencilMLP(nn.Module):
         return out
 
 
+class TimeConditionedStencilMLP(nn.Module):
+    """Periodic stencil MLP with the requested evolution time as input.
+
+    This is intentionally a close sibling of :class:`StencilMLP`: it uses the
+    same periodic receptive field and per-site shared MLP, but appends the
+    positive query time as one constant feature to every spatial patch.  It is
+    useful for controlled *non-semigroup* ablations: a model that uses this
+    layer can retain the same energy and state constraints as an autonomous
+    latent flow while using a different vector field for each requested lag.
+
+    The ``tau`` channel is a query horizon, not an absolute physical clock.
+    Consequently, the family of maps obtained by solving with this layer is
+    not a time-homogeneous semigroup across different query times.
+    """
+
+    def __init__(self, radius=3, hidden_dims=[32, 32]):
+        super().__init__()
+        self.radius = radius
+        # State stencil plus one spatially constant, positive time feature.
+        in_dim = 2 * radius + 2
+        dims = [in_dim] + hidden_dims + [1]
+        layers = []
+        for i in range(len(dims) - 1):
+            layers.append(nn.Linear(dims[i], dims[i + 1]))
+            if i < len(dims) - 2:
+                layers.append(nn.Softplus())
+        self.net = nn.Sequential(*layers)
+
+    def forward(self, z, tau):
+        """Return a periodic, query-time-conditioned field for ``z``.
+
+        Args:
+            z: Latent state of shape ``(B, N)``.
+            tau: Positive scalar or length-``B`` tensor of requested lags.
+        """
+        if z.ndim != 2:
+            raise ValueError(f"z must have shape (B, N), got {tuple(z.shape)}")
+        _batch_size, _n_sites = z.shape
+        r = self.radius
+        z_pad = F.pad(z.unsqueeze(1), (r, r), mode="circular").squeeze(1)
+        patches = z_pad.unfold(1, 2 * r + 1, 1)
+        tau_feature = _broadcast_positive_tau(tau, z).squeeze(1).unsqueeze(-1)
+        return self.net(torch.cat((patches, tau_feature), dim=-1)).squeeze(-1)
+
+
 # ============================================================
 # Latent Semigroup Network
 # ============================================================
@@ -346,6 +391,111 @@ class LatentSemigroupNet(nn.Module):
             u = self.forward(u, tau)
             traj.append(u)
         return torch.stack(traj, dim=0)  # (n_steps+1, B, N)
+
+
+class QueryTimeConditionedLatentFlow(LatentSemigroupNet):
+    """Query-time-conditioned control for :class:`LatentSemigroupNet`.
+
+    This class is the transferable counterpart of
+    :class:`QueryTimeConditionedPhysicsAnchoredPeriodicLatentFlowBounded`.
+    It retains the base model's decoder, learned energy, local interaction,
+    positive mobility, and RK4 solver, but provides the requested evolution
+    time to its mobility network.  It is therefore suitable for testing
+    time-homogeneous semigroup structure on bounded reaction--diffusion
+    systems such as Fisher--KPP without conflating that test with a generic
+    direct-map baseline.
+    """
+
+    latent_dynamics_requires_tau = True
+
+    def __init__(
+        self,
+        N=64,
+        hidden_V=[32, 32],
+        hidden_K=[32, 32],
+        stencil_radius=3,
+        beta_V=0.0,
+        beta_V_floor=0.0,
+        interaction_radius=2,
+    ):
+        super().__init__(
+            N=N,
+            hidden_V=hidden_V,
+            hidden_K=hidden_K,
+            stencil_radius=stencil_radius,
+            beta_V=beta_V,
+            beta_V_floor=beta_V_floor,
+            interaction_radius=interaction_radius,
+        )
+        autonomous_k_net = self.K_net
+        conditioned_k_net = TimeConditionedStencilMLP(
+            radius=stencil_radius, hidden_dims=hidden_K
+        )
+        autonomous_linear = [
+            layer for layer in autonomous_k_net.net if isinstance(layer, nn.Linear)
+        ]
+        conditioned_linear = [
+            layer for layer in conditioned_k_net.net if isinstance(layer, nn.Linear)
+        ]
+        if len(autonomous_linear) != len(conditioned_linear):
+            raise RuntimeError("mobility MLP layouts must match")
+        with torch.no_grad():
+            for index, (source, target) in enumerate(
+                zip(autonomous_linear, conditioned_linear)
+            ):
+                if index == 0:
+                    target.weight[:, :-1].copy_(source.weight)
+                    target.weight[:, -1].zero_()
+                else:
+                    target.weight.copy_(source.weight)
+                if source.bias is not None:
+                    target.bias.copy_(source.bias)
+        self.K_net = conditioned_k_net
+
+    def _dynamics_and_grad(self, z, a_ij, tau):
+        mobility = F.softplus(self.K_net(z, tau)) + 5e-3
+        grad_psi = self.grad_psi(z, a_ij=a_ij)
+        return mobility, grad_psi
+
+    def latent_dynamics(self, z, a_ij=None, *, tau=None):
+        if tau is None:
+            raise ValueError(
+                "query-time-conditioned dynamics require the positive query tau"
+            )
+        if a_ij is None:
+            a_full = F.softplus(torch.mm(self.emb, self.emb.t()))
+            a_ij = a_full * self.interaction_mask
+        mobility, grad_psi = self._dynamics_and_grad(z, a_ij, tau)
+        return -mobility * grad_psi
+
+    def rk4_step(self, z, dt, tau, a_ij=None):
+        f1 = self.latent_dynamics(z, a_ij, tau=tau)
+        f2 = self.latent_dynamics(z + 0.5 * dt * f1, a_ij, tau=tau)
+        f3 = self.latent_dynamics(z + 0.5 * dt * f2, a_ij, tau=tau)
+        f4 = self.latent_dynamics(z + dt * f3, a_ij, tau=tau)
+        z_next = z + dt / 6.0 * (f1 + 2.0 * f2 + 2.0 * f3 + f4)
+        return torch.clamp(z_next, -20.0, 20.0)
+
+    def forward(self, u, tau):
+        z = self.encode(u)
+        a_full = F.softplus(torch.mm(self.emb, self.emb.t()))
+        a_ij = a_full * self.interaction_mask
+        dt = _broadcast_positive_tau(tau, z)[:, 0, :1] / self.ode_steps
+        for _ in range(self.ode_steps):
+            z = self.rk4_step(z, dt, tau, a_ij)
+        return self.decode(z)
+
+    def latent_V_values(self, u, tau):
+        z = self.encode(u)
+        a_full = F.softplus(torch.mm(self.emb, self.emb.t()))
+        a_ij = a_full * self.interaction_mask
+        dt = _broadcast_positive_tau(tau, z)[:, 0, :1] / self.ode_steps
+        values = []
+        for _ in range(self.ode_steps):
+            potential = self.V_net(z.unsqueeze(-1)).squeeze(-1)
+            values.append(potential.square().mean())
+            z = self.rk4_step(z, dt, tau, a_ij)
+        return torch.stack(values).mean()
 
 
 # ============================================================
@@ -903,6 +1053,130 @@ class PhysicsAnchoredPeriodicDecodedInteractionLatentSemigroupNetBounded(
         diff = u.unsqueeze(2) - u.unsqueeze(1)
         grad_interaction = 2.0 * du_dz * (a_ij * diff).sum(dim=2)
         return grad_residual + grad_physical_potential + grad_interaction
+
+
+class QueryTimeConditionedPhysicsAnchoredPeriodicLatentFlowBounded(
+    PhysicsAnchoredPeriodicDecodedInteractionLatentSemigroupNetBounded
+):
+    """Physics-matched query-time control for the autonomous semigroup model.
+
+    The model keeps the winning Allen--Cahn architecture's bounded decoder,
+    fixed double-well potential, learned residual potential, shared periodic
+    decoded-state interaction, positive mobility, and RK4 integration.  The
+    *only* intended structural change is that the mobility also receives the
+    requested horizon ``tau``.  Thus each fixed ``tau`` still yields a
+    dissipative gradient flow, while the family ``Phi_tau`` is no longer the
+    flow of one time-homogeneous autonomous vector field and has no
+    cross-query-time semigroup guarantee.
+
+    This is a sharper attribution control than a generic ResNet or FNO:
+    matching it against the parent class tests whether autonomous temporal
+    composition matters after the physical energy and state representation are
+    already supplied.
+    """
+
+    # Used by the evaluator to request a vector-field snapshot at the actual
+    # query time rather than accidentally evaluating a time-free surrogate.
+    latent_dynamics_requires_tau = True
+
+    def __init__(
+        self,
+        N=64,
+        m=-1.0,
+        M=1.0,
+        hidden_V=[32, 32],
+        hidden_K=[32, 32],
+        stencil_radius=3,
+        beta_V=0.0,
+        beta_V_floor=0.0,
+        interaction_radius=2,
+    ):
+        super().__init__(
+            N=N,
+            m=m,
+            M=M,
+            hidden_V=hidden_V,
+            hidden_K=hidden_K,
+            stencil_radius=stencil_radius,
+            beta_V=beta_V,
+            beta_V_floor=beta_V_floor,
+            interaction_radius=interaction_radius,
+        )
+
+        # Start from exactly the autonomous mobility on the state-stencil
+        # coordinates and initialise only the new tau column to zero.  This
+        # avoids treating a different random initial function as the
+        # semigroup ablation while allowing the time dependence to be learned.
+        autonomous_k_net = self.K_net
+        conditioned_k_net = TimeConditionedStencilMLP(
+            radius=stencil_radius, hidden_dims=hidden_K
+        )
+        autonomous_linear = [
+            layer for layer in autonomous_k_net.net if isinstance(layer, nn.Linear)
+        ]
+        conditioned_linear = [
+            layer for layer in conditioned_k_net.net if isinstance(layer, nn.Linear)
+        ]
+        if len(autonomous_linear) != len(conditioned_linear):
+            raise RuntimeError("mobility MLP layouts must match")
+        with torch.no_grad():
+            for index, (source, target) in enumerate(
+                zip(autonomous_linear, conditioned_linear)
+            ):
+                if index == 0:
+                    target.weight[:, :-1].copy_(source.weight)
+                    target.weight[:, -1].zero_()
+                else:
+                    target.weight.copy_(source.weight)
+                if source.bias is not None:
+                    target.bias.copy_(source.bias)
+        self.K_net = conditioned_k_net
+
+    def _dynamics_and_grad(self, z, a_ij, tau):
+        mobility = F.softplus(self.K_net(z, tau)) + 5e-3
+        grad_psi = self.grad_psi(z, a_ij=a_ij)
+        return mobility, grad_psi
+
+    def latent_dynamics(self, z, a_ij=None, *, tau=None):
+        """Return the query-time-conditioned gradient-flow vector field."""
+        if tau is None:
+            raise ValueError(
+                "query-time-conditioned dynamics require the positive query tau"
+            )
+        if a_ij is None:
+            a_ij = self._interaction_matrix()
+        mobility, grad_psi = self._dynamics_and_grad(z, a_ij, tau)
+        return -mobility * grad_psi
+
+    def rk4_step(self, z, dt, tau, a_ij=None):
+        """Integrate one RK4 step while holding the requested query time fixed."""
+        f1 = self.latent_dynamics(z, a_ij, tau=tau)
+        f2 = self.latent_dynamics(z + 0.5 * dt * f1, a_ij, tau=tau)
+        f3 = self.latent_dynamics(z + 0.5 * dt * f2, a_ij, tau=tau)
+        f4 = self.latent_dynamics(z + dt * f3, a_ij, tau=tau)
+        z_next = z + dt / 6.0 * (f1 + 2.0 * f2 + 2.0 * f3 + f4)
+        return torch.clamp(z_next, -20.0, 20.0)
+
+    def forward(self, u, tau):
+        """Evolve under the vector field selected by the requested ``tau``."""
+        z = self.encode(u)
+        a_ij = self._interaction_matrix()
+        dt = _broadcast_positive_tau(tau, z)[:, 0, :1] / self.ode_steps
+        for _ in range(self.ode_steps):
+            z = self.rk4_step(z, dt, tau, a_ij)
+        return self.decode(z)
+
+    def latent_V_values(self, u, tau):
+        """Collect residual-potential values along the selected query flow."""
+        z = self.encode(u)
+        a_ij = self._interaction_matrix()
+        dt = _broadcast_positive_tau(tau, z)[:, 0, :1] / self.ode_steps
+        values = []
+        for _ in range(self.ode_steps):
+            residual = self.V_net(z.unsqueeze(-1)).squeeze(-1)
+            values.append(residual.square().mean())
+            z = self.rk4_step(z, dt, tau, a_ij)
+        return torch.stack(values).mean()
 
 
 class DecodedInteractionJacobianMobilityLatentSemigroupNetBounded(
