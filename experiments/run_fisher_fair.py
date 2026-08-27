@@ -177,6 +177,9 @@ def _sha256_file(path):
 
 
 def _git_commit():
+    archived_commit = os.environ.get("NEURAL_SEMIGROUP_SOURCE_COMMIT")
+    if archived_commit:
+        return archived_commit
     try:
         completed = subprocess.run(
             ["git", "rev-parse", "HEAD"],
