@@ -188,3 +188,55 @@ with the still-running seed-42 pair, subject to all of the following rules:
 This amendment changes only scheduling, not the scientific comparison or the
 advance decision rule. Results remain reported by seed and are pooled only
 after all three independent paired roots pass integrity checks.
+
+### 7.2 Locked Fisher--KPP confirmation amendment (2026-08-28)
+
+The recovered Allen--Cahn three-seed A/B study meets the advance criterion in
+Section 4. Fisher--KPP can therefore proceed as a **new, independent
+confirmation**, not as a reuse of any timing or checkpoint selected during
+the temporary-resource exploration described below.
+
+The following Fisher protocol is fixed before inspecting any Fisher paired
+locked-test result:
+
+* **Fresh source and evaluator:** use commit `8c48a7f0f2457ebceae7936b3c48dad6fae78663`, which records Fisher model reconstruction and training-source hashes and adds the checkpoint-only evaluator
+  `experiments/evaluate_fisher_kpp_checkpoint.py`. Each formal root archives
+  that exact source tree and hashes the archive.
+* **Fresh seeds and caches:** paired A/B training uses seeds and data seeds
+  `31415`, `271828`, and `161803`. These are distinct from the exploratory
+  Fisher seeds `42`, `137`, and `2718`; each formal pair receives a newly
+  generated, frozen training/validation cache.
+* **PDE and A/B intervention:** 1D periodic Fisher--KPP on `N=64`, `L=10`,
+  `nu=0.1`, reaction rate `r=1`, and reference step `0.005`. A is
+  `latent` (one autonomous generator); B is `latent_query_time` (the same
+  bounded decoder, learned energy, periodic interaction, positive mobility,
+  RK4 budget, initialisation policy, data and optimiser, but query-time
+  mobility conditioning). The 64 additional B parameters are reported rather
+  than hidden.
+* **Training:** variable lags `0.025, 0.05, 0.10, 0.20`; 1,000 training and
+  50 validation trajectories; 100 epochs; batch size 64; Adam `1e-3` with
+  the runner's fixed `1e-5` weight decay; validation every five epochs;
+  `beta_v_floor=0.1`; and all optional auxiliary loss weights zero for both
+  models. The validation-selected checkpoint is frozen before any locked test.
+* **Independent locked test:** create exactly one N=64, 500-trajectory cache
+  with test seed `314163`, reference horizon `4.8`, and the same reference
+  solver. It is generated/reloaded in a cache-preparation root before model
+  evaluation. Each evaluator copies it privately and records source/local
+  cache and checkpoint SHA-256 values before and after inference.
+* **Unseen-lag multi-horizon endpoints:** run only checkpoint-only evaluations
+  at `tau=0.075` and `tau=0.15`, each at horizons `1.2`, `2.4`, and `4.8`.
+  The longest cache is used through immutable prefixes; no test result may
+  select a checkpoint, alter a model, or create/overwrite a cache.
+* **Decision rule:** pool the 18 locked cells as in Section 4. A Fisher
+  transfer replication requires geometric mean `MSE(A)/MSE(B) <= 0.90`, A
+  favoring B in at least two of three seeds, physical-energy monotonicity no
+  worse by more than `0.02`, and lower equal-work composition defect. All
+  cell-level ratios and both numerical-defect semantics are reported even if
+  the criterion fails.
+
+The H20/T4 Fisher runs started before this amendment are explicitly labelled
+**exploratory internal-validation screens**. They use their own training
+caches and validation evaluation only, lack the fresh locked-test protocol
+above, and cannot be pooled with, substituted for, or used to tune the formal
+confirmation. They may be reported separately as resource-utilisation and
+implementation checks, including negative outcomes.
