@@ -199,7 +199,10 @@ the temporary-resource exploration described below.
 The following Fisher protocol is fixed before inspecting any Fisher paired
 locked-test result:
 
-* **Fresh source and evaluator:** use commit `8c48a7f0f2457ebceae7936b3c48dad6fae78663`, which records Fisher model reconstruction and training-source hashes and adds the checkpoint-only evaluator
+* **Fresh source and evaluator:** use the committed source tree containing this
+  amendment (the evaluator implementation is introduced by commit
+  `8c48a7f0f2457ebceae7936b3c48dad6fae78663`). It records Fisher model
+  reconstruction and training-source hashes and adds the checkpoint-only evaluator
   `experiments/evaluate_fisher_kpp_checkpoint.py`. Each formal root archives
   that exact source tree and hashes the archive.
 * **Fresh seeds and caches:** paired A/B training uses seeds and data seeds
