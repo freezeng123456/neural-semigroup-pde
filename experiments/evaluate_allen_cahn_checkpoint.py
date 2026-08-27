@@ -74,6 +74,7 @@ LATENT_MODELS = {
     "latent_decoded_energy",
     "latent_periodic_decoded_interaction",
     "latent_physics_anchored_periodic",
+    "latent_physics_anchored_periodic_query_time",
 }
 
 
@@ -120,6 +121,19 @@ def checkpoint_eval_horizon(args):
     return requested_eval_horizons(args)[0]
 
 
+def evaluation_tau(args):
+    """Return the model step used for locked-test rollout.
+
+    ``fixed_tau`` remains the checkpoint's recorded training-protocol step and
+    the identity of legacy locked caches.  ``eval_tau`` optionally evaluates a
+    variable-time checkpoint at a different, exactly aligned lag without
+    changing the reference trajectories or claiming that the checkpoint was
+    trained at that lag.
+    """
+    configured = getattr(args, "eval_tau", None)
+    return float(args.fixed_tau if configured is None else configured)
+
+
 def horizon_key(horizon):
     """Return a stable JSON/CSV key for one physical horizon."""
     return format(float(horizon), ".15g")
@@ -153,6 +167,16 @@ def build_parser():
     )
     parser.add_argument("--reference-dt", type=float, default=0.005)
     parser.add_argument("--fixed-tau", type=float, default=0.1)
+    parser.add_argument(
+        "--eval-tau",
+        type=float,
+        default=None,
+        help=(
+            "optional positive rollout lag for a variable-time checkpoint; "
+            "fixed-tau still validates the recorded training protocol and "
+            "locked-cache identity"
+        ),
+    )
     horizon_group = parser.add_mutually_exclusive_group()
     horizon_group.add_argument(
         "--eval-horizon",
@@ -206,6 +230,9 @@ def validate_args(args):
             raise ValueError(f"{name} must be finite and strictly positive")
     if not math.isfinite(args.beta_v_floor) or args.beta_v_floor < 0:
         raise ValueError("beta-v-floor must be finite and non-negative")
+    rollout_tau = evaluation_tau(args)
+    if not math.isfinite(rollout_tau) or rollout_tau <= 0:
+        raise ValueError("eval-tau must be finite and strictly positive")
     horizons = requested_eval_horizons(args)
     if not horizons:
         raise ValueError("at least one evaluation horizon is required")
@@ -217,7 +244,7 @@ def validate_args(args):
         raise ValueError("eval-horizons must be strictly increasing")
     for horizon in horizons:
         reference_steps_for_duration(horizon, args.reference_dt)
-        rollout_steps_for_horizon(horizon, args.fixed_tau)
+        rollout_steps_for_horizon(horizon, rollout_tau)
     checkpoint_horizon = checkpoint_eval_horizon(args)
     if not math.isfinite(checkpoint_horizon) or checkpoint_horizon <= 0:
         raise ValueError(
@@ -225,6 +252,7 @@ def validate_args(args):
         )
     reference_steps_for_duration(checkpoint_horizon, args.reference_dt)
     reference_steps_for_duration(args.fixed_tau, args.reference_dt)
+    reference_steps_for_duration(rollout_tau, args.reference_dt)
     if not args.prepare_test_data_only and not args.checkpoint:
         raise ValueError("--checkpoint is required unless --prepare-test-data-only is used")
 
@@ -572,7 +600,8 @@ def _assert_checkpoint_compatible(checkpoint, args):
 
 def _evaluate_one_horizon(model, test_data, args, horizon, device, physical_energy):
     """Evaluate one cache prefix without changing model or cache state."""
-    rollout_steps = rollout_steps_for_horizon(horizon, args.fixed_tau)
+    rollout_tau = evaluation_tau(args)
+    rollout_steps = rollout_steps_for_horizon(horizon, rollout_tau)
     test_trajs = cache_prefix_trajectories(test_data, horizon, args)
     is_cuda = device.type == "cuda"
     if is_cuda:
@@ -583,7 +612,7 @@ def _evaluate_one_horizon(model, test_data, args, horizon, device, physical_ener
         model,
         test_data["test_u0"],
         test_trajs,
-        tau=args.fixed_tau,
+        tau=rollout_tau,
         rollout_steps=rollout_steps,
         device=device,
         model_name=args.model,
@@ -600,7 +629,7 @@ def _evaluate_one_horizon(model, test_data, args, horizon, device, physical_ener
     return {
         "horizon": float(horizon),
         "evaluation": {
-            "tau": args.fixed_tau,
+            "tau": rollout_tau,
             "horizon": float(horizon),
             "rollout_steps": rollout_steps,
             "seconds": evaluation_seconds,
@@ -748,7 +777,7 @@ def evaluate_checkpoint(args):
             "evaluation_mode": "checkpoint_only_locked_test_multi_horizon",
             "evaluation_horizons": list(horizons),
             "evaluation": {
-                "tau": args.fixed_tau,
+                "tau": evaluation_tau(args),
                 "horizons": list(horizons),
                 "seconds": total_seconds,
                 "peak_memory_bytes": max(peak_memories) if peak_memories else None,

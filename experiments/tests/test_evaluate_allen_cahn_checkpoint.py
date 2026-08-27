@@ -9,6 +9,7 @@ import torch
 from experiments.evaluate_allen_cahn_checkpoint import (
     build_parser,
     cache_eval_horizon,
+    evaluation_tau,
     evaluate_checkpoint,
     load_or_generate_locked_test_data,
     requested_eval_horizons,
@@ -272,3 +273,60 @@ def test_multi_horizon_evaluation_never_creates_a_missing_cache(tmp_path):
     with pytest.raises(FileNotFoundError, match="does not exist"):
         evaluate_checkpoint(args)
     assert not cache_path.exists()
+
+
+def test_variable_time_checkpoint_can_be_evaluated_at_an_unseen_aligned_tau(
+    tmp_path,
+):
+    preparation_args = _tiny_multi_args(tmp_path, prepare_test_data_only=True)
+    load_or_generate_locked_test_data(preparation_args, allow_generate=True)
+
+    model_args = SimpleNamespace(N=8, beta_v_floor=0.0)
+    model = build_model("latent_physics_anchored_periodic", model_args)
+    checkpoint = {
+        "epoch": 4,
+        "best_val_mse": 0.2,
+        "model_state_dict": model.state_dict(),
+        "run_metadata": {
+            "model": "latent_physics_anchored_periodic",
+            "model_config": model_config(
+                "latent_physics_anchored_periodic", model_args
+            ),
+            "N": 8,
+            "L": 2.0 * math.pi,
+            "epsilon": 0.1,
+            "reference_dt": 0.01,
+            # This remains the checkpoint's training-protocol lag.
+            "fixed_tau": 0.02,
+            "eval_horizon": 0.04,
+            "data_seed": 7,
+            "provenance": {"source_hashes": _source_hashes()},
+        },
+    }
+    checkpoint_path = tmp_path / "multi-model_best.pt"
+    torch.save(checkpoint, checkpoint_path)
+
+    evaluation_args = build_parser().parse_args(
+        [
+            "--model", "latent_physics_anchored_periodic",
+            "--checkpoint", str(checkpoint_path),
+            "--output-dir", str(tmp_path / "unseen-tau-out"),
+            "--test-cache", str(preparation_args.test_cache),
+            "--device", "cpu", "--test-seed", "19", "--deterministic",
+            "--N", "8", "--L", str(2.0 * math.pi),
+            "--reference-dt", "0.01", "--fixed-tau", "0.02",
+            "--eval-tau", "0.04", "--eval-horizons", "0.04,0.08,0.12",
+            "--n-test", "2", "--beta-v-floor", "0",
+        ]
+    )
+    validate_args(evaluation_args)
+    assert evaluation_tau(evaluation_args) == pytest.approx(0.04)
+    result = evaluate_checkpoint(evaluation_args)
+    assert result["checkpoint"]["protocol_eval_horizon"] == pytest.approx(0.04)
+    assert result["locked_test"]["config"]["fixed_tau"] == pytest.approx(0.02)
+    assert result["evaluation"]["tau"] == pytest.approx(0.04)
+    assert [item["evaluation"]["rollout_steps"] for item in result["evaluations"]] == [
+        1,
+        2,
+        3,
+    ]
