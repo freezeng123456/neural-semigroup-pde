@@ -163,3 +163,28 @@ holds energy structure fixed and tests the additional time-homogeneity claim.
    recovered, so transfer data cannot quietly change the Allen protocol.
 5. Apply the advance criterion before allocating A100-scale compute and choose
    either the broad semigroup paper or the focused Allen--Cahn paper.
+
+### 7.1 Predeclared parallel-replication amendment (2026-08-28)
+
+The seed-42 pair was launched first on T4-B. Before observing its paired
+result, a temporary independent H20 resource became available. To reduce wall
+clock time without making the study adaptive, the already specified seed-137
+and seed-2718 A/B training pairs may be launched on that resource in parallel
+with the still-running seed-42 pair, subject to all of the following rules:
+
+* the architecture, lag schedule, seed list, losses, optimiser, training
+  budget, checkpoint-selection rule and pass/fail criterion above remain
+  exactly unchanged;
+* each pair has a fresh, uniquely named canonical root and its own frozen
+  training/validation cache; it never reads a partial result from another
+  seed;
+* the H20 interpreter/GPU is first accepted by a short smoke test and its
+  runtime fingerprint is recorded in the run card and receipt;
+* locked-test evaluation remains checkpoint-only and is not started until the
+  corresponding training root has passed its artifact contract; and
+* Fisher--KPP remains gated on recovery of the three-seed Allen result. No
+  transfer configuration is selected from partial Allen outcomes.
+
+This amendment changes only scheduling, not the scientific comparison or the
+advance decision rule. Results remain reported by seed and are pooled only
+after all three independent paired roots pass integrity checks.
