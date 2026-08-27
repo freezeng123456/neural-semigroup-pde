@@ -2,16 +2,23 @@
 """Run parameter-matched fixed- or variable-time Fisher--KPP experiments."""
 
 import argparse
+import hashlib
 import json
 import math
 import os
+import platform
 import socket
+import subprocess
 import sys
 import time
+from pathlib import Path
 
 import torch
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+EXPERIMENTS_DIR = Path(__file__).resolve().parent
+REPOSITORY_ROOT = EXPERIMENTS_DIR.parent
+if str(EXPERIMENTS_DIR) not in sys.path:
+    sys.path.insert(0, str(EXPERIMENTS_DIR))
 
 from evaluate import evaluate_full
 from models import (
@@ -88,6 +95,24 @@ def rollout_steps_for_horizon(horizon, tau):
     return steps
 
 
+def reference_steps_for_duration(duration, reference_dt):
+    """Return the exact number of reference-solver steps for ``duration``."""
+    duration = float(duration)
+    reference_dt = float(reference_dt)
+    if not math.isfinite(duration) or duration <= 0:
+        raise ValueError("duration must be finite and strictly positive")
+    if not math.isfinite(reference_dt) or reference_dt <= 0:
+        raise ValueError("reference_dt must be finite and strictly positive")
+    ratio = duration / reference_dt
+    steps = int(round(ratio))
+    if steps <= 0 or not math.isclose(ratio, steps, rel_tol=1e-10, abs_tol=1e-12):
+        raise ValueError(
+            "duration must be an integer multiple of reference_dt; "
+            f"received duration/reference_dt={ratio:.17g}"
+        )
+    return steps
+
+
 def data_config(args):
     return {
         "regime": args.regime,
@@ -102,6 +127,97 @@ def data_config(args):
         "eval_horizon": args.eval_horizon,
         "n_train": args.n_train,
         "n_val": args.n_val,
+    }
+
+
+def model_config(name, args):
+    """Return the complete reconstruction contract for one Fisher model."""
+    latent_kwargs = {
+        "N": args.N,
+        "hidden_V": [64, 64],
+        "hidden_K": [64, 64],
+        "stencil_radius": 3,
+        "interaction_radius": 2,
+        "beta_V": 0.0,
+        "beta_V_floor": args.beta_v_floor,
+    }
+    if name == "latent":
+        return {
+            "class": "LatentSemigroupNet",
+            "kwargs": latent_kwargs,
+            "temporal_structure": temporal_structure_metadata(name),
+        }
+    if name == "latent_query_time":
+        return {
+            "class": "QueryTimeConditionedLatentFlow",
+            "kwargs": latent_kwargs,
+            "temporal_structure": temporal_structure_metadata(name),
+        }
+    if name == "resnet":
+        return {
+            "class": "TimeConditionedResNet",
+            "kwargs": {"N": args.N, "width": 18, "blocks": 3},
+            "temporal_structure": temporal_structure_metadata(name),
+        }
+    if name == "fno":
+        return {
+            "class": "TimeConditionedFNO",
+            "kwargs": {"N": args.N, "width": 16, "modes": 8, "layers": 4},
+            "temporal_structure": temporal_structure_metadata(name),
+        }
+    raise ValueError(f"unsupported model: {name}")
+
+
+def _sha256_file(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _git_commit():
+    try:
+        completed = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=REPOSITORY_ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return completed.stdout.strip() or None
+
+
+def _source_hashes():
+    """Hash the exact runtime sources needed to reconstruct a checkpoint."""
+    paths = {
+        "run_fisher_fair.py": Path(__file__),
+        "models.py": EXPERIMENTS_DIR / "models.py",
+        "training.py": EXPERIMENTS_DIR / "training.py",
+        "evaluate.py": EXPERIMENTS_DIR / "evaluate.py",
+        "pde_solver.py": EXPERIMENTS_DIR / "pde_solver.py",
+        "seed_utils.py": EXPERIMENTS_DIR / "seed_utils.py",
+    }
+    return {
+        name: _sha256_file(path) for name, path in paths.items() if path.exists()
+    }
+
+
+def _device_provenance(device):
+    gpu_name = None
+    if str(device).startswith("cuda"):
+        gpu_name = torch.cuda.get_device_name(0)
+    return {
+        "hostname": socket.gethostname(),
+        "platform": platform.platform(),
+        "python_version": sys.version,
+        "torch_version": torch.__version__,
+        "torch_cuda_version": getattr(torch.version, "cuda", None),
+        "device": str(device),
+        "gpu": gpu_name,
     }
 
 
@@ -166,30 +282,16 @@ def load_or_generate_data(args):
 
 
 def build_model(name, args):
+    config = model_config(name, args)
+    kwargs = config["kwargs"]
     if name == "latent":
-        return LatentSemigroupNet(
-            N=args.N,
-            hidden_V=[64, 64],
-            hidden_K=[64, 64],
-            stencil_radius=3,
-            interaction_radius=2,
-            beta_V=0.0,
-            beta_V_floor=args.beta_v_floor,
-        )
+        return LatentSemigroupNet(**kwargs)
     if name == "latent_query_time":
-        return QueryTimeConditionedLatentFlow(
-            N=args.N,
-            hidden_V=[64, 64],
-            hidden_K=[64, 64],
-            stencil_radius=3,
-            interaction_radius=2,
-            beta_V=0.0,
-            beta_V_floor=args.beta_v_floor,
-        )
+        return QueryTimeConditionedLatentFlow(**kwargs)
     if name == "resnet":
-        return TimeConditionedResNet(N=args.N, width=18, blocks=3)
+        return TimeConditionedResNet(**kwargs)
     if name == "fno":
-        return TimeConditionedFNO(N=args.N, width=16, modes=8, layers=4)
+        return TimeConditionedFNO(**kwargs)
     raise ValueError(f"unsupported model: {name}")
 
 
@@ -240,6 +342,7 @@ def run_model(name, args, data, device):
         **data_config(args),
         "training_seed": args.seed,
         "model": name,
+        "model_config": model_config(name, args),
         "parameter_count": parameter_count,
         "epochs": args.epochs,
         "batch_size": args.batch_size,
@@ -251,6 +354,12 @@ def run_model(name, args, data, device):
             "alpha_rollout": 0.0,
             "alpha_energy": 0.0,
             "alpha_bound": 0.0,
+        },
+        "optimizer": {"name": "Adam", "weight_decay": 1e-5},
+        "provenance": {
+            "git_commit": _git_commit(),
+            "source_hashes": _source_hashes(),
+            "data_cache_sha256": _sha256_file(args.data_cache),
         },
     }
 
@@ -378,6 +487,10 @@ def main(argv=None):
         "torch_version": torch.__version__,
         "config": vars(args),
         "data_generation_config": data["data_generation_config"],
+        "git_commit": _git_commit(),
+        "source_hashes": _source_hashes(),
+        "data_cache_sha256": _sha256_file(args.data_cache),
+        "environment": _device_provenance(device),
         "results": results,
     }
     with open(os.path.join(args.output_dir, "summary.json"), "w", encoding="utf-8") as handle:
