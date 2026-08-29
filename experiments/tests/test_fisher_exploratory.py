@@ -200,13 +200,15 @@ def test_non_autonomous_rate_and_absolute_time_input_are_explicit(tmp_path):
     assert not torch.allclose(stencil(z, 0.0), stencil(z, 0.2))
 
 
-def test_non_autonomous_evaluation_disables_autograd(tmp_path):
-    args = _args(tmp_path, experiment="non-autonomous", omega=1.5)
+def test_non_autonomous_evaluation_disables_autograd_and_chunks_validation(tmp_path):
+    args = _args(tmp_path, experiment="non-autonomous", omega=1.5, eval_batch_size=1)
     observed_grad_states = []
+    observed_batch_sizes = []
 
     class IdentityModel(torch.nn.Module):
         def forward(self, u, tau, *, absolute_time=None):
             observed_grad_states.append(torch.is_grad_enabled())
+            observed_batch_sizes.append(int(u.shape[0]))
             return u
 
     times = torch.tensor([0.0, 0.01, 0.02, 0.03, 0.04])
@@ -223,6 +225,8 @@ def test_non_autonomous_evaluation_disables_autograd(tmp_path):
     assert result["n_valid"] == args.n_val * 2
     assert observed_grad_states
     assert not any(observed_grad_states)
+    assert observed_batch_sizes == [1, 1, 1, 1]
+    assert result["eval_batch_size"] == 1
 
 
 def test_non_autonomous_cache_is_reproducible_and_carries_shared_time_identity(tmp_path):
