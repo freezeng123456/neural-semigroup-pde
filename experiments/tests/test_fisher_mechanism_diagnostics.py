@@ -2,6 +2,8 @@
 
 import json
 from pathlib import Path
+import subprocess
+import sys
 
 import pytest
 import torch
@@ -142,6 +144,23 @@ def test_repeatable_spec_and_short_aliases_are_explicitly_supported(tmp_path):
     assert args.query_taus == (0.02, 0.04)
     assert args.query_horizons == (0.08,)
     assert args.total_horizons == (0.08,)
+
+
+def test_compatibility_runpy_wrapper_resolves_sibling_implementation(tmp_path):
+    wrapper = Path(stable_entry.__file__).resolve()
+    probe = (
+        "import runpy, sys; "
+        f"sys.argv=['compat-wrapper', '--help']; runpy.run_path({str(wrapper)!r}, run_name='__main__')"
+    )
+    completed = subprocess.run(
+        [sys.executable, "-c", probe],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert completed.returncode == 0
+    assert "--checkpoint-spec" in completed.stdout
 
 
 def test_partitions_are_seeded_positive_and_reproducible():
