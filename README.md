@@ -40,6 +40,32 @@ evolution families that remain useful under repeated composition while
 retaining explicit spatial admissibility and, when the generator supports
 them, interpretable bounds, invariants, or dissipation.
 
+## Theorem hierarchy
+
+The active mathematical draft now proves the fixed-grid architecture layer:
+
+- the Dirichlet, homogeneous-Neumann, and Robin endpoint reconstructions are
+  affine retractions onto their stated discrete boundary spaces;
+- the corresponding tangent maps place every hard-mode derivative in the
+  homogeneous boundary space;
+- for fixed finite weights, the autonomous Tanh generator is globally
+  Lipschitz and therefore defines a unique global forward semiflow;
+- that exact flow preserves the selected discrete boundary relation and
+  satisfies the composition law;
+- every explicit Runge--Kutta stage preserves the same affine relation in exact
+  arithmetic;
+- under standard smoothness and stability hypotheses, nonuniform RK4
+  direct-versus-composed defects are fourth order in the largest substep.
+
+These results do not by themselves prove agreement with a continuous PDE.
+The PDE layer additionally requires boundary consistency under mesh
+refinement, method-of-lines convergence, generator matching on a common
+trajectory set, and a stability or one-sided Lipschitz estimate. The derived
+rollout bound keeps those terms separate. See
+[the boundary-admissible theory](boundary_admissible_semigroup_theory.tex)
+and the required
+[PDE theorem card](docs/research/PDE_THEOREM_CARD.md).
+
 ## Current status
 
 This is a research prototype and an active mathematical draft. The repository contains the reviewed/fixed snapshot supplied with the project, including experiments, results, model checkpoints, figures, and paper/presentation sources.
@@ -50,6 +76,11 @@ The major-revision branch now resolves the review's central formulation and impl
 - learned-energy and optional physical-energy diagnostics use distinct result fields;
 - the transfer theorem now uses explicit projection/reconstruction maps and continuous Grönwall comparison, with numerical integration errors added separately;
 - the former universality statement is replaced by a proved componentwise error bound for architecture-compatible generators;
+- the boundary-family code now has a matching finite-dimensional theorem for
+  affine boundary invariance, global autonomous flow, RK stage preservation,
+  and conditional RK4 composition convergence;
+- a one-sided stability--generator-consistency estimate identifies the extra
+  hypothesis needed to turn generator error into a long-horizon PDE bound;
 - strict reference-time alignment is enforced in both evaluation and training-time validation;
 - a checkpoint-compatible `beta_V_floor` option supports genuinely coercive new configurations;
 - unified seeding, an architecture-only loss mode, and focused regression tests have been added;
@@ -71,6 +102,12 @@ not establish a stable prediction advantage, and conservative/no-flux,
 multidimensional, and irregular-geometry transfer remain open. Archived
 numerical values are retained for provenance and must not be mixed across
 formal and exploratory evidence classes.
+
+Before broadening to another PDE, complete the theorem card. In particular,
+Cahn--Hilliard requires a conservative mobility, Burgers requires a
+transport/skew component, and an explicitly time-dependent PDE requires an
+evolution family \(U(t,s)\) or an augmented clock state rather than the
+one-parameter autonomous-semigroup claim.
 
 See [`REVIEW_AND_FIX_REPORT.md`](REVIEW_AND_FIX_REPORT.md) and [`review_mathematical_rigor.md`](review_mathematical_rigor.md) for the detailed audit.
 

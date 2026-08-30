@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{bm}
+\usepackage{array}
 
 % remark environment (not provided by siamart)
 \newcounter{remark}[section]
@@ -57,6 +58,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\cS}{\mathcal{S}}
 \newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\cK}{\mathcal{K}}
 \newcommand{\cE}{\mathcal{E}}
@@ -76,7 +78,7 @@
 \maketitle
 
 \begin{abstract}
-We formulate operator learning for autonomous evolution PDEs at the semigroup level: rather than learning only a one-step predictor, the learner is a family \(\Phi_{\theta}(\cdot,\tau)\) intended for repeated composition. We derive discrete stability estimates showing how trajectory-level approximation error and composition defect accumulate. We then construct a spatially finite-dimensional, temporally continuous latent dissipative architecture for which interior-state invariance, exact composition of the continuous flow, and dissipation of an induced learned energy hold conditionally on global existence. A revised transfer theorem separates the exact semidiscrete flow, the exact latent flow, spatial reconstruction, and numerical time integration; a componentwise error bound replaces the previous unqualified universality claim. Archived benchmark values are retained as pre-revision results, but they require rerunning under strict time alignment before supporting comparative accuracy claims. Fisher--KPP and Allen--Cahn are in-class reaction--diffusion examples, whereas viscous Burgers is reported only as an out-of-class transport stress test.
+We formulate operator learning for autonomous evolution PDEs at the semigroup level: rather than learning only a one-step predictor, the learner is a family \(\Phi_{\theta}(\cdot,\tau)\) intended for repeated composition. We derive discrete stability estimates showing how trajectory-level approximation error and composition defect accumulate. We then construct two complementary finite-dimensional architectures. A bounded latent gradient flow provides interior-state invariance, exact composition of the continuous flow, and dissipation of an induced learned energy, conditionally on global existence. A hard affine boundary reconstruction and tangent autonomous Tanh generator define a globally well-posed forward semiflow that exactly preserves the tested discrete Dirichlet, Neumann, or Robin relation; explicit Runge--Kutta stages preserve the same relation. We derive a fourth-order nonuniform RK4 composition-defect estimate and a one-sided stability--generator-consistency bound that separates spatial, generator, initial-state, and time-integration errors. The PDE-level conclusion remains conditional on a PDE-specific theorem card: boundary consistency, method-of-lines convergence, physical invariants, and stability are not consequences of autonomy alone. Archived benchmark values are retained as pre-revision results, but they require rerunning under strict time alignment before supporting comparative accuracy claims.
 \end{abstract}
 
 \section{Introduction and semigroup formulation}\label{sec:introduction}
@@ -92,6 +94,7 @@ Thus
 \begin{equation}\label{eq:semigroup-law}
 \cS_0 = \mathrm{Id}_X, \qquad \cS_{t+s}=\cS_t\circ \cS_s, \qquad t,s\ge 0.
 \end{equation}
+The autonomy assumption is essential to this one-parameter formulation.  If the generator depends explicitly on absolute time, the correct object is generally an evolution family \(U(t,s)\) satisfying a two-time cocycle law, as recorded in \eqref{eq:evolution-family-law}; it is not a semigroup on the unaugmented state.
 
 Our focus is on problems for which the semigroup satisfies two additional structural properties.
 
@@ -120,14 +123,15 @@ Depending on the PDE, \(\cE\) may be an energy, entropy, free energy, or another
 Standard operator-learning formulations often emphasize short-time prediction. Our focus is different: we seek a learned evolution family intended for repeated composition in time. The approximation target is therefore the operator family \((\cS_t)_{t\ge 0}\) itself. This emphasis matters because a learned one-step map may fit short-time data and yet accumulate structural errors under repeated composition: small violations of invariance, dissipation, or semigroup consistency can be amplified when the model is used as a time-marching solver. The problem we address is to construct a learned family \((\PhiT(\cdot,\tau))_{\tau\ge 0}\) that approximates \((\cS_t)_{t\ge 0}\) while retaining \eqref{eq:maximum-principle} and \eqref{eq:dissipation}. In other words, the objective is not only local prediction accuracy but a learned evolution family that can be composed in time without destroying the PDE's structural laws.
 
 \paragraph{Contributions.}
-This paper makes four contributions.
+This paper makes five contributions.
 First, it formulates structure-preserving operator learning at the nonlinear semigroup level: rather than learning an isolated one-step predictor, the target is an evolution family \(\Phi_{\theta}(\cdot,\tau)\) intended for repeated composition, with the PDE semigroup \((\cS_t)_{t\ge 0}\) as the reference object (Definition~\ref{def:main-learner}).
 Second, it derives error-propagation estimates that decompose the two sources of error under repeated composition — trajectory-level approximation and semigroup defect — showing that both enter discrete time-stepping stability in complementary ways (Section~\ref{sec:repeated-composition}).
 Third, it constructs a semidiscrete latent dissipative architecture (Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param}) for which, assuming the latent ODE generates a global flow, invariance of the interior state set $(m,M)^N$, exact semigroup composition of the continuous flow, and dissipation of an induced learned energy hold by construction.
-Fourth, Theorem~\ref{thm:transfer} gives a conditional exact-flow comparison with explicit projection and reconstruction maps, while Proposition~\ref{prop:numerical-transfer} adds numerical integration errors separately. Proposition~\ref{prop:universal-approx} supplies a proved error bound for architecture-compatible generators; density of the implemented restricted component classes remains open.
+Fourth, \Cref{sec:boundary-semiflow} proves that the implemented hard affine reconstruction and tangent autonomous Tanh generator define a globally well-posed finite-dimensional semiflow preserving the tested discrete boundary relation.  It also proves explicit-RK boundary preservation, an RK4 partition-defect estimate, and a one-sided stability--consistency bound.
+Fifth, \Cref{thm:transfer} gives a conditional exact-flow comparison with explicit projection and reconstruction maps, while \Cref{prop:numerical-transfer} adds numerical integration errors separately. \Cref{prop:universal-approx} supplies a proved error bound for architecture-compatible generators; density of the implemented restricted component classes remains open.
 The layered character of the framework is deliberate: PDE, exact semidiscrete, exact latent, numerical, and empirical statements are not interchangeable.
 
-Section~\ref{sec:related-work} positions the present work relative to the literature. Section~\ref{sec:repeated-composition} develops the discrete stability and error-propagation analysis. Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param} construct the latent architecture and its neural parametrization. Section~\ref{sec:benchmark} documents numerical experiments. Sections~\ref{sec:transfer}--\ref{sec:expressivity} give the conditional transfer and architecture-compatible component bounds.
+\Cref{sec:related-work} positions the present work relative to the literature. \Cref{sec:repeated-composition} develops the discrete stability and error-propagation analysis. Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param} construct the latent architecture and its neural parametrization. \Cref{sec:benchmark} documents numerical experiments. \Cref{sec:boundary-semiflow} derives the boundary-admissible finite-dimensional theory and the PDE-dependent theorem obligations. Sections~\ref{sec:transfer}--\ref{sec:expressivity} give the conditional transfer and architecture-compatible component bounds.
 
 \section{Relation to existing work}\label{sec:related-work}
 
@@ -1050,10 +1054,11 @@ with $\varepsilon_{\mathrm{match}}\to 0$ as the network widths increase, for gen
 \end{corollary}
 
 \fi
+\input{boundary_admissible_semigroup_theory}
 \input{major_revision_theory}
 
 \section{Research agenda and open problems}\label{sec:analytical-questions}
-The formulation above separates four analytical tasks that are often conflated in one-step operator learning. The first is an approximation question for nonlinear semigroups. The second is an architecture question: which structural properties can be enforced exactly by the model class itself? The third is a long-time composition question, concerned with how local approximation and semigroup defects accumulate under repeated composition. The fourth is a transfer question, asking how continuous PDE-level structure is inherited by finite-dimensional semidiscrete models.
+The formulation above separates five analytical tasks that are often conflated in one-step operator learning. The first is an approximation question for nonlinear semigroups. The second is an architecture question: which structural properties can be enforced exactly by the model class itself? The third is a boundary-domain question: whether the discrete affine relation is consistent and stable for the intended continuous trace or flux condition. The fourth is a long-time composition question, concerned with how local approximation and numerical composition defects accumulate. The fifth is a transfer question, asking how continuous PDE-level structure is inherited by finite-dimensional semidiscrete and learned generators.
 
 \begin{problem}[Semigroup expressivity]\label{prob:expressivity}
 Establish simultaneous component-density results for the exact shared-potential, Gram-constrained interaction, fixed-graph, and local-mobility classes. Proposition~\ref{prop:universal-approx} propagates component errors but does not prove that these errors can be driven to zero for arbitrary gradient-type generators; extending the architecture to non-gradient generators is a further problem.
@@ -1068,7 +1073,7 @@ Develop long-time error estimates for learned evolution families whose semigroup
 \end{problem}
 
 \begin{problem}[Continuous-to-discrete structural transfer]\label{prob:transfer}
-Relate the PDE-level maximum principle and Lyapunov dissipation law of \((\cS_t)_{t\ge 0}\) to finite-dimensional admissible sets, discrete energies, and generator-matching conditions. Such a result would provide the missing bridge between the continuous structural specification in Definition~\ref{def:main-learner} and the semidiscrete latent-flow guarantees of Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param}. Theorem~\ref{thm:transfer} provides a first result in this direction under the assumption of a consistent semidiscrete discretization.
+For each PDE, verify the theorem card described in \Cref{sec:boundary-semiflow}: continuous well-posedness and the correct temporal object, boundary-domain consistency, method-of-lines convergence, reconstruction stability, a common invariant trajectory set, generator matching, and a stability constant. \Cref{thm:generator-stability,cor:layered-pde-rollout,thm:transfer} provide conditional bridges once these PDE-specific hypotheses are supplied; they do not establish those hypotheses for every benchmark.
 \end{problem}
 
 \section{Conclusion}
@@ -1076,12 +1081,16 @@ This paper formulates structure-preserving semigroup learning for nonlinear evol
 
 \emph{First}, we derive a discrete stability analysis (Proposition~\ref{prop:error-decomposition}) that reveals how one-step approximation error and semigroup defect combine under repeated composition. This analysis (Section~\ref{sec:repeated-composition}) shows that the semigroup defect enters the long-time error bound with a factor of~$n$ (the number of composition steps), making semigroup consistency a first-order concern for long-time rollout, not merely a formal property.
 
-\emph{Second}, we construct a semidiscrete latent dissipative architecture (Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param}) for which invariance of the interior state set $(m,M)^N$, exact semigroup composition, and dissipation of an induced discrete energy are \emph{exact} architectural guarantees---holding for every parameter~$\theta$ and requiring no training penalty---provided the latent ODE generates a global flow (Proposition~\ref{prop:global-flow}). These guarantees are verified by construction at the finite-dimensional level and are independent of training quality.
+\emph{Second}, we construct a semidiscrete latent dissipative architecture (Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param}) for which invariance of the interior state set $(m,M)^N$, exact semigroup composition, and dissipation of an induced discrete energy are \emph{exact} architectural guarantees---holding for every parameter~$\theta$ and requiring no training penalty---provided the latent ODE generates a global flow (\Cref{prop:global-flow}). These guarantees are verified by construction at the finite-dimensional level and are independent of training quality.
 
-\emph{Third}, the revised Transfer Theorem (Theorem~\ref{thm:transfer}) compares the exact latent and exact semidiscrete flows by continuous Gronwall, with explicit projection, reconstruction, norm, and spatial-convergence hypotheses. Proposition~\ref{prop:numerical-transfer} adds numerical time-integration errors without calling them spatial errors or exact semigroup defects. Proposition~\ref{prop:universal-approx} then gives a componentwise generator bound for architecture-compatible targets; it is deliberately not a universal approximation theorem.
+\emph{Third}, for the separate boundary-family architecture, \Cref{thm:boundary-global-semiflow} proves global existence, uniqueness, exact boundary invariance, and the forward semigroup law on each tested discrete affine boundary space. \Cref{prop:explicit-rk-boundary} proves exact-arithmetic stage preservation, while \Cref{thm:rk4-composition-defect} shows that the autonomous RK4 direct-versus-composed discrepancy is a fourth-order numerical quantity under stated hypotheses.
+
+\emph{Fourth}, \Cref{thm:generator-stability} proves that generator matching yields a rollout estimate only after a one-sided stability bound is supplied.  The contractive case prevents indefinite growth of the generator-error contribution.  \Cref{cor:layered-pde-rollout} then separates initial-state, generator, time-integration, reconstruction, and spatial errors.
+
+\emph{Fifth}, the revised Transfer Theorem (\Cref{thm:transfer}) compares the exact latent and exact semidiscrete flows by continuous Gronwall, with explicit projection, reconstruction, norm, common-trajectory, and spatial-convergence hypotheses. \Cref{prop:numerical-transfer} adds numerical time-integration errors without calling them spatial errors or exact semigroup defects. \Cref{prop:universal-approx} then gives a componentwise generator bound for architecture-compatible targets; it is deliberately not a universal approximation theorem.
 
 \emph{Gap between architecture-level and PDE-level guarantees.}
-The finite-dimensional guarantees concern the exact latent flow and the induced learned energy. They do not imply exact properties of RK4, decay of the physical PDE energy, or PDE accuracy without the hypotheses of Theorem~\ref{thm:transfer}. Component density remains open even within the restricted gradient class (Problem~\ref{prob:expressivity}), while transport-dominated systems such as Burgers require an extended generator class. The archived $\beta_V=0$ runs are also outside the coercive global-flow theorem; the revised code exposes a fixed positive floor for new theorem-covered runs.
+The finite-dimensional guarantees concern either the exact bounded latent flow or the exact boundary-tangent flow; the current implementations do not yet combine every state bound, physical invariant, boundary family, and stability estimate in one architecture.  These results do not imply physical-energy decay or PDE accuracy without the hypotheses of \Cref{thm:generator-stability,thm:transfer}.  Dirichlet, Neumann, and Robin reconstruction is proved for the stated discrete endpoint equations, not as a mesh-convergence theorem for arbitrary continuous boundaries. Component density remains open even within the restricted gradient class (\Cref{prob:expressivity}), while Cahn--Hilliard and transport-dominated systems require conservative or skew extensions. The archived $\beta_V=0$ runs are also outside the coercive global-flow theorem; the revised code exposes a fixed positive floor for new theorem-covered runs.
 
 \emph{Directions for future work.}
 Several concrete extensions merit investigation:

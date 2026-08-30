@@ -384,7 +384,7 @@ def residual_rms(residual: torch.Tensor) -> torch.Tensor:
 
 
 class BoundaryFamilyFlow(nn.Module):
-    """A local neural ODE with orthogonal boundary and temporal interventions."""
+    """A local neural ODE with separate boundary and temporal interventions."""
 
     def __init__(
         self,

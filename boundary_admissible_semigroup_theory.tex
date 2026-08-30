@@ -1,0 +1,305 @@
+\section{Boundary-admissible neural semiflows}\label{sec:boundary-semiflow}
+
+The bounded latent gradient-flow construction of Sections~\ref{sec:latent-architecture}--\ref{sec:neural-param} and the boundary-family construction studied in the Wave~2 experiments enforce different structures.  The former enforces an interior pointwise state range and a learned-energy law, whereas the latter enforces a prescribed discrete spatial boundary relation.  This section gives the finite-dimensional theory for the boundary-family construction and then identifies the additional PDE-dependent hypotheses needed for an accuracy statement.  In particular, no result below treats a spatial boundary condition as a consequence of the abstract semigroup law.
+
+\subsection{Temporal object and scope}
+
+For an autonomous initial-boundary-value problem, uniqueness of forward solutions gives a one-parameter solution semiflow $(S_t)_{t\geq 0}$ satisfying $S_{t+s}=S_t\circ S_s$.  By contrast, an explicitly time-dependent equation
+\begin{equation}\label{eq:nonautonomous-pde}
+\partial_t u=\mathcal F(t,u)
+\end{equation}
+generally defines a two-parameter evolution family $U(t,s)$ with
+\begin{equation}\label{eq:evolution-family-law}
+U(t,r)U(r,s)=U(t,s),\qquad s\leq r\leq t,
+\end{equation}
+not a one-parameter semigroup on the unaugmented state.  A clock variable can make such a system autonomous on an enlarged state space, but the resulting state and comparison problem are different.  Thus autonomy is a structural hypothesis, rather than a property shared by all time-dependent PDEs.
+
+\subsection{Affine boundary geometry on a fixed grid}
+
+Fix $N\geq3$, a grid spacing $\Delta x>0$, and the Euclidean grid space $X_h=\R^N$ with coordinates $u_0,\ldots,u_{N-1}$.  Each boundary family implemented in \texttt{BoundaryFamilySpec} can be written as
+\begin{equation}\label{eq:affine-boundary-set}
+M_{B,h}:=\{u\in X_h:C_{B,h}u=b_{B,h}\},\qquad \mathrm{T}_uM_{B,h}=\ker C_{B,h}\quad (u\in M_{B,h}).
+\end{equation}
+For nonhomogeneous Dirichlet data, the two equations are
+\begin{equation}\label{eq:dirichlet-discrete-boundary}
+C_{D,h}u=(u_0,u_{N-1})^\top,\qquad b_{D,h}=(g_L,g_R)^\top.
+\end{equation}
+For the homogeneous Neumann family, the code uses first-order outward one-sided differences,
+\begin{equation}\label{eq:neumann-discrete-boundary}
+C_{N,h}u=\left(-\frac{u_1-u_0}{\Delta x},\frac{u_{N-1}-u_{N-2}}{\Delta x}\right)^\top,\qquad b_{N,h}=0.
+\end{equation}
+For Robin data with common coefficients $\alpha,\beta$ and endpoint values $\gamma_L,\gamma_R$, it uses
+\begin{equation}\label{eq:robin-discrete-boundary}
+C_{R,h}u=\left(\left(\alpha+\frac{\beta}{\Delta x}\right)u_0-\frac{\beta}{\Delta x}u_1,\left(\alpha+\frac{\beta}{\Delta x}\right)u_{N-1}-\frac{\beta}{\Delta x}u_{N-2}\right)^\top,
+\end{equation}
+with $b_{R,h}=(\gamma_L,\gamma_R)^\top$ and the nondegeneracy condition
+\begin{equation}\label{eq:robin-nondegenerate}
+\alpha+\frac{\beta}{\Delta x}\neq0.
+\end{equation}
+Equations~\eqref{eq:neumann-discrete-boundary} and \eqref{eq:robin-discrete-boundary} are definitions of the tested discrete endpoint relations.  A claim that they converge to a continuous Neumann or Robin trace requires a separate boundary-consistency estimate as $\Delta x\to0$.
+The algebraic statements below require only $N\geq3$; the frozen Wave~2 experiment configuration additionally requires an odd $N\geq5$.
+
+Let $\Pi_{B,h}:X_h\to X_h$ denote the affine state reconstruction implemented by \texttt{project\_state}, and let $Q_{B,h}:X_h\to X_h$ denote the homogeneous tangent reconstruction implemented by \texttt{project\_tangent}.  For Robin data, set
+\begin{equation}\label{eq:robin-reconstruction-constants}
+q_h:=\frac{\beta}{\Delta x},\qquad d_h:=\alpha+q_h,\qquad \rho_h:=\frac{q_h}{d_h}.
+\end{equation}
+The endpoint formulas are
+\begin{equation}\label{eq:boundary-retraction-formulas}
+\begin{aligned}
+&\text{Dirichlet:} &&(\Pi_{D,h}u)_0=g_L,\qquad (\Pi_{D,h}u)_{N-1}=g_R,\\
+&&&(Q_{D,h}v)_0=(Q_{D,h}v)_{N-1}=0,\\
+&\text{Neumann:} &&(\Pi_{N,h}u)_0=u_1,\qquad (\Pi_{N,h}u)_{N-1}=u_{N-2},\\
+&&&(Q_{N,h}v)_0=v_1,\qquad (Q_{N,h}v)_{N-1}=v_{N-2},\\
+&\text{Robin:} &&(\Pi_{R,h}u)_0=\frac{\gamma_L+q_hu_1}{d_h},\qquad (\Pi_{R,h}u)_{N-1}=\frac{\gamma_R+q_hu_{N-2}}{d_h},\\
+&&&(Q_{R,h}v)_0=\rho_hv_1,\qquad (Q_{R,h}v)_{N-1}=\rho_hv_{N-2}.
+\end{aligned}
+\end{equation}
+All unlisted interior entries are unchanged.
+
+\begin{proposition}[Affine boundary and tangent retractions]\label{prop:boundary-retractions}
+For each family in \eqref{eq:dirichlet-discrete-boundary}--\eqref{eq:robin-discrete-boundary}, subject to \eqref{eq:robin-nondegenerate}, the maps in \eqref{eq:boundary-retraction-formulas} satisfy
+\begin{equation}\label{eq:boundary-retraction-identities}
+C_{B,h}\Pi_{B,h}u=b_{B,h},\qquad C_{B,h}Q_{B,h}v=0,
+\end{equation}
+for all $u,v\in X_h$.  Moreover,
+\begin{equation}\label{eq:boundary-retraction-idempotence}
+\Pi_{B,h}^2=\Pi_{B,h},\qquad Q_{B,h}^2=Q_{B,h},\qquad \Pi_{B,h}u-\Pi_{B,h}v=Q_{B,h}(u-v).
+\end{equation}
+Consequently, $\operatorname{Range}(\Pi_{B,h})=M_{B,h}$ and $\operatorname{Range}(Q_{B,h})=\ker C_{B,h}$.
+\end{proposition}
+
+\begin{proof}
+For Dirichlet data, substitution of the reconstructed endpoint values gives $C_{D,h}\Pi_{D,h}u=b_{D,h}$, while zero tangent endpoints give $C_{D,h}Q_{D,h}v=0$.  For Neumann data, the reconstructed endpoint and its adjacent interior value coincide, so both one-sided differences in \eqref{eq:neumann-discrete-boundary} vanish.  For Robin data, the left endpoint obeys
+\begin{equation*}
+d_h(\Pi_{R,h}u)_0-q_hu_1=\gamma_L,
+\end{equation*}
+and the right endpoint obeys the analogous identity; replacing $\gamma_L,\gamma_R$ by zero proves the tangent relation.  A second reconstruction changes neither an admissible endpoint nor an already homogeneous tangent endpoint, proving idempotence.  Finally, subtracting two affine endpoint formulas cancels the boundary data and leaves exactly the corresponding homogeneous formulas.  The range statements follow from \eqref{eq:boundary-retraction-identities}--\eqref{eq:boundary-retraction-idempotence}.
+\end{proof}
+
+\begin{remark}[Retraction, not orthogonal projection]\label{rem:boundary-not-orthogonal}
+Neither $\Pi_{B,h}$ nor $Q_{B,h}$ is asserted to be orthogonal in the Euclidean or a mesh-weighted inner product.  The properties used below are affine reconstruction, idempotence, and tangency.  Calling these maps orthogonal projections would require an additional inner-product calculation that the implementation neither needs nor supplies.
+\end{remark}
+
+\subsection{Global boundary-preserving neural semiflow}
+
+Fix any positive scalar map-duration argument.  In hard autonomous mode, its value is ignored after API validation.  Combine the zero-padded three-point patch-extraction map, the constant temporal feature, and the shared pointwise Tanh multilayer perceptron into a raw vector field $G_{\theta,h}:X_h\to X_h$.  The implemented boundary-compatible vector field is
+\begin{equation}\label{eq:hard-autonomous-generator}
+F_{\theta,h}(u):=Q_{B,h}G_{\theta,h}(\Pi_{B,h}u).
+\end{equation}
+The duration requested from the integrator does not enter $G_{\theta,h}$ in autonomous mode.
+
+\begin{theorem}[Boundary-admissible global neural semiflow]\label{thm:boundary-global-semiflow}
+Fix the grid, a boundary family satisfying the conditions above, and finite network parameters $\theta$.  Suppose $G_{\theta,h}$ is the finite Tanh network implemented by \texttt{BoundaryFamilyFlow} in hard autonomous mode, namely \texttt{enforcement\_mode=hard} and \texttt{temporal\_mode=autonomous}.  Then:
+\begin{enumerate}[label=(\roman*)]
+    \item $F_{\theta,h}$ is globally Lipschitz on $X_h$;
+    \item for every $u_0\in X_h$, the ODE
+    \begin{equation}\label{eq:boundary-neural-ode}
+    \dot u=F_{\theta,h}(u),\qquad u(0)=u_0,
+    \end{equation}
+    has a unique global forward solution;
+    \item $M_{B,h}$ is invariant: if $u_0\in M_{B,h}$, then $u(t)\in M_{B,h}$ for all $t\geq0$;
+    \item the exact solution maps $\Phi_t^{\theta,h}u_0:=u(t;u_0)$ restrict to a forward semigroup on $M_{B,h}$:
+    \begin{equation}\label{eq:boundary-exact-semigroup}
+    \Phi_0^{\theta,h}=\operatorname{Id},\qquad \Phi_{t+s}^{\theta,h}=\Phi_t^{\theta,h}\circ\Phi_s^{\theta,h},\qquad s,t\geq0.
+    \end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Write $\Pi_{B,h}u=Q_{B,h}u+r_{B,h}$, as follows from \eqref{eq:boundary-retraction-idempotence}.  Zero-padded patch extraction is a finite-dimensional linear map, the added autonomous feature is constant, and Tanh is globally $1$-Lipschitz.  Let $U_h$ be the three-point patch operator, let $W_1,W_2,W_3$ be the combined linear maps induced by the three shared MLP layers on the stacked grid features, and take all operator norms in the corresponding Euclidean product spaces.  One admissible bound is
+\begin{equation}\label{eq:boundary-generator-lipschitz}
+\operatorname{Lip}(F_{\theta,h})\leq \lVert Q_{B,h}\rVert^2\lVert W_3\rVert\lVert W_2\rVert\lVert W_1\rVert\lVert U_h\rVert=:L_{\theta,h}<\infty.
+\end{equation}
+Biases and the constant temporal feature cancel when two states are subtracted.  This proves global Lipschitz continuity.
+
+Picard--Lindel\"of gives a unique local solution.  Global Lipschitz continuity also gives linear growth,
+\begin{equation*}
+\lVert F_{\theta,h}(u)\rVert\leq \lVert F_{\theta,h}(0)\rVert+L_{\theta,h}\lVert u\rVert,
+\end{equation*}
+so Gronwall's inequality bounds the solution on every finite time interval.  Hence no finite-time escape is possible, and the solution extends to every $t\geq0$.
+
+By \eqref{eq:boundary-retraction-identities} and \eqref{eq:hard-autonomous-generator},
+\begin{equation*}
+C_{B,h}F_{\theta,h}(u)=0
+\end{equation*}
+for every $u$.  Along a solution beginning in $M_{B,h}$,
+\begin{equation*}
+\frac{d}{dt}\bigl(C_{B,h}u(t)-b_{B,h}\bigr)=C_{B,h}F_{\theta,h}(u(t))=0,
+\end{equation*}
+and the initial residual is zero.  This proves invariance.  Finally, the time-shifted curve $u(t+s;u_0)$ and the curve $u(t;u(s;u_0))$ solve the same autonomous ODE with the same initial value at time zero.  Uniqueness yields \eqref{eq:boundary-exact-semigroup}.
+\end{proof}
+
+\begin{remark}[Fixed-grid and fixed-parameter guarantee]\label{rem:fixed-grid-guarantee}
+The constant in \eqref{eq:boundary-generator-lipschitz} may depend on the trained weights, grid, boundary reconstruction, and chosen norm.  Thus \Cref{thm:boundary-global-semiflow} is a global theorem for each fixed finite-dimensional model, not a stability estimate uniform in mesh refinement or training.  It also proves neither a maximum principle nor physical-energy decay for the Wave~2 Tanh generator; those are separate PDE-specific structures.
+\end{remark}
+
+\begin{remark}[Query-time conditioning]\label{rem:query-time-family}
+In query-time mode, the requested duration $\tau$ enters the raw field, producing a family $F_{\theta,h}^{[\tau]}$.  For each fixed scalar $\tau$, standard ODE theory may define a flow generated by that fixed vector field, but the requested maps for different durations are not guaranteed to be restrictions of one common generator.  If durations vary across a batch, the implementation evaluates distinct conditioned fields sample by sample; the batched operation is likewise not one common semiflow.  Hence the architecture does not imply $\Phi_{t+s}=\Phi_t\circ\Phi_s$ across queries.  Moreover, a requested duration is not an absolute clock or starting time, so this conditioning does not by itself implement the evolution family in \eqref{eq:evolution-family-law}.
+\end{remark}
+
+\subsection{Boundary preservation and composition error of explicit Runge--Kutta maps}
+
+\begin{proposition}[Affine boundary preservation by explicit Runge--Kutta methods]\label{prop:explicit-rk-boundary}
+Let $F:X_h\to\ker C_{B,h}$ and let $u_n\in M_{B,h}$.  For any explicit Runge--Kutta method with stages
+\begin{equation}\label{eq:explicit-rk-stages}
+Y_i=u_n+\delta\sum_{j<i}a_{ij}K_j,\qquad K_i=F(Y_i),
+\end{equation}
+and update
+\begin{equation}\label{eq:explicit-rk-update}
+u_{n+1}=u_n+\delta\sum_i b_iK_i,
+\end{equation}
+every stage and the update belong to $M_{B,h}$ in exact arithmetic.  In particular, the RK4 stages and output used by \texttt{BoundaryFamilyFlow} preserve all three discrete boundary families.
+\end{proposition}
+
+\begin{proof}
+Proceed by induction over the stages.  Since $C_{B,h}u_n=b_{B,h}$ and $C_{B,h}K_j=0$, \eqref{eq:explicit-rk-stages} gives $C_{B,h}Y_i=b_{B,h}$ whenever the preceding stages are defined.  The same calculation in \eqref{eq:explicit-rk-update} gives $C_{B,h}u_{n+1}=b_{B,h}$.
+\end{proof}
+
+\begin{remark}[Role of the repeated reconstruction]\label{rem:rk-reconstruction-role}
+On admissible data and in exact arithmetic, the additional \texttt{project\_state} calls at each RK4 stage are identities by \Cref{prop:boundary-retractions,prop:explicit-rk-boundary}.  They therefore do not alter the classical RK4 update on $M_{B,h}$.  In floating-point computation they remove accumulated endpoint residuals, and for an inadmissible incoming state the initial reconstruction places the computation on $M_{B,h}$.  Boundary preservation does not imply that the resulting finite-step map is an exact semigroup.
+\end{remark}
+
+For a partition $\pi=(\delta_0,\ldots,\delta_{m-1})$ with $\delta_j>0$ and $\sum_j\delta_j=T$, let $\Psi_{\pi}^{\theta,h}$ denote the composition of RK4 steps for the autonomous field \eqref{eq:hard-autonomous-generator}, and let $|\pi|=\max_j\delta_j$.
+
+\begin{theorem}[RK4 error and nonuniform composition defect]\label{thm:rk4-composition-defect}
+Suppose $F_{\theta,h}$ is $C^5$ on a neighborhood of the relevant states up to time $T$, its relevant derivatives are bounded there, and the exact solution, all numerical step values, and all RK stage values remain in that neighborhood for $|\pi|\leq\delta_0$.  Let $R_\delta$ denote one RK4 step and assume the one-step stability estimate
+\begin{equation}\label{eq:rk4-one-step-stability}
+\lVert R_\delta(v)-R_\delta(w)\rVert\leq(1+C_{\mathrm{stab}}\delta)\lVert v-w\rVert
+\end{equation}
+holds there for $0<\delta\leq\delta_0$.  Then there is a constant $C_T$, independent of the particular partition, such that
+\begin{equation}\label{eq:rk4-nonuniform-global-error}
+\lVert\Psi_{\pi}^{\theta,h}(u)-\Phi_T^{\theta,h}(u)\rVert\leq C_T\sum_{j=0}^{m-1}\delta_j^5\leq C_TT|\pi|^4.
+\end{equation}
+If $\pi$ and $\rho$ are two direct or composed partitions of the same total time $T$, then
+\begin{equation}\label{eq:rk4-partition-defect}
+\lVert\Psi_{\pi}^{\theta,h}(u)-\Psi_{\rho}^{\theta,h}(u)\rVert\leq C_TT\bigl(|\pi|^4+|\rho|^4\bigr).
+\end{equation}
+For the fixed finite Tanh field of \Cref{thm:boundary-global-semiflow}, the required smoothness holds; the estimate remains a finite-time, fixed-model statement.
+\end{theorem}
+
+\begin{proof}
+Classical RK4 consistency gives a local truncation error bounded by $C\delta_j^5$.  Stability of one step gives an error recursion of the form
+\begin{equation*}
+e_{j+1}\leq(1+C\delta_j)e_j+C\delta_j^5,
+\end{equation*}
+where $e_j$ is the error at the $j$th partition point.  Discrete Gronwall yields the first inequality in \eqref{eq:rk4-nonuniform-global-error}.  Since $\delta_j^5\leq |\pi|^4\delta_j$ and $\sum_j\delta_j=T$, the second inequality follows.  Both numerical paths in \eqref{eq:rk4-partition-defect} approximate the same exact state $\Phi_T^{\theta,h}(u)$, so the triangle inequality and \eqref{eq:rk4-nonuniform-global-error} prove the result.  By \Cref{rem:rk-reconstruction-role}, the affine stage reconstructions are identities on the exact-arithmetic stages and do not reduce the order in this setting.
+\end{proof}
+
+\begin{remark}[Absolute and relative defects]\label{rem:relative-defect-denominator}
+Equation~\eqref{eq:rk4-partition-defect} controls an absolute defect.  A relative defect inherits the same order only when its normalizing denominator is bounded below by a specified $\kappa>0$.  If the metric instead divides by $\max\{d,\delta_{\mathrm{floor}}\}$, the immediate bound is \eqref{eq:rk4-partition-defect} divided by $\delta_{\mathrm{floor}}$.  A small relative number without its denominator is not an independent theorem.  For query-time fields, solver refinement removes the RK error but may leave a nonzero mismatch between flows generated by different $F_{\theta,h}^{[\tau]}$.
+\end{remark}
+
+\subsection{Generator consistency, stability, and PDE accuracy}
+
+Exact composition can hold for the flow of an incorrect generator.  The missing accuracy bridge is therefore a consistency estimate relative to a target method-of-lines generator together with a stability estimate.
+
+\begin{theorem}[One-sided stability--consistency estimate]\label{thm:generator-stability}
+Let $(X_h,\langle\cdot,\cdot\rangle_h)$ be a finite-dimensional Hilbert space.  Let $A_h$ be a target semidiscrete PDE generator and $F_{\theta,h}$ a learned autonomous generator.  Suppose the two solutions $x'=A_h(x)$ and $y'=F_{\theta,h}(y)$ remain in a common set $V_h$ on $[0,T]$, and assume
+\begin{equation}\label{eq:one-sided-lipschitz}
+\langle F_{\theta,h}(v)-F_{\theta,h}(w),v-w\rangle_h\leq\omega_h\lVert v-w\rVert_h^2,
+\end{equation}
+for $v,w\in V_h$, together with the generator consistency bound
+\begin{equation}\label{eq:generator-consistency}
+\sup_{v\in V_h}\lVert F_{\theta,h}(v)-A_h(v)\rVert_h\leq\varepsilon_{\mathrm{gen},h}.
+\end{equation}
+Define
+\begin{equation}\label{eq:chi-omega}
+\chi_\omega(t):=\begin{cases}(e^{\omega t}-1)/\omega,&\omega\neq0,\\ t,&\omega=0.\end{cases}
+\end{equation}
+Then
+\begin{equation}\label{eq:stability-consistency-bound}
+\lVert y(t)-x(t)\rVert_h\leq e^{\omega_ht}\lVert y(0)-x(0)\rVert_h+\varepsilon_{\mathrm{gen},h}\chi_{\omega_h}(t),\qquad 0\leq t\leq T.
+\end{equation}
+In particular, if $\omega_h=-\lambda_h<0$ and the initial values agree, then
+\begin{equation}\label{eq:contractive-generator-bound}
+\lVert y(t)-x(t)\rVert_h\leq\frac{\varepsilon_{\mathrm{gen},h}}{\lambda_h}(1-e^{-\lambda_ht})\leq\frac{\varepsilon_{\mathrm{gen},h}}{\lambda_h}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Set $e=y-x$.  Adding and subtracting $F_{\theta,h}(x)$, and using \eqref{eq:one-sided-lipschitz}--\eqref{eq:generator-consistency}, gives
+\begin{equation*}
+\frac12\frac{d}{dt}\lVert e\rVert_h^2=\langle F_{\theta,h}(y)-F_{\theta,h}(x),e\rangle_h+\langle F_{\theta,h}(x)-A_h(x),e\rangle_h\leq\omega_h\lVert e\rVert_h^2+\varepsilon_{\mathrm{gen},h}\lVert e\rVert_h.
+\end{equation*}
+At times when $\lVert e\rVert_h>0$, division by $\lVert e\rVert_h$ yields
+\begin{equation*}
+\frac{d}{dt}\lVert e\rVert_h\leq\omega_h\lVert e\rVert_h+\varepsilon_{\mathrm{gen},h}.
+\end{equation*}
+The same inequality holds in the upper-Dini-derivative sense when $e=0$.  Multiplication by $e^{-\omega_ht}$ and integration proves \eqref{eq:stability-consistency-bound}; substituting $\omega_h=-\lambda_h$ proves \eqref{eq:contractive-generator-bound}.
+\end{proof}
+
+\begin{corollary}[Layered PDE rollout bound]\label{cor:layered-pde-rollout}
+Let $S_t^h$ denote the exact flow of the target semidiscrete system $\dot x=A_h(x)$, and assume it exists through $P_hu_0$ on $[0,T]$.  Let $P_h:X\to X_h$ and $I_h:X_h\to X$ satisfy $\lVert I_hv\rVert_X\leq C_I\lVert v\rVert_h$.  Assume that the target PDE semiflow and exact semidiscrete flow obey
+\begin{equation}\label{eq:pde-spatial-error-boundary-section}
+\sup_{0\leq t\leq T}\lVert I_hS_t^h(P_hu_0)-S_tu_0\rVert_X\leq\varepsilon_{\mathrm{space}}(h),
+\end{equation}
+and that a numerical learned state $\widehat y(T)$ satisfies $\lVert\widehat y(T)-y(T)\rVert_h\leq\eta_{\mathrm{time}}(T)$.  Assume the exact learned trajectory $y(t)$ and $x(t)=S_t^h(P_hu_0)$ remain in the common set $V_h$ and satisfy the hypotheses of \Cref{thm:generator-stability}.  Then
+\begin{equation}\label{eq:full-layered-error-bound}
+\lVert I_h\widehat y(T)-S_Tu_0\rVert_X\leq\varepsilon_{\mathrm{space}}(h)+C_I\left(\eta_{\mathrm{time}}(T)+e^{\omega_hT}\lVert y(0)-P_hu_0\rVert_h+\varepsilon_{\mathrm{gen},h}\chi_{\omega_h}(T)\right).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Insert $I_hy(T)$ and $I_hS_T^h(P_hu_0)$, use the triangle inequality and reconstruction stability, apply \eqref{eq:stability-consistency-bound}, and then use \eqref{eq:pde-spatial-error-boundary-section}.
+\end{proof}
+
+\begin{remark}[What the current boundary architecture does not guarantee]\label{rem:boundary-current-missing-stability}
+The hard autonomous Tanh architecture satisfies \Cref{thm:boundary-global-semiflow}, but its current parametrization does not impose \eqref{eq:one-sided-lipschitz}, \eqref{eq:generator-consistency}, a maximum principle, mass conservation, or decay of a specified physical energy.  Consequently, exact boundary compatibility and a small numerical composition defect do not by themselves make the terms on the right-hand side of \eqref{eq:full-layered-error-bound} small.  This explains how a model can be composition-consistent yet consistently approximate the wrong PDE dynamics.
+\end{remark}
+
+\subsection{Why the required structure depends on the PDE}
+
+Autonomy supplies the temporal composition law, but useful invariants and stability constants come from the generator.  The following elementary identities show why different PDE classes require different neural-generator geometries.
+
+\begin{proposition}[Generator geometries for dissipation and conservation]\label{prop:pde-generator-geometries}
+Let $E_h\in C^1(X_h)$.
+\begin{enumerate}[label=(\roman*)]
+    \item If $F_h(u)=-M_h(u)\nabla E_h(u)$ with $M_h(u)$ symmetric positive semidefinite, then
+    \begin{equation}\label{eq:l2-gradient-dissipation}
+    \frac{d}{dt}E_h(u(t))=-\nabla E_h(u)^\top M_h(u)\nabla E_h(u)\leq0.
+    \end{equation}
+    \item Let $D_h\mathbf{1}=0$.  If $F_h(u)=-D_h^\top M_h(u)D_h\nabla E_h(u)$ with $M_h(u)$ symmetric positive semidefinite, then both
+    \begin{equation}\label{eq:conservative-gradient-identities}
+    \frac{d}{dt}\mathbf{1}^\top u(t)=0,\qquad \frac{d}{dt}E_h(u(t))=-\bigl(D_h\nabla E_h(u)\bigr)^\top M_h(u)D_h\nabla E_h(u)\leq0
+    \end{equation}
+    hold.
+    \item If $F_h(u)=(J_h(u)-K_h(u))\nabla E_h(u)$ with $J_h(u)^\top=-J_h(u)$ and $K_h(u)$ symmetric positive semidefinite, then
+    \begin{equation}\label{eq:skew-dissipative-identity}
+    \frac{d}{dt}E_h(u(t))=-\nabla E_h(u)^\top K_h(u)\nabla E_h(u)\leq0.
+    \end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+For each case, differentiate $E_h(u(t))$ and substitute the stated generator.  In part~(ii),
+\begin{equation*}
+\mathbf{1}^\top F_h(u)=-(D_h\mathbf{1})^\top M_h(u)D_h\nabla E_h(u)=0.
+\end{equation*}
+In part~(iii), $z^\top J_hz=0$ for every $z$ because $J_h$ is skew-symmetric.  The remaining quadratic forms have the claimed signs by positive semidefiniteness.
+\end{proof}
+
+\Cref{prop:pde-generator-geometries} gives architecture-level algebra once the correct discrete operators have been chosen, but choosing them is PDE-specific.  A reaction--diffusion problem may use an $L^2$ gradient or invariant-region structure; Cahn--Hilliard requires a conservative $H^{-1}$-type operator as in \eqref{eq:conservative-gradient-identities}; transport--diffusion requires a conservative or skew component in addition to diffusion; and a nonautonomous problem requires \eqref{eq:evolution-family-law} or an augmented clock state.  Boundary conditions enter the domains, reconstructions, flux operators, and summation-by-parts identities used in each of these constructions.
+
+\begin{table}[htbp]
+\centering
+\caption{PDE-dependent theoretical obligations before an experiment can support a transfer claim.  Entries describe the required analysis, not guarantees already supplied by the current Wave~2 model.}
+\label{tab:pde-theory-obligations}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.16\textwidth}>{\raggedright\arraybackslash}p{0.16\textwidth}>{\raggedright\arraybackslash}p{0.24\textwidth}>{\raggedright\arraybackslash}p{0.31\textwidth}@{}}
+\hline
+Problem class & Temporal object & PDE-specific law & Required discrete or neural structure \\
+\hline
+Fisher--KPP / reaction--diffusion & Forward semiflow & Positivity or invariant interval under compatible data; boundary domain & Boundary-tangent diffusion and a proved invariant-region or comparison mechanism \\
+Allen--Cahn & Forward semiflow & Physical free-energy decay & $L^2$ gradient structure matched to the discrete physical energy \\
+Cahn--Hilliard & Forward semiflow & Mass conservation and free-energy decay & Conservative $-D_h^\top M_hD_h$ mobility with compatible no-flux or periodic operators \\
+Viscous Burgers & Forward semiflow & Conservative transport plus viscous dissipation & Conservative/skew transport component and a dissipative diffusion component \\
+Explicitly time-dependent PDE & Evolution family $U(t,s)$ & Start-time and clock dependence & Two-time model or an autonomous model on a correctly augmented state \\
+\hline
+\end{tabular}
+\end{table}
+
+The project therefore uses a PDE theorem card before promoting a new equation to a transfer experiment.  The card must specify the continuous state space and boundary domain, the correct temporal object, well-posedness and stability, the physical invariant or Lyapunov law, the semidiscrete generator and boundary consistency, reconstruction stability, generator matching, time-integration error, and a falsification rule.  The operational template is recorded in \texttt{docs/research/PDE\_THEOREM\_CARD.md}.
+
+\begin{remark}[Claim hierarchy]\label{rem:boundary-claim-hierarchy}
+The results of this section have three distinct logical levels.  First, \Cref{prop:boundary-retractions,thm:boundary-global-semiflow,prop:explicit-rk-boundary} are unconditional fixed-grid architecture results for the stated implementation.  Second, \Cref{thm:rk4-composition-defect} is a numerical-analysis result under explicit smoothness and stability hypotheses.  Third, \Cref{thm:generator-stability,cor:layered-pde-rollout} becomes a PDE-accuracy statement only after a PDE-specific method-of-lines, common trajectory set, spatial convergence estimate, and generator error have been supplied.  None of these levels permits the inference ``small composition defect implies small prediction error.''
+\end{remark}
