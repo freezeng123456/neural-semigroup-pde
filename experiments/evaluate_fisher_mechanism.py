@@ -40,18 +40,13 @@ decision artifacts.
 from __future__ import annotations
 
 import argparse
-import csv
 import copy
 import hashlib
 import json
 import math
 import os
-import platform
 from pathlib import Path
-import socket
-import subprocess
 import sys
-import tempfile
 import time
 from collections.abc import Mapping, Sequence
 from typing import Any
@@ -67,6 +62,17 @@ if str(EXPERIMENTS_DIR) not in sys.path:
     sys.path.insert(0, str(EXPERIMENTS_DIR))
 
 from models import QueryTimeConditionedLatentFlow, _broadcast_positive_tau  # noqa: E402
+from experiment_artifacts import (  # noqa: E402
+    assert_new_exploratory_root,
+    atomic_write_csv,
+    atomic_write_json,
+    device_provenance,
+    git_commit,
+    json_safe,
+    resolve_path,
+    sha256_file,
+    verify_unchanged,
+)
 
 
 EXPLORATORY_SCHEMA_VERSION = 1
@@ -307,21 +313,11 @@ def normalize_diagnostic_args(args: argparse.Namespace) -> None:
             args.total_horizons = DEFAULT_TOTAL_HORIZONS
 
 
-_FORBIDDEN_OUTPUT_COMPONENTS = {
-    "formal",
-    "locked",
-    "results",
-    "results-recovery",
-    "results_recovery",
-    "checkpoints",
-    "source.tar.gz",
-}
-
-
 def _resolve_path(path: os.PathLike[str] | str, label: str) -> Path:
-    # Source archives are valid read-only inputs; the output-root guard below
-    # separately rejects an output path named ``source.tar.gz``.
-    return Path(path).expanduser().resolve()
+    """Compatibility alias for the shared exploratory artifact contract."""
+
+    del label
+    return resolve_path(path)
 
 
 def _assert_new_output_root(
@@ -329,67 +325,23 @@ def _assert_new_output_root(
     *,
     input_paths: Sequence[os.PathLike[str] | str] = (),
 ) -> Path:
-    """Reject formal roots and roots that could overlap an input artifact."""
+    """Compatibility alias for the shared new-root guard."""
 
-    raw_output = Path(output_dir).expanduser()
-    if raw_output.is_symlink():
-        raise ValueError(
-            "output directory must be a new ordinary directory, not a symlink: "
-            f"{raw_output}"
-        )
-    resolved = _resolve_path(output_dir, "output directory")
-    parts = {part.lower() for part in resolved.parts}
-    if parts.intersection(_FORBIDDEN_OUTPUT_COMPONENTS):
-        raise ValueError(
-            "output directory must be a new exploratory root, not a "
-            f"formal/locked/results/checkpoint path: {resolved}"
-        )
-    for raw_input in input_paths:
-        input_path = _resolve_path(raw_input, "input")
-        if resolved == input_path:
-            raise ValueError("output directory may not equal an input artifact")
-        if resolved in input_path.parents or input_path in resolved.parents:
-            raise ValueError(
-                "output directory must not be an ancestor/descendant of an input "
-                f"artifact: output={resolved}, input={input_path}"
-            )
-    if resolved.exists():
-        # Every invocation gets a fresh canonical root.  Refusing reuse also
-        # prevents an old receipt/result symlink from redirecting an atomic
-        # output write into a checkpoint, cache, or another run.
-        raise ValueError(
-            "output directory must be a new exploratory root; refusing to reuse "
-            f"existing path: {resolved}"
-        )
-    return resolved
+    return assert_new_exploratory_root(output_dir, input_paths=input_paths)
 
 
 def _sha256_file(path: os.PathLike[str] | str) -> str:
-    digest = hashlib.sha256()
-    with open(path, "rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+    return sha256_file(path)
 
 
 def _git_commit() -> str | None:
-    try:
-        completed = subprocess.run(
-            ["git", "rev-parse", "HEAD"],
-            cwd=REPOSITORY_ROOT,
-            check=True,
-            capture_output=True,
-            text=True,
-            timeout=10,
-        )
-    except (OSError, subprocess.SubprocessError):
-        return None
-    return completed.stdout.strip() or None
+    return git_commit(REPOSITORY_ROOT)
 
 
 def _runtime_source_hashes() -> dict[str, str]:
     paths = {
         "evaluate_fisher_mechanism.py": Path(__file__).resolve(),
+        "experiment_artifacts.py": EXPERIMENTS_DIR / "experiment_artifacts.py",
         "models.py": EXPERIMENTS_DIR / "models.py",
         "evaluate.py": EXPERIMENTS_DIR / "evaluate.py",
         "run_fisher_fair.py": EXPERIMENTS_DIR / "run_fisher_fair.py",
@@ -404,65 +356,18 @@ def _runtime_source_hashes() -> dict[str, str]:
 
 
 def _device_provenance(device: torch.device) -> dict[str, Any]:
-    gpu = None
-    if device.type == "cuda":
-        gpu = torch.cuda.get_device_name(device)
-    return {
-        "hostname": socket.gethostname(),
-        "platform": platform.platform(),
-        "python_version": sys.version,
-        "torch_version": torch.__version__,
-        "torch_cuda_version": getattr(torch.version, "cuda", None),
-        "device": str(device),
-        "gpu": gpu,
-    }
+    return device_provenance(device)
 
 
 def _json_safe(value: Any) -> Any:
-    """Convert tensors/numpy values and non-finite floats to strict JSON."""
-
-    if torch.is_tensor(value):
-        return _json_safe(value.detach().cpu().tolist())
-    if isinstance(value, np.ndarray):
-        return _json_safe(value.tolist())
-    if isinstance(value, np.generic):
-        return _json_safe(value.item())
-    if isinstance(value, Mapping):
-        return {str(key): _json_safe(item) for key, item in value.items()}
-    if isinstance(value, (list, tuple)):
-        return [_json_safe(item) for item in value]
-    if isinstance(value, float):
-        return value if math.isfinite(value) else None
-    return value
+    return json_safe(value)
 
 
 def _write_json(path: os.PathLike[str] | str, payload: Mapping[str, Any]) -> None:
-    destination = Path(path)
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    temporary = None
-    try:
-        with tempfile.NamedTemporaryFile(
-            mode="w",
-            encoding="utf-8",
-            prefix=f".{destination.name}.",
-            suffix=".tmp",
-            dir=destination.parent,
-            delete=False,
-        ) as handle:
-            temporary = Path(handle.name)
-            json.dump(_json_safe(payload), handle, indent=2, sort_keys=True, allow_nan=False)
-            handle.write("\n")
-            handle.flush()
-            os.fsync(handle.fileno())
-        os.replace(temporary, destination)
-    finally:
-        if temporary is not None and temporary.exists():
-            temporary.unlink()
+    atomic_write_json(path, payload)
 
 
 def _write_metrics_csv(path: os.PathLike[str] | str, rows: Sequence[Mapping[str, Any]]) -> None:
-    destination = Path(path)
-    destination.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = (
         "diagnostic",
         "control",
@@ -476,33 +381,7 @@ def _write_metrics_csv(path: os.PathLike[str] | str, rows: Sequence[Mapping[str,
         "metric",
         "value",
     )
-    temporary = None
-    try:
-        with tempfile.NamedTemporaryFile(
-            mode="w",
-            encoding="utf-8",
-            newline="",
-            prefix=f".{destination.name}.",
-            suffix=".tmp",
-            dir=destination.parent,
-            delete=False,
-        ) as handle:
-            temporary = Path(handle.name)
-            writer = csv.DictWriter(handle, fieldnames=fieldnames)
-            writer.writeheader()
-            for row in rows:
-                writer.writerow(
-                    {
-                        key: _json_safe(row.get(key))
-                        for key in fieldnames
-                    }
-                )
-            handle.flush()
-            os.fsync(handle.fileno())
-        os.replace(temporary, destination)
-    finally:
-        if temporary is not None and temporary.exists():
-            temporary.unlink()
+    atomic_write_csv(path, rows, fieldnames=fieldnames)
 
 
 def _duration_steps(duration: float, reference_dt: float) -> int:
@@ -1385,13 +1264,7 @@ def _validate_input_unchanged(
     before: str,
     label: str,
 ) -> str:
-    after = _sha256_file(path)
-    if before != after:
-        raise RuntimeError(
-            f"{label} changed during checkpoint-only evaluation: "
-            f"before={before}, after={after}"
-        )
-    return after
+    return verify_unchanged(path, before, label)
 
 
 def evaluate_diagnostics(args: argparse.Namespace) -> dict[str, Any]:
