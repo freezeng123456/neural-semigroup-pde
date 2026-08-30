@@ -96,6 +96,30 @@ def _actual_command() -> str:
     return shlex.join([sys.executable, str(Path(__file__).resolve()), *sys.argv[1:]])
 
 
+def _source_provenance() -> dict[str, Any]:
+    """Identify either a Git worktree or a hash-verified archive snapshot."""
+
+    commit = git_commit(REPOSITORY_ROOT) or os.environ.get(
+        "SEMIGROUP_SOURCE_COMMIT"
+    )
+    archive_sha256 = os.environ.get("SEMIGROUP_SOURCE_ARCHIVE_SHA256")
+    if commit is not None and (
+        len(commit) != 40
+        or any(character not in "0123456789abcdef" for character in commit)
+    ):
+        raise ValueError("source commit must be a lowercase 40-character Git SHA")
+    if archive_sha256 is not None and (
+        len(archive_sha256) != 64
+        or any(character not in "0123456789abcdef" for character in archive_sha256)
+    ):
+        raise ValueError("source archive SHA-256 must be a lowercase 64-character digest")
+    return {
+        "git_commit": commit,
+        "source_archive_sha256": archive_sha256,
+        "source_hashes": source_hashes(SOURCE_PATHS),
+    }
+
+
 def _run_identity(
     *, seed: int, boundary_mode: str, temporal_mode: str, smoke_only: bool
 ) -> dict[str, Any]:
@@ -127,8 +151,7 @@ def _write_manifest(
         "schema_version": 1,
         **identity,
         "created_at_unix": time.time(),
-        "git_commit": git_commit(REPOSITORY_ROOT),
-        "source_hashes": source_hashes(SOURCE_PATHS),
+        **_source_provenance(),
         "runtime": runtime,
         "artifacts": artifacts,
     }
@@ -155,8 +178,7 @@ def prepare_data(output_dir: str, *, smoke_only: bool) -> dict[str, Any]:
         "actual_command": _actual_command(),
         "pid": os.getpid(),
         "config": config.as_dict(),
-        "git_commit": git_commit(REPOSITORY_ROOT),
-        "source_hashes": source_hashes(SOURCE_PATHS),
+        **_source_provenance(),
     }
     atomic_write_json(root / "run_card.json", run_card)
     atomic_write_json(root / "config.json", config.as_dict())
@@ -201,7 +223,7 @@ def prepare_data(output_dir: str, *, smoke_only: bool) -> dict[str, Any]:
         "cache_sha256": cache_sha256,
         "results_sha256": sha256_file(root / "results.json"),
         "manifest_sha256": sha256_file(manifest_path),
-        "source_hashes": source_hashes(SOURCE_PATHS),
+        **_source_provenance(),
     }
     atomic_write_json(root / "receipt.json", receipt)
     (root / "done").write_text("passed\n", encoding="utf-8")
@@ -358,8 +380,7 @@ def run_cell(args: argparse.Namespace) -> dict[str, Any]:
         "data_cache": {"path": str(cache_path), "sha256": cache_before},
         "checkpoint_selection": "minimum validation one-step MSE only",
         "test_metrics_used_for_selection": False,
-        "git_commit": git_commit(REPOSITORY_ROOT),
-        "source_hashes": source_hashes(SOURCE_PATHS),
+        **_source_provenance(),
         "runtime": runtime,
     }
     atomic_write_json(root / "run_card.json", run_card)
@@ -391,6 +412,7 @@ def run_cell(args: argparse.Namespace) -> dict[str, Any]:
         "parameter_count": model_parameter_count,
         "initial_parameter_fingerprint": initial_fingerprint,
         "data_cache_sha256": cache_before,
+        **_source_provenance(),
         "config": actual_config,
         "model_state_dict": best_state,
     }
@@ -447,8 +469,7 @@ def run_cell(args: argparse.Namespace) -> dict[str, Any]:
         "actual_command": _actual_command(),
         "pid": os.getpid(),
         "runtime": runtime,
-        "git_commit": git_commit(REPOSITORY_ROOT),
-        "source_hashes": source_hashes(SOURCE_PATHS),
+        **_source_provenance(),
         "parameter_count": model_parameter_count,
         "initial_parameter_fingerprint": initial_fingerprint,
         "selected_epoch": best_epoch,

@@ -31,7 +31,6 @@ from experiments.boundary_semigroup import (  # noqa: E402
 from experiments.experiment_artifacts import (  # noqa: E402
     atomic_write_csv,
     atomic_write_json,
-    git_commit,
     reserve_exploratory_root,
     sha256_file,
     source_hashes,
@@ -250,6 +249,7 @@ def _verify_cell(run_dir: Path) -> dict[str, Any]:
         "hard_boundary_pass": bool(results["hard_boundary_pass"]),
         "data_cache_sha256": str(input_hashes["before"]),
         "git_commit": str(receipt.get("git_commit")),
+        "source_archive_sha256": receipt.get("source_archive_sha256"),
         "source_hashes": receipt.get("source_hashes"),
         "run_dir": str(run_dir.resolve()),
         "metrics": rows,
@@ -292,6 +292,7 @@ def aggregate(wave_root: str | Path, output_dir: str | Path) -> dict[str, Any]:
     parameter_counts = {cell["parameter_count"] for cell in cells}
     cache_hashes = {cell["data_cache_sha256"] for cell in cells}
     git_commits = {cell["git_commit"] for cell in cells}
+    archive_hashes = {cell["source_archive_sha256"] for cell in cells}
     serialized_source_hashes = {
         json.dumps(cell["source_hashes"], sort_keys=True) for cell in cells
     }
@@ -314,6 +315,15 @@ def aggregate(wave_root: str | Path, output_dir: str | Path) -> dict[str, Any]:
         raise ValueError("cells did not share one unchanged data cache")
     if len(git_commits) != 1 or len(serialized_source_hashes) != 1:
         raise ValueError("cells were not run from one identical source snapshot")
+    source_commit = next(iter(git_commits))
+    source_archive_sha256 = next(iter(archive_hashes)) if len(archive_hashes) == 1 else None
+    if (
+        len(source_commit) != 40
+        or any(character not in "0123456789abcdef" for character in source_commit)
+        or source_archive_sha256 is None
+        or len(source_archive_sha256) != 64
+    ):
+        raise ValueError("archive-based cells lack complete source provenance")
     if not paired_initialization:
         raise ValueError("the four cells do not share initialization within each seed")
 
@@ -393,7 +403,8 @@ def aggregate(wave_root: str | Path, output_dir: str | Path) -> dict[str, Any]:
         "controls": {
             "single_parameter_count": next(iter(parameter_counts)),
             "single_data_cache_sha256": next(iter(cache_hashes)),
-            "single_git_commit": next(iter(git_commits)),
+            "single_git_commit": source_commit,
+            "single_source_archive_sha256": source_archive_sha256,
             "single_source_snapshot": True,
             "paired_initialization_within_seed": paired_initialization,
         },
@@ -438,7 +449,8 @@ def aggregate(wave_root: str | Path, output_dir: str | Path) -> dict[str, Any]:
         "experiment": config.experiment,
         "evidence_class": "exploratory_full_aggregate",
         "created_at_unix": time.time(),
-        "git_commit": git_commit(REPOSITORY_ROOT),
+        "git_commit": source_commit,
+        "source_archive_sha256": source_archive_sha256,
         "source_hashes": source_hashes(SOURCE_PATHS),
         "input_cell_receipts": {
             str(run_dir.resolve()): sha256_file(run_dir / "receipt.json")
