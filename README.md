@@ -61,8 +61,8 @@ The major-revision branch now resolves the review's central formulation and impl
 The frozen boundary-family Wave 2 exploratory matrix is now complete: 54/54
 full cells cover nonhomogeneous Dirichlet, homogeneous Neumann, and Robin
 conditions; hard, penalty, and unconstrained enforcement; autonomous and
-query-time temporal rules; and three paired seeds. All hard boundary gates and
-all three preregistered temporal rules passed. See
+query-time temporal rules; and three paired seeds. All hard boundary gates
+passed, and each boundary family passed the preregistered temporal rule. See
 [`docs/research/BOUNDARY_FAMILY_SEMIGROUP_WAVE2_RESULTS.md`](docs/research/BOUNDARY_FAMILY_SEMIGROUP_WAVE2_RESULTS.md).
 
 The repository is not yet publication-ready. Wave 2 is exploratory and tests

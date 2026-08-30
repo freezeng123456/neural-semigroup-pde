@@ -5,8 +5,9 @@ Date: 2026-08-30
 ## Outcome
 
 The frozen 54-cell Wave 2 matrix completed successfully. All three spatial
-boundary families passed the hard boundary implementation gate, and all three
-passed the preregistered autonomous-versus-query-time temporal rule. The
+boundary families passed the hard boundary implementation gate, and each
+boundary-family test passed the preregistered autonomous-versus-query-time
+temporal rule. The
 result supports a clearer two-part research object:
 
 \[
