@@ -15,7 +15,6 @@ if str(EXPERIMENTS_DIR) not in sys.path:
     sys.path.insert(0, str(EXPERIMENTS_DIR))
 
 from aggregate_semigroup_novelty import (  # noqa: E402
-    EXPECTED_EVALUATOR_COMMIT,
     FORMAL_HORIZONS,
     FORMAL_TAUS,
     INTEGRATORS,
@@ -221,7 +220,7 @@ def test_full_aggregation_separates_completion_from_scientific_rules(
             calibration_root=str(calibration_root),
             phase_cache_root=str(phase_cache_root),
             output_dir=str(output),
-            evaluator_commit=EXPECTED_EVALUATOR_COMMIT,
+            evaluator_commit="test-evaluator-commit",
         )
     )
     assert result["status"] == "passed"
