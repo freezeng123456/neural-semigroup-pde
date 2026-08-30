@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "classification": "exploratory_bsoft_r2_validation",
+  "status": "passed",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "source_commit": "637345584dc2db8ddccf9116a995615c3c036104",
+  "runner_sha256": "27010763555756d5cccc2b42ee681564c70b8c39be0bf980a6b97fc7081af5f9",
+  "config": {
+    "N": 64,
+    "n_train": 1000,
+    "n_val": 50,
+    "epochs": 100,
+    "batch_size": 64,
+    "eval_batch_size": 8,
+    "fixed_tau": 0.1,
+    "eval_horizon": 1.2,
+    "ode_steps": 30,
+    "parameter_count": 9667,
+    "trainable_parameter_count": 9667,
+    "training_seeds": [271828, 161803, 31415],
+    "lambdas": [0.1, 0.01, 0.001]
+  },
+  "cache": {
+    "path_pattern": "/work/home/zenghang/semigroup_runs/20260830-fisher-exploratory-rapid-screen-6373455-scnet-r2-5c91df/data/autonomous-{seed}-exploratory.pt",
+    "sha256_by_seed": {
+      "271828": "ac84785bb4af5b56a9eb0dbcf6d18f76e15ebc111bc54bcc752d6ff3ceaa8e78",
+      "161803": "24e5c717e0d558e86005bcab1d747893129f5bf19ae445360b4538523c6ef1d",
+      "31415": "c8c9f3185d19bebbbc0d2c7f60d0e8aa25bac5bf4f6ca4d4b8967a87f2163078"
+    },
+    "cache_status_by_seed": {
+      "271828": "generated",
+      "161803": "loaded",
+      "31415": "generated"
+    }
+  },
+  "roots": {
+    "pattern": "/work/home/zenghang/semigroup_runs/20260830-fisher-bsoft-r2-s{seed}-lambda{label}-e100-660569e",
+    "labels": {
+      "1em01": 0.1,
+      "1em02": 0.01,
+      "1em03": 0.001
+    }
+  },
+  "cells": [
+    {"seed": 271828, "lambda": 0.1, "job_id": 23563550, "rollout_mse_mean": 6.92294948975411e-05, "equal_work_semigroup_defect_rel_l2_mean": 2.452795893077564e-06},
+    {"seed": 271828, "lambda": 0.01, "job_id": 23563551, "rollout_mse_mean": 6.922947840981427e-05, "equal_work_semigroup_defect_rel_l2_mean": 2.450595391110255e-06},
+    {"seed": 271828, "lambda": 0.001, "job_id": 23563552, "rollout_mse_mean": 6.922949770038635e-05, "equal_work_semigroup_defect_rel_l2_mean": 2.450310910262488e-06},
+    {"seed": 161803, "lambda": 0.1, "job_id": 23563547, "rollout_mse_mean": 9.0104499906829e-05, "equal_work_semigroup_defect_rel_l2_mean": 9.828401307458989e-06},
+    {"seed": 161803, "lambda": 0.01, "job_id": 23563548, "rollout_mse_mean": 9.010450195376052e-05, "equal_work_semigroup_defect_rel_l2_mean": 9.830250746745151e-06},
+    {"seed": 161803, "lambda": 0.001, "job_id": 23563549, "rollout_mse_mean": 9.010450566165673e-05, "equal_work_semigroup_defect_rel_l2_mean": 9.830846456679865e-06},
+    {"seed": 31415, "lambda": 0.1, "job_id": 23563553, "rollout_mse_mean": 7.347261360753995e-05, "equal_work_semigroup_defect_rel_l2_mean": 5.097534422020544e-06},
+    {"seed": 31415, "lambda": 0.01, "job_id": 23563554, "rollout_mse_mean": 7.347261106815494e-05, "equal_work_semigroup_defect_rel_l2_mean": 5.099532900203485e-06},
+    {"seed": 31415, "lambda": 0.001, "job_id": 23563555, "rollout_mse_mean": 7.347261109032389e-05, "equal_work_semigroup_defect_rel_l2_mean": 5.099691970826825e-06}
+  ],
+  "baseline": {
+    "model": "b_query_time",
+    "geometric_mean_rollout_mse": 7.727137494080432e-05,
+    "geometric_mean_equal_work_semigroup_defect_rel_l2": 5.7372634843087725e-06
+  },
+  "aggregate_by_lambda": {
+    "0.1": {
+      "geometric_mean_rollout_mse": 7.709999931580409e-05,
+      "geometric_mean_mse_ratio_to_b": 0.99778215898,
+      "geometric_mean_equal_work_semigroup_defect_rel_l2": 4.97166075026523e-06,
+      "geometric_mean_defect_ratio_to_b": 0.866556114054,
+      "seeds_improving_both": 1
+    },
+    "0.01": {
+      "geometric_mean_rollout_mse": 7.709999348734556e-05,
+      "geometric_mean_mse_ratio_to_b": 0.997782083552,
+      "geometric_mean_equal_work_semigroup_defect_rel_l2": 4.97113474900828e-06,
+      "geometric_mean_defect_ratio_to_b": 0.866464432495,
+      "seeds_improving_both": 1
+    },
+    "0.001": {
+      "geometric_mean_rollout_mse": 7.710000171390368e-05,
+      "geometric_mean_mse_ratio_to_b": 0.997782190015,
+      "geometric_mean_equal_work_semigroup_defect_rel_l2": 4.971094478608008e-06,
+      "geometric_mean_defect_ratio_to_b": 0.8664574134,
+      "seeds_improving_both": 1
+    }
+  },
+  "validation": {
+    "slurm_state": "COMPLETED",
+    "exit_code": "0:0",
+    "status_tokens": ["EXIT_CODE=0", "EVALUATOR_COMPLETE", "DONE"],
+    "result_json_parseable": true,
+    "metrics_finite": true,
+    "checkpoint_hash_matches": true,
+    "input_hashes_unchanged": true,
+    "expected_metadata_matches": true
+  }
+}

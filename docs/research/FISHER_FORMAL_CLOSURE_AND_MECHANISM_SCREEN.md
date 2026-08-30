@@ -205,6 +205,8 @@ reduces the current geometric-mean defect by about 13.35% while changing MSE
 by about 0.22%, with no meaningful dose response and joint improvement in only
 one seed. The r2 numbers supersede the historical table for the current
 engineering acceptance record; neither set is a formal Fisher result.
+The machine-readable r2 synthesis is tracked as
+`experiments/results/fisher_bsoft_r2_validation.json`.
 
 ### Evaluator-only query-time and partition diagnostics
 
