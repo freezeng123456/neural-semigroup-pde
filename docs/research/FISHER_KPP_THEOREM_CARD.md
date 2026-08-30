@@ -245,6 +245,12 @@ uniform assumptions.
   stability are supplied.
 - **Empirical result:** the locked Fisher study established a much smaller
   equal-work composition defect for A but no material cross-seed MSE advantage.
+- **Empirical diagnostic:** the frozen checkpoint-only generator study found
+  essentially tied generator residuals (geometric-mean A/B `0.9990` at both
+  query lags), a two-of-three-seed empirical one-sided-stability ordering for
+  A, and non-dominant learned-flow RK4 error.  Thus the observed composition
+  advantage did not reduce every term required by the conditional transfer
+  bound; see `FISHER_GENERATOR_STABILITY_RESULTS.md`.
 - **Not proved:** a mesh-uniform Fisher transfer theorem, a discrete spectral
   maximum principle, Fisher-energy decay for the learned models, or a uniform
   generator/stability bound.

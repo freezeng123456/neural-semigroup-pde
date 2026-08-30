@@ -1,0 +1,350 @@
+{
+  "cells": [
+    {
+      "evaluator_source_hashes": {
+        "FISHER_GENERATOR_STABILITY_PROTOCOL.md": "ec555397b875bc4802290aee3bf12b234f3407acc24e977283a3c1b47f618f9b",
+        "FISHER_KPP_THEOREM_CARD.md": "de95308ad847371cf7a8366056bfafc829668e5031e734969705b746019166e7",
+        "evaluate_fisher_generator_stability.py": "d4e5726bb76bc37ef037cf909269b94ab2d2fb31ebf71f6ba34970f3123f0e4a",
+        "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+        "fisher_frozen_inputs.py": "03e93a90cc0ba51b429a197992d98763abd9957fef791b1830800b2117886d90",
+        "fisher_generator_metrics.py": "b3b6317cb9456214cc00b91458e43bebf64152af5c9ee8ff73092abf7856b7ab",
+        "latent_integrators.py": "5f4bf46393bac5871125cd7d7a7ed755626437ebcc1d6a677af80d0e7a7e69be",
+        "models.py": "22e1ef7ee2f4cb2716aa54e16520469629f8b4204a047f2656cc16014dab6b8a",
+        "seed_utils.py": "f8151974b46db609cc32d9f7eba0f38abf2536b69cf476002f496ca9907cb3e9"
+      },
+      "identity": [
+        31415,
+        "latent"
+      ],
+      "receipt_sha256": "dd6cc86425e31ef9807aeb9f42ed880f065888972ea35381ce40e2e1ae141a70",
+      "root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s31415-latent",
+      "summaries": [
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s31415-latent",
+          "checkpoint_sha256": "4330c5760e5ec28d5150db8d7876282f83a474d3a62836988c92919f55441adb",
+          "conditioning_time": 0.075,
+          "empirical_learned_osl_max": 0.9345202445983887,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 1.0574247651741083e-05,
+          "model": "latent",
+          "reference_generator_residual_gm": 0.1042260450996377,
+          "seed": 31415
+        },
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s31415-latent",
+          "checkpoint_sha256": "4330c5760e5ec28d5150db8d7876282f83a474d3a62836988c92919f55441adb",
+          "conditioning_time": 0.15,
+          "empirical_learned_osl_max": 0.9345202445983887,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 7.281724858760898e-06,
+          "model": "latent",
+          "reference_generator_residual_gm": 0.1042260450996377,
+          "seed": 31415
+        }
+      ]
+    },
+    {
+      "evaluator_source_hashes": {
+        "FISHER_GENERATOR_STABILITY_PROTOCOL.md": "ec555397b875bc4802290aee3bf12b234f3407acc24e977283a3c1b47f618f9b",
+        "FISHER_KPP_THEOREM_CARD.md": "de95308ad847371cf7a8366056bfafc829668e5031e734969705b746019166e7",
+        "evaluate_fisher_generator_stability.py": "d4e5726bb76bc37ef037cf909269b94ab2d2fb31ebf71f6ba34970f3123f0e4a",
+        "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+        "fisher_frozen_inputs.py": "03e93a90cc0ba51b429a197992d98763abd9957fef791b1830800b2117886d90",
+        "fisher_generator_metrics.py": "b3b6317cb9456214cc00b91458e43bebf64152af5c9ee8ff73092abf7856b7ab",
+        "latent_integrators.py": "5f4bf46393bac5871125cd7d7a7ed755626437ebcc1d6a677af80d0e7a7e69be",
+        "models.py": "22e1ef7ee2f4cb2716aa54e16520469629f8b4204a047f2656cc16014dab6b8a",
+        "seed_utils.py": "f8151974b46db609cc32d9f7eba0f38abf2536b69cf476002f496ca9907cb3e9"
+      },
+      "identity": [
+        31415,
+        "latent_query_time"
+      ],
+      "receipt_sha256": "6098a2506d9e47609f2e1cf8a89e4b1e325fe595eec6e8d6a949866d28bd4230",
+      "root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s31415-latent_query_time",
+      "summaries": [
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s31415-latent_query_time",
+          "checkpoint_sha256": "e57f1eccb1714357a832f5f9fa1e805b2e26869078e7429fdd81a7c22f991cd6",
+          "conditioning_time": 0.075,
+          "empirical_learned_osl_max": 0.9280912280082703,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 1.0708263658553687e-05,
+          "model": "latent_query_time",
+          "reference_generator_residual_gm": 0.1051703634600191,
+          "seed": 31415
+        },
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s31415-latent_query_time",
+          "checkpoint_sha256": "e57f1eccb1714357a832f5f9fa1e805b2e26869078e7429fdd81a7c22f991cd6",
+          "conditioning_time": 0.15,
+          "empirical_learned_osl_max": 0.9280720353126526,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 7.027574460113881e-06,
+          "model": "latent_query_time",
+          "reference_generator_residual_gm": 0.1051690376609667,
+          "seed": 31415
+        }
+      ]
+    },
+    {
+      "evaluator_source_hashes": {
+        "FISHER_GENERATOR_STABILITY_PROTOCOL.md": "ec555397b875bc4802290aee3bf12b234f3407acc24e977283a3c1b47f618f9b",
+        "FISHER_KPP_THEOREM_CARD.md": "de95308ad847371cf7a8366056bfafc829668e5031e734969705b746019166e7",
+        "evaluate_fisher_generator_stability.py": "d4e5726bb76bc37ef037cf909269b94ab2d2fb31ebf71f6ba34970f3123f0e4a",
+        "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+        "fisher_frozen_inputs.py": "03e93a90cc0ba51b429a197992d98763abd9957fef791b1830800b2117886d90",
+        "fisher_generator_metrics.py": "b3b6317cb9456214cc00b91458e43bebf64152af5c9ee8ff73092abf7856b7ab",
+        "latent_integrators.py": "5f4bf46393bac5871125cd7d7a7ed755626437ebcc1d6a677af80d0e7a7e69be",
+        "models.py": "22e1ef7ee2f4cb2716aa54e16520469629f8b4204a047f2656cc16014dab6b8a",
+        "seed_utils.py": "f8151974b46db609cc32d9f7eba0f38abf2536b69cf476002f496ca9907cb3e9"
+      },
+      "identity": [
+        271828,
+        "latent"
+      ],
+      "receipt_sha256": "3db9eef12ca6b48d5689b2ad663d454fae744e07345b43c2046591766f600d4c",
+      "root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s271828-latent",
+      "summaries": [
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s271828-latent",
+          "checkpoint_sha256": "0fa5f3067ef58999e575705db516cab9b94481a4a768eae7ced58034bd8ac1cb",
+          "conditioning_time": 0.075,
+          "empirical_learned_osl_max": 0.9268288016319275,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 9.548914780871721e-06,
+          "model": "latent",
+          "reference_generator_residual_gm": 0.10663712104092,
+          "seed": 271828
+        },
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s271828-latent",
+          "checkpoint_sha256": "0fa5f3067ef58999e575705db516cab9b94481a4a768eae7ced58034bd8ac1cb",
+          "conditioning_time": 0.15,
+          "empirical_learned_osl_max": 0.9268288016319275,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 7.107369535600856e-06,
+          "model": "latent",
+          "reference_generator_residual_gm": 0.10663712104092,
+          "seed": 271828
+        }
+      ]
+    },
+    {
+      "evaluator_source_hashes": {
+        "FISHER_GENERATOR_STABILITY_PROTOCOL.md": "ec555397b875bc4802290aee3bf12b234f3407acc24e977283a3c1b47f618f9b",
+        "FISHER_KPP_THEOREM_CARD.md": "de95308ad847371cf7a8366056bfafc829668e5031e734969705b746019166e7",
+        "evaluate_fisher_generator_stability.py": "d4e5726bb76bc37ef037cf909269b94ab2d2fb31ebf71f6ba34970f3123f0e4a",
+        "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+        "fisher_frozen_inputs.py": "03e93a90cc0ba51b429a197992d98763abd9957fef791b1830800b2117886d90",
+        "fisher_generator_metrics.py": "b3b6317cb9456214cc00b91458e43bebf64152af5c9ee8ff73092abf7856b7ab",
+        "latent_integrators.py": "5f4bf46393bac5871125cd7d7a7ed755626437ebcc1d6a677af80d0e7a7e69be",
+        "models.py": "22e1ef7ee2f4cb2716aa54e16520469629f8b4204a047f2656cc16014dab6b8a",
+        "seed_utils.py": "f8151974b46db609cc32d9f7eba0f38abf2536b69cf476002f496ca9907cb3e9"
+      },
+      "identity": [
+        271828,
+        "latent_query_time"
+      ],
+      "receipt_sha256": "f0c44efc11c273e3115f87df1b802e66b87d2ed3b492e905259e8026dc228e44",
+      "root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s271828-latent_query_time",
+      "summaries": [
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s271828-latent_query_time",
+          "checkpoint_sha256": "c87e71f8a11c5c848802880b8f2f685d8f6778d9534ce41746ba20b75ae51f42",
+          "conditioning_time": 0.075,
+          "empirical_learned_osl_max": 0.9273937940597534,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 9.065246035919759e-06,
+          "model": "latent_query_time",
+          "reference_generator_residual_gm": 0.10650827141439584,
+          "seed": 271828
+        },
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s271828-latent_query_time",
+          "checkpoint_sha256": "c87e71f8a11c5c848802880b8f2f685d8f6778d9534ce41746ba20b75ae51f42",
+          "conditioning_time": 0.15,
+          "empirical_learned_osl_max": 0.9273715615272522,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 6.866486042444714e-06,
+          "model": "latent_query_time",
+          "reference_generator_residual_gm": 0.106505910634315,
+          "seed": 271828
+        }
+      ]
+    },
+    {
+      "evaluator_source_hashes": {
+        "FISHER_GENERATOR_STABILITY_PROTOCOL.md": "ec555397b875bc4802290aee3bf12b234f3407acc24e977283a3c1b47f618f9b",
+        "FISHER_KPP_THEOREM_CARD.md": "de95308ad847371cf7a8366056bfafc829668e5031e734969705b746019166e7",
+        "evaluate_fisher_generator_stability.py": "d4e5726bb76bc37ef037cf909269b94ab2d2fb31ebf71f6ba34970f3123f0e4a",
+        "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+        "fisher_frozen_inputs.py": "03e93a90cc0ba51b429a197992d98763abd9957fef791b1830800b2117886d90",
+        "fisher_generator_metrics.py": "b3b6317cb9456214cc00b91458e43bebf64152af5c9ee8ff73092abf7856b7ab",
+        "latent_integrators.py": "5f4bf46393bac5871125cd7d7a7ed755626437ebcc1d6a677af80d0e7a7e69be",
+        "models.py": "22e1ef7ee2f4cb2716aa54e16520469629f8b4204a047f2656cc16014dab6b8a",
+        "seed_utils.py": "f8151974b46db609cc32d9f7eba0f38abf2536b69cf476002f496ca9907cb3e9"
+      },
+      "identity": [
+        161803,
+        "latent"
+      ],
+      "receipt_sha256": "14f50e333bce2d039cbbfbf1d724125526489c7617202542ecf566c72aa30727",
+      "root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s161803-latent",
+      "summaries": [
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s161803-latent",
+          "checkpoint_sha256": "84dcd009982fbc2167aa0f08233ceb2af1ca8cc059623bf29078f64799bf3f9e",
+          "conditioning_time": 0.075,
+          "empirical_learned_osl_max": 0.9228426814079285,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 9.425210563639416e-06,
+          "model": "latent",
+          "reference_generator_residual_gm": 0.11234822525751494,
+          "seed": 161803
+        },
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s161803-latent",
+          "checkpoint_sha256": "84dcd009982fbc2167aa0f08233ceb2af1ca8cc059623bf29078f64799bf3f9e",
+          "conditioning_time": 0.15,
+          "empirical_learned_osl_max": 0.9228426814079285,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 6.32857304688998e-06,
+          "model": "latent",
+          "reference_generator_residual_gm": 0.11234822525751494,
+          "seed": 161803
+        }
+      ]
+    },
+    {
+      "evaluator_source_hashes": {
+        "FISHER_GENERATOR_STABILITY_PROTOCOL.md": "ec555397b875bc4802290aee3bf12b234f3407acc24e977283a3c1b47f618f9b",
+        "FISHER_KPP_THEOREM_CARD.md": "de95308ad847371cf7a8366056bfafc829668e5031e734969705b746019166e7",
+        "evaluate_fisher_generator_stability.py": "d4e5726bb76bc37ef037cf909269b94ab2d2fb31ebf71f6ba34970f3123f0e4a",
+        "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+        "fisher_frozen_inputs.py": "03e93a90cc0ba51b429a197992d98763abd9957fef791b1830800b2117886d90",
+        "fisher_generator_metrics.py": "b3b6317cb9456214cc00b91458e43bebf64152af5c9ee8ff73092abf7856b7ab",
+        "latent_integrators.py": "5f4bf46393bac5871125cd7d7a7ed755626437ebcc1d6a677af80d0e7a7e69be",
+        "models.py": "22e1ef7ee2f4cb2716aa54e16520469629f8b4204a047f2656cc16014dab6b8a",
+        "seed_utils.py": "f8151974b46db609cc32d9f7eba0f38abf2536b69cf476002f496ca9907cb3e9"
+      },
+      "identity": [
+        161803,
+        "latent_query_time"
+      ],
+      "receipt_sha256": "fb280b2e02d52678e7c6919b0ed6c8f15da82244aec61e6eaa2634943e1a677f",
+      "root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s161803-latent_query_time",
+      "summaries": [
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s161803-latent_query_time",
+          "checkpoint_sha256": "f580c9c91441565932a706de4044ab1d62992673ba1e649eb67fd8ed3a9d673a",
+          "conditioning_time": 0.075,
+          "empirical_learned_osl_max": 0.9241355061531067,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 8.7659837896697e-06,
+          "model": "latent_query_time",
+          "reference_generator_residual_gm": 0.11180177103289513,
+          "seed": 161803
+        },
+        {
+          "cell_root": "/work/home/zenghang/semigroup_runs/20260831-fisher-generator-stability-e60a142-3seed-r1/cells/s161803-latent_query_time",
+          "checkpoint_sha256": "f580c9c91441565932a706de4044ab1d62992673ba1e649eb67fd8ed3a9d673a",
+          "conditioning_time": 0.15,
+          "empirical_learned_osl_max": 0.9241107106208801,
+          "learned_flow_numerical_confounding": false,
+          "learned_flow_numerical_to_cache_discrepancy_ratio": 6.526151346438244e-06,
+          "model": "latent_query_time",
+          "reference_generator_residual_gm": 0.11179899280215362,
+          "seed": 161803
+        }
+      ]
+    }
+  ],
+  "created_at_unix": 1788116312.9484754,
+  "decision": {
+    "empirical_stability": {
+      "0.075": {
+        "empirical_advantage": true,
+        "required_seeds": 2,
+        "seeds_a_no_worse": 2
+      },
+      "0.15": {
+        "empirical_advantage": true,
+        "required_seeds": 2,
+        "seeds_a_no_worse": 2
+      }
+    },
+    "empirical_stability_advantage": true,
+    "explanation_branch": "missing_transfer_term_not_improved",
+    "finite_sample_results_are_not_uniform_theorem_constants": true,
+    "generator_matching": {
+      "0.075": {
+        "geometric_mean_a_over_b": 0.9990222574356942,
+        "material_advantage": false,
+        "material_advantage_threshold": 0.9
+      },
+      "0.15": {
+        "geometric_mean_a_over_b": 0.9990421120942542,
+        "material_advantage": false,
+        "material_advantage_threshold": 0.9
+      }
+    },
+    "generator_material_advantage": false,
+    "learned_flow_numerical_non_dominant": true
+  },
+  "do_not_use_for_formal": true,
+  "exploratory": true,
+  "frozen_provenance": {
+    "checkpoint_sha256": {
+      "161803:latent": "84dcd009982fbc2167aa0f08233ceb2af1ca8cc059623bf29078f64799bf3f9e",
+      "161803:latent_query_time": "f580c9c91441565932a706de4044ab1d62992673ba1e649eb67fd8ed3a9d673a",
+      "271828:latent": "0fa5f3067ef58999e575705db516cab9b94481a4a768eae7ced58034bd8ac1cb",
+      "271828:latent_query_time": "c87e71f8a11c5c848802880b8f2f685d8f6778d9534ce41746ba20b75ae51f42",
+      "31415:latent": "4330c5760e5ec28d5150db8d7876282f83a474d3a62836988c92919f55441adb",
+      "31415:latent_query_time": "e57f1eccb1714357a832f5f9fa1e805b2e26869078e7429fdd81a7c22f991cd6"
+    },
+    "evaluator_source_hashes": {
+      "FISHER_GENERATOR_STABILITY_PROTOCOL.md": "ec555397b875bc4802290aee3bf12b234f3407acc24e977283a3c1b47f618f9b",
+      "FISHER_KPP_THEOREM_CARD.md": "de95308ad847371cf7a8366056bfafc829668e5031e734969705b746019166e7",
+      "evaluate_fisher_generator_stability.py": "d4e5726bb76bc37ef037cf909269b94ab2d2fb31ebf71f6ba34970f3123f0e4a",
+      "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+      "fisher_frozen_inputs.py": "03e93a90cc0ba51b429a197992d98763abd9957fef791b1830800b2117886d90",
+      "fisher_generator_metrics.py": "b3b6317cb9456214cc00b91458e43bebf64152af5c9ee8ff73092abf7856b7ab",
+      "latent_integrators.py": "5f4bf46393bac5871125cd7d7a7ed755626437ebcc1d6a677af80d0e7a7e69be",
+      "models.py": "22e1ef7ee2f4cb2716aa54e16520469629f8b4204a047f2656cc16014dab6b8a",
+      "seed_utils.py": "f8151974b46db609cc32d9f7eba0f38abf2536b69cf476002f496ca9907cb3e9"
+    },
+    "locked_test_cache_sha256": "29d0e4b36e9d758f87264ae1d555d865c9e037776903e1cab448a0a8782b490e",
+    "source_archive_sha256": "a370efa4af9bbb11fbcd72ef422410f651f8f2ad28eee561c45e766c88fcadf5",
+    "source_commit": "637345584dc2db8ddccf9116a995615c3c036104"
+  },
+  "git_commit": "e60a142ebb81ec4d6e1ef9a2927c0bdfb9da4013",
+  "matrix": {
+    "cell_count": 6,
+    "conditioning_times": [
+      0.075,
+      0.15
+    ],
+    "models": [
+      "latent",
+      "latent_query_time"
+    ],
+    "paired_row_count": 6,
+    "seeds": [
+      31415,
+      271828,
+      161803
+    ]
+  },
+  "normal_exit": true,
+  "schema_version": 1,
+  "source_hashes": {
+    "FISHER_GENERATOR_STABILITY_PROTOCOL.md": "ec555397b875bc4802290aee3bf12b234f3407acc24e977283a3c1b47f618f9b",
+    "FISHER_KPP_THEOREM_CARD.md": "de95308ad847371cf7a8366056bfafc829668e5031e734969705b746019166e7",
+    "aggregate_fisher_generator_stability.py": "dd848c690da8c8bdc45634e80f95fc0b43b40db8d63b5415b7d7c30dc20fc8c9",
+    "evaluate_fisher_generator_stability.py": "d4e5726bb76bc37ef037cf909269b94ab2d2fb31ebf71f6ba34970f3123f0e4a",
+    "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+    "fisher_generator_metrics.py": "b3b6317cb9456214cc00b91458e43bebf64152af5c9ee8ff73092abf7856b7ab"
+  },
+  "status": "passed",
+  "track": "fisher_generator_stability_aggregate"
+}

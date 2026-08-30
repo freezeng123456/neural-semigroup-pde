@@ -1,0 +1,8 @@
+4330c5760e5ec28d5150db8d7876282f83a474d3a62836988c92919f55441adb  /work/home/zenghang/semigroup_runs/20260830-semigroup-novelty-frozen-inputs-s31415-r1/latent_best.pt
+e57f1eccb1714357a832f5f9fa1e805b2e26869078e7429fdd81a7c22f991cd6  /work/home/zenghang/semigroup_runs/20260830-semigroup-novelty-frozen-inputs-s31415-r1/latent_query_time_best.pt
+0fa5f3067ef58999e575705db516cab9b94481a4a768eae7ced58034bd8ac1cb  /work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/seeds/s271828/cells/latent/output/latent/checkpoints/latent_best.pt
+c87e71f8a11c5c848802880b8f2f685d8f6778d9534ce41746ba20b75ae51f42  /work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/seeds/s271828/cells/latent_query_time/output/latent_query_time/checkpoints/latent_query_time_best.pt
+84dcd009982fbc2167aa0f08233ceb2af1ca8cc059623bf29078f64799bf3f9e  /work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/seeds/s161803/cells/latent/output/latent/checkpoints/latent_best.pt
+f580c9c91441565932a706de4044ab1d62992673ba1e649eb67fd8ed3a9d673a  /work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/seeds/s161803/cells/latent_query_time/output/latent_query_time/checkpoints/latent_query_time_best.pt
+29d0e4b36e9d758f87264ae1d555d865c9e037776903e1cab448a0a8782b490e  /work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/locked-input/fisher_kpp_n64_test_s314163_h4p8.pt
+a370efa4af9bbb11fbcd72ef422410f651f8f2ad28eee561c45e766c88fcadf5  /work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/source.tar.gz
