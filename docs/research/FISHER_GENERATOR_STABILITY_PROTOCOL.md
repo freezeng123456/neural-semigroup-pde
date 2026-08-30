@@ -185,7 +185,8 @@ A cell is complete only after normal process exit and all of the following:
 
 - parseable strict JSON and CSV outputs;
 - all requested snapshot, lag, pair-family, and refinement rows;
-- finite metric values except explicitly unavailable observed orders;
+- finite metric values except explicitly unavailable observed orders and cosine
+  alignment;
 - the reference one-sided sanity gate;
 - A's physical generator agrees across the two nominal query-lag labels to
   within `1e-7` on the same states;
