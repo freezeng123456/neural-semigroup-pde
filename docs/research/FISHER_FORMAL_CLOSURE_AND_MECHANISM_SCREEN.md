@@ -84,6 +84,41 @@ is explicitly time dependent and time is absent from the state, reading
 absolute time is useful. The result argues against a universal claim that a
 state-only autonomous model is preferable.
 
+#### Independent r2 rerun and memory-bound validation
+
+The three non-autonomous cells were independently rerun after the validation
+path was changed to keep the 50 validation trajectories on CPU and move only
+`--eval-batch-size 8` samples to the GPU at a time. This specifically covers
+the previously failing `ode_steps=30` path; it is an execution-validation
+rerun, not a new model-selection or formal-test result.
+
+| Seed | SCNet job | Slurm result | Cache SHA-256 | A-wide MSE | B-absolute-time MSE | A/B |
+|---:|---:|---|---|---:|---:|---:|
+| `271828` | `23563395` | `COMPLETED`, `0:0` | `884dd89441afb90a93ddd008292969fd80ca891371967820d3aa470d3a37aff6` | `2.7394883344e-4` | `2.6524790846e-4` | `1.0328029911` |
+| `161803` | `23563396` | `COMPLETED`, `0:0` | `7da5a9ce0a5012fdd0776a4ee449821f057a2132b26537e11e86b3309fda65f7` | `3.6445603940e-4` | `3.5642483876e-4` | `1.0110029882` |
+| `31415` | `23563397` | `COMPLETED`, `0:0` | `925d389d4c06d6b9bfaebdf3e14987b8016f6de236d330fc711ebc0b58d1c7ac` | `3.3027805052e-4` | `3.2057643428e-4` | `1.0302630406` |
+
+The exact cache digests above were recomputed after evaluation and matched the
+corresponding data-preparation provenance records before the run. Every cell
+had `n_train=1000`, `n_val=50`, `epochs=100`, `batch_size=64`,
+`eval_batch_size=8`, `ode_steps=30`, 600 validation rollouts, and 9,667
+parameters for both models. The geometric mean of the three A/B ratios is
+`1.0246432471` (equivalently B/A `0.9759494368`), reproducing the direction
+of the earlier negative-control screen without an out-of-memory failure.
+
+The canonical roots are separate and preserved:
+
+```text
+/work/home/zenghang/semigroup_runs/20260830-fisher-nonaut-full-r2-s271828-b64-e100-ode30-evalb8-660569e
+/work/home/zenghang/semigroup_runs/20260830-fisher-nonaut-full-r2-s161803-b64-e100-ode30-evalb8-660569e
+/work/home/zenghang/semigroup_runs/20260830-fisher-nonaut-full-r2-s31415-b64-e100-ode30-evalb8-660569e
+```
+
+The patched runner digest recorded in each result is
+`27010763555756d5cccc2b42ee681564c70b8c39be0bf980a6b97fc7081af5f9`.
+The roots, checkpoints, and caches remain exploratory and are not inputs to
+the locked 18-cell decision.
+
 ### Soft composition regularization
 
 | Regularization weight | GM MSE ratio to B | GM defect ratio to B | Seeds improving both |
@@ -113,10 +148,11 @@ The exploratory runner and tests included with this closure provide:
 - strict JSON output (`NaN` is normalized to `null`; other non-finite values
   are rejected) and atomic JSON replacement;
 - resolved `__file__` handling under compatibility launchers;
-- no-gradient evaluation to prevent full-validation autograd retention;
+- no-gradient, CPU-resident chunked validation to prevent full-validation
+  autograd/device-memory retention;
 - source, checkpoint, cache, summary, and receipt hashes.
 
-The final focused regression suite passed 38 tests. Successful GPU cells exited
+The final focused regression suite passed 46 tests. Successful GPU cells exited
 normally and passed strict-JSON, immutable-input, receipt, and matrix checks.
 Failed and superseded roots remain separate and were not overwritten.
 
