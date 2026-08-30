@@ -21,6 +21,7 @@ from evaluate import (
     evaluate_per_sample,
     prepare_aligned_rollout_batches,
 )
+from experiment_artifacts import torch_load_compat
 
 
 # ============================================================
@@ -204,7 +205,7 @@ def train_model(
 
     # Resume from checkpoint if provided
     if resume_from and os.path.exists(resume_from):
-        ckpt = torch.load(resume_from, map_location=device, weights_only=False)
+        ckpt = torch_load_compat(resume_from, map_location=device)
         model.load_state_dict(ckpt["model_state_dict"])
         start_epoch = ckpt.get("epoch", 0) + 1
         if "optimizer_state_dict" in ckpt:

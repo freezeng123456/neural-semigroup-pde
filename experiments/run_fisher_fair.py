@@ -21,6 +21,7 @@ if str(EXPERIMENTS_DIR) not in sys.path:
     sys.path.insert(0, str(EXPERIMENTS_DIR))
 
 from evaluate import evaluate_full
+from experiment_artifacts import torch_load_compat
 from fisher_generator_metrics import generator_mse_loss
 from models import (
     LatentSemigroupNet,
@@ -281,7 +282,7 @@ def generate_data(args):
 def load_or_generate_data(args):
     cache_path = os.path.abspath(args.data_cache)
     if os.path.exists(cache_path):
-        data = torch.load(cache_path, map_location="cpu", weights_only=False)
+        data = torch_load_compat(cache_path, map_location="cpu")
         if data.get("data_generation_config") != data_config(args):
             raise ValueError("data cache configuration does not match this run")
         return data
@@ -431,7 +432,7 @@ def run_model(name, args, data, device):
     )
 
     best_path = os.path.join(checkpoint_dir, f"{name}_best.pt")
-    checkpoint = torch.load(best_path, map_location=device, weights_only=False)
+    checkpoint = torch_load_compat(best_path, map_location=device)
     model.load_state_dict(checkpoint["model_state_dict"], strict=True)
     model.to(device).eval()
 

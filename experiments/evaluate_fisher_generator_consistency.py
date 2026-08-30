@@ -18,6 +18,7 @@ if str(EXPERIMENTS_DIR) not in sys.path:
     sys.path.insert(0, str(EXPERIMENTS_DIR))
 
 from fisher_generator_metrics import generator_residual_metrics  # noqa: E402
+from experiment_artifacts import torch_load_compat  # noqa: E402
 from models import LatentSemigroupNet  # noqa: E402
 
 
@@ -35,7 +36,7 @@ def sha256_file(path: Path) -> str:
 
 
 def load_latent_checkpoint(path: Path, device: torch.device):
-    checkpoint = torch.load(path, map_location=device, weights_only=False)
+    checkpoint = torch_load_compat(path, map_location=device)
     metadata = checkpoint["run_metadata"]
     if metadata["model"] != "latent":
         raise ValueError(f"expected latent checkpoint, got {metadata['model']!r}")
@@ -156,7 +157,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
 
     device = torch.device(args.device)
-    cache = torch.load(args.test_cache, map_location="cpu", weights_only=False)
+    cache = torch_load_compat(args.test_cache, map_location="cpu")
     initial_states = cache["test_u0"][: args.n_test]
     trajectories = cache["test_trajs"][: args.n_test]
     cache_config = cache["locked_test_config"]
