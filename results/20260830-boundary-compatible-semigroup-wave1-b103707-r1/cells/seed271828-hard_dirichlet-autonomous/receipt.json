@@ -1,0 +1,50 @@
+{
+  "actual_command": "/work/home/zenghang/miniconda3/envs/pytorch/bin/python /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/semigroup-b103707/experiments/run_boundary_semigroup.py cell --output-dir /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1/cells/seed271828-hard_dirichlet-autonomous --data-cache /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1/data-prep/boundary_wave1_cache.pt --seed 271828 --boundary-mode hard_dirichlet --temporal-mode autonomous --device cuda",
+  "best_validation_mse": 2.511259026505286e-06,
+  "boundary_mode": "hard_dirichlet",
+  "checkpoint_sha256": "fe2f3419b532d10593b68d1bcbbe44030babf015a168f7f84aa40a1ffd728446",
+  "evidence_class": "exploratory_full",
+  "exit_code": 0,
+  "experiment": "boundary_compatible_semigroup_wave1",
+  "git_commit": "b1037072e3177365f2989019ada346f6f651dcf2",
+  "hard_boundary_pass": true,
+  "initial_parameter_fingerprint": "eef9fbbcf48e7503c8b9c4526f36e3522f8d7b24c6b49c4c77c6da61764a8b27",
+  "input_hashes": {
+    "data_cache": {
+      "after": "fcc98178c28813323526d435cbea8cde120bcd6ec1e5af4424573140ede21de0",
+      "before": "fcc98178c28813323526d435cbea8cde120bcd6ec1e5af4424573140ede21de0"
+    }
+  },
+  "manifest_sha256": "c7de4bd0c0b53e0d997443fdad2e7b83fccddf00d596e6c2717204a05fa47b62",
+  "metrics_csv_sha256": "5122372b8ed08607f0e14e3d131e893b37a3068767ac1555c7089fc4bd3d92be",
+  "normal_exit": true,
+  "parameter_count": 1249,
+  "pid": 12376,
+  "results_sha256": "d85587a11dfd3f0c81c91cf54be3bdef3d0151a2f8861654217539a116be799d",
+  "runtime": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "hostname": "e03r02",
+    "numpy_version": "1.26.4",
+    "platform": "Linux-3.10.0-957.el7.x86_64-x86_64-with-glibc2.17",
+    "python_version": "3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]",
+    "torch_cuda_version": "11.3",
+    "torch_version": "1.12.1"
+  },
+  "schema_version": 1,
+  "selected_epoch": 145,
+  "smoke_only": false,
+  "source_archive_sha256": "ce0d4a20cad470f7ece2543ebd8115057aa1a80acdf7d5bf0ff57c68a7b5c5c4",
+  "source_hashes": {
+    "artifact_contract": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+    "boundary_module": "f09eb8891da23dd93c7d13b262582912f615244d3386727d6c39d91c236861cc",
+    "context": "d05ccb2127bff404929b5b78cf94858827e6a487b22f8034174b7a26c15ae690",
+    "protocol": "f78d798db287290f3263bd43d0b05d80c8ff185762155e771fff1cc23156ba9d",
+    "runner": "d2a688546fcfaa0622157bd8ade89f331ae3a3c6b85553e500a9842fa4c98404"
+  },
+  "status": "passed",
+  "temporal_mode": "autonomous",
+  "test_metrics_used_for_selection": false,
+  "training_log_sha256": "2630a8e4ff092e0aae93c6f6bb988015bbaf70fc317bd1248aeaf236520a62d0",
+  "training_seed": 271828
+}

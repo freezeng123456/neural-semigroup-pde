@@ -1,0 +1,55 @@
+{
+  "artifacts": {
+    "checkpoint_best.pt": {
+      "bytes": 9111,
+      "sha256": "32ebb28aeb81452e851252ac5dee631e2b9c9961d190928c878f31fab117fd61"
+    },
+    "config.json": {
+      "bytes": 1303,
+      "sha256": "496ab249e62ce1bb95b6bd24e272e5867a4ad594a04dad9f8534029c9dad73b7"
+    },
+    "metrics.csv": {
+      "bytes": 2094,
+      "sha256": "29d3e66291a7491b03b2d192bb21e3370f8d414e7be27385d85bd17d68a7cc6f"
+    },
+    "results.json": {
+      "bytes": 8710,
+      "sha256": "023b5f4ef14b8123ce03dbc57c39397317c17e20f6e938a2caac41ddc5904d5b"
+    },
+    "run_card.json": {
+      "bytes": 3661,
+      "sha256": "aff3002c1d468baa447e3b80916d5023b6d041035faaecd10ea7c9dcb05ffa1c"
+    },
+    "training_log.csv": {
+      "bytes": 8530,
+      "sha256": "c78cf9c152258bdca3de80c31014a291b8e357e75075acd6863f153de9bcde15"
+    }
+  },
+  "boundary_mode": "hard_dirichlet",
+  "created_at_unix": 1788093909.2555957,
+  "evidence_class": "exploratory_full",
+  "experiment": "boundary_compatible_semigroup_wave1",
+  "git_commit": "b1037072e3177365f2989019ada346f6f651dcf2",
+  "runtime": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "hostname": "e11r03",
+    "numpy_version": "1.26.4",
+    "platform": "Linux-3.10.0-957.el7.x86_64-x86_64-with-glibc2.17",
+    "python_version": "3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]",
+    "torch_cuda_version": "11.3",
+    "torch_version": "1.12.1"
+  },
+  "schema_version": 1,
+  "smoke_only": false,
+  "source_archive_sha256": "ce0d4a20cad470f7ece2543ebd8115057aa1a80acdf7d5bf0ff57c68a7b5c5c4",
+  "source_hashes": {
+    "artifact_contract": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+    "boundary_module": "f09eb8891da23dd93c7d13b262582912f615244d3386727d6c39d91c236861cc",
+    "context": "d05ccb2127bff404929b5b78cf94858827e6a487b22f8034174b7a26c15ae690",
+    "protocol": "f78d798db287290f3263bd43d0b05d80c8ff185762155e771fff1cc23156ba9d",
+    "runner": "d2a688546fcfaa0622157bd8ade89f331ae3a3c6b85553e500a9842fa4c98404"
+  },
+  "temporal_mode": "query_time",
+  "training_seed": 31415
+}

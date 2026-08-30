@@ -1,0 +1,124 @@
+{
+  "actual_command": "/work/home/zenghang/miniconda3/envs/pytorch/bin/python /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/semigroup-b103707/experiments/run_boundary_semigroup.py cell --output-dir /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1/cells/seed161803-hard_dirichlet-query_time --data-cache /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1/data-prep/boundary_wave1_cache.pt --seed 161803 --boundary-mode hard_dirichlet --temporal-mode query_time --device cuda",
+  "boundary_mode": "hard_dirichlet",
+  "checkpoint_selection": "minimum validation one-step MSE only",
+  "config": {
+    "batch_size": 64,
+    "boundary_mode": "hard_dirichlet",
+    "boundary_threshold": 1e-12,
+    "data_seed": 424242,
+    "device": "cuda",
+    "diffusivity": 0.02,
+    "domain_length": 1.0,
+    "dx": 0.03125,
+    "epochs": 150,
+    "experiment": "boundary_compatible_semigroup_wave1",
+    "exploratory": true,
+    "hidden_width": 32,
+    "learning_rate": 0.001,
+    "long_rollout_pairs": [
+      [
+        0.03,
+        0.24
+      ],
+      [
+        0.03,
+        0.48
+      ],
+      [
+        0.06,
+        0.24
+      ],
+      [
+        0.06,
+        0.48
+      ]
+    ],
+    "n_grid": 33,
+    "n_test": 128,
+    "n_train": 512,
+    "n_val": 64,
+    "neural_rk4_steps": 8,
+    "primary_semigroup_pairs": [
+      [
+        0.02,
+        0.08
+      ],
+      [
+        0.02,
+        0.16
+      ],
+      [
+        0.04,
+        0.08
+      ],
+      [
+        0.04,
+        0.16
+      ],
+      [
+        0.08,
+        0.16
+      ]
+    ],
+    "query_time_scale": 0.08,
+    "reference_dt": 0.001,
+    "reference_horizons": [
+      0.02,
+      0.04,
+      0.08,
+      0.16,
+      0.24,
+      0.48
+    ],
+    "schema_version": 1,
+    "sine_modes": 8,
+    "smoke_only": false,
+    "stress_amplitude": 0.25,
+    "stress_horizon": 0.16,
+    "stress_samples": 64,
+    "stress_tau": 0.04,
+    "temporal_mode": "query_time",
+    "train_taus": [
+      0.02,
+      0.04,
+      0.08,
+      0.16
+    ],
+    "training_seed": 161803,
+    "validation_interval": 5,
+    "weight_decay": 1e-06
+  },
+  "created_at_unix": 1788093835.4408128,
+  "data_cache": {
+    "path": "/work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1/data-prep/boundary_wave1_cache.pt",
+    "sha256": "fcc98178c28813323526d435cbea8cde120bcd6ec1e5af4424573140ede21de0"
+  },
+  "evidence_class": "exploratory_full",
+  "experiment": "boundary_compatible_semigroup_wave1",
+  "git_commit": "b1037072e3177365f2989019ada346f6f651dcf2",
+  "pid": 39034,
+  "runtime": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "hostname": "e03r04",
+    "numpy_version": "1.26.4",
+    "platform": "Linux-3.10.0-957.el7.x86_64-x86_64-with-glibc2.17",
+    "python_version": "3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]",
+    "torch_cuda_version": "11.3",
+    "torch_version": "1.12.1"
+  },
+  "schema_version": 1,
+  "smoke_only": false,
+  "source_archive_sha256": "ce0d4a20cad470f7ece2543ebd8115057aa1a80acdf7d5bf0ff57c68a7b5c5c4",
+  "source_hashes": {
+    "artifact_contract": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+    "boundary_module": "f09eb8891da23dd93c7d13b262582912f615244d3386727d6c39d91c236861cc",
+    "context": "d05ccb2127bff404929b5b78cf94858827e6a487b22f8034174b7a26c15ae690",
+    "protocol": "f78d798db287290f3263bd43d0b05d80c8ff185762155e771fff1cc23156ba9d",
+    "runner": "d2a688546fcfaa0622157bd8ade89f331ae3a3c6b85553e500a9842fa4c98404"
+  },
+  "temporal_mode": "query_time",
+  "test_metrics_used_for_selection": false,
+  "training_seed": 161803
+}

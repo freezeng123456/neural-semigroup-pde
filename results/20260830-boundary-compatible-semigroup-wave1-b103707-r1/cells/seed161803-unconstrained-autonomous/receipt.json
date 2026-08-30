@@ -1,0 +1,50 @@
+{
+  "actual_command": "/work/home/zenghang/miniconda3/envs/pytorch/bin/python /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/semigroup-b103707/experiments/run_boundary_semigroup.py cell --output-dir /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1/cells/seed161803-unconstrained-autonomous --data-cache /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1/data-prep/boundary_wave1_cache.pt --seed 161803 --boundary-mode unconstrained --temporal-mode autonomous --device cuda",
+  "best_validation_mse": 0.00020154201774857938,
+  "boundary_mode": "unconstrained",
+  "checkpoint_sha256": "544daede5903229778294600fca01a2d59760b7f3c5a9c4db634f85dd19f50c9",
+  "evidence_class": "exploratory_full",
+  "exit_code": 0,
+  "experiment": "boundary_compatible_semigroup_wave1",
+  "git_commit": "b1037072e3177365f2989019ada346f6f651dcf2",
+  "hard_boundary_pass": true,
+  "initial_parameter_fingerprint": "78ebb0fa222386b554693f9c7ea99f22112e0628abf0b9bbaefad1f1be396166",
+  "input_hashes": {
+    "data_cache": {
+      "after": "fcc98178c28813323526d435cbea8cde120bcd6ec1e5af4424573140ede21de0",
+      "before": "fcc98178c28813323526d435cbea8cde120bcd6ec1e5af4424573140ede21de0"
+    }
+  },
+  "manifest_sha256": "b8b272948b53eff24537aa6cac0c875272f5248fb225c14c93be432b67de22ca",
+  "metrics_csv_sha256": "c40c8185c69fda3eed772c31c86a4c024490d7ff1a0f2c50f7ae5e2cb4ae1da3",
+  "normal_exit": true,
+  "parameter_count": 1249,
+  "pid": 11255,
+  "results_sha256": "7979047215dec76fded5e5f04f39dbbe3630db7d3465bc02ac88be8ad64ac3f6",
+  "runtime": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "hostname": "e07r04",
+    "numpy_version": "1.26.4",
+    "platform": "Linux-3.10.0-957.el7.x86_64-x86_64-with-glibc2.17",
+    "python_version": "3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]",
+    "torch_cuda_version": "11.3",
+    "torch_version": "1.12.1"
+  },
+  "schema_version": 1,
+  "selected_epoch": 145,
+  "smoke_only": false,
+  "source_archive_sha256": "ce0d4a20cad470f7ece2543ebd8115057aa1a80acdf7d5bf0ff57c68a7b5c5c4",
+  "source_hashes": {
+    "artifact_contract": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+    "boundary_module": "f09eb8891da23dd93c7d13b262582912f615244d3386727d6c39d91c236861cc",
+    "context": "d05ccb2127bff404929b5b78cf94858827e6a487b22f8034174b7a26c15ae690",
+    "protocol": "f78d798db287290f3263bd43d0b05d80c8ff185762155e771fff1cc23156ba9d",
+    "runner": "d2a688546fcfaa0622157bd8ade89f331ae3a3c6b85553e500a9842fa4c98404"
+  },
+  "status": "passed",
+  "temporal_mode": "autonomous",
+  "test_metrics_used_for_selection": false,
+  "training_log_sha256": "e9313063be0eefa7bde04b4a1dd33a24983956ccd80f7f0ade47987a5d8d246c",
+  "training_seed": 161803
+}
