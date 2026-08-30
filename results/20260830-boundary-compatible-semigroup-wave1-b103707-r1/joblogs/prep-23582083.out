@@ -1,0 +1,13 @@
+hostname=e09r01
+slurm_job_id=23582083
+cuda_visible_devices=0
+NVIDIA GeForce RTX 3080, 10240 MiB, 550.135
+python /work/home/zenghang/miniconda3/envs/pytorch/bin/python
+torch 1.12.1
+torch_cuda 11.3
+numpy 1.26.4
+cuda_available True
+gpu_count 1
+{'status': 'passed', 'experiment': 'boundary_compatible_semigroup_wave1', 'smoke_only': False}
+fcc98178c28813323526d435cbea8cde120bcd6ec1e5af4424573140ede21de0  /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1/data-prep/boundary_wave1_cache.pt
+__DATA_PREP_COMPLETE__
