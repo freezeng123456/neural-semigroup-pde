@@ -1,0 +1,191 @@
+{
+  "aggregation_semantics": {
+    "defect_aggregation": "geometric mean of equal-work relative-L2 means",
+    "depth_association": "Spearman rank correlation with average tie ranks",
+    "geometric_mean_floor": 1e-30
+  },
+  "calibration": {
+    "all_order_windows_pass": true,
+    "calibration_pass": true,
+    "exact_semigroup_pass": true,
+    "status": "passed"
+  },
+  "completion": {
+    "all_equal_work_rhs_matched": true,
+    "all_inputs_unchanged": true,
+    "all_nonfinite_event_counts_zero": true,
+    "all_receipts_parseable": true,
+    "artifact_completion_pass": true,
+    "calibration_cells": 1,
+    "integrator_evaluator_cells": 18,
+    "integrator_grid_rows": 9,
+    "phase_evaluator_cells": 6,
+    "phase_grid_rows": 84
+  },
+  "created_at_unix": 1788082628.6432018,
+  "do_not_use_for_formal": true,
+  "evaluator_commit": "3c46763a5b001dfae7faf3e28a0d1c832c8281cb",
+  "exploratory": true,
+  "git_commit": null,
+  "input_roots": {
+    "calibration": "/work/home/zenghang/semigroup_runs/20260830-linear-advection-diffusion-calibration-3c46763-r2/artifact",
+    "integrator": "/work/home/zenghang/semigroup_runs/20260830-fisher-integrator-control-3c46763-3seed-r2",
+    "phase": "/work/home/zenghang/semigroup_runs/20260830-fisher-phase-diagram-3c46763-3seed-r1",
+    "phase_cache": "/work/home/zenghang/semigroup_runs/20260830-fisher-phase-cache-3c46763-s314164-r1/artifact"
+  },
+  "integrator_control": {
+    "all_equal_work_rhs_matched": true,
+    "cross_integrator_structural_pass": true,
+    "geometric_mean_floor": 1e-30,
+    "passing_integrator_count": 3,
+    "per_integrator": {
+      "euler": {
+        "a_defect_geometric_mean": 6.899998237119405e-08,
+        "a_lower_defect": true,
+        "a_lower_seed_count": 3,
+        "a_over_b_defect": 0.0007527865768488873,
+        "b_defect_geometric_mean": 9.165942179790614e-05,
+        "descriptive_prediction_mse": {
+          "a_geometric_mean": 0.00018853544007565594,
+          "a_lower_count": 8,
+          "a_lower_fraction": 0.4444444444444444,
+          "a_lower_seed_count": 1,
+          "a_over_b": 0.9921402914705705,
+          "b_geometric_mean": 0.00019002901272783195,
+          "comparison_count": 18,
+          "excluded_from_structural_rule": true
+        },
+        "passes_integrator_rule": true
+      },
+      "rk2": {
+        "a_defect_geometric_mean": 6.903800542038565e-08,
+        "a_lower_defect": true,
+        "a_lower_seed_count": 3,
+        "a_over_b_defect": 0.0007533172050825104,
+        "b_defect_geometric_mean": 9.164533207870109e-05,
+        "descriptive_prediction_mse": {
+          "a_geometric_mean": 0.00018853349333935998,
+          "a_lower_count": 8,
+          "a_lower_fraction": 0.4444444444444444,
+          "a_lower_seed_count": 1,
+          "a_over_b": 0.9921117395888166,
+          "b_geometric_mean": 0.00019003251933849528,
+          "comparison_count": 18,
+          "excluded_from_structural_rule": true
+        },
+        "passes_integrator_rule": true
+      },
+      "rk4": {
+        "a_defect_geometric_mean": 6.899911310097008e-08,
+        "a_lower_defect": true,
+        "a_lower_seed_count": 3,
+        "a_over_b_defect": 0.0007528933250191289,
+        "b_defect_geometric_mean": 9.164527139248712e-05,
+        "descriptive_prediction_mse": {
+          "a_geometric_mean": 0.00018853348796774185,
+          "a_lower_count": 8,
+          "a_lower_fraction": 0.4444444444444444,
+          "a_lower_seed_count": 1,
+          "a_over_b": 0.9921117918661921,
+          "b_geometric_mean": 0.00019003250391077872,
+          "comparison_count": 18,
+          "excluded_from_structural_rule": true
+        },
+        "passes_integrator_rule": true
+      }
+    }
+  },
+  "normal_exit": true,
+  "phase_cache": {
+    "cache_sha256": "0e387f5b3b5bcb4d5f3d6924f4dd8df775951aba230df9b38af1643ff4d08127",
+    "reload_validation_passed": true,
+    "status": "passed"
+  },
+  "phase_diagram": {
+    "a_fraction_pass_seed_count": 3,
+    "b_association_pass_seed_count": 3,
+    "composition_depth_hypothesis_pass": true,
+    "descriptive_overall": {
+      "defect": {
+        "a_geometric_mean": 7.199037655841952e-08,
+        "a_lower_count": 84,
+        "a_lower_fraction": 1.0,
+        "a_over_b": 0.001077059047758105,
+        "b_geometric_mean": 6.68397677065777e-05,
+        "comparison_count": 84
+      },
+      "prediction_mse": {
+        "a_geometric_mean": 0.0001438074339465859,
+        "a_lower_count": 28,
+        "a_lower_fraction": 0.3333333333333333,
+        "a_over_b": 0.9946475599814802,
+        "b_geometric_mean": 0.00014458129666478396,
+        "comparison_count": 84,
+        "excluded_from_structural_rule": true
+      }
+    },
+    "per_seed": {
+      "161803": {
+        "a_fraction_at_least_0p8": true,
+        "a_lower_defect_cells": 28,
+        "a_lower_defect_fraction": 1.0,
+        "a_over_b_defect_geometric_mean": 0.0010114375250037983,
+        "b_depth_defect_spearman": 0.447929059583532,
+        "b_positive_depth_association": true,
+        "descriptive_prediction_mse": {
+          "a_geometric_mean": 0.00015932596125659538,
+          "a_lower_count": 7,
+          "a_lower_fraction": 0.25,
+          "a_over_b": 1.0080644817180033,
+          "b_geometric_mean": 0.00015805135896174283,
+          "comparison_count": 28,
+          "excluded_from_structural_rule": true
+        },
+        "valid_grid_cells": 28
+      },
+      "271828": {
+        "a_fraction_at_least_0p8": true,
+        "a_lower_defect_cells": 28,
+        "a_lower_defect_fraction": 1.0,
+        "a_over_b_defect_geometric_mean": 0.0011164431109517668,
+        "b_depth_defect_spearman": 0.447929059583532,
+        "b_positive_depth_association": true,
+        "descriptive_prediction_mse": {
+          "a_geometric_mean": 0.00014270829738083758,
+          "a_lower_count": 0,
+          "a_lower_fraction": 0.0,
+          "a_over_b": 1.002869512983961,
+          "b_geometric_mean": 0.0001422999657814106,
+          "comparison_count": 28,
+          "excluded_from_structural_rule": true
+        },
+        "valid_grid_cells": 28
+      },
+      "31415": {
+        "a_fraction_at_least_0p8": true,
+        "a_lower_defect_cells": 28,
+        "a_lower_defect_fraction": 1.0,
+        "a_over_b_defect_geometric_mean": 0.0011064782452567736,
+        "b_depth_defect_spearman": 0.447929059583532,
+        "b_positive_depth_association": true,
+        "descriptive_prediction_mse": {
+          "a_geometric_mean": 0.0001308001490088509,
+          "a_lower_count": 21,
+          "a_lower_fraction": 0.75,
+          "a_over_b": 0.9733631996496431,
+          "b_geometric_mean": 0.00013437959135493484,
+          "comparison_count": 28,
+          "excluded_from_structural_rule": true
+        },
+        "valid_grid_cells": 28
+      }
+    }
+  },
+  "schema_version": 1,
+  "source_hashes": {
+    "aggregate_semigroup_novelty.py": "a829dba102069e357db4011153dbf46f2ef13f97598fe313791d360b6f58fd3e",
+    "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb"
+  },
+  "status": "passed",
+  "track": "semigroup_novelty_independent_aggregation"
+}

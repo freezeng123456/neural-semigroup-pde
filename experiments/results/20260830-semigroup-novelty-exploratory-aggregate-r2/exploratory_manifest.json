@@ -1,0 +1,26 @@
+{
+  "aggregation_semantics": {
+    "defect_aggregation": "geometric mean of equal-work relative-L2 means",
+    "depth_association": "Spearman rank correlation with average tie ranks",
+    "geometric_mean_floor": 1e-30
+  },
+  "created_at_unix": 1788082628.6432018,
+  "do_not_use_for_formal": true,
+  "evaluator_commit": "3c46763a5b001dfae7faf3e28a0d1c832c8281cb",
+  "exploratory": true,
+  "git_commit": null,
+  "input_roots": {
+    "calibration": "/work/home/zenghang/semigroup_runs/20260830-linear-advection-diffusion-calibration-3c46763-r2/artifact",
+    "integrator": "/work/home/zenghang/semigroup_runs/20260830-fisher-integrator-control-3c46763-3seed-r2",
+    "phase": "/work/home/zenghang/semigroup_runs/20260830-fisher-phase-diagram-3c46763-3seed-r1",
+    "phase_cache": "/work/home/zenghang/semigroup_runs/20260830-fisher-phase-cache-3c46763-s314164-r1/artifact"
+  },
+  "normal_exit": true,
+  "schema_version": 1,
+  "source_hashes": {
+    "aggregate_semigroup_novelty.py": "a829dba102069e357db4011153dbf46f2ef13f97598fe313791d360b6f58fd3e",
+    "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb"
+  },
+  "status": "passed",
+  "track": "semigroup_novelty_independent_aggregation"
+}

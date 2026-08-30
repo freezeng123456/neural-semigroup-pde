@@ -1,0 +1,19 @@
+{
+  "artifact_completion_pass": true,
+  "composition_depth_hypothesis_pass": true,
+  "cross_integrator_structural_pass": true,
+  "do_not_use_for_formal": true,
+  "exploratory": true,
+  "integrator_csv_sha256": "f70e392ed97d5b86d0cb0d608a2f91942f72c7a416b77ac2185a4efe37e58025",
+  "manifest_sha256": "638a6f601bba408222c8e283d6f55d0f270eeb6b3902cf200c26493a1a51b5ad",
+  "normal_exit": true,
+  "phase_csv_sha256": "ea2554431b168fa3c84c6e124594edc5ab9d8e6e5cabc51b2e4f8a79cbc1987b",
+  "results_sha256": "b2c9c6a40df7dae4702776fcca306efb92bf2f6fdb8425564785b1590b484b63",
+  "schema_version": 1,
+  "source_hashes": {
+    "aggregate_semigroup_novelty.py": "a829dba102069e357db4011153dbf46f2ef13f97598fe313791d360b6f58fd3e",
+    "experiment_artifacts.py": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb"
+  },
+  "status": "passed",
+  "track": "semigroup_novelty_independent_aggregation"
+}
