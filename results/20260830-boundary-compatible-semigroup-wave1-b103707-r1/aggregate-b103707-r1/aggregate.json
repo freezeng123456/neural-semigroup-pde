@@ -1,0 +1,86 @@
+{
+  "boundary_rule": {
+    "hard_cell_count": 6,
+    "maximum_evidence": 0.0,
+    "pass": true,
+    "threshold": 1e-12
+  },
+  "cell_count": 12,
+  "controls": {
+    "paired_initialization_within_seed": true,
+    "single_data_cache_sha256": "fcc98178c28813323526d435cbea8cde120bcd6ec1e5af4424573140ede21de0",
+    "single_git_commit": "b1037072e3177365f2989019ada346f6f651dcf2",
+    "single_parameter_count": 1249,
+    "single_source_archive_sha256": "ce0d4a20cad470f7ece2543ebd8115057aa1a80acdf7d5bf0ff57c68a7b5c5c4",
+    "single_source_snapshot": true
+  },
+  "evidence_class": "exploratory_full_aggregate",
+  "execution_complete": true,
+  "experiment": "boundary_compatible_semigroup_wave1",
+  "prediction_support": {
+    "autonomous_over_query_time": 0.09687363205137645,
+    "descriptive_only": true,
+    "hard_autonomous_long_mse_geometric_mean": 1.8795698981530895e-05,
+    "hard_query_time_long_mse_geometric_mean": 0.00019402285826924183,
+    "paired_seed_autonomous_lower_mse_count": 3
+  },
+  "schema_version": 1,
+  "scientific_hypotheses": {
+    "hard_boundary_compatibility": true,
+    "prediction_gain_claimed": false,
+    "temporal_semigroup_comparison": true
+  },
+  "seed_summaries": [
+    {
+      "hard_auto_long_mse": 3.4032373172730925e-05,
+      "hard_auto_lower_defect": true,
+      "hard_auto_lower_long_mse": true,
+      "hard_auto_over_query_defect": 6.090668398896046e-15,
+      "hard_auto_over_query_long_mse": 0.10756709211105457,
+      "hard_auto_primary_defect": 9.999999999999965e-17,
+      "hard_lower_stress_endpoint": true,
+      "hard_query_long_mse": 0.00031638275707588314,
+      "hard_query_primary_defect": 0.01641855925338588,
+      "hard_stress_endpoint": 0.0,
+      "seed": 31415,
+      "unconstrained_stress_endpoint": 0.16407239437103271
+    },
+    {
+      "hard_auto_long_mse": 2.516346279319808e-05,
+      "hard_auto_lower_defect": true,
+      "hard_auto_lower_long_mse": true,
+      "hard_auto_over_query_defect": 5.4429796099738635e-15,
+      "hard_auto_over_query_long_mse": 0.2447318141574758,
+      "hard_auto_primary_defect": 9.999999999999965e-17,
+      "hard_lower_stress_endpoint": true,
+      "hard_query_long_mse": 0.00010282056249951357,
+      "hard_query_primary_defect": 0.01837229002599182,
+      "hard_stress_endpoint": 0.0,
+      "seed": 271828,
+      "unconstrained_stress_endpoint": 0.16540366411209106
+    },
+    {
+      "hard_auto_long_mse": 7.753768019341651e-06,
+      "hard_auto_lower_defect": true,
+      "hard_auto_lower_long_mse": true,
+      "hard_auto_over_query_defect": 2.78699149556546e-15,
+      "hard_auto_over_query_long_mse": 0.034534000483432116,
+      "hard_auto_primary_defect": 9.999999999999965e-17,
+      "hard_lower_stress_endpoint": true,
+      "hard_query_long_mse": 0.00022452562433540143,
+      "hard_query_primary_defect": 0.03588098498295216,
+      "hard_stress_endpoint": 0.0,
+      "seed": 161803,
+      "unconstrained_stress_endpoint": 0.16725923120975494
+    }
+  ],
+  "status": "passed",
+  "temporal_rule": {
+    "autonomous_over_query_time": 4.5207702405547264e-15,
+    "hard_autonomous_defect_geometric_mean": 9.999999999999965e-17,
+    "hard_query_time_defect_geometric_mean": 0.022120124376798462,
+    "paired_seed_direction_count": 3,
+    "pass": true,
+    "required_direction_count": 2
+  }
+}

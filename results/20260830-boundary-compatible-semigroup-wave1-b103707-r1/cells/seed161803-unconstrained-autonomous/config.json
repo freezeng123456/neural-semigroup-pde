@@ -1,0 +1,87 @@
+{
+  "batch_size": 64,
+  "boundary_mode": "unconstrained",
+  "boundary_threshold": 1e-12,
+  "data_seed": 424242,
+  "device": "cuda",
+  "diffusivity": 0.02,
+  "domain_length": 1.0,
+  "dx": 0.03125,
+  "epochs": 150,
+  "experiment": "boundary_compatible_semigroup_wave1",
+  "exploratory": true,
+  "hidden_width": 32,
+  "learning_rate": 0.001,
+  "long_rollout_pairs": [
+    [
+      0.03,
+      0.24
+    ],
+    [
+      0.03,
+      0.48
+    ],
+    [
+      0.06,
+      0.24
+    ],
+    [
+      0.06,
+      0.48
+    ]
+  ],
+  "n_grid": 33,
+  "n_test": 128,
+  "n_train": 512,
+  "n_val": 64,
+  "neural_rk4_steps": 8,
+  "primary_semigroup_pairs": [
+    [
+      0.02,
+      0.08
+    ],
+    [
+      0.02,
+      0.16
+    ],
+    [
+      0.04,
+      0.08
+    ],
+    [
+      0.04,
+      0.16
+    ],
+    [
+      0.08,
+      0.16
+    ]
+  ],
+  "query_time_scale": 0.08,
+  "reference_dt": 0.001,
+  "reference_horizons": [
+    0.02,
+    0.04,
+    0.08,
+    0.16,
+    0.24,
+    0.48
+  ],
+  "schema_version": 1,
+  "sine_modes": 8,
+  "smoke_only": false,
+  "stress_amplitude": 0.25,
+  "stress_horizon": 0.16,
+  "stress_samples": 64,
+  "stress_tau": 0.04,
+  "temporal_mode": "autonomous",
+  "train_taus": [
+    0.02,
+    0.04,
+    0.08,
+    0.16
+  ],
+  "training_seed": 161803,
+  "validation_interval": 5,
+  "weight_decay": 1e-06
+}

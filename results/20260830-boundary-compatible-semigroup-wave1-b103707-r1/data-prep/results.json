@@ -1,0 +1,35 @@
+{
+  "cache": {
+    "bytes": 302008,
+    "path": "/work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1/data-prep/boundary_wave1_cache.pt",
+    "sha256": "fcc98178c28813323526d435cbea8cde120bcd6ec1e5af4424573140ede21de0"
+  },
+  "data_seed": 424242,
+  "evidence_class": "exploratory_full",
+  "experiment": "boundary_compatible_semigroup_wave1",
+  "mode": "prepare_data",
+  "schema_version": 1,
+  "smoke_only": false,
+  "status": "passed",
+  "validation": {
+    "duration_counts": {
+      "0.02": 128,
+      "0.04": 128,
+      "0.08": 128,
+      "0.16": 128
+    },
+    "maximum_reference_endpoint": 0.0,
+    "test_shape": [
+      128,
+      33
+    ],
+    "train_shape": [
+      512,
+      33
+    ],
+    "validation_shape": [
+      64,
+      33
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "actual_command": "/work/home/zenghang/miniconda3/envs/pytorch/bin/python /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/semigroup-b103707/experiments/aggregate_boundary_semigroup.py --wave-root /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1 --output-dir /work/home/zenghang/semigroup_runs/20260830-boundary-wave1-b103707-r2/wave-b103707-r1/aggregate-b103707-r1",
+  "aggregate_sha256": "b3b96634d33fbe8f3743307d38e8e3cd422ccfc4ca8c87dada70679a6c2319fe",
+  "boundary_rule_pass": true,
+  "cell_count": 12,
+  "cell_summary_sha256": "26e98c772f4ec03d7a74e9d075925e73d3d57cedf4978da5a81bc73306e7d5a9",
+  "evidence_class": "exploratory_full_aggregate",
+  "execution_complete": true,
+  "exit_code": 0,
+  "experiment": "boundary_compatible_semigroup_wave1",
+  "manifest_sha256": "314ff900a31e3314a5a3604a46fe0da85a24f0a4fae9774c29c86f585016ebc4",
+  "normal_exit": true,
+  "schema_version": 1,
+  "seed_summary_sha256": "7820780e903ce3295c88e71b0186477921de6318795c39028c2138d74817cd17",
+  "status": "passed",
+  "temporal_rule_pass": true
+}
