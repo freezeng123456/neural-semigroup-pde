@@ -1,0 +1,10 @@
+hostname=e07r04
+slurm_job_id=23583726
+python /work/home/zenghang/miniconda3/envs/pytorch/bin/python
+numpy 1.26.4
+torch 1.12.1
+{'status': 'passed', 'cell_count': 54, 'boundary_implementation_pass': True}
+70804f39499a07dfb59f91c9c8bf0f1c31758e521fb5d1a6ac0b65a8ceb58af4  /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/wave-148f494-r1/aggregate-148f494-r1/aggregate.json
+75ef2b92200f382e7519b9fb40c452e7887e66210085e1a27eff54ba2c6dd845  /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/wave-148f494-r1/aggregate-148f494-r1/cell_summary.csv
+3f80146ff473335ffd8e4cb094e4a27e0c10a2c7dd1ed9c3608e73a8ab1c263f  /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/wave-148f494-r1/aggregate-148f494-r1/family_seed_summary.csv
+__AGGREGATE_COMPLETE__

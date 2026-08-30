@@ -1,0 +1,123 @@
+{
+  "batch_size": 64,
+  "boundary_family": "inhomogeneous_dirichlet",
+  "boundary_spec": {
+    "dirichlet_left": 0.2,
+    "dirichlet_right": -0.1,
+    "dx": 0.03125,
+    "family": "inhomogeneous_dirichlet",
+    "neumann_left": 0.0,
+    "neumann_right": 0.0,
+    "robin_alpha": 1.0,
+    "robin_beta": 0.1,
+    "robin_gamma_left": 0.15,
+    "robin_gamma_right": -0.05
+  },
+  "boundary_threshold": 5e-06,
+  "data_seed": 515151,
+  "diffusivity": 0.02,
+  "domain_length": 1.0,
+  "dx": 0.03125,
+  "epochs": 150,
+  "experiment": "boundary_family_semigroup_wave2",
+  "exploratory": true,
+  "hidden_width": 32,
+  "learning_rate": 0.001,
+  "long_rollout_pairs": [
+    [
+      0.03,
+      0.24
+    ],
+    [
+      0.03,
+      0.48
+    ],
+    [
+      0.06,
+      0.24
+    ],
+    [
+      0.06,
+      0.48
+    ]
+  ],
+  "n_grid": 33,
+  "n_test": 128,
+  "n_train": 512,
+  "n_val": 64,
+  "neural_rk4_steps": 8,
+  "nonuniform_partitions": [
+    [
+      0.02,
+      0.14
+    ],
+    [
+      0.04,
+      0.12
+    ],
+    [
+      0.02,
+      0.04,
+      0.1
+    ],
+    [
+      0.01,
+      0.03,
+      0.04,
+      0.08
+    ]
+  ],
+  "penalty_lambda": 1.0,
+  "query_time_scale": 0.08,
+  "reference_dt": 0.001,
+  "reference_horizons": [
+    0.02,
+    0.04,
+    0.08,
+    0.16,
+    0.24,
+    0.48
+  ],
+  "refinement_steps": [
+    4,
+    8,
+    16
+  ],
+  "schema_version": 1,
+  "sine_modes": 8,
+  "smoke_only": false,
+  "stress_amplitude": 0.25,
+  "stress_horizon": 0.16,
+  "stress_samples": 64,
+  "stress_tau": 0.04,
+  "train_taus": [
+    0.02,
+    0.04,
+    0.08,
+    0.16
+  ],
+  "uniform_primary_pairs": [
+    [
+      0.02,
+      0.08
+    ],
+    [
+      0.02,
+      0.16
+    ],
+    [
+      0.04,
+      0.08
+    ],
+    [
+      0.04,
+      0.16
+    ],
+    [
+      0.08,
+      0.16
+    ]
+  ],
+  "validation_interval": 5,
+  "weight_decay": 1e-06
+}

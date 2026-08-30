@@ -1,0 +1,36 @@
+hostname=e07r04
+slurm_job_id=23583314
+cuda_visible_devices=0
+NVIDIA GeForce RTX 3080, 10240 MiB, 550.135
+python /work/home/zenghang/miniconda3/envs/pytorch/bin/python
+torch 1.12.1
+torch_cuda 11.3
+numpy 1.26.4
+pytest 8.3.5
+cuda_available True
+gpu NVIDIA GeForce RTX 3080
+gpu_count 1
+................                                                         [100%]
+16 passed in 16.56s
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'inhomogeneous_dirichlet', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'homogeneous_neumann', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'robin', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'inhomogeneous_dirichlet', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'inhomogeneous_dirichlet', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'inhomogeneous_dirichlet', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'inhomogeneous_dirichlet', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'inhomogeneous_dirichlet', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'inhomogeneous_dirichlet', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'homogeneous_neumann', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'homogeneous_neumann', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'homogeneous_neumann', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'homogeneous_neumann', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'homogeneous_neumann', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'homogeneous_neumann', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'robin', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'robin', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'robin', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'robin', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'robin', 'smoke_only': True}
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'robin', 'smoke_only': True}
+__SMOKE_COMPLETE__

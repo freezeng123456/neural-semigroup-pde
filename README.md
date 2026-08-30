@@ -1,16 +1,33 @@
 # Structure-Preserving Neural Semigroups for PDEs
 
-Research code and LaTeX materials for learning time-evolution operators of autonomous partial differential equations at the semigroup level.
+Research code and LaTeX materials for learning boundary-admissible
+time-evolution operators of autonomous partial differential equations.
 
 ## Project goal
 
 The project studies a learned family of evolution operators
 
 \[
-\Phi_\theta(u,\tau) \approx \mathcal S_\tau(u),
+S_t^\theta:X_B\to X_B,
+\qquad
+X_B=\{u:B_hu=g\},
 \]
 
-where \(\mathcal S_\tau\) is the solution semigroup of a time-dependent PDE. The central idea is to learn a continuous-time latent dynamical system instead of an isolated one-step predictor:
+where `X_B` is a discrete state space satisfying a selected spatial boundary
+condition. The main construction combines two distinct structures:
+
+1. a parameter-free boundary map and tangent vector field keep the learned
+   flow inside `X_B`;
+2. a duration-independent autonomous generator supplies time homogeneity and
+   the continuous-flow composition law.
+
+The semigroup law does not create the spatial boundary condition. The
+boundary operator defines the domain on which the semigroup acts. Boundary
+residual, numerical composition defect, and PDE prediction error are therefore
+measured separately.
+
+One generator family in the repository is a continuous-time latent
+gradient-flow system:
 
 \[
 \dot z=-K_\theta(z)\nabla\Psi_\theta(z), \qquad u=g(z).
@@ -18,7 +35,10 @@ where \(\mathcal S_\tau\) is the solution semigroup of a time-dependent PDE. The
 
 Here, a bounded decoder \(g\) is intended to preserve an invariant state region, while a positive-semidefinite mobility \(K_\theta\) and latent potential \(\Psi_\theta\) provide a dissipative gradient-flow structure. Because the latent dynamics are autonomous, their exact continuous-time flow has a natural composition law, which makes the construction suitable for repeated time stepping.
 
-The research objective is therefore broader than short-horizon prediction: learn PDE evolution families that remain useful under repeated composition while retaining interpretable structural properties such as boundedness, dissipation, and time-composition consistency.
+The research objective is broader than short-horizon prediction: learn PDE
+evolution families that remain useful under repeated composition while
+retaining explicit spatial admissibility and, when the generator supports
+them, interpretable bounds, invariants, or dissipation.
 
 ## Current status
 
@@ -38,7 +58,19 @@ The major-revision branch now resolves the review's central formulation and impl
   epochs with a mandatory final-epoch check;
 - missing Allen--Cahn/Burgers values are labeled “Not reported,” and Burgers is treated as an out-of-class transport stress test.
 
-The repository is not yet publication-ready: all comparative benchmark tables still require aligned, multi-seed reruns. Archived numerical values are retained for provenance and are not presented as corrected results.
+The frozen boundary-family Wave 2 exploratory matrix is now complete: 54/54
+full cells cover nonhomogeneous Dirichlet, homogeneous Neumann, and Robin
+conditions; hard, penalty, and unconstrained enforcement; autonomous and
+query-time temporal rules; and three paired seeds. All hard boundary gates and
+all three preregistered temporal rules passed. See
+[`docs/research/BOUNDARY_FAMILY_SEMIGROUP_WAVE2_RESULTS.md`](docs/research/BOUNDARY_FAMILY_SEMIGROUP_WAVE2_RESULTS.md).
+
+The repository is not yet publication-ready. Wave 2 is exploratory and tests
+one one-dimensional reaction--diffusion PDE. The formal Fisher--KPP lane does
+not establish a stable prediction advantage, and conservative/no-flux,
+multidimensional, and irregular-geometry transfer remain open. Archived
+numerical values are retained for provenance and must not be mixed across
+formal and exploratory evidence classes.
 
 See [`REVIEW_AND_FIX_REPORT.md`](REVIEW_AND_FIX_REPORT.md) and [`review_mathematical_rigor.md`](review_mathematical_rigor.md) for the detailed audit.
 

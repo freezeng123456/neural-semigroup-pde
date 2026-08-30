@@ -1,0 +1,52 @@
+{
+  "actual_command": "/work/home/zenghang/miniconda3/envs/pytorch/bin/python /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/semigroup-148f494-r2/experiments/run_boundary_family_semigroup.py cell --output-dir /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/smoke-148f494-r1/cells/robin-unconstrained-query_time --data-cache /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/smoke-148f494-r1/data-prep/robin/boundary_family_wave2_robin_cache.pt --seed 31415 --boundary-family robin --enforcement-mode unconstrained --temporal-mode query_time --device cuda --smoke",
+  "best_validation_mse": 0.0007650678744539618,
+  "boundary_family": "robin",
+  "checkpoint_sha256": "04b25dc49b8760dce443301fb9a616f3fe3f412728190e346b8c6b4426c84b0c",
+  "data_cache_path": "/work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/smoke-148f494-r1/data-prep/robin/boundary_family_wave2_robin_cache.pt",
+  "enforcement_mode": "unconstrained",
+  "evidence_class": "exploratory_smoke",
+  "exit_code": 0,
+  "experiment": "boundary_family_semigroup_wave2",
+  "git_commit": "148f4946fa489ec2b0bf485cf76bc62c7456b3e3",
+  "hard_boundary_pass": true,
+  "initial_parameter_fingerprint": "3c87b22c4c3872a5eed8215a3d342a9fe69968e42b6ea5d66f1211257886df3f",
+  "input_hashes": {
+    "data_cache": {
+      "after": "8536f5c6cda231caf469f3b680f460f03bad5c746cafe2152d6931a14d5cffb4",
+      "before": "8536f5c6cda231caf469f3b680f460f03bad5c746cafe2152d6931a14d5cffb4"
+    }
+  },
+  "manifest_sha256": "dc500ae4607aff9a4d861a4b98ad891031ff8dde55a0f8122eab08ed7e74390c",
+  "metrics_csv_sha256": "cf8d678b74d8bbf828fec852055648e47ba820cb0dfa84efba8791288c77fae3",
+  "normal_exit": true,
+  "parameter_count": 121,
+  "pid": 47076,
+  "results_sha256": "65968c31a482e705b7a7d3ebad2d307077ae5cdf1a231bdd55e1a4fb361d35f6",
+  "runtime": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "hostname": "e07r04",
+    "numpy_version": "1.26.4",
+    "platform": "Linux-3.10.0-957.el7.x86_64-x86_64-with-glibc2.17",
+    "python_version": "3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]",
+    "torch_cuda_version": "11.3",
+    "torch_version": "1.12.1"
+  },
+  "schema_version": 1,
+  "selected_epoch": 2,
+  "smoke_only": true,
+  "source_archive_sha256": "708cef2741c564d3bb530c677f2cdc8898734371712ee76c81e0ae92aa6e53f6",
+  "source_hashes": {
+    "artifact_contract": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+    "boundary_family_module": "533bf544285b1af8007863c6c59e413dcfe62f5bf9c6cb2b359087f28fc0438f",
+    "context": "d05ccb2127bff404929b5b78cf94858827e6a487b22f8034174b7a26c15ae690",
+    "protocol": "4d63d1b9b30aaf6fd6f4167c21110eb4713d601920fdf0fe1c07d8661b0d9ad0",
+    "runner": "d4bc63c4525abba1823ced7a4fbb239805640cd61132cfcbe23058c92f533815"
+  },
+  "status": "passed",
+  "temporal_mode": "query_time",
+  "test_metrics_used_for_selection": false,
+  "training_log_sha256": "95a197abd8cfbcad7313d42e66319a4c7f4fced0807bdf9e970cdfe3038dd69d",
+  "training_seed": 31415
+}

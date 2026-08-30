@@ -1,0 +1,52 @@
+{
+  "actual_command": "/work/home/zenghang/miniconda3/envs/pytorch/bin/python /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/semigroup-148f494-r2/experiments/run_boundary_family_semigroup.py cell --output-dir /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/wave-148f494-r1/cells/seed161803-inhomogeneous_dirichlet-unconstrained-autonomous --data-cache /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/wave-148f494-r1/data-prep/inhomogeneous_dirichlet/boundary_family_wave2_inhomogeneous_dirichlet_cache.pt --seed 161803 --boundary-family inhomogeneous_dirichlet --enforcement-mode unconstrained --temporal-mode autonomous --device cuda",
+  "best_validation_mse": 0.0012958977604284883,
+  "boundary_family": "inhomogeneous_dirichlet",
+  "checkpoint_sha256": "16975d4eddf577b37bcf5cc92897bc8e7982908be10767a7c8ccfb209321c151",
+  "data_cache_path": "/work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/wave-148f494-r1/data-prep/inhomogeneous_dirichlet/boundary_family_wave2_inhomogeneous_dirichlet_cache.pt",
+  "enforcement_mode": "unconstrained",
+  "evidence_class": "exploratory_full",
+  "exit_code": 0,
+  "experiment": "boundary_family_semigroup_wave2",
+  "git_commit": "148f4946fa489ec2b0bf485cf76bc62c7456b3e3",
+  "hard_boundary_pass": true,
+  "initial_parameter_fingerprint": "78ebb0fa222386b554693f9c7ea99f22112e0628abf0b9bbaefad1f1be396166",
+  "input_hashes": {
+    "data_cache": {
+      "after": "625b7cf9c7b983b023fb5419193483d5c599d329b20d53fb04598331d6265e07",
+      "before": "625b7cf9c7b983b023fb5419193483d5c599d329b20d53fb04598331d6265e07"
+    }
+  },
+  "manifest_sha256": "bb21d74f0ca80dd65ecb2eb7cd0652752ac181305e41a15eaca51db5737aa03c",
+  "metrics_csv_sha256": "207854415063da9b1d849f5438b5457e32ba1496d1dc1d14652bd3e257b49de5",
+  "normal_exit": true,
+  "parameter_count": 1249,
+  "pid": 59004,
+  "results_sha256": "481294896ee73493f9761429b67b1a02bb4793c1394851a2cdeda16aaa573f98",
+  "runtime": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "hostname": "e12r01",
+    "numpy_version": "1.26.4",
+    "platform": "Linux-3.10.0-957.el7.x86_64-x86_64-with-glibc2.17",
+    "python_version": "3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]",
+    "torch_cuda_version": "11.3",
+    "torch_version": "1.12.1"
+  },
+  "schema_version": 1,
+  "selected_epoch": 145,
+  "smoke_only": false,
+  "source_archive_sha256": "708cef2741c564d3bb530c677f2cdc8898734371712ee76c81e0ae92aa6e53f6",
+  "source_hashes": {
+    "artifact_contract": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+    "boundary_family_module": "533bf544285b1af8007863c6c59e413dcfe62f5bf9c6cb2b359087f28fc0438f",
+    "context": "d05ccb2127bff404929b5b78cf94858827e6a487b22f8034174b7a26c15ae690",
+    "protocol": "4d63d1b9b30aaf6fd6f4167c21110eb4713d601920fdf0fe1c07d8661b0d9ad0",
+    "runner": "d4bc63c4525abba1823ced7a4fbb239805640cd61132cfcbe23058c92f533815"
+  },
+  "status": "passed",
+  "temporal_mode": "autonomous",
+  "test_metrics_used_for_selection": false,
+  "training_log_sha256": "aab4c7459c56f0596cafadf6f1baef5206aa05b8800a6ada05424a83a24c4d37",
+  "training_seed": 161803
+}

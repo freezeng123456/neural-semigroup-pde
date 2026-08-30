@@ -1,0 +1,56 @@
+{
+  "artifacts": {
+    "checkpoint_best.pt": {
+      "bytes": 9687,
+      "sha256": "7c9d45d38140a73a779b986e2f12f3b2c551ba9f332e65f026ac5dbf16e37dbb"
+    },
+    "config.json": {
+      "bytes": 1930,
+      "sha256": "20deb165afdaa2fb59b792f6d2dd30811135b99198cf2e078716d0614600db94"
+    },
+    "metrics.csv": {
+      "bytes": 7658,
+      "sha256": "7411ae276f332865e07dde3d04eef451168e0cb969c9491f2c6cc07970a8e232"
+    },
+    "results.json": {
+      "bytes": 25219,
+      "sha256": "c7170c129d839885cdbcfbca67d91d6a257248d9a3dbdefce9540d998dca7fe0"
+    },
+    "run_card.json": {
+      "bytes": 4623,
+      "sha256": "ad606ebf7e9028b6cca3ee7da1f36135bbbfbc896cecbb7ce9a3c57fa399ba74"
+    },
+    "training_log.csv": {
+      "bytes": 15103,
+      "sha256": "b43915fd182c63a01b818aa12ec1462c2057e4adec3eb71586cc5c5bd21b41a9"
+    }
+  },
+  "boundary_family": "inhomogeneous_dirichlet",
+  "created_at_unix": 1788099683.5186121,
+  "enforcement_mode": "penalty",
+  "evidence_class": "exploratory_full",
+  "experiment": "boundary_family_semigroup_wave2",
+  "git_commit": "148f4946fa489ec2b0bf485cf76bc62c7456b3e3",
+  "runtime": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "hostname": "e12r01",
+    "numpy_version": "1.26.4",
+    "platform": "Linux-3.10.0-957.el7.x86_64-x86_64-with-glibc2.17",
+    "python_version": "3.10.18 (main, Jun  5 2025, 13:14:17) [GCC 11.2.0]",
+    "torch_cuda_version": "11.3",
+    "torch_version": "1.12.1"
+  },
+  "schema_version": 1,
+  "smoke_only": false,
+  "source_archive_sha256": "708cef2741c564d3bb530c677f2cdc8898734371712ee76c81e0ae92aa6e53f6",
+  "source_hashes": {
+    "artifact_contract": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+    "boundary_family_module": "533bf544285b1af8007863c6c59e413dcfe62f5bf9c6cb2b359087f28fc0438f",
+    "context": "d05ccb2127bff404929b5b78cf94858827e6a487b22f8034174b7a26c15ae690",
+    "protocol": "4d63d1b9b30aaf6fd6f4167c21110eb4713d601920fdf0fe1c07d8661b0d9ad0",
+    "runner": "d4bc63c4525abba1823ced7a4fbb239805640cd61132cfcbe23058c92f533815"
+  },
+  "temporal_mode": "query_time",
+  "training_seed": 161803
+}

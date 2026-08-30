@@ -1,0 +1,73 @@
+2026-08-30T21:54:56+0800
+login03
+bd8cc88e6d3a58024bd7286eb85fe5043ce93c9099abe35259817b013954041d  /work/home/zenghang/semigroup-wave2-148f494.tar.gz
+Filesystem           Size  Used Avail Use% Mounted on
+HS_ParaStor_01_work   50G   43G  7.7G  85% /work
+python /work/home/zenghang/miniconda3/envs/pytorch/bin/python
+torch 1.12.1
+torch_cuda 11.3
+numpy 1.26.4
+cuda_available_login False
+xhhgnormal|up|333-08:00:00|57|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e01r01|drain*|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e01r02|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e01r03|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e01r04|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e01r05|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e02r01|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e02r02|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e02r03|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e02r04|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e02r05|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e03r01|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e03r02|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e03r03|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e03r04|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e03r05|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e04r01|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e04r02|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e04r03|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e04r04|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e04r05|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e05r01|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e05r02|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e05r03|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e05r04|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e05r05|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e06r01|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e06r02|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e06r03|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e06r04|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e06r05|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e07r01|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e07r02|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e07r03|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e07r04|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e07r05|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e08r01|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e08r02|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e08r03|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e08r04|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e08r05|alloc|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e09r01|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e09r02|drain*|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e09r03|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e09r04|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e09r05|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e10r03|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e10r04|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e10r05|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e11r01|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e11r02|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e11r03|mix|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e11r04|alloc|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e12r01|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e12r02|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e12r03|idle|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e12r04|drng|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+e12r05|alloc|gpu:NVIDIAGeForceRTX3080:4(S:0-7)
+zenghang|acu722p2q8|comp||||||user_zenghang
+zenghang|acu722p2q8|xhhgnormal01||||||user_zenghang
+zenghang|acu722p2q8|xhhgnormal||||||user_zenghang
+zenghang|acu722p2q8|xhhctdnormal||||||user_zenghang
+zenghang|acu722p2q8|xhhgnormal02||||||user_zenghang

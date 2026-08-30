@@ -1,0 +1,38 @@
+{
+  "boundary_family": "robin",
+  "cache": {
+    "bytes": 302328,
+    "path": "/work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/wave-148f494-r1/data-prep/robin/boundary_family_wave2_robin_cache.pt",
+    "sha256": "46330dd60e4b40a0e74488458bf83272ed64df69a9ecae122d5b7bdb398e47f1"
+  },
+  "data_seed": 515151,
+  "evidence_class": "exploratory_full",
+  "experiment": "boundary_family_semigroup_wave2",
+  "mode": "prepare_data",
+  "schema_version": 1,
+  "smoke_only": false,
+  "status": "passed",
+  "validation": {
+    "boundary_family": "robin",
+    "duration_counts": {
+      "0.02": 128,
+      "0.04": 128,
+      "0.08": 128,
+      "0.16": 128
+    },
+    "maximum_reference_equation_residual": 1.1920928955078125e-07,
+    "maximum_reference_state_residual": 5.960464477539063e-08,
+    "test_shape": [
+      128,
+      33
+    ],
+    "train_shape": [
+      512,
+      33
+    ],
+    "validation_shape": [
+      64,
+      33
+    ]
+  }
+}
