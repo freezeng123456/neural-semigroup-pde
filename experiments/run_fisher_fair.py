@@ -21,6 +21,7 @@ if str(EXPERIMENTS_DIR) not in sys.path:
     sys.path.insert(0, str(EXPERIMENTS_DIR))
 
 from evaluate import evaluate_full
+from fisher_generator_metrics import generator_mse_loss
 from models import (
     LatentSemigroupNet,
     QueryTimeConditionedLatentFlow,
@@ -83,6 +84,12 @@ def build_parser():
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--validation-interval", type=int, default=5)
     parser.add_argument("--beta-v-floor", type=float, default=0.1)
+    parser.add_argument(
+        "--alpha-generator",
+        type=float,
+        default=0.0,
+        help="weight of Fisher physical-generator matching; supported only for latent",
+    )
     parser.add_argument("--no-resume", action="store_true")
     return parser
 
@@ -351,18 +358,24 @@ def run_model(name, args, data, device):
         "batch_size": args.batch_size,
         "lr": args.lr,
         "validation_interval": args.validation_interval,
-        "architecture_only": True,
+        "architecture_only": args.alpha_generator == 0.0,
         "temporal_structure": temporal_structure_metadata(name),
         "auxiliary_loss_weights": {
             "alpha_rollout": 0.0,
             "alpha_energy": 0.0,
             "alpha_bound": 0.0,
+            "alpha_generator": args.alpha_generator,
         },
         "optimizer": {"name": "Adam", "weight_decay": 1e-5},
         "provenance": {
             "git_commit": _git_commit(),
             "source_hashes": _source_hashes(),
             "data_cache_sha256": _sha256_file(args.data_cache),
+            "generator_loss_source_sha256": (
+                _sha256_file(EXPERIMENTS_DIR / "fisher_generator_metrics.py")
+                if args.alpha_generator > 0
+                else None
+            ),
         },
     }
 
@@ -383,9 +396,22 @@ def run_model(name, args, data, device):
         lr=args.lr,
         alpha_rollout=0.0,
         alpha_energy=0.0,
-        # This screen attributes temporal structure, so no model receives an
-        # extra training loss that its matched competitor does not receive.
         alpha_bound=0.0,
+        alpha_generator=args.alpha_generator,
+        generator_loss_fn=(
+            (
+                lambda current_model, states: generator_mse_loss(
+                    current_model,
+                    states,
+                    conditioning_time=args.fixed_tau,
+                    length=args.L,
+                    diffusivity=args.nu,
+                    reaction_rate=args.reaction_rate,
+                )
+            )
+            if args.alpha_generator > 0
+            else None
+        ),
         weight_decay=1e-5,
         checkpoint_dir=checkpoint_dir,
         model_name=name,
@@ -473,6 +499,10 @@ def main(argv=None):
         raise ValueError("sample and epoch counts must be positive")
     if args.validation_interval <= 0:
         raise ValueError("validation interval must be positive")
+    if not math.isfinite(args.alpha_generator) or args.alpha_generator < 0:
+        raise ValueError("alpha-generator must be finite and non-negative")
+    if args.alpha_generator > 0 and set(args.models) != {"latent"}:
+        raise ValueError("generator consistency training supports only --models latent")
     for eval_tau in ((args.fixed_tau,) if args.regime == "fixed" else args.eval_taus):
         rollout_steps_for_horizon(args.eval_horizon, eval_tau)
     os.makedirs(args.output_dir, exist_ok=True)

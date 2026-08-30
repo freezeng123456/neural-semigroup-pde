@@ -31,6 +31,7 @@ def test_parser_has_parameter_matched_defaults():
     assert args.train_taus == (0.025, 0.05, 0.1, 0.2)
     assert args.eval_taus == (0.025, 0.05, 0.075, 0.1, 0.15, 0.2)
     assert args.validation_interval == 5
+    assert args.alpha_generator == 0.0
 
 
 def test_fisher_query_time_control_is_available_and_explicitly_non_semigroup():

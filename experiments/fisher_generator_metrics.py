@@ -125,7 +125,6 @@ def fisher_spectral_generator(
     )
 
 
-@torch.no_grad()
 def learned_physical_generator(
     model: torch.nn.Module,
     states: torch.Tensor,
@@ -158,6 +157,31 @@ def learned_physical_generator(
         latent_rhs = dynamics(latent, interactions)
     decoder_derivative = represented * (1.0 - represented)
     return decoder_derivative * latent_rhs, represented, latent
+
+
+def generator_mse_loss(
+    model: torch.nn.Module,
+    states: torch.Tensor,
+    *,
+    conditioning_time: float,
+    length: float,
+    diffusivity: float,
+    reaction_rate: float,
+) -> torch.Tensor:
+    """Differentiable physical-generator matching loss for Fisher--KPP."""
+
+    learned, represented, _latent = learned_physical_generator(
+        model,
+        states,
+        conditioning_time=conditioning_time,
+    )
+    reference = fisher_spectral_generator(
+        represented,
+        length=length,
+        diffusivity=diffusivity,
+        reaction_rate=reaction_rate,
+    )
+    return (learned - reference).square().mean()
 
 
 def _rms(values: torch.Tensor) -> float:

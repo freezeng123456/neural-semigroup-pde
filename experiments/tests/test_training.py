@@ -132,6 +132,47 @@ def test_architecture_only_training_skips_auxiliary_losses(monkeypatch, tmp_path
     assert history["L_rollout"] == [0.0]
     assert history["L_energy"] == [0.0]
     assert history["L_trajectory"] == [0.0]
+    assert history["L_generator"] == [0.0]
+
+
+def test_training_applies_generator_supervision(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        training,
+        "evaluate_on_trajectories",
+        lambda *args, **kwargs: {
+            "rollout_mse": 0.1,
+            "bound_viol": 0.0,
+            "energy_mono_frac": 0.0,
+        },
+    )
+    val_u0, trajectories = make_dense_identity_trajectory()
+    model = IdentityWithParameter()
+    seen_shapes = []
+
+    def generator_loss(current_model, states):
+        seen_shapes.append(tuple(states.shape))
+        return (current_model.anchor - 1.0).square()
+
+    history = training.train_model(
+        model,
+        train_u0=val_u0.repeat(2, 1),
+        train_ut=val_u0.repeat(2, 1),
+        val_u0=val_u0,
+        val_trajs=trajectories,
+        tau=0.1,
+        n_epochs=1,
+        batch_size=2,
+        alpha_bound=0.0,
+        alpha_generator=0.01,
+        generator_loss_fn=generator_loss,
+        checkpoint_dir=str(tmp_path),
+        model_name="generator_supervised",
+        device="cpu",
+        reference_dt=0.05,
+    )
+    assert seen_shapes == [(4, 2)]
+    assert history["L_generator"] == pytest.approx([1.0])
+    assert model.anchor.item() > 0.0
 
 
 def test_training_accepts_reference_trajectory_supervision(monkeypatch, tmp_path):
