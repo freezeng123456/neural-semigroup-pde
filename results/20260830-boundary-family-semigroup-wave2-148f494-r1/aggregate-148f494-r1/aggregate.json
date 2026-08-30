@@ -1,0 +1,119 @@
+{
+  "boundary_implementation_pass": true,
+  "cell_count": 54,
+  "controls": {
+    "cache_sha256_by_family": {
+      "homogeneous_neumann": "3a23822703a28a39887bfdec2abdad94698865d869e68ef94eab0fc82a9b50fb",
+      "inhomogeneous_dirichlet": "625b7cf9c7b983b023fb5419193483d5c599d329b20d53fb04598331d6265e07",
+      "robin": "46330dd60e4b40a0e74488458bf83272ed64df69a9ecae122d5b7bdb398e47f1"
+    },
+    "paired_initialization_within_seed": true,
+    "single_git_commit": "148f4946fa489ec2b0bf485cf76bc62c7456b3e3",
+    "single_parameter_count": 1249,
+    "single_source_archive_sha256": "708cef2741c564d3bb530c677f2cdc8898734371712ee76c81e0ae92aa6e53f6",
+    "single_source_snapshot": true
+  },
+  "evidence_class": "exploratory_full_aggregate",
+  "execution_complete": true,
+  "experiment": "boundary_family_semigroup_wave2",
+  "family_summaries": {
+    "homogeneous_neumann": {
+      "boundary_rule": {
+        "hard_cell_count": 6,
+        "maximum_evidence": 0.0,
+        "pass": true,
+        "threshold": 5e-06
+      },
+      "hard_refinement_descriptive": {
+        "autonomous": {
+          "16": 1.1256992810133373e-07,
+          "4": 1.049498752375829e-05,
+          "8": 3.1429722028585184e-07
+        },
+        "query_time": {
+          "16": 0.007944412124610167,
+          "4": 0.007945614480904518,
+          "8": 0.007944387124447524
+        }
+      },
+      "prediction_descriptive": {
+        "hard_auto_long_mse_geometric_mean": 1.4430703095036357e-05,
+        "hard_auto_lower_long_mse_seed_count": 3,
+        "hard_query_long_mse_geometric_mean": 0.00011548302221276691
+      },
+      "temporal_rule": {
+        "hard_auto_defect_geometric_mean": 3.1429722028585184e-07,
+        "hard_auto_over_query": 3.956217331336418e-05,
+        "hard_query_defect_geometric_mean": 0.007944387124447524,
+        "paired_seed_direction_count": 3,
+        "pass": true
+      }
+    },
+    "inhomogeneous_dirichlet": {
+      "boundary_rule": {
+        "hard_cell_count": 6,
+        "maximum_evidence": 0.0,
+        "pass": true,
+        "threshold": 5e-06
+      },
+      "hard_refinement_descriptive": {
+        "autonomous": {
+          "16": 1.1582318563726717e-07,
+          "4": 2.5322453627613323e-05,
+          "8": 4.6266191710486676e-07
+        },
+        "query_time": {
+          "16": 0.008369874257181411,
+          "4": 0.008413547685624337,
+          "8": 0.008369847430383331
+        }
+      },
+      "prediction_descriptive": {
+        "hard_auto_long_mse_geometric_mean": 1.2995394611108704e-05,
+        "hard_auto_lower_long_mse_seed_count": 3,
+        "hard_query_long_mse_geometric_mean": 0.00011824808091489879
+      },
+      "temporal_rule": {
+        "hard_auto_defect_geometric_mean": 4.6266191710486676e-07,
+        "hard_auto_over_query": 5.527722230937695e-05,
+        "hard_query_defect_geometric_mean": 0.008369847430383331,
+        "paired_seed_direction_count": 3,
+        "pass": true
+      }
+    },
+    "robin": {
+      "boundary_rule": {
+        "hard_cell_count": 6,
+        "maximum_evidence": 1.0244548320770264e-06,
+        "pass": true,
+        "threshold": 5e-06
+      },
+      "hard_refinement_descriptive": {
+        "autonomous": {
+          "16": 1.0915658861117819e-07,
+          "4": 9.021348361384509e-06,
+          "8": 2.803051085183655e-07
+        },
+        "query_time": {
+          "16": 0.008940871925354029,
+          "4": 0.00894209379710517,
+          "8": 0.008940850450943469
+        }
+      },
+      "prediction_descriptive": {
+        "hard_auto_long_mse_geometric_mean": 1.4533205240120265e-05,
+        "hard_auto_lower_long_mse_seed_count": 3,
+        "hard_query_long_mse_geometric_mean": 0.00016405677631482115
+      },
+      "temporal_rule": {
+        "hard_auto_defect_geometric_mean": 2.803051085183655e-07,
+        "hard_auto_over_query": 3.1351056597617826e-05,
+        "hard_query_defect_geometric_mean": 0.008940850450943469,
+        "paired_seed_direction_count": 3,
+        "pass": true
+      }
+    }
+  },
+  "schema_version": 1,
+  "status": "passed"
+}

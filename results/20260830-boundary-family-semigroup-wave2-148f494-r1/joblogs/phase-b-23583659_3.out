@@ -1,0 +1,11 @@
+hostname=e07r04
+slurm_array_job_id=23583659
+slurm_array_task_id=3
+cell=seed271828-inhomogeneous_dirichlet-penalty-query_time
+cuda_visible_devices=0
+NVIDIA GeForce RTX 3080, 10240 MiB, 550.135
+cuda_available True
+gpu NVIDIA GeForce RTX 3080
+gpu_count 1
+{'status': 'passed', 'experiment': 'boundary_family_semigroup_wave2', 'boundary_family': 'inhomogeneous_dirichlet', 'smoke_only': False}
+__CELL_COMPLETE__ seed271828-inhomogeneous_dirichlet-penalty-query_time

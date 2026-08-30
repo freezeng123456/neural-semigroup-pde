@@ -1,0 +1,38 @@
+{
+  "boundary_family": "homogeneous_neumann",
+  "cache": {
+    "bytes": 15672,
+    "path": "/work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/smoke-148f494-r1/data-prep/homogeneous_neumann/boundary_family_wave2_homogeneous_neumann_cache.pt",
+    "sha256": "2c2de439ad8fe0aabca5d553b57a34c4473d53073988fc7b25349418a413046e"
+  },
+  "data_seed": 515151,
+  "evidence_class": "exploratory_smoke",
+  "experiment": "boundary_family_semigroup_wave2",
+  "mode": "prepare_data",
+  "schema_version": 1,
+  "smoke_only": true,
+  "status": "passed",
+  "validation": {
+    "boundary_family": "homogeneous_neumann",
+    "duration_counts": {
+      "0.02": 8,
+      "0.04": 8,
+      "0.08": 8,
+      "0.16": 8
+    },
+    "maximum_reference_equation_residual": 0.0,
+    "maximum_reference_state_residual": 0.0,
+    "test_shape": [
+      8,
+      17
+    ],
+    "train_shape": [
+      32,
+      17
+    ],
+    "validation_shape": [
+      8,
+      17
+    ]
+  }
+}

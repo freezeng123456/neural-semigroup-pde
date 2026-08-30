@@ -7,9 +7,9 @@ This section keeps spatial discretization, exact finite-dimensional flows, and n
 and $Q_h^N$ for a numerical one-step approximation to that flow. Neither symbol is used for both objects.
 
 \begin{assumption}[Exact semidiscrete approximation]\label{ass:semidiscrete}
-Fix $T>0$ and a compact set $\cU\subset\cK$. Assume that $P_N\cU$ is contained in a compact set $\cU_N\subset(m,M)^N$ and that:
+Fix $T>0$ and a compact set $\cU\subset\cK$. Assume there is a compact common trajectory set $\cV_N\subset(m,M)^N$ that contains $P_N\cU$, $\widetilde S_t^N(P_N\cU)$, and $\PhiT(P_N\cU,t)$ for $0\le t\le T$, and that:
 \begin{enumerate}[label=(\roman*)]
-    \item $\cFN$ is locally Lipschitz and is $L_N$-Lipschitz on a neighborhood containing both $\widetilde S_t^N(P_N\cU)$ and $\PhiT(P_N\cU,t)$ for $0\le t\le T$;
+    \item $\cFN$ is locally Lipschitz and is $L_N$-Lipschitz on a neighborhood of $\cV_N$;
     \item the reconstruction is stable, $\norm{I_Nv}_X\le C_I\norm{v}_N$;
     \item the exact semidiscrete flow converges after reconstruction:
     \begin{equation}\label{eq:semidiscrete-conv-revised}
@@ -22,15 +22,16 @@ Fix $T>0$ and a compact set $\cU\subset\cK$. Assume that $P_N\cU$ is contained i
 The PDE-specific projection, reconstruction, norm, invariant neighborhood, and proof or citation for \eqref{eq:semidiscrete-conv-revised} must be supplied when the theorem is applied.
 \end{assumption}
 
-Define the observable-space generator of the exact latent flow by
+On the decoder image $g(\R^N)=(m,M)^N$, define the observable-space generator of the exact latent flow by
 \begin{equation}\label{eq:observable-generator}
 F_\theta(v):=-\mathrm{D}g(g^{-1}(v))K_\theta(g^{-1}(v))\nabla\Psi_\theta(g^{-1}(v)).
 \end{equation}
+The use of $g^{-1}$ in \eqref{eq:observable-generator} is specific to the invertible sigmoid parametrization of \Cref{def:latent-map}; it is not available for an arbitrary bounded decoder.
 
 \begin{theorem}[Conditional exact-flow transfer]\label{thm:transfer}
 Under Assumption~\ref{ass:semidiscrete}, suppose the exact latent flow exists on $[0,T]$ for the stated initial data and
 \begin{equation}\label{eq:matching-error-revised}
-\sup_{v\in\cU_N}\norm{F_\theta(v)-\cFN(v)}_N
+\sup_{v\in\cV_N}\norm{F_\theta(v)-\cFN(v)}_N
 \le\varepsilon_{\mathrm{match}}.
 \end{equation}
 Let
@@ -61,8 +62,12 @@ Set $y(t)=\PhiT(P_Nu_0,t)$ and $x(t)=\widetilde S_t^N(P_Nu_0)$. The two curves h
 Continuous Gronwall yields \eqref{eq:exact-flow-comparison}. Reconstruction stability, the triangle inequality, and \eqref{eq:semidiscrete-conv-revised} then give \eqref{eq:transfer-bound}.
 \end{proof}
 
+\begin{remark}[Common-set and stability requirements]\label{rem:transfer-common-set}
+The common set $\cV_N$ closes the trajectory-domain requirement in the proof: the matching estimate must hold where the learned trajectory is actually evaluated, not merely at the initial samples.  The exponential factor in \eqref{eq:transfer-bound} uses the Lipschitz constant of the reference semidiscrete generator $\cFN$.  If a one-sided Lipschitz estimate for the learned generator is available, \Cref{thm:generator-stability} gives the sharper three-case factor $\chi_{\omega_N}$, including the uniformly bounded contractive case $\omega_N<0$.
+\end{remark}
+
 \begin{proposition}[Adding numerical time-integration errors]\label{prop:numerical-transfer}
-Let $t=nh\le T$. Suppose $(Q_h^N)^n$ approximates $\widetilde S_t^N$ with uniform error $\eta_N(h,T)$ and a numerical implementation $\widehat\Phi_{\theta,h}^{\,n}$ approximates the exact latent flow with uniform error $\eta_\theta(h,T)$ on the relevant initial states. Then
+Let $t=nh\le T$. On one stated initial-data set, suppose all exact and numerical trajectories remain in the domains of Assumption~\ref{ass:semidiscrete}, $(Q_h^N)^n$ approximates $\widetilde S_t^N$ uniformly for $0\leq nh\leq T$ with error $\eta_N(h,T)$, and a numerical implementation $\widehat\Phi_{\theta,h}^{\,n}$ approximates the exact latent flow uniformly on the same time interval with error $\eta_\theta(h,T)$. Then
 \begin{align}\label{eq:numerical-transfer}
 \norm{I_N\widehat\Phi_{\theta,h}^{\,n}(P_Nu_0)-\cS_tu_0}_X
 &\le C_I\eta_\theta(h,T)
@@ -124,5 +129,13 @@ Proposition~\ref{prop:universal-approx} is an error-propagation result, not a un
 \end{remark}
 
 \begin{corollary}[Conditional architecture-compatible approximation]\label{cor:resolve-prob1}
-If, along a sequence of model classes, the two component errors in Proposition~\ref{prop:universal-approx} converge to zero and Assumption~\ref{ass:semidiscrete} holds, then the exact latent flow converges to the PDE semigroup according to \eqref{eq:transfer-bound}. Any numerical implementation additionally carries the explicit term $\eta_\theta(h,T)$ from Proposition~\ref{prop:numerical-transfer}.
+Consider a sequence of spatial resolutions and model classes for which Assumption~\ref{ass:semidiscrete} holds. Suppose the component errors in \Cref{prop:universal-approx} tend to zero and the factors $M_g$, $M_K$, and $M_\Psi$ remain uniformly bounded on the stated compact sets.  Take the matching error to be the generator bound supplied by \Cref{prop:universal-approx}, namely
+\begin{equation*}
+\varepsilon_{\mathrm{match}}(N):=M_g(N)\bigl(M_K(N)\varepsilon_\Psi(N)+M_\Psi(N)\varepsilon_K(N)+\varepsilon_K(N)\varepsilon_\Psi(N)\bigr),
+\end{equation*}
+and assume
+\begin{equation*}
+\varepsilon_{\mathrm{space}}(N)+C_I(N)\chi_{L_N}(T)\varepsilon_{\mathrm{match}}(N)\longrightarrow0.
+\end{equation*}
+Then the exact latent flow converges to the PDE semigroup on the stated initial-data set and time interval according to \eqref{eq:transfer-bound}. Any numerical implementation additionally carries the explicit term $\eta_\theta(h,T)$ from \Cref{prop:numerical-transfer}, which must also tend to zero for numerical convergence.
 \end{corollary}

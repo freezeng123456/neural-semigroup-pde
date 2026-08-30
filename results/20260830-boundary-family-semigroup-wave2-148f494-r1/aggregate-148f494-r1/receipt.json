@@ -1,0 +1,26 @@
+{
+  "actual_command": "/work/home/zenghang/miniconda3/envs/pytorch/bin/python /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/semigroup-148f494-r2/experiments/aggregate_boundary_family_semigroup.py --wave-root /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/wave-148f494-r1 --output-dir /work/home/zenghang/semigroup_runs/20260830-boundary-family-wave2-148f494-r1/wave-148f494-r1/aggregate-148f494-r1",
+  "aggregate_sha256": "70804f39499a07dfb59f91c9c8bf0f1c31758e521fb5d1a6ac0b65a8ceb58af4",
+  "boundary_implementation_pass": true,
+  "cell_count": 54,
+  "cell_summary_sha256": "75ef2b92200f382e7519b9fb40c452e7887e66210085e1a27eff54ba2c6dd845",
+  "evidence_class": "exploratory_full_aggregate",
+  "exit_code": 0,
+  "experiment": "boundary_family_semigroup_wave2",
+  "family_seed_summary_sha256": "3f80146ff473335ffd8e4cb094e4a27e0c10a2c7dd1ed9c3608e73a8ab1c263f",
+  "git_commit": "148f4946fa489ec2b0bf485cf76bc62c7456b3e3",
+  "manifest_sha256": "fc50203ddd5c6ca7e06ceebd602fe29d7a2f9e1cd30331f033b317ad0eeb6250",
+  "normal_exit": true,
+  "pid": 55204,
+  "schema_version": 1,
+  "source_archive_sha256": "708cef2741c564d3bb530c677f2cdc8898734371712ee76c81e0ae92aa6e53f6",
+  "source_hashes": {
+    "aggregator": "e6f8817f3c60c37b5b1a680f4a84293d42a64f4fa0542be3e99585a3310987f6",
+    "artifact_contract": "af38f0202f2932f3e9c599c0b49814186436106050cc8faa579eb466908392eb",
+    "boundary_family_module": "533bf544285b1af8007863c6c59e413dcfe62f5bf9c6cb2b359087f28fc0438f",
+    "context": "d05ccb2127bff404929b5b78cf94858827e6a487b22f8034174b7a26c15ae690",
+    "protocol": "4d63d1b9b30aaf6fd6f4167c21110eb4713d601920fdf0fe1c07d8661b0d9ad0",
+    "runner": "d4bc63c4525abba1823ced7a4fbb239805640cd61132cfcbe23058c92f533815"
+  },
+  "status": "passed"
+}
