@@ -75,8 +75,14 @@ Implementation commits:
 
 - evaluator and experiment lane: `3c46763a5b001dfae7faf3e28a0d1c832c8281cb`;
 - independent aggregator: `adfd2cdef0427bc90085f88871dae4cf3b196e94`;
-- aggregator source SHA-256 used on SCNet:
+- aggregator source SHA-256 used to generate the recovered numerical artifacts:
   `a829dba102069e357db4011153dbf46f2ef13f97598fe313791d360b6f58fd3e`.
+
+After artifact recovery, redundant validation was removed in
+`9b5bd991a1de84b4bca48c6ba735fc73457ee25f`; its aggregator source SHA-256 is
+`043804a7185e19c0c85786c81352ff19605a42339459c1bd0adad2f950ed7281`.
+This cleanup does not rewrite or reattribute the already accepted numerical
+artifacts: their receipt correctly remains tied to the earlier source hash.
 
 ## Frozen inputs
 
@@ -188,6 +194,8 @@ The independent aggregator accepted exactly:
 The final aggregation job was `23581193` and completed in seven seconds with
 exit code `0:0`. The aggregator test job was `23581083` (`3 passed in 9.14s`).
 The earlier experiment-lane test job was `23580574` (`26 passed in 12.40s`).
+After the validation cleanup, the combined current-code test job was `23581326`
+(`12 passed in 27.11s`, exit code `0:0`).
 
 Canonical roots:
 
