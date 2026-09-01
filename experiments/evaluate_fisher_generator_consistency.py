@@ -17,7 +17,11 @@ EXPERIMENTS_DIR = Path(__file__).resolve().parent
 if str(EXPERIMENTS_DIR) not in sys.path:
     sys.path.insert(0, str(EXPERIMENTS_DIR))
 
-from fisher_generator_metrics import generator_residual_metrics  # noqa: E402
+from fisher_generator_metrics import (  # noqa: E402
+    generator_residual_metrics,
+    learned_generator_tube_states,
+    trapezoid_time_weights,
+)
 from experiment_artifacts import torch_load_compat  # noqa: E402
 from models import LatentSemigroupNet  # noqa: E402
 
@@ -25,6 +29,7 @@ from models import LatentSemigroupNet  # noqa: E402
 TAUS = (0.075, 0.15)
 HORIZONS = (1.2, 2.4, 4.8)
 SNAPSHOT_TIMES = (0.0, 0.6, 1.2, 2.4, 4.8)
+TUBE_TIMES = (0.0, 0.3, 0.6, 0.9, 1.2)
 
 
 def sha256_file(path: Path) -> str:
@@ -115,6 +120,40 @@ def snapshot_states(trajectories, reference_dt: float):
     )
 
 
+def learned_path_generator_metrics(model, initial_states, cache_config, args, device):
+    tube = learned_generator_tube_states(
+        model,
+        initial_states.to(device),
+        TUBE_TIMES,
+    )
+    per_time = {}
+    weights = trapezoid_time_weights(TUBE_TIMES).tolist()
+    weighted_raw_mse = 0.0
+    weighted_relative_mse = 0.0
+    for index, (time_value, weight) in enumerate(zip(TUBE_TIMES, weights)):
+        metrics = generator_residual_metrics(
+            model,
+            tube[:, index],
+            conditioning_time=TAUS[0],
+            length=float(cache_config["L"]),
+            diffusivity=float(cache_config["nu"]),
+            reaction_rate=float(cache_config["reaction_rate"]),
+            batch_size=args.batch_size,
+        )
+        per_time[str(time_value)] = metrics
+        weighted_raw_mse += weight * metrics["rms_residual_l2"] ** 2
+        weighted_relative_mse += weight * metrics["rms_relative_residual"] ** 2
+    return {
+        "times": list(TUBE_TIMES),
+        "normalized_trapezoid_weights": weights,
+        "rollout_integrator": "model production RK4",
+        "rollout_gradient": "not applicable in checkpoint-only evaluation",
+        "per_time": per_time,
+        "weighted_rms_residual_l2": math.sqrt(weighted_raw_mse),
+        "weighted_rms_relative_residual": math.sqrt(weighted_relative_mse),
+    }
+
+
 def evaluate_model(model, initial_states, trajectories, cache_config, args, device):
     rollouts = {}
     for tau in TAUS:
@@ -141,7 +180,18 @@ def evaluate_model(model, initial_states, trajectories, cache_config, args, devi
         reaction_rate=float(cache_config["reaction_rate"]),
         batch_size=args.batch_size,
     )
-    return {"rollouts": rollouts, "generator": generator}
+    learned_path_generator = learned_path_generator_metrics(
+        model,
+        initial_states,
+        cache_config,
+        args,
+        device,
+    )
+    return {
+        "rollouts": rollouts,
+        "generator": generator,
+        "learned_path_generator": learned_path_generator,
+    }
 
 
 def main(argv=None):
@@ -180,6 +230,9 @@ def main(argv=None):
         / baseline_result["rollouts"][key]["rollout_mse_mean"]
         for key in baseline_result["rollouts"]
     }
+    learned_path_ratio = regularized_result["learned_path_generator"][
+        "weighted_rms_residual_l2"
+    ] / baseline_result["learned_path_generator"]["weighted_rms_residual_l2"]
     result = {
         "experiment": "fisher_generator_consistency_pair",
         "exploratory": True,
@@ -208,6 +261,7 @@ def main(argv=None):
                 "rms_relative_residual"
             ]
             / baseline_result["generator"]["rms_relative_residual"],
+            "learned_path_generator_residual_ratio": learned_path_ratio,
             "rollout_mse_ratios": mse_ratios,
             "mse_ratio_geometric_mean": math.exp(
                 sum(math.log(value) for value in mse_ratios.values())

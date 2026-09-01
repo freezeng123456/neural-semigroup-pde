@@ -33,9 +33,15 @@ def main(argv=None):
     ):
         raise ValueError("pair classification mismatch")
 
-    generator_ratios = [
-        pair["comparison"]["generator_residual_ratio"] for pair in pairs
-    ]
+    generator_ratio_key = (
+        "learned_path_generator_residual_ratio"
+        if all(
+            "learned_path_generator_residual_ratio" in pair["comparison"]
+            for pair in pairs
+        )
+        else "generator_residual_ratio"
+    )
+    generator_ratios = [pair["comparison"][generator_ratio_key] for pair in pairs]
     mse_ratios = [
         ratio
         for pair in pairs
@@ -56,9 +62,10 @@ def main(argv=None):
         "do_not_use_for_formal": True,
         "seeds": sorted(pair["seed"] for pair in pairs),
         "generator_residual_ratio_geometric_mean": generator_gm,
+        "primary_generator_ratio_key": generator_ratio_key,
         "rollout_mse_ratio_geometric_mean": mse_gm,
         "generator_residual_ratios": {
-            str(pair["seed"]): pair["comparison"]["generator_residual_ratio"]
+            str(pair["seed"]): pair["comparison"][generator_ratio_key]
             for pair in pairs
         },
         "per_seed_mse_ratio_geometric_mean": {

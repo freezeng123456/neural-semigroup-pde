@@ -270,6 +270,25 @@ quadrature states cover the learned path (or a certified tube containing that
 path).  The statement remains conditional on the common-set and exact-flow
 hypotheses; spatial and time-integration errors must still be added as in F1.
 
+The learned-trajectory screen uses the normalized composite-trapezoid
+surrogate
+\[
+\widehat L_{\mathrm{tube}}(\theta)
+=\sum_{j=0}^{m}q_j\frac1N
+\left\|F_{\theta,h}^{u}(\widehat y_j)-A_h(\widehat y_j)\right\|_2^2,
+\qquad \sum_{j=0}^{m}q_j=1,
+\]
+where \(\widehat y_j\) are production-RK4 snapshots of the current learned
+model at the frozen times \(0,0.3,0.6,0.9,1.2\).  Since
+\(N^{-1}\|v\|_2^2=L^{-1}\|v\|_h^2\) on the uniform grid, this differs from a
+normalized quadrature of the squared mesh residual only by the fixed factor
+\(L^{-1}\).  It is therefore an implementable finite-sample approximation to
+the residual integral, not a certificate for the exact-flow integral.  The
+snapshots are detached: this leaves the reported objective value unchanged
+but uses only the partial parameter derivative of the vector field at the
+current sampled states, rather than differentiating through the
+parameter-dependent rollout.
+
 ## G. Issued claim boundary
 
 - **Architecture-level theorem:** Model A's latent ODE is one autonomous

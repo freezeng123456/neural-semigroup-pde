@@ -9,7 +9,6 @@ Losses (from paper Section 6):
     L_reg     = weight decay
 """
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
@@ -97,6 +96,7 @@ def train_model(
     trajectory_steps=None,
     alpha_generator=0.0,
     generator_loss_fn=None,
+    generator_state_fn=None,
 ):
     """
     Train a semigroup learner.
@@ -118,6 +118,10 @@ def train_model(
         alpha_generator: weight for an optional PDE-generator matching loss.
             ``generator_loss_fn(model, states)`` supplies the PDE-specific
             comparison while this loop remains PDE-agnostic.
+        generator_state_fn: optional callable
+            ``(model, u0, ut, tau) -> states`` used to sample the state
+            distribution for the generator loss.  When omitted, generator
+            supervision uses the concatenated initial and one-step states.
         alpha_energy, alpha_bound: other loss weights
         resume_from: path to checkpoint to resume from (optional)
         reference_dt: spacing of stored validation snapshots.  If provided,
@@ -143,6 +147,10 @@ def train_model(
         raise ValueError("alpha_generator must be non-negative")
     if alpha_generator > 0 and not callable(generator_loss_fn):
         raise ValueError("generator_loss_fn is required when alpha_generator is positive")
+    if generator_state_fn is not None and not callable(generator_state_fn):
+        raise ValueError("generator_state_fn must be callable when provided")
+    if alpha_generator == 0 and generator_state_fn is not None:
+        raise ValueError("generator_state_fn requires alpha_generator > 0")
     if alpha_trajectory > 0:
         if train_tau is not None:
             raise ValueError(
@@ -294,7 +302,15 @@ def train_model(
                 epoch_Ltrajectory += L_trajectory.item()
 
             if alpha_generator > 0:
-                generator_states = torch.cat((u0_batch, ut_batch), dim=0)
+                if generator_state_fn is None:
+                    generator_states = torch.cat((u0_batch, ut_batch), dim=0)
+                else:
+                    generator_states = generator_state_fn(
+                        model,
+                        u0_batch,
+                        ut_batch,
+                        batch_tau,
+                    )
                 L_generator = generator_loss_fn(model, generator_states)
                 loss = loss + alpha_generator * L_generator
                 epoch_Lgenerator += L_generator.item()
