@@ -21,11 +21,16 @@ epoch-100 checkpoint improves generator residual by about 2% on training and
 initial states, but the sign reverses after learned rollout.  Rollout-selected
 best checkpoints reduce the later deterioration while losing the
 initial-state improvement.  The failure is trajectory-distribution transfer,
-not normalization.  The next step is a trajectory-tube error bound and a
-matching trajectory-distributed intervention, not a loss-weight sweep or
-another seed campaign.
+not normalization.  The completed learned-trajectory follow-up is reported in
+`FISHER_GENERATOR_TUBE_RESULTS.md`.  Its learned-path residual improved
+consistently but missed the frozen material threshold, while rollout MSE
+improved at all three seeds.  The remaining question is therefore a
+checkpoint-only common-path defect and stability decomposition, not a
+loss-weight sweep or another seed campaign.
 
 Machine-readable values and execution evidence are stored under
 `results/20260901-fisher-generator-consistency-8fdbae8-3seed-r1/`.
 The follow-up localization is stored under
 `results/20260901-fisher-generator-distribution-72505be-r1/`.
+The learned-trajectory follow-up is stored under
+`results/20260901-fisher-generator-tube-abd1c2f-3seed-r3/`.

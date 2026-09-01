@@ -1,0 +1,24 @@
+{
+  "experiment": "fisher_generator_consistency_aggregate",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "seeds": [
+    31415,
+    161803,
+    271828
+  ],
+  "generator_residual_ratio_geometric_mean": 0.9424511268601048,
+  "primary_generator_ratio_key": "learned_path_generator_residual_ratio",
+  "rollout_mse_ratio_geometric_mean": 0.8240110423499843,
+  "generator_residual_ratios": {
+    "31415": 0.9406261248852952,
+    "271828": 0.9456482391289763,
+    "161803": 0.9410871843864158
+  },
+  "per_seed_mse_ratio_geometric_mean": {
+    "31415": 0.866423954836681,
+    "271828": 0.8070517303374601,
+    "161803": 0.800142374482788
+  },
+  "conclusion": "generator_term_not_materially_improved"
+}

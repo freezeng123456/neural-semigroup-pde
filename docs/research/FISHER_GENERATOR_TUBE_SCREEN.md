@@ -1,6 +1,7 @@
 # Fisher--KPP learned-trajectory generator screen
 
-Status: frozen exploratory plan before observing any result from this screen.
+Status: completed frozen exploratory screen; results are reported in
+`FISHER_GENERATOR_TUBE_RESULTS.md`.
 
 ## Question
 
