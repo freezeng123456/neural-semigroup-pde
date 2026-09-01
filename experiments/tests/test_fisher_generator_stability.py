@@ -103,7 +103,7 @@ def test_directional_defect_reports_only_positive_error_injection():
         states,
         reference,
         length=2.0,
-        diffusivity=0.0,
+        diffusivity=1e-12,
         reaction_rate=1.0,
         batch_size=1,
     )
