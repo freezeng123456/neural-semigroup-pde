@@ -16,8 +16,16 @@ not be conflated:
    normalized generator residual and improves long rollouts.
 
 The first two remain true.  This experiment rejects the third for the tested
-loss and architecture.  The next step is an evaluation-only distribution and
-scale decomposition, not a loss-weight sweep and not another seed campaign.
+loss and architecture.  The completed distribution diagnostic shows that the
+epoch-100 checkpoint improves generator residual by about 2% on training and
+initial states, but the sign reverses after learned rollout.  Rollout-selected
+best checkpoints reduce the later deterioration while losing the
+initial-state improvement.  The failure is trajectory-distribution transfer,
+not normalization.  The next step is a trajectory-tube error bound and a
+matching trajectory-distributed intervention, not a loss-weight sweep or
+another seed campaign.
 
 Machine-readable values and execution evidence are stored under
 `results/20260901-fisher-generator-consistency-8fdbae8-3seed-r1/`.
+The follow-up localization is stored under
+`results/20260901-fisher-generator-distribution-72505be-r1/`.

@@ -231,6 +231,45 @@ experiment estimates finite-sample analogues of \(\eta_{\mathrm{time}}\),
 \(\varepsilon_{\mathrm{gen},h}\), and \(\omega_h\); it does not certify the
 uniform assumptions.
 
+### F2. Trajectory-localized generator bound
+
+The uniform generator supremum above is sufficient but stronger than the
+comparison argument requires.  Suppose instead that the semidiscrete
+reference trajectory \(x\) and the exact learned physical trajectory \(y\)
+remain in a common clamp-inactive set on \([0,T]\), and that \(A_h\) is
+one-sided Lipschitz there with constant \(\omega_{A,h}\).  Define the learned
+path residual
+\[
+\rho_y(t)=\lVert F_{\theta,h}^{u}(y(t))-A_h(y(t))\rVert_h.
+\]
+For \(e=y-x\), adding and subtracting \(A_h(y)\) gives
+\[
+\frac12\frac{\mathrm d}{\mathrm dt}\lVert e\rVert_h^2
+=\langle A_h(y)-A_h(x),e\rangle_h
+ +\langle F_{\theta,h}^{u}(y)-A_h(y),e\rangle_h
+\leq \omega_{A,h}\lVert e\rVert_h^2+\rho_y\lVert e\rVert_h.
+\]
+Applying the scalar Gronwall inequality yields the trajectory-localized bound
+\[
+\lVert y(T)-x(T)\rVert_h
+\leq e^{\omega_{A,h}T}\lVert y(0)-x(0)\rVert_h
+ +\int_0^T e^{\omega_{A,h}(T-s)}\rho_y(s)\,\mathrm ds.
+\]
+For Fisher states in the nodal cube, Section C2 gives
+\(\omega_{A,h}\leq r\).  With
+\(\chi_a(T)=\int_0^T e^{a(T-s)}\,\mathrm ds\), Cauchy--Schwarz further gives
+\[
+\int_0^T e^{r(T-s)}\rho_y(s)\,\mathrm ds
+\leq \sqrt{\chi_{2r}(T)}
+\left(\int_0^T\rho_y(s)^2\,\mathrm ds\right)^{1/2}.
+\]
+Thus a generator loss sampled only at initial and one-step target states does
+not control the term appearing in the long-time bound.  A trajectory-
+distributed generator objective is mathematically aligned only when its
+quadrature states cover the learned path (or a certified tube containing that
+path).  The statement remains conditional on the common-set and exact-flow
+hypotheses; spatial and time-integration errors must still be added as in F1.
+
 ## G. Issued claim boundary
 
 - **Architecture-level theorem:** Model A's latent ODE is one autonomous
@@ -251,6 +290,14 @@ uniform assumptions.
   A, and non-dominant learned-flow RK4 error.  Thus the observed composition
   advantage did not reduce every term required by the conditional transfer
   bound; see `FISHER_GENERATOR_STABILITY_RESULTS.md`.
+- **Empirical intervention and localization:** direct generator matching at
+  initial and one-step training states did not improve the rollout-selected
+  checkpoints (generator-residual ratio GM `1.0246`; rollout-MSE ratio GM
+  `1.0452`).  The epoch-100 checkpoints did improve residual by about 2% on
+  training and initial states, but the ratio reversed above one after learned
+  rollout.  This is consistent with the path-residual term in F2 and does not
+  establish its uniform or integral hypotheses; see
+  `FISHER_GENERATOR_CONSISTENCY_RESULTS.md`.
 - **Not proved:** a mesh-uniform Fisher transfer theorem, a discrete spectral
   maximum principle, Fisher-energy decay for the learned models, or a uniform
   generator/stability bound.
