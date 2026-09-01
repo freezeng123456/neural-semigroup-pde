@@ -12,6 +12,7 @@ import torch
 
 from experiments import aggregate_fisher_generator_stability as aggregator
 from experiments import evaluate_fisher_generator_stability as evaluator
+from experiments import evaluate_fisher_tube_attribution as attribution
 from experiments.experiment_artifacts import sha256_file
 from experiments.fisher_frozen_inputs import (
     FORMAL_SOURCE_COMMIT,
@@ -91,6 +92,35 @@ def test_physical_generator_uses_decoder_chain_rule():
     assert torch.allclose(represented, states)
     assert torch.allclose(physical, -states * (1.0 - states))
     assert torch.allclose(torch.sigmoid(latent), states)
+
+
+def test_directional_defect_reports_only_positive_error_injection():
+    model = _ToyPhysicalFlow()
+    states = torch.tensor([[0.2, 0.3], [0.7, 0.6]], dtype=torch.float64)
+    reference = states + torch.tensor([[0.01, -0.02], [-0.02, 0.01]])
+    metrics = attribution.directional_defect_metrics(
+        model,
+        states,
+        reference,
+        length=2.0,
+        diffusivity=0.0,
+        reaction_rate=1.0,
+        batch_size=1,
+    )
+    assert metrics["trajectory_error_l2"]["rms"] > 0
+    assert metrics["harmful_defect_component_l2"]["rms"] >= 0
+    assert -1.0 <= metrics["error_defect_cosine"]["mean"] <= 1.0
+
+
+def test_reference_tube_uses_the_frozen_time_indices():
+    states = torch.arange(13 * 4, dtype=torch.float32).reshape(13, 4)
+    tube = attribution.reference_tube(
+        [(torch.arange(13) * 0.1, states), (torch.arange(13) * 0.1, states + 100)],
+        reference_dt=0.1,
+    )
+    assert tube.shape == (2, 5, 4)
+    assert torch.equal(tube[0, 0], states[0])
+    assert torch.equal(tube[0, -1], states[12])
 
 
 def test_learned_tube_is_detached_and_uses_trapezoid_weights():
