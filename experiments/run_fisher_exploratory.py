@@ -567,6 +567,15 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--batch-size", type=int, default=64)
+    parser.add_argument(
+        "--eval-batch-size",
+        type=int,
+        default=None,
+        help=(
+            "non-autonomous validation batch size; defaults to --batch-size "
+            "to bound checkpoint-evaluation GPU memory"
+        ),
+    )
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--weight-decay", type=float, default=1e-5)
     parser.add_argument("--validation-interval", type=int, default=5)
@@ -607,6 +616,8 @@ def validate_args(args: argparse.Namespace) -> None:
     for name in ("n_train", "n_val", "epochs", "batch_size", "ode_steps"):
         if int(getattr(args, name)) <= 0:
             raise ValueError(f"{name} must be positive")
+    if args.eval_batch_size is not None and int(args.eval_batch_size) <= 0:
+        raise ValueError("eval-batch-size must be positive when provided")
     for name in ("L", "nu", "reaction_rate", "reference_dt", "fixed_tau", "eval_horizon", "lr", "weight_decay"):
         value = float(getattr(args, name))
         if not math.isfinite(value) or value <= 0:
@@ -1159,6 +1170,7 @@ def _autonomous_run_metadata(
         "fixed_tau": float(args.fixed_tau),
         "epochs": int(args.epochs),
         "batch_size": int(args.batch_size),
+        "eval_batch_size": int(args.eval_batch_size or args.batch_size),
         "lr": float(args.lr),
         "weight_decay": float(args.weight_decay),
         "ode_steps": int(args.ode_steps),
@@ -1387,31 +1399,51 @@ def _non_autonomous_evaluate(
 ) -> dict[str, Any]:
     model.eval()
     device = args.device
-    val_u0 = data["val_u0"].to(device)
-    val_t0 = data["val_t0"].to(device)
-    references = torch.stack([trajectory[1] for trajectory in data["val_trajs"]]).to(device)
+    # Keep the validation trajectory on CPU and move one bounded batch at a
+    # time.  With 30 RK4 steps and a multi-step rollout, evaluating all
+    # validation trajectories at once can exhaust a 10 GB GPU even though the
+    # training mini-batches fit.  The per-sample MSE statistics are unchanged
+    # by this chunking, while peak memory is controlled by eval-batch-size.
+    val_u0 = data["val_u0"]
+    val_t0 = data["val_t0"]
+    references = torch.stack([trajectory[1] for trajectory in data["val_trajs"]])
+    eval_batch_size = int(args.eval_batch_size or args.batch_size)
+    if eval_batch_size <= 0:
+        raise ValueError("eval batch size must be positive")
     n_steps = rollout_steps_for_horizon(args.eval_horizon, args.fixed_tau)
     stride = reference_steps_for_duration(args.fixed_tau, args.reference_dt)
-    state = val_u0
     mse_values: list[float] = []
-    for step_index in range(n_steps):
-        if absolute_time_input:
-            state = model(
-                state,
-                args.fixed_tau,
-                absolute_time=val_t0 + step_index * float(args.fixed_tau),
+    for batch_start in range(0, int(val_u0.shape[0]), eval_batch_size):
+        batch_end = min(batch_start + eval_batch_size, int(val_u0.shape[0]))
+        state = val_u0[batch_start:batch_end].to(device)
+        start_time = val_t0[batch_start:batch_end].to(device)
+        reference_batch = references[batch_start:batch_end].to(device)
+        for step_index in range(n_steps):
+            if absolute_time_input:
+                state = model(
+                    state,
+                    args.fixed_tau,
+                    absolute_time=start_time + step_index * float(args.fixed_tau),
+                )
+            else:
+                state = model(state, args.fixed_tau)
+            reference = reference_batch[:, (step_index + 1) * stride]
+            mse_values.extend(
+                (state - reference)
+                .reshape(state.shape[0], -1)
+                .square()
+                .mean(dim=1)
+                .detach()
+                .cpu()
+                .tolist()
             )
-        else:
-            state = model(state, args.fixed_tau)
-        reference = references[:, (step_index + 1) * stride]
-        mse_values.extend(
-            (state - reference).reshape(state.shape[0], -1).square().mean(dim=1).detach().cpu().tolist()
-        )
+        del state, start_time, reference_batch
     return {
         "model": "b_absolute_time" if absolute_time_input else "a_wide",
         "tau": float(args.fixed_tau),
         "reference_dt": float(args.reference_dt),
         "rollout_steps": n_steps,
+        "eval_batch_size": eval_batch_size,
         "rollout_mse_mean": float(np.mean(mse_values)),
         "rollout_mse_std": float(np.std(mse_values)),
         "n_valid": len(mse_values),
@@ -1474,6 +1506,7 @@ def _train_non_autonomous_model(
         "fixed_tau": float(args.fixed_tau),
         "epochs": int(args.epochs),
         "batch_size": int(args.batch_size),
+        "eval_batch_size": int(args.eval_batch_size or args.batch_size),
         "lr": float(args.lr),
         "weight_decay": float(args.weight_decay),
         "ode_steps": int(args.ode_steps),
