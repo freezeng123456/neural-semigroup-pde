@@ -1,0 +1,106 @@
+{
+  "experiment": "burgers_certified_generator_constants",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "note": "docs/research/BURGERS_CERTIFIED_CONSTANTS.md",
+  "architecture": "r0_h8_l1_anchor",
+  "seed": 31415,
+  "inputs": {
+    "checkpoint_sha256": "5e83ee40d2e7aa12c78dc9d50928bf481772361ff9564ae2c2e69fc6e6271537",
+    "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d"
+  },
+  "grid": {
+    "N": 64,
+    "L": 6.283185307179586,
+    "dx": 0.09817477042468103,
+    "nu": 0.01
+  },
+  "operator_norms": {
+    "divergence_spectral_norm": 10.185916357881302,
+    "laplacian_spectral_norm": 415.0115681990155
+  },
+  "operator_self_checks": {
+    "divergence_skew_symmetry_residual": 0.0,
+    "laplacian_symmetry_residual": 0.0,
+    "laplacian_max_eigenvalue": -6.263739526992044e-14
+  },
+  "scalar_flux_reduction": {
+    "zeroed_control_column_norm": 0.22411067200941773,
+    "reduction_is_exact_because_control_is_zeroed": true
+  },
+  "state_range": {
+    "observed_max_abs": 1.050107262810067,
+    "margin": 0.05,
+    "certified_on_interval": [
+      -1.100107262810067,
+      1.100107262810067
+    ]
+  },
+  "certified_constants": {
+    "flux_lipschitz_analytic": 2.4125239459348222,
+    "flux_lipschitz_covering": 0.8933814122397911,
+    "flux_lipschitz_used": 0.8933814122397911,
+    "flux_second_derivative_bound": 1.1557319414638396,
+    "flux_error_gauge_invariant_sup": 0.019998303241262463,
+    "flux_error_detail": {
+      "gauge_invariant_sup": 0.019998303241262463,
+      "grid_half_range": 0.019997206715577587,
+      "optimal_constant": -2.2996131932341473,
+      "raw_grid_sup": 2.319610399949725,
+      "covering_remainder": 1.096525684875983e-06
+    },
+    "covering_samples": 2000001,
+    "learned_generator_lipschitz": 13.25002402275054,
+    "learned_generator_one_sided": 9.099908340760386,
+    "reference_generator_one_sided": 11.205600563681086,
+    "generator_matching_mesh_norm": 0.510602796750631
+  },
+  "sampled_diagnostics_not_certified": {
+    "empirical_reference_one_sided_quotient": 0.6342818383645391,
+    "certified_over_empirical_one_sided": 17.66659533019913,
+    "discrete_gradient_sup_on_snapshots": 9.861417541355143
+  },
+  "exact_flow_trajectory_errors": {
+    "0.4": {
+      "mesh_norm_mean": 0.022106026068496834,
+      "mesh_norm_max": 0.029945197960937475,
+      "reference_rk4_substeps": 4000
+    },
+    "0.8": {
+      "mesh_norm_mean": 0.03673791879053682,
+      "mesh_norm_max": 0.045819518826942095,
+      "reference_rk4_substeps": 8000
+    }
+  },
+  "layered_bound": {
+    "0.4": {
+      "certified_mesh_norm_bound": 3.984017573389536,
+      "observed_mesh_norm_max": 0.029945197960937475,
+      "looseness_factor": 133.04362117046466,
+      "amplification_factor": 88.43255981007113,
+      "decomposition": {
+        "bound_with_zero_rate": 0.2042411187002524,
+        "bound_with_sampled_rate_not_certified": 0.23248792086036169,
+        "cost_of_amplification": 19.506442183351655,
+        "cost_of_generator_matching": 6.820496527245478
+      }
+    },
+    "0.8": {
+      "certified_mesh_norm_bound": 356.3008899165342,
+      "observed_mesh_norm_max": 0.045819518826942095,
+      "looseness_factor": 7776.181396890348,
+      "amplification_factor": 7820.317634561808,
+      "decomposition": {
+        "bound_with_zero_rate": 0.4084822374005048,
+        "bound_with_sampled_rate_not_certified": 0.5321187075679609,
+        "cost_of_amplification": 872.2555286221458,
+        "cost_of_generator_matching": 8.915026780253207
+      }
+    }
+  },
+  "not_certified_here": [
+    "time-integration error of the production 12-substep RK4 map",
+    "finite-difference versus spectral spatial consistency",
+    "invariance of the state interval, which is observed rather than proved"
+  ]
+}
