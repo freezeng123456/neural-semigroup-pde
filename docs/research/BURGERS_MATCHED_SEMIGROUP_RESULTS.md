@@ -114,6 +114,18 @@ rule.
   recorded in the run card.
 - This is one one-dimensional periodic problem at `N=64` and `nu=0.01` with
   50 validation trajectories.  It is not a benchmark claim.
+- **The architecture was not justified.**
+  `BURGERS_FLUX_ABLATION_RESULTS.md` shows that this screen's five-point flux
+  stencil is the worst choice in its own ablation grid: a pointwise flux, which
+  matches the exact structure of $u^2/2$, halves the rollout error, and a
+  33-parameter generator beats this 1,313-parameter one.  The `0.9933` primary
+  endpoint above is therefore an A/B contrast measured on an oversized and
+  needlessly inaccurate generator, and has to be re-established on the reduced
+  one before it is quoted as the Burgers result.
+- The quadratic-energy endpoint is weaker than it looks.  The reference
+  trajectories themselves gain energy in `4%` of cases by horizon `0.8`,
+  because the spectral solver applies no dealiasing at `N=64`, so only
+  sign-level statements about that endpoint are warranted.
 
 ## Consequence for the research line
 

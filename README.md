@@ -115,6 +115,18 @@ claim survives with a restated magnitude, and the same restatement is now owed
 to the Fisher composition-defect numbers. See
 [`docs/research/BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md`](docs/research/BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md).
 
+A seven-variant ablation of the flux generator then showed that the screen's
+architecture is the worst member of its own grid. The exact Burgers flux is
+pointwise, and shrinking the flux stencil from five points to one halves
+rollout error and cuts one-step error about fivefold; hidden width 32 and the
+second hidden layer are pure overhead. A 33-parameter generator, `39.8` times
+smaller, is about twice as accurate as the screen's 1,313-parameter one. The
+fixed viscous anchor, by contrast, is essential. Because both headline Burgers
+numbers were measured on the oversized generator, the paired
+autonomous/query-time contrast has to be re-established on the reduced one
+before the reduction is adopted. See
+[`docs/research/BURGERS_FLUX_ABLATION_RESULTS.md`](docs/research/BURGERS_FLUX_ABLATION_RESULTS.md).
+
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
 one one-dimensional reaction--diffusion PDE. Neither the formal Fisher--KPP
 lane nor the exploratory Burgers screen establishes a material prediction
