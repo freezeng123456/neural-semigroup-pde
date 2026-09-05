@@ -1,0 +1,50 @@
+{
+  "experiment": "burgers_minimal_generator_ab_aggregate",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "architecture": "r0_h8_l1_anchor",
+  "seeds": [
+    31415,
+    161803,
+    271828
+  ],
+  "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d",
+  "parameter_count_each": 33,
+  "material_ratio_threshold": 0.9,
+  "rollout_mse_ratio_geometric_mean": 1.0314024071474994,
+  "per_seed_rollout_mse_ratio": {
+    "31415": 1.0338707197744528,
+    "161803": 1.0330227024373642,
+    "271828": 1.0273260959339934
+  },
+  "cell_rollout_mse_ratios": {
+    "s31415:tau=0.04:horizon=0.4": 1.0233011749958467,
+    "s31415:tau=0.04:horizon=0.8": 1.001787083520534,
+    "s31415:tau=0.08:horizon=0.4": 1.104788435531709,
+    "s31415:tau=0.08:horizon=0.8": 1.0088042964506516,
+    "s271828:tau=0.04:horizon=0.4": 1.0135603295526654,
+    "s271828:tau=0.04:horizon=0.8": 1.0000495097449758,
+    "s271828:tau=0.08:horizon=0.4": 1.090525550829693,
+    "s271828:tau=0.08:horizon=0.8": 1.0076885634548196,
+    "s161803:tau=0.04:horizon=0.4": 1.0242193472748877,
+    "s161803:tau=0.04:horizon=0.8": 1.0019922322859747,
+    "s161803:tau=0.08:horizon=0.4": 1.1003135081003994,
+    "s161803:tau=0.08:horizon=0.8": 1.0084762833301701
+  },
+  "cells_favoring_autonomous": 0,
+  "seeds_meeting_material_threshold": 0,
+  "autonomous_integrator_floor_geometric_mean": 3.7093724899093345e-08,
+  "autonomous_cross_lag_defect": 0.0,
+  "query_time_in_range_cross_lag_defect": 0.003342645257612741,
+  "query_time_in_range_defect_over_floor": 90113.49673579002,
+  "query_time_in_range_defect_relative_to_state_rms": 0.007455667181173939,
+  "in_range_structural_cells": "6/6",
+  "oversized_architecture_reference": {
+    "rollout_mse_ratio_geometric_mean": 0.9933175551831502,
+    "in_range_cross_lag_defect": 0.0057517971601788375,
+    "in_range_defect_relative_to_state_rms": 0.012586344440964764
+  },
+  "accuracy_conclusion": "accuracy_conclusion_unchanged",
+  "structure_conclusion": "structure_conclusion_unchanged",
+  "adopt_reduction": true
+}

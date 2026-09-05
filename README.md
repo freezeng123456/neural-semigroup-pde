@@ -121,11 +121,21 @@ pointwise, and shrinking the flux stencil from five points to one halves
 rollout error and cuts one-step error about fivefold; hidden width 32 and the
 second hidden layer are pure overhead. A 33-parameter generator, `39.8` times
 smaller, is about twice as accurate as the screen's 1,313-parameter one. The
-fixed viscous anchor, by contrast, is essential. Because both headline Burgers
-numbers were measured on the oversized generator, the paired
-autonomous/query-time contrast has to be re-established on the reduced one
-before the reduction is adopted. See
+fixed viscous anchor, by contrast, is essential. See
 [`docs/research/BURGERS_FLUX_ABLATION_RESULTS.md`](docs/research/BURGERS_FLUX_ABLATION_RESULTS.md).
+
+Re-running the paired contrast on that 33-parameter generator settled what the
+reduction costs. The structural result survives untouched: an in-range
+composition defect of `0.7456%` of the state norm against exactly zero, still
+structural in all six cells, so the mechanism holds at two architectures forty
+times apart. The accuracy result stays sub-material but reverses sign to
+`1.0314`, which withdraws the screen's seed-level direction sub-claim and
+leaves the accuracy endpoint carrying no signal either way. The reason is
+visible in the selection metric: the control channel is worth `1.2%` of
+one-step error at 1,313 parameters and `39%` at 33, because reading the
+requested lag is a fitting shortcut whose value grows as capacity shrinks and
+whose structural cost does not. See
+[`docs/research/BURGERS_MINIMAL_GENERATOR_AB_RESULTS.md`](docs/research/BURGERS_MINIMAL_GENERATOR_AB_RESULTS.md).
 
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
 one one-dimensional reaction--diffusion PDE. Neither the formal Fisher--KPP
