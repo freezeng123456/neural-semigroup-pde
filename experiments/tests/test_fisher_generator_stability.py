@@ -147,7 +147,7 @@ def test_generator_tube_loss_matches_explicit_weighted_point_loss():
         times=times,
         conditioning_time=0.1,
         length=2.0,
-        diffusivity=0.0,
+        diffusivity=1e-12,
         reaction_rate=1.0,
     )
     explicit_weights = trapezoid_time_weights(
@@ -158,7 +158,7 @@ def test_generator_tube_loss_matches_explicit_weighted_point_loss():
         tube.reshape(-1, tube.shape[-1]),
         conditioning_time=0.1,
         length=2.0,
-        diffusivity=0.0,
+        diffusivity=1e-12,
         reaction_rate=1.0,
         sample_weights=explicit_weights,
     )
