@@ -1,0 +1,194 @@
+{
+  "experiment": "burgers_query_conditioning_attribution",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "protocol": "docs/research/BURGERS_QUERY_CONDITIONING_ATTRIBUTION_PROTOCOL.md",
+  "seed": 271828,
+  "n_sample": 50,
+  "device": "cpu",
+  "collapse_factor": 10.0,
+  "structural_factor": 100.0,
+  "inputs": {
+    "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d",
+    "autonomous_checkpoint_sha256": "fa7f288f5d1a0c275cb25368019125f833d1c3bc9745ff774f7da58ed7b25bb1",
+    "query_checkpoint_sha256": "e61d69a5bb37cbd6b62028efdd6a3b107d74956b59a45ccea3894daf8b547fb5"
+  },
+  "measurements": {
+    "a_autonomous": {
+      "path1_frozen_semantics": {
+        "tau=0.04:horizon=0.4": {
+          "equal_work_rms_defect_mean": 3.652290914146761e-08,
+          "composition_depth": 10,
+          "rhs_evaluations_each_path": 480,
+          "direct_path_control_input": 5.0
+        },
+        "tau=0.04:horizon=0.8": {
+          "equal_work_rms_defect_mean": 5.958169779773925e-08,
+          "composition_depth": 20,
+          "rhs_evaluations_each_path": 960,
+          "direct_path_control_input": 10.0
+        },
+        "tau=0.08:horizon=0.4": {
+          "equal_work_rms_defect_mean": 3.622109545631247e-08,
+          "composition_depth": 5,
+          "rhs_evaluations_each_path": 240,
+          "direct_path_control_input": 5.0
+        },
+        "tau=0.08:horizon=0.8": {
+          "equal_work_rms_defect_mean": 5.6698407746580415e-08,
+          "composition_depth": 10,
+          "rhs_evaluations_each_path": 480,
+          "direct_path_control_input": 10.0
+        }
+      },
+      "path2_matched_conditioning": {
+        "tau=0.04:horizon=0.4": {
+          "equal_work_rms_defect_mean": 3.652290914146761e-08,
+          "composition_depth": 10,
+          "rhs_evaluations_each_path": 480,
+          "direct_path_control_input": 0.5
+        },
+        "tau=0.04:horizon=0.8": {
+          "equal_work_rms_defect_mean": 5.958169779773925e-08,
+          "composition_depth": 20,
+          "rhs_evaluations_each_path": 960,
+          "direct_path_control_input": 0.5
+        },
+        "tau=0.08:horizon=0.4": {
+          "equal_work_rms_defect_mean": 3.622109545631247e-08,
+          "composition_depth": 5,
+          "rhs_evaluations_each_path": 240,
+          "direct_path_control_input": 1.0
+        },
+        "tau=0.08:horizon=0.8": {
+          "equal_work_rms_defect_mean": 5.6698407746580415e-08,
+          "composition_depth": 10,
+          "rhs_evaluations_each_path": 480,
+          "direct_path_control_input": 1.0
+        }
+      },
+      "path3_in_range_cross_lag": {
+        "horizon=0.4": {
+          "equal_work_rms_defect_mean": 0.0,
+          "fine_lag": 0.04,
+          "coarse_lag": 0.08,
+          "fine_depth": 10,
+          "coarse_depth": 5,
+          "coarse_substeps_per_call": 24,
+          "rhs_evaluations_each_path": 480,
+          "composed_state_rms": 0.4814103841781616
+        },
+        "horizon=0.8": {
+          "equal_work_rms_defect_mean": 0.0,
+          "fine_lag": 0.04,
+          "coarse_lag": 0.08,
+          "fine_depth": 20,
+          "coarse_depth": 10,
+          "coarse_substeps_per_call": 24,
+          "rhs_evaluations_each_path": 960,
+          "composed_state_rms": 0.4731491804122925
+        }
+      }
+    },
+    "b_query_time": {
+      "path1_frozen_semantics": {
+        "tau=0.04:horizon=0.4": {
+          "equal_work_rms_defect_mean": 0.11482640355825424,
+          "composition_depth": 10,
+          "rhs_evaluations_each_path": 480,
+          "direct_path_control_input": 5.0
+        },
+        "tau=0.04:horizon=0.8": {
+          "equal_work_rms_defect_mean": 0.2598170340061188,
+          "composition_depth": 20,
+          "rhs_evaluations_each_path": 960,
+          "direct_path_control_input": 10.0
+        },
+        "tau=0.08:horizon=0.4": {
+          "equal_work_rms_defect_mean": 0.11801812052726746,
+          "composition_depth": 5,
+          "rhs_evaluations_each_path": 240,
+          "direct_path_control_input": 5.0
+        },
+        "tau=0.08:horizon=0.8": {
+          "equal_work_rms_defect_mean": 0.2664128541946411,
+          "composition_depth": 10,
+          "rhs_evaluations_each_path": 480,
+          "direct_path_control_input": 10.0
+        }
+      },
+      "path2_matched_conditioning": {
+        "tau=0.04:horizon=0.4": {
+          "equal_work_rms_defect_mean": 3.537442694323545e-08,
+          "composition_depth": 10,
+          "rhs_evaluations_each_path": 480,
+          "direct_path_control_input": 0.5
+        },
+        "tau=0.04:horizon=0.8": {
+          "equal_work_rms_defect_mean": 5.828653115713678e-08,
+          "composition_depth": 20,
+          "rhs_evaluations_each_path": 960,
+          "direct_path_control_input": 0.5
+        },
+        "tau=0.08:horizon=0.4": {
+          "equal_work_rms_defect_mean": 3.5818445098811935e-08,
+          "composition_depth": 5,
+          "rhs_evaluations_each_path": 240,
+          "direct_path_control_input": 1.0
+        },
+        "tau=0.08:horizon=0.8": {
+          "equal_work_rms_defect_mean": 6.017371845246089e-08,
+          "composition_depth": 10,
+          "rhs_evaluations_each_path": 480,
+          "direct_path_control_input": 1.0
+        }
+      },
+      "path3_in_range_cross_lag": {
+        "horizon=0.4": {
+          "equal_work_rms_defect_mean": 0.0043920897878706455,
+          "fine_lag": 0.04,
+          "coarse_lag": 0.08,
+          "fine_depth": 10,
+          "coarse_depth": 5,
+          "coarse_substeps_per_call": 24,
+          "rhs_evaluations_each_path": 480,
+          "composed_state_rms": 0.48103219270706177
+        },
+        "horizon=0.8": {
+          "equal_work_rms_defect_mean": 0.010190174914896488,
+          "fine_lag": 0.04,
+          "coarse_lag": 0.08,
+          "fine_depth": 20,
+          "coarse_depth": 10,
+          "coarse_substeps_per_call": 24,
+          "rhs_evaluations_each_path": 960,
+          "composed_state_rms": 0.47406500577926636
+        }
+      }
+    }
+  },
+  "autonomous_integrator_floor": {
+    "tau=0.04:horizon=0.4": 3.652290914146761e-08,
+    "tau=0.04:horizon=0.8": 5.958169779773925e-08,
+    "tau=0.08:horizon=0.4": 3.622109545631247e-08,
+    "tau=0.08:horizon=0.8": 5.6698407746580415e-08
+  },
+  "query_time_classification": {
+    "path1_frozen_semantics": {
+      "tau=0.04:horizon=0.4": "structural",
+      "tau=0.04:horizon=0.8": "structural",
+      "tau=0.08:horizon=0.4": "structural",
+      "tau=0.08:horizon=0.8": "structural"
+    },
+    "path2_matched_conditioning": {
+      "tau=0.04:horizon=0.4": "collapsed",
+      "tau=0.04:horizon=0.8": "collapsed",
+      "tau=0.08:horizon=0.4": "collapsed",
+      "tau=0.08:horizon=0.8": "collapsed"
+    },
+    "path3_in_range_cross_lag": {
+      "horizon=0.4": "structural",
+      "horizon=0.8": "structural"
+    }
+  }
+}

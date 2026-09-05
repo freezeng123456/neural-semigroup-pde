@@ -105,6 +105,16 @@ spread roughly five orders of magnitude smaller, but its geometric-mean
 rollout-MSE ratio is `0.9933`, well short of the 10% material threshold. See
 [`docs/research/BURGERS_MATCHED_SEMIGROUP_RESULTS.md`](docs/research/BURGERS_MATCHED_SEMIGROUP_RESULTS.md).
 
+A checkpoint-only decomposition then separated that composition defect into a
+conditioning artifact and a genuine structural term. Under matched
+conditioning the query-time defect collapses to `0.94` of the autonomous
+integrator floor, so the screen's headline ratio is not the structural effect
+size; but an in-range cross-lag composition at equal work still leaves `1.26%`
+of the state norm against exactly zero for the autonomous model. The mechanism
+claim survives with a restated magnitude, and the same restatement is now owed
+to the Fisher composition-defect numbers. See
+[`docs/research/BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md`](docs/research/BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md).
+
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
 one one-dimensional reaction--diffusion PDE. Neither the formal Fisher--KPP
 lane nor the exploratory Burgers screen establishes a material prediction

@@ -1,0 +1,33 @@
+{
+  "experiment": "burgers_query_conditioning_attribution_aggregate",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "seeds": [
+    31415,
+    161803,
+    271828
+  ],
+  "n_sample": 50,
+  "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d",
+  "autonomous_integrator_floor_geometric_mean": 5.049942587391805e-08,
+  "autonomous_cross_lag_defect": 0.0,
+  "query_time_defect_geometric_mean": {
+    "path1_frozen_semantics": 0.17526853364855555,
+    "path2_matched_conditioning": 4.6145035392309624e-08,
+    "path3_in_range_cross_lag": 0.006278608783543392
+  },
+  "query_time_defect_over_floor": {
+    "path1_frozen_semantics": 3470703.490494102,
+    "path2_matched_conditioning": 0.913773465613648,
+    "path3_in_range_cross_lag": 124330.30029329835
+  },
+  "matched_conditioning_over_frozen_semantics": 2.632819162214171e-07,
+  "in_range_defect_relative_to_state_rms": 0.013134606939228785,
+  "composed_state_rms_geometric_mean": 0.4780203025939997,
+  "unanimity": {
+    "path1_structural": "12/12",
+    "path2_collapsed": "12/12",
+    "path3_structural": "6/6"
+  },
+  "conclusion": "headline_defect_is_conditioning_artifact_in_range_defect_is_structural"
+}

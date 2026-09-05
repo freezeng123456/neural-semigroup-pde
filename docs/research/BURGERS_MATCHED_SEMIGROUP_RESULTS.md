@@ -25,6 +25,13 @@ while every structural endpoint favored the autonomous model.
 The registered conclusion recorded by the aggregator is
 `composition_advantage_without_material_accuracy_advantage`.
 
+The defect ratio in the last row must not be read as the structural effect
+size.  The follow-up decomposition in
+`BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md` shows it is dominated by
+out-of-range conditioning of the frozen direct path; the corrected in-range
+figure is a composition defect of about `1.3%` of the state norm against
+exactly zero.
+
 The 10% threshold is not introduced here.  It is the convention already fixed
 in `AUTO_RESEARCH_PROTOCOL.md` and Section 4 of
 `SEMIGROUP_ATTRIBUTION_AND_TRANSFER_PROTOCOL.md`, both of which predate this
@@ -88,8 +95,12 @@ rule.
   `0.3125`--`1.25`.  The sign and existence of the query-time defect are
   meaningful, but its absolute size mixes genuine non-semigroup structure with
   extrapolation of the control channel, and it must not be compared across
-  PDEs by magnitude.  The Fisher lane ran an explicit fixed-query-time control
-  for exactly this reason; the Burgers lane has no such control yet.
+  PDEs by magnitude.  **Resolved.**  The checkpoint-only decomposition in
+  `BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md` finds that under matched
+  conditioning the query-time defect collapses to `0.94` of the autonomous
+  integrator floor, while an in-range cross-lag composition at equal work
+  still leaves `1.26%` of the state norm against exactly zero.  The mechanism
+  survives; only the effect size is restated.
 - **The 100-epoch budget was not saturated.** All six trainings selected
   epoch 100, the last epoch, so validation MSE was still improving when the
   frozen budget ran out.  The accuracy comparison is therefore a fixed-budget
@@ -121,12 +132,15 @@ narrow claim and reject the same broad one.  The defensible statement is about
 time-homogeneity as a *structural* property — composition consistency and
 unseen-lag prediction consistency — and not about predictive accuracy.
 
-The next justified steps are the fixed-query-time direct-path control named in
-the caveats, which is cheap and checkpoint-only, and the mass-conserving
-no-flux case (`Cahn--Hilliard`, generator $-D^\top M_\theta(u)D\mu_\theta(u)$)
-recommended in `BOUNDARY_FAMILY_SEMIGROUP_WAVE2_RESULTS.md`, which is the only
-remaining structure where autonomy is coupled to a physically meaningful
-invariant rather than to an affine or periodic constraint.
+The fixed-query-time direct-path control named in the caveats is complete; see
+`BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md`.  The next justified steps
+are the same decomposition on the frozen Fisher--KPP checkpoints, whose
+composition-defect magnitudes carry the same inflation risk, and the
+mass-conserving no-flux case (`Cahn--Hilliard`, generator
+$-D^\top M_\theta(u)D\mu_\theta(u)$) recommended in
+`BOUNDARY_FAMILY_SEMIGROUP_WAVE2_RESULTS.md`, which is the only remaining
+structure where autonomy is coupled to a physically meaningful invariant
+rather than to an affine or periodic constraint.
 
 Machine-readable values, per-seed summaries, selected checkpoints, input
 hashes, and the launcher are stored under
