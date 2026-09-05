@@ -96,9 +96,20 @@ query-time temporal rules; and three paired seeds. All hard boundary gates
 passed, and each boundary family passed the preregistered temporal rule. See
 [`docs/research/BOUNDARY_FAMILY_SEMIGROUP_WAVE2_RESULTS.md`](docs/research/BOUNDARY_FAMILY_SEMIGROUP_WAVE2_RESULTS.md).
 
+The matched Burgers screen adds a second, structurally different PDE: both
+models use a periodic conservative flux plus the same fixed viscous anchor
+rather than a diagonal dissipative gradient flow. Its three-seed exploratory
+matrix reproduces the Fisher--KPP signature. The autonomous model has a lower
+equal-work composition defect in 12/12 cells and an unseen-lag prediction
+spread roughly five orders of magnitude smaller, but its geometric-mean
+rollout-MSE ratio is `0.9933`, well short of the 10% material threshold. See
+[`docs/research/BURGERS_MATCHED_SEMIGROUP_RESULTS.md`](docs/research/BURGERS_MATCHED_SEMIGROUP_RESULTS.md).
+
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
-one one-dimensional reaction--diffusion PDE. The formal Fisher--KPP lane does
-not establish a stable prediction advantage, and conservative/no-flux,
+one one-dimensional reaction--diffusion PDE. Neither the formal Fisher--KPP
+lane nor the exploratory Burgers screen establishes a material prediction
+advantage, so the accuracy half of the Section 4 advance criterion is now
+unmet on two PDEs with different generator structure. Conservative/no-flux,
 multidimensional, and irregular-geometry transfer remain open. Archived
 numerical values are retained for provenance and must not be mixed across
 formal and exploratory evidence classes.
