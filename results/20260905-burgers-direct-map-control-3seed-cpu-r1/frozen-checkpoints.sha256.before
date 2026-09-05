@@ -1,0 +1,6 @@
+12c34d686506f9b7fe229d9433f5858568e93168b901b1cbe454bb8bf2b300f1  results/20260905-burgers-minimal-generator-ab-3seed-cpu-r1/cells/s161803/checkpoints/a_autonomous_best.pt
+fdcec0f90d028ec515421568893019c7bae666b1d443c230dfe4080a36ad9ab5  results/20260905-burgers-minimal-generator-ab-3seed-cpu-r1/cells/s161803/checkpoints/b_query_time_best.pt
+8036b46a270cccc90e9bf8da077208032b87aeb80ed3147673f5f60d6b64a329  results/20260905-burgers-minimal-generator-ab-3seed-cpu-r1/cells/s271828/checkpoints/a_autonomous_best.pt
+04c369eead09921029b30598a3a3a4accb21572a16d96821cc1aa71b12e1081e  results/20260905-burgers-minimal-generator-ab-3seed-cpu-r1/cells/s271828/checkpoints/b_query_time_best.pt
+5e83ee40d2e7aa12c78dc9d50928bf481772361ff9564ae2c2e69fc6e6271537  results/20260905-burgers-minimal-generator-ab-3seed-cpu-r1/cells/s31415/checkpoints/a_autonomous_best.pt
+16618bbeee5bec137313075cb38b21bf656ab60c2e08370f508e96495cf72913  results/20260905-burgers-minimal-generator-ab-3seed-cpu-r1/cells/s31415/checkpoints/b_query_time_best.pt
