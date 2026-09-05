@@ -57,7 +57,7 @@
       "data_seed": 90050902,
       "data_cache_sha256": "2c4b937f3c33fe8d001bf67cd6452b266ed230cba5fb1e14a14dc0905390a4fd",
       "config": "n_train=32, n_val=4, epochs=2, batch_size=8, seed=31415",
-      "retained": true,
+      "reused_or_overwritten": false,
       "pooled_with_matrix": false
     },
     {
@@ -66,11 +66,12 @@
       "seed": 999999,
       "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d",
       "config": "epochs=2, validation_interval=1, matrix cache",
-      "retained": false,
+      "reused_or_overwritten": false,
       "pooled_with_matrix": false,
       "note": "read the frozen matrix cache but used a seed outside the matrix, selected no checkpoint, and set no threshold; the directory was deleted before the matrix was launched"
     }
   ],
+  "durability_note": "every listed root lives on an ephemeral execution host, so the committed artifacts in this directory are the durable record; the launcher regenerates the data cache to the digest above from --data-seed 20260902",
   "aggregation": {
     "script": "experiments/aggregate_burgers_semigroup_screen.py",
     "read_only": true,
