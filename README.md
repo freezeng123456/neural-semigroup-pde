@@ -137,6 +137,29 @@ requested lag is a fitting shortcut whose value grows as capacity shrinks and
 whose structural cost does not. See
 [`docs/research/BURGERS_MINIMAL_GENERATOR_AB_RESULTS.md`](docs/research/BURGERS_MINIMAL_GENERATOR_AB_RESULTS.md).
 
+Two further controls close the Burgers lane. Against a direct
+time-conditioned map of the same 33 parameters, the in-range cross-lag defect
+is `0` exactly for the autonomous flow, `0.7456%` of the state norm for the
+query-conditioned flow, and `2.8013%` for the direct map, with unseen-lag
+prediction spreads of `3.0e-7`, `8.0e-2` and `7.4e-1`; that ordering is
+monotone in how much freedom the requested duration is given and cannot be a
+compute artifact. The accompanying accuracy figure could be, and was: at
+matched work, one flux evaluation per call for all three, the ratios collapse
+to `1.0084` and `1.0013`, so the flow's apparent `30%` advantage was compute
+and has been retracted. Nothing in the Burgers lane supports an accuracy claim
+in either direction. See
+[`docs/research/BURGERS_DIRECT_MAP_CONTROL_RESULTS.md`](docs/research/BURGERS_DIRECT_MAP_CONTROL_RESULTS.md)
+and
+[`docs/research/BURGERS_WORK_MATCHED_CONTROL_RESULTS.md`](docs/research/BURGERS_WORK_MATCHED_CONTROL_RESULTS.md).
+
+For the adopted generator the two constants
+[`docs/research/FISHER_KPP_THEOREM_CARD.md`](docs/research/FISHER_KPP_THEOREM_CARD.md)
+marks `OPEN` are now certified rather than sampled, and the layered rollout
+bound is a number instead of a schema. Its looseness is almost entirely one
+constant: the exponential amplification costs about `20` at horizon `0.4` and
+`870` at `0.8`, while generator matching costs `7` and `9`. See
+[`docs/research/BURGERS_CERTIFIED_CONSTANTS.md`](docs/research/BURGERS_CERTIFIED_CONSTANTS.md).
+
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
 one one-dimensional reaction--diffusion PDE. Neither the formal Fisher--KPP
 lane nor the exploratory Burgers screen establishes a material prediction

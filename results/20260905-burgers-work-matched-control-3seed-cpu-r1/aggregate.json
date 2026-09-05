@@ -1,0 +1,68 @@
+{
+  "experiment": "burgers_work_matched_control_aggregate",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "architecture": "r0_h8_l1_anchor",
+  "seeds": [
+    31415,
+    161803,
+    271828
+  ],
+  "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d",
+  "parameter_count_each": 33,
+  "flux_evaluations_per_call": 1,
+  "material_ratio_threshold": 0.9,
+  "rollout_mse_ratio_a_over_c": 1.0083950777443362,
+  "rollout_mse_ratio_b_over_c": 1.0012870117192052,
+  "per_seed_a_over_c": {
+    "31415": 1.0070291011819843,
+    "161803": 1.0078877987717396,
+    "271828": 1.0102711299061415
+  },
+  "seeds_meeting_material_threshold": 0,
+  "deployed_budget_cross_lag_geometric_mean": {
+    "a_euler_autonomous": 0.010457144761987646,
+    "b_euler_query_time": 0.012497958713808531,
+    "c_direct_map": 0.012671328221113365
+  },
+  "one_step_selection_metric_geometric_mean": {
+    "a_euler_autonomous": 1.5858488292796235e-05,
+    "b_euler_query_time": 1.5225835177504216e-05
+  },
+  "training_seconds_mean": {
+    "a_euler_autonomous": 1.5578581100004765,
+    "b_euler_query_time": 1.5349998743331525
+  },
+  "refinement": {
+    "a_euler_autonomous": {
+      "pooled_defect_by_substeps": {
+        "1": 0.010457144761987646,
+        "2": 0.004642167591842883,
+        "4": 0.0021851718537687775,
+        "8": 0.001060748380126325,
+        "16": 0.0005226900685420796
+      },
+      "gain_from_one_to_sixteen": 20.006396507887324
+    },
+    "b_euler_query_time": {
+      "pooled_defect_by_substeps": {
+        "1": 0.012497958713808531,
+        "2": 0.006381335745258426,
+        "4": 0.004166778183282054,
+        "8": 0.0033990057011955045,
+        "16": 0.0031420829823669704
+      },
+      "gain_from_one_to_sixteen": 3.9776030053775546
+    },
+    "monotone_in_every_cell": true,
+    "refinement_gain_met_in_every_cell": false,
+    "direct_map_separated_in_every_cell": false
+  },
+  "unmatched_work_reference": {
+    "rollout_mse_ratio_a_over_c": 0.6992492034001871,
+    "rollout_mse_ratio_b_over_c": 0.6779596387932305,
+    "flow_flux_evaluations_per_call": 48
+  },
+  "accuracy_conclusion": "flow_accuracy_advantage_does_not_survive_work_matching",
+  "refinability_conclusion": "refinement_does_not_separate_the_formulations"
+}

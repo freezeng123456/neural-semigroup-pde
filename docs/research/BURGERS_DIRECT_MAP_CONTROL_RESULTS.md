@@ -18,6 +18,12 @@ must be read very differently.
   **not adoptable**: model C ran with `1/48` of the flux evaluations and
   `1/17` of the wall clock.  See the confound section below.
 
+**Retracted.**  `BURGERS_WORK_MATCHED_CONTROL_RESULTS.md` repeated the
+comparison at one flux evaluation per call for all three models and obtained
+`MSE(A')/MSE(C) = 1.0084` with no seed meeting the threshold.  The `0.6992`
+figure below was entirely a compute artifact.  The refusal to adopt it was
+correct; it must not be quoted.
+
 ## The structural result: a monotone ordering across three temporal formulations
 
 The three models share 33 parameters, the same flux network, the same periodic
@@ -140,20 +146,18 @@ Not established: that the flow formulation is more accurate.  Every accuracy
 comparison in this lane is unmatched in work by a factor of `48` in flux
 evaluations.
 
-The next step is a **work-matched direct map**.  Two designs are available and
-neither has been run:
+Design 2 of the work-matched follow-up — retraining the flows at a reduced
+substep budget — has been run in
+`BURGERS_WORK_MATCHED_CONTROL_RESULTS.md`.  At one flux evaluation per call
+the three formulations are equally accurate to within one percent, so the
+accuracy half of the novelty audit's criterion is now answered in the
+negative: **the project has no evidence that the flow formulation predicts
+better than a direct operator.**
 
-1. give C the same `48` flux evaluations per call as a deep residual operator
-   with per-layer weights, accepting and reporting the resulting parameter
-   increase, so work is matched and capacity is not;
-2. retrain A and B at a reduced substep budget so their flux-evaluation count
-   matches C's, keeping capacity matched and lowering work.
-
-Design 2 is cheaper and keeps the parameter budget exactly matched, so it is
-the better first attempt; design 1 answers the complementary question.  Until
-one of them is run, the accuracy half of the novelty audit's criterion is open
-and the project has no clean evidence that the flow formulation predicts
-better than a direct operator.
+Design 1, giving C the same `48` evaluations as a deep residual operator with
+per-layer weights, remains unrun.  It answers the complementary question of
+whether a *larger* direct operator can match the flow, and it necessarily
+breaks the parameter match.
 
 Machine-readable per-seed summaries, C's checkpoints, input and frozen-
 checkpoint digests, the pooled aggregate, and the launcher are stored under
