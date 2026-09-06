@@ -1,0 +1,251 @@
+{
+  "conservative_mobility_conserves_mass_trained": false,
+  "conservative_mobility_conserves_mass_untrained": true,
+  "decision": "rk4_30_training_diverged",
+  "do_not_use_for_formal": true,
+  "exploratory": true,
+  "geometric_mean_mse_untrained": 0.2360084775993078,
+  "protocol": "docs/research/CAHN_HILLIARD_CONSERVATIVE_MOBILITY_PROTOCOL.md",
+  "training": {
+    "best_checkpoint": null,
+    "best_val_mse": null,
+    "diverged_by_epoch": 5,
+    "epoch_1_step_loss": 0.051678,
+    "integrator": "rk4_30"
+  },
+  "untrained": {
+    "do_not_use_for_formal": true,
+    "exploratory": true,
+    "note": "untrained initialization; RK4-30 training diverged (NaN by epoch 5), no checkpoint",
+    "seeds": [
+      {
+        "cells": {
+          "tau=0.075,T=0.6": {
+            "bound_viol_mean": 0.0,
+            "horizon": 0.6,
+            "mass_drift_max": 1.1920928955078125e-07,
+            "mass_drift_mean": 1.7107677052763393e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.19914090311971855,
+            "rollout_rel_l2_mean": 0.5624954164377414,
+            "semigroup_defect_mean": 3.955682984908927e-15,
+            "tau": 0.075
+          },
+          "tau=0.075,T=1.2": {
+            "bound_viol_mean": 0.0,
+            "horizon": 1.2,
+            "mass_drift_max": 2.384185791015625e-07,
+            "mass_drift_mean": 3.08659018344315e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.2426823002089754,
+            "rollout_rel_l2_mean": 0.5914643871203427,
+            "semigroup_defect_mean": 3.93589203362655e-15,
+            "tau": 0.075
+          },
+          "tau=0.075,T=2.4": {
+            "bound_viol_mean": 0.0,
+            "horizon": 2.4,
+            "mass_drift_max": 5.662441253662109e-07,
+            "mass_drift_mean": 5.6384067192993825e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.2538127690528174,
+            "rollout_rel_l2_mean": 0.5877207183592772,
+            "semigroup_defect_mean": 3.93589203362655e-15,
+            "tau": 0.075
+          },
+          "tau=0.15,T=0.6": {
+            "bound_viol_mean": 0.0,
+            "horizon": 0.6,
+            "mass_drift_max": 5.960464477539063e-08,
+            "mass_drift_mean": 9.220848973257034e-09,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.21720281849492393,
+            "rollout_rel_l2_mean": 0.5909236698256185,
+            "semigroup_defect_mean": 3.5229286751089773e-15,
+            "tau": 0.15
+          },
+          "tau=0.15,T=1.2": {
+            "bound_viol_mean": 0.0,
+            "horizon": 1.2,
+            "mass_drift_max": 1.1920928955078125e-07,
+            "mass_drift_mean": 1.642824010161803e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.2516395758826143,
+            "rollout_rel_l2_mean": 0.6050249440336807,
+            "semigroup_defect_mean": NaN,
+            "tau": 0.15
+          },
+          "tau=0.15,T=2.4": {
+            "bound_viol_mean": 0.0,
+            "horizon": 2.4,
+            "mass_drift_max": 2.086162567138672e-07,
+            "mass_drift_mean": 2.829700740392127e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.25775623372828704,
+            "rollout_rel_l2_mean": 0.5937269443335632,
+            "semigroup_defect_mean": NaN,
+            "tau": 0.15
+          }
+        },
+        "conserves_mass": true,
+        "geometric_mean_mse": 0.2360084775993078,
+        "max_mass_drift": 5.662441253662109e-07,
+        "parameter_count": 9091,
+        "seed": 42,
+        "trained": false
+      },
+      {
+        "cells": {
+          "tau=0.075,T=0.6": {
+            "bound_viol_mean": 0.0,
+            "horizon": 0.6,
+            "mass_drift_max": 1.1920928955078125e-07,
+            "mass_drift_mean": 1.7107677052763393e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.19914090311971855,
+            "rollout_rel_l2_mean": 0.5624954164377414,
+            "semigroup_defect_mean": 3.955682984908927e-15,
+            "tau": 0.075
+          },
+          "tau=0.075,T=1.2": {
+            "bound_viol_mean": 0.0,
+            "horizon": 1.2,
+            "mass_drift_max": 2.384185791015625e-07,
+            "mass_drift_mean": 3.08659018344315e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.2426823002089754,
+            "rollout_rel_l2_mean": 0.5914643871203427,
+            "semigroup_defect_mean": 3.93589203362655e-15,
+            "tau": 0.075
+          },
+          "tau=0.075,T=2.4": {
+            "bound_viol_mean": 0.0,
+            "horizon": 2.4,
+            "mass_drift_max": 5.662441253662109e-07,
+            "mass_drift_mean": 5.6384067192993825e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.2538127690528174,
+            "rollout_rel_l2_mean": 0.5877207183592772,
+            "semigroup_defect_mean": 3.93589203362655e-15,
+            "tau": 0.075
+          },
+          "tau=0.15,T=0.6": {
+            "bound_viol_mean": 0.0,
+            "horizon": 0.6,
+            "mass_drift_max": 5.960464477539063e-08,
+            "mass_drift_mean": 9.220848973257034e-09,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.21720281849492393,
+            "rollout_rel_l2_mean": 0.5909236698256185,
+            "semigroup_defect_mean": 3.5229286751089773e-15,
+            "tau": 0.15
+          },
+          "tau=0.15,T=1.2": {
+            "bound_viol_mean": 0.0,
+            "horizon": 1.2,
+            "mass_drift_max": 1.1920928955078125e-07,
+            "mass_drift_mean": 1.642824010161803e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.2516395758826143,
+            "rollout_rel_l2_mean": 0.6050249440336807,
+            "semigroup_defect_mean": NaN,
+            "tau": 0.15
+          },
+          "tau=0.15,T=2.4": {
+            "bound_viol_mean": 0.0,
+            "horizon": 2.4,
+            "mass_drift_max": 2.086162567138672e-07,
+            "mass_drift_mean": 2.829700740392127e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.25775623372828704,
+            "rollout_rel_l2_mean": 0.5937269443335632,
+            "semigroup_defect_mean": NaN,
+            "tau": 0.15
+          }
+        },
+        "conserves_mass": true,
+        "geometric_mean_mse": 0.2360084775993078,
+        "max_mass_drift": 5.662441253662109e-07,
+        "parameter_count": 9091,
+        "seed": 137,
+        "trained": false
+      },
+      {
+        "cells": {
+          "tau=0.075,T=0.6": {
+            "bound_viol_mean": 0.0,
+            "horizon": 0.6,
+            "mass_drift_max": 1.1920928955078125e-07,
+            "mass_drift_mean": 1.7107677052763393e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.19914090311971855,
+            "rollout_rel_l2_mean": 0.5624954164377414,
+            "semigroup_defect_mean": 3.955682984908927e-15,
+            "tau": 0.075
+          },
+          "tau=0.075,T=1.2": {
+            "bound_viol_mean": 0.0,
+            "horizon": 1.2,
+            "mass_drift_max": 2.384185791015625e-07,
+            "mass_drift_mean": 3.08659018344315e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.2426823002089754,
+            "rollout_rel_l2_mean": 0.5914643871203427,
+            "semigroup_defect_mean": 3.93589203362655e-15,
+            "tau": 0.075
+          },
+          "tau=0.075,T=2.4": {
+            "bound_viol_mean": 0.0,
+            "horizon": 2.4,
+            "mass_drift_max": 5.662441253662109e-07,
+            "mass_drift_mean": 5.6384067192993825e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.2538127690528174,
+            "rollout_rel_l2_mean": 0.5877207183592772,
+            "semigroup_defect_mean": 3.93589203362655e-15,
+            "tau": 0.075
+          },
+          "tau=0.15,T=0.6": {
+            "bound_viol_mean": 0.0,
+            "horizon": 0.6,
+            "mass_drift_max": 5.960464477539063e-08,
+            "mass_drift_mean": 9.220848973257034e-09,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.21720281849492393,
+            "rollout_rel_l2_mean": 0.5909236698256185,
+            "semigroup_defect_mean": 3.5229286751089773e-15,
+            "tau": 0.15
+          },
+          "tau=0.15,T=1.2": {
+            "bound_viol_mean": 0.0,
+            "horizon": 1.2,
+            "mass_drift_max": 1.1920928955078125e-07,
+            "mass_drift_mean": 1.642824010161803e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.2516395758826143,
+            "rollout_rel_l2_mean": 0.6050249440336807,
+            "semigroup_defect_mean": NaN,
+            "tau": 0.15
+          },
+          "tau=0.15,T=2.4": {
+            "bound_viol_mean": 0.0,
+            "horizon": 2.4,
+            "mass_drift_max": 2.086162567138672e-07,
+            "mass_drift_mean": 2.829700740392127e-08,
+            "physical_energy_mono_frac": 1.0,
+            "rollout_mse_mean": 0.25775623372828704,
+            "rollout_rel_l2_mean": 0.5937269443335632,
+            "semigroup_defect_mean": NaN,
+            "tau": 0.15
+          }
+        },
+        "conserves_mass": true,
+        "geometric_mean_mse": 0.2360084775993078,
+        "max_mass_drift": 5.662441253662109e-07,
+        "parameter_count": 9091,
+        "seed": 2718,
+        "trained": false
+      }
+    ]
+  }
+}

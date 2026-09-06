@@ -77,7 +77,6 @@ Not supported:
 
 ## Next designed experiment
 
-Build a conservative mobility \(-D^\top M D\) and train it on these
-locked initial conditions.  Primary endpoints are mass drift and
-rollout MSE against the ETD-RK4 cache.  Do not revive the large-step
-split as the comparator.
+The conservative-mobility RK4-30 lane diverged
+(`CAHN_HILLIARD_CONSERVATIVE_MOBILITY_RESULTS.md`).  Keep
+\(-D^\top M D\), but integrate the biharmonic part exactly.
