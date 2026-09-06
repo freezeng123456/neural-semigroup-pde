@@ -1,0 +1,221 @@
+{
+  "experiment": "wave2_direct_map_work_matched",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "n_summaries": 9,
+  "cache_sha256_by_family": {
+    "homogeneous_neumann": "3d55869bb31e7810826705d4c7d37ae3df4483884365b1995efedac3262fb6b7",
+    "inhomogeneous_dirichlet": "295534fb9f8637285ff15bdb26980b5df6f473a5dd78aaefe707b60f706e18b4",
+    "robin": "20c1777c3f4b9ab35ef0183f6926bfdcbeabf635621fbbc65271268f6ba47e1d"
+  },
+  "accuracy": {
+    "inhomogeneous_dirichlet": {
+      "mse_a_prime_over_c": {
+        "per_seed": [
+          0.08412938982218433,
+          0.10066898878267896,
+          0.113217646240731
+        ],
+        "pooled": 0.09860959815402447,
+        "seeds_meeting_0.90": 3
+      },
+      "mse_b_prime_over_c": {
+        "per_seed": [
+          0.100023862027131,
+          0.10947282168975891,
+          0.14103679302191324
+        ],
+        "pooled": 0.11558836442594755
+      },
+      "mse_a_rk4_over_c_descriptive": {
+        "per_seed": [
+          0.0002954249403428565,
+          0.0005828394537532806,
+          0.0006066488182508781
+        ],
+        "pooled": 0.000470953271734908
+      },
+      "mse_a_rk4_over_b_rk4_descriptive": {
+        "per_seed": [
+          0.04558012531626772,
+          0.25926837561053273,
+          0.11233189021994965
+        ],
+        "pooled": 0.10990295665506677
+      },
+      "verdict": "flow_has_material_accuracy_advantage_over_direct_map"
+    },
+    "homogeneous_neumann": {
+      "mse_a_prime_over_c": {
+        "per_seed": [
+          0.03100260796383784,
+          0.028010625874982174,
+          0.030478864546629035
+        ],
+        "pooled": 0.029801624737465747,
+        "seeds_meeting_0.90": 3
+      },
+      "mse_b_prime_over_c": {
+        "per_seed": [
+          0.03752399438253164,
+          0.03282556483882356,
+          0.03284435582189201
+        ],
+        "pooled": 0.034328962073955895
+      },
+      "mse_a_rk4_over_c_descriptive": {
+        "per_seed": [
+          0.0005512434580229274,
+          0.00011415768008169636,
+          0.00018843466809228664
+        ],
+        "pooled": 0.0002280358506549098
+      },
+      "mse_a_rk4_over_b_rk4_descriptive": {
+        "per_seed": [
+          0.11554298219333962,
+          0.09932938900016633,
+          0.17001346753374375
+        ],
+        "pooled": 0.12495919552505838
+      },
+      "verdict": "flow_has_material_accuracy_advantage_over_direct_map"
+    },
+    "robin": {
+      "mse_a_prime_over_c": {
+        "per_seed": [
+          0.025152805600303217,
+          0.018613925676774976,
+          0.019364678575747637
+        ],
+        "pooled": 0.02085186482249915,
+        "seeds_meeting_0.90": 3
+      },
+      "mse_b_prime_over_c": {
+        "per_seed": [
+          0.03329160964678737,
+          0.022732978265918455,
+          0.023817833740274248
+        ],
+        "pooled": 0.026219905973753895
+      },
+      "mse_a_rk4_over_c_descriptive": {
+        "per_seed": [
+          0.000648140683504661,
+          6.614513397703854e-05,
+          0.00020298979306504944
+        ],
+        "pooled": 0.00020569029199221962
+      },
+      "mse_a_rk4_over_b_rk4_descriptive": {
+        "per_seed": [
+          0.09073896155347705,
+          0.05779002255150711,
+          0.1325429389982328
+        ],
+        "pooled": 0.08857974417801141
+      },
+      "verdict": "flow_has_material_accuracy_advantage_over_direct_map"
+    }
+  },
+  "refinability": {
+    "inhomogeneous_dirichlet": {
+      "a_prime_refinement": {
+        "1": 0.009587995030534218,
+        "2": 0.001042295389639966,
+        "4": 0.0004969540645439398,
+        "8": 0.00024244903773263795,
+        "16": 0.00011972737472016259,
+        "32": 5.949202475786647e-05,
+        "64": 2.965270793196719e-05,
+        "128": 1.4803014934185787e-05
+      },
+      "b_prime_refinement": {
+        "1": 0.012705383118426273,
+        "2": 0.005826858366026015,
+        "4": 0.005719803289258796,
+        "8": 0.005694540726492054,
+        "16": 0.005688129263945176,
+        "32": 0.005686361062815098,
+        "64": 0.005685832078053413,
+        "128": 0.005685637661900766
+      },
+      "c_deployed_defect": 0.02611922998809048,
+      "a_prime_gain_1_to_128": 647.7055568181515,
+      "b_prime_gain_1_to_128": 2.234645236639778,
+      "c_over_a_prime_at_128": 1764.4533971097505,
+      "autonomous_defect_is_refinable": true,
+      "query_time_has_irreducible_defect": true,
+      "structural_ordering_is_specific_to_autonomy": true
+    },
+    "homogeneous_neumann": {
+      "a_prime_refinement": {
+        "1": 0.0064957809436846725,
+        "2": 0.0010602194459472323,
+        "4": 0.0005010255376391478,
+        "8": 0.00024340064503130293,
+        "16": 0.00011996829329197873,
+        "32": 5.955699823489814e-05,
+        "64": 2.9671022548307223e-05,
+        "128": 1.4809576639045258e-05
+      },
+      "b_prime_refinement": {
+        "1": 0.009259422848260892,
+        "2": 0.004897371599753446,
+        "4": 0.0046680145428111735,
+        "8": 0.004593703310312707,
+        "16": 0.004567107030771001,
+        "32": 0.004556637776780609,
+        "64": 0.0045521700527346755,
+        "128": 0.004550124795974943
+      },
+      "c_deployed_defect": 0.02974272567721421,
+      "a_prime_gain_1_to_128": 438.6202996889614,
+      "b_prime_gain_1_to_128": 2.03498217377506,
+      "c_over_a_prime_at_128": 2008.3440872170443,
+      "autonomous_defect_is_refinable": true,
+      "query_time_has_irreducible_defect": true,
+      "structural_ordering_is_specific_to_autonomy": true
+    },
+    "robin": {
+      "a_prime_refinement": {
+        "1": 0.006792459545419128,
+        "2": 0.000976218655644143,
+        "4": 0.0004598519577218007,
+        "8": 0.00022322877975385183,
+        "16": 0.00010999367761311039,
+        "32": 5.4594048285809344e-05,
+        "64": 2.719571252454154e-05,
+        "128": 1.3578513039851382e-05
+      },
+      "b_prime_refinement": {
+        "1": 0.009314498760002664,
+        "2": 0.004948295854540948,
+        "4": 0.004778270796248976,
+        "8": 0.00472843703220557,
+        "16": 0.004711654917852954,
+        "32": 0.004705184124082292,
+        "64": 0.0047024129861675795,
+        "128": 0.004701136900339795
+      },
+      "c_deployed_defect": 0.030399949192510347,
+      "a_prime_gain_1_to_128": 500.23588926740626,
+      "b_prime_gain_1_to_128": 1.9813289758333603,
+      "c_over_a_prime_at_128": 2238.827558164136,
+      "autonomous_defect_is_refinable": true,
+      "query_time_has_irreducible_defect": true,
+      "structural_ordering_is_specific_to_autonomy": true
+    },
+    "pooled_verdicts": {
+      "autonomous_defect_is_refinable": true,
+      "query_time_has_irreducible_defect": true,
+      "structural_ordering_is_specific_to_autonomy": true
+    }
+  },
+  "accuracy_verdicts": {
+    "inhomogeneous_dirichlet": "flow_has_material_accuracy_advantage_over_direct_map",
+    "homogeneous_neumann": "flow_has_material_accuracy_advantage_over_direct_map",
+    "robin": "flow_has_material_accuracy_advantage_over_direct_map"
+  },
+  "any_family_has_material_accuracy_advantage": true
+}
