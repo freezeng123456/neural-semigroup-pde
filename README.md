@@ -179,10 +179,13 @@ and
 The analogous large-step conservative split on Cahn--Hilliard is not a
 usable bar: it diverges at the same unseen lags.  A conservative
 \(-D^\top M D\) field conserves mass at initialization but its
-explicit RK4-30 training loop goes `NaN` by epoch 5.  See
-[`docs/research/CAHN_HILLIARD_PHYSICS_SPLIT_RESULTS.md`](docs/research/CAHN_HILLIARD_PHYSICS_SPLIT_RESULTS.md)
+explicit RK4-30 training loop goes `NaN` by epoch 5.  An
+exact-biharmonic conservative increment trains and then diverges on
+the locked long-lag rollouts.  See
+[`docs/research/CAHN_HILLIARD_PHYSICS_SPLIT_RESULTS.md`](docs/research/CAHN_HILLIARD_PHYSICS_SPLIT_RESULTS.md),
+[`docs/research/CAHN_HILLIARD_CONSERVATIVE_MOBILITY_RESULTS.md`](docs/research/CAHN_HILLIARD_CONSERVATIVE_MOBILITY_RESULTS.md),
 and
-[`docs/research/CAHN_HILLIARD_CONSERVATIVE_MOBILITY_RESULTS.md`](docs/research/CAHN_HILLIARD_CONSERVATIVE_MOBILITY_RESULTS.md).
+[`docs/research/CAHN_HILLIARD_EXACT_BIHARMONIC_RESULTS.md`](docs/research/CAHN_HILLIARD_EXACT_BIHARMONIC_RESULTS.md).
 
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
 one one-dimensional reaction--diffusion PDE. The formal Fisher--KPP lane and

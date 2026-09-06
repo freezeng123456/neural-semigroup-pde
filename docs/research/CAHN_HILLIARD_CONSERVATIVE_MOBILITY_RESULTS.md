@@ -58,7 +58,7 @@ Not supported:
 
 ## Next designed experiment
 
-Keep \(-D^\top M D\).  Integrate the linear biharmonic semigroup
-exactly and apply one conservative nonlinear increment, the analogue
-of the reaction--diffusion `C_{\mathrm{phys}}` that actually ran.
-Do not restart RK4-30 with a smaller learning rate.
+The exact-biharmonic increment is complete
+(`CAHN_HILLIARD_EXACT_BIHARMONIC_RESULTS.md`).  It trains and then
+blows up on the locked long-lag rollouts.  The remaining CH question
+is a stiff-stable conservative integrator, not another large-step map.
