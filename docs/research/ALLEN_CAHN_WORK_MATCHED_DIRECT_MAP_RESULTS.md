@@ -143,17 +143,10 @@ Not supported:
 - a formal, locked-test upgrade of the Allen--Cahn attribution;
 - any change to the Burgers work-matched retraction.
 
-## Next designed experiment
+## Follow-up
 
-Do not sweep losses or widths.  Replace `C` by a reaction-only
-increment
-
-\[
-C_{\mathrm{rxn}}(u,\tau)=e^{\tau\varepsilon^2\Delta}u+\tau\bigl(u(1-u^2)+r_\theta(u,\tau)\bigr)
-\]
-
-with the diffusion piece removed from the learned increment, then
-repeat the same three seeds and the same decision rules.  If `A'`
-still wins, the accuracy claim can be attributed to integrating a
-single field rather than to a bad operator split.  If the gap
-vanishes, tonight's result was the double count.
+The reaction-only lane is complete.  The gap vanished: pooled
+`MSE(A')/MSE(C_rxn) = 45.11`, and the zero-parameter heat-plus-reaction
+split is stronger still.  The accuracy sentence above is therefore
+withdrawn.  See
+`ALLEN_CAHN_REACTION_ONLY_DIRECT_MAP_RESULTS.md`.

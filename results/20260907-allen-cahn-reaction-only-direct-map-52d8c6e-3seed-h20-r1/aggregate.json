@@ -1,0 +1,37 @@
+{
+  "experiment": "allen_cahn_reaction_only_direct_map_aggregate",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "pooled": {
+    "mse_a_prime_over_c_rxn": 45.108260649292745,
+    "mse_old_c_over_c_rxn": 59.649028264853015,
+    "mse_phys_over_c_rxn": 0.6194599111731867,
+    "seeds_a_prime_at_or_below_0.90": 0
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "mse_a_prime_over_c_rxn": 167.08909867714485,
+      "mse_old_c_over_c_rxn": 161.74945833806214,
+      "mse_phys_over_c_rxn": 0.744554808844547,
+      "parameter_count_c_rxn": 9155
+    },
+    {
+      "seed": 137,
+      "mse_a_prime_over_c_rxn": 12.791308871801306,
+      "mse_old_c_over_c_rxn": 18.073913147869547,
+      "mse_phys_over_c_rxn": 0.340157964835468,
+      "parameter_count_c_rxn": 9155
+    },
+    {
+      "seed": 2718,
+      "mse_a_prime_over_c_rxn": 42.94426177267548,
+      "mse_old_c_over_c_rxn": 72.59640136812075,
+      "mse_phys_over_c_rxn": 0.9385605598208435,
+      "parameter_count_c_rxn": 9155
+    }
+  ],
+  "decisions": {
+    "accuracy": "accuracy_gap_was_the_diffusion_double_count"
+  }
+}
