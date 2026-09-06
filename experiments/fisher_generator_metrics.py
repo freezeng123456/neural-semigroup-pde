@@ -125,7 +125,6 @@ def fisher_spectral_generator(
     )
 
 
-@torch.no_grad()
 def learned_physical_generator(
     model: torch.nn.Module,
     states: torch.Tensor,
@@ -158,6 +157,143 @@ def learned_physical_generator(
         latent_rhs = dynamics(latent, interactions)
     decoder_derivative = represented * (1.0 - represented)
     return decoder_derivative * latent_rhs, represented, latent
+
+
+def generator_mse_loss(
+    model: torch.nn.Module,
+    states: torch.Tensor,
+    *,
+    conditioning_time: float,
+    length: float,
+    diffusivity: float,
+    reaction_rate: float,
+    sample_weights: torch.Tensor | None = None,
+) -> torch.Tensor:
+    """Differentiable physical-generator matching loss for Fisher--KPP."""
+
+    learned, represented, _latent = learned_physical_generator(
+        model,
+        states,
+        conditioning_time=conditioning_time,
+    )
+    reference = fisher_spectral_generator(
+        represented,
+        length=length,
+        diffusivity=diffusivity,
+        reaction_rate=reaction_rate,
+    )
+    per_state = (learned - reference).square().mean(dim=1)
+    if sample_weights is None:
+        return per_state.mean()
+    weights = torch.as_tensor(
+        sample_weights,
+        device=per_state.device,
+        dtype=per_state.dtype,
+    )
+    if weights.ndim != 1 or weights.shape[0] != per_state.shape[0]:
+        raise ValueError("sample_weights must have one value per state")
+    if not bool((torch.isfinite(weights) & (weights >= 0)).all().item()):
+        raise ValueError("sample_weights must be finite and non-negative")
+    weight_sum = weights.sum()
+    if not bool((weight_sum > 0).item()):
+        raise ValueError("sample_weights must have positive sum")
+    return (per_state * (weights / weight_sum)).sum()
+
+
+def trapezoid_time_weights(
+    times: Sequence[float],
+    *,
+    device: torch.device | str | None = None,
+    dtype: torch.dtype | None = None,
+) -> torch.Tensor:
+    """Return normalized trapezoid weights for a strictly increasing grid."""
+
+    normalized = tuple(float(value) for value in times)
+    if len(normalized) < 2:
+        raise ValueError("at least two tube times are required")
+    if not math.isclose(normalized[0], 0.0, abs_tol=1e-12):
+        raise ValueError("tube times must start at zero")
+    if any(
+        not math.isfinite(value) or value < 0
+        for value in normalized
+    ) or any(right <= left for left, right in zip(normalized, normalized[1:])):
+        raise ValueError("tube times must be finite and strictly increasing")
+    intervals = torch.tensor(
+        [right - left for left, right in zip(normalized, normalized[1:])],
+        device=device,
+        dtype=dtype or torch.float32,
+    )
+    weights = torch.empty(
+        len(normalized),
+        device=intervals.device,
+        dtype=intervals.dtype,
+    )
+    weights[0] = intervals[0] / 2
+    weights[-1] = intervals[-1] / 2
+    if len(normalized) > 2:
+        weights[1:-1] = (intervals[:-1] + intervals[1:]) / 2
+    return weights / weights.sum()
+
+
+def learned_generator_tube_states(
+    model: torch.nn.Module,
+    initial_states: torch.Tensor,
+    times: Sequence[float],
+) -> torch.Tensor:
+    """Sample the current learned rollout without backpropagating through it.
+
+    The returned tensor has shape ``(batch, n_times, n_grid)``.  Gradients in
+    the subsequent generator loss act on the vector field at these sampled
+    states, not through the numerical rollout that produced the states.
+    """
+
+    _validate_state_batch(initial_states, "initial_states")
+    normalized = tuple(float(value) for value in times)
+    trapezoid_time_weights(
+        normalized,
+        device=initial_states.device,
+        dtype=initial_states.dtype,
+    )
+    snapshots = [initial_states.detach()]
+    current = initial_states.detach()
+    with torch.no_grad():
+        for left, right in zip(normalized, normalized[1:]):
+            current = model(current, right - left).detach()
+            snapshots.append(current)
+    return torch.stack(snapshots, dim=1)
+
+
+def generator_tube_mse_loss(
+    model: torch.nn.Module,
+    tube_states: torch.Tensor,
+    *,
+    times: Sequence[float],
+    conditioning_time: float,
+    length: float,
+    diffusivity: float,
+    reaction_rate: float,
+) -> torch.Tensor:
+    """Trapezoid approximation of mean squared residual along learned paths."""
+
+    if tube_states.ndim != 3:
+        raise ValueError("tube_states must have shape (batch, n_times, n_grid)")
+    if tube_states.shape[1] != len(tuple(times)):
+        raise ValueError("tube_states and times must use the same number of samples")
+    weights = trapezoid_time_weights(
+        times,
+        device=tube_states.device,
+        dtype=tube_states.dtype,
+    ).repeat(tube_states.shape[0])
+    flattened = tube_states.reshape(-1, tube_states.shape[-1])
+    return generator_mse_loss(
+        model,
+        flattened,
+        conditioning_time=conditioning_time,
+        length=length,
+        diffusivity=diffusivity,
+        reaction_rate=reaction_rate,
+        sample_weights=weights,
+    )
 
 
 def _rms(values: torch.Tensor) -> float:
@@ -791,7 +927,10 @@ __all__ = [
     "distribution",
     "fisher_spectral_generator",
     "frozen_pair",
+    "generator_mse_loss",
     "generator_residual_metrics",
+    "generator_tube_mse_loss",
+    "learned_generator_tube_states",
     "learned_physical_generator",
     "mesh_l2_norm",
     "one_sided_quotient",
@@ -799,4 +938,5 @@ __all__ = [
     "repeated_lag_snapshots",
     "snapshot_states",
     "stability_pair_metrics",
+    "trapezoid_time_weights",
 ]

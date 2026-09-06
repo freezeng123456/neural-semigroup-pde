@@ -1,0 +1,59 @@
+{
+  "experiment": "fisher_generator_consistency_aggregate",
+  "classification": "exploratory",
+  "do_not_use_for_formal": true,
+  "source_commit": "8fdbae8",
+  "canonical_root": "/work/home/zenghang/semigroup_runs/20260901-fisher-generator-consistency-8fdbae8-3seed-r1",
+  "seeds": [31415, 271828, 161803],
+  "alpha_generator": 0.01,
+  "generator_residual_ratio_geometric_mean": 1.0246167936587842,
+  "rollout_mse_ratio_geometric_mean": 1.0452078532338713,
+  "pairs": {
+    "31415": {
+      "checkpoint_epoch": 30,
+      "generator_residual_ratio": 1.0170346593745565,
+      "rollout_mse_ratio_geometric_mean": 1.0430013615951848,
+      "rollout_mse_ratios": {
+        "tau=0.075:horizon=1.2": 1.0125573595303832,
+        "tau=0.075:horizon=2.4": 1.0258299675325697,
+        "tau=0.075:horizon=4.8": 1.0916806784205542,
+        "tau=0.15:horizon=1.2": 1.0122302135556582,
+        "tau=0.15:horizon=2.4": 1.0268511921066403,
+        "tau=0.15:horizon=4.8": 1.0922745233192306
+      }
+    },
+    "271828": {
+      "checkpoint_epoch": 80,
+      "generator_residual_ratio": 1.0251429935357086,
+      "rollout_mse_ratio_geometric_mean": 1.1324660110909668,
+      "rollout_mse_ratios": {
+        "tau=0.075:horizon=1.2": 1.0668608695564077,
+        "tau=0.075:horizon=2.4": 1.1328455268082371,
+        "tau=0.075:horizon=4.8": 1.1990917180740777,
+        "tau=0.15:horizon=1.2": 1.0697670672397763,
+        "tau=0.15:horizon=2.4": 1.1345904754999643,
+        "tau=0.15:horizon=4.8": 1.1992005432539272
+      }
+    },
+    "161803": {
+      "checkpoint_epoch": 25,
+      "generator_residual_ratio": 1.0317256031435174,
+      "rollout_mse_ratio_geometric_mean": 0.9667138501586863,
+      "rollout_mse_ratios": {
+        "tau=0.075:horizon=1.2": 1.0070559359368565,
+        "tau=0.075:horizon=2.4": 0.9415301875990983,
+        "tau=0.075:horizon=4.8": 0.955162059272245,
+        "tau=0.15:horizon=1.2": 1.0017514974835484,
+        "tau=0.15:horizon=2.4": 0.9409957843280948,
+        "tau=0.15:horizon=4.8": 0.9560377932452451
+      }
+    }
+  },
+  "conclusion": "generator_term_not_materially_improved",
+  "job_ids": {
+    "smoke": 23618914,
+    "training_array": 23619031,
+    "evaluation_array": 23619664
+  },
+  "remote_result_archive_sha256": "c0b92ebf764f4c49fa5bdf0d5c70f48fc3fcf97116f4216ee22269278549a3f3"
+}

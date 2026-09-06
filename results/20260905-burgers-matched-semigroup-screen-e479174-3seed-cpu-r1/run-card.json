@@ -1,0 +1,82 @@
+{
+  "experiment": "burgers_matched_semigroup_screen",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "protocol": "docs/research/BURGERS_MATCHED_SEMIGROUP_SCREEN.md",
+  "source_commit": "e4791744e86c25b88cf7dcfaa4b627bb003d418d",
+  "pde": "viscous_burgers_periodic",
+  "seeds": [31415, 271828, 161803],
+  "data_seed": 20260902,
+  "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d",
+  "grid": {
+    "N": 64,
+    "L": 6.283185307179586,
+    "nu": 0.01,
+    "reference_dt": 0.001,
+    "train_taus": [0.025, 0.05, 0.075, 0.1],
+    "unseen_test_taus": [0.04, 0.08],
+    "horizons": [0.4, 0.8],
+    "n_train": 1000,
+    "n_val": 50
+  },
+  "training": {
+    "epochs": 100,
+    "batch_size": 64,
+    "eval_batch_size": 10,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "validation_interval": 10,
+    "ode_steps": 12,
+    "hidden": 32,
+    "parameter_count_each": 1313,
+    "checkpoint_selection": "mean one-step validation MSE over training lags only"
+  },
+  "runtime": {
+    "device": "cpu",
+    "cuda_available": false,
+    "torch": "2.14.0+cpu",
+    "python": "3.12.3",
+    "cpu": "Intel(R) Xeon(R) Processor, 4 logical CPUs",
+    "omp_num_threads": 1,
+    "mkl_num_threads": 1,
+    "training_seconds_per_model": "66.1-72.0",
+    "work_root": "/tmp/burgers_runs/20260905-burgers-matched-semigroup-screen-e479174-cpu-r1"
+  },
+  "protocol_deviations": [
+    {
+      "item": "single GPU per seed",
+      "observed": "CPU only; this machine exposes no CUDA device",
+      "consequence": "the smoke could not confirm CUDA execution; every other smoke check was performed on CPU"
+    }
+  ],
+  "preceding_roots": [
+    {
+      "root": "/tmp/burgers_runs/20260905-burgers-matched-semigroup-smoke-e479174-r1",
+      "purpose": "reduced smoke required by the frozen protocol",
+      "data_seed": 90050902,
+      "data_cache_sha256": "2c4b937f3c33fe8d001bf67cd6452b266ed230cba5fb1e14a14dc0905390a4fd",
+      "config": "n_train=32, n_val=4, epochs=2, batch_size=8, seed=31415",
+      "reused_or_overwritten": false,
+      "pooled_with_matrix": false
+    },
+    {
+      "root": "/tmp/burgers_runs/timing-probe-throwaway",
+      "purpose": "two-epoch wall-clock measurement used to size the matrix",
+      "seed": 999999,
+      "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d",
+      "config": "epochs=2, validation_interval=1, matrix cache",
+      "reused_or_overwritten": false,
+      "pooled_with_matrix": false,
+      "note": "read the frozen matrix cache but used a seed outside the matrix, selected no checkpoint, and set no threshold; the directory was deleted before the matrix was launched"
+    }
+  ],
+  "durability_note": "every listed root lives on an ephemeral execution host, so the committed artifacts in this directory are the durable record; the launcher regenerates the data cache to the digest above from --data-seed 20260902",
+  "aggregation": {
+    "script": "experiments/aggregate_burgers_semigroup_screen.py",
+    "read_only": true,
+    "written_after_cells_completed": true,
+    "material_ratio_threshold": 0.9,
+    "threshold_source": "AUTO_RESEARCH_PROTOCOL.md and Section 4 of docs/research/SEMIGROUP_ATTRIBUTION_AND_TRANSFER_PROTOCOL.md"
+  }
+}

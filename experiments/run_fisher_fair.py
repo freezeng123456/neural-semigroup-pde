@@ -21,6 +21,13 @@ if str(EXPERIMENTS_DIR) not in sys.path:
     sys.path.insert(0, str(EXPERIMENTS_DIR))
 
 from evaluate import evaluate_full
+from experiment_artifacts import torch_load_compat
+from fisher_generator_metrics import (
+    generator_mse_loss,
+    generator_tube_mse_loss,
+    learned_generator_tube_states,
+    trapezoid_time_weights,
+)
 from models import (
     LatentSemigroupNet,
     QueryTimeConditionedLatentFlow,
@@ -46,6 +53,20 @@ def parse_float_list(value):
         raise argparse.ArgumentTypeError("expected a comma-separated float list") from exc
     if not values or any(not math.isfinite(item) or item <= 0 for item in values):
         raise argparse.ArgumentTypeError("times must be finite and strictly positive")
+    return values
+
+
+def parse_tube_times(value):
+    try:
+        values = tuple(
+            float(item.strip()) for item in value.split(",") if item.strip()
+        )
+    except (AttributeError, ValueError) as exc:
+        raise argparse.ArgumentTypeError("expected comma-separated tube times") from exc
+    try:
+        trapezoid_time_weights(values)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(str(exc)) from exc
     return values
 
 
@@ -83,6 +104,24 @@ def build_parser():
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--validation-interval", type=int, default=5)
     parser.add_argument("--beta-v-floor", type=float, default=0.1)
+    parser.add_argument(
+        "--alpha-generator",
+        type=float,
+        default=0.0,
+        help="weight of Fisher physical-generator matching; supported only for latent",
+    )
+    parser.add_argument(
+        "--generator-sampling",
+        choices=("point", "learned_tube"),
+        default="point",
+        help="state distribution used by generator matching",
+    )
+    parser.add_argument(
+        "--generator-tube-times",
+        type=parse_tube_times,
+        default=(0.0, 0.3, 0.6, 0.9, 1.2),
+        help="comma-separated learned-path quadrature times",
+    )
     parser.add_argument("--no-resume", action="store_true")
     return parser
 
@@ -203,6 +242,7 @@ def _source_hashes():
         "evaluate.py": EXPERIMENTS_DIR / "evaluate.py",
         "pde_solver.py": EXPERIMENTS_DIR / "pde_solver.py",
         "seed_utils.py": EXPERIMENTS_DIR / "seed_utils.py",
+        "fisher_generator_metrics.py": EXPERIMENTS_DIR / "fisher_generator_metrics.py",
     }
     return {
         name: _sha256_file(path) for name, path in paths.items() if path.exists()
@@ -274,7 +314,7 @@ def generate_data(args):
 def load_or_generate_data(args):
     cache_path = os.path.abspath(args.data_cache)
     if os.path.exists(cache_path):
-        data = torch.load(cache_path, map_location="cpu", weights_only=False)
+        data = torch_load_compat(cache_path, map_location="cpu")
         if data.get("data_generation_config") != data_config(args):
             raise ValueError("data cache configuration does not match this run")
         return data
@@ -333,6 +373,56 @@ def fisher_energy(args):
     return energy
 
 
+def build_generator_supervision(args):
+    """Return the optional Fisher generator loss, sampler, and provenance."""
+
+    if args.alpha_generator == 0:
+        return None, None, {
+            "sampling": "none",
+            "tube_times": None,
+            "tube_quadrature_weights": None,
+            "rollout_gradient": None,
+        }
+
+    common = {
+        "conditioning_time": args.fixed_tau,
+        "length": args.L,
+        "diffusivity": args.nu,
+        "reaction_rate": args.reaction_rate,
+    }
+    if args.generator_sampling == "point":
+        def point_loss(current_model, states):
+            return generator_mse_loss(current_model, states, **common)
+
+        return point_loss, None, {
+            "sampling": "initial_and_one_step",
+            "tube_times": None,
+            "tube_quadrature_weights": None,
+            "rollout_gradient": None,
+        }
+
+    tube_times = tuple(args.generator_tube_times)
+
+    def tube_state_sampler(current_model, u0, _ut, _tau):
+        return learned_generator_tube_states(current_model, u0, tube_times)
+
+    def tube_loss(current_model, states):
+        return generator_tube_mse_loss(
+            current_model,
+            states,
+            times=tube_times,
+            **common,
+        )
+
+    return tube_loss, tube_state_sampler, {
+        "sampling": "detached_learned_tube",
+        "tube_times": list(tube_times),
+        "tube_quadrature_weights": trapezoid_time_weights(tube_times).tolist(),
+        "rollout_gradient": "detached",
+        "rollout_integrator": "model production RK4",
+    }
+
+
 def run_model(name, args, data, device):
     set_global_seed(args.seed, deterministic=args.deterministic)
     model = build_model(name, args)
@@ -341,6 +431,9 @@ def run_model(name, args, data, device):
     checkpoint_dir = os.path.join(model_dir, "checkpoints")
     os.makedirs(model_dir, exist_ok=True)
     selection_tau = args.fixed_tau
+    generator_loss_fn, generator_state_fn, generator_supervision = (
+        build_generator_supervision(args)
+    )
     run_metadata = {
         **data_config(args),
         "training_seed": args.seed,
@@ -351,18 +444,25 @@ def run_model(name, args, data, device):
         "batch_size": args.batch_size,
         "lr": args.lr,
         "validation_interval": args.validation_interval,
-        "architecture_only": True,
+        "architecture_only": args.alpha_generator == 0.0,
         "temporal_structure": temporal_structure_metadata(name),
         "auxiliary_loss_weights": {
             "alpha_rollout": 0.0,
             "alpha_energy": 0.0,
             "alpha_bound": 0.0,
+            "alpha_generator": args.alpha_generator,
         },
+        "generator_supervision": generator_supervision,
         "optimizer": {"name": "Adam", "weight_decay": 1e-5},
         "provenance": {
             "git_commit": _git_commit(),
             "source_hashes": _source_hashes(),
             "data_cache_sha256": _sha256_file(args.data_cache),
+            "generator_loss_source_sha256": (
+                _sha256_file(EXPERIMENTS_DIR / "fisher_generator_metrics.py")
+                if args.alpha_generator > 0
+                else None
+            ),
         },
     }
 
@@ -383,9 +483,10 @@ def run_model(name, args, data, device):
         lr=args.lr,
         alpha_rollout=0.0,
         alpha_energy=0.0,
-        # This screen attributes temporal structure, so no model receives an
-        # extra training loss that its matched competitor does not receive.
         alpha_bound=0.0,
+        alpha_generator=args.alpha_generator,
+        generator_loss_fn=generator_loss_fn,
+        generator_state_fn=generator_state_fn,
         weight_decay=1e-5,
         checkpoint_dir=checkpoint_dir,
         model_name=name,
@@ -405,7 +506,7 @@ def run_model(name, args, data, device):
     )
 
     best_path = os.path.join(checkpoint_dir, f"{name}_best.pt")
-    checkpoint = torch.load(best_path, map_location=device, weights_only=False)
+    checkpoint = torch_load_compat(best_path, map_location=device)
     model.load_state_dict(checkpoint["model_state_dict"], strict=True)
     model.to(device).eval()
 
@@ -473,6 +574,12 @@ def main(argv=None):
         raise ValueError("sample and epoch counts must be positive")
     if args.validation_interval <= 0:
         raise ValueError("validation interval must be positive")
+    if not math.isfinite(args.alpha_generator) or args.alpha_generator < 0:
+        raise ValueError("alpha-generator must be finite and non-negative")
+    if args.alpha_generator > 0 and set(args.models) != {"latent"}:
+        raise ValueError("generator consistency training supports only --models latent")
+    if args.alpha_generator == 0 and args.generator_sampling != "point":
+        raise ValueError("learned-tube sampling requires a positive alpha-generator")
     for eval_tau in ((args.fixed_tau,) if args.regime == "fixed" else args.eval_taus):
         rollout_steps_for_horizon(args.eval_horizon, eval_tau)
     os.makedirs(args.output_dir, exist_ok=True)

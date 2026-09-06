@@ -1,0 +1,59 @@
+{
+  "experiment": "burgers_matched_semigroup_screen_aggregate",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "pde": "viscous_burgers_periodic",
+  "seeds": [
+    31415,
+    161803,
+    271828
+  ],
+  "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d",
+  "parameter_count_each": 1313,
+  "material_ratio_threshold": 0.9,
+  "cells": 12,
+  "rollout_mse_ratio_geometric_mean": 0.9933175551831502,
+  "per_seed_rollout_mse_ratio_geometric_mean": {
+    "31415": 0.9933675853539385,
+    "161803": 0.9999531804218451,
+    "271828": 0.9866762678576263
+  },
+  "cell_rollout_mse_ratios": {
+    "s31415:tau=0.04:horizon=0.4": 0.9559107529149226,
+    "s31415:tau=0.04:horizon=0.8": 1.0806258329004006,
+    "s31415:tau=0.08:horizon=0.4": 0.9077582794580316,
+    "s31415:tau=0.08:horizon=0.8": 1.0384295224328226,
+    "s271828:tau=0.04:horizon=0.4": 1.03636096234917,
+    "s271828:tau=0.04:horizon=0.8": 0.9833553484269937,
+    "s271828:tau=0.08:horizon=0.4": 0.9891907829041833,
+    "s271828:tau=0.08:horizon=0.8": 0.940149974843655,
+    "s161803:tau=0.04:horizon=0.4": 1.009838240226898,
+    "s161803:tau=0.04:horizon=0.8": 1.0424980843429361,
+    "s161803:tau=0.08:horizon=0.4": 0.9500555008191938,
+    "s161803:tau=0.08:horizon=0.8": 0.9996376601794517
+  },
+  "seeds_favoring_autonomous": 3,
+  "cells_favoring_autonomous": 7,
+  "equal_work_defect": {
+    "geometric_mean_autonomous": 4.717556682152683e-08,
+    "geometric_mean_query_time": 0.16217472472706626,
+    "ratio_autonomous_over_query_time": 2.9089346013024824e-07,
+    "cells_with_lower_autonomous_defect": 12
+  },
+  "spatial_mean_drift_max": {
+    "autonomous": 7.153721526265144e-08,
+    "query_time": 7.31379259377718e-08
+  },
+  "post_hoc_diagnostic_unseen_lag_mse_spread_max": {
+    "autonomous": 2.474978292776985e-07,
+    "query_time": 0.0629252600752754,
+    "note": "descriptive only; not part of the decision rule"
+  },
+  "quadratic_energy_change_mean": {
+    "autonomous_max": -0.003183288872241974,
+    "query_time_max": -0.00325146809220314,
+    "autonomous_energy_increase_fraction_max": 0.04,
+    "query_time_energy_increase_fraction_max": 0.0
+  },
+  "conclusion": "composition_advantage_without_material_accuracy_advantage"
+}

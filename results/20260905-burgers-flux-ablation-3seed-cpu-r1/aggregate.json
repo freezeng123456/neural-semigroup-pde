@@ -1,0 +1,167 @@
+{
+  "experiment": "burgers_flux_ablation_aggregate",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "seeds": [
+    31415,
+    161803,
+    271828
+  ],
+  "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d",
+  "reference_variant": "r2_h32_l2_anchor",
+  "material_band": 1.1,
+  "drift_limit": 1e-06,
+  "defect_factor": 10.0,
+  "variants": {
+    "r0_h32_l2_anchor": {
+      "parameter_count": 1185,
+      "patch_radius": 0,
+      "hidden_width": 32,
+      "hidden_layers": 2,
+      "viscous_anchor": true,
+      "per_seed_ratio": {
+        "31415": 0.4665316604514504,
+        "161803": 0.4738361776559598,
+        "271828": 0.4720971645489269
+      },
+      "per_seed_verdict": {
+        "31415": "improved",
+        "161803": "improved",
+        "271828": "improved"
+      },
+      "pooled_ratio": 0.4708113348944899,
+      "pooled_verdict": "improved",
+      "structural_failures": [],
+      "removable": true
+    },
+    "r0_h32_l2_noanchor": {
+      "parameter_count": 1185,
+      "patch_radius": 0,
+      "hidden_width": 32,
+      "hidden_layers": 2,
+      "viscous_anchor": false,
+      "per_seed_ratio": {
+        "31415": 0.5344204752081602,
+        "161803": 0.5428012374061599,
+        "271828": 0.5410757882813804
+      },
+      "per_seed_verdict": {
+        "31415": "improved",
+        "161803": "improved",
+        "271828": "improved"
+      },
+      "pooled_ratio": 0.5394203662708152,
+      "pooled_verdict": "improved",
+      "structural_failures": [],
+      "removable": true
+    },
+    "r0_h8_l1_anchor": {
+      "parameter_count": 33,
+      "patch_radius": 0,
+      "hidden_width": 8,
+      "hidden_layers": 1,
+      "viscous_anchor": true,
+      "per_seed_ratio": {
+        "31415": 0.4929117214285163,
+        "161803": 0.499467727708922,
+        "271828": 0.4984351534575789
+      },
+      "per_seed_verdict": {
+        "31415": "improved",
+        "161803": "improved",
+        "271828": "improved"
+      },
+      "pooled_ratio": 0.49692984513426425,
+      "pooled_verdict": "improved",
+      "structural_failures": [],
+      "removable": true
+    },
+    "r0_h8_l2_anchor": {
+      "parameter_count": 105,
+      "patch_radius": 0,
+      "hidden_width": 8,
+      "hidden_layers": 2,
+      "viscous_anchor": true,
+      "per_seed_ratio": {
+        "31415": 0.469954216375663,
+        "161803": 0.4784412734198094,
+        "271828": 0.4726868029800435
+      },
+      "per_seed_verdict": {
+        "31415": "improved",
+        "161803": "improved",
+        "271828": "improved"
+      },
+      "pooled_ratio": 0.47368091659279765,
+      "pooled_verdict": "improved",
+      "structural_failures": [],
+      "removable": true
+    },
+    "r1_h32_l2_anchor": {
+      "parameter_count": 1249,
+      "patch_radius": 1,
+      "hidden_width": 32,
+      "hidden_layers": 2,
+      "viscous_anchor": true,
+      "per_seed_ratio": {
+        "31415": 0.6980922904130852,
+        "161803": 0.7269954818509419,
+        "271828": 0.7020103989490593
+      },
+      "per_seed_verdict": {
+        "31415": "improved",
+        "161803": "improved",
+        "271828": "improved"
+      },
+      "pooled_ratio": 0.7089180480259295,
+      "pooled_verdict": "improved",
+      "structural_failures": [],
+      "removable": true
+    },
+    "r2_h32_l2_anchor": {
+      "parameter_count": 1313,
+      "patch_radius": 2,
+      "hidden_width": 32,
+      "hidden_layers": 2,
+      "viscous_anchor": true,
+      "per_seed_ratio": {
+        "31415": 1.0,
+        "161803": 1.0,
+        "271828": 1.0
+      },
+      "per_seed_verdict": {
+        "31415": "equivalent",
+        "161803": "equivalent",
+        "271828": "equivalent"
+      },
+      "pooled_ratio": 1.0,
+      "pooled_verdict": "equivalent",
+      "structural_failures": [],
+      "removable": true
+    },
+    "r2_h32_l2_noanchor": {
+      "parameter_count": 1313,
+      "patch_radius": 2,
+      "hidden_width": 32,
+      "hidden_layers": 2,
+      "viscous_anchor": false,
+      "per_seed_ratio": {
+        "31415": 1.0161435304841853,
+        "161803": 0.9777121964187061,
+        "271828": 0.9607854686444637
+      },
+      "per_seed_verdict": {
+        "31415": "equivalent",
+        "161803": "equivalent",
+        "271828": "equivalent"
+      },
+      "pooled_ratio": 0.9846098400800107,
+      "pooled_verdict": "equivalent",
+      "structural_failures": [],
+      "removable": true
+    }
+  },
+  "recommended_variant": "r0_h8_l1_anchor",
+  "parameter_reduction_vs_reference": 39.78787878787879,
+  "conclusion": "screen_architecture_is_oversized"
+}

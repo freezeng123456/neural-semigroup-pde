@@ -96,9 +96,42 @@ query-time temporal rules; and three paired seeds. All hard boundary gates
 passed, and each boundary family passed the preregistered temporal rule. See
 [`docs/research/BOUNDARY_FAMILY_SEMIGROUP_WAVE2_RESULTS.md`](docs/research/BOUNDARY_FAMILY_SEMIGROUP_WAVE2_RESULTS.md).
 
+The matched Burgers screen adds a second, structurally different PDE: both
+models use a periodic conservative flux plus the same fixed viscous anchor
+rather than a diagonal dissipative gradient flow. Its three-seed exploratory
+matrix reproduces the Fisher--KPP signature. The autonomous model has a lower
+equal-work composition defect in 12/12 cells and an unseen-lag prediction
+spread roughly five orders of magnitude smaller, but its geometric-mean
+rollout-MSE ratio is `0.9933`, well short of the 10% material threshold. See
+[`docs/research/BURGERS_MATCHED_SEMIGROUP_RESULTS.md`](docs/research/BURGERS_MATCHED_SEMIGROUP_RESULTS.md).
+
+A checkpoint-only decomposition then separated that composition defect into a
+conditioning artifact and a genuine structural term. Under matched
+conditioning the query-time defect collapses to `0.94` of the autonomous
+integrator floor, so the screen's headline ratio is not the structural effect
+size; but an in-range cross-lag composition at equal work still leaves `1.26%`
+of the state norm against exactly zero for the autonomous model. The mechanism
+claim survives with a restated magnitude, and the same restatement is now owed
+to the Fisher composition-defect numbers. See
+[`docs/research/BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md`](docs/research/BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md).
+
+A seven-variant ablation of the flux generator then showed that the screen's
+architecture is the worst member of its own grid. The exact Burgers flux is
+pointwise, and shrinking the flux stencil from five points to one halves
+rollout error and cuts one-step error about fivefold; hidden width 32 and the
+second hidden layer are pure overhead. A 33-parameter generator, `39.8` times
+smaller, is about twice as accurate as the screen's 1,313-parameter one. The
+fixed viscous anchor, by contrast, is essential. Because both headline Burgers
+numbers were measured on the oversized generator, the paired
+autonomous/query-time contrast has to be re-established on the reduced one
+before the reduction is adopted. See
+[`docs/research/BURGERS_FLUX_ABLATION_RESULTS.md`](docs/research/BURGERS_FLUX_ABLATION_RESULTS.md).
+
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
-one one-dimensional reaction--diffusion PDE. The formal Fisher--KPP lane does
-not establish a stable prediction advantage, and conservative/no-flux,
+one one-dimensional reaction--diffusion PDE. Neither the formal Fisher--KPP
+lane nor the exploratory Burgers screen establishes a material prediction
+advantage, so the accuracy half of the Section 4 advance criterion is now
+unmet on two PDEs with different generator structure. Conservative/no-flux,
 multidimensional, and irregular-geometry transfer remain open. Archived
 numerical values are retained for provenance and must not be mixed across
 formal and exploratory evidence classes.

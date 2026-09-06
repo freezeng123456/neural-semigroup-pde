@@ -1,0 +1,44 @@
+{
+  "experiment": "fisher_generator_distribution_diagnostic",
+  "classification": "exploratory",
+  "do_not_use_for_formal": true,
+  "source_commit": "72505be",
+  "canonical_root": "/work/home/zenghang/semigroup_runs/20260901-fisher-generator-distribution-72505be-r1",
+  "best_checkpoint_ratio_geometric_means": {
+    "train_initial": 1.0093922356165341,
+    "train_one_step_target": 1.018375002343138,
+    "validation_initial": 1.0088977610503123,
+    "locked_time=0.0": 1.0098623836695162,
+    "locked_time=0.6": 1.034228799263479,
+    "locked_time=1.2": 1.0587519148003033,
+    "locked_time=2.4": 1.0492737647864692,
+    "locked_time=4.8": 1.0693402319564767
+  },
+  "best_checkpoint_locked_gradient_tertiles": {
+    "low": 1.033320969728705,
+    "middle": 1.046503142780945,
+    "high": 1.0582139451573023
+  },
+  "final_checkpoint_ratio_geometric_means": {
+    "train_initial": 0.9805823384798285,
+    "train_one_step_target": 0.9801078650896857,
+    "validation_initial": 0.9789039519039067,
+    "locked_time=0.0": 0.9800555982836338,
+    "locked_time=0.6": 1.0439505319871767,
+    "locked_time=1.2": 1.096871475870168,
+    "locked_time=2.4": 1.1431217312967161,
+    "locked_time=4.8": 1.0366542568740162
+  },
+  "final_checkpoint_locked_gradient_tertiles": {
+    "low": 1.070814402473638,
+    "middle": 1.053105461191092,
+    "high": 1.049148586812123
+  },
+  "raw_and_relative_ratio_note": "Ratios coincide because both checkpoints represent the same input states to numerical precision, so the reference-generator normalization is shared.",
+  "conclusion": "one_step_generator_improvement_does_not_transfer_to_model_rollout_distribution",
+  "job_ids": {
+    "best_checkpoint_array": 23620244,
+    "final_checkpoint_array": 23620402
+  },
+  "remote_result_archive_sha256": "451d5a16d2e0a0fb7657b727bf8838a40c068822e153f2739e76306efdebb7cb"
+}

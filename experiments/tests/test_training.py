@@ -132,6 +132,94 @@ def test_architecture_only_training_skips_auxiliary_losses(monkeypatch, tmp_path
     assert history["L_rollout"] == [0.0]
     assert history["L_energy"] == [0.0]
     assert history["L_trajectory"] == [0.0]
+    assert history["L_generator"] == [0.0]
+
+
+def test_training_applies_generator_supervision(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        training,
+        "evaluate_on_trajectories",
+        lambda *args, **kwargs: {
+            "rollout_mse": 0.1,
+            "bound_viol": 0.0,
+            "energy_mono_frac": 0.0,
+        },
+    )
+    val_u0, trajectories = make_dense_identity_trajectory()
+    model = IdentityWithParameter()
+    seen_shapes = []
+
+    def generator_loss(current_model, states):
+        seen_shapes.append(tuple(states.shape))
+        return (current_model.anchor - 1.0).square()
+
+    history = training.train_model(
+        model,
+        train_u0=val_u0.repeat(2, 1),
+        train_ut=val_u0.repeat(2, 1),
+        val_u0=val_u0,
+        val_trajs=trajectories,
+        tau=0.1,
+        n_epochs=1,
+        batch_size=2,
+        alpha_bound=0.0,
+        alpha_generator=0.01,
+        generator_loss_fn=generator_loss,
+        checkpoint_dir=str(tmp_path),
+        model_name="generator_supervised",
+        device="cpu",
+        reference_dt=0.05,
+    )
+    assert seen_shapes == [(4, 2)]
+    assert history["L_generator"] == pytest.approx([1.0])
+    assert model.anchor.item() > 0.0
+
+
+def test_training_can_sample_generator_states_from_current_model(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        training,
+        "evaluate_on_trajectories",
+        lambda *args, **kwargs: {
+            "rollout_mse": 0.1,
+            "bound_viol": 0.0,
+            "energy_mono_frac": 0.0,
+        },
+    )
+    val_u0, trajectories = make_dense_identity_trajectory()
+    model = IdentityWithParameter()
+    seen = []
+
+    def state_sampler(current_model, u0, ut, tau):
+        assert current_model is model
+        assert tau == pytest.approx(0.1)
+        seen.append((tuple(u0.shape), tuple(ut.shape)))
+        return torch.stack((u0, ut, 0.5 * (u0 + ut)), dim=1)
+
+    def generator_loss(current_model, states):
+        assert current_model is model
+        assert states.shape == (2, 3, 2)
+        return (current_model.anchor - 1.0).square()
+
+    training.train_model(
+        model,
+        train_u0=val_u0.repeat(2, 1),
+        train_ut=val_u0.repeat(2, 1),
+        val_u0=val_u0,
+        val_trajs=trajectories,
+        tau=0.1,
+        n_epochs=1,
+        batch_size=2,
+        alpha_bound=0.0,
+        alpha_generator=0.01,
+        generator_loss_fn=generator_loss,
+        generator_state_fn=state_sampler,
+        checkpoint_dir=str(tmp_path),
+        model_name="generator_tube_supervised",
+        device="cpu",
+        reference_dt=0.05,
+    )
+    assert seen == [((2, 2), (2, 2))]
+    assert model.anchor.item() > 0.0
 
 
 def test_training_accepts_reference_trajectory_supervision(monkeypatch, tmp_path):

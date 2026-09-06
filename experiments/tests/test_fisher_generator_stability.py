@@ -12,6 +12,7 @@ import torch
 
 from experiments import aggregate_fisher_generator_stability as aggregator
 from experiments import evaluate_fisher_generator_stability as evaluator
+from experiments import evaluate_fisher_tube_attribution as attribution
 from experiments.experiment_artifacts import sha256_file
 from experiments.fisher_frozen_inputs import (
     FORMAL_SOURCE_COMMIT,
@@ -20,10 +21,14 @@ from experiments.fisher_frozen_inputs import (
 from experiments.fisher_generator_metrics import (
     deterministic_sinusoidal_pair,
     fisher_spectral_generator,
+    generator_mse_loss,
+    generator_tube_mse_loss,
+    learned_generator_tube_states,
     learned_physical_generator,
     one_sided_quotient,
     refinement_metrics,
     repeated_lag_snapshots,
+    trapezoid_time_weights,
 )
 from experiments.models import LatentSemigroupNet
 
@@ -45,6 +50,10 @@ class _ToyPhysicalFlow(torch.nn.Module):
     def latent_dynamics(self, latent, interactions):
         del interactions
         return -torch.ones_like(latent)
+
+    def forward(self, state, tau):
+        latent = self.encode(state)
+        return self.decode(latent - float(tau))
 
 
 def test_spectral_fisher_generator_and_reference_one_sided_bound():
@@ -83,6 +92,77 @@ def test_physical_generator_uses_decoder_chain_rule():
     assert torch.allclose(represented, states)
     assert torch.allclose(physical, -states * (1.0 - states))
     assert torch.allclose(torch.sigmoid(latent), states)
+
+
+def test_directional_defect_reports_only_positive_error_injection():
+    model = _ToyPhysicalFlow()
+    states = torch.tensor([[0.2, 0.3], [0.7, 0.6]], dtype=torch.float64)
+    reference = states + torch.tensor([[0.01, -0.02], [-0.02, 0.01]])
+    metrics = attribution.directional_defect_metrics(
+        model,
+        states,
+        reference,
+        length=2.0,
+        diffusivity=1e-12,
+        reaction_rate=1.0,
+        batch_size=1,
+    )
+    assert metrics["trajectory_error_l2"]["rms"] > 0
+    assert metrics["harmful_defect_component_l2"]["rms"] >= 0
+    assert -1.0 <= metrics["error_defect_cosine"]["mean"] <= 1.0
+
+
+def test_reference_tube_uses_the_frozen_time_indices():
+    states = torch.arange(13 * 4, dtype=torch.float32).reshape(13, 4)
+    tube = attribution.reference_tube(
+        [(torch.arange(13) * 0.1, states), (torch.arange(13) * 0.1, states + 100)],
+        reference_dt=0.1,
+    )
+    assert tube.shape == (2, 5, 4)
+    assert torch.equal(tube[0, 0], states[0])
+    assert torch.equal(tube[0, -1], states[12])
+
+
+def test_learned_tube_is_detached_and_uses_trapezoid_weights():
+    model = _ToyPhysicalFlow()
+    initial = torch.tensor([[0.2, 0.3], [0.7, 0.6]], requires_grad=True)
+    times = (0.0, 0.25, 0.5, 1.0)
+    tube = learned_generator_tube_states(model, initial, times)
+    assert tube.shape == (2, 4, 2)
+    assert tube.requires_grad is False
+    assert torch.allclose(tube[:, 0], initial.detach())
+    weights = trapezoid_time_weights(times)
+    assert weights.tolist() == pytest.approx([0.125, 0.25, 0.375, 0.25])
+    assert weights.sum().item() == pytest.approx(1.0)
+
+
+def test_generator_tube_loss_matches_explicit_weighted_point_loss():
+    model = _ToyPhysicalFlow()
+    initial = torch.tensor([[0.2, 0.3], [0.7, 0.6]], dtype=torch.float64)
+    times = (0.0, 0.5, 1.0)
+    tube = learned_generator_tube_states(model, initial, times)
+    actual = generator_tube_mse_loss(
+        model,
+        tube,
+        times=times,
+        conditioning_time=0.1,
+        length=2.0,
+        diffusivity=1e-12,
+        reaction_rate=1.0,
+    )
+    explicit_weights = trapezoid_time_weights(
+        times, dtype=tube.dtype
+    ).repeat(tube.shape[0])
+    expected = generator_mse_loss(
+        model,
+        tube.reshape(-1, tube.shape[-1]),
+        conditioning_time=0.1,
+        length=2.0,
+        diffusivity=1e-12,
+        reaction_rate=1.0,
+        sample_weights=explicit_weights,
+    )
+    assert actual.item() == pytest.approx(expected.item())
 
 
 def test_spectral_generator_supports_an_odd_periodic_grid():

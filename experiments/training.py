@@ -9,7 +9,6 @@ Losses (from paper Section 6):
     L_reg     = weight decay
 """
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset
 import numpy as np
@@ -21,6 +20,7 @@ from evaluate import (
     evaluate_per_sample,
     prepare_aligned_rollout_batches,
 )
+from experiment_artifacts import torch_load_compat
 
 
 # ============================================================
@@ -94,6 +94,9 @@ def train_model(
     train_rollout_ut=None,
     alpha_trajectory=0.0,
     trajectory_steps=None,
+    alpha_generator=0.0,
+    generator_loss_fn=None,
+    generator_state_fn=None,
 ):
     """
     Train a semigroup learner.
@@ -112,6 +115,13 @@ def train_model(
             endpoint loss.  This is supported for a fixed scalar ``tau``
             only; ``train_rollout_ut`` must contain the matching PDE endpoint
             and ``trajectory_steps`` must be at least two.
+        alpha_generator: weight for an optional PDE-generator matching loss.
+            ``generator_loss_fn(model, states)`` supplies the PDE-specific
+            comparison while this loop remains PDE-agnostic.
+        generator_state_fn: optional callable
+            ``(model, u0, ut, tau) -> states`` used to sample the state
+            distribution for the generator loss.  When omitted, generator
+            supervision uses the concatenated initial and one-step states.
         alpha_energy, alpha_bound: other loss weights
         resume_from: path to checkpoint to resume from (optional)
         reference_dt: spacing of stored validation snapshots.  If provided,
@@ -133,6 +143,14 @@ def train_model(
 
     if alpha_trajectory < 0:
         raise ValueError("alpha_trajectory must be non-negative")
+    if alpha_generator < 0:
+        raise ValueError("alpha_generator must be non-negative")
+    if alpha_generator > 0 and not callable(generator_loss_fn):
+        raise ValueError("generator_loss_fn is required when alpha_generator is positive")
+    if generator_state_fn is not None and not callable(generator_state_fn):
+        raise ValueError("generator_state_fn must be callable when provided")
+    if alpha_generator == 0 and generator_state_fn is not None:
+        raise ValueError("generator_state_fn requires alpha_generator > 0")
     if alpha_trajectory > 0:
         if train_tau is not None:
             raise ValueError(
@@ -176,17 +194,26 @@ def train_model(
     )
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, n_epochs)
 
-    history = {"epoch": [], "L_step": [], "L_rollout": [], "L_trajectory": [], "L_energy": [],
-               "L_V": [],
-               "val_mse": [], "val_bound_viol": [], "val_energy_mono": [],
-               "validation_performed": []}
+    history = {
+        "epoch": [],
+        "L_step": [],
+        "L_rollout": [],
+        "L_trajectory": [],
+        "L_generator": [],
+        "L_energy": [],
+        "L_V": [],
+        "val_mse": [],
+        "val_bound_viol": [],
+        "val_energy_mono": [],
+        "validation_performed": [],
+    }
 
     best_val_mse = float("inf")
     start_epoch = 1
 
     # Resume from checkpoint if provided
     if resume_from and os.path.exists(resume_from):
-        ckpt = torch.load(resume_from, map_location=device, weights_only=False)
+        ckpt = torch_load_compat(resume_from, map_location=device)
         model.load_state_dict(ckpt["model_state_dict"])
         start_epoch = ckpt.get("epoch", 0) + 1
         if "optimizer_state_dict" in ckpt:
@@ -205,6 +232,10 @@ def train_model(
                 "L_trajectory",
                 [0.0] * len(history.get("epoch", [])),
             )
+            history.setdefault(
+                "L_generator",
+                [0.0] * len(history.get("epoch", [])),
+            )
         print(f"Resumed from {resume_from} at epoch {start_epoch}")
         if start_epoch > n_epochs:
             print(f"Already completed {n_epochs} epochs, skipping training")
@@ -218,6 +249,7 @@ def train_model(
         epoch_L1 = 0.0
         epoch_L2 = 0.0
         epoch_Ltrajectory = 0.0
+        epoch_Lgenerator = 0.0
         epoch_L3 = 0.0
         epoch_LV = 0.0
 
@@ -269,6 +301,20 @@ def train_model(
                 loss = loss + alpha_trajectory * L_trajectory
                 epoch_Ltrajectory += L_trajectory.item()
 
+            if alpha_generator > 0:
+                if generator_state_fn is None:
+                    generator_states = torch.cat((u0_batch, ut_batch), dim=0)
+                else:
+                    generator_states = generator_state_fn(
+                        model,
+                        u0_batch,
+                        ut_batch,
+                        batch_tau,
+                    )
+                L_generator = generator_loss_fn(model, generator_states)
+                loss = loss + alpha_generator * L_generator
+                epoch_Lgenerator += L_generator.item()
+
             # Energy loss (only for LatentSemigroupNet)
             if alpha_energy > 0 and hasattr(model, 'energy'):
                 L3 = energy_loss(model, u0_batch, batch_tau)
@@ -301,6 +347,7 @@ def train_model(
         avg_L1 = epoch_L1 / n_batches
         avg_L2 = epoch_L2 / n_batches
         avg_Ltrajectory = epoch_Ltrajectory / n_batches
+        avg_Lgenerator = epoch_Lgenerator / n_batches
         avg_L3 = epoch_L3 / n_batches
         avg_LV = epoch_LV / n_batches
 
@@ -324,6 +371,7 @@ def train_model(
         history["L_step"].append(avg_L1)
         history["L_rollout"].append(avg_L2)
         history["L_trajectory"].append(avg_Ltrajectory)
+        history["L_generator"].append(avg_Lgenerator)
         history["L_energy"].append(avg_L3)
         history["L_V"].append(avg_LV)
         history["validation_performed"].append(should_validate)
@@ -352,6 +400,7 @@ def train_model(
                 f"L_step={avg_L1:.4e} "
                 f"L_roll={avg_L2:.4e} "
                 f"L_traj={avg_Ltrajectory:.4e} "
+                f"L_gen={avg_Lgenerator:.4e} "
                 f"L_energy={avg_L3:.4e} "
                 f"L_V={avg_LV:.4e} | "
                 f"{validation_text} | "
