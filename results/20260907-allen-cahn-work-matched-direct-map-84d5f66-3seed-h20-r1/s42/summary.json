@@ -1,0 +1,473 @@
+{
+  "experiment": "allen_cahn_work_matched_direct_map",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "seed": 42,
+  "data_seed": 42,
+  "cache_sha256": "896ad0b98ea6c62a9b709aa3e6d747cec7190cdd163d7a6fa12def17d8ecc271",
+  "protocol": "docs/research/ALLEN_CAHN_WORK_MATCHED_DIRECT_MAP_PROTOCOL.md",
+  "models": {
+    "a_rk4_autonomous": {
+      "label": "a_rk4_autonomous",
+      "parameter_count": 9093,
+      "training_seconds": 522.4952586977743,
+      "checkpoint_epoch": 100,
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-allen-cahn-work-matched-direct-map-h20-r1/s42/checkpoints/a_rk4_autonomous/a_rk4_autonomous_best.pt",
+      "best_checkpoint_sha256": "fb1e9c9100e114cb5e165d3d297813758ef47b9aa3430948533af1a05f77b9cc",
+      "history_keys": [
+        "L_V",
+        "L_energy",
+        "L_generator",
+        "L_rollout",
+        "L_step",
+        "L_trajectory",
+        "epoch",
+        "val_bound_viol",
+        "val_energy_mono",
+        "val_mse",
+        "validation_performed"
+      ]
+    },
+    "a_euler_autonomous": {
+      "label": "a_euler_autonomous",
+      "parameter_count": 9093,
+      "training_seconds": 7.574921444058418,
+      "checkpoint_epoch": 95,
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-allen-cahn-work-matched-direct-map-h20-r1/s42/checkpoints/a_euler_autonomous/a_euler_autonomous_best.pt",
+      "best_checkpoint_sha256": "c0acb4fd9cf602d2a9572387329af8e5d5ecde302bc3df9576a882d19e9cba3d",
+      "history_keys": [
+        "L_V",
+        "L_energy",
+        "L_generator",
+        "L_rollout",
+        "L_step",
+        "L_trajectory",
+        "epoch",
+        "val_bound_viol",
+        "val_energy_mono",
+        "val_mse",
+        "validation_performed"
+      ]
+    },
+    "b_euler_query_time": {
+      "label": "b_euler_query_time",
+      "parameter_count": 9157,
+      "training_seconds": 7.644417194183916,
+      "checkpoint_epoch": 95,
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-allen-cahn-work-matched-direct-map-h20-r1/s42/checkpoints/b_euler_query_time/b_euler_query_time_best.pt",
+      "best_checkpoint_sha256": "51db144feb607f081406b16c95c2b235af69ff6669b547113b0fe5c66bc61014",
+      "history_keys": [
+        "L_V",
+        "L_energy",
+        "L_generator",
+        "L_rollout",
+        "L_step",
+        "L_trajectory",
+        "epoch",
+        "val_bound_viol",
+        "val_energy_mono",
+        "val_mse",
+        "validation_performed"
+      ]
+    },
+    "c_direct_heat_map": {
+      "label": "c_direct_heat_map",
+      "parameter_count": 9157,
+      "training_seconds": 7.8355868412181735,
+      "checkpoint_epoch": 100,
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-allen-cahn-work-matched-direct-map-h20-r1/s42/checkpoints/c_direct_heat_map/c_direct_heat_map_best.pt",
+      "best_checkpoint_sha256": "de0d16712aa1fb9a2100435e7d7dd5c3d6290d1d6c00f3ef8a84ab087d17e227",
+      "history_keys": [
+        "L_V",
+        "L_energy",
+        "L_generator",
+        "L_rollout",
+        "L_step",
+        "L_trajectory",
+        "epoch",
+        "val_bound_viol",
+        "val_energy_mono",
+        "val_mse",
+        "validation_performed"
+      ]
+    }
+  },
+  "rollouts": {
+    "a_rk4_autonomous": {
+      "tau=0.075,T=1.2": {
+        "rollout_mse_mean": 0.0022110817953944206,
+        "relative_l2_mean": 0.05939164385199547,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7477908730506897,
+        "depth": 16
+      },
+      "tau=0.075,T=2.4": {
+        "rollout_mse_mean": 0.012202862650156021,
+        "relative_l2_mean": 0.10771358758211136,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8774946928024292,
+        "depth": 32
+      },
+      "tau=0.075,T=4.8": {
+        "rollout_mse_mean": 0.056898508220911026,
+        "relative_l2_mean": 0.2006692886352539,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9423399567604065,
+        "depth": 64
+      },
+      "tau=0.15,T=1.2": {
+        "rollout_mse_mean": 0.002211081562563777,
+        "relative_l2_mean": 0.05939163640141487,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7477908730506897,
+        "depth": 8
+      },
+      "tau=0.15,T=2.4": {
+        "rollout_mse_mean": 0.012217115610837936,
+        "relative_l2_mean": 0.10782664269208908,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.877561092376709,
+        "depth": 16
+      },
+      "tau=0.15,T=4.8": {
+        "rollout_mse_mean": 0.05730947479605675,
+        "relative_l2_mean": 0.20189356803894043,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9425352215766907,
+        "depth": 32
+      }
+    },
+    "a_euler_autonomous": {
+      "tau=0.075,T=1.2": {
+        "rollout_mse_mean": 0.004432782530784607,
+        "relative_l2_mean": 0.08442505449056625,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7503800988197327,
+        "depth": 16
+      },
+      "tau=0.075,T=2.4": {
+        "rollout_mse_mean": 0.02463376708328724,
+        "relative_l2_mean": 0.15379023551940918,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8744975924491882,
+        "depth": 32
+      },
+      "tau=0.075,T=4.8": {
+        "rollout_mse_mean": 0.09804943948984146,
+        "relative_l2_mean": 0.26119565963745117,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9302560091018677,
+        "depth": 64
+      },
+      "tau=0.15,T=1.2": {
+        "rollout_mse_mean": 0.004017730709165335,
+        "relative_l2_mean": 0.08035187423229218,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7456429600715637,
+        "depth": 8
+      },
+      "tau=0.15,T=2.4": {
+        "rollout_mse_mean": 0.021796446293592453,
+        "relative_l2_mean": 0.14523813128471375,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8695819973945618,
+        "depth": 16
+      },
+      "tau=0.15,T=4.8": {
+        "rollout_mse_mean": 0.09187749028205872,
+        "relative_l2_mean": 0.2523482143878937,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9291225671768188,
+        "depth": 32
+      }
+    },
+    "b_euler_query_time": {
+      "tau=0.075,T=1.2": {
+        "rollout_mse_mean": 0.0044138929806649685,
+        "relative_l2_mean": 0.08424495905637741,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7502899765968323,
+        "depth": 16
+      },
+      "tau=0.075,T=2.4": {
+        "rollout_mse_mean": 0.024519486352801323,
+        "relative_l2_mean": 0.15344174206256866,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.87446129322052,
+        "depth": 32
+      },
+      "tau=0.075,T=4.8": {
+        "rollout_mse_mean": 0.09774430096149445,
+        "relative_l2_mean": 0.2607537806034088,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9302977919578552,
+        "depth": 64
+      },
+      "tau=0.15,T=1.2": {
+        "rollout_mse_mean": 0.004004242829978466,
+        "relative_l2_mean": 0.08021392673254013,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7456468939781189,
+        "depth": 8
+      },
+      "tau=0.15,T=2.4": {
+        "rollout_mse_mean": 0.021725064143538475,
+        "relative_l2_mean": 0.14498740434646606,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8696175813674927,
+        "depth": 16
+      },
+      "tau=0.15,T=4.8": {
+        "rollout_mse_mean": 0.09161623567342758,
+        "relative_l2_mean": 0.251957505941391,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9291819930076599,
+        "depth": 32
+      }
+    },
+    "c_direct_heat_map": {
+      "tau=0.075,T=1.2": {
+        "rollout_mse_mean": 0.004584175534546375,
+        "relative_l2_mean": 0.08518319576978683,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7469455599784851,
+        "depth": 16
+      },
+      "tau=0.075,T=2.4": {
+        "rollout_mse_mean": 0.02436492219567299,
+        "relative_l2_mean": 0.15003611147403717,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8606329560279846,
+        "depth": 32
+      },
+      "tau=0.075,T=4.8": {
+        "rollout_mse_mean": 0.08196943998336792,
+        "relative_l2_mean": 0.2204364687204361,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9085226058959961,
+        "depth": 64
+      },
+      "tau=0.15,T=1.2": {
+        "rollout_mse_mean": 0.004253844264894724,
+        "relative_l2_mean": 0.08197963237762451,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7427417635917664,
+        "depth": 8
+      },
+      "tau=0.15,T=2.4": {
+        "rollout_mse_mean": 0.02280154637992382,
+        "relative_l2_mean": 0.14619360864162445,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8574588298797607,
+        "depth": 16
+      },
+      "tau=0.15,T=4.8": {
+        "rollout_mse_mean": 0.07983111590147018,
+        "relative_l2_mean": 0.2180320769548416,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9078153967857361,
+        "depth": 32
+      }
+    }
+  },
+  "deployed_budget_cross_lag": {
+    "a_rk4_autonomous": {
+      "horizon": 0.15,
+      "tau_fine": 0.075,
+      "tau_coarse": 0.15,
+      "rms_defect_mean": 9.877138751335224e-08,
+      "relative_to_state_rms": 1.948856181197624e-07,
+      "state_rms_mean": 0.5068172216415405
+    },
+    "a_euler_autonomous": {
+      "horizon": 0.15,
+      "tau_fine": 0.075,
+      "tau_coarse": 0.15,
+      "rms_defect_mean": 0.000924600288271904,
+      "relative_to_state_rms": 0.0018243268949646135,
+      "state_rms_mean": 0.5068172216415405
+    },
+    "b_euler_query_time": {
+      "horizon": 0.15,
+      "tau_fine": 0.075,
+      "tau_coarse": 0.15,
+      "rms_defect_mean": 0.0009071137756109238,
+      "relative_to_state_rms": 0.0017898242934067132,
+      "state_rms_mean": 0.5068172216415405
+    },
+    "c_direct_heat_map": {
+      "horizon": 0.15,
+      "tau_fine": 0.075,
+      "tau_coarse": 0.15,
+      "rms_defect_mean": 0.0009478008141741157,
+      "relative_to_state_rms": 0.0018701038040977859,
+      "state_rms_mean": 0.5068172216415405
+    }
+  },
+  "refinement": {
+    "a_euler_autonomous": [
+      {
+        "horizon": 0.15,
+        "tau_fine": 0.075,
+        "tau_coarse": 0.15,
+        "rms_defect_mean": 0.000924600288271904,
+        "relative_to_state_rms": 0.0018243268949646135,
+        "state_rms_mean": 0.5068172216415405,
+        "substeps_per_call": 1
+      },
+      {
+        "horizon": 0.15,
+        "tau_fine": 0.075,
+        "tau_coarse": 0.15,
+        "rms_defect_mean": 0.0004885041853412986,
+        "relative_to_state_rms": 0.0009638665863781671,
+        "state_rms_mean": 0.5068172216415405,
+        "substeps_per_call": 2
+      },
+      {
+        "horizon": 0.15,
+        "tau_fine": 0.075,
+        "tau_coarse": 0.15,
+        "rms_defect_mean": 0.0002519533736631274,
+        "relative_to_state_rms": 0.0004971286746079199,
+        "state_rms_mean": 0.5068172216415405,
+        "substeps_per_call": 4
+      },
+      {
+        "horizon": 0.15,
+        "tau_fine": 0.075,
+        "tau_coarse": 0.15,
+        "rms_defect_mean": 0.00012805251753889024,
+        "relative_to_state_rms": 0.000252660154530934,
+        "state_rms_mean": 0.5068172216415405,
+        "substeps_per_call": 8
+      },
+      {
+        "horizon": 0.15,
+        "tau_fine": 0.075,
+        "tau_coarse": 0.15,
+        "rms_defect_mean": 6.456670234911144e-05,
+        "relative_to_state_rms": 0.0001273964253621553,
+        "state_rms_mean": 0.5068172216415405,
+        "substeps_per_call": 16
+      }
+    ],
+    "b_euler_query_time": [
+      {
+        "horizon": 0.15,
+        "tau_fine": 0.075,
+        "tau_coarse": 0.15,
+        "rms_defect_mean": 0.0009071137756109238,
+        "relative_to_state_rms": 0.0017898242934067132,
+        "state_rms_mean": 0.5068172216415405,
+        "substeps_per_call": 1
+      },
+      {
+        "horizon": 0.15,
+        "tau_fine": 0.075,
+        "tau_coarse": 0.15,
+        "rms_defect_mean": 0.0004707850166596472,
+        "relative_to_state_rms": 0.0009289049317124863,
+        "state_rms_mean": 0.5068172216415405,
+        "substeps_per_call": 2
+      },
+      {
+        "horizon": 0.15,
+        "tau_fine": 0.075,
+        "tau_coarse": 0.15,
+        "rms_defect_mean": 0.00023426825646311045,
+        "relative_to_state_rms": 0.00046223420684943234,
+        "state_rms_mean": 0.5068172216415405,
+        "substeps_per_call": 4
+      },
+      {
+        "horizon": 0.15,
+        "tau_fine": 0.075,
+        "tau_coarse": 0.15,
+        "rms_defect_mean": 0.00011067671584896743,
+        "relative_to_state_rms": 0.00021837599655847206,
+        "state_rms_mean": 0.5068172216415405,
+        "substeps_per_call": 8
+      },
+      {
+        "horizon": 0.15,
+        "tau_fine": 0.075,
+        "tau_coarse": 0.15,
+        "rms_defect_mean": 4.806045035365969e-05,
+        "relative_to_state_rms": 9.482797407316927e-05,
+        "state_rms_mean": 0.5068172216415405,
+        "substeps_per_call": 16
+      }
+    ]
+  },
+  "equal_substep_autonomous": {
+    "rms_defect_mean": 6.944202368686092e-08,
+    "fine_substeps": 2,
+    "coarse_substeps_per_call": 1
+  },
+  "ratios": {
+    "mse_a_prime_over_c": {
+      "cells": {
+        "tau=0.075,T=1.2": 0.9669748676461296,
+        "tau=0.075,T=2.4": 1.0110340958799366,
+        "tau=0.075,T=4.8": 1.1961706644541705,
+        "tau=0.15,T=1.2": 0.9444940761752987,
+        "tau=0.15,T=2.4": 0.9559196525716198,
+        "tau=0.15,T=4.8": 1.150898233659373
+      },
+      "geometric_mean": 1.033011797343535
+    },
+    "mse_b_prime_over_c": {
+      "cells": {
+        "tau=0.075,T=1.2": 0.9628542684288252,
+        "tau=0.075,T=2.4": 1.0063437164250737,
+        "tau=0.075,T=4.8": 1.1924480755428772,
+        "tau=0.15,T=1.2": 0.9413233255913671,
+        "tau=0.15,T=2.4": 0.9527890688443323,
+        "tau=0.15,T=4.8": 1.1476256424437674
+      },
+      "geometric_mean": 1.0293119962827169
+    },
+    "mse_a_rk4_over_c": {
+      "cells": {
+        "tau=0.075,T=1.2": 0.4823292168311825,
+        "tau=0.075,T=2.4": 0.500837332955783,
+        "tau=0.075,T=4.8": 0.6941429419605168,
+        "tau=0.15,T=1.2": 0.5197843232792863,
+        "tau=0.15,T=2.4": 0.5358020639159279,
+        "tau=0.15,T=4.8": 0.7178839246940969
+      },
+      "geometric_mean": 0.5678432844069528
+    }
+  },
+  "learned_evaluations_per_call": {
+    "a_rk4_autonomous": 120,
+    "a_euler_autonomous": 1,
+    "b_euler_query_time": 1,
+    "c_direct_heat_map": 1
+  }
+}

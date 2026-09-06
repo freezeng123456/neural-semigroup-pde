@@ -1,0 +1,250 @@
+{
+  "do_not_use_for_formal": true,
+  "exact_biharmonic_conserves_mass": false,
+  "exact_biharmonic_trains": true,
+  "exploratory": true,
+  "geometric_mean_mse": NaN,
+  "locked_cache": "/jizhicfs/yuyechen/neural_semigroup/20260907-cahn-hilliard-physics-split-h20-r1/locked_test.pt",
+  "locked_cache_sha256": "44c0ad970231546bde3771a11b757f95d954c11d7a07d1525bc8c4f784cb3004",
+  "mass_drift_limit": 1e-06,
+  "protocol": "docs/research/CAHN_HILLIARD_EXACT_BIHARMONIC_PROTOCOL.md",
+  "seeds": [
+    {
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-cahn-hilliard-exact-biharmonic-h20-r1/checkpoints/s42/c_exact_biharmonic_best.pt",
+      "best_checkpoint_sha256": "1cb6132521bee7ea79429ad6218118aa1f23bf93cab503976d30ab365b4bf015",
+      "cells": {
+        "tau=0.075,T=0.6": {
+          "bound_viol_mean": 0.3683354981153065,
+          "horizon": 0.6,
+          "mass_drift_max": 8.940696716308594e-08,
+          "mass_drift_mean": 1.9558266117769563e-08,
+          "physical_energy_mono_frac": 0.4192708333333333,
+          "rollout_mse_mean": 1.1214089351644185,
+          "rollout_rel_l2_mean": 0.9959422170181319,
+          "semigroup_defect_mean": 1.1754615039681084,
+          "tau": 0.075
+        },
+        "tau=0.075,T=1.2": {
+          "bound_viol_mean": 0.6116617960134236,
+          "horizon": 1.2,
+          "mass_drift_max": 1.1920928955078125e-07,
+          "mass_drift_mean": 3.0781205140328893e-08,
+          "physical_energy_mono_frac": 0.3641493055555556,
+          "rollout_mse_mean": 1.9653842629277594,
+          "rollout_rel_l2_mean": 1.4569008100750378,
+          "semigroup_defect_mean": 1.7080366912187956,
+          "tau": 0.075
+        },
+        "tau=0.075,T=2.4": {
+          "bound_viol_mean": 0.753001961883759,
+          "horizon": 2.4,
+          "mass_drift_max": 2.1608138922601938e-07,
+          "mass_drift_mean": 4.931342090230828e-08,
+          "physical_energy_mono_frac": 0.3440755208333333,
+          "rollout_mse_mean": 2.482454906840319,
+          "rollout_rel_l2_mean": 1.7101286723510485,
+          "semigroup_defect_mean": 1.7080366912187956,
+          "tau": 0.075
+        },
+        "tau=0.15,T=0.6": {
+          "bound_viol_mean": 0.6112649175483966,
+          "horizon": 0.6,
+          "mass_drift_max": 8.795177564024925e-08,
+          "mass_drift_mean": 1.967885054909857e-08,
+          "physical_energy_mono_frac": 0.390625,
+          "rollout_mse_mean": 3.0289367126832882,
+          "rollout_rel_l2_mean": 1.4143500562188112,
+          "semigroup_defect_mean": 1.4644921820048087,
+          "tau": 0.15
+        },
+        "tau=0.15,T=1.2": {
+          "bound_viol_mean": 1.1949605926905253,
+          "horizon": 1.2,
+          "mass_drift_max": 1.4901161193847656e-07,
+          "mass_drift_mean": 4.0572597725940795e-08,
+          "physical_energy_mono_frac": 0.4075520833333333,
+          "rollout_mse_mean": 6.626563015958608,
+          "rollout_rel_l2_mean": 2.452869803023835,
+          "semigroup_defect_mean": 17.347909381173345,
+          "tau": 0.15
+        },
+        "tau=0.15,T=2.4": {
+          "bound_viol_mean": NaN,
+          "horizon": 2.4,
+          "mass_drift_max": NaN,
+          "mass_drift_mean": NaN,
+          "physical_energy_mono_frac": 0.408203125,
+          "rollout_mse_mean": NaN,
+          "rollout_rel_l2_mean": NaN,
+          "semigroup_defect_mean": 23.32502614825757,
+          "tau": 0.15
+        }
+      },
+      "conserves_mass": false,
+      "geometric_mean_mse": NaN,
+      "max_mass_drift": 2.1608138922601938e-07,
+      "parameter_count": 9091,
+      "seed": 42,
+      "trained": true,
+      "training_seconds": 2.602311604190618
+    },
+    {
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-cahn-hilliard-exact-biharmonic-h20-r1/checkpoints/s137/c_exact_biharmonic_best.pt",
+      "best_checkpoint_sha256": "7e2236f0ed17fcad843c76646978b1ea58bf5228c3bfe0b323828d011896e11e",
+      "cells": {
+        "tau=0.075,T=0.6": {
+          "bound_viol_mean": 0.37185388320681845,
+          "horizon": 0.6,
+          "mass_drift_max": 8.940696716308594e-08,
+          "mass_drift_mean": 1.941802807436943e-08,
+          "physical_energy_mono_frac": 0.4240451388888889,
+          "rollout_mse_mean": 1.1450049348428972,
+          "rollout_rel_l2_mean": 1.0031812315864954,
+          "semigroup_defect_mean": 1.191771773956134,
+          "tau": 0.075
+        },
+        "tau=0.075,T=1.2": {
+          "bound_viol_mean": 0.6202094925683923,
+          "horizon": 1.2,
+          "mass_drift_max": 1.7881393432617188e-07,
+          "mass_drift_mean": 3.494105627055433e-08,
+          "physical_energy_mono_frac": 0.3771701388888889,
+          "rollout_mse_mean": 2.0159736737703295,
+          "rollout_rel_l2_mean": 1.4733691539359925,
+          "semigroup_defect_mean": 1.7401172752918985,
+          "tau": 0.075
+        },
+        "tau=0.075,T=2.4": {
+          "bound_viol_mean": 869296.5027262486,
+          "horizon": 2.4,
+          "mass_drift_max": 63.70000076293945,
+          "mass_drift_mean": 0.22343754768371582,
+          "physical_energy_mono_frac": 0.3624131944444444,
+          "rollout_mse_mean": 5.5714721181976424e+16,
+          "rollout_rel_l2_mean": 2724509.9278763877,
+          "semigroup_defect_mean": 1.7401172752918985,
+          "tau": 0.075
+        },
+        "tau=0.15,T=0.6": {
+          "bound_viol_mean": 0.6159475621631524,
+          "horizon": 0.6,
+          "mass_drift_max": 9.010545909404755e-08,
+          "mass_drift_mean": 2.225827877566644e-08,
+          "physical_energy_mono_frac": 0.3923611111111111,
+          "rollout_mse_mean": 3.1021156785084005,
+          "rollout_rel_l2_mean": 1.4234103689280648,
+          "semigroup_defect_mean": 1.4771663036275033,
+          "tau": 0.15
+        },
+        "tau=0.15,T=1.2": {
+          "bound_viol_mean": 1.2155616500353466,
+          "horizon": 1.2,
+          "mass_drift_max": 1.7881393432617188e-07,
+          "mass_drift_mean": 4.2870865968325234e-08,
+          "physical_energy_mono_frac": 0.4058159722222222,
+          "rollout_mse_mean": 6.90722767991469,
+          "rollout_rel_l2_mean": 2.489853997611337,
+          "semigroup_defect_mean": 18.24240056784927,
+          "tau": 0.15
+        },
+        "tau=0.15,T=2.4": {
+          "bound_viol_mean": NaN,
+          "horizon": 2.4,
+          "mass_drift_max": NaN,
+          "mass_drift_mean": NaN,
+          "physical_energy_mono_frac": 0.3962673611111111,
+          "rollout_mse_mean": NaN,
+          "rollout_rel_l2_mean": NaN,
+          "semigroup_defect_mean": 24.630918877509732,
+          "tau": 0.15
+        }
+      },
+      "conserves_mass": false,
+      "geometric_mean_mse": NaN,
+      "max_mass_drift": 63.70000076293945,
+      "parameter_count": 9091,
+      "seed": 137,
+      "trained": true,
+      "training_seconds": 2.042753961868584
+    },
+    {
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-cahn-hilliard-exact-biharmonic-h20-r1/checkpoints/s2718/c_exact_biharmonic_best.pt",
+      "best_checkpoint_sha256": "3c286040af2c54acd4663327c2ad9d3554521e16460c2616655b02ba62d24ed7",
+      "cells": {
+        "tau=0.075,T=0.6": {
+          "bound_viol_mean": 0.33317287003107293,
+          "horizon": 0.6,
+          "mass_drift_max": 8.940696716308594e-08,
+          "mass_drift_mean": 1.66120859290686e-08,
+          "physical_energy_mono_frac": 0.4309895833333333,
+          "rollout_mse_mean": 0.9667162879835208,
+          "rollout_rel_l2_mean": 0.9238923999396825,
+          "semigroup_defect_mean": 0.9767738847052291,
+          "tau": 0.075
+        },
+        "tau=0.075,T=1.2": {
+          "bound_viol_mean": 0.5659485829920514,
+          "horizon": 1.2,
+          "mass_drift_max": 1.1920928955078125e-07,
+          "mass_drift_mean": 2.9782325938754184e-08,
+          "physical_energy_mono_frac": 0.3587239583333333,
+          "rollout_mse_mean": 1.7347442041254402,
+          "rollout_rel_l2_mean": 1.3666243189929648,
+          "semigroup_defect_mean": 1.4129711867232497,
+          "tau": 0.075
+        },
+        "tau=0.075,T=2.4": {
+          "bound_viol_mean": NaN,
+          "horizon": 2.4,
+          "mass_drift_max": NaN,
+          "mass_drift_mean": NaN,
+          "physical_energy_mono_frac": 0.3142361111111111,
+          "rollout_mse_mean": NaN,
+          "rollout_rel_l2_mean": NaN,
+          "semigroup_defect_mean": 1.4129711867232497,
+          "tau": 0.075
+        },
+        "tau=0.15,T=0.6": {
+          "bound_viol_mean": 0.5522927530174557,
+          "horizon": 0.6,
+          "mass_drift_max": 1.0407529771327972e-07,
+          "mass_drift_mean": 1.789864079171366e-08,
+          "physical_energy_mono_frac": 0.4079861111111111,
+          "rollout_mse_mean": 2.593773100720379,
+          "rollout_rel_l2_mean": 1.3107029362128944,
+          "semigroup_defect_mean": 1.2123695715789735,
+          "tau": 0.15
+        },
+        "tau=0.15,T=1.2": {
+          "bound_viol_mean": 1.109322552294341,
+          "horizon": 1.2,
+          "mass_drift_max": 1.5355180948972702e-07,
+          "mass_drift_mean": 3.9484511660248245e-08,
+          "physical_energy_mono_frac": 0.4153645833333333,
+          "rollout_mse_mean": 5.826372173049498,
+          "rollout_rel_l2_mean": 2.3076582574576605,
+          "semigroup_defect_mean": 14.30285447432349,
+          "tau": 0.15
+        },
+        "tau=0.15,T=2.4": {
+          "bound_viol_mean": NaN,
+          "horizon": 2.4,
+          "mass_drift_max": NaN,
+          "mass_drift_mean": NaN,
+          "physical_energy_mono_frac": 0.3908420138888889,
+          "rollout_mse_mean": NaN,
+          "rollout_rel_l2_mean": NaN,
+          "semigroup_defect_mean": 19.273021349786884,
+          "tau": 0.15
+        }
+      },
+      "conserves_mass": false,
+      "geometric_mean_mse": NaN,
+      "max_mass_drift": 1.5355180948972702e-07,
+      "parameter_count": 9091,
+      "seed": 2718,
+      "trained": true,
+      "training_seconds": 2.0386003302410245
+    }
+  ]
+}

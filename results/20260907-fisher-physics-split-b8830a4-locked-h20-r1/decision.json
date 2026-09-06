@@ -1,0 +1,252 @@
+{
+  "c_physics_split": {
+    "tau=0.075,T=1.2": {
+      "bound_viol_mean": 0.0,
+      "horizon": 1.2,
+      "physical_energy_mono_frac": 1.0,
+      "rollout_mse_mean": 2.7157029768453134e-06,
+      "rollout_rel_l2_mean": 0.0024434914943940386,
+      "rollout_steps": 16,
+      "semigroup_defect_mean": 1.0725833368724125e-05,
+      "tau": 0.075
+    },
+    "tau=0.075,T=2.4": {
+      "bound_viol_mean": 0.0,
+      "horizon": 2.4,
+      "physical_energy_mono_frac": 1.0,
+      "rollout_mse_mean": 6.320548280300986e-06,
+      "rollout_rel_l2_mean": 0.003242479520512461,
+      "rollout_steps": 32,
+      "semigroup_defect_mean": 1.0725833368724125e-05,
+      "tau": 0.075
+    },
+    "tau=0.075,T=4.8": {
+      "bound_viol_mean": 0.0,
+      "horizon": 4.8,
+      "physical_energy_mono_frac": 1.0,
+      "rollout_mse_mean": 6.333721319990632e-06,
+      "rollout_rel_l2_mean": 0.0029401225362294097,
+      "rollout_steps": 64,
+      "semigroup_defect_mean": 8.936347392591416e-05,
+      "tau": 0.075
+    },
+    "tau=0.15,T=1.2": {
+      "bound_viol_mean": 0.0,
+      "horizon": 1.2,
+      "physical_energy_mono_frac": 1.0,
+      "rollout_mse_mean": 1.1804584087890646e-05,
+      "rollout_rel_l2_mean": 0.005130465235706652,
+      "rollout_steps": 8,
+      "semigroup_defect_mean": 0.00013368120441737118,
+      "tau": 0.15
+    },
+    "tau=0.15,T=2.4": {
+      "bound_viol_mean": 0.0,
+      "horizon": 2.4,
+      "physical_energy_mono_frac": 1.0,
+      "rollout_mse_mean": 2.631477451300057e-05,
+      "rollout_rel_l2_mean": 0.0066400810845807425,
+      "rollout_steps": 16,
+      "semigroup_defect_mean": 0.00018918265477987006,
+      "tau": 0.15
+    },
+    "tau=0.15,T=4.8": {
+      "bound_viol_mean": 0.0,
+      "horizon": 4.8,
+      "physical_energy_mono_frac": 1.0,
+      "rollout_mse_mean": 2.5848142470993096e-05,
+      "rollout_rel_l2_mean": 0.00594814441267954,
+      "rollout_steps": 32,
+      "semigroup_defect_mean": 0.00018918265477987006,
+      "tau": 0.15
+    }
+  },
+  "cache_path": "/jizhicfs/yuyechen/neural_semigroup/20260828-fisher-kpp-formal-locked-cache-s314163-6373455-h20-r1/locked/fisher_kpp_n64_test_s314163_h4p8.pt",
+  "cache_sha256": "29d0e4b36e9d758f87264ae1d555d865c9e037776903e1cab448a0a8782b490e",
+  "comparison": {
+    "cells": [
+      {
+        "a_mse": 6.806492012168519e-05,
+        "c_phys_mse": 2.7157029768453134e-06,
+        "c_phys_over_a": 0.039898716871925075,
+        "horizon": 1.2,
+        "seed": 31415,
+        "tau": 0.075
+      },
+      {
+        "a_mse": 0.0001407082289528887,
+        "c_phys_mse": 6.320548280300986e-06,
+        "c_phys_over_a": 0.04491953546240145,
+        "horizon": 2.4,
+        "seed": 31415,
+        "tau": 0.075
+      },
+      {
+        "a_mse": 0.00016946561646055612,
+        "c_phys_mse": 6.333721319990632e-06,
+        "c_phys_over_a": 0.03737466898758684,
+        "horizon": 4.8,
+        "seed": 31415,
+        "tau": 0.075
+      },
+      {
+        "a_mse": 7.254093782989913e-05,
+        "c_phys_mse": 1.1804584087890646e-05,
+        "c_phys_over_a": 0.16272996243267704,
+        "horizon": 1.2,
+        "seed": 31415,
+        "tau": 0.15
+      },
+      {
+        "a_mse": 0.0001445380352512302,
+        "c_phys_mse": 2.631477451300057e-05,
+        "c_phys_over_a": 0.18206124406811874,
+        "horizon": 2.4,
+        "seed": 31415,
+        "tau": 0.15
+      },
+      {
+        "a_mse": 0.00017050403017066174,
+        "c_phys_mse": 2.5848142470993096e-05,
+        "c_phys_over_a": 0.15159842524027758,
+        "horizon": 4.8,
+        "seed": 31415,
+        "tau": 0.15
+      },
+      {
+        "a_mse": 7.339374677646404e-05,
+        "c_phys_mse": 2.7157029768453134e-06,
+        "c_phys_over_a": 0.037001830484503714,
+        "horizon": 1.2,
+        "seed": 271828,
+        "tau": 0.075
+      },
+      {
+        "a_mse": 0.00015958842427631658,
+        "c_phys_mse": 6.320548280300986e-06,
+        "c_phys_over_a": 0.03960530539080569,
+        "horizon": 2.4,
+        "seed": 271828,
+        "tau": 0.075
+      },
+      {
+        "a_mse": 0.00018986213584606037,
+        "c_phys_mse": 6.333721319990632e-06,
+        "c_phys_over_a": 0.03335958110745153,
+        "horizon": 4.8,
+        "seed": 271828,
+        "tau": 0.075
+      },
+      {
+        "a_mse": 7.858403777390777e-05,
+        "c_phys_mse": 1.1804584087890646e-05,
+        "c_phys_over_a": 0.1502160543322211,
+        "horizon": 1.2,
+        "seed": 271828,
+        "tau": 0.15
+      },
+      {
+        "a_mse": 0.00016392059622762645,
+        "c_phys_mse": 2.631477451300057e-05,
+        "c_phys_over_a": 0.1605336676329487,
+        "horizon": 2.4,
+        "seed": 271828,
+        "tau": 0.15
+      },
+      {
+        "a_mse": 0.00019099370251581148,
+        "c_phys_mse": 2.5848142470993096e-05,
+        "c_phys_over_a": 0.13533505100176405,
+        "horizon": 4.8,
+        "seed": 271828,
+        "tau": 0.15
+      },
+      {
+        "a_mse": 7.848168055794603e-05,
+        "c_phys_mse": 2.7157029768453134e-06,
+        "c_phys_over_a": 0.03460301764104307,
+        "horizon": 1.2,
+        "seed": 161803,
+        "tau": 0.075
+      },
+      {
+        "a_mse": 0.00017665248674460975,
+        "c_phys_mse": 6.320548280300986e-06,
+        "c_phys_over_a": 0.03577956017929562,
+        "horizon": 2.4,
+        "seed": 161803,
+        "tau": 0.075
+      },
+      {
+        "a_mse": 0.0002183900313962086,
+        "c_phys_mse": 6.333721319990632e-06,
+        "c_phys_over_a": 0.029001879250156057,
+        "horizon": 4.8,
+        "seed": 161803,
+        "tau": 0.075
+      },
+      {
+        "a_mse": 8.41846909395656e-05,
+        "c_phys_mse": 1.1804584087890646e-05,
+        "c_phys_over_a": 0.14022245560496155,
+        "horizon": 1.2,
+        "seed": 161803,
+        "tau": 0.15
+      },
+      {
+        "a_mse": 0.00018157782772847497,
+        "c_phys_mse": 2.631477451300057e-05,
+        "c_phys_over_a": 0.1449228402068492,
+        "horizon": 2.4,
+        "seed": 161803,
+        "tau": 0.15
+      },
+      {
+        "a_mse": 0.0002197582136092322,
+        "c_phys_mse": 2.5848142470993096e-05,
+        "c_phys_over_a": 0.11762082539019691,
+        "horizon": 4.8,
+        "seed": 161803,
+        "tau": 0.15
+      }
+    ],
+    "decision": "fisher_physics_split_dominates_formal_A",
+    "geometric_mean_c_phys_over_a": 0.07370414978765219,
+    "material_threshold": 0.9,
+    "ratios": {
+      "seed=161803,tau=0.075,T=1.2": 0.03460301764104307,
+      "seed=161803,tau=0.075,T=2.4": 0.03577956017929562,
+      "seed=161803,tau=0.075,T=4.8": 0.029001879250156057,
+      "seed=161803,tau=0.15,T=1.2": 0.14022245560496155,
+      "seed=161803,tau=0.15,T=2.4": 0.1449228402068492,
+      "seed=161803,tau=0.15,T=4.8": 0.11762082539019691,
+      "seed=271828,tau=0.075,T=1.2": 0.037001830484503714,
+      "seed=271828,tau=0.075,T=2.4": 0.03960530539080569,
+      "seed=271828,tau=0.075,T=4.8": 0.03335958110745153,
+      "seed=271828,tau=0.15,T=1.2": 0.1502160543322211,
+      "seed=271828,tau=0.15,T=2.4": 0.1605336676329487,
+      "seed=271828,tau=0.15,T=4.8": 0.13533505100176405,
+      "seed=31415,tau=0.075,T=1.2": 0.039898716871925075,
+      "seed=31415,tau=0.075,T=2.4": 0.04491953546240145,
+      "seed=31415,tau=0.075,T=4.8": 0.03737466898758684,
+      "seed=31415,tau=0.15,T=1.2": 0.16272996243267704,
+      "seed=31415,tau=0.15,T=2.4": 0.18206124406811874,
+      "seed=31415,tau=0.15,T=4.8": 0.15159842524027758
+    },
+    "seed_geometric_mean_c_phys_over_a": {
+      "161803": 0.06641542507875638,
+      "271828": 0.07364585732524465,
+      "31415": 0.08185751256662775
+    },
+    "seeds_with_c_phys_at_most_0.90": 3
+  },
+  "comparison_is_paired": true,
+  "device": "cuda",
+  "do_not_use_for_formal": true,
+  "expected_cache_sha256": "29d0e4b36e9d758f87264ae1d555d865c9e037776903e1cab448a0a8782b490e",
+  "exploratory": true,
+  "parameter_count": 0,
+  "protocol": "docs/research/FISHER_PHYSICS_SPLIT_PROTOCOL.md",
+  "reference_steps_T4.8": 960,
+  "seconds": 1.3964082668535411
+}

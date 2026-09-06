@@ -1,0 +1,104 @@
+{
+  "cache_path": "/jizhicfs/yuyechen/neural_semigroup/20260907-cahn-hilliard-physics-split-h20-r1/locked_test.pt",
+  "cache_sha256": "44c0ad970231546bde3771a11b757f95d954c11d7a07d1525bc8c4f784cb3004",
+  "cache_status": "created",
+  "cells": {
+    "tau=0.075,T=0.6": {
+      "bound_viol_mean": 0.2589731586639472,
+      "horizon": 0.6,
+      "mass_drift_max": 6.728805601596832e-08,
+      "mass_drift_mean": 1.1836151614375012e-08,
+      "physical_energy_mono_frac": 0.3897569444444444,
+      "rollout_mse_mean": 0.7450910853985167,
+      "rollout_rel_l2_mean": 0.8526105558000078,
+      "rollout_steps": 8,
+      "semigroup_defect_mean": 2.018991397907181,
+      "tau": 0.075
+    },
+    "tau=0.075,T=1.2": {
+      "bound_viol_mean": 0.405495667948546,
+      "horizon": 1.2,
+      "mass_drift_max": 9.266659617424011e-08,
+      "mass_drift_mean": 2.2254690534850852e-08,
+      "physical_energy_mono_frac": 0.3385416666666667,
+      "rollout_mse_mean": 1.202158418160009,
+      "rollout_rel_l2_mean": 1.1620921789755003,
+      "rollout_steps": 16,
+      "semigroup_defect_mean": 2.7688783914264707,
+      "tau": 0.075
+    },
+    "tau=0.075,T=2.4": {
+      "bound_viol_mean": 0.4890151965917337,
+      "horizon": 2.4,
+      "mass_drift_max": 1.2177042663097382e-07,
+      "mass_drift_mean": 3.38351853201857e-08,
+      "physical_energy_mono_frac": 0.302734375,
+      "rollout_mse_mean": 1.484541031570471,
+      "rollout_rel_l2_mean": 1.3326124911317392,
+      "rollout_steps": 32,
+      "semigroup_defect_mean": 2.7688783914264707,
+      "tau": 0.075
+    },
+    "tau=0.15,T=0.6": {
+      "bound_viol_mean": 0.46837290537465986,
+      "horizon": 0.6,
+      "mass_drift_max": 8.940696716308594e-08,
+      "mass_drift_mean": 1.5888758753135335e-08,
+      "physical_energy_mono_frac": 0.3784722222222222,
+      "rollout_mse_mean": 1.9911369244602812,
+      "rollout_rel_l2_mean": 1.2480802089557983,
+      "rollout_steps": 4,
+      "semigroup_defect_mean": 2.0551761540377305,
+      "tau": 0.15
+    },
+    "tau=0.15,T=1.2": {
+      "bound_viol_mean": 0.8444649805993928,
+      "horizon": 1.2,
+      "mass_drift_max": 1.2747477740049362e-07,
+      "mass_drift_mean": 2.8447541211562566e-08,
+      "physical_energy_mono_frac": 0.3932291666666667,
+      "rollout_mse_mean": 3.9349615499860295,
+      "rollout_rel_l2_mean": 1.9637968222022109,
+      "rollout_steps": 8,
+      "semigroup_defect_mean": 25.05987557861954,
+      "tau": 0.15
+    },
+    "tau=0.15,T=2.4": {
+      "bound_viol_mean": Infinity,
+      "horizon": 2.4,
+      "mass_drift_max": NaN,
+      "mass_drift_mean": NaN,
+      "physical_energy_mono_frac": 0.4029947916666667,
+      "rollout_mse_mean": Infinity,
+      "rollout_rel_l2_mean": Infinity,
+      "rollout_steps": 16,
+      "semigroup_defect_mean": 33.04020132124424,
+      "tau": 0.15
+    }
+  },
+  "config": {
+    "L": 6.283185307179586,
+    "N": 64,
+    "data_seed": 20260907,
+    "epsilon": 0.1,
+    "horizon": 2.4,
+    "masses": [
+      -0.3,
+      0.0,
+      0.3
+    ],
+    "n_per_mass": 96,
+    "reference_dt": 0.0005
+  },
+  "conservative_split_conserves_mass": false,
+  "conservative_split_is_a_usable_ch_baseline": false,
+  "device": "cuda",
+  "do_not_use_for_formal": true,
+  "exploratory": true,
+  "geometric_mean_mse": Infinity,
+  "mass_drift_limit": 1e-08,
+  "max_mass_drift": 1.2747477740049362e-07,
+  "parameter_count": 0,
+  "protocol": "docs/research/CAHN_HILLIARD_PHYSICS_SPLIT_PROTOCOL.md",
+  "seconds": 6.313507447019219
+}

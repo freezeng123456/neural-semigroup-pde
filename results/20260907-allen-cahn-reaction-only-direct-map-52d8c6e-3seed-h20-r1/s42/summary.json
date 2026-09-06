@@ -1,0 +1,407 @@
+{
+  "experiment": "allen_cahn_reaction_only_direct_map",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "seed": 42,
+  "data_seed": 42,
+  "cache_sha256": "896ad0b98ea6c62a9b709aa3e6d747cec7190cdd163d7a6fa12def17d8ecc271",
+  "locked_test_source": "/jizhicfs/yuyechen/neural_semigroup/20260907-allen-cahn-work-matched-direct-map-h20-r1/s42/locked_test.pt",
+  "protocol": "docs/research/ALLEN_CAHN_REACTION_ONLY_DIRECT_MAP_PROTOCOL.md",
+  "models": {
+    "a_euler_autonomous": {
+      "label": "a_euler_autonomous",
+      "frozen": true,
+      "parameter_count": 9093,
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-allen-cahn-work-matched-direct-map-h20-r1/s42/checkpoints/a_euler_autonomous/a_euler_autonomous_best.pt",
+      "best_checkpoint_sha256": "c0acb4fd9cf602d2a9572387329af8e5d5ecde302bc3df9576a882d19e9cba3d"
+    },
+    "b_euler_query_time": {
+      "label": "b_euler_query_time",
+      "frozen": true,
+      "parameter_count": 9157,
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-allen-cahn-work-matched-direct-map-h20-r1/s42/checkpoints/b_euler_query_time/b_euler_query_time_best.pt",
+      "best_checkpoint_sha256": "51db144feb607f081406b16c95c2b235af69ff6669b547113b0fe5c66bc61014"
+    },
+    "c_direct_heat_map": {
+      "label": "c_direct_heat_map",
+      "frozen": true,
+      "parameter_count": 9157,
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-allen-cahn-work-matched-direct-map-h20-r1/s42/checkpoints/c_direct_heat_map/c_direct_heat_map_best.pt",
+      "best_checkpoint_sha256": "de0d16712aa1fb9a2100435e7d7dd5c3d6290d1d6c00f3ef8a84ab087d17e227"
+    },
+    "c_reaction_only": {
+      "label": "c_reaction_only",
+      "parameter_count": 9155,
+      "training_seconds": 6.8758073528297246,
+      "checkpoint_epoch": 45,
+      "best_checkpoint": "/jizhicfs/yuyechen/neural_semigroup/20260907-allen-cahn-reaction-only-direct-map-h20-r1/s42/checkpoints/c_reaction_only/c_reaction_only_best.pt",
+      "best_checkpoint_sha256": "bfb7b92df4fa5905d0b87f5ffdf4f2ac42a5fee085b084b8c6ba51f9363afb83",
+      "history_keys": [
+        "L_V",
+        "L_energy",
+        "L_generator",
+        "L_rollout",
+        "L_step",
+        "L_trajectory",
+        "epoch",
+        "val_bound_viol",
+        "val_energy_mono",
+        "val_mse",
+        "validation_performed"
+      ]
+    },
+    "c_physics_split": {
+      "label": "c_physics_split",
+      "frozen": true,
+      "parameter_count": 0,
+      "training_seconds": 0.0
+    }
+  },
+  "rollouts": {
+    "a_euler_autonomous": {
+      "tau=0.075,T=1.2": {
+        "rollout_mse_mean": 0.004432782530784607,
+        "relative_l2_mean": 0.08442505449056625,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7503800988197327,
+        "depth": 16
+      },
+      "tau=0.075,T=2.4": {
+        "rollout_mse_mean": 0.02463376708328724,
+        "relative_l2_mean": 0.15379023551940918,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8744975924491882,
+        "depth": 32
+      },
+      "tau=0.075,T=4.8": {
+        "rollout_mse_mean": 0.09804943948984146,
+        "relative_l2_mean": 0.26119565963745117,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9302560091018677,
+        "depth": 64
+      },
+      "tau=0.15,T=1.2": {
+        "rollout_mse_mean": 0.004017730709165335,
+        "relative_l2_mean": 0.08035187423229218,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7456429600715637,
+        "depth": 8
+      },
+      "tau=0.15,T=2.4": {
+        "rollout_mse_mean": 0.021796446293592453,
+        "relative_l2_mean": 0.14523813128471375,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8695819973945618,
+        "depth": 16
+      },
+      "tau=0.15,T=4.8": {
+        "rollout_mse_mean": 0.09187749028205872,
+        "relative_l2_mean": 0.2523482143878937,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9291225671768188,
+        "depth": 32
+      }
+    },
+    "b_euler_query_time": {
+      "tau=0.075,T=1.2": {
+        "rollout_mse_mean": 0.0044138929806649685,
+        "relative_l2_mean": 0.08424495905637741,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7502899765968323,
+        "depth": 16
+      },
+      "tau=0.075,T=2.4": {
+        "rollout_mse_mean": 0.024519486352801323,
+        "relative_l2_mean": 0.15344174206256866,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.87446129322052,
+        "depth": 32
+      },
+      "tau=0.075,T=4.8": {
+        "rollout_mse_mean": 0.09774430096149445,
+        "relative_l2_mean": 0.2607537806034088,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9302977919578552,
+        "depth": 64
+      },
+      "tau=0.15,T=1.2": {
+        "rollout_mse_mean": 0.004004242829978466,
+        "relative_l2_mean": 0.08021392673254013,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7456468939781189,
+        "depth": 8
+      },
+      "tau=0.15,T=2.4": {
+        "rollout_mse_mean": 0.021725064143538475,
+        "relative_l2_mean": 0.14498740434646606,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8696175813674927,
+        "depth": 16
+      },
+      "tau=0.15,T=4.8": {
+        "rollout_mse_mean": 0.09161623567342758,
+        "relative_l2_mean": 0.251957505941391,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9291819930076599,
+        "depth": 32
+      }
+    },
+    "c_direct_heat_map": {
+      "tau=0.075,T=1.2": {
+        "rollout_mse_mean": 0.004584175534546375,
+        "relative_l2_mean": 0.08518319576978683,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7469455599784851,
+        "depth": 16
+      },
+      "tau=0.075,T=2.4": {
+        "rollout_mse_mean": 0.02436492219567299,
+        "relative_l2_mean": 0.15003611147403717,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8606329560279846,
+        "depth": 32
+      },
+      "tau=0.075,T=4.8": {
+        "rollout_mse_mean": 0.08196943998336792,
+        "relative_l2_mean": 0.2204364687204361,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9085226058959961,
+        "depth": 64
+      },
+      "tau=0.15,T=1.2": {
+        "rollout_mse_mean": 0.004253844264894724,
+        "relative_l2_mean": 0.08197963237762451,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7427417635917664,
+        "depth": 8
+      },
+      "tau=0.15,T=2.4": {
+        "rollout_mse_mean": 0.02280154637992382,
+        "relative_l2_mean": 0.14619360864162445,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8574588298797607,
+        "depth": 16
+      },
+      "tau=0.15,T=4.8": {
+        "rollout_mse_mean": 0.07983111590147018,
+        "relative_l2_mean": 0.2180320769548416,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9078153967857361,
+        "depth": 32
+      }
+    },
+    "c_reaction_only": {
+      "tau=0.075,T=1.2": {
+        "rollout_mse_mean": 4.90010243083816e-05,
+        "relative_l2_mean": 0.009219801053404808,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7398779392242432,
+        "depth": 16
+      },
+      "tau=0.075,T=2.4": {
+        "rollout_mse_mean": 7.601956895086914e-05,
+        "relative_l2_mean": 0.009557683020830154,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8550347089767456,
+        "depth": 32
+      },
+      "tau=0.075,T=4.8": {
+        "rollout_mse_mean": 0.00018516335694584996,
+        "relative_l2_mean": 0.012422955594956875,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8999921083450317,
+        "depth": 64
+      },
+      "tau=0.15,T=1.2": {
+        "rollout_mse_mean": 9.744716953719035e-05,
+        "relative_l2_mean": 0.012826946564018726,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.742232084274292,
+        "depth": 8
+      },
+      "tau=0.15,T=2.4": {
+        "rollout_mse_mean": 0.00014761215425096452,
+        "relative_l2_mean": 0.012904847972095013,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8583642840385437,
+        "depth": 16
+      },
+      "tau=0.15,T=4.8": {
+        "rollout_mse_mean": 0.00039899031980894506,
+        "relative_l2_mean": 0.0180255975574255,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.903933584690094,
+        "depth": 32
+      }
+    },
+    "c_physics_split": {
+      "tau=0.075,T=1.2": {
+        "rollout_mse_mean": 2.467988451826386e-05,
+        "relative_l2_mean": 0.00667934212833643,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7464533448219299,
+        "depth": 16
+      },
+      "tau=0.075,T=2.4": {
+        "rollout_mse_mean": 4.3929831008426845e-05,
+        "relative_l2_mean": 0.0074994368478655815,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8633514642715454,
+        "depth": 32
+      },
+      "tau=0.075,T=4.8": {
+        "rollout_mse_mean": 9.384340228280053e-05,
+        "relative_l2_mean": 0.009748764336109161,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9077710509300232,
+        "depth": 64
+      },
+      "tau=0.15,T=1.2": {
+        "rollout_mse_mean": 0.00010010264668380842,
+        "relative_l2_mean": 0.01346324197947979,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.7487083673477173,
+        "depth": 8
+      },
+      "tau=0.15,T=2.4": {
+        "rollout_mse_mean": 0.00017670175293460488,
+        "relative_l2_mean": 0.015049469657242298,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.8665769696235657,
+        "depth": 16
+      },
+      "tau=0.15,T=4.8": {
+        "rollout_mse_mean": 0.00037473696283996105,
+        "relative_l2_mean": 0.019666586071252823,
+        "bound_violation_mean": 0.0,
+        "energy_monotone_fraction": 1.0,
+        "state_rms_mean": 0.9116680026054382,
+        "depth": 32
+      }
+    }
+  },
+  "deployed_budget_cross_lag": {
+    "a_euler_autonomous": {
+      "horizon": 0.15,
+      "tau_fine": 0.075,
+      "tau_coarse": 0.15,
+      "rms_defect_mean": 0.000924600288271904,
+      "relative_to_state_rms": 0.0018243268949646135,
+      "state_rms_mean": 0.5068172216415405
+    },
+    "b_euler_query_time": {
+      "horizon": 0.15,
+      "tau_fine": 0.075,
+      "tau_coarse": 0.15,
+      "rms_defect_mean": 0.0009071137756109238,
+      "relative_to_state_rms": 0.0017898242934067132,
+      "state_rms_mean": 0.5068172216415405
+    },
+    "c_direct_heat_map": {
+      "horizon": 0.15,
+      "tau_fine": 0.075,
+      "tau_coarse": 0.15,
+      "rms_defect_mean": 0.0009478008141741157,
+      "relative_to_state_rms": 0.0018701038040977859,
+      "state_rms_mean": 0.5068172216415405
+    },
+    "c_reaction_only": {
+      "horizon": 0.15,
+      "tau_fine": 0.075,
+      "tau_coarse": 0.15,
+      "rms_defect_mean": 0.0009489166550338268,
+      "relative_to_state_rms": 0.0018723054673642728,
+      "state_rms_mean": 0.5068172216415405
+    },
+    "c_physics_split": {
+      "horizon": 0.15,
+      "tau_fine": 0.075,
+      "tau_coarse": 0.15,
+      "rms_defect_mean": 0.0009692841558717191,
+      "relative_to_state_rms": 0.0019124925406683797,
+      "state_rms_mean": 0.5068172216415405
+    }
+  },
+  "ratios": {
+    "mse_a_prime_over_c_rxn": {
+      "cells": {
+        "tau=0.075,T=1.2": 90.46305854521457,
+        "tau=0.075,T=2.4": 324.0450771196539,
+        "tau=0.075,T=4.8": 529.5293901941706,
+        "tau=0.15,T=1.2": 41.2298348761375,
+        "tau=0.15,T=2.4": 147.6602411515177,
+        "tau=0.15,T=4.8": 230.2749859346309
+      },
+      "geometric_mean": 167.08909867714485
+    },
+    "mse_old_c_over_c_rxn": {
+      "cells": {
+        "tau=0.075,T=1.2": 93.55264709767005,
+        "tau=0.075,T=2.4": 320.50855499351553,
+        "tau=0.075,T=4.8": 442.68715654868714,
+        "tau=0.15,T=1.2": 43.65282527032517,
+        "tau=0.15,T=2.4": 154.4693016345897,
+        "tau=0.15,T=4.8": 200.08283895132342
+      },
+      "geometric_mean": 161.74945833806214
+    },
+    "mse_phys_over_c_rxn": {
+      "cells": {
+        "tau=0.075,T=1.2": 0.5036605839695146,
+        "tau=0.075,T=2.4": 0.5778752973042817,
+        "tau=0.075,T=4.8": 0.5068141117696658,
+        "tau=0.15,T=1.2": 1.027250428711576,
+        "tau=0.15,T=2.4": 1.1970677742036293,
+        "tau=0.15,T=4.8": 0.9392131694307831
+      },
+      "geometric_mean": 0.744554808844547
+    },
+    "mse_a_prime_over_old_c": {
+      "cells": {
+        "tau=0.075,T=1.2": 0.9669748676461296,
+        "tau=0.075,T=2.4": 1.0110340958799366,
+        "tau=0.075,T=4.8": 1.1961706644541705,
+        "tau=0.15,T=1.2": 0.9444940761752987,
+        "tau=0.15,T=2.4": 0.9559196525716198,
+        "tau=0.15,T=4.8": 1.150898233659373
+      },
+      "geometric_mean": 1.033011797343535
+    }
+  },
+  "learned_evaluations_per_call": {
+    "a_euler_autonomous": 1,
+    "b_euler_query_time": 1,
+    "c_direct_heat_map": 1,
+    "c_reaction_only": 1,
+    "c_physics_split": 0
+  }
+}
