@@ -91,16 +91,7 @@ it does not have one against a map with no learned parameters at all.
 
 ## Next designed experiment
 
-Do not add residual width.  The next question is whether the same
-clean split also retires Fisher--KPP, where the formal lane already
-failed the 10% gate against a query-time sibling.  The analogous
-zero-parameter map is
-
-\[
-C_{\mathrm{phys}}^{\mathrm{F}}(u,\tau)=e^{\tau\nu\Delta}u+\tau\,ru(1-u).
-\]
-
-If it again dominates the locked Fisher checkpoints, the accuracy
-half of Section 4 is closed on both reaction--diffusion PDEs and the
-paper should stop claiming prediction.  If it does not, Fisher still
-has an open accuracy question that Allen--Cahn no longer has.
+The Fisher physics-split lane is complete.  Pooled
+`MSE(C_phys)/MSE(A) = 0.0737` on the locked cache, so both
+reaction--diffusion PDEs lose to a zero-parameter split.  See
+`FISHER_PHYSICS_SPLIT_RESULTS.md`.

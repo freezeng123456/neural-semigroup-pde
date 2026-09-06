@@ -165,22 +165,27 @@ work and appeared to fire (`MSE(A')/MSE(C) = 0.756`).  That figure is
 withdrawn.  The losing map double-counted diffusion.  Against a
 heat-plus-reaction split that does not, the Euler flow loses by a
 pooled ratio `45.1`, and a zero-parameter physics split is stronger
-than the learned residual.  Allen--Cahn accuracy is a classical-split
-result, not a semigroup result.  The Burgers work-matched retraction
-is unchanged.  See
-[`docs/research/ALLEN_CAHN_WORK_MATCHED_DIRECT_MAP_RESULTS.md`](docs/research/ALLEN_CAHN_WORK_MATCHED_DIRECT_MAP_RESULTS.md)
+than the learned residual.  The same zero-parameter split, evaluated
+on the locked Fisher--KPP cache, gives
+`MSE(C_phys)/MSE(A) = 0.0737` in every published formal cell.  Both
+1D reaction--diffusion PDEs in Section 4 are therefore classical-split
+accuracy results, not semigroup results.  The Burgers work-matched
+retraction and the formal Fisher A-versus-B decision are unchanged.
+See
+[`docs/research/ALLEN_CAHN_WORK_MATCHED_DIRECT_MAP_RESULTS.md`](docs/research/ALLEN_CAHN_WORK_MATCHED_DIRECT_MAP_RESULTS.md),
+[`docs/research/ALLEN_CAHN_REACTION_ONLY_DIRECT_MAP_RESULTS.md`](docs/research/ALLEN_CAHN_REACTION_ONLY_DIRECT_MAP_RESULTS.md),
 and
-[`docs/research/ALLEN_CAHN_REACTION_ONLY_DIRECT_MAP_RESULTS.md`](docs/research/ALLEN_CAHN_REACTION_ONLY_DIRECT_MAP_RESULTS.md).
+[`docs/research/FISHER_PHYSICS_SPLIT_RESULTS.md`](docs/research/FISHER_PHYSICS_SPLIT_RESULTS.md).
 
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
 one one-dimensional reaction--diffusion PDE. The formal Fisher--KPP lane and
-the exploratory Burgers screen still lack a material prediction advantage.
-Allen--Cahn now has a material gap, but it favours a classical
-heat-plus-reaction split, including a zero-parameter one, so the
-Section 4 accuracy advance criterion remains unmet as a semigroup claim. Conservative/no-flux, multidimensional, and
-irregular-geometry transfer remain open. Archived numerical values are
-retained for provenance and must not be mixed across formal and exploratory
-evidence classes.
+the exploratory Burgers screen still lack a material prediction advantage
+against a sibling learned map, and both reaction--diffusion PDEs lose to a
+zero-parameter heat-plus-reaction split, so the Section 4 accuracy advance
+criterion remains unmet as a semigroup claim. Conservative/no-flux,
+multidimensional, and irregular-geometry transfer remain open. Archived
+numerical values are retained for provenance and must not be mixed across
+formal and exploratory evidence classes.
 
 Before broadening to another PDE, complete the theorem card. In particular,
 Cahn--Hilliard requires a conservative mobility, Burgers requires a
