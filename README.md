@@ -160,11 +160,25 @@ constant: the exponential amplification costs about `20` at horizon `0.4` and
 `870` at `0.8`, while generator matching costs `7` and `9`. See
 [`docs/research/BURGERS_CERTIFIED_CONSTANTS.md`](docs/research/BURGERS_CERTIFIED_CONSTANTS.md).
 
+The Wave 2 A-versus-C control, which Burgers never survived at matched work,
+is now complete on the reaction--diffusion PDE. At one network evaluation per
+call, pooled `MSE(A')/MSE(C)` is `0.0986` (Dirichlet), `0.0298` (Neumann),
+and `0.0209` (Robin), material in `3/3` seeds on every family. The corrected
+refinability rule also holds: `A'` shrinks by `438`--`648` from 1 to 128
+Euler substeps, `B'` plateaus with gain `2`, and `C` sits `1,764`--`2,239`
+times above `A'` at 128 substeps. Retraining the Wave 2 RK4-8 pair
+reproduces the original long-rollout ratios to four figures. The residual
+direct map is a weaker inductive bias than Burgers' physics-split `C`; `B'`
+beats it by about the same factor as `A'`, so autonomy is not the only
+difference, but `A'` versus `B'` remains `0.80`--`0.87`. See
+[`docs/research/WAVE2_DIRECT_MAP_WORK_MATCHED_RESULTS.md`](docs/research/WAVE2_DIRECT_MAP_WORK_MATCHED_RESULTS.md).
+
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
-one one-dimensional reaction--diffusion PDE. Neither the formal Fisher--KPP
-lane nor the exploratory Burgers screen establishes a material prediction
-advantage, so the accuracy half of the Section 4 advance criterion is now
-unmet on two PDEs with different generator structure. Conservative/no-flux,
+one one-dimensional reaction--diffusion PDE. The formal Fisher--KPP lane and
+the exploratory Burgers screen still do not establish a material prediction
+advantage. The Wave 2 residual-map control is the first work-matched accuracy
+result that meets the `0.90` threshold; it does not transfer to Burgers and
+must not be pooled with the locked Fisher decision. Conservative/no-flux,
 multidimensional, and irregular-geometry transfer remain open. Archived
 numerical values are retained for provenance and must not be mixed across
 formal and exploratory evidence classes.

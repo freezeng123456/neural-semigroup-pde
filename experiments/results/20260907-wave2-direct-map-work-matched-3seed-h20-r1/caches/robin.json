@@ -1,0 +1,47 @@
+{
+  "boundary_family": "robin",
+  "smoke_only": false,
+  "path": "/data/workspace/neural-semigroup-pde/experiments/results/20260907-wave2-direct-map-work-matched-3seed-h20-r1/caches/robin.pt",
+  "sha256": "20c1777c3f4b9ab35ef0183f6926bfdcbeabf635621fbbc65271268f6ba47e1d",
+  "data_identity": {
+    "schema_version": 1,
+    "experiment": "boundary_family_semigroup_wave2",
+    "smoke_only": false,
+    "data_seed": 515151,
+    "boundary_family": "robin",
+    "boundary_spec": {
+      "family": "robin",
+      "dx": 0.03125,
+      "dirichlet_left": 0.2,
+      "dirichlet_right": -0.1,
+      "neumann_left": 0.0,
+      "neumann_right": 0.0,
+      "robin_alpha": 1.0,
+      "robin_beta": 0.1,
+      "robin_gamma_left": 0.15,
+      "robin_gamma_right": -0.05
+    },
+    "n_grid": 33,
+    "domain_length": 1.0,
+    "diffusivity": 0.02,
+    "reference_dt": 0.001,
+    "sine_modes": 8,
+    "n_train": 512,
+    "n_val": 64,
+    "n_test": 128,
+    "train_taus": [
+      0.02,
+      0.04,
+      0.08,
+      0.16
+    ],
+    "reference_horizons": [
+      0.02,
+      0.04,
+      0.08,
+      0.16,
+      0.24,
+      0.48
+    ]
+  }
+}
