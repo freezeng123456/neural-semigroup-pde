@@ -78,8 +78,7 @@ Not supported:
 
 ## Next designed experiment
 
-Do not train the current `K` on Cahn--Hilliard.  The named next PDE
-is a mass-conserving \(H^{-1}\) flow.  The analogous question is
-whether a zero-parameter conservative split already dominates a
-correctly structured learned generator, not whether the diagonal
-Allen--Cahn architecture can be forced onto a conservation law.
+The Cahn--Hilliard large-step split is complete and unusable
+(`CAHN_HILLIARD_PHYSICS_SPLIT_RESULTS.md`).  The next generator must
+be a conservative mobility scored against the new ETD-RK4 cache, not
+diagonal `K` and not the exploded `C_phys`.
