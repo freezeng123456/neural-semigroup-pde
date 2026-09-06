@@ -92,9 +92,19 @@ class ConservativeCahnHilliardFlow(nn.Module):
         self.dx = self.length / self.N
         self.residual = ScalarMLP(HIDDEN, beta=0.0, beta_floor=0.0)
         self.mobility_net = StencilMLP(radius=STENCIL_RADIUS, hidden_dims=HIDDEN)
+        self._zero_output_layers()
         spacing = self.length / self.N
         wavenumbers = 2.0 * math.pi * torch.fft.rfftfreq(self.N, d=spacing)
         self.register_buffer("laplacian_symbol", -(wavenumbers ** 2))
+
+    def _zero_output_layers(self):
+        """Start at the physical chemical potential with a small mobility."""
+        residual_out = self.residual.net[-1]
+        nn.init.zeros_(residual_out.weight)
+        nn.init.zeros_(residual_out.bias)
+        mobility_out = self.mobility_net.net[-1]
+        nn.init.zeros_(mobility_out.weight)
+        nn.init.constant_(mobility_out.bias, -4.0)
 
     def laplacian(self, state: torch.Tensor) -> torch.Tensor:
         transformed = torch.fft.rfft(state, dim=-1)

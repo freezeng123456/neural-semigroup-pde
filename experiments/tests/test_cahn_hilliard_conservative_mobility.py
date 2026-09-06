@@ -32,6 +32,16 @@ def test_forward_conserves_mass():
     assert torch.allclose(evolved.mean(dim=-1), state.mean(dim=-1), atol=1e-5)
 
 
+def test_initialization_is_near_the_physical_field():
+    model = ConservativeCahnHilliardFlow(n_grid=32, ode_steps=2)
+    state = torch.randn(3, 32) * 0.2
+    with torch.no_grad():
+        residual = model.residual(state.unsqueeze(-1)).squeeze(-1)
+        mobility = model.mobility(state)
+    assert float(residual.abs().max()) < 1e-5
+    assert float(mobility.max()) < 0.05
+
+
 def test_zero_residual_keeps_constants_stationary():
     model = ConservativeCahnHilliardFlow(n_grid=32, ode_steps=2)
     with torch.no_grad():
