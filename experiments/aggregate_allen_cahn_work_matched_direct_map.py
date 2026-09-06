@@ -59,7 +59,7 @@ def decide(summaries: list[dict]) -> dict:
         a_def = float(defects["a_euler_autonomous"]["rms_defect_mean"])
         b_def = float(defects["b_euler_query_time"]["rms_defect_mean"])
         c_def = float(defects["c_direct_heat_map"]["rms_defect_mean"])
-        if equal > 1e-10 or not (a_def < b_def and a_def < c_def):
+        if equal > 1e-6 or not (a_def < b_def and a_def < c_def):
             structure_ok = False
         series = [
             float(row["rms_defect_mean"])

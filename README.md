@@ -160,14 +160,25 @@ constant: the exponential amplification costs about `20` at horizon `0.4` and
 `870` at `0.8`, while generator matching costs `7` and `9`. See
 [`docs/research/BURGERS_CERTIFIED_CONSTANTS.md`](docs/research/BURGERS_CERTIFIED_CONSTANTS.md).
 
+The missing Allen--Cahn A-versus-C comparison is now run at matched work.
+The physics-anchored Euler flow beats the preregistered heat-split direct
+map by a pooled `MSE(A')/MSE(C)` of `0.756` on two of three seeds, so the
+frozen accuracy rule fires.  It is not an autonomy result: `A'` and `B'`
+agree to three digits, the structural ordering rule fails, and the losing
+map applies exact heat and then a latent field that still contains a
+diffusion-like interaction.  The Burgers work-matched retraction is
+unchanged.  See
+[`docs/research/ALLEN_CAHN_WORK_MATCHED_DIRECT_MAP_RESULTS.md`](docs/research/ALLEN_CAHN_WORK_MATCHED_DIRECT_MAP_RESULTS.md).
+
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
-one one-dimensional reaction--diffusion PDE. Neither the formal Fisher--KPP
-lane nor the exploratory Burgers screen establishes a material prediction
-advantage, so the accuracy half of the Section 4 advance criterion is now
-unmet on two PDEs with different generator structure. Conservative/no-flux,
-multidimensional, and irregular-geometry transfer remain open. Archived
-numerical values are retained for provenance and must not be mixed across
-formal and exploratory evidence classes.
+one one-dimensional reaction--diffusion PDE. The formal Fisher--KPP lane and
+the exploratory Burgers screen still lack a material prediction advantage.
+The new Allen--Cahn figure is a heat-split control, not a semigroup-versus-
+direct-map isolation, so the Section 4 accuracy advance criterion remains
+unmet as a semigroup claim. Conservative/no-flux, multidimensional, and
+irregular-geometry transfer remain open. Archived numerical values are
+retained for provenance and must not be mixed across formal and exploratory
+evidence classes.
 
 Before broadening to another PDE, complete the theorem card. In particular,
 Cahn--Hilliard requires a conservative mobility, Burgers requires a

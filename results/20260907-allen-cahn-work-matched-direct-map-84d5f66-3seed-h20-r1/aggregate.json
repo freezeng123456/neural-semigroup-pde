@@ -1,0 +1,76 @@
+{
+  "experiment": "allen_cahn_work_matched_direct_map_aggregate",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "pooled": {
+    "mse_a_prime_over_c": 0.7562279212496721,
+    "mse_b_prime_over_c": 0.7544703322735382,
+    "mse_a_rk4_over_c": 0.6289285546742164,
+    "seeds_a_prime_at_or_below_0.90": 2
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "mse_a_prime_over_c": 1.033011797343535,
+      "mse_b_prime_over_c": 1.0293119962827169,
+      "mse_a_rk4_over_c": 0.5678432844069528,
+      "equal_substep_defect": 6.944202368686092e-08,
+      "deployed_defects": {
+        "a_euler_autonomous": 0.000924600288271904,
+        "b_euler_query_time": 0.0009071137756109238,
+        "c_direct_heat_map": 0.0009478008141741157
+      },
+      "a_refinement": [
+        0.000924600288271904,
+        0.0004885041853412986,
+        0.0002519533736631274,
+        0.00012805251753889024,
+        6.456670234911144e-05
+      ]
+    },
+    {
+      "seed": 137,
+      "mse_a_prime_over_c": 0.7077221610589108,
+      "mse_b_prime_over_c": 0.7061342513591398,
+      "mse_a_rk4_over_c": 0.6182058499285921,
+      "equal_substep_defect": 7.095631815445813e-08,
+      "deployed_defects": {
+        "a_euler_autonomous": 0.0007811299292370677,
+        "b_euler_query_time": 0.0007815633434802294,
+        "c_direct_heat_map": 0.000880421488545835
+      },
+      "a_refinement": [
+        0.0007811299292370677,
+        0.00040500593604519963,
+        0.00020628463244065642,
+        0.00010411116090836003,
+        5.23023190908134e-05
+      ]
+    },
+    {
+      "seed": 2718,
+      "mse_a_prime_over_c": 0.5915480790144725,
+      "mse_b_prime_over_c": 0.5908703378102869,
+      "mse_a_rk4_over_c": 0.7086672041060091,
+      "equal_substep_defect": 6.75947902095686e-08,
+      "deployed_defects": {
+        "a_euler_autonomous": 0.0008034597849473357,
+        "b_euler_query_time": 0.000798526220023632,
+        "c_direct_heat_map": 0.000886650406755507
+      },
+      "a_refinement": [
+        0.0008034597849473357,
+        0.0004173744237050414,
+        0.00021281422232277691,
+        0.00010746734915301204,
+        5.40041146450676e-05
+      ]
+    }
+  ],
+  "decisions": {
+    "accuracy_matched_work": "flow_has_material_accuracy_advantage_over_direct_map",
+    "autonomy_orders_composition_defect": false,
+    "flow_defect_refines_direct_map_defect_does_not": true,
+    "unmatched_rk4_is_compute_effect_only": false
+  }
+}
