@@ -176,12 +176,18 @@ difference, but `A'` versus `B'` remains `0.80`--`0.87`. See
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
 one one-dimensional reaction--diffusion PDE. The formal Fisher--KPP lane and
 the exploratory Burgers screen still do not establish a material prediction
-advantage. The Wave 2 residual-map control is the first work-matched accuracy
-result that meets the `0.90` threshold; it does not transfer to Burgers and
-must not be pooled with the locked Fisher decision. Conservative/no-flux,
-multidimensional, and irregular-geometry transfer remain open. Archived
-numerical values are retained for provenance and must not be mixed across
-formal and exploratory evidence classes.
+advantage. The Wave 2 residual-map control met the `0.90` threshold, but the
+follow-up physics-split map retracts the reading of that number as a
+flow-versus-direct-map result. With the exact boundary-aware heat
+semigroup and a \(\tau\)-scaled reaction increment, pooled `MSE(A')/MSE(C*)`
+is `1.59`, `89.3`, and `4.22`; `C*` also cuts residual-`C` error to
+`0.062`, `0.00033`, and `0.0049` of its value. Autonomy remains a
+structural composition property. See
+[`docs/research/WAVE2_PHYSICS_SPLIT_CONTROL_RESULTS.md`](docs/research/WAVE2_PHYSICS_SPLIT_CONTROL_RESULTS.md).
+These Wave 2 numbers must not be pooled with the locked Fisher decision.
+Conservative/no-flux, multidimensional, and irregular-geometry transfer
+remain open. Archived numerical values are retained for provenance and
+must not be mixed across formal and exploratory evidence classes.
 
 Before broadening to another PDE, complete the theorem card. In particular,
 Cahn--Hilliard requires a conservative mobility, Burgers requires a
