@@ -63,3 +63,13 @@ def test_primary_aggregator_does_not_promote_structure_only(tmp_path):
     result=m.aggregate(results,tmp_path,6)
     assert result["accuracy_decision"]=="no_material_identification_advantage"
     assert result["pooled_mse_ratio_a_over_b"]==1
+
+
+def test_known_dissipation_is_the_same_additive_intervention_for_both_models():
+    for conditioned in (False,True):
+        plain=m.ReactionFlow(conditioned).double()
+        anchored=m.ReactionFlow(conditioned,known_cubic=True).double()
+        anchored.load_state_dict(plain.state_dict())
+        u=torch.linspace(-1.2,1.2,m.N,dtype=torch.float64).reshape(1,-1)
+        torch.testing.assert_close(anchored.reaction(u,.15)-plain.reaction(u,.15),-u.pow(3),rtol=1e-12,atol=1e-12)
+        assert sum(p.numel() for p in anchored.parameters())==65

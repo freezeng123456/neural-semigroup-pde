@@ -11,6 +11,7 @@ import math
 import os
 from pathlib import Path
 import platform
+import shutil
 import subprocess
 import time
 import traceback
@@ -110,9 +111,10 @@ def heat(u, duration):
 
 
 class ReactionFlow(nn.Module):
-    def __init__(self, conditioned=False, substeps=1):
+    def __init__(self, conditioned=False, substeps=1, known_cubic=False):
         super().__init__()
         self.conditioned, self.substeps = conditioned, substeps
+        self.known_cubic = known_cubic
         self.net = nn.Sequential(nn.Linear(2,16), nn.Tanh(), nn.Linear(16,1))
         for layer in self.net:
             if isinstance(layer, nn.Linear):
@@ -123,7 +125,8 @@ class ReactionFlow(nn.Module):
         t = lag_column(conditioning, u).expand_as(u) / 0.2
         if not self.conditioned:
             t = torch.zeros_like(t)
-        return self.net(torch.stack((u,t), dim=-1)).squeeze(-1)
+        learned = self.net(torch.stack((u,t), dim=-1)).squeeze(-1)
+        return learned-u.pow(3) if self.known_cubic else learned
 
     def forward(self, u, duration, substeps=None, conditioning=None):
         steps = self.substeps if substeps is None else substeps
@@ -138,9 +141,10 @@ class ReactionFlow(nn.Module):
 
 
 class OracleSplit(nn.Module):
-    def __init__(self, substeps=1, pure_heat=False):
+    def __init__(self, substeps=1, pure_heat=False, pure_cubic=False):
         super().__init__()
         self.substeps, self.pure_heat = substeps, pure_heat
+        self.pure_cubic = pure_cubic
 
     def forward(self, u, duration):
         if self.pure_heat:
@@ -148,7 +152,7 @@ class OracleSplit(nn.Module):
         dt = lag_column(duration,u)/self.substeps
         for _ in range(self.substeps):
             u = heat(u, dt/2)
-            u = u + dt*truth_reaction(u)
+            u = u + dt*(-u.pow(3) if self.pure_cubic else truth_reaction(u))
             u = heat(u, dt/2)
         return u
 
@@ -223,6 +227,14 @@ def cpu_tree(value):
     return value
 
 
+def device_tree(value, device):
+    if isinstance(value,torch.Tensor):
+        return value.to(device)
+    if isinstance(value,dict):
+        return {k:device_tree(v,device) for k,v in value.items()}
+    return value
+
+
 def prepare_data(root, device, smoke):
     ntrain, nval, ntest = (16,8,8) if smoke else (128,64,128)
     train = {}
@@ -263,13 +275,13 @@ def validation(model, data):
     return sum(float((model(data["u"],tau)-data["targets"][tau].float()).square().mean()) for tau in TRAIN_LAGS)/len(TRAIN_LAGS)
 
 
-def train_cell(root, data, seed, size, budget, conditioned, epochs, device):
+def train_cell(root, data, seed, size, budget, conditioned, epochs, device, known_cubic=False):
     name = f"s{seed}-n{size}-k{budget}-{'B' if conditioned else 'A'}"
     cell = root/"cells"/name
     cell.mkdir(parents=True)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
-    model = ReactionFlow(conditioned,budget).to(device)
+    model = ReactionFlow(conditioned,budget,known_cubic).to(device)
     initial_hash = hashlib.sha256(b"".join(p.detach().cpu().numpy().tobytes() for p in model.parameters())).hexdigest()
     config = {"seed":seed,"training_size":size,"substeps":budget,"conditioned":conditioned,
         "epochs":epochs,"parameters":sum(p.numel() for p in model.parameters()),
@@ -277,7 +289,8 @@ def train_cell(root, data, seed, size, budget, conditioned, epochs, device):
         "device":str(device),"dtype":"float32","exploratory":True,"do_not_use_for_formal":True}
     provenance = json.loads((root/"provenance.json").read_text())
     config.update({"source_commit":provenance["commit"],"gpu":provenance["gpu"],
-        "cache_sha256":json.loads((root/"cache_metadata.json").read_text())["sha256"]})
+        "cache_sha256":json.loads((root/"cache_metadata.json").read_text())["sha256"],
+        "known_cubic":known_cubic})
     dump(cell/"config.json",config)
     train = {k:v[:size] for k,v in data["train"][seed].items()}
     optimizer = torch.optim.Adam(model.parameters(),lr=0.01)
@@ -368,6 +381,8 @@ def main():
     parser.add_argument("--output",type=Path,required=True)
     parser.add_argument("--device",default="cuda")
     parser.add_argument("--smoke",action="store_true")
+    parser.add_argument("--known-cubic",action="store_true")
+    parser.add_argument("--cache",type=Path)
     args=parser.parse_args()
     root=args.output.resolve()
     root.mkdir(parents=True,exist_ok=False)
@@ -380,19 +395,32 @@ def main():
             "hostname":platform.node(),"python":os.sys.executable,"torch":torch.__version__,
             "numpy":np.__version__,"cuda":torch.version.cuda,"gpu":torch.cuda.get_device_name(0) if args.device=="cuda" else "cpu",
             "smoke":args.smoke,"expected_cells":4 if args.smoke else 24,"epochs":2 if args.smoke else 120,
+            "known_cubic":args.known_cubic,"reused_cache":str(args.cache) if args.cache else None,
             "exploratory":True,"do_not_use_for_formal":True})
         (root/"status").write_text("RUNNING\n")
-        data=prepare_data(root,args.device,args.smoke)
+        if args.cache is None:
+            data=prepare_data(root,args.device,args.smoke)
+        else:
+            source=args.cache.resolve()
+            metadata=json.loads((source.parent/"cache_metadata.json").read_text())
+            if digest(source)!=metadata["sha256"]:
+                raise RuntimeError("input cache checksum mismatch")
+            data=device_tree(torch.load(source,map_location="cpu",weights_only=False),args.device)
+            for filename in ("cache.pt","cache_metadata.json","reference_audit.json"):
+                shutil.copy2(source.parent/filename,root/filename)
         baselines={}
         for label,model in (("pure_heat",OracleSplit(pure_heat=True)),("oracle_k1",OracleSplit(1)),("oracle_k4",OracleSplit(4))):
             baselines[label]=evaluate(model,data["test"])
+        if args.known_cubic:
+            for k in (1,4):
+                baselines[f"known_cubic_only_k{k}"]=evaluate(OracleSplit(k,pure_cubic=True),data["test"])
         dump(root/"baselines.json",baselines)
         results={}
         for seed in SEEDS[:1] if args.smoke else SEEDS:
             for size in (16,) if args.smoke else (16,128):
                 for budget in (1,4):
                     for conditioned in (False,True):
-                        name,value=train_cell(root,data,seed,size,budget,conditioned,2 if args.smoke else 120,args.device)
+                        name,value=train_cell(root,data,seed,size,budget,conditioned,2 if args.smoke else 120,args.device,args.known_cubic)
                         results[name]=value
                         dump(root/"progress.json",{"completed_cells":len(results),"last_cell":name})
         result=aggregate(results,root,4 if args.smoke else 24)
