@@ -1,0 +1,21 @@
+{
+  "sha256": "d2753c62993e9238758219c754d5ab1b3fe0dda44656f32cba5475639a9f4c9c",
+  "training_seeds": [
+    31415
+  ],
+  "validation_data_seed": 2026090701,
+  "test_data_seed": 2026090702,
+  "stress_data_seed": 2026090703,
+  "reference_audit": {
+    "dt": 0.002,
+    "fine_dt": 0.001,
+    "max_relative_l2": 4.3089560281915936e-13,
+    "per_horizon": {
+      "0.6": 3.1472976324800334e-13,
+      "1.2": 4.3089560281915936e-13,
+      "2.4": 3.2124698743850666e-13
+    },
+    "max_abs_reference": 1.010071021952377,
+    "passed": true
+  }
+}

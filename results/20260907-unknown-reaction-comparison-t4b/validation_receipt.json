@@ -1,0 +1,19 @@
+{
+  "kind": "record_of_observed_validation",
+  "phase1_source": "40616f3d59eb64f10b61a735a5966586c39146dc",
+  "phase1_focused_tests_passed": 5,
+  "phase1_full_cells": 24,
+  "phase1_smoke_cells": 4,
+  "phase2_source": "b03c41e5f992beb7329feeb1ef852daf15a0653f",
+  "phase2_focused_tests_passed": 6,
+  "phase2_full_cells": 24,
+  "phase2_smoke_cells": 4,
+  "test_command": "/data/miniconda/envs/syngen/bin/python -m pytest experiments/tests/test_unknown_reaction_matched.py -q",
+  "full_epoch_rows_verified": 5760,
+  "full_selected_checkpoint_hashes_verified": 48,
+  "matrix_source_to_done_seconds": [
+    72,
+    70
+  ],
+  "publication_excludes_credentials": true
+}

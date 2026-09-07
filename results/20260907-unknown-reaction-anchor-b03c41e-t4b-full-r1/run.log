@@ -1,0 +1,145 @@
+{"cell": "s31415-n16-k1-A", "epoch": 1, "train_mse": 0.005161626730114222, "validation_mse": 0.003988297966619332, "seconds": 0.06107883155345917}
+{"cell": "s31415-n16-k1-A", "epoch": 30, "train_mse": 9.161183697870001e-05, "validation_mse": 6.581429488505819e-05, "seconds": 0.2398420013487339}
+{"cell": "s31415-n16-k1-A", "epoch": 60, "train_mse": 0.00010177015792578459, "validation_mse": 8.778658017642253e-05, "seconds": 0.4190349876880646}
+{"cell": "s31415-n16-k1-A", "epoch": 90, "train_mse": 8.815046749077737e-05, "validation_mse": 6.720063841688291e-05, "seconds": 0.5967984646558762}
+{"cell": "s31415-n16-k1-A", "epoch": 120, "train_mse": 8.773109584581107e-05, "validation_mse": 6.701760048599681e-05, "seconds": 0.7750979699194431}
+CELL_COMPLETE s31415-n16-k1-A
+{"cell": "s31415-n16-k1-B", "epoch": 1, "train_mse": 0.006026990711688995, "validation_mse": 0.004297663477094223, "seconds": 0.006589699536561966}
+{"cell": "s31415-n16-k1-B", "epoch": 30, "train_mse": 0.0001953016617335379, "validation_mse": 0.00012578611798138203, "seconds": 0.187651127576828}
+{"cell": "s31415-n16-k1-B", "epoch": 60, "train_mse": 9.014089300762862e-05, "validation_mse": 7.787525116024578e-05, "seconds": 0.3675570785999298}
+{"cell": "s31415-n16-k1-B", "epoch": 90, "train_mse": 8.629866351839155e-05, "validation_mse": 6.448287012972287e-05, "seconds": 0.5449550785124302}
+{"cell": "s31415-n16-k1-B", "epoch": 120, "train_mse": 8.478289964841679e-05, "validation_mse": 6.564124062909589e-05, "seconds": 0.7215100228786469}
+CELL_COMPLETE s31415-n16-k1-B
+{"cell": "s31415-n16-k4-A", "epoch": 1, "train_mse": 0.005021028686314821, "validation_mse": 0.003907050083701809, "seconds": 0.02256789803504944}
+{"cell": "s31415-n16-k4-A", "epoch": 30, "train_mse": 6.211534491740167e-05, "validation_mse": 4.96312298613096e-05, "seconds": 0.6408393904566765}
+{"cell": "s31415-n16-k4-A", "epoch": 60, "train_mse": 6.590310658793896e-05, "validation_mse": 5.51842989201153e-05, "seconds": 1.2818835638463497}
+{"cell": "s31415-n16-k4-A", "epoch": 90, "train_mse": 4.976279160473496e-05, "validation_mse": 3.8010217849659966e-05, "seconds": 1.9179568104445934}
+{"cell": "s31415-n16-k4-A", "epoch": 120, "train_mse": 4.939348582411185e-05, "validation_mse": 3.655014036970291e-05, "seconds": 2.5523342937231064}
+CELL_COMPLETE s31415-n16-k4-A
+{"cell": "s31415-n16-k4-B", "epoch": 1, "train_mse": 0.005863111466169357, "validation_mse": 0.004200688194638739, "seconds": 0.021798700094223022}
+{"cell": "s31415-n16-k4-B", "epoch": 30, "train_mse": 0.00014053218183107674, "validation_mse": 7.896400256868219e-05, "seconds": 0.6382852308452129}
+{"cell": "s31415-n16-k4-B", "epoch": 60, "train_mse": 6.159720942378044e-05, "validation_mse": 5.449414523657955e-05, "seconds": 1.2674258910119534}
+{"cell": "s31415-n16-k4-B", "epoch": 90, "train_mse": 4.77873400086537e-05, "validation_mse": 3.438791388058841e-05, "seconds": 1.8955638781189919}
+{"cell": "s31415-n16-k4-B", "epoch": 120, "train_mse": 4.703701415564865e-05, "validation_mse": 3.478006495546045e-05, "seconds": 2.5252400040626526}
+CELL_COMPLETE s31415-n16-k4-B
+{"cell": "s31415-n128-k1-A", "epoch": 1, "train_mse": 0.004346482455730438, "validation_mse": 0.003988297462152938, "seconds": 0.007585976272821426}
+{"cell": "s31415-n128-k1-A", "epoch": 30, "train_mse": 8.015993807930499e-05, "validation_mse": 6.56639673858687e-05, "seconds": 0.19019145518541336}
+{"cell": "s31415-n128-k1-A", "epoch": 60, "train_mse": 8.984356099972501e-05, "validation_mse": 8.867059356513589e-05, "seconds": 0.3711612932384014}
+{"cell": "s31415-n128-k1-A", "epoch": 90, "train_mse": 7.809499220456928e-05, "validation_mse": 6.629897840563596e-05, "seconds": 0.5512433834373951}
+{"cell": "s31415-n128-k1-A", "epoch": 120, "train_mse": 7.759613072266802e-05, "validation_mse": 6.610643382979713e-05, "seconds": 0.7428162805736065}
+CELL_COMPLETE s31415-n128-k1-A
+{"cell": "s31415-n128-k1-B", "epoch": 1, "train_mse": 0.004800514318048954, "validation_mse": 0.004297663787535082, "seconds": 0.0068454742431640625}
+{"cell": "s31415-n128-k1-B", "epoch": 30, "train_mse": 0.00014917217777110636, "validation_mse": 0.0001247033360414207, "seconds": 0.18649597838521004}
+{"cell": "s31415-n128-k1-B", "epoch": 60, "train_mse": 8.23394802864641e-05, "validation_mse": 8.162419089785544e-05, "seconds": 0.36980850249528885}
+{"cell": "s31415-n128-k1-B", "epoch": 90, "train_mse": 7.592909969389439e-05, "validation_mse": 6.30300948311439e-05, "seconds": 0.5501483604311943}
+{"cell": "s31415-n128-k1-B", "epoch": 120, "train_mse": 7.487307448172942e-05, "validation_mse": 6.41339738649549e-05, "seconds": 0.7282452620565891}
+CELL_COMPLETE s31415-n128-k1-B
+{"cell": "s31415-n128-k4-A", "epoch": 1, "train_mse": 0.0042106229811906815, "validation_mse": 0.003907049191184342, "seconds": 0.023255690932273865}
+{"cell": "s31415-n128-k4-A", "epoch": 30, "train_mse": 5.3219282563077286e-05, "validation_mse": 4.9341936877074964e-05, "seconds": 0.6483493410050869}
+{"cell": "s31415-n128-k4-A", "epoch": 60, "train_mse": 5.7500961702317e-05, "validation_mse": 5.511992427879401e-05, "seconds": 1.2839174680411816}
+{"cell": "s31415-n128-k4-A", "epoch": 90, "train_mse": 4.391820766613819e-05, "validation_mse": 3.735870632226579e-05, "seconds": 1.9230495356023312}
+{"cell": "s31415-n128-k4-A", "epoch": 120, "train_mse": 4.3518972233869135e-05, "validation_mse": 3.600814602577884e-05, "seconds": 2.5634314827620983}
+CELL_COMPLETE s31415-n128-k4-A
+{"cell": "s31415-n128-k4-B", "epoch": 1, "train_mse": 0.0046571712009608746, "validation_mse": 0.004200689300584297, "seconds": 0.022320441901683807}
+{"cell": "s31415-n128-k4-B", "epoch": 30, "train_mse": 0.0001013117580441758, "validation_mse": 8.025094333182399e-05, "seconds": 0.6419450268149376}
+{"cell": "s31415-n128-k4-B", "epoch": 60, "train_mse": 5.576969851972535e-05, "validation_mse": 5.645660060811982e-05, "seconds": 1.276100993156433}
+{"cell": "s31415-n128-k4-B", "epoch": 90, "train_mse": 4.1649062040960416e-05, "validation_mse": 3.4185781487394706e-05, "seconds": 1.909866813570261}
+{"cell": "s31415-n128-k4-B", "epoch": 120, "train_mse": 4.125166742596775e-05, "validation_mse": 3.394720238247828e-05, "seconds": 2.538480758666992}
+CELL_COMPLETE s31415-n128-k4-B
+{"cell": "s271828-n16-k1-A", "epoch": 1, "train_mse": 0.0011636519338935614, "validation_mse": 0.002734409257148703, "seconds": 0.006935976445674896}
+{"cell": "s271828-n16-k1-A", "epoch": 30, "train_mse": 7.161447138059884e-05, "validation_mse": 0.00014299244260958707, "seconds": 0.18520420044660568}
+{"cell": "s271828-n16-k1-A", "epoch": 60, "train_mse": 2.6823712687473744e-05, "validation_mse": 7.330856396947638e-05, "seconds": 0.3644978031516075}
+{"cell": "s271828-n16-k1-A", "epoch": 90, "train_mse": 2.607392889331095e-05, "validation_mse": 7.147402963407028e-05, "seconds": 0.5446184463799}
+{"cell": "s271828-n16-k1-A", "epoch": 120, "train_mse": 2.5854827981675044e-05, "validation_mse": 7.094136966164417e-05, "seconds": 0.7250240556895733}
+CELL_COMPLETE s271828-n16-k1-A
+{"cell": "s271828-n16-k1-B", "epoch": 1, "train_mse": 0.0011465830029919744, "validation_mse": 0.0028735645076570413, "seconds": 0.006770826876163483}
+{"cell": "s271828-n16-k1-B", "epoch": 30, "train_mse": 6.940489402040839e-05, "validation_mse": 0.00018076101271920683, "seconds": 0.1836257465183735}
+{"cell": "s271828-n16-k1-B", "epoch": 60, "train_mse": 2.4901673896238208e-05, "validation_mse": 9.077138580929993e-05, "seconds": 0.36432309821248055}
+{"cell": "s271828-n16-k1-B", "epoch": 90, "train_mse": 2.4131901227519847e-05, "validation_mse": 8.607888867118163e-05, "seconds": 0.5435465313494205}
+{"cell": "s271828-n16-k1-B", "epoch": 120, "train_mse": 2.3724001948721707e-05, "validation_mse": 8.430772868450731e-05, "seconds": 0.7201422080397606}
+CELL_COMPLETE s271828-n16-k1-B
+{"cell": "s271828-n16-k4-A", "epoch": 1, "train_mse": 0.001152188633568585, "validation_mse": 0.0027153116437451295, "seconds": 0.0220375694334507}
+{"cell": "s271828-n16-k4-A", "epoch": 30, "train_mse": 5.663819320034236e-05, "validation_mse": 0.00011063855193545653, "seconds": 0.6422878876328468}
+{"cell": "s271828-n16-k4-A", "epoch": 60, "train_mse": 1.8094176994054578e-05, "validation_mse": 4.2578824680579906e-05, "seconds": 1.2865076661109924}
+{"cell": "s271828-n16-k4-A", "epoch": 90, "train_mse": 1.6545473044971004e-05, "validation_mse": 3.942971943615703e-05, "seconds": 1.9227851927280426}
+{"cell": "s271828-n16-k4-A", "epoch": 120, "train_mse": 1.6334674000972882e-05, "validation_mse": 3.952144046100633e-05, "seconds": 2.5585106052458286}
+CELL_COMPLETE s271828-n16-k4-A
+{"cell": "s271828-n16-k4-B", "epoch": 1, "train_mse": 0.00113765150308609, "validation_mse": 0.002843557682354003, "seconds": 0.02213645726442337}
+{"cell": "s271828-n16-k4-B", "epoch": 30, "train_mse": 5.5309064919129014e-05, "validation_mse": 0.00010778103569464292, "seconds": 0.6439751386642456}
+{"cell": "s271828-n16-k4-B", "epoch": 60, "train_mse": 1.671429163252469e-05, "validation_mse": 4.909337712888373e-05, "seconds": 1.2858551070094109}
+{"cell": "s271828-n16-k4-B", "epoch": 90, "train_mse": 1.541825258755125e-05, "validation_mse": 4.670022144637187e-05, "seconds": 1.9146685265004635}
+{"cell": "s271828-n16-k4-B", "epoch": 120, "train_mse": 1.5091922250576317e-05, "validation_mse": 4.589762920659268e-05, "seconds": 2.5388795770704746}
+CELL_COMPLETE s271828-n16-k4-B
+{"cell": "s271828-n128-k1-A", "epoch": 1, "train_mse": 0.0028871847316622734, "validation_mse": 0.0027344021461127945, "seconds": 0.006581995636224747}
+{"cell": "s271828-n128-k1-A", "epoch": 30, "train_mse": 0.00018198482575826347, "validation_mse": 0.00013696909566836743, "seconds": 0.18436021357774734}
+{"cell": "s271828-n128-k1-A", "epoch": 60, "train_mse": 7.043754158075899e-05, "validation_mse": 6.778489614589489e-05, "seconds": 0.3619520589709282}
+{"cell": "s271828-n128-k1-A", "epoch": 90, "train_mse": 6.906753696966916e-05, "validation_mse": 6.893293054114717e-05, "seconds": 0.5406363159418106}
+{"cell": "s271828-n128-k1-A", "epoch": 120, "train_mse": 6.886296614538878e-05, "validation_mse": 6.881419418884131e-05, "seconds": 0.717738188803196}
+CELL_COMPLETE s271828-n128-k1-A
+{"cell": "s271828-n128-k1-B", "epoch": 1, "train_mse": 0.0029127895832061768, "validation_mse": 0.002767169828681896, "seconds": 0.0063927993178367615}
+{"cell": "s271828-n128-k1-B", "epoch": 30, "train_mse": 0.00018561049364507198, "validation_mse": 0.00013858384105939572, "seconds": 0.18183736503124237}
+{"cell": "s271828-n128-k1-B", "epoch": 60, "train_mse": 7.012294372543693e-05, "validation_mse": 6.878298487814997e-05, "seconds": 0.3602197878062725}
+{"cell": "s271828-n128-k1-B", "epoch": 90, "train_mse": 6.87998253852129e-05, "validation_mse": 6.942804369221751e-05, "seconds": 0.5373469740152359}
+{"cell": "s271828-n128-k1-B", "epoch": 120, "train_mse": 6.858409324195236e-05, "validation_mse": 6.914156847415143e-05, "seconds": 0.7142437286674976}
+CELL_COMPLETE s271828-n128-k1-B
+{"cell": "s271828-n128-k4-A", "epoch": 1, "train_mse": 0.002852771431207657, "validation_mse": 0.002715304804344972, "seconds": 0.02162834256887436}
+{"cell": "s271828-n128-k4-A", "epoch": 30, "train_mse": 0.00013378000585362315, "validation_mse": 9.273389938850111e-05, "seconds": 0.6331190317869186}
+{"cell": "s271828-n128-k4-A", "epoch": 60, "train_mse": 4.4370473915478215e-05, "validation_mse": 3.9882007210204996e-05, "seconds": 1.2634024545550346}
+{"cell": "s271828-n128-k4-A", "epoch": 90, "train_mse": 4.00983881263528e-05, "validation_mse": 3.8154552536677024e-05, "seconds": 1.8944764286279678}
+{"cell": "s271828-n128-k4-A", "epoch": 120, "train_mse": 3.983439819421619e-05, "validation_mse": 3.8408306257527634e-05, "seconds": 2.522870182991028}
+CELL_COMPLETE s271828-n128-k4-A
+{"cell": "s271828-n128-k4-B", "epoch": 1, "train_mse": 0.0028790109790861607, "validation_mse": 0.002746523532550782, "seconds": 0.021960753947496414}
+{"cell": "s271828-n128-k4-B", "epoch": 30, "train_mse": 0.00013794281403534114, "validation_mse": 9.591230991645716e-05, "seconds": 0.638179574161768}
+{"cell": "s271828-n128-k4-B", "epoch": 60, "train_mse": 4.4118103687651455e-05, "validation_mse": 4.004491256637266e-05, "seconds": 1.2627900466322899}
+{"cell": "s271828-n128-k4-B", "epoch": 90, "train_mse": 3.98662086809054e-05, "validation_mse": 3.834229907321666e-05, "seconds": 1.8919700644910336}
+{"cell": "s271828-n128-k4-B", "epoch": 120, "train_mse": 3.960303365602158e-05, "validation_mse": 3.854730099798568e-05, "seconds": 2.5261913202703}
+CELL_COMPLETE s271828-n128-k4-B
+{"cell": "s161803-n16-k1-A", "epoch": 1, "train_mse": 0.003762822365388274, "validation_mse": 0.0039001550370206437, "seconds": 0.00707288458943367}
+{"cell": "s161803-n16-k1-A", "epoch": 30, "train_mse": 0.00012637427425943315, "validation_mse": 0.00010065209092620837, "seconds": 0.18862346559762955}
+{"cell": "s161803-n16-k1-A", "epoch": 60, "train_mse": 6.883416790515184e-05, "validation_mse": 9.932222231630779e-05, "seconds": 0.367283895611763}
+{"cell": "s161803-n16-k1-A", "epoch": 90, "train_mse": 6.0258604207774624e-05, "validation_mse": 7.902895989294241e-05, "seconds": 0.5470541045069695}
+{"cell": "s161803-n16-k1-A", "epoch": 120, "train_mse": 5.9037636674474925e-05, "validation_mse": 7.584608162384636e-05, "seconds": 0.7207104042172432}
+CELL_COMPLETE s161803-n16-k1-A
+{"cell": "s161803-n16-k1-B", "epoch": 1, "train_mse": 0.0037429705262184143, "validation_mse": 0.003831521433312446, "seconds": 0.006650485098361969}
+{"cell": "s161803-n16-k1-B", "epoch": 30, "train_mse": 0.00012315029744058847, "validation_mse": 9.921161229916227e-05, "seconds": 0.19083686918020248}
+{"cell": "s161803-n16-k1-B", "epoch": 60, "train_mse": 6.859267159597948e-05, "validation_mse": 0.00010057598819912528, "seconds": 0.37048202008008957}
+{"cell": "s161803-n16-k1-B", "epoch": 90, "train_mse": 5.9461417549755424e-05, "validation_mse": 7.972574288335939e-05, "seconds": 0.5480431169271469}
+{"cell": "s161803-n16-k1-B", "epoch": 120, "train_mse": 5.780604260507971e-05, "validation_mse": 7.656814644481831e-05, "seconds": 0.7253888919949532}
+CELL_COMPLETE s161803-n16-k1-B
+{"cell": "s161803-n16-k4-A", "epoch": 1, "train_mse": 0.0036241726484149694, "validation_mse": 0.003825386035411308, "seconds": 0.021983623504638672}
+{"cell": "s161803-n16-k4-A", "epoch": 30, "train_mse": 0.0001292521774303168, "validation_mse": 0.00010575032380681175, "seconds": 0.6492019034922123}
+{"cell": "s161803-n16-k4-A", "epoch": 60, "train_mse": 4.0025908674579114e-05, "validation_mse": 5.2842187869828194e-05, "seconds": 1.2842252627015114}
+{"cell": "s161803-n16-k4-A", "epoch": 90, "train_mse": 3.549387474777177e-05, "validation_mse": 4.512864021914235e-05, "seconds": 1.918366588652134}
+{"cell": "s161803-n16-k4-A", "epoch": 120, "train_mse": 3.446723712841049e-05, "validation_mse": 4.199708443290243e-05, "seconds": 2.5499037243425846}
+CELL_COMPLETE s161803-n16-k4-A
+{"cell": "s161803-n16-k4-B", "epoch": 1, "train_mse": 0.003600065130740404, "validation_mse": 0.00375820737099275, "seconds": 0.021715272217988968}
+{"cell": "s161803-n16-k4-B", "epoch": 30, "train_mse": 0.00012717884965240955, "validation_mse": 0.00010311772924372538, "seconds": 0.6786950901150703}
+{"cell": "s161803-n16-k4-B", "epoch": 60, "train_mse": 3.972365448134951e-05, "validation_mse": 5.2650258112407755e-05, "seconds": 1.3071285858750343}
+{"cell": "s161803-n16-k4-B", "epoch": 90, "train_mse": 3.488142101559788e-05, "validation_mse": 4.538023980179181e-05, "seconds": 1.9376347586512566}
+{"cell": "s161803-n16-k4-B", "epoch": 120, "train_mse": 3.3569696824997663e-05, "validation_mse": 4.2351525432119765e-05, "seconds": 2.5680244639515877}
+CELL_COMPLETE s161803-n16-k4-B
+{"cell": "s161803-n128-k1-A", "epoch": 1, "train_mse": 0.0035051614977419376, "validation_mse": 0.0038576406853583953, "seconds": 0.006980162113904953}
+{"cell": "s161803-n128-k1-A", "epoch": 30, "train_mse": 0.00010909637057920918, "validation_mse": 0.000117993218433791, "seconds": 0.18771516904234886}
+{"cell": "s161803-n128-k1-A", "epoch": 60, "train_mse": 6.870293145766482e-05, "validation_mse": 8.028234939653582e-05, "seconds": 0.36786965653300285}
+{"cell": "s161803-n128-k1-A", "epoch": 90, "train_mse": 6.058242070139386e-05, "validation_mse": 6.692329952784348e-05, "seconds": 0.5497423224151134}
+{"cell": "s161803-n128-k1-A", "epoch": 120, "train_mse": 6.008368291077204e-05, "validation_mse": 6.561033812128396e-05, "seconds": 0.7295493595302105}
+CELL_COMPLETE s161803-n128-k1-A
+{"cell": "s161803-n128-k1-B", "epoch": 1, "train_mse": 0.0035609742626547813, "validation_mse": 0.0038342364132404327, "seconds": 0.006639651954174042}
+{"cell": "s161803-n128-k1-B", "epoch": 30, "train_mse": 9.791506454348564e-05, "validation_mse": 0.00010597415924470018, "seconds": 0.18553605303168297}
+{"cell": "s161803-n128-k1-B", "epoch": 60, "train_mse": 6.980248144827783e-05, "validation_mse": 8.206151990937845e-05, "seconds": 0.36393341794610023}
+{"cell": "s161803-n128-k1-B", "epoch": 90, "train_mse": 6.081647370592691e-05, "validation_mse": 6.671457958873361e-05, "seconds": 0.5425567552447319}
+{"cell": "s161803-n128-k1-B", "epoch": 120, "train_mse": 6.0233236581552774e-05, "validation_mse": 6.559963988668945e-05, "seconds": 0.7204896509647369}
+CELL_COMPLETE s161803-n128-k1-B
+{"cell": "s161803-n128-k4-A", "epoch": 1, "train_mse": 0.003410058096051216, "validation_mse": 0.0037851010953697064, "seconds": 0.022318441420793533}
+{"cell": "s161803-n128-k4-A", "epoch": 30, "train_mse": 0.0001132465768023394, "validation_mse": 0.00013069594933767803, "seconds": 0.6448375657200813}
+{"cell": "s161803-n128-k4-A", "epoch": 60, "train_mse": 3.909003862645477e-05, "validation_mse": 4.3033882169159675e-05, "seconds": 1.2796225398778915}
+{"cell": "s161803-n128-k4-A", "epoch": 90, "train_mse": 3.448956340434961e-05, "validation_mse": 3.7496182509736777e-05, "seconds": 1.916012179106474}
+{"cell": "s161803-n128-k4-A", "epoch": 120, "train_mse": 3.384018418728374e-05, "validation_mse": 3.602932777842701e-05, "seconds": 2.5528020560741425}
+CELL_COMPLETE s161803-n128-k4-A
+{"cell": "s161803-n128-k4-B", "epoch": 1, "train_mse": 0.0034611900337040424, "validation_mse": 0.003762698150239885, "seconds": 0.02198689803481102}
+{"cell": "s161803-n128-k4-B", "epoch": 30, "train_mse": 0.0001000522606773302, "validation_mse": 0.00011762599630552965, "seconds": 0.6402722895145416}
+{"cell": "s161803-n128-k4-B", "epoch": 60, "train_mse": 4.073396485182457e-05, "validation_mse": 4.4957098907616455e-05, "seconds": 1.2723170332610607}
+{"cell": "s161803-n128-k4-B", "epoch": 90, "train_mse": 3.462853783275932e-05, "validation_mse": 3.750971518456936e-05, "seconds": 1.9001235850155354}
+{"cell": "s161803-n128-k4-B", "epoch": 120, "train_mse": 3.392204598640092e-05, "validation_mse": 3.594526015149313e-05, "seconds": 2.529573690146208}
+CELL_COMPLETE s161803-n128-k4-B
+{"exploratory": true, "do_not_use_for_formal": true, "completed_cells": 24, "expected_cells": 24, "pooled_mse_ratio_a_over_b": 0.9454606492447862, "strata": {"n16-k1": 0.8249423651770561, "n16-k4": 0.9531196777516848, "n128-k1": 1.0051343961965329, "n128-k4": 1.0110640140500655}, "seeds": {"31415": 1.0161840333792393, "161803": 0.9598314481265764, "271828": 0.8664889560436678}, "accuracy_decision": "no_material_identification_advantage", "structural_rule_passed": true}

@@ -1,0 +1,19 @@
+{
+  "seed": 271828,
+  "training_size": 16,
+  "substeps": 4,
+  "conditioned": true,
+  "epochs": 120,
+  "parameters": 65,
+  "initial_weights_sha256": "375098c55cb546496d3779606676da95199dd916c3d9463f03d5ed9705b3dd9c",
+  "lr": 0.01,
+  "optimizer": "Adam, full batch",
+  "device": "cuda",
+  "dtype": "float32",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "source_commit": "b03c41e5f992beb7329feeb1ef852daf15a0653f",
+  "gpu": "Tesla T4",
+  "cache_sha256": "9b761475a354580a7f597a88d8715cd5b57037d5c669a5c8fc3e8faf28bda8d5",
+  "known_cubic": true
+}

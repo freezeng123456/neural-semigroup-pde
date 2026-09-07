@@ -1,0 +1,15 @@
+{
+  "commit": "40616f3d59eb64f10b61a735a5966586c39146dc",
+  "source_sha256": "7bc37b6514fd1def2c1dfc4d31ab94599f9085710bde05493e0bde564d81a13e",
+  "hostname": "freezeng-2ho6ltsa0a",
+  "python": "/data/miniconda/envs/syngen/bin/python",
+  "torch": "2.0.1+cu118",
+  "numpy": "1.23.5",
+  "cuda": "11.8",
+  "gpu": "Tesla T4",
+  "smoke": true,
+  "expected_cells": 4,
+  "epochs": 2,
+  "exploratory": true,
+  "do_not_use_for_formal": true
+}

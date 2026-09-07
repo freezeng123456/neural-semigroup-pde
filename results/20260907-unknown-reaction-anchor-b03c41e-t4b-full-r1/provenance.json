@@ -1,0 +1,17 @@
+{
+  "commit": "b03c41e5f992beb7329feeb1ef852daf15a0653f",
+  "source_sha256": "b6b40c064d1c58183bbd57f89b406d58d02b28f054792d73a1059f2a1c6d27de",
+  "hostname": "freezeng-2ho6ltsa0a",
+  "python": "/data/miniconda/envs/syngen/bin/python",
+  "torch": "2.0.1+cu118",
+  "numpy": "1.23.5",
+  "cuda": "11.8",
+  "gpu": "Tesla T4",
+  "smoke": false,
+  "expected_cells": 24,
+  "epochs": 120,
+  "known_cubic": true,
+  "reused_cache": "/data/semigroup_runs/20260907-unknown-reaction-40616f3-t4b-full-r1/cache.pt",
+  "exploratory": true,
+  "do_not_use_for_formal": true
+}

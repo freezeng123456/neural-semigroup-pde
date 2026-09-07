@@ -1,0 +1,62 @@
+{
+  "exploratory": true,
+  "post_screen_ablation": true,
+  "independent_confirmation": false,
+  "cache_sha256": "9b761475a354580a7f597a88d8715cd5b57037d5c669a5c8fc3e8faf28bda8d5",
+  "completed_full_cells": 48,
+  "models": {
+    "A": {
+      "anchor_over_plain_mse": 0.009031698392089331,
+      "seed_ratios": {
+        "271828": 0.00931672807912959,
+        "161803": 0.009209467411011958,
+        "31415": 0.008586384707432584
+      },
+      "absolute_mse_plain": 1.0932546318213605,
+      "absolute_mse_anchor": 0.009873946100365199,
+      "bound_violation_plain": 0.3645907810756139,
+      "bound_violation_anchor": 0.0,
+      "anchor_rule_passed": true
+    },
+    "B": {
+      "anchor_over_plain_mse": 0.009622169432026824,
+      "seed_ratios": {
+        "161803": 0.009339041934206259,
+        "31415": 0.008919426329360691,
+        "271828": 0.010694974452523737
+      },
+      "absolute_mse_plain": 1.0853612054936856,
+      "absolute_mse_anchor": 0.010443529414209137,
+      "bound_violation_plain": 0.3659697033110119,
+      "bound_violation_anchor": 0.0,
+      "anchor_rule_passed": true
+    }
+  },
+  "shared_dissipative_prior_rule_passed": true,
+  "accuracy_A_B": [
+    "no_material_identification_advantage",
+    "no_material_identification_advantage"
+  ],
+  "primary_A_B_ratios": [
+    1.0072726261890708,
+    0.9454606492447862
+  ],
+  "refinability_rules": [
+    true,
+    true
+  ],
+  "anchor_refinement": {
+    "A": {
+      "1": 0.00864597348902187,
+      "4": 0.0023504586857176265,
+      "16": 0.0006001216982370151,
+      "64": 0.00014256192013990975
+    },
+    "B": {
+      "1": 0.010115672298963412,
+      "4": 0.004577533411443007,
+      "16": 0.003441307410416865,
+      "64": 0.003229116574976467
+    }
+  }
+}

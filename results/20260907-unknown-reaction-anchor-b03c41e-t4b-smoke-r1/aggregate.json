@@ -1,0 +1,69 @@
+{
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "completed_cells": 4,
+  "expected_cells": 4,
+  "pooled_mse_ratio_a_over_b": 0.9978798190186068,
+  "strata": {
+    "n16-k1": 0.9977969626402788,
+    "n16-k4": 0.9979626822772718
+  },
+  "seeds": {
+    "31415": 0.9978798190186068
+  },
+  "pairs": [
+    {
+      "seed": 31415,
+      "size": 16,
+      "budget": 1,
+      "ratio_a_over_b": 0.9977969626402788,
+      "endpoint_ratios": {
+        "tau=0.075:T=1.2": 0.9879892097607887,
+        "tau=0.075:T=2.4": 1.004419149200905,
+        "tau=0.15:T=1.2": 0.991812234588829,
+        "tau=0.15:T=2.4": 1.0070987655771126
+      },
+      "energy_delta_a_minus_b": 0.1589006696428572,
+      "bound_delta_a_minus_b": 0.0
+    },
+    {
+      "seed": 31415,
+      "size": 16,
+      "budget": 4,
+      "ratio_a_over_b": 0.9979626822772718,
+      "endpoint_ratios": {
+        "tau=0.075:T=1.2": 0.9878604735440573,
+        "tau=0.075:T=2.4": 1.0044801240245478,
+        "tau=0.15:T=1.2": 0.9919666040187007,
+        "tau=0.15:T=2.4": 1.0076812992030104
+      },
+      "energy_delta_a_minus_b": 0.1619698660714285,
+      "bound_delta_a_minus_b": 0.0
+    }
+  ],
+  "accuracy_decision": "no_material_identification_advantage",
+  "structural_checks": [
+    {
+      "cell": "s31415-n16-k4-A",
+      "split": "0.05+0.15",
+      "gain_1_to_64": 101.31128382379563,
+      "monotone": true,
+      "passed": true
+    },
+    {
+      "cell": "s31415-n16-k4-A",
+      "split": "0.08+0.12",
+      "gain_1_to_64": 97.08846558059656,
+      "monotone": true,
+      "passed": true
+    },
+    {
+      "cell": "s31415-n16-k4-A",
+      "split": "0.03+0.07+0.04+0.06",
+      "gain_1_to_64": 96.62540262148434,
+      "monotone": true,
+      "passed": true
+    }
+  ],
+  "structural_rule_passed": true
+}
