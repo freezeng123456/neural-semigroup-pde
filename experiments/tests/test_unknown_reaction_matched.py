@@ -11,7 +11,7 @@ spec.loader.exec_module(m)
 def test_heat_eigenmode_mean_and_composition():
     x=torch.arange(m.N,dtype=torch.float64)*m.LENGTH/m.N
     u=(0.3+torch.cos(3*x)).reshape(1,-1)
-    decay=torch.exp(torch.tensor(-4*m.NU*torch.sin(torch.tensor(3*torch.pi/m.N,dtype=torch.float64))**2/(m.LENGTH/m.N)**2*0.2))
+    decay=torch.exp(-4*m.NU*torch.sin(torch.tensor(3*torch.pi/m.N,dtype=torch.float64))**2/(m.LENGTH/m.N)**2*0.2)
     expected=0.3+decay*torch.cos(3*x)
     torch.testing.assert_close(m.heat(u,0.2),expected.reshape(1,-1),rtol=1e-12,atol=1e-12)
     torch.testing.assert_close(m.heat(m.heat(u,0.07),0.13),m.heat(u,0.2),rtol=1e-12,atol=1e-12)

@@ -275,6 +275,9 @@ def train_cell(root, data, seed, size, budget, conditioned, epochs, device):
         "epochs":epochs,"parameters":sum(p.numel() for p in model.parameters()),
         "initial_weights_sha256":initial_hash,"lr":0.01,"optimizer":"Adam, full batch",
         "device":str(device),"dtype":"float32","exploratory":True,"do_not_use_for_formal":True}
+    provenance = json.loads((root/"provenance.json").read_text())
+    config.update({"source_commit":provenance["commit"],"gpu":provenance["gpu"],
+        "cache_sha256":json.loads((root/"cache_metadata.json").read_text())["sha256"]})
     dump(cell/"config.json",config)
     train = {k:v[:size] for k,v in data["train"][seed].items()}
     optimizer = torch.optim.Adam(model.parameters(),lr=0.01)
@@ -298,7 +301,10 @@ def train_cell(root, data, seed, size, budget, conditioned, epochs, device):
             row = {"epoch":epoch,"train_mse":float(loss),"validation_mse":score,"seconds":time.perf_counter()-start}
             rows.append(row); writer.writerow(row); f.flush()
             if epoch == 1 or epoch%30==0 or epoch==epochs:
-                print(json.dumps({"cell":name,**row}),flush=True)
+                message=json.dumps({"cell":name,**row})
+                print(message,flush=True)
+                with (cell/"run.log").open("a") as log:
+                    log.write(message+"\n")
     torch.save(model.state_dict(),cell/"final.pt")
     training_seconds = time.perf_counter()-start
     model.load_state_dict(best_state)
