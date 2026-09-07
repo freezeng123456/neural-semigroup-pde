@@ -109,6 +109,12 @@ unanimous verdicts.
 - The Burgers structural claim is restated in terms of path 3.  The
   defensible number is an in-range composition defect of about `1.3%` of the
   state norm against exactly zero, not a ratio of `2.9e-7`.
+- That number is architecture dependent but the conclusion is not.  Repeating
+  the path-3 measurement on the 33-parameter generator recommended by
+  `BURGERS_FLUX_ABLATION_RESULTS.md` gives `0.7456%` of the state norm at
+  `9.01e+4` times the integrator floor, still structural in all six cells; see
+  `BURGERS_MINIMAL_GENERATOR_AB_RESULTS.md`.  The mechanism therefore holds at
+  two architectures forty times apart in parameter count.
 - The accuracy conclusion of the screen is untouched.  The geometric-mean
   rollout-MSE ratio remains `0.9933`, still short of the `0.90` material
   threshold, so the Section 4 advance criterion remains unmet on two PDEs.

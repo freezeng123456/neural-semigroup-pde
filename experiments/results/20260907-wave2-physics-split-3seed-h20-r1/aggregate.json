@@ -1,0 +1,110 @@
+{
+  "experiment": "wave2_physics_split_control",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "n_summaries": 9,
+  "cache_sha256_by_family": {
+    "inhomogeneous_dirichlet": "295534fb9f8637285ff15bdb26980b5df6f473a5dd78aaefe707b60f706e18b4",
+    "homogeneous_neumann": "3d55869bb31e7810826705d4c7d37ae3df4483884365b1995efedac3262fb6b7",
+    "robin": "20c1777c3f4b9ab35ef0183f6926bfdcbeabf635621fbbc65271268f6ba47e1d"
+  },
+  "families": {
+    "inhomogeneous_dirichlet": {
+      "mse_a_prime_over_c_star": {
+        "per_seed": [
+          1.456043469361226,
+          1.6327816158802857,
+          1.6811885471774703
+        ],
+        "pooled": 1.5869854869788287,
+        "seeds_meeting_0.90": 0
+      },
+      "mse_b_prime_over_c_star": {
+        "per_seed": [
+          1.7311321452909008,
+          1.7755737179346116,
+          2.0942799027540446
+        ],
+        "pooled": 1.8602353142244532
+      },
+      "mse_c_star_over_c_residual": {
+        "per_seed": [
+          0.05777944930386752,
+          0.061654900939342706,
+          0.0673438124657766
+        ],
+        "pooled": 0.06213642088293397
+      },
+      "accuracy_verdict": "flow_has_no_material_advantage_over_physics_split_map",
+      "residual_gap_verdict": "physics_split_closes_most_of_the_residual_gap"
+    },
+    "homogeneous_neumann": {
+      "mse_a_prime_over_c_star": {
+        "per_seed": [
+          74.80794660602345,
+          101.6012362986934,
+          93.73568520799721
+        ],
+        "pooled": 89.31352459166278,
+        "seeds_meeting_0.90": 0
+      },
+      "mse_b_prime_over_c_star": {
+        "per_seed": [
+          90.54376881736552,
+          119.06617098499652,
+          101.01059353672103
+        ],
+        "pooled": 102.8816591514215
+      },
+      "mse_c_star_over_c_residual": {
+        "per_seed": [
+          0.00041442934033617153,
+          0.00027569178186606766,
+          0.00032515753716417763
+        ],
+        "pooled": 0.0003336742657253463
+      },
+      "accuracy_verdict": "flow_has_no_material_advantage_over_physics_split_map",
+      "residual_gap_verdict": "physics_split_closes_most_of_the_residual_gap"
+    },
+    "robin": {
+      "mse_a_prime_over_c_star": {
+        "per_seed": [
+          4.231442946280281,
+          4.194150568044442,
+          4.221573856757717
+        ],
+        "pooled": 4.215692898404944,
+        "seeds_meeting_0.90": 0
+      },
+      "mse_b_prime_over_c_star": {
+        "per_seed": [
+          5.60062956986861,
+          5.122268959433351,
+          5.192378683138645
+        ],
+        "pooled": 5.300968155669818
+      },
+      "mse_c_star_over_c_residual": {
+        "per_seed": [
+          0.005944262021165665,
+          0.0044380680604544625,
+          0.004587075634067019
+        ],
+        "pooled": 0.004946248534941597
+      },
+      "accuracy_verdict": "flow_has_no_material_advantage_over_physics_split_map",
+      "residual_gap_verdict": "physics_split_closes_most_of_the_residual_gap"
+    }
+  },
+  "accuracy_verdicts": {
+    "inhomogeneous_dirichlet": "flow_has_no_material_advantage_over_physics_split_map",
+    "homogeneous_neumann": "flow_has_no_material_advantage_over_physics_split_map",
+    "robin": "flow_has_no_material_advantage_over_physics_split_map"
+  },
+  "residual_gap_verdicts": {
+    "inhomogeneous_dirichlet": "physics_split_closes_most_of_the_residual_gap",
+    "homogeneous_neumann": "physics_split_closes_most_of_the_residual_gap",
+    "robin": "physics_split_closes_most_of_the_residual_gap"
+  }
+}

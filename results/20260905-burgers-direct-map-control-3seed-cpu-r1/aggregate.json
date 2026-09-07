@@ -1,0 +1,53 @@
+{
+  "experiment": "burgers_direct_map_control_aggregate",
+  "exploratory": true,
+  "do_not_use_for_formal": true,
+  "architecture": "r0_h8_l1_anchor",
+  "seeds": [
+    31415,
+    161803,
+    271828
+  ],
+  "data_cache_sha256": "30c8443e37fa9b0d97e2b964699e8c0044f8f637232acf29abf915f19ac2de8d",
+  "parameter_count_each": 33,
+  "flux_evaluations_per_call": {
+    "a_autonomous": 48,
+    "b_query_time": 48,
+    "c_direct_map": 1
+  },
+  "material_ratio_threshold": 0.9,
+  "rollout_mse_ratio_a_over_c": 0.6992492034001871,
+  "rollout_mse_ratio_b_over_c": 0.6779596387932305,
+  "per_seed_a_over_c": {
+    "31415": 0.6996004968987709,
+    "161803": 0.6987436114466671,
+    "271828": 0.6994037900255043
+  },
+  "seeds_meeting_material_threshold": 3,
+  "autonomous_integrator_floor_geometric_mean": 3.7093724899093345e-08,
+  "direct_map_in_range_cross_lag_defect": 0.012671328221113365,
+  "direct_map_in_range_defect_over_floor": 341603.0138678006,
+  "direct_map_in_range_defect_relative_to_state_rms": 0.02801271899970351,
+  "in_range_structural_cells": "6/6",
+  "unseen_lag_mse_spread_max": {
+    "a_autonomous": 2.978145166121766e-07,
+    "b_query_time": 0.0796315669510319,
+    "c_direct_map": 0.7441013140368559
+  },
+  "spatial_mean_drift_max": {
+    "a_autonomous": 7.869675755500793e-08,
+    "b_query_time": 6.891787052154541e-08,
+    "c_direct_map": 4.353933036327362e-08
+  },
+  "quadratic_energy_change_max": {
+    "a_autonomous": -0.005200621783733368,
+    "b_query_time": -0.005216106325387954,
+    "c_direct_map": -0.0020231203734874725
+  },
+  "flow_reference": {
+    "autonomous_in_range_cross_lag_defect": 0.0,
+    "query_time_in_range_defect_relative_to_state_rms": 0.007455667181173939
+  },
+  "accuracy_conclusion": "autonomy_has_material_accuracy_advantage_over_direct_map",
+  "structural_specificity_conclusion": "structural_property_is_specific_to_autonomy"
+}

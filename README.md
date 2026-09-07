@@ -121,20 +121,73 @@ pointwise, and shrinking the flux stencil from five points to one halves
 rollout error and cuts one-step error about fivefold; hidden width 32 and the
 second hidden layer are pure overhead. A 33-parameter generator, `39.8` times
 smaller, is about twice as accurate as the screen's 1,313-parameter one. The
-fixed viscous anchor, by contrast, is essential. Because both headline Burgers
-numbers were measured on the oversized generator, the paired
-autonomous/query-time contrast has to be re-established on the reduced one
-before the reduction is adopted. See
+fixed viscous anchor, by contrast, is essential. See
 [`docs/research/BURGERS_FLUX_ABLATION_RESULTS.md`](docs/research/BURGERS_FLUX_ABLATION_RESULTS.md).
 
+Re-running the paired contrast on that 33-parameter generator settled what the
+reduction costs. The structural result survives untouched: an in-range
+composition defect of `0.7456%` of the state norm against exactly zero, still
+structural in all six cells, so the mechanism holds at two architectures forty
+times apart. The accuracy result stays sub-material but reverses sign to
+`1.0314`, which withdraws the screen's seed-level direction sub-claim and
+leaves the accuracy endpoint carrying no signal either way. The reason is
+visible in the selection metric: the control channel is worth `1.2%` of
+one-step error at 1,313 parameters and `39%` at 33, because reading the
+requested lag is a fitting shortcut whose value grows as capacity shrinks and
+whose structural cost does not. See
+[`docs/research/BURGERS_MINIMAL_GENERATOR_AB_RESULTS.md`](docs/research/BURGERS_MINIMAL_GENERATOR_AB_RESULTS.md).
+
+Two further controls close the Burgers lane. Against a direct
+time-conditioned map of the same 33 parameters, the in-range cross-lag defect
+is `0` exactly for the autonomous flow, `0.7456%` of the state norm for the
+query-conditioned flow, and `2.8013%` for the direct map, with unseen-lag
+prediction spreads of `3.0e-7`, `8.0e-2` and `7.4e-1`; that ordering is
+monotone in how much freedom the requested duration is given and cannot be a
+compute artifact. The accompanying accuracy figure could be, and was: at
+matched work, one flux evaluation per call for all three, the ratios collapse
+to `1.0084` and `1.0013`, so the flow's apparent `30%` advantage was compute
+and has been retracted. Nothing in the Burgers lane supports an accuracy claim
+in either direction. See
+[`docs/research/BURGERS_DIRECT_MAP_CONTROL_RESULTS.md`](docs/research/BURGERS_DIRECT_MAP_CONTROL_RESULTS.md)
+and
+[`docs/research/BURGERS_WORK_MATCHED_CONTROL_RESULTS.md`](docs/research/BURGERS_WORK_MATCHED_CONTROL_RESULTS.md).
+
+For the adopted generator the two constants
+[`docs/research/FISHER_KPP_THEOREM_CARD.md`](docs/research/FISHER_KPP_THEOREM_CARD.md)
+marks `OPEN` are now certified rather than sampled, and the layered rollout
+bound is a number instead of a schema. Its looseness is almost entirely one
+constant: the exponential amplification costs about `20` at horizon `0.4` and
+`870` at `0.8`, while generator matching costs `7` and `9`. See
+[`docs/research/BURGERS_CERTIFIED_CONSTANTS.md`](docs/research/BURGERS_CERTIFIED_CONSTANTS.md).
+
+The Wave 2 A-versus-C control, which Burgers never survived at matched work,
+is now complete on the reaction--diffusion PDE. At one network evaluation per
+call, pooled `MSE(A')/MSE(C)` is `0.0986` (Dirichlet), `0.0298` (Neumann),
+and `0.0209` (Robin), material in `3/3` seeds on every family. The corrected
+refinability rule also holds: `A'` shrinks by `438`--`648` from 1 to 128
+Euler substeps, `B'` plateaus with gain `2`, and `C` sits `1,764`--`2,239`
+times above `A'` at 128 substeps. Retraining the Wave 2 RK4-8 pair
+reproduces the original long-rollout ratios to four figures. The residual
+direct map is a weaker inductive bias than Burgers' physics-split `C`; `B'`
+beats it by about the same factor as `A'`, so autonomy is not the only
+difference, but `A'` versus `B'` remains `0.80`--`0.87`. See
+[`docs/research/WAVE2_DIRECT_MAP_WORK_MATCHED_RESULTS.md`](docs/research/WAVE2_DIRECT_MAP_WORK_MATCHED_RESULTS.md).
+
 The repository is not yet publication-ready. Wave 2 is exploratory and tests
-one one-dimensional reaction--diffusion PDE. Neither the formal Fisher--KPP
-lane nor the exploratory Burgers screen establishes a material prediction
-advantage, so the accuracy half of the Section 4 advance criterion is now
-unmet on two PDEs with different generator structure. Conservative/no-flux,
-multidimensional, and irregular-geometry transfer remain open. Archived
-numerical values are retained for provenance and must not be mixed across
-formal and exploratory evidence classes.
+one one-dimensional reaction--diffusion PDE. The formal Fisher--KPP lane and
+the exploratory Burgers screen still do not establish a material prediction
+advantage. The Wave 2 residual-map control met the `0.90` threshold, but the
+follow-up physics-split map retracts the reading of that number as a
+flow-versus-direct-map result. With the exact boundary-aware heat
+semigroup and a \(\tau\)-scaled reaction increment, pooled `MSE(A')/MSE(C*)`
+is `1.59`, `89.3`, and `4.22`; `C*` also cuts residual-`C` error to
+`0.062`, `0.00033`, and `0.0049` of its value. Autonomy remains a
+structural composition property. See
+[`docs/research/WAVE2_PHYSICS_SPLIT_CONTROL_RESULTS.md`](docs/research/WAVE2_PHYSICS_SPLIT_CONTROL_RESULTS.md).
+These Wave 2 numbers must not be pooled with the locked Fisher decision.
+Conservative/no-flux, multidimensional, and irregular-geometry transfer
+remain open. Archived numerical values are retained for provenance and
+must not be mixed across formal and exploratory evidence classes.
 
 Before broadening to another PDE, complete the theorem card. In particular,
 Cahn--Hilliard requires a conservative mobility, Burgers requires a

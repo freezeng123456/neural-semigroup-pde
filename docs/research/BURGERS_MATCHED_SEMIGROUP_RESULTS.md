@@ -52,6 +52,14 @@ The direction is consistent at the seed level and inconsistent at the cell
 level.  The magnitude, `0.67%`, is far inside the range that Fisher--KPP
 already showed to be seed dependent.
 
+**The seed-level direction sub-claim is withdrawn.**  Repeating this paired
+comparison on the reduced generator recommended by
+`BURGERS_FLUX_ABLATION_RESULTS.md` reverses the sign: `1.0314` pooled, with
+the autonomous model ahead in `0/12` cells and no seed.  See
+`BURGERS_MINIMAL_GENERATOR_AB_RESULTS.md`.  The 3/3 agreement above is an
+artifact of this architecture, and the accuracy endpoint should be read as
+carrying no signal in either direction.
+
 ## Structural endpoints
 
 | Endpoint | Autonomous | Query-time |

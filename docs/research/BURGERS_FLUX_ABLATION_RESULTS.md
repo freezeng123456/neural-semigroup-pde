@@ -134,15 +134,20 @@ about five.
 
 Keep: the periodic divergence form, the fixed viscous anchor, and autonomy.
 
-**Required before adoption.** The screen's headline numbers — the `0.9933`
-accuracy ratio and the `1.26%` in-range composition defect from
-`BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md` — were both measured on
+**Adoption check: complete.**  Both of the screen's headline numbers — the
+`0.9933` accuracy ratio and the `1.26%` in-range composition defect from
+`BURGERS_QUERY_CONDITIONING_ATTRIBUTION_RESULTS.md` — were measured on
 `r2_h32_l2_anchor`, which this ablation shows to be the worst architecture in
-its own grid.  A generator that is `40` times smaller and twice as accurate
-could move either endpoint, so the paired autonomous/query-time contrast must
-be re-established on `r0_h8_l1_anchor` before the reduction is adopted.  That
-is a three-seed paired run of roughly a minute per model and needs its own
-preregistration.
+its own grid, so the paired contrast was re-established on `r0_h8_l1_anchor`
+in `BURGERS_MINIMAL_GENERATOR_AB_RESULTS.md`.
+
+The structural conclusion survives: an in-range composition defect of
+`0.7456%` of the state norm at `9.01e+4` times the integrator floor,
+structural in all six cells, against exactly zero for the autonomous model.
+The accuracy conclusion also survives in the sense the rule tested, no
+material advantage, but the sub-material sign reverses to `1.0314`, so the
+screen's seed-level direction sub-claim is withdrawn there.  The reduction is
+adopted.
 
 The same question is now open for Fisher--KPP, whose architecture size was
 never ablated either.
