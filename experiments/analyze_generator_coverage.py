@@ -30,7 +30,8 @@ def analyze(roots, out):
                     "energy_monotone": ev["test"]["energy_monotone_fraction"],
                     "stress_mse": gm([ev["stress"]["endpoints"][f"tau={t}:T={h}"]["mse"] for t in (.075, .15) for h in (1.2, 2.4)]),
                     "training_seconds": r["training_seconds"], "epochs": c["epochs"],
-                    "selected_epoch": r["best_epochs"].get(checkpoint.removeprefix("best_"), 120 if checkpoint == "epoch120" else c["epochs"]),
+                    "selected_epoch": r["best_epochs"].get(checkpoint[5:] if checkpoint.startswith("best_") else checkpoint,
+                        int(checkpoint[5:]) if checkpoint.startswith("epoch") else c["epochs"]),
                     "privileged": c["privileged_diagnostic"]})
     if not rows: raise ValueError("no completed cells")
     with (out / "all_checkpoints.csv").open("w", newline="") as f:

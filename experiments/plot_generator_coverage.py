@@ -53,6 +53,33 @@ def main():
     for extension in ("png", "pdf"):
         fig.savefig(args.output / ("coverage_comparison." + extension))
     plt.close(fig)
+    extension_roots = [name for name in ("long-L4", "rate-L4", "long-L8") if any(g["root"] == name for g in analysis["aggregates"])]
+    if extension_roots:
+        fig, axes = plt.subplots(len(extension_roots), 3, figsize=(14, 3.6 * len(extension_roots)), squeeze=False, layout="constrained")
+        for i, name in enumerate(extension_roots):
+            group = [g for g in analysis["aggregates"] if g["root"] == name]
+            group.sort(key=lambda g: MODES.index(g["mode"]))
+            for j, metric in enumerate(("primary_mse", "generator_grid_mse")):
+                ax = axes[i, j]
+                for label, offset in (("A", -.10), ("B", .10)):
+                    ax.plot(np.arange(len(group)) + offset, [g[label][metric] for g in group], "o-", color=COLORS[label], label=label)
+                    for k, g in enumerate(group):
+                        values = [float(r[metric]) for r in rows if r["root"] == name and r["mode"] == g["mode"] and r["model"] == label and r["checkpoint"] == "best_rollout"]
+                        ax.scatter(np.full(len(values), k + offset), values, color=COLORS[label], alpha=.3, s=14)
+                ax.set_yscale("log"); ax.set_xticks(range(len(group)), [LABELS[g["mode"]] for g in group])
+                ax.set_title(name + (": prediction" if j == 0 else ": source identification")); ax.set_ylabel("MSE")
+                ax.grid(axis="y", alpha=.2); ax.legend()
+            ax = axes[i, 2]
+            for k, g in enumerate(group):
+                ax.scatter([k] * 3, [v["ratio"] for v in g["pairs"]], color="#6d7580", alpha=.6, s=24)
+                ax.scatter(k, g["ratio_a_over_b"], marker="D", color="#182b42", s=40)
+            ax.axhline(1, color="black", linewidth=.7); ax.axhline(.9, color="#39815e", linestyle="--", linewidth=1)
+            ax.set_yscale("log"); ax.set_xticks(range(len(group)), [LABELS[g["mode"]] for g in group])
+            ax.set_title(name + ": A / B prediction MSE"); ax.set_ylabel("Ratio (below 1 favors A)"); ax.grid(axis="y", alpha=.2)
+        fig.suptitle("Longer optimization, lag weighting, and trajectory depth | 2000 updates | 3 seeds\nFresh data relative to the 400-update screen; exploratory comparisons", fontsize=13)
+        for extension in ("png", "pdf"):
+            fig.savefig(args.output / ("extension_comparison." + extension))
+        plt.close(fig)
     # Compare the selected checkpoint with the early and final weights.
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.5), layout="constrained")
     for ax, scheme in zip(axes, ("euler", "midpoint")):
@@ -75,9 +102,9 @@ def main():
         legacy = [json.loads(f.read_text()) for f in args.legacy.glob("*-best.json")]
         for label in ("A", "B"):
             subset = [r for r in legacy if ("B" if r["legacy_config"]["conditioned"] else "A") == label]
-            for r in subset:
+            for k, r in enumerate(subset):
                 g = r["generator"]
-                axes[0].plot(g["states"], g["curves"]["0.15"], color=COLORS[label], alpha=.5)
+                axes[0].plot(g["states"], g["curves"]["0.15"], color=COLORS[label], alpha=.5, label=label if k == 0 else None)
             if subset:
                 occupancy = subset[0]["generator"]["occupancy"]
                 for name, linestyle in (("initial", "-"), ("reference_long", "--")):
