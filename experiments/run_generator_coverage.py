@@ -149,7 +149,7 @@ def generator_diagnostics(model, train, test, length):
         occupancy[name] = {"minimum": float(values.min()), "maximum": float(values.max()),
             "outside_initial_range_fraction": float(((values < low) | (values > high)).float().mean()),
             "abs_above_075_fraction": float((values.abs() > 0.75).float().mean()),
-            "histogram_48_bins_minus12_to12": torch.histc(values.float(), bins=48, min=-1.2, max=1.2).cpu().tolist()}
+            "histogram_48_bins_minus12_to12": torch.histc(values.float().cpu(), bins=48, min=-1.2, max=1.2).tolist()}
     return {"states": grid.flatten().cpu().tolist(), "truth": base.truth_reaction(grid).flatten().cpu().tolist(),
         "curves": curves, "mse": errors, "occupancy": occupancy, "trajectory_length": length}
 
