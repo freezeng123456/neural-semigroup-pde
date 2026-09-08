@@ -105,15 +105,15 @@ def main():
             for k, r in enumerate(subset):
                 g = r["generator"]
                 axes[0].plot(g["states"], g["curves"]["0.15"], color=COLORS[label], alpha=.5, label=label if k == 0 else None)
-            if subset:
-                occupancy = subset[0]["generator"]["occupancy"]
-                for name, linestyle in (("initial", "-"), ("reference_long", "--")):
-                    values = np.array(occupancy[name]["histogram_48_bins_minus12_to12"])
-                    axes[1].plot(np.linspace(-1.175, 1.175, 48), values / values.sum(), color=COLORS[label], linestyle=linestyle, label=label + " " + name)
         if legacy:
             axes[0].plot(legacy[0]["generator"]["states"], legacy[0]["generator"]["truth"], color="black", label="True reaction")
+            example = min(legacy, key=lambda r: r["legacy_config"]["seed"])
+            occupancy = example["generator"]["occupancy"]
+            for name, linestyle, color in (("initial", "-", "#6d7580"), ("reference_long", "--", "#186a9d")):
+                values = np.array(occupancy[name]["histogram_48_bins_minus12_to12"])
+                axes[1].plot(np.linspace(-1.175, 1.175, 48), values / values.sum(), color=color, linestyle=linestyle, label=name + " (shared A/B)")
         axes[0].set_title("Previous 120-update models: reaction curves"); axes[0].set_ylabel("Reaction rate")
-        axes[1].set_title("Previous experiment: visited-state distributions"); axes[1].set_ylabel("Fraction per bin")
+        axes[1].set_title("Previous experiment: state distributions, seed 31415"); axes[1].set_ylabel("Fraction per bin")
         for ax in axes:
             ax.set_xlabel("State u"); ax.legend(fontsize=8); ax.grid(alpha=.2)
         for extension in ("png", "pdf"):
