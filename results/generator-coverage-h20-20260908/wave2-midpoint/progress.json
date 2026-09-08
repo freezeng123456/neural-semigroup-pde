@@ -1,0 +1,29 @@
+{
+  "completed_cells": 24,
+  "cells": [
+    "midpoint-b4-L4-detached-s161803-A",
+    "midpoint-b4-L4-detached-s161803-B",
+    "midpoint-b4-L4-detached-s271828-A",
+    "midpoint-b4-L4-detached-s271828-B",
+    "midpoint-b4-L4-detached-s31415-A",
+    "midpoint-b4-L4-detached-s31415-B",
+    "midpoint-b4-L4-initial-s161803-A",
+    "midpoint-b4-L4-initial-s161803-B",
+    "midpoint-b4-L4-initial-s271828-A",
+    "midpoint-b4-L4-initial-s271828-B",
+    "midpoint-b4-L4-initial-s31415-A",
+    "midpoint-b4-L4-initial-s31415-B",
+    "midpoint-b4-L4-teacher-s161803-A",
+    "midpoint-b4-L4-teacher-s161803-B",
+    "midpoint-b4-L4-teacher-s271828-A",
+    "midpoint-b4-L4-teacher-s271828-B",
+    "midpoint-b4-L4-teacher-s31415-A",
+    "midpoint-b4-L4-teacher-s31415-B",
+    "midpoint-b4-L4-unroll-s161803-A",
+    "midpoint-b4-L4-unroll-s161803-B",
+    "midpoint-b4-L4-unroll-s271828-A",
+    "midpoint-b4-L4-unroll-s271828-B",
+    "midpoint-b4-L4-unroll-s31415-A",
+    "midpoint-b4-L4-unroll-s31415-B"
+  ]
+}

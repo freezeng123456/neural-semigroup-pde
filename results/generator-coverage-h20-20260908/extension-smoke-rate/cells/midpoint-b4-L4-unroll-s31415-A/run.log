@@ -1,0 +1,2 @@
+{"cell": "midpoint-b4-L4-unroll-s31415-A", "epoch": 1, "train_mse": 1.3906689882278442, "gradient_norm": 4.254517555236816, "validation_one_step": 0.003950260967637102, "validation_rollout": 0.09299136698246002, "train_seconds": 0.014764972031116486, "elapsed_seconds": 0.040361691266298294}
+{"cell": "midpoint-b4-L4-unroll-s31415-A", "epoch": 2, "train_mse": 1.23288893699646, "gradient_norm": 3.7379579544067383, "validation_one_step": 0.003920647160460551, "validation_rollout": 0.09310713410377502, "train_seconds": 0.029164493083953857, "elapsed_seconds": 0.08042436093091965}

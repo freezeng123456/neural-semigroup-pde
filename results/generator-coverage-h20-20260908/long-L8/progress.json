@@ -1,0 +1,29 @@
+{
+  "completed_cells": 24,
+  "cells": [
+    "midpoint-b4-L8-detached-s161803-A",
+    "midpoint-b4-L8-detached-s161803-B",
+    "midpoint-b4-L8-detached-s271828-A",
+    "midpoint-b4-L8-detached-s271828-B",
+    "midpoint-b4-L8-detached-s31415-A",
+    "midpoint-b4-L8-detached-s31415-B",
+    "midpoint-b4-L8-initial_repeat-s161803-A",
+    "midpoint-b4-L8-initial_repeat-s161803-B",
+    "midpoint-b4-L8-initial_repeat-s271828-A",
+    "midpoint-b4-L8-initial_repeat-s271828-B",
+    "midpoint-b4-L8-initial_repeat-s31415-A",
+    "midpoint-b4-L8-initial_repeat-s31415-B",
+    "midpoint-b4-L8-teacher-s161803-A",
+    "midpoint-b4-L8-teacher-s161803-B",
+    "midpoint-b4-L8-teacher-s271828-A",
+    "midpoint-b4-L8-teacher-s271828-B",
+    "midpoint-b4-L8-teacher-s31415-A",
+    "midpoint-b4-L8-teacher-s31415-B",
+    "midpoint-b4-L8-unroll-s161803-A",
+    "midpoint-b4-L8-unroll-s161803-B",
+    "midpoint-b4-L8-unroll-s271828-A",
+    "midpoint-b4-L8-unroll-s271828-B",
+    "midpoint-b4-L8-unroll-s31415-A",
+    "midpoint-b4-L8-unroll-s31415-B"
+  ]
+}

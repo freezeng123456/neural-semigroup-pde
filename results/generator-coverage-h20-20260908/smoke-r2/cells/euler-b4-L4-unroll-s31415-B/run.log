@@ -1,0 +1,2 @@
+{"cell": "euler-b4-L4-unroll-s31415-B", "epoch": 1, "train_mse": 0.09002748131752014, "gradient_norm": 0.36524003744125366, "validation_one_step": 0.0037373510810236135, "validation_rollout": 0.08785973489284515, "train_seconds": 0.01828358694911003, "elapsed_seconds": 0.05108369514346123}
+{"cell": "euler-b4-L4-unroll-s31415-B", "epoch": 2, "train_mse": 0.0720895305275917, "gradient_norm": 0.29279255867004395, "validation_one_step": 0.003896308441956838, "validation_rollout": 0.09200011193752289, "train_seconds": 0.036002859473228455, "elapsed_seconds": 0.1011587604880333}

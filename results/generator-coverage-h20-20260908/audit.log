@@ -1,0 +1,87 @@
+{
+  "roots": {
+    "wave1-euler": {
+      "cells": 30,
+      "checkpoints": 120,
+      "metric_rows": 1230,
+      "optimizer_updates": 12000,
+      "cache_sha256": "4d208d57c37a72576c43aad9aa2e489af18c442f72210f1150afb00753ab894c",
+      "passed": true
+    },
+    "wave2-midpoint": {
+      "cells": 24,
+      "checkpoints": 96,
+      "metric_rows": 984,
+      "optimizer_updates": 9600,
+      "cache_sha256": "4d208d57c37a72576c43aad9aa2e489af18c442f72210f1150afb00753ab894c",
+      "passed": true
+    },
+    "oracle": {
+      "cells": 6,
+      "checkpoints": 24,
+      "metric_rows": 1206,
+      "optimizer_updates": 12000,
+      "cache_sha256": "4d208d57c37a72576c43aad9aa2e489af18c442f72210f1150afb00753ab894c",
+      "passed": true
+    },
+    "long-L4": {
+      "cells": 24,
+      "checkpoints": 120,
+      "metric_rows": 4824,
+      "optimizer_updates": 48000,
+      "cache_sha256": "97280b8f4a62402c627d3e019b513e6d11381ecf0aa1ecf7f24148b9a09099b7",
+      "passed": true
+    },
+    "rate-L4": {
+      "cells": 24,
+      "checkpoints": 120,
+      "metric_rows": 4824,
+      "optimizer_updates": 48000,
+      "cache_sha256": "97280b8f4a62402c627d3e019b513e6d11381ecf0aa1ecf7f24148b9a09099b7",
+      "passed": true
+    },
+    "long-L8": {
+      "cells": 24,
+      "checkpoints": 120,
+      "metric_rows": 4824,
+      "optimizer_updates": 48000,
+      "cache_sha256": "ef14ff664aef20ab6dfd3617bd3d0e7271d6fbfac5e6d0766d704f3d34815d67",
+      "passed": true
+    },
+    "smoke-r2": {
+      "cells": 24,
+      "checkpoints": 72,
+      "metric_rows": 48,
+      "optimizer_updates": 48,
+      "cache_sha256": "b2a88f143bc51bab0ec2a346593028ba1958e8ea3f35f372b6b69a93b7afa076",
+      "passed": true
+    },
+    "extension-smoke-rate": {
+      "cells": 8,
+      "checkpoints": 24,
+      "metric_rows": 16,
+      "optimizer_updates": 16,
+      "cache_sha256": "b2a88f143bc51bab0ec2a346593028ba1958e8ea3f35f372b6b69a93b7afa076",
+      "passed": true
+    },
+    "extension-smoke-L8": {
+      "cells": 8,
+      "checkpoints": 24,
+      "metric_rows": 16,
+      "optimizer_updates": 16,
+      "cache_sha256": "9d21ef4968d257334637a45960df9ad4c74dff12f8244cdae00999e2786d37b6",
+      "passed": true
+    }
+  },
+  "full_cells": 132,
+  "smoke_cells": 40,
+  "full_checkpoints": 600,
+  "full_optimizer_updates": 177600,
+  "full_metric_rows": 17892,
+  "status": "PASSED",
+  "matching_L4_L8_initials_and_first_four_snapshots": true,
+  "fresh_extension_splits": true,
+  "legacy_checkpoint_diagnoses": 12,
+  "known_resolved_smoke_failure": "smoke-r1: GPU histogram determinism; CPU histogram fixed in ec8ec77",
+  "focused_tests_passed": 12
+}

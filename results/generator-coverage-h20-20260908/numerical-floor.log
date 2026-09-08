@@ -1,0 +1,10 @@
+wave1-euler pure_heat 0.3180949274925983
+wave1-euler known_cubic_only 0.3793861847727615
+wave1-euler exact_source_euler_b4 1.0428344490334426e-05
+wave1-euler exact_source_midpoint_b4 2.8558893896711225e-08
+wave1-euler exact_source_midpoint_b16 2.7173266491321255e-10
+long-L4 pure_heat 0.31159843407515775
+long-L4 known_cubic_only 0.3744354147567197
+long-L4 exact_source_euler_b4 1.4034771210932362e-05
+long-L4 exact_source_midpoint_b4 3.485898868471077e-08
+long-L4 exact_source_midpoint_b16 3.407885658368926e-10

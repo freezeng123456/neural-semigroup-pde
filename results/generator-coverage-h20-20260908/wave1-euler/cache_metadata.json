@@ -1,0 +1,17 @@
+{
+  "sha256": "4d208d57c37a72576c43aad9aa2e489af18c442f72210f1150afb00753ab894c",
+  "length": 4,
+  "count": 128,
+  "data_offset": 0,
+  "validation_seed": 2026090801,
+  "test_seed": 2026090802,
+  "stress_seed": 2026090803,
+  "reference_audit": {
+    "relative_l2": {
+      "0.6": 2.2629647425120092e-13,
+      "1.2": 3.150605778259431e-13,
+      "2.4": 1.6265032101546165e-13
+    },
+    "passed": true
+  }
+}

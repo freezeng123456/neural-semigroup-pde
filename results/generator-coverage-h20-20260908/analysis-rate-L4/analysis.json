@@ -1,0 +1,376 @@
+{
+  "completed_cells": 24,
+  "checkpoint_evaluations": 120,
+  "aggregates": [
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "budget": 4,
+      "length": 4,
+      "mode": "detached",
+      "pairs": [
+        {
+          "seed": 161803,
+          "ratio": 0.8145770395256892,
+          "generator_ratio": 1.4653067654812926,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.7840280825019592,
+          "generator_ratio": 0.9682400233871163,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 31415,
+          "ratio": 1.0819332842706468,
+          "generator_ratio": 1.1991476091563458,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        }
+      ],
+      "ratio_a_over_b": 0.8840729205732094,
+      "accuracy_gate_passed": false,
+      "privileged": false,
+      "A": {
+        "primary_mse": 1.9282416152914936e-06,
+        "generator_grid_mse": 8.9895271491607e-05,
+        "generator_reference_mse": 2.138523039137747e-05,
+        "stress_mse": 3.868540342597064e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 29.015511695295572
+      },
+      "B": {
+        "primary_mse": 2.181088879004769e-06,
+        "generator_grid_mse": 7.530239188023779e-05,
+        "generator_reference_mse": 1.7688980728145315e-05,
+        "stress_mse": 3.1816959673003725e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 28.707168554266293
+      }
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "budget": 4,
+      "length": 4,
+      "mode": "initial",
+      "pairs": [
+        {
+          "seed": 161803,
+          "ratio": 0.8738733158505679,
+          "generator_ratio": 1.3436118584327559,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.9068598037323634,
+          "generator_ratio": 0.9041143311810413,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 31415,
+          "ratio": 0.8500990611693795,
+          "generator_ratio": 1.0545390500152791,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        }
+      ],
+      "ratio_a_over_b": 0.8766361767606864,
+      "accuracy_gate_passed": true,
+      "privileged": false,
+      "A": {
+        "primary_mse": 1.6548597470595109e-06,
+        "generator_grid_mse": 8.22064187104111e-05,
+        "generator_reference_mse": 1.499414570917109e-05,
+        "stress_mse": 2.4967483051613123e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 8.345189645886421
+      },
+      "B": {
+        "primary_mse": 1.88773836961017e-06,
+        "generator_grid_mse": 7.56924296881578e-05,
+        "generator_reference_mse": 1.4929777630566828e-05,
+        "stress_mse": 2.271178689071247e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 8.206847034394741
+      }
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "budget": 4,
+      "length": 4,
+      "mode": "teacher",
+      "pairs": [
+        {
+          "seed": 161803,
+          "ratio": 0.44105971339013367,
+          "generator_ratio": 1.76516402327142,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.774749226567162,
+          "generator_ratio": 1.0818825216305594,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 31415,
+          "ratio": 0.7060791929398732,
+          "generator_ratio": 1.2902330151619132,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        }
+      ],
+      "ratio_a_over_b": 0.6225448603461383,
+      "accuracy_gate_passed": true,
+      "privileged": false,
+      "A": {
+        "primary_mse": 1.5767990009271098e-06,
+        "generator_grid_mse": 7.49487198296354e-05,
+        "generator_reference_mse": 1.5546872311245304e-05,
+        "stress_mse": 2.738322893269649e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 8.398284835120043
+      },
+      "B": {
+        "primary_mse": 2.5328279154861256e-06,
+        "generator_grid_mse": 5.54906457006253e-05,
+        "generator_reference_mse": 1.5559175107860193e-05,
+        "stress_mse": 2.7857802051427413e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 8.360109012573957
+      }
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "budget": 4,
+      "length": 4,
+      "mode": "unroll",
+      "pairs": [
+        {
+          "seed": 161803,
+          "ratio": 0.647839584772705,
+          "generator_ratio": 1.5556437084297785,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.8208970605804081,
+          "generator_ratio": 1.0093835553736898,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 31415,
+          "ratio": 0.8486027159892343,
+          "generator_ratio": 1.1605315671013015,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        }
+      ],
+      "ratio_a_over_b": 0.7670438632170076,
+      "accuracy_gate_passed": true,
+      "privileged": false,
+      "A": {
+        "primary_mse": 1.8340723523602681e-06,
+        "generator_grid_mse": 8.655962405440251e-05,
+        "generator_reference_mse": 1.845356893468547e-05,
+        "stress_mse": 3.2910583145234006e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 30.365933251877625
+      },
+      "B": {
+        "primary_mse": 2.3910918792415697e-06,
+        "generator_grid_mse": 7.08664897995124e-05,
+        "generator_reference_mse": 1.8038875252358755e-05,
+        "stress_mse": 3.152900822781828e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 30.142736828575533
+      }
+    }
+  ],
+  "comparisons_to_initial": [
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "detached",
+      "seed": 161803,
+      "model": "A",
+      "mse_over_initial": 1.4906218365016852,
+      "generator_over_initial": 1.4118954552943008
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "detached",
+      "seed": 161803,
+      "model": "B",
+      "mse_over_initial": 1.5991300806876114,
+      "generator_over_initial": 1.2946364005748916
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "detached",
+      "seed": 271828,
+      "model": "A",
+      "mse_over_initial": 0.8018494444365009,
+      "generator_over_initial": 0.7788607743555666
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "detached",
+      "seed": 271828,
+      "model": "B",
+      "mse_over_initial": 0.9274731939244952,
+      "generator_over_initial": 0.7272775046276826
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "detached",
+      "seed": 31415,
+      "model": "A",
+      "mse_over_initial": 1.3235503469007874,
+      "generator_over_initial": 1.1891345194420717
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "detached",
+      "seed": 31415,
+      "model": "B",
+      "mse_over_initial": 1.0399429647542933,
+      "generator_over_initial": 1.0457334667539846
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "teacher",
+      "seed": 161803,
+      "model": "A",
+      "mse_over_initial": 1.279932499137411,
+      "generator_over_initial": 1.2129999664282338
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "teacher",
+      "seed": 161803,
+      "model": "B",
+      "mse_over_initial": 2.53593521042526,
+      "generator_over_initial": 0.9233142743023739
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "teacher",
+      "seed": 271828,
+      "model": "A",
+      "mse_over_initial": 0.6236671674325476,
+      "generator_over_initial": 0.5768970465955547
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "teacher",
+      "seed": 271828,
+      "model": "B",
+      "mse_over_initial": 0.7300151657565673,
+      "generator_over_initial": 0.48210492083461826
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "teacher",
+      "seed": 31415,
+      "model": "A",
+      "mse_over_initial": 1.083691042137804,
+      "generator_over_initial": 1.0829698524674567
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "teacher",
+      "seed": 31415,
+      "model": "B",
+      "mse_over_initial": 1.3047328780264213,
+      "generator_over_initial": 0.8851377898378328
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "unroll",
+      "seed": 161803,
+      "model": "A",
+      "mse_over_initial": 1.713574231344768,
+      "generator_over_initial": 1.201607687445515
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "unroll",
+      "seed": 161803,
+      "model": "B",
+      "mse_over_initial": 2.3114468931791516,
+      "generator_over_initial": 1.0378304037660255
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "unroll",
+      "seed": 271828,
+      "model": "A",
+      "mse_over_initial": 0.9586674652028717,
+      "generator_over_initial": 0.9932549604327908
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "unroll",
+      "seed": 271828,
+      "model": "B",
+      "mse_over_initial": 1.059057257098464,
+      "generator_over_initial": 0.8896677972046855
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "unroll",
+      "seed": 31415,
+      "model": "A",
+      "mse_over_initial": 0.8286953545113968,
+      "generator_over_initial": 0.9781499962180435
+    },
+    {
+      "root": "rate-L4",
+      "scheme": "midpoint",
+      "mode": "unroll",
+      "seed": 31415,
+      "model": "B",
+      "mse_over_initial": 0.830156596946953,
+      "generator_over_initial": 0.8888145717230511
+    }
+  ],
+  "exploratory": true,
+  "checkpoint": "best_rollout"
+}

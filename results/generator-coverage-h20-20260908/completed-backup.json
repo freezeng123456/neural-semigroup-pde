@@ -1,0 +1,18 @@
+{
+  "file": "completed-backup.tar.gz",
+  "bytes": 18177476,
+  "sha256": "3709a3ad2ea0a51a7bdc3094a1e4ea42d27c6e66218c8b155d4bc8e024e4182f",
+  "full_training_cells": 108,
+  "roots": [
+    "wave1-euler",
+    "wave2-midpoint",
+    "oracle",
+    "long-L4",
+    "rate-L4",
+    "smoke-r2",
+    "extension-smoke-rate",
+    "extension-smoke-L8",
+    "legacy-diagnosis",
+    "numerical-floor"
+  ]
+}

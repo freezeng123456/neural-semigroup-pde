@@ -1,0 +1,209 @@
+{
+  "completed_cells": 24,
+  "aggregates": [
+    {
+      "root": "long-L8",
+      "scheme": "midpoint",
+      "budget": 4,
+      "length": 8,
+      "mode": "detached",
+      "pairs": [
+        {
+          "seed": 161803,
+          "ratio": 0.9221174811010181,
+          "generator_ratio": 1.302585617372864,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.5327941533503987,
+          "generator_ratio": 0.7264695692865977,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 31415,
+          "ratio": 0.6185325644204255,
+          "generator_ratio": 1.083118187719431,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        }
+      ],
+      "ratio_a_over_b": 0.6723097738954037,
+      "accuracy_gate_passed": true,
+      "privileged": false,
+      "A": {
+        "primary_mse": 1.1717748307354517e-06,
+        "generator_grid_mse": 5.8368723636095755e-05,
+        "generator_reference_mse": 1.213670741575294e-05,
+        "stress_mse": 1.996212603570847e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 56.386599058906235
+      },
+      "B": {
+        "primary_mse": 1.7429091115931822e-06,
+        "generator_grid_mse": 5.7891350170934335e-05,
+        "generator_reference_mse": 1.2709083840894178e-05,
+        "stress_mse": 2.3125518501769394e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 55.91021006926894
+      }
+    },
+    {
+      "root": "long-L8",
+      "scheme": "midpoint",
+      "budget": 4,
+      "length": 8,
+      "mode": "initial_repeat",
+      "pairs": [
+        {
+          "seed": 161803,
+          "ratio": 0.0816213325107099,
+          "generator_ratio": 1.7564549892880963,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.8693904290054759,
+          "generator_ratio": 0.8911132406269022,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 31415,
+          "ratio": 0.7952689780331733,
+          "generator_ratio": 1.315338358729446,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        }
+      ],
+      "ratio_a_over_b": 0.3835696112535237,
+      "accuracy_gate_passed": true,
+      "privileged": false,
+      "A": {
+        "primary_mse": 2.193590908586912e-06,
+        "generator_grid_mse": 8.921697164114486e-05,
+        "generator_reference_mse": 1.8479226061367658e-05,
+        "stress_mse": 2.9971114705529422e-06,
+        "bound_max": 0.0,
+        "energy_min": 0.9997209821428571,
+        "mean_training_seconds": 8.394466577718655
+      },
+      "B": {
+        "primary_mse": 5.718886074989496e-06,
+        "generator_grid_mse": 7.013126541221817e-05,
+        "generator_reference_mse": 3.896697370224984e-05,
+        "stress_mse": 7.420102318491207e-06,
+        "bound_max": 0.0,
+        "energy_min": 0.9997209821428571,
+        "mean_training_seconds": 8.336636301130056
+      }
+    },
+    {
+      "root": "long-L8",
+      "scheme": "midpoint",
+      "budget": 4,
+      "length": 8,
+      "mode": "teacher",
+      "pairs": [
+        {
+          "seed": 161803,
+          "ratio": 0.35757767720208455,
+          "generator_ratio": 1.792947919785461,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 271828,
+          "ratio": 1.1213752492273044,
+          "generator_ratio": 1.3718397319790099,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 31415,
+          "ratio": 0.056557612751148026,
+          "generator_ratio": 1.1114191323915166,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        }
+      ],
+      "ratio_a_over_b": 0.283054987519842,
+      "accuracy_gate_passed": false,
+      "privileged": false,
+      "A": {
+        "primary_mse": 1.0886119165399827e-06,
+        "generator_grid_mse": 5.611376797121407e-05,
+        "generator_reference_mse": 9.450034321803821e-06,
+        "stress_mse": 1.4682089304384975e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 9.129467207938433
+      },
+      "B": {
+        "primary_mse": 3.845937943289804e-06,
+        "generator_grid_mse": 4.013159849437777e-05,
+        "generator_reference_mse": 8.279888322639661e-06,
+        "stress_mse": 2.1081165956869534e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 8.871126424521208
+      }
+    },
+    {
+      "root": "long-L8",
+      "scheme": "midpoint",
+      "budget": 4,
+      "length": 8,
+      "mode": "unroll",
+      "pairs": [
+        {
+          "seed": 161803,
+          "ratio": 0.9562351023992665,
+          "generator_ratio": 1.6417702259825375,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.6419113099750183,
+          "generator_ratio": 0.7287734883614525,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        },
+        {
+          "seed": 31415,
+          "ratio": 0.6454242934500719,
+          "generator_ratio": 1.2848128309529407,
+          "energy_delta": 0.0,
+          "bound_delta": 0.0
+        }
+      ],
+      "ratio_a_over_b": 0.7344490486472703,
+      "accuracy_gate_passed": true,
+      "privileged": false,
+      "A": {
+        "primary_mse": 1.1659348767865815e-06,
+        "generator_grid_mse": 5.889119193287854e-05,
+        "generator_reference_mse": 1.2093048662232031e-05,
+        "stress_mse": 2.0068708281043704e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 60.52902802824974
+      },
+      "B": {
+        "primary_mse": 1.587495931724651e-06,
+        "generator_grid_mse": 5.10272396769632e-05,
+        "generator_reference_mse": 1.134245558923206e-05,
+        "stress_mse": 1.9009033459405721e-06,
+        "bound_max": 0.0,
+        "energy_min": 1.0,
+        "mean_training_seconds": 59.04337407896916
+      }
+    }
+  ]
+}

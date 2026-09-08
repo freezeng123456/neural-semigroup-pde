@@ -1,0 +1,30 @@
+...........                                                              [100%]
+11 passed in 85.89s (0:01:25)
+experiments/run_generator_coverage.py:216: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  row = {"epoch": epoch, "train_mse": float(loss), "gradient_norm": gradient_norm,
+{"cell": "euler-b4-L4-initial-s31415-A", "epoch": 1, "train_mse": 0.005743112415075302, "gradient_norm": 0.008221050724387169, "validation_one_step": 0.003961331346848358, "validation_rollout": 0.0931166261434555, "train_seconds": 1.1491914056241512, "elapsed_seconds": 1.1887860670685768}
+{"cell": "euler-b4-L4-initial-s31415-A", "epoch": 2, "train_mse": 0.005316419526934624, "gradient_norm": 0.007089325226843357, "validation_one_step": 0.003925615611175696, "validation_rollout": 0.09310675412416458, "train_seconds": 1.1550597846508026, "elapsed_seconds": 1.227189153432846}
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "experiments/run_generator_coverage.py", line 307, in <module>
+    main()
+  File "experiments/run_generator_coverage.py", line 295, in main
+    results.update(train_cell(root, data, seed, mode, scheme, args.budget,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "experiments/run_generator_coverage.py", line 237, in train_cell
+    evaluations[key] = checkpoint_evaluation(model, train, data, length)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "experiments/run_generator_coverage.py", line 159, in checkpoint_evaluation
+    "generator": generator_diagnostics(model, train, data["test"], length)}
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/jizhicfs/yuyechen/miniconda3/envs/cl/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "experiments/run_generator_coverage.py", line 152, in generator_diagnostics
+    "histogram_48_bins_minus12_to12": torch.histc(values.float(), bins=48, min=-1.2, max=1.2).cpu().tolist()}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: _histc_cuda with floating point input does not have a deterministic implementation, but you set 'torch.use_deterministic_algorithms(True)'. You can turn off determinism just for this operation, or you can use the 'warn_only=True' option, if that's acceptable for your application. You can also file an issue at https://github.com/pytorch/pytorch/issues to help us prioritize adding deterministic support for this operation.

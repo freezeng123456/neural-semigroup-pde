@@ -1,0 +1,34 @@
+{
+  "commit": "ec8ec77b4b0d7616eec4ddfbcb8e13ffca728051",
+  "source_sha256": "7d7ae546b00fdabefaa3a7c1d3bdc85f02a16b75c37b43369f76abf992892cd8",
+  "hostname": "ts-8b1d8194a0684fda01a080e5003435ef-launcher",
+  "python": "/jizhicfs/yuyechen/miniconda3/envs/cl/bin/python",
+  "torch": "2.10.0+cu128",
+  "cuda": "12.8",
+  "expected_cells": 24,
+  "gpu": "NVIDIA H20",
+  "arguments": {
+    "output": "/data/semigroup-h20-20260908/smoke-r2",
+    "device": "cuda",
+    "smoke": true,
+    "epochs": 400,
+    "modes": [
+      "initial",
+      "teacher",
+      "detached",
+      "unroll",
+      "initial_repeat",
+      "oracle"
+    ],
+    "schemes": [
+      "euler",
+      "midpoint"
+    ],
+    "budget": 4,
+    "length": 4,
+    "data_offset": 0,
+    "cache": null
+  },
+  "exploratory": true,
+  "formal_confirmation": false
+}

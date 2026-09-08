@@ -1,0 +1,684 @@
+{
+  "pooled_contrasts": [
+    {
+      "numerator": "long-L8",
+      "denominator": "long-L4",
+      "mode": "detached",
+      "model": "A",
+      "primary_mse_ratio": 0.5693200024825058,
+      "generator_grid_ratio": 0.6644121980175015,
+      "training_time_ratio": 2.0635509126227527
+    },
+    {
+      "numerator": "long-L8",
+      "denominator": "long-L4",
+      "mode": "detached",
+      "model": "B",
+      "primary_mse_ratio": 0.7973073445327598,
+      "generator_grid_ratio": 0.7458724515155954,
+      "training_time_ratio": 2.0786608192674088
+    },
+    {
+      "numerator": "long-L8",
+      "denominator": "long-L4",
+      "mode": "teacher",
+      "model": "A",
+      "primary_mse_ratio": 0.8211054983648206,
+      "generator_grid_ratio": 0.8564473434761151,
+      "training_time_ratio": 1.0777122661347225
+    },
+    {
+      "numerator": "long-L8",
+      "denominator": "long-L4",
+      "mode": "teacher",
+      "model": "B",
+      "primary_mse_ratio": 1.1045926696788233,
+      "generator_grid_ratio": 0.7712311386022838,
+      "training_time_ratio": 1.059808655365571
+    },
+    {
+      "numerator": "long-L8",
+      "denominator": "long-L4",
+      "mode": "unroll",
+      "model": "A",
+      "primary_mse_ratio": 0.6469519437124667,
+      "generator_grid_ratio": 0.6677266370458269,
+      "training_time_ratio": 1.9744000737002854
+    },
+    {
+      "numerator": "long-L8",
+      "denominator": "long-L4",
+      "mode": "unroll",
+      "model": "B",
+      "primary_mse_ratio": 0.9363804809870319,
+      "generator_grid_ratio": 0.7102249593589056,
+      "training_time_ratio": 1.9686860178153751
+    },
+    {
+      "numerator": "rate-L4",
+      "denominator": "long-L4",
+      "mode": "detached",
+      "model": "A",
+      "primary_mse_ratio": 0.9368579119553289,
+      "generator_grid_ratio": 1.0232794414949762,
+      "training_time_ratio": 1.0618611431159088
+    },
+    {
+      "numerator": "rate-L4",
+      "denominator": "long-L4",
+      "mode": "detached",
+      "model": "B",
+      "primary_mse_ratio": 0.9977560910904975,
+      "generator_grid_ratio": 0.9701964018952942,
+      "training_time_ratio": 1.0673127040730985
+    },
+    {
+      "numerator": "rate-L4",
+      "denominator": "long-L4",
+      "mode": "initial",
+      "model": "A",
+      "primary_mse_ratio": 0.8444403574454753,
+      "generator_grid_ratio": 1.0377382827610786,
+      "training_time_ratio": 1.0534144438493722
+    },
+    {
+      "numerator": "rate-L4",
+      "denominator": "long-L4",
+      "mode": "initial",
+      "model": "B",
+      "primary_mse_ratio": 0.711046474002274,
+      "generator_grid_ratio": 0.9323441914611067,
+      "training_time_ratio": 1.032346463937295
+    },
+    {
+      "numerator": "rate-L4",
+      "denominator": "long-L4",
+      "mode": "teacher",
+      "model": "A",
+      "primary_mse_ratio": 1.1893295579498229,
+      "generator_grid_ratio": 1.1439194749487431,
+      "training_time_ratio": 0.9930845540420701
+    },
+    {
+      "numerator": "rate-L4",
+      "denominator": "long-L4",
+      "mode": "teacher",
+      "model": "B",
+      "primary_mse_ratio": 0.7274540541885831,
+      "generator_grid_ratio": 1.0663944490390702,
+      "training_time_ratio": 1.003035070775343
+    },
+    {
+      "numerator": "rate-L4",
+      "denominator": "long-L4",
+      "mode": "unroll",
+      "model": "A",
+      "primary_mse_ratio": 1.017686919649427,
+      "generator_grid_ratio": 0.9814399195667994,
+      "training_time_ratio": 0.9906396140962266
+    },
+    {
+      "numerator": "rate-L4",
+      "denominator": "long-L4",
+      "mode": "unroll",
+      "model": "B",
+      "primary_mse_ratio": 1.4103795286807401,
+      "generator_grid_ratio": 0.9863584657213881,
+      "training_time_ratio": 1.005050585326644
+    },
+    {
+      "numerator": "wave2-midpoint",
+      "denominator": "wave1-euler",
+      "mode": "detached",
+      "model": "A",
+      "primary_mse_ratio": 0.923521488947317,
+      "generator_grid_ratio": 0.9883254280502209,
+      "training_time_ratio": 0.7761881806820489
+    },
+    {
+      "numerator": "wave2-midpoint",
+      "denominator": "wave1-euler",
+      "mode": "detached",
+      "model": "B",
+      "primary_mse_ratio": 0.9419012906625376,
+      "generator_grid_ratio": 1.0150162957929196,
+      "training_time_ratio": 0.7704795560931819
+    },
+    {
+      "numerator": "wave2-midpoint",
+      "denominator": "wave1-euler",
+      "mode": "initial",
+      "model": "A",
+      "primary_mse_ratio": 0.9046770900187358,
+      "generator_grid_ratio": 0.9651591307293828,
+      "training_time_ratio": 0.8077170992220716
+    },
+    {
+      "numerator": "wave2-midpoint",
+      "denominator": "wave1-euler",
+      "mode": "initial",
+      "model": "B",
+      "primary_mse_ratio": 0.9414101316354566,
+      "generator_grid_ratio": 1.007057956755332,
+      "training_time_ratio": 0.8078659156611377
+    },
+    {
+      "numerator": "wave2-midpoint",
+      "denominator": "wave1-euler",
+      "mode": "teacher",
+      "model": "A",
+      "primary_mse_ratio": 0.9190976838656845,
+      "generator_grid_ratio": 1.0173298352924918,
+      "training_time_ratio": 0.7992127413963829
+    },
+    {
+      "numerator": "wave2-midpoint",
+      "denominator": "wave1-euler",
+      "mode": "teacher",
+      "model": "B",
+      "primary_mse_ratio": 0.9235618883676442,
+      "generator_grid_ratio": 1.0192132999775876,
+      "training_time_ratio": 0.7999204831465633
+    },
+    {
+      "numerator": "wave2-midpoint",
+      "denominator": "wave1-euler",
+      "mode": "unroll",
+      "model": "A",
+      "primary_mse_ratio": 0.9087999754875568,
+      "generator_grid_ratio": 0.9751041186199058,
+      "training_time_ratio": 0.7567016918042031
+    },
+    {
+      "numerator": "wave2-midpoint",
+      "denominator": "wave1-euler",
+      "mode": "unroll",
+      "model": "B",
+      "primary_mse_ratio": 0.9120284605100113,
+      "generator_grid_ratio": 0.9784451824192093,
+      "training_time_ratio": 0.7664467255142198
+    }
+  ],
+  "optimization": [
+    {
+      "root": "long-L4",
+      "mode": "detached",
+      "model": "A",
+      "final2000_over_epoch400": 0.00045039563946623005,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.0002799256613845541
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0019083942860731965
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00017102976976088807
+        }
+      ]
+    },
+    {
+      "root": "long-L4",
+      "mode": "detached",
+      "model": "B",
+      "final2000_over_epoch400": 0.0015759950675323152,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.0003333521542435948
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0242628817711651
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.0004839705260102572
+        }
+      ]
+    },
+    {
+      "root": "long-L4",
+      "mode": "initial",
+      "model": "A",
+      "final2000_over_epoch400": 0.0003144430059545771,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00017928346717915953
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.001977117801180889
+        },
+        {
+          "seed": 161803,
+          "ratio": 8.771079130629275e-05
+        }
+      ]
+    },
+    {
+      "root": "long-L4",
+      "mode": "initial",
+      "model": "B",
+      "final2000_over_epoch400": 0.00042182422379215853,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00028633084906593735
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.002467401110642845
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00010623965485448216
+        }
+      ]
+    },
+    {
+      "root": "long-L4",
+      "mode": "teacher",
+      "model": "A",
+      "final2000_over_epoch400": 0.006216507595598985,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.0026884200836120777
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0016574831523057823
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.05391295694974918
+        }
+      ]
+    },
+    {
+      "root": "long-L4",
+      "mode": "teacher",
+      "model": "B",
+      "final2000_over_epoch400": 0.0010138848557356378,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.0006979553108273703
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.001685894406199477
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.0008857433949202096
+        }
+      ]
+    },
+    {
+      "root": "long-L4",
+      "mode": "unroll",
+      "model": "A",
+      "final2000_over_epoch400": 0.00035321420428931525,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00016370353441322213
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.00231174199554345
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00011644398557517725
+        }
+      ]
+    },
+    {
+      "root": "long-L4",
+      "mode": "unroll",
+      "model": "B",
+      "final2000_over_epoch400": 0.0021353230355958793,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.060560873574351796
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0020928726823114755
+        },
+        {
+          "seed": 161803,
+          "ratio": 7.681672988951068e-05
+        }
+      ]
+    },
+    {
+      "root": "long-L8",
+      "mode": "detached",
+      "model": "A",
+      "final2000_over_epoch400": 0.0003361524617717208,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.0002974897243418137
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.000806056141469944
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.0001584060001011611
+        }
+      ]
+    },
+    {
+      "root": "long-L8",
+      "mode": "detached",
+      "model": "B",
+      "final2000_over_epoch400": 0.0004312257477187707,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00042154396549759883
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0011990159943113922
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.0001586522364828175
+        }
+      ]
+    },
+    {
+      "root": "long-L8",
+      "mode": "initial_repeat",
+      "model": "A",
+      "final2000_over_epoch400": 0.0005515426252836683,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.000759147959330914
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.003308136194524145
+        },
+        {
+          "seed": 161803,
+          "ratio": 6.680784084110724e-05
+        }
+      ]
+    },
+    {
+      "root": "long-L8",
+      "mode": "initial_repeat",
+      "model": "B",
+      "final2000_over_epoch400": 0.0009083092118232792,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00018230422367627024
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.005065857514183414
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.0008114307376977263
+        }
+      ]
+    },
+    {
+      "root": "long-L8",
+      "mode": "teacher",
+      "model": "A",
+      "final2000_over_epoch400": 0.000221790839579101,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00011727291202602653
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0008854873549074604
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00010506322840153096
+        }
+      ]
+    },
+    {
+      "root": "long-L8",
+      "mode": "teacher",
+      "model": "B",
+      "final2000_over_epoch400": 0.0009790694755887157,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.0023140303815885038
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0014123742330370065
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00028715850915864746
+        }
+      ]
+    },
+    {
+      "root": "long-L8",
+      "mode": "unroll",
+      "model": "A",
+      "final2000_over_epoch400": 0.00025648746890732254,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00016546323248634745
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0010530650291623788
+        },
+        {
+          "seed": 161803,
+          "ratio": 9.683709672663592e-05
+        }
+      ]
+    },
+    {
+      "root": "long-L8",
+      "mode": "unroll",
+      "model": "B",
+      "final2000_over_epoch400": 0.0006531993543634442,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00024790374733862653
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.010827035422703664
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00010383519697153343
+        }
+      ]
+    },
+    {
+      "root": "rate-L4",
+      "mode": "detached",
+      "model": "A",
+      "final2000_over_epoch400": 0.00034337214382385164,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00018654214518674234
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0020150208895474363
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00010770569324501761
+        }
+      ]
+    },
+    {
+      "root": "rate-L4",
+      "mode": "detached",
+      "model": "B",
+      "final2000_over_epoch400": 0.000823438340397932,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00017310795429259266
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.026505200140891937
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00012168726813407031
+        }
+      ]
+    },
+    {
+      "root": "rate-L4",
+      "mode": "initial",
+      "model": "A",
+      "final2000_over_epoch400": 0.00035279639802147,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00018703303944246828
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0035586708120734305
+        },
+        {
+          "seed": 161803,
+          "ratio": 6.597300701060886e-05
+        }
+      ]
+    },
+    {
+      "root": "rate-L4",
+      "mode": "initial",
+      "model": "B",
+      "final2000_over_epoch400": 0.00028371488736164517,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00014999034008414397
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.002351327948166635
+        },
+        {
+          "seed": 161803,
+          "ratio": 6.475448884866735e-05
+        }
+      ]
+    },
+    {
+      "root": "rate-L4",
+      "mode": "teacher",
+      "model": "A",
+      "final2000_over_epoch400": 0.00032976692341707853,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00016986957851967936
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.00200779243357982
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00010514457139364451
+        }
+      ]
+    },
+    {
+      "root": "rate-L4",
+      "mode": "teacher",
+      "model": "B",
+      "final2000_over_epoch400": 0.0004488176599880104,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.0002625949983102763
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0016546514489397127
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00020807353121859217
+        }
+      ]
+    },
+    {
+      "root": "rate-L4",
+      "mode": "unroll",
+      "model": "A",
+      "final2000_over_epoch400": 0.0020931587650193624,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.036154236585508155
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.0022707935991730837
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00011170423914868657
+        }
+      ]
+    },
+    {
+      "root": "rate-L4",
+      "mode": "unroll",
+      "model": "B",
+      "final2000_over_epoch400": 0.0005088542428334421,
+      "per_seed": [
+        {
+          "seed": 31415,
+          "ratio": 0.00013062142578960738
+        },
+        {
+          "seed": 271828,
+          "ratio": 0.006195860733720846
+        },
+        {
+          "seed": 161803,
+          "ratio": 0.00016280364823277528
+        }
+      ]
+    }
+  ]
+}
