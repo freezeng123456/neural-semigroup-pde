@@ -131,7 +131,7 @@ def validate(model, data):
 @torch.no_grad()
 def generator_diagnostics(model, train, test, length):
     grid = torch.linspace(-1.2, 1.2, 241, device=test["u"].device).reshape(1, -1)
-    distributions = {"initial": train["u"], "reference_training": train["states"][:, :-1].reshape(-1, base.N),
+    distributions = {"initial": train["u"], "reference_short_trajectory": train["states"][:, :-1].reshape(-1, base.N),
         "reference_long": torch.cat([test["targets"][t].float() for t in base.HORIZONS])}
     u, deployed = test["u"].float(), []
     for _ in range(16):
@@ -231,10 +231,11 @@ def train_cell(root, data, seed, mode, scheme, budget, epochs, length, device):
         if final_hash == initial_hash or not all(torch.isfinite(p).all() for p in model.parameters()):
             raise RuntimeError("weights did not change or became nonfinite")
         evaluations = {}
+        diagnostic_train = train if mode in ("initial", "oracle") else {k: v[:count // length] for k, v in train.items()}
         for key, state in states.items():
             torch.save(base.cpu_tree(state), cell / f"{key}.pt")
             model.load_state_dict(state)
-            evaluations[key] = checkpoint_evaluation(model, train, data, length)
+            evaluations[key] = checkpoint_evaluation(model, diagnostic_train, data, length)
         model.load_state_dict(best_states["rollout"])
         refined = base.evaluate(model, data["test"], substeps=model.substeps * 4)
         structural = base.structural(model, data["test"]["u"])
