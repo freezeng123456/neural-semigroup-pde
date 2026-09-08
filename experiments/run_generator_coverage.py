@@ -92,18 +92,29 @@ def prepare(root, smoke, length=4, data_offset=0):
     return data
 
 
-def training_loss(model, data, mode, length):
+def snapshot_error(prediction, target, tau, normalization):
+    residual = prediction - target
+    if normalization == "rate":
+        residual = residual / base.lag_column(tau, residual)
+    elif normalization != "state":
+        raise ValueError(normalization)
+    return residual.square().mean()
+
+
+def training_loss(model, data, mode, length, normalization="state"):
     if mode == "initial":
-        return (model(data["u"], data["tau"]) - data["states"][:, 1]).square().mean()
+        return snapshot_error(model(data["u"], data["tau"]), data["states"][:, 1], data["tau"], normalization)
     count = data["u"].shape[0] // length
     states, tau = data["states"][:count], data["tau"][:count]
     if mode == "initial_repeat":
         u = states[:, :1].expand(-1, length, -1).reshape(-1, base.N)
         target = states[:, 1:2].expand(-1, length, -1).reshape(-1, base.N)
-        return (model(u, tau[:, None].expand(-1, length).reshape(-1)) - target).square().mean()
+        repeated_tau = tau[:, None].expand(-1, length).reshape(-1)
+        return snapshot_error(model(u, repeated_tau), target, repeated_tau, normalization)
     if mode == "teacher":
         u = states[:, :-1].reshape(-1, base.N)
-        return (model(u, tau[:, None].expand(-1, length).reshape(-1)) - states[:, 1:].reshape(-1, base.N)).square().mean()
+        repeated_tau = tau[:, None].expand(-1, length).reshape(-1)
+        return snapshot_error(model(u, repeated_tau), states[:, 1:].reshape(-1, base.N), repeated_tau, normalization)
     if mode not in ("detached", "unroll"):
         raise ValueError(mode)
     u, losses = states[:, 0], []
@@ -111,7 +122,7 @@ def training_loss(model, data, mode, length):
         if mode == "detached":
             u = u.detach()
         u = model(u, tau)
-        losses.append((u - states[:, j + 1]).square().mean())
+        losses.append(snapshot_error(u, states[:, j + 1], tau, normalization))
     return torch.stack(losses).mean()
 
 
@@ -162,7 +173,7 @@ def checkpoint_evaluation(model, train, data, length):
     return result
 
 
-def train_cell(root, data, seed, mode, scheme, budget, epochs, length, device):
+def train_cell(root, data, seed, mode, scheme, budget, epochs, length, device, normalization="state"):
     name = f"{scheme}-b{budget}-L{length}-{mode}-s{seed}"
     outputs = {}
     for conditioned in (False, True):
@@ -176,7 +187,7 @@ def train_cell(root, data, seed, mode, scheme, budget, epochs, length, device):
         count = train["u"].shape[0]
         oracle = mode == "oracle"
         config = {"seed": seed, "mode": mode, "scheme": scheme, "budget": budget,
-            "length": length, "conditioned": conditioned, "epochs": epochs, "lr": 0.01,
+            "length": length, "conditioned": conditioned, "epochs": epochs, "lr": 0.01, "loss_normalization": normalization,
             "prediction_pairs_per_update": count if not oracle else 0,
             "reaction_scalar_evaluations_per_update": count * base.N * budget if not oracle else 3 * 241,
             "unique_training_initial_states": count if mode == "initial" else count // length,
@@ -190,7 +201,7 @@ def train_cell(root, data, seed, mode, scheme, budget, epochs, length, device):
         base.dump(cell / "config.json", config)
         optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
         best_scores = {"one_step": float("inf"), "rollout": float("inf")}
-        best_states, best_epochs, rows, milestone = {}, {}, [], None
+        best_states, best_epochs, rows, milestones = {}, {}, [], {}
         start = time.perf_counter()
         training_seconds = 0.0
         grid = torch.linspace(-1.2, 1.2, 241, device=device).reshape(1, -1).expand(3, -1)
@@ -200,7 +211,7 @@ def train_cell(root, data, seed, mode, scheme, budget, epochs, length, device):
             tick = time.perf_counter()
             optimizer.zero_grad(set_to_none=True)
             loss = ((model.reaction(grid, grid_lags) - base.truth_reaction(grid)).square().mean()
-                if oracle else training_loss(model, train, mode, length))
+                if oracle else training_loss(model, train, mode, length, normalization))
             if not torch.isfinite(loss): raise RuntimeError(f"nonfinite loss: {cell.name} epoch {epoch}")
             loss.backward()
             gradient_norm = float(torch.sqrt(sum(p.grad.square().sum() for p in model.parameters())))
@@ -223,10 +234,10 @@ def train_cell(root, data, seed, mode, scheme, budget, epochs, length, device):
                     message = json.dumps({"cell": cell.name, **row})
                     print(message, flush=True)
                     with (cell / "run.log").open("a") as f: f.write(message + "\n")
-            if epoch == 120:
-                milestone = copy.deepcopy(model.state_dict())
+            if epoch in (120, 400) and epoch < epochs:
+                milestones[f"epoch{epoch}"] = copy.deepcopy(model.state_dict())
         states = {"final": copy.deepcopy(model.state_dict()), **{f"best_{k}": v for k, v in best_states.items()}}
-        if milestone is not None: states["epoch120"] = milestone
+        states.update(milestones)
         final_hash = weights_hash(model)
         if final_hash == initial_hash or not all(torch.isfinite(p).all() for p in model.parameters()):
             raise RuntimeError("weights did not change or became nonfinite")
@@ -264,6 +275,7 @@ def main():
     parser.add_argument("--budget", type=int, default=4)
     parser.add_argument("--length", type=int, default=4)
     parser.add_argument("--data-offset", type=int, default=0)
+    parser.add_argument("--normalization", choices=("state", "rate"), default="state")
     parser.add_argument("--cache", type=Path)
     args = parser.parse_args()
     torch.set_num_threads(2)
@@ -294,7 +306,7 @@ def main():
             for mode in args.modes:
                 for seed in SEEDS[:1] if args.smoke else SEEDS:
                     results.update(train_cell(root, data, seed, mode, scheme, args.budget,
-                        2 if args.smoke else args.epochs, args.length, args.device))
+                        2 if args.smoke else args.epochs, args.length, args.device, args.normalization))
         base.dump(root / "completion.json", {"expected_cells": expected, "completed_cells": len(results),
             "all_weights_finite_changed": all(r["weights_finite"] and r["weights_changed"] for r in results.values())})
         if len(results) != expected: raise RuntimeError("missing cells")

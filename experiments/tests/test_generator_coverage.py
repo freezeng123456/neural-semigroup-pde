@@ -67,3 +67,11 @@ def test_reference_sequence_endpoint_alignment():
     expected = m.base.reference(data["u"], [0.1, 0.4])
     torch.testing.assert_close(seq[:, 1], expected[0.1].float())
     torch.testing.assert_close(seq[:, 4], expected[0.4].float())
+
+
+def test_rate_normalization_reweights_lags_without_oracle_values():
+    tau = torch.tensor([0.05, 0.2], dtype=torch.float64)
+    target = torch.zeros(2, 64, dtype=torch.float64)
+    prediction = tau[:, None].expand(-1, 64) * 0.3
+    torch.testing.assert_close(m.snapshot_error(prediction, target, tau, "rate"), torch.tensor(.09, dtype=torch.float64))
+    torch.testing.assert_close(m.snapshot_error(prediction, target, tau, "state"), prediction.square().mean())
