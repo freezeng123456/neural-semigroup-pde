@@ -47,6 +47,6 @@ def main():
         evidence.append(dict(cell=i,model=c['model'],replays=diffs,best_update=summary['best_update'],
             checkpoint_sha256={name:d.base.digest(out/(name+'.pt')) for name in ('initial','final','best')}))
         print(f'cell {i}: checkpoint audit and four endpoint replays passed',flush=True)
-    d.base.dump(a.root/'CPU_REPLAY_AUDIT.json',dict(status='PASSED',cells=len(evidence),checkpoints=len(evidence)*3,
+    d.base.dump(a.root/'CPU_REPLAY_AUDIT.json',dict(status='PASSED',cells=len(evidence),checkpoints=len(evidence)*11,base_checkpoint_hashes=len(evidence)*3,additional_finite_checkpoint_checks=len(evidence)*8,
         primary_endpoint_replays=len(evidence)*4,cache_sha256=cache_hash,evidence=evidence))
 if __name__=='__main__':main()
