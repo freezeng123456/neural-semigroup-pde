@@ -68,5 +68,24 @@
     "local_backup": "outputs/scnet-confirmation-20260909/source.tar.gz"
   },
   "recovery_status": "No repair GPU jobs submitted; failed checkpoints not yet independently audited",
-  "updated_at": "2026-09-09T17:23:25.674470+00:00"
+  "updated_at": "2026-09-09T17:23:25.674470+00:00",
+  "bootstrap_migration": {
+    "status": "moved_command_returned_success",
+    "from": "/work/home/zenghang/semigroup-confirmation-bootstrap-20260909-r1",
+    "to": "login04:/tmp/zenghang-semigroup-evacuation-login04-20260910-r1/confirmation-bootstrap",
+    "post_move_shared_available_bytes": 0,
+    "post_move_archive_write": "FAILED_NO_SPACE"
+  },
+  "checkpoint_file_inventory": {
+    "000-003": "five nonempty pt files; done and summary exist",
+    "004": "five nonempty pt files including final and fixed_005000; no done or summary",
+    "005-007": "initial and fixed_002000 nonempty; best.pt zero bytes; no final or fixed_005000; no done or summary"
+  },
+  "cell004_checkpoint_load_audit": {
+    "initial_best_final_fixed5000_finite": true,
+    "final_equals_fixed5000": true,
+    "final_changed_from_initial": true,
+    "evaluation_complete": false
+  },
+  "squeue_last_check": "empty"
 }

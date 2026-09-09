@@ -13,13 +13,13 @@
     },
     {
       "path": "NEW_EQUATIONS_RECEIPT.json",
-      "bytes": 2168,
-      "sha256": "d41093372fd2fa375ca0cc8a530396f4af77a0862ebb13c5c319b6bf7d09013e"
+      "bytes": 3061,
+      "sha256": "939381c2506057ee783d290f7045b4986d0a4d08fadc30a1dad10485155fe0be"
     },
     {
       "path": "NEW_EQUATIONS_STATUS.zh.md",
-      "bytes": 2511,
-      "sha256": "40a5a52700e7121b62c1547bbc254825c5f400229e91dfc3d11a60ba44c6f87c"
+      "bytes": 3197,
+      "sha256": "3252a04bb0eaaca3c756bec544a72d50f16fe3c9ebc4a6972edda4d42ef63870"
     },
     {
       "path": "SCNET_NEW_EQUATIONS_PROTOCOL.md",
