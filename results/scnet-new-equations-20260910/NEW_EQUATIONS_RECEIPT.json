@@ -1,0 +1,72 @@
+{
+  "status": "blocked_storage_partial",
+  "run_id": "semigroup-new-equations-20260910-r1",
+  "source_commit": "68939da83ad7de8e61f05c448a370b9a967bffc1",
+  "archive_sha256": "415c618b4400f5acd6a73d36613c9c7ba3393f0fb01ae27853271c4c64e9cb04",
+  "cache_sha256": "9c3735670dc4d4013a83c211c0ad48e4a1b7c68a6b53f9b8cfa00ce7004d046e",
+  "smoke_job": 23791337,
+  "array_job": 23791338,
+  "expected_cells": 24,
+  "updates_per_cell": 5000,
+  "planned_updates": 120000,
+  "max_gpu_concurrency": 4,
+  "observed_running": 0,
+  "observed_first_cell_update": 1250,
+  "remote_root": "/work/home/zenghang/semigroup-new-equations-20260910-r1",
+  "observed_at": "2026-09-09T17:08:26.837950+00:00",
+  "completion_collector": "/work/home/zenghang/semigroup-new-equations-bootstrap-20260910-r1/finalize.py",
+  "completed_cells": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "failed_during_execution": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "failed_to_start": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "completed_exit": "0:0",
+  "execution_failure_exit": "120:0",
+  "launch_failure_exit": "0:53",
+  "storage": {
+    "path": "/work/home/zenghang",
+    "quota_gb": 50,
+    "available_bytes": 0,
+    "write_error": "No space left on device"
+  },
+  "completion_collector_status": "NOT_STARTED_WRITE_FAILED",
+  "partial_archive": {
+    "host": "login03",
+    "path": "/tmp/zenghang-semigroup-evacuation-20260910-r1/semigroup-new-equations-partial-r1-20260910.tar.gz",
+    "sha256": "492531be83d25463ef526b47294dba537c00d2d35e666dec3be9ceae813c89db",
+    "downloaded": false
+  },
+  "source_archive_migration": {
+    "from": "/work/home/zenghang/semigroup-confirmation-bootstrap-20260909-r1/source.tar.gz",
+    "to": "login03:/tmp/zenghang-semigroup-evacuation-20260910-r1/confirmation-source.tar.gz",
+    "sha256": "d2296b5341091bd18306b656170023687f1436bc50ada4c3113868a831d22484",
+    "local_backup": "outputs/scnet-confirmation-20260909/source.tar.gz"
+  },
+  "recovery_status": "No repair GPU jobs submitted; failed checkpoints not yet independently audited",
+  "updated_at": "2026-09-09T17:23:25.674470+00:00"
+}

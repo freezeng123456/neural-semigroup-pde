@@ -1,0 +1,4 @@
+{"update": 1, "loss": 0.0040097301825881, "validation_mse": 0.1436761461653522, "training_seconds": 3.09466349799186}
+{"update": 2, "loss": 0.00390193285420537, "validation_mse": 0.14086649052928715, "training_seconds": 3.1130850249901414}
+{"update": 1, "loss": 0.0040510669350624084, "validation_mse": 0.14251254652369877, "training_seconds": 1.5171051810029894}
+{"update": 2, "loss": 0.003912718966603279, "validation_mse": 0.14030165765966374, "training_seconds": 1.5357121169799939}
