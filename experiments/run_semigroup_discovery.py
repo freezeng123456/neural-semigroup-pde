@@ -178,7 +178,7 @@ def run(root,index,device,updates,smoke=False):
     try:
         torch.set_num_threads(1); torch.manual_seed(cell['seed']); torch.use_deterministic_algorithms(True)
         if device=='cuda' and torch.cuda.device_count()!=1:raise RuntimeError('expected exactly one allocated visible GPU')
-        data=move(torch.load(root/'cache.pt',map_location='cpu',weights_only=False),device)
+        data=move(torch.load(root/'cache.pt',map_location='cpu'),device)
         tr=data['train'][f"{cell['track']}-{cell['seed']}"]; n=min(cell['n'],len(tr['u']))
         tr={k:v[:n] for k,v in tr.items()}
         model=Flow(cell['model']).to(device)
@@ -219,7 +219,7 @@ def run(root,index,device,updates,smoke=False):
         changed=any(not torch.equal(before[k].to(device),v) for k,v in model.state_dict().items())
         finite=all(bool(torch.isfinite(p).all()) for p in model.parameters())
         if not changed or not finite:raise RuntimeError('checkpoint audit failed')
-        model.load_state_dict(torch.load(out/'best.pt',map_location=device,weights_only=True))
+        model.load_state_dict(torch.load(out/'best.pt',map_location=device))
         rows=evaluate(model,data,cell['track'])
         base.dump(out/'summary.json',dict(config=config,best_update=best_step,training_seconds=train_seconds,
             elapsed_seconds=time.perf_counter()-begin,changed=changed,finite=finite,rows=rows,
