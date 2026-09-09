@@ -1,0 +1,13 @@
+test_equal_work_autonomous_composition PASSED
+test_clock_advances_at_restart PASSED
+test_duration_control_breaks_composition PASSED
+test_reference_variable_duration_and_clock PASSED
+test_zero_duration_identity_and_diffusion_transfer PASSED
+/work/home/zenghang/semigroup-discovery-bootstrap-20260909-r1/neural-semigroup-pde-21bc488e479e47b74ae57e886ad9b7ceb6f2567c/experiments/run_semigroup_discovery.py:82: UserWarning: __floordiv__ is deprecated, and its behavior will change in a future version of pytorch. It currently rounds toward 0 (like the 'trunc' function NOT 'floor'). This results in incorrect rounding for negative values. To keep the current behavior, use torch.div(a, b, rounding_mode='trunc'), or for actual floor division, use torch.div(a, b, rounding_mode='floor').
+  t0=(torch.arange(n)//4%4).double()/4 if track=='forced' else torch.zeros(n,dtype=torch.float64)
+{"update": 1, "loss": 0.003987790551036596, "validation_mse": 0.1506648491853308, "training_seconds": 3.269471837207675}
+{"update": 2, "loss": 0.003874635323882103, "validation_mse": 0.14694061654573598, "training_seconds": 3.28785702586174}
+{"update": 1, "loss": 0.00556279718875885, "validation_mse": 0.15134811167663614, "training_seconds": 1.552819972857833}
+{"update": 2, "loss": 0.005375343840569258, "validation_mse": 0.14938601643816724, "training_seconds": 1.5717569272965193}
+{"update": 1, "loss": 0.004673110321164131, "validation_mse": 0.14950376255195713, "training_seconds": 1.530608942732215}
+{"update": 2, "loss": 0.0044780997559428215, "validation_mse": 0.1453262189833194, "training_seconds": 1.5493543483316898}

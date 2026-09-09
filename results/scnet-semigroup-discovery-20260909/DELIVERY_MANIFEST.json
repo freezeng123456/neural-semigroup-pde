@@ -1,0 +1,2010 @@
+{
+  "files": [
+    {
+      "path": "README.zh.md",
+      "bytes": 2097,
+      "sha256": "d369ae2d15af81e207b55264ce9d17101afc3e2c3c233ffcd46699ce37b77193"
+    },
+    {
+      "path": "analysis-final/REPORT.zh.md",
+      "bytes": 9790,
+      "sha256": "d4a447856a9b4b6732ebb5fb6ccd2f327e299594ea00c9442009bf5cdbcddda4"
+    },
+    {
+      "path": "analysis-final/all_models.csv",
+      "bytes": 4493,
+      "sha256": "42ddd23959ef1aa1afc63bfb49f61ab369583f61230422a98b149096d9f7362e"
+    },
+    {
+      "path": "analysis-final/analysis.json",
+      "bytes": 10968,
+      "sha256": "acce57ff341b517becb54c4e81e7200fdb78104179c76cef386c205bea4bc7bd"
+    },
+    {
+      "path": "analysis-final/clock_information.pdf",
+      "bytes": 18106,
+      "sha256": "87e298b7aa0b2539e7955308fdb7efe5ae67cf92d32fbdfaf96072d15d3ad332"
+    },
+    {
+      "path": "analysis-final/clock_information.png",
+      "bytes": 56879,
+      "sha256": "19c6cc0675c3da65ff2776eed3cc192f6fec9aa7793871b2ca0ec948d51f6578"
+    },
+    {
+      "path": "analysis-final/high_frequency_transfer.pdf",
+      "bytes": 18779,
+      "sha256": "db8ecbc41f7a3f6c27bcc5b9f8ebdadf2e167606080115e171219a8ec1b511c9"
+    },
+    {
+      "path": "analysis-final/high_frequency_transfer.png",
+      "bytes": 81147,
+      "sha256": "1b5637c7c088e1516d5ffe57555de85a98caddd1471659f5d464b1f92eb055e2"
+    },
+    {
+      "path": "original_archives/semigroup-discovery-complete.tar.gz",
+      "bytes": 1342798,
+      "sha256": "6899b14470b4bcec6bcb408000b97ce517bc6ffc6baf9a86fc3edc4373a8c9ee"
+    },
+    {
+      "path": "original_archives/semigroup-discovery-extensions.tar.gz",
+      "bytes": 1152675,
+      "sha256": "324cab6e0c918a622c994434e32ed3f872f06ecfc0888455fcd06c90f4e1bbb4"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/array.sh",
+      "bytes": 473,
+      "sha256": "a38570efe0648e6578130daa3d4c16face8a8085d62d716843b359593705da78"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/array_job_id.txt",
+      "bytes": 9,
+      "sha256": "ee0e97302192fce510632246d5da567020a1ed5ef23cbb090cd74f680fa21d95"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/artifacts.sha256",
+      "bytes": 3692,
+      "sha256": "edd8ce195ca0409d9b787e48edf42369b5d25c97db70ac163a9cd6cdb00cf21c"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/logs/cell-23778885-0.log",
+      "bytes": 2676,
+      "sha256": "8f6b548859306ec39b2cbc22c17539f41950cad26b103f29032b811b204819d3"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/logs/cell-23778885-1.log",
+      "bytes": 2680,
+      "sha256": "a58c90a56347f855dee2a294ef7b0444149d211bb70977647c6efa54d4b739ca"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/logs/cell-23778885-2.log",
+      "bytes": 2679,
+      "sha256": "b44ed575503055d494b4d12be9abbe75c3fe9411a4db723b1dfd0409951607b3"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/logs/smoke-23778831.log",
+      "bytes": 245,
+      "sha256": "3bde7bbd1034be73efa1d2ae8d25d0979da94f8647e808353313a0e3129dd6ea"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/provenance.txt",
+      "bytes": 179,
+      "sha256": "3fc7092e774a2bb80fc474fbc9feaf2f4c03c5a96d37c9ef71f688051904fc35"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/CPU_REPLAY_AUDIT.json",
+      "bytes": 4634,
+      "sha256": "7ad75a9a3ce276d25ff54a1c0df8675f1a1e40c46421de41f57954e830f65753"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cache.pt",
+      "bytes": 1140801,
+      "sha256": "23128c0c56672d9af169e1ee41437f9375872d9a7c825a2b59e7381b33152b13"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cache_metadata.json",
+      "bytes": 219,
+      "sha256": "646789163f27a85be141e4c058ad701dbc1d9e165a86ff105bc1ed183e902369"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/000/best.pt",
+      "bytes": 2271,
+      "sha256": "39ce02788f99090afe819bfa5c0fe8b9850b96f1fd4c2bec71f134b0e855e72d"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/000/config.json",
+      "bytes": 803,
+      "sha256": "893ee44932a2601003052b60194cec3ecfd3cfb295fc453f40597cf91ebab5d3"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/000/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/000/final.pt",
+      "bytes": 2271,
+      "sha256": "39ce02788f99090afe819bfa5c0fe8b9850b96f1fd4c2bec71f134b0e855e72d"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/000/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/000/metrics.csv",
+      "bytes": 1461,
+      "sha256": "952f249902b8d2859393355566e142bd58c16168612e9365e7c47dc6cd5d4d3d"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/000/summary.json",
+      "bytes": 9287,
+      "sha256": "bf933a61c077d19f78a29a8d26c68ef5b86c8ff49112a71bbff9806154d93d7e"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/001/best.pt",
+      "bytes": 2271,
+      "sha256": "57979f2d474484cd9ec165e88773bdbe8017531234c8f627d56ac4bedf294a85"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/001/config.json",
+      "bytes": 804,
+      "sha256": "83d7e710d7018678fcde82e09988ef9fb6497de8a7b2b7b345e523b06dda13e0"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/001/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/001/final.pt",
+      "bytes": 2271,
+      "sha256": "57979f2d474484cd9ec165e88773bdbe8017531234c8f627d56ac4bedf294a85"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/001/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/001/metrics.csv",
+      "bytes": 1465,
+      "sha256": "bce1578aecd50a206d2a6d5cc6d113d52b83e897d513a5270fe286d205c8de8b"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/001/summary.json",
+      "bytes": 9266,
+      "sha256": "226d18e4fc1097e57bf9dc0fa98ccbd3c2352185276c036b61e9ea1da511184f"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/002/best.pt",
+      "bytes": 2271,
+      "sha256": "830e00e2d848f168c83966f7692161278a39b4fbe9915cbcb76954ad46c5ad1e"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/002/config.json",
+      "bytes": 805,
+      "sha256": "808cf0919131060350780073e5f7fc89d406d1c5734ca0be7bf15338baacdd88"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/002/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/002/final.pt",
+      "bytes": 2271,
+      "sha256": "830e00e2d848f168c83966f7692161278a39b4fbe9915cbcb76954ad46c5ad1e"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/002/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/002/metrics.csv",
+      "bytes": 1464,
+      "sha256": "3ed3395f94b384c4f3d8244ca367d812b14c813391c78e75214e3e698461eded"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/cells/002/summary.json",
+      "bytes": 9234,
+      "sha256": "ac0c92336c5cec48a897583835410432e3e1cfb1c377f02711e8ade9c907558c"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/matrix.json",
+      "bytes": 327,
+      "sha256": "cf64fe5466e17feba23d5f62a906eceb418fc42bf91d4d8f874a80c11e4a0963"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/smoke/000/best.pt",
+      "bytes": 2271,
+      "sha256": "b7868b69292469701c0deb78d8480d2bb95eb5767c294bd1662425ad5a4a70a5"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/smoke/000/config.json",
+      "bytes": 800,
+      "sha256": "bf9c458036ae1287f97a896030283a3b57794e7b26907dca5c339d29bfc7d91d"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/smoke/000/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/smoke/000/final.pt",
+      "bytes": 2271,
+      "sha256": "b7868b69292469701c0deb78d8480d2bb95eb5767c294bd1662425ad5a4a70a5"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/smoke/000/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/smoke/000/metrics.csv",
+      "bytes": 170,
+      "sha256": "e83bf07033db4f7bf7b9ba35722b1131086cc2a220fc9c9e72efdf629f734710"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/run/smoke/000/summary.json",
+      "bytes": 9457,
+      "sha256": "d41403ae844754f36c503165a9d53bcf55cbaf33d972ee8dc9a9033c13b85e6b"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/slurm_final.txt",
+      "bytes": 1118,
+      "sha256": "391c7e420acd7a9973c7a3047203b4c98cb5078b0851cd888f69814ca0b0d5d9"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/smoke.sh",
+      "bytes": 759,
+      "sha256": "feb787da6eb1c66c3adbe859e55ba303e01b6b48b1b74d353009e40443a3611c"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/smoke_job_id.txt",
+      "bytes": 9,
+      "sha256": "3301298be0d9d03da1774f7843a8aec2ac1abefec8e90f61aa34bdef9e4b9faa"
+    },
+    {
+      "path": "runs/semigroup-clock-control-20260909-r1/smoke_passed",
+      "bytes": 7,
+      "sha256": "2700165975f68815c97d605c56eca8e90d497ade1264b6282401d13fee99ac27"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/array.sh",
+      "bytes": 484,
+      "sha256": "15eb6b5605d45268cd3ceb7bf081eb0ac1ab5a82917de31d98438b1346b2dc25"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/array_job_id.txt",
+      "bytes": 9,
+      "sha256": "3dec01857e105f7b1e3d13d77e52eac96b8caf42345e28ba5ee97c9d91bc1d1c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/artifacts.sha256",
+      "bytes": 27144,
+      "sha256": "55825d93dab4a2202f82c8b58b56e57695e32ed25fd6ac5a9c724ea27b875262"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-0.log",
+      "bytes": 2694,
+      "sha256": "f883dc1b5b31f45499ed06e328542bc29d92dcc2a240057a7fc9a49eaa95ba74"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-1.log",
+      "bytes": 2680,
+      "sha256": "1dac01784971422b64b6ca0ea2ddca9895522d09016c7e2c0477793ea7a4adec"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-10.log",
+      "bytes": 2680,
+      "sha256": "7633cb2d298b75cf945ffc0148e0f18ecdbef783f22e32a7cf5315c2a11fffe6"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-11.log",
+      "bytes": 2691,
+      "sha256": "68af462a9bae90bab2944c559fef40ebd873d9dc70b11dea8af202d0b5fad1e1"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-12.log",
+      "bytes": 2692,
+      "sha256": "0ab89bde2edd4c2681b5e0791563e529de731a78f8c7e0ca9ee6aa829b47d865"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-13.log",
+      "bytes": 2683,
+      "sha256": "218e51559fa089e24db9035903c5b6acd29951ade5ac2b9271f24810e53f5496"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-14.log",
+      "bytes": 2692,
+      "sha256": "eb156893e7c33b930e59523a07017d316ef2f8f93466a1d1c61dee72fa650c2e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-15.log",
+      "bytes": 2688,
+      "sha256": "6e434c10a702a454c1fd1411a624a2deb41abdb727b53f0e312aaa87dee52d53"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-16.log",
+      "bytes": 2677,
+      "sha256": "1f863f33aed8002c50a57b89af6f97c617150b5c9e6ee03cf49c1308198d5129"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-17.log",
+      "bytes": 2691,
+      "sha256": "7519d40b3f471b9c5085ef7ee709081e6980b7535cdbf6e67a43bb2a336eb84c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-18.log",
+      "bytes": 2699,
+      "sha256": "2f6a4e367f3c490eb7ebe8290f22f495c51996a01b7a80f0656873be3c34ebbd"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-19.log",
+      "bytes": 2662,
+      "sha256": "0d8458a98e8987034c8ca038d225099cbeef180aadc9e55d0fa06a5c7f87ddad"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-2.log",
+      "bytes": 2695,
+      "sha256": "c775b9293da506afdb04cb255401c248abf83027d7f901362e92e94ca06972dd"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-20.log",
+      "bytes": 2654,
+      "sha256": "2611458fee10b7a4c54cf8392f62be19e94f6138d01b111ee34d01c594296613"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-21.log",
+      "bytes": 2685,
+      "sha256": "84c70756ac1374e8cd1e1d3828d23e542aceb975a5377da6b6a41be14db77518"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-22.log",
+      "bytes": 2676,
+      "sha256": "a2bdfa0f7a6496047e5b645d749fd665b50cab01a8640b3d0ea4481d42e222f8"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-23.log",
+      "bytes": 2674,
+      "sha256": "85b7c3944424e066e573fc586397e8f18f1adc5e0c4b5ca59d892014c97a19ae"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-24.log",
+      "bytes": 2692,
+      "sha256": "0796932730609495f2b2498fca4880b49aef60a65a7d5661271e2e726e90310c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-25.log",
+      "bytes": 2695,
+      "sha256": "69420d066c55f639de3dcdd649448a4dbf84dd1a3b00f06277bd36c7be22095e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-26.log",
+      "bytes": 2684,
+      "sha256": "82f05b63886626533abb78c145541223721ce70067b75fcd9bebe96f94802519"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-27.log",
+      "bytes": 2682,
+      "sha256": "83e6c79effbd572543c626120565c8ff3be452864b43c5b39bf9259fd6cb5cb4"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-28.log",
+      "bytes": 2685,
+      "sha256": "8f5059e11cb4149882cfba6c671742190d7156a8b4563542e1973956af982e33"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-29.log",
+      "bytes": 2685,
+      "sha256": "4987c4e8ca902228dbd162cdd612a9d144a894487d8d902070e5c052afa1feac"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-3.log",
+      "bytes": 2688,
+      "sha256": "a1b207e87d7c42115ed994dff3fad95093a9a5c6661b36a8b7a51a04ef78a7ca"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-30.log",
+      "bytes": 2657,
+      "sha256": "d182ea021ae743c7de1e09263f8f1e12378fc64292dda05dbd4f8d872d4a5607"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-31.log",
+      "bytes": 2655,
+      "sha256": "3a1c9dd38b64906d22eb61b55e49e1243ea81088c2934f7d9d46a3c3935dcfcc"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-32.log",
+      "bytes": 2685,
+      "sha256": "8570ef4cd5f07c9cc951a8555710f4a6e97fb1eec2145a58807ca63202466d26"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-4.log",
+      "bytes": 2677,
+      "sha256": "0ef91f1bdaf8b3f4c34a69ba24a3c3f50350a6bda9fb437333ed87eca757b210"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-5.log",
+      "bytes": 2680,
+      "sha256": "99f153f3ece508a428283d9627c41fbdb4ba064290ae309541e59274fa81a2b8"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-6.log",
+      "bytes": 2691,
+      "sha256": "51fade88f809d2d24c7e886e62246e3c8eaa51c068169c7e95f23e54bad3b0b1"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-7.log",
+      "bytes": 2692,
+      "sha256": "0d8ffc95e2443f05cc96eeda00dd902fa2c0cb3ae7287414b89737b91b745ad6"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-8.log",
+      "bytes": 2660,
+      "sha256": "f9e72c9acbc2ddcf4a258ced399258bb81fb3241737705288b7f6e8ad6b6f9c5"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/cell-23778411-9.log",
+      "bytes": 2660,
+      "sha256": "9a816518f4a4d10d3f001c0c4c495a5b72b908c7902b5b8bdae8f829258438df"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/logs/smoke-23778345.log",
+      "bytes": 1612,
+      "sha256": "bc42a1f878dde27fae9bb532121be26c2838cae65b171d96b44bd8997039bd69"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/partition.txt",
+      "bytes": 101,
+      "sha256": "4c667ee6fbbe317081bb5e5baf05838b92861d7134949e958d21aea0216bca7d"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/preexisting_jobs.txt",
+      "bytes": 102,
+      "sha256": "e29ca7a2353d1496ec32739294a85a1dc45b9bb8f697d1211bc3a1f184283141"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/provenance.txt",
+      "bytes": 263,
+      "sha256": "201e8761597c3c376298ae262061a030c8170af19892a7a5f9d71b3d70bc98a7"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/CPU_REPLAY_AUDIT.json",
+      "bytes": 48757,
+      "sha256": "ee7afe8b33da1a74f6ab755a0e5ad0b249ceeca6f954f24aa6c74624aa85fb5e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/analysis/absolute_errors.pdf",
+      "bytes": 18052,
+      "sha256": "60a8bb9524c3cad993d9ec7092d2d1455ba99af586da561913968555787df8f6"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/analysis/absolute_errors.png",
+      "bytes": 97714,
+      "sha256": "2d937ff9deca65307a7c754ce40c97d149605035b0c39d7f181c00b573c7e774"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/analysis/all_endpoints.csv",
+      "bytes": 240638,
+      "sha256": "47876f500c58efa013da25d492fe1fa43221a28da6a58ffd0bef9acdf2f78f21"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/analysis/comparison.json",
+      "bytes": 5258,
+      "sha256": "8731c88d73aa664d84685183a3e356a53098f577b1c6556405590c5d631dc0ee"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/analysis/paired_effects.pdf",
+      "bytes": 23593,
+      "sha256": "f98a9efae01f78cb4f5b3194b2ccb7fccd46d8757efbd2f44ffbe687a213efc8"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/analysis/paired_effects.png",
+      "bytes": 146917,
+      "sha256": "18447965d7671cfc081fa2f95286fa436268f0ba0bb62fb7b920c197477dabcc"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/analysis/paired_seeds.csv",
+      "bytes": 4523,
+      "sha256": "9c49a9e82a65b49cf927ad09c0cd243fadd895a69dffb099cf0cb1455ca2b433"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cache.pt",
+      "bytes": 1140801,
+      "sha256": "23128c0c56672d9af169e1ee41437f9375872d9a7c825a2b59e7381b33152b13"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cache_metadata.json",
+      "bytes": 299,
+      "sha256": "853203828e83c956db2eea9a69bb795826d9028202ad659322358d2f2070bd15"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/000/best.pt",
+      "bytes": 2271,
+      "sha256": "6e2475fed1b05d40123aeefc6c90cb0f2f02761ec8d7677cc6d2555826fe353a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/000/config.json",
+      "bytes": 800,
+      "sha256": "d56fb6334f9b716ddc058a1ff51c600af6ea80647448cfa025598f207e661327"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/000/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/000/final.pt",
+      "bytes": 2271,
+      "sha256": "6e2475fed1b05d40123aeefc6c90cb0f2f02761ec8d7677cc6d2555826fe353a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/000/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/000/metrics.csv",
+      "bytes": 1479,
+      "sha256": "395c63fc47fc3282b03f2c025cc2652540ab8ff3ca4c82f47f61065ca3a25c21"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/000/summary.json",
+      "bytes": 24932,
+      "sha256": "5f92ad4e1da00339cf738072b8805747bb1d4d726b51a47bceb0240c158be782"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/001/best.pt",
+      "bytes": 2271,
+      "sha256": "55a79214a313fb8db850d5213344d25167ca0f38281801f07cb64d642fb7f8e8"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/001/config.json",
+      "bytes": 796,
+      "sha256": "c59d0227434e75280ff850e367e713feeb337156349f7db9c255526fb6354716"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/001/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/001/final.pt",
+      "bytes": 2271,
+      "sha256": "55a79214a313fb8db850d5213344d25167ca0f38281801f07cb64d642fb7f8e8"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/001/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/001/metrics.csv",
+      "bytes": 1465,
+      "sha256": "d54090282f3aa8dfd6372d49555b4a42e60cc5e5eeba32347cb9dcccb3f427bd"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/001/summary.json",
+      "bytes": 24976,
+      "sha256": "eb13037673cf34b1d611fa0ff83b2b821067469f52ea7cbd5f69021997c7860e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/002/best.pt",
+      "bytes": 2271,
+      "sha256": "8236e52f7a57ea058136e7651e3a98e1b0b2d7383b346f067981dee1c1db0586"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/002/config.json",
+      "bytes": 801,
+      "sha256": "f087cfefa945f844ffcb968cb8427abc06d1fb6451e9b392051c24472550dda2"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/002/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/002/final.pt",
+      "bytes": 2271,
+      "sha256": "8236e52f7a57ea058136e7651e3a98e1b0b2d7383b346f067981dee1c1db0586"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/002/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/002/metrics.csv",
+      "bytes": 1480,
+      "sha256": "9eadabfbc658635ca006a69a0d181d3b908df73626a31702c86e4dfc56468500"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/002/summary.json",
+      "bytes": 24909,
+      "sha256": "7baf1d2da73b3a43a0f1f13d3e5a4ee9a7dc6935f4a27eecff0845617cda175c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/003/best.pt",
+      "bytes": 2271,
+      "sha256": "2d10f4b71f108f83e981d1bafac669fcd31a4fc0fcb8ae474b83759da9ecc7de"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/003/config.json",
+      "bytes": 797,
+      "sha256": "256fe3faefef6d2a423dd9e857ae0d2761c95c1a944f8f93751c8099aae383bd"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/003/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/003/final.pt",
+      "bytes": 2271,
+      "sha256": "2d10f4b71f108f83e981d1bafac669fcd31a4fc0fcb8ae474b83759da9ecc7de"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/003/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/003/metrics.csv",
+      "bytes": 1473,
+      "sha256": "f44847b90dc22efdde89b39e8c773e1d858333f67e229714305b8458a5ae0a68"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/003/summary.json",
+      "bytes": 24967,
+      "sha256": "6f35583a3534b9283d406f8dc8d6cda7871e05b9e756efb605daddc9257ff276"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/004/best.pt",
+      "bytes": 2271,
+      "sha256": "76bd2e35b055070218860811e9621e24ffcd84888fa93724d868e5509f7b0c74"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/004/config.json",
+      "bytes": 804,
+      "sha256": "e10228b687f38cc31dc34bbcbd13d3a1b677379215b408b0c6ee5861a5dbfbad"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/004/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/004/final.pt",
+      "bytes": 2271,
+      "sha256": "76bd2e35b055070218860811e9621e24ffcd84888fa93724d868e5509f7b0c74"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/004/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/004/metrics.csv",
+      "bytes": 1462,
+      "sha256": "a35d3c057c0b6f2873da66e8b91c71c6972c3affd65b19bcb1c63bc48c028d08"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/004/summary.json",
+      "bytes": 24900,
+      "sha256": "d4cda1b3b8a4123bb087e07be8851c80a80f2feabea04eefac134c7e05ae438a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/005/best.pt",
+      "bytes": 2271,
+      "sha256": "63e3c5fd319945b6329bf347f740b0064c1ddf496fbdc93a8d19621abf3abc59"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/005/config.json",
+      "bytes": 800,
+      "sha256": "dd8ab789403cbabb1dbc67aef8c28da3e787f005b9605643ac1dacf7dcc18f36"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/005/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/005/final.pt",
+      "bytes": 2271,
+      "sha256": "63e3c5fd319945b6329bf347f740b0064c1ddf496fbdc93a8d19621abf3abc59"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/005/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/005/metrics.csv",
+      "bytes": 1465,
+      "sha256": "1e6d32322fb426097bf2427e63aad6f81fc134ba03d9f473fa39a9e93a5ddbd4"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/005/summary.json",
+      "bytes": 24967,
+      "sha256": "984e0bb4c2f2923175568dfdfa9e2d60605f90d3fa2df59ded74c005adb09f1b"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/006/best.pt",
+      "bytes": 2271,
+      "sha256": "9fef9f3fe66cf5324709d2690c049db4ab58ea98aae1bcdab809b7e9e8068437"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/006/config.json",
+      "bytes": 805,
+      "sha256": "eaace8c9fcf2220285c791c542d28d9aa68ee42be80c1ee319133f54f97d4861"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/006/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/006/final.pt",
+      "bytes": 2271,
+      "sha256": "9fef9f3fe66cf5324709d2690c049db4ab58ea98aae1bcdab809b7e9e8068437"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/006/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/006/metrics.csv",
+      "bytes": 1476,
+      "sha256": "7b6871422ab11958324115a6d4a6b8577ffc28bf6a3af50e946144afb31ec192"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/006/summary.json",
+      "bytes": 24913,
+      "sha256": "ecbf304d32bb6634417eae96440d1d34f6d70ffe92ac1bca7f186b885a08e364"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/007/best.pt",
+      "bytes": 2271,
+      "sha256": "1cf709a06f71b494a1b512a3e7dff665b2966291e8b4cd1e50451d7f56f23e3c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/007/config.json",
+      "bytes": 801,
+      "sha256": "cbe043793faa2b5efb5202cb19a237c1ff7d8aab6b204c398c57690a9bf99dd9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/007/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/007/final.pt",
+      "bytes": 2271,
+      "sha256": "1cf709a06f71b494a1b512a3e7dff665b2966291e8b4cd1e50451d7f56f23e3c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/007/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/007/metrics.csv",
+      "bytes": 1477,
+      "sha256": "51b31f9cc8e684196cbf29cdb4669228b3c8a49cda197459e916069ee2e0a372"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/007/summary.json",
+      "bytes": 24957,
+      "sha256": "9fb2693952713163a7d19b0eb9105d58dc4330202be7b6f6aaeb42b9bdd7cf87"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/008/best.pt",
+      "bytes": 2271,
+      "sha256": "5f0b8b8bfd13be75f7211a895ac47bbc568395d8f81c081cc0b48c8bc42a5bec"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/008/config.json",
+      "bytes": 801,
+      "sha256": "3706df93a23bfd9ef0ba4e90a8d73fc5a52c7a0fb14956f2ee22f0a52ab79679"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/008/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/008/final.pt",
+      "bytes": 2271,
+      "sha256": "5f0b8b8bfd13be75f7211a895ac47bbc568395d8f81c081cc0b48c8bc42a5bec"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/008/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/008/metrics.csv",
+      "bytes": 1445,
+      "sha256": "f7b4d9ff7f4042c3ddc37c4cea054616693db385b08727d8f03e1476d8e53814"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/008/summary.json",
+      "bytes": 9207,
+      "sha256": "ae00098361d84ab79d74d508e8825c9293729bd8320b42595a6f7514c1bbcb4f"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/009/best.pt",
+      "bytes": 2271,
+      "sha256": "0101b44373164e36be79e8e060a38a0ee45e2e9e0264a8005d35ae105e34dac4"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/009/config.json",
+      "bytes": 797,
+      "sha256": "ba20317326793ff3e8ce1f59f68eeb26e65c4b541c66cd3c6b8704b4fc9a9d6f"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/009/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/009/final.pt",
+      "bytes": 2271,
+      "sha256": "0101b44373164e36be79e8e060a38a0ee45e2e9e0264a8005d35ae105e34dac4"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/009/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/009/metrics.csv",
+      "bytes": 1445,
+      "sha256": "5f0f37e8d5bb9e1b314050c3d9774ae319352cc15ac250fe23bfcd2ccb8d273f"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/009/summary.json",
+      "bytes": 9259,
+      "sha256": "f3acc7c283867195f23f4410d873e179c5dbb715d84ab67f39705f01fbc1ec8c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/010/best.pt",
+      "bytes": 2271,
+      "sha256": "5de5a7c273b27454b0b4a4fd60441f6db3ccc0a81fca731621c26542e5a8c48c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/010/config.json",
+      "bytes": 798,
+      "sha256": "eaf7468ca4645a97ac01396206a264230c9f46420d3c85f6073c2cbe7ae2c859"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/010/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/010/final.pt",
+      "bytes": 2271,
+      "sha256": "5de5a7c273b27454b0b4a4fd60441f6db3ccc0a81fca731621c26542e5a8c48c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/010/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/010/metrics.csv",
+      "bytes": 1465,
+      "sha256": "ab25da846e665d5afbb4f261a66f50dd9049d9542a90ba739d0e7cd9f8cec518"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/010/summary.json",
+      "bytes": 9214,
+      "sha256": "4d773d02c65390a232bbfb00823fdd888b396d0b29f026cf4427b30527b856f9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/011/best.pt",
+      "bytes": 2271,
+      "sha256": "9fb78f48deffb4791252beea6b8a6e1e09ec645d2dc3b6757d947b1a2a511a78"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/011/config.json",
+      "bytes": 802,
+      "sha256": "57c1dbf31b7992231c8d3d4d2801d7fdbc1859a083b638c8b933f2b2e347d0d9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/011/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/011/final.pt",
+      "bytes": 2271,
+      "sha256": "9fb78f48deffb4791252beea6b8a6e1e09ec645d2dc3b6757d947b1a2a511a78"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/011/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/011/metrics.csv",
+      "bytes": 1476,
+      "sha256": "747d82cfb78240770bbc4397acd10e4617d5760a493b488faa9fc532e080f77b"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/011/summary.json",
+      "bytes": 24867,
+      "sha256": "6125df1acfab3417c6d2e38af31ab572cd8ed2dd26ca19e5e0cf595f3a1dd493"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/012/best.pt",
+      "bytes": 2271,
+      "sha256": "936fab1b6dbb373bef605137d2aeb5022622b19235375840cd157338207f4c6e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/012/config.json",
+      "bytes": 798,
+      "sha256": "12ea6006b3d27d623d38e2b165350e0df65d60fc031d7d0228fe310a9cf20755"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/012/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/012/final.pt",
+      "bytes": 2271,
+      "sha256": "936fab1b6dbb373bef605137d2aeb5022622b19235375840cd157338207f4c6e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/012/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/012/metrics.csv",
+      "bytes": 1477,
+      "sha256": "3bc2c93b6ae4c38b7b13cb0bbc059769e32bde027015b0e22153a181f25edd3b"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/012/summary.json",
+      "bytes": 24897,
+      "sha256": "5a72bb10d4cad12bc595f30510b1a57af171a1cbadb3a15c2caf433f0345c3b5"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/013/best.pt",
+      "bytes": 2271,
+      "sha256": "6cdaa1823eb923c950dc72ef235989d6afe83892bd09fdfb801ad49d9e29e095"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/013/config.json",
+      "bytes": 803,
+      "sha256": "130a6796e6bbfcf4243c997ed5cd87cf7e3b4113ae77bf703948cd5741ac3560"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/013/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/013/final.pt",
+      "bytes": 2271,
+      "sha256": "6cdaa1823eb923c950dc72ef235989d6afe83892bd09fdfb801ad49d9e29e095"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/013/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/013/metrics.csv",
+      "bytes": 1468,
+      "sha256": "0f8935c94fafdbd4311fa59f35182b03d5535a6015874fbf55d96a029fef2720"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/013/summary.json",
+      "bytes": 24888,
+      "sha256": "100b79a7e2e58e651b91d8286d12352e0bf9870670b66d142425dafe9c779501"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/014/best.pt",
+      "bytes": 2271,
+      "sha256": "5d68b1603cd11b316cbd2118daecf7b910822df1f0c6d556ac3f0a011878e9f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/014/config.json",
+      "bytes": 799,
+      "sha256": "150ba3e6c32295294b4f14dc924194a181a1974a39b6e067256415c8df3ef750"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/014/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/014/final.pt",
+      "bytes": 2271,
+      "sha256": "5d68b1603cd11b316cbd2118daecf7b910822df1f0c6d556ac3f0a011878e9f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/014/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/014/metrics.csv",
+      "bytes": 1477,
+      "sha256": "3a397613383e35be4d2fd17da8880a7ea63310b507b0861f7d87be3681d0ebd7"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/014/summary.json",
+      "bytes": 24912,
+      "sha256": "4a2d45d669fb6b2a90058b62b88f0cd2a98627e50bc1f681abd48705b2d7aa1b"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/015/best.pt",
+      "bytes": 2271,
+      "sha256": "77204958e9e4c66951d4a53bf9cee5d3891e2fba18a9d955646ef03d6f0cdcb2"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/015/config.json",
+      "bytes": 806,
+      "sha256": "df6f0258b1c1af7f17d3b38e1c71f08dd58744ef3c2451da15f88af4f603ae9c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/015/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/015/final.pt",
+      "bytes": 2271,
+      "sha256": "77204958e9e4c66951d4a53bf9cee5d3891e2fba18a9d955646ef03d6f0cdcb2"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/015/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/015/metrics.csv",
+      "bytes": 1473,
+      "sha256": "d40af325d163e92dc046d448c1763c4a937eb57d4af4c5b361897efad57f34f2"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/015/summary.json",
+      "bytes": 24738,
+      "sha256": "c570726a5de7426faf69232ee03001a1554ca31e1c1791d5e4687e07d18ec869"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/016/best.pt",
+      "bytes": 2271,
+      "sha256": "6d6a95d02de94de30ab7bf3d874d98f2a6b0b26bb0d21a92fc9cd6535a83efc7"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/016/config.json",
+      "bytes": 802,
+      "sha256": "677e659d69f367db8bfd5a3af2ad5206f59f8a07430c9e9e803baa71f9318558"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/016/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/016/final.pt",
+      "bytes": 2271,
+      "sha256": "6d6a95d02de94de30ab7bf3d874d98f2a6b0b26bb0d21a92fc9cd6535a83efc7"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/016/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/016/metrics.csv",
+      "bytes": 1462,
+      "sha256": "049aef76b53d0e0f94b3d5ddfdb31083ba515a80821eab890553ce009cc67ea0"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/016/summary.json",
+      "bytes": 24854,
+      "sha256": "8018518069af57bbb1af08ee1745422e4d2cd7688612d5e1392a2cded141110a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/017/best.pt",
+      "bytes": 2271,
+      "sha256": "39cb5b61c922683cfe0d115d8d4fa2f2b530910bd9065efca3d8db2528bdae3e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/017/config.json",
+      "bytes": 807,
+      "sha256": "b138ba9aff5cd7e7d9339d5bea2de09d8636b09106e73555511dc945ca2077d6"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/017/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/017/final.pt",
+      "bytes": 2271,
+      "sha256": "39cb5b61c922683cfe0d115d8d4fa2f2b530910bd9065efca3d8db2528bdae3e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/017/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/017/metrics.csv",
+      "bytes": 1476,
+      "sha256": "625d9695423736d6de0e40f16dde09644668ed6b7c5f478ee407625cb54a4c3d"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/017/summary.json",
+      "bytes": 24687,
+      "sha256": "3c9536dc67dff9478af88861dea712368796e59b94800615cf9b46481410f056"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/018/best.pt",
+      "bytes": 2271,
+      "sha256": "0ab5836ee70abe4334a2c1679c093529e5eb42058de2a68bd3200f9567430ad2"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/018/config.json",
+      "bytes": 803,
+      "sha256": "074ca9e079a6218985ec678eaae04999733c43ba2e21b5e715ca08a3624ea84e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/018/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/018/final.pt",
+      "bytes": 2271,
+      "sha256": "0ab5836ee70abe4334a2c1679c093529e5eb42058de2a68bd3200f9567430ad2"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/018/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/018/metrics.csv",
+      "bytes": 1484,
+      "sha256": "f4ddbbcc3079c2cb49ad7410d5dc62dca5a2f3cf89a02776e902382a948d4033"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/018/summary.json",
+      "bytes": 24738,
+      "sha256": "315ec79894c59919f4a600967108f7e5c65e34c7946243e16dab55cf405f939f"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/019/best.pt",
+      "bytes": 2271,
+      "sha256": "bb5bce71356e791243b966676164e7e59c732ae12cd1666f47e6840828992e2f"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/019/config.json",
+      "bytes": 803,
+      "sha256": "9e22e69f97bc0227ac950a411d4d3f26d276229743456a6c1408819a3a5e834c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/019/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/019/final.pt",
+      "bytes": 2271,
+      "sha256": "8c23dda7c716e13f9eaa1206ca0deb813a61df58ca9f4b8434575a4605c37b02"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/019/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/019/metrics.csv",
+      "bytes": 1447,
+      "sha256": "bd502ec1ee563d1239e68f83b7793fdf6f52d749436ce3e49d97e151f33e7bb4"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/019/summary.json",
+      "bytes": 8943,
+      "sha256": "778ea07f98639447339b91289de88b3860e96c794f734c4a5d33ad940855164b"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/020/best.pt",
+      "bytes": 2271,
+      "sha256": "4e38409f96c1868861d290567624def22a1e0d282c2021fc98c0d78fa691832a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/020/config.json",
+      "bytes": 799,
+      "sha256": "9ac803958b33beccfab4733610dac8fcc8919e8c75fd5193b336019f48e24772"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/020/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/020/final.pt",
+      "bytes": 2271,
+      "sha256": "e447f26758791308cfd90d10102ff6c3280a7fdcc33993eaf4f3d78e14627635"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/020/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/020/metrics.csv",
+      "bytes": 1439,
+      "sha256": "9539dc288d9272903f9e06c327cad00cf94465d4094887a62d13c779971a6cac"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/020/summary.json",
+      "bytes": 9115,
+      "sha256": "7a3b99eb26d03b82cb4339931016700ba0b7ba10e2f3a22a1e96127143562feb"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/021/best.pt",
+      "bytes": 2271,
+      "sha256": "fe306c5aa8067e166507b9f9f9299b84cfc7ac94339d4af1b3f3146a83d3a280"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/021/config.json",
+      "bytes": 799,
+      "sha256": "a5c005fe0df8cabc2c9a5494ffcfab6455ca83914c59dd8ac5339c26ec6c1665"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/021/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/021/final.pt",
+      "bytes": 2271,
+      "sha256": "fe306c5aa8067e166507b9f9f9299b84cfc7ac94339d4af1b3f3146a83d3a280"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/021/initial.pt",
+      "bytes": 2271,
+      "sha256": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/021/metrics.csv",
+      "bytes": 1470,
+      "sha256": "09555dee6e5723d935095ab1403af33a7f548069f84bed03f7ca378f75f782dc"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/021/summary.json",
+      "bytes": 9219,
+      "sha256": "2e2dad08b314f0a15fc1f0014f0ef47325a9df57f3f85f6f5c67a7193786b777"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/022/best.pt",
+      "bytes": 2271,
+      "sha256": "a15c398367e70f017f3e4554837c7a1d450d1e833d10178cd36fd522ad76888e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/022/config.json",
+      "bytes": 803,
+      "sha256": "771bb7d400a452beeed59e940d4a8bb4c76da8ffc75607ba22c1cdb738cab9a8"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/022/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/022/final.pt",
+      "bytes": 2271,
+      "sha256": "a15c398367e70f017f3e4554837c7a1d450d1e833d10178cd36fd522ad76888e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/022/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/022/metrics.csv",
+      "bytes": 1461,
+      "sha256": "9f4ab5550614bf23aff6a9fb56db11d9a547080dc48659879787fa8ce2e97640"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/022/summary.json",
+      "bytes": 24939,
+      "sha256": "3d544035cd402e77b655477761160301c03519a36f2e7ac8bc62fc6a7898f1dc"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/023/best.pt",
+      "bytes": 2271,
+      "sha256": "463969fd409d137391a580e581129a757ee8f8f93d6f52e112ab908a7bc8f1ea"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/023/config.json",
+      "bytes": 799,
+      "sha256": "fae97d0f30ea78f9561f06e7155c0870ef62bad9ceafc55b820454af74ce10e7"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/023/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/023/final.pt",
+      "bytes": 2271,
+      "sha256": "463969fd409d137391a580e581129a757ee8f8f93d6f52e112ab908a7bc8f1ea"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/023/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/023/metrics.csv",
+      "bytes": 1459,
+      "sha256": "40cd7d2ffd9cf6b96fe57f95d24385fe153778d8e859cf84ccf992b6f9f5d964"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/023/summary.json",
+      "bytes": 24961,
+      "sha256": "9abba9d89bedccf6e0316c846eba51f3c17198eafa2a4a98fdbf74a9a1f614bd"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/024/best.pt",
+      "bytes": 2271,
+      "sha256": "4e09deaf33e35df1c07bb8fc91ef5be5079d81e2d6546194a014af08c245dc8f"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/024/config.json",
+      "bytes": 804,
+      "sha256": "bb5536af06f58775967b9874df44ce83b0ea0fb7bc1b33e6c095d3b0301ede9f"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/024/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/024/final.pt",
+      "bytes": 2271,
+      "sha256": "4e09deaf33e35df1c07bb8fc91ef5be5079d81e2d6546194a014af08c245dc8f"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/024/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/024/metrics.csv",
+      "bytes": 1477,
+      "sha256": "5b542f9022c3fcfa89e615232095bb319f6037c140146f765ed75bef5794433d"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/024/summary.json",
+      "bytes": 24940,
+      "sha256": "96c47e3329cf192700240d0d296882c656541fefb205f1a9d7173b661f4c418e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/025/best.pt",
+      "bytes": 2271,
+      "sha256": "64df60f4899f1b92898e5c7f10b96c1b9737534099f440c4af726869d10eda94"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/025/config.json",
+      "bytes": 800,
+      "sha256": "b540d324bda090914e3dcf75cfc09d4de4ab84058402f9e9247c68fe6d531460"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/025/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/025/final.pt",
+      "bytes": 2271,
+      "sha256": "64df60f4899f1b92898e5c7f10b96c1b9737534099f440c4af726869d10eda94"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/025/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/025/metrics.csv",
+      "bytes": 1480,
+      "sha256": "731f65348f269cdae64bed4bbf1cf01abb3963331f7bc44975f5cbc6473e262a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/025/summary.json",
+      "bytes": 24967,
+      "sha256": "967fcbf21b128c9e5dfbe4cbee2870420b5f278c4bec290cac20de567ad83c20"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/026/best.pt",
+      "bytes": 2271,
+      "sha256": "609e5f3fb411da05633c67d09f8009f840a4b232dd1f0a8c481377c265c99900"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/026/config.json",
+      "bytes": 807,
+      "sha256": "c3c52984c68e5839ed597c1694ab54a889d3effece311c8e74fde306cf605cfb"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/026/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/026/final.pt",
+      "bytes": 2271,
+      "sha256": "609e5f3fb411da05633c67d09f8009f840a4b232dd1f0a8c481377c265c99900"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/026/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/026/metrics.csv",
+      "bytes": 1469,
+      "sha256": "df4209b2ffdd3b35a4b9c53185cffd31929d71d32284702255ca53a0735d9abf"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/026/summary.json",
+      "bytes": 24872,
+      "sha256": "518681b5e0f532113868009d1bace9b4e2619e42b85f6e397a217e32718ef7a1"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/027/best.pt",
+      "bytes": 2271,
+      "sha256": "d4b57f7b52d462f5e303802083aced747edd34cd65b07fc07af6fad7f65ac061"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/027/config.json",
+      "bytes": 803,
+      "sha256": "97ae0f802579896fb128db80ac15f45d760799eb9615fc7630278c34d633f76c"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/027/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/027/final.pt",
+      "bytes": 2271,
+      "sha256": "d4b57f7b52d462f5e303802083aced747edd34cd65b07fc07af6fad7f65ac061"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/027/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/027/metrics.csv",
+      "bytes": 1467,
+      "sha256": "0c2189a737c8ded2e08b7b5a1ba1f4e6082edef3b535b7e5b9f5fc8fc21ac956"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/027/summary.json",
+      "bytes": 24948,
+      "sha256": "1e1dd947bbe4b2116b4df82f68fb9aa4e194d8a85d214cf949f244c0333d0d0d"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/028/best.pt",
+      "bytes": 2271,
+      "sha256": "612916c4a41614dd4edf035c304ab56f27ef5e14bd02bcd4296b71b26e646b64"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/028/config.json",
+      "bytes": 808,
+      "sha256": "8f154f15b68ecc02bb0ac2ef70bd24d62c901e704eddcd840accc48a22017465"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/028/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/028/final.pt",
+      "bytes": 2271,
+      "sha256": "612916c4a41614dd4edf035c304ab56f27ef5e14bd02bcd4296b71b26e646b64"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/028/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/028/metrics.csv",
+      "bytes": 1470,
+      "sha256": "1e2187a2dc964efdce6ac437b42a751251a47963c7baa91b3588a4e995bd5ec8"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/028/summary.json",
+      "bytes": 24825,
+      "sha256": "6238f7aec245b733262787bdf354a6c644b312acdf663a6cf8300012aeab82c9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/029/best.pt",
+      "bytes": 2271,
+      "sha256": "70b67c4b98f5fe9e12048717c6860407af0b7467c0671e0f88b789766903e571"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/029/config.json",
+      "bytes": 804,
+      "sha256": "04f77450bcf5d3d1a5fb7a2c17765c1771ae2f38977d986d506baaa877de1fb4"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/029/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/029/final.pt",
+      "bytes": 2271,
+      "sha256": "70b67c4b98f5fe9e12048717c6860407af0b7467c0671e0f88b789766903e571"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/029/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/029/metrics.csv",
+      "bytes": 1470,
+      "sha256": "d0eb29b6d55c72b5019f622d5bde4701065a6dafb73a8fa7a6981b994c973cd2"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/029/summary.json",
+      "bytes": 24889,
+      "sha256": "8b896ed79c75bbfb54e91dca1b9c50ea3fc50a25cbb8ebbee422c5af8466c896"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/030/best.pt",
+      "bytes": 2271,
+      "sha256": "d2e56f4837916552ec865ac89d888fbed54b1804e4e4f94becae1091f2d9dc57"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/030/config.json",
+      "bytes": 804,
+      "sha256": "61361e53d13323bf393a6cb3083d50e6e8d2c89dee8e6cf924c423e6cdea7689"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/030/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/030/final.pt",
+      "bytes": 2271,
+      "sha256": "d2e56f4837916552ec865ac89d888fbed54b1804e4e4f94becae1091f2d9dc57"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/030/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/030/metrics.csv",
+      "bytes": 1442,
+      "sha256": "487d2d1bffa277bc931d7e08839273322fb469b143d33c6421a1d1d11a1ccefa"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/030/summary.json",
+      "bytes": 9126,
+      "sha256": "120504e6b0e2a0918951dd37c491f260ea693d0e8c05cc160629b167927175d6"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/031/best.pt",
+      "bytes": 2271,
+      "sha256": "9636d448d43faace19d48b4391fb2c1e6ea95ef5d09f6087491ad547a452bb6e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/031/config.json",
+      "bytes": 800,
+      "sha256": "2f85b76b01e9060690540950bd96f9092382351055a2b9945d32f2e4200c59d5"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/031/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/031/final.pt",
+      "bytes": 2271,
+      "sha256": "9636d448d43faace19d48b4391fb2c1e6ea95ef5d09f6087491ad547a452bb6e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/031/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/031/metrics.csv",
+      "bytes": 1440,
+      "sha256": "454d47549880475c9bc7b75ed2f588fef84b5ac9a5cc124110a4a555173c87d9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/031/summary.json",
+      "bytes": 9154,
+      "sha256": "562d2446c3de610ba55b29e567fcfe6a813167d43bc518652b8b1398109ce1c2"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/032/best.pt",
+      "bytes": 2271,
+      "sha256": "d6536f1beb8345bd5cb971f99c9d40626adf8a4aec7bf25f315fc3220b369865"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/032/config.json",
+      "bytes": 800,
+      "sha256": "55268801b85712d6e9ddc9f593e6a9e018f43a816eb66b0d1f468f6b2e3ede1d"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/032/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/032/final.pt",
+      "bytes": 2271,
+      "sha256": "d6536f1beb8345bd5cb971f99c9d40626adf8a4aec7bf25f315fc3220b369865"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/032/initial.pt",
+      "bytes": 2271,
+      "sha256": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/032/metrics.csv",
+      "bytes": 1470,
+      "sha256": "7d4515e9479f742a78e28e5d23be6ab2430121bb48f2a581d61b5076b4538d0a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/cells/032/summary.json",
+      "bytes": 9147,
+      "sha256": "c3ff7ef74ae27fa56ae5141f36768d535ecdc36396768f0fa99ff147178b58ce"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/matrix.json",
+      "bytes": 3516,
+      "sha256": "84ae778d79528faab49fa90bf51a94fc1f51c8212f939c73f3951192b2cf15f3"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/000/best.pt",
+      "bytes": 2271,
+      "sha256": "2d5aa5d8999911674075003fcded8acfe122a743fe9d84d9fbc9ffe51f3fe681"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/000/config.json",
+      "bytes": 797,
+      "sha256": "c104737c6eb1773123b04c7e7987aa159a93fceb3ee67264db483cba4e60c90d"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/000/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/000/final.pt",
+      "bytes": 2271,
+      "sha256": "2d5aa5d8999911674075003fcded8acfe122a743fe9d84d9fbc9ffe51f3fe681"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/000/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/000/metrics.csv",
+      "bytes": 167,
+      "sha256": "6c208858e7f860bf4f66d916160aeb6fa4b13e02b65ac5a7c0ac2bae59a5e3c6"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/000/summary.json",
+      "bytes": 25102,
+      "sha256": "174a0c846333af67ce63d4cd4a2720cc211de943da0fa58f4602874b7d7cbfce"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/009/best.pt",
+      "bytes": 2271,
+      "sha256": "bb3f049385bf2b0207d31926469009f630b0e894464313bab164dc4c1bd2beac"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/009/config.json",
+      "bytes": 794,
+      "sha256": "1446a9016d21907c35787ebea60ef24c469558b94a4e49fdd314ddfd7365271a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/009/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/009/final.pt",
+      "bytes": 2271,
+      "sha256": "bb3f049385bf2b0207d31926469009f630b0e894464313bab164dc4c1bd2beac"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/009/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/009/metrics.csv",
+      "bytes": 169,
+      "sha256": "f4003d1f160fa5ea73364d325c853584894df4d214d70d9cf26edb8164192c2f"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/009/summary.json",
+      "bytes": 9313,
+      "sha256": "787b8f029aa332b251e24b583e8d7739b27def77869ac2bfc4abc5c9fe0d9713"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/010/best.pt",
+      "bytes": 2271,
+      "sha256": "0c177f3cc79a101e0b228e0f5d524a56ee9f766f3f146bc8159bd6f3b6fc3c78"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/010/config.json",
+      "bytes": 794,
+      "sha256": "09eae8d41ee07f01e4bfb5957d34c98df0775ca952baded7f1e0dc27c9fee84e"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/010/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/010/final.pt",
+      "bytes": 2271,
+      "sha256": "0c177f3cc79a101e0b228e0f5d524a56ee9f766f3f146bc8159bd6f3b6fc3c78"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/010/initial.pt",
+      "bytes": 2271,
+      "sha256": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/010/metrics.csv",
+      "bytes": 170,
+      "sha256": "6ad6a29a36d3c686152a812ebf711444290cf851f40edb12c0eb3f9f95d57658"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/run/smoke/010/summary.json",
+      "bytes": 9449,
+      "sha256": "5b8a8ca68d655467bfb483c5724bcb297d946bc9a14f2a3756cbb084dabc4430"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/slurm_final.txt",
+      "bytes": 9342,
+      "sha256": "07fe415aa6a44aa1ecb760d55513cb3a85a094be2770123bf88c34295cb717f8"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/smoke.sh",
+      "bytes": 1216,
+      "sha256": "cfce98df2bef435a55d549ec9c01af0b3ba73c8ee63edca994d1d9a7648773da"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/smoke_job_id.txt",
+      "bytes": 9,
+      "sha256": "96af528c09de8ca7226db92a72a722d3aaca3202dd48c15ade13dcb063db65e4"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/smoke_passed",
+      "bytes": 7,
+      "sha256": "2700165975f68815c97d605c56eca8e90d497ade1264b6282401d13fee99ac27"
+    },
+    {
+      "path": "runs/semigroup-discovery-20260909-r1/source_commit.txt",
+      "bytes": 41,
+      "sha256": "c297c625eb9bdd058bbea1ba1a41dc43513078c48185126f7127badf0ff62804"
+    },
+    {
+      "path": "runs/semigroup-high-frequency-20260909-r1/artifacts.sha256",
+      "bytes": 727,
+      "sha256": "1c211238cb6f794112c71d0b7d6819bf4595db277fd2577e7e0dd2c376f0e003"
+    },
+    {
+      "path": "runs/semigroup-high-frequency-20260909-r1/bootstrap.log",
+      "bytes": 1371,
+      "sha256": "712aea76e07b264462e0da54db4f486d8dd3f9c1ce9ddb9b03530aba5d60f28b"
+    },
+    {
+      "path": "runs/semigroup-high-frequency-20260909-r1/evaluation.py",
+      "bytes": 4332,
+      "sha256": "86bb5db6527114f79ca78180ee8d9302f9067ab8ed80db4155c26a9a7a9eb142"
+    },
+    {
+      "path": "runs/semigroup-high-frequency-20260909-r1/job_id.txt",
+      "bytes": 9,
+      "sha256": "5e7519c542646e4ee3f2d9be9e7903c30158347f6382e2fedd8023462a01a320"
+    },
+    {
+      "path": "runs/semigroup-high-frequency-20260909-r1/launch.sh",
+      "bytes": 558,
+      "sha256": "4cfaf1b5ac7212ff5abee173c04d288ddd238ca0093072879f3531f618b844b7"
+    },
+    {
+      "path": "runs/semigroup-high-frequency-20260909-r1/logs/evaluation-23778926.log",
+      "bytes": 212,
+      "sha256": "23cbae1270418dffb9bc5ee41a933b479d808985a6cf0cc971ffc8dc5aeda4d6"
+    },
+    {
+      "path": "runs/semigroup-high-frequency-20260909-r1/run/cache.pt",
+      "bytes": 92615,
+      "sha256": "58d675c0279c07a04caa0a9e3f6003ab9da9e56d5cabdfa3c3e3b4baaf206f69"
+    },
+    {
+      "path": "runs/semigroup-high-frequency-20260909-r1/run/done",
+      "bytes": 10,
+      "sha256": "d3be030801b90ea8057d3997d9845c7f850cc7b784450645d5ec2811cc927d7a"
+    },
+    {
+      "path": "runs/semigroup-high-frequency-20260909-r1/run/summary.json",
+      "bytes": 45661,
+      "sha256": "0437787d14ff4229c03deb78f53c19b1fdbd1b18911e30129530d5986b2cae36"
+    },
+    {
+      "path": "runs/semigroup-high-frequency-20260909-r1/slurm_final.txt",
+      "bytes": 275,
+      "sha256": "6a2b6d1a1bbf35eb4787acb93244537c49c1b380389fa8fcbca4c752871c4c87"
+    },
+    {
+      "path": "source_snapshots/COMMITS.json",
+      "bytes": 246,
+      "sha256": "dc52583fea9ecdd2580a9855d29b8ddd9c25f37e2f0c7301ea2303ee9dc40c26"
+    },
+    {
+      "path": "source_snapshots/analysis/experiments/audit_semigroup_discovery.py",
+      "bytes": 2894,
+      "sha256": "3819226da3adbfe1d8ecbaae94d8517bc1ce61f8af2d17035a190233a3686506"
+    },
+    {
+      "path": "source_snapshots/analysis/experiments/evaluate_semigroup_high_frequency.py",
+      "bytes": 4332,
+      "sha256": "86bb5db6527114f79ca78180ee8d9302f9067ab8ed80db4155c26a9a7a9eb142"
+    },
+    {
+      "path": "source_snapshots/analysis/experiments/plot_semigroup_discovery.py",
+      "bytes": 2844,
+      "sha256": "ca987cde239874007106603f5cc78bc9abe26dedc9bcaf92ce9348ebe6171da3"
+    },
+    {
+      "path": "source_snapshots/analysis/experiments/report_semigroup_discovery.py",
+      "bytes": 17058,
+      "sha256": "eeeccd6d0e6c67651e1804a84afbdf3db09c55658b7fc630f52e0c368e9d44dc"
+    },
+    {
+      "path": "source_snapshots/analysis/experiments/run_semigroup_clock_control.py",
+      "bytes": 1256,
+      "sha256": "2d6975318dee16b70d71a8e1e34466a4657cfe08b8c3f806bd9a179d38deac7f"
+    },
+    {
+      "path": "source_snapshots/analysis/experiments/run_semigroup_discovery.py",
+      "bytes": 12865,
+      "sha256": "8f56d2c2e1a6be8fe17f6eb2615137d3b5460729c7ab1007b27b29d3cd0b0c52"
+    },
+    {
+      "path": "source_snapshots/analysis/experiments/run_unknown_reaction_matched.py",
+      "bytes": 20655,
+      "sha256": "b6b40c064d1c58183bbd57f89b406d58d02b28f054792d73a1059f2a1c6d27de"
+    },
+    {
+      "path": "source_snapshots/baseline/docs/research/SCNET_SEMIGROUP_DISCOVERY_PROTOCOL.md",
+      "bytes": 5374,
+      "sha256": "26aa0cf69ad46a84829a96cc12bdc72a91d4dcc4760d7f96b9fc1bb4582a8af3"
+    },
+    {
+      "path": "source_snapshots/baseline/experiments/aggregate_semigroup_discovery.py",
+      "bytes": 3011,
+      "sha256": "cb79d12bc22db3c39cf73475d8b7e3b3967b31cbaab50bb968026c7c1e8bdfc4"
+    },
+    {
+      "path": "source_snapshots/baseline/experiments/run_semigroup_discovery.py",
+      "bytes": 12793,
+      "sha256": "be9cead7128d7be229345c5ca9faaf4d7a5ee3d675902b7796cbe634626270f3"
+    },
+    {
+      "path": "source_snapshots/baseline/experiments/run_unknown_reaction_matched.py",
+      "bytes": 20655,
+      "sha256": "b6b40c064d1c58183bbd57f89b406d58d02b28f054792d73a1059f2a1c6d27de"
+    },
+    {
+      "path": "source_snapshots/baseline/experiments/scnet/submit_semigroup_discovery.sh",
+      "bytes": 2963,
+      "sha256": "69d290dfe57a0a7d5d72371f106481d59db8ad6db28b5d1d7bcdc978a3f47546"
+    },
+    {
+      "path": "source_snapshots/baseline/experiments/tests/test_semigroup_discovery.py",
+      "bytes": 1817,
+      "sha256": "c0c9eaa72428383f4d8b4edbba5588bd3e8f63528340fdeb10645a7bca50ac57"
+    },
+    {
+      "path": "source_snapshots/clock_control/docs/research/SCNET_CLOCK_INFORMATION_CONTROL_PROTOCOL.md",
+      "bytes": 1761,
+      "sha256": "0f0dc0657fabfbd1520949e6acc5178631fa71ad9d56abf0dd54043920220c54"
+    },
+    {
+      "path": "source_snapshots/clock_control/experiments/run_semigroup_clock_control.py",
+      "bytes": 1256,
+      "sha256": "2d6975318dee16b70d71a8e1e34466a4657cfe08b8c3f806bd9a179d38deac7f"
+    },
+    {
+      "path": "source_snapshots/clock_control/experiments/run_semigroup_discovery.py",
+      "bytes": 12865,
+      "sha256": "8f56d2c2e1a6be8fe17f6eb2615137d3b5460729c7ab1007b27b29d3cd0b0c52"
+    },
+    {
+      "path": "source_snapshots/clock_control/experiments/run_unknown_reaction_matched.py",
+      "bytes": 20655,
+      "sha256": "b6b40c064d1c58183bbd57f89b406d58d02b28f054792d73a1059f2a1c6d27de"
+    },
+    {
+      "path": "source_snapshots/high_frequency/docs/research/SCNET_CLOCK_INFORMATION_CONTROL_PROTOCOL.md",
+      "bytes": 2549,
+      "sha256": "d990485c5571aee3a391f0341033fcbf9b3f03760dd78915c62a511e95aab779"
+    },
+    {
+      "path": "source_snapshots/high_frequency/experiments/evaluate_semigroup_high_frequency.py",
+      "bytes": 4332,
+      "sha256": "86bb5db6527114f79ca78180ee8d9302f9067ab8ed80db4155c26a9a7a9eb142"
+    },
+    {
+      "path": "source_snapshots/high_frequency/experiments/run_semigroup_discovery.py",
+      "bytes": 12865,
+      "sha256": "8f56d2c2e1a6be8fe17f6eb2615137d3b5460729c7ab1007b27b29d3cd0b0c52"
+    },
+    {
+      "path": "source_snapshots/high_frequency/experiments/run_unknown_reaction_matched.py",
+      "bytes": 20655,
+      "sha256": "b6b40c064d1c58183bbd57f89b406d58d02b28f054792d73a1059f2a1c6d27de"
+    },
+    {
+      "path": "verification/EXTENSION_RECOVERY_VERIFICATION.json",
+      "bytes": 394,
+      "sha256": "cdc6427d48272cfe1405c41c1f2fd0be8f3c3adf00c701d85601ee812c549098"
+    },
+    {
+      "path": "verification/HIGH_FREQUENCY_REPLAY_VERIFICATION.json",
+      "bytes": 26578,
+      "sha256": "1d3f7b18b3216537b8c1596df186dd9791142120c17fc5fb9de18371b149e1a3"
+    },
+    {
+      "path": "verification/LAUNCH_RECEIPT.json",
+      "bytes": 1736,
+      "sha256": "344fb4cb11c921553b2a4b08981653342c7b60b9dd0b9190387284f3cddd73e1"
+    },
+    {
+      "path": "verification/RECOVERY_VERIFICATION.json",
+      "bytes": 236,
+      "sha256": "80884472377e1ddd0e3f0fb5d77eca1de3fc9e215642dc00e8f7f3db52b4dc73"
+    },
+    {
+      "path": "verification/clock-cpu-replay.log",
+      "bytes": 174,
+      "sha256": "1bf451ff1e566013427c4936d66aefa0ffdcd5c2ea61dc633633490c79aab502"
+    },
+    {
+      "path": "verification/cpu-replay.log",
+      "bytes": 1937,
+      "sha256": "13a891bf1a4ffc26ead502470b1fccd7486c85c11c7f1e19d1c5f156fbb897bc"
+    },
+    {
+      "path": "verification/high-frequency-cpu-replay.log",
+      "bytes": 212,
+      "sha256": "23cbae1270418dffb9bc5ee41a933b479d808985a6cf0cc971ffc8dc5aeda4d6"
+    }
+  ],
+  "file_count": 401
+}

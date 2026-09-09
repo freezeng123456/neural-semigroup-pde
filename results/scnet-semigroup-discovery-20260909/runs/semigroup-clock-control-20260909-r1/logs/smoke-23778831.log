@@ -1,0 +1,2 @@
+{"update": 1, "loss": 0.004835059866309166, "validation_mse": 0.1488868184037828, "training_seconds": 1.5420145131647587}
+{"update": 2, "loss": 0.004578853957355022, "validation_mse": 0.14535259513664567, "training_seconds": 1.5612616743892431}

@@ -1,0 +1,12 @@
+23778831|COMPLETED|0:0|billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|e01r03
+23778831.batch|COMPLETED|0:0||cpu=4,gres/gpu=1,mem=15328M,node=1|e01r03
+23778831.extern|COMPLETED|0:0||billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|e01r03
+23778885_0|COMPLETED|0:0|billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|e01r03
+23778885_0.batch|COMPLETED|0:0||cpu=4,gres/gpu=1,mem=15328M,node=1|e01r03
+23778885_0.extern|COMPLETED|0:0||billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|e01r03
+23778885_1|COMPLETED|0:0|billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|e04r02
+23778885_1.batch|COMPLETED|0:0||cpu=4,gres/gpu=1,mem=15328M,node=1|e04r02
+23778885_1.extern|COMPLETED|0:0||billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|e04r02
+23778885_2|COMPLETED|0:0|billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|e04r03
+23778885_2.batch|COMPLETED|0:0||cpu=4,gres/gpu=1,mem=15328M,node=1|e04r03
+23778885_2.extern|COMPLETED|0:0||billing=4,cpu=4,gres/gpu=1,mem=15328M,node=1|e04r03

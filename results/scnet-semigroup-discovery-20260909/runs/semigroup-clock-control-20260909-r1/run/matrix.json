@@ -1,0 +1,23 @@
+[
+  {
+    "track": "forced",
+    "seed": 42,
+    "n": 128,
+    "noise": 0.0,
+    "model": "clock_query"
+  },
+  {
+    "track": "forced",
+    "seed": 123,
+    "n": 128,
+    "noise": 0.0,
+    "model": "clock_query"
+  },
+  {
+    "track": "forced",
+    "seed": 2026,
+    "n": 128,
+    "noise": 0.0,
+    "model": "clock_query"
+  }
+]

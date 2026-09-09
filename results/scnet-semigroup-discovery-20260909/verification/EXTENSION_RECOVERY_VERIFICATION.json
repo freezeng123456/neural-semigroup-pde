@@ -1,0 +1,17 @@
+{
+  "archive_sha256": "324cab6e0c918a622c994434e32ed3f872f06ecfc0888455fcd06c90f4e1bbb4",
+  "roots": [
+    {
+      "root": "semigroup-clock-control-20260909-r1",
+      "content_files": 42,
+      "total_files": 43,
+      "status": "PASSED"
+    },
+    {
+      "root": "semigroup-high-frequency-20260909-r1",
+      "content_files": 9,
+      "total_files": 10,
+      "status": "PASSED"
+    }
+  ]
+}

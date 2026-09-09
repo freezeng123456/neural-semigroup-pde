@@ -1,0 +1,233 @@
+[
+  {
+    "track": "irregular",
+    "seed": 42,
+    "n": 16,
+    "noise": 0.0,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 42,
+    "n": 16,
+    "noise": 0.0,
+    "model": "query"
+  },
+  {
+    "track": "irregular",
+    "seed": 42,
+    "n": 16,
+    "noise": 0.01,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 42,
+    "n": 16,
+    "noise": 0.01,
+    "model": "query"
+  },
+  {
+    "track": "irregular",
+    "seed": 42,
+    "n": 128,
+    "noise": 0.0,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 42,
+    "n": 128,
+    "noise": 0.0,
+    "model": "query"
+  },
+  {
+    "track": "irregular",
+    "seed": 42,
+    "n": 128,
+    "noise": 0.01,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 42,
+    "n": 128,
+    "noise": 0.01,
+    "model": "query"
+  },
+  {
+    "track": "forced",
+    "seed": 42,
+    "n": 128,
+    "noise": 0.0,
+    "model": "autonomous"
+  },
+  {
+    "track": "forced",
+    "seed": 42,
+    "n": 128,
+    "noise": 0.0,
+    "model": "query"
+  },
+  {
+    "track": "forced",
+    "seed": 42,
+    "n": 128,
+    "noise": 0.0,
+    "model": "clock"
+  },
+  {
+    "track": "irregular",
+    "seed": 123,
+    "n": 16,
+    "noise": 0.0,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 123,
+    "n": 16,
+    "noise": 0.0,
+    "model": "query"
+  },
+  {
+    "track": "irregular",
+    "seed": 123,
+    "n": 16,
+    "noise": 0.01,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 123,
+    "n": 16,
+    "noise": 0.01,
+    "model": "query"
+  },
+  {
+    "track": "irregular",
+    "seed": 123,
+    "n": 128,
+    "noise": 0.0,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 123,
+    "n": 128,
+    "noise": 0.0,
+    "model": "query"
+  },
+  {
+    "track": "irregular",
+    "seed": 123,
+    "n": 128,
+    "noise": 0.01,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 123,
+    "n": 128,
+    "noise": 0.01,
+    "model": "query"
+  },
+  {
+    "track": "forced",
+    "seed": 123,
+    "n": 128,
+    "noise": 0.0,
+    "model": "autonomous"
+  },
+  {
+    "track": "forced",
+    "seed": 123,
+    "n": 128,
+    "noise": 0.0,
+    "model": "query"
+  },
+  {
+    "track": "forced",
+    "seed": 123,
+    "n": 128,
+    "noise": 0.0,
+    "model": "clock"
+  },
+  {
+    "track": "irregular",
+    "seed": 2026,
+    "n": 16,
+    "noise": 0.0,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 2026,
+    "n": 16,
+    "noise": 0.0,
+    "model": "query"
+  },
+  {
+    "track": "irregular",
+    "seed": 2026,
+    "n": 16,
+    "noise": 0.01,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 2026,
+    "n": 16,
+    "noise": 0.01,
+    "model": "query"
+  },
+  {
+    "track": "irregular",
+    "seed": 2026,
+    "n": 128,
+    "noise": 0.0,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 2026,
+    "n": 128,
+    "noise": 0.0,
+    "model": "query"
+  },
+  {
+    "track": "irregular",
+    "seed": 2026,
+    "n": 128,
+    "noise": 0.01,
+    "model": "autonomous"
+  },
+  {
+    "track": "irregular",
+    "seed": 2026,
+    "n": 128,
+    "noise": 0.01,
+    "model": "query"
+  },
+  {
+    "track": "forced",
+    "seed": 2026,
+    "n": 128,
+    "noise": 0.0,
+    "model": "autonomous"
+  },
+  {
+    "track": "forced",
+    "seed": 2026,
+    "n": 128,
+    "noise": 0.0,
+    "model": "query"
+  },
+  {
+    "track": "forced",
+    "seed": 2026,
+    "n": 128,
+    "noise": 0.0,
+    "model": "clock"
+  }
+]

@@ -1,0 +1,141 @@
+{
+  "status": "PASSED",
+  "cells": 3,
+  "checkpoints": 9,
+  "primary_endpoint_replays": 12,
+  "cache_sha256": "23128c0c56672d9af169e1ee41437f9375872d9a7c825a2b59e7381b33152b13",
+  "evidence": [
+    {
+      "cell": 0,
+      "model": "clock_query",
+      "replays": [
+        {
+          "horizon": 1.2,
+          "lag": 0.06,
+          "cpu_mse": 0.002868050243705511,
+          "recorded_gpu_mse": 0.0028680278919637203,
+          "absolute_difference": 2.2351741790771484e-08,
+          "tolerance": 5.736055783927441e-05
+        },
+        {
+          "horizon": 1.2,
+          "lag": 0.12,
+          "cpu_mse": 0.0028137776535004377,
+          "recorded_gpu_mse": 0.002813763450831175,
+          "absolute_difference": 1.4202669262886047e-08,
+          "tolerance": 5.62752690166235e-05
+        },
+        {
+          "horizon": 2.4,
+          "lag": 0.06,
+          "cpu_mse": 0.007115354761481285,
+          "recorded_gpu_mse": 0.007115240208804607,
+          "absolute_difference": 1.1455267667770386e-07,
+          "tolerance": 0.00014230480417609214
+        },
+        {
+          "horizon": 2.4,
+          "lag": 0.12,
+          "cpu_mse": 0.0069365110248327255,
+          "recorded_gpu_mse": 0.00693646352738142,
+          "absolute_difference": 4.7497451305389404e-08,
+          "tolerance": 0.00013872927054762841
+        }
+      ],
+      "best_update": 2000,
+      "checkpoint_sha256": {
+        "initial": "dbbc5e226fab2ddb34c1c4a3e1bedc452c5bc4369ef8af0367604c5e02927fb9",
+        "final": "39ce02788f99090afe819bfa5c0fe8b9850b96f1fd4c2bec71f134b0e855e72d",
+        "best": "39ce02788f99090afe819bfa5c0fe8b9850b96f1fd4c2bec71f134b0e855e72d"
+      }
+    },
+    {
+      "cell": 1,
+      "model": "clock_query",
+      "replays": [
+        {
+          "horizon": 1.2,
+          "lag": 0.06,
+          "cpu_mse": 0.0030341148376464844,
+          "recorded_gpu_mse": 0.003034086897969246,
+          "absolute_difference": 2.7939677238464355e-08,
+          "tolerance": 6.068173795938492e-05
+        },
+        {
+          "horizon": 1.2,
+          "lag": 0.12,
+          "cpu_mse": 0.002915317192673683,
+          "recorded_gpu_mse": 0.0029152994975447655,
+          "absolute_difference": 1.7695128917694092e-08,
+          "tolerance": 5.830598995089531e-05
+        },
+        {
+          "horizon": 2.4,
+          "lag": 0.06,
+          "cpu_mse": 0.007553787901997566,
+          "recorded_gpu_mse": 0.007553661707788706,
+          "absolute_difference": 1.2619420886039734e-07,
+          "tolerance": 0.0001510732341557741
+        },
+        {
+          "horizon": 2.4,
+          "lag": 0.12,
+          "cpu_mse": 0.0073884231969714165,
+          "recorded_gpu_mse": 0.0073883687146008015,
+          "absolute_difference": 5.448237061500549e-08,
+          "tolerance": 0.00014776737429201604
+        }
+      ],
+      "best_update": 2000,
+      "checkpoint_sha256": {
+        "initial": "3819f80672719b3412d21cce623a4e0921307f4d9d83bea89be20aa117755a28",
+        "final": "57979f2d474484cd9ec165e88773bdbe8017531234c8f627d56ac4bedf294a85",
+        "best": "57979f2d474484cd9ec165e88773bdbe8017531234c8f627d56ac4bedf294a85"
+      }
+    },
+    {
+      "cell": 2,
+      "model": "clock_query",
+      "replays": [
+        {
+          "horizon": 1.2,
+          "lag": 0.06,
+          "cpu_mse": 0.0012174459407106042,
+          "recorded_gpu_mse": 0.0012174274306744337,
+          "absolute_difference": 1.8510036170482635e-08,
+          "tolerance": 2.4348548613488674e-05
+        },
+        {
+          "horizon": 1.2,
+          "lag": 0.12,
+          "cpu_mse": 0.0011531421914696693,
+          "recorded_gpu_mse": 0.0011531367199495435,
+          "absolute_difference": 5.471520125865936e-09,
+          "tolerance": 2.306273439899087e-05
+        },
+        {
+          "horizon": 2.4,
+          "lag": 0.06,
+          "cpu_mse": 0.0029893233440816402,
+          "recorded_gpu_mse": 0.002989238826557994,
+          "absolute_difference": 8.451752364635468e-08,
+          "tolerance": 5.978477653115988e-05
+        },
+        {
+          "horizon": 2.4,
+          "lag": 0.12,
+          "cpu_mse": 0.0027546966448426247,
+          "recorded_gpu_mse": 0.0027546666096895933,
+          "absolute_difference": 3.003515303134918e-08,
+          "tolerance": 5.5093332193791866e-05
+        }
+      ],
+      "best_update": 2000,
+      "checkpoint_sha256": {
+        "initial": "cadeb964b80e7ad5246db3314415c219f9d4568f34c99b3e062da0bcb398a0f3",
+        "final": "830e00e2d848f168c83966f7692161278a39b4fbe9915cbcb76954ad46c5ad1e",
+        "best": "830e00e2d848f168c83966f7692161278a39b4fbe9915cbcb76954ad46c5ad1e"
+      }
+    }
+  ]
+}

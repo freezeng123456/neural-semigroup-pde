@@ -1,0 +1,4 @@
+21bc488e479e47b74ae57e886ad9b7ceb6f2567c source_commit
+4631aca590a746e053ce4ef80930dee0156f1bad83b16488679f6302bb0ac65e source_archive_sha256
+Git 1.8.3.1 lacks worktree; verified GitHub source archive used
+GPU budget 4; account GPU cap 40; account submit cap 200
