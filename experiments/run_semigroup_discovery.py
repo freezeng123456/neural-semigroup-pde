@@ -55,10 +55,10 @@ class Flow(nn.Module):
                 nn.init.xavier_uniform_(layer.weight,gain=.5); nn.init.zeros_(layer.bias)
     def reaction(self,u,query,clock):
         z = torch.zeros_like(u)
-        q = base.lag_column(query,u).expand_as(u)/.23 if self.mode=='query' else z
+        q = base.lag_column(query,u).expand_as(u)/.23 if self.mode in ('query','clock_query') else z
         t = base.lag_column(clock,u).expand_as(u)
-        sn = torch.sin(2*math.pi*t) if self.mode=='clock' else z
-        cs = torch.cos(2*math.pi*t) if self.mode=='clock' else z
+        sn = torch.sin(2*math.pi*t) if self.mode in ('clock','clock_query') else z
+        cs = torch.cos(2*math.pi*t) if self.mode in ('clock','clock_query') else z
         return self.net(torch.stack((u,q,sn,cs),-1)).squeeze(-1)-u.pow(3)
     def forward(self,u,duration,t0=0.,nu=.02,steps=None):
         steps = self.steps if steps is None else steps
@@ -190,7 +190,7 @@ def run(root,index,device,updates,smoke=False):
             visible_devices=os.environ.get('CUDA_VISIBLE_DEVICES'),cpus=os.environ.get('SLURM_CPUS_PER_TASK'),
             slurm_job=os.environ.get('SLURM_JOB_ID'),slurm_array_task=os.environ.get('SLURM_ARRAY_TASK_ID'),
             parameters=sum(p.numel() for p in model.parameters()),
-            effective_parameters={'autonomous':97,'query':129,'clock':161}[cell['model']],
+            effective_parameters={'autonomous':97,'query':129,'clock':161,'clock_query':193}[cell['model']],
             cache_sha256=base.digest(root/'cache.pt'),source_sha256=base.digest(__file__),
             source_commit=source_commit(),
             targets_per_update=n,reaction_scalar_calls_per_update=n*64*8,smoke=smoke)
