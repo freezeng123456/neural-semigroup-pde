@@ -62,7 +62,7 @@ A（autonomous）只用状态；B（query）允许反应规律依赖请求时长
 
 图中圆点为各seed，菱形为几何平均；虚线表示0.9门槛。
 
-![高频迁移对照](high_frequency_transfer.png)
+![高频迁移对照](figures/scnet_discovery/high_frequency_transfer.png)
 
 ## 周期外力与时钟信息
 
@@ -79,7 +79,7 @@ clock/autonomous为0.0942，clock/query为0.0963。信息匹配后clock/clock_qu
 
 下图柱为三个seed的几何平均，黑点为各seed。
 
-![时钟信息对照](clock_information.png)
+![时钟信息对照](figures/scnet_discovery/clock_information.png)
 
 ## 数值与证据边界
 
