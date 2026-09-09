@@ -164,6 +164,14 @@ def move(obj,device):
     if isinstance(obj,dict):return {k:move(v,device) for k,v in obj.items()}
     return obj
 
+def source_commit():
+    frozen=os.environ.get('SEMIGROUP_SOURCE_COMMIT')
+    if frozen:
+        if len(frozen)!=40 or any(c not in '0123456789abcdef' for c in frozen):
+            raise ValueError('Invalid frozen source commit')
+        return frozen
+    return subprocess.check_output(['git','rev-parse','HEAD'],universal_newlines=True).strip()
+
 def run(root,index,device,updates,smoke=False):
     cell=matrix()[index]; out=root/('smoke' if smoke else 'cells')/f'{index:03d}'
     out.mkdir(parents=True,exist_ok=False)
@@ -184,7 +192,7 @@ def run(root,index,device,updates,smoke=False):
             parameters=sum(p.numel() for p in model.parameters()),
             effective_parameters={'autonomous':97,'query':129,'clock':161}[cell['model']],
             cache_sha256=base.digest(root/'cache.pt'),source_sha256=base.digest(__file__),
-            source_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            source_commit=source_commit(),
             targets_per_update=n,reaction_scalar_calls_per_update=n*64*8,smoke=smoke)
         base.dump(out/'config.json',config)
         torch.save(before,out/'initial.pt')
