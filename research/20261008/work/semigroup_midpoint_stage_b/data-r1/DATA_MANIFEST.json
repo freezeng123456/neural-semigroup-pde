@@ -1,0 +1,224 @@
+{
+  "status": "DEVELOPMENT_DATA_FROZEN",
+  "source_commit": "1e629104a12a9c3e3064996cbd4e301cec641ad8",
+  "original_train_sha256": "0ebdd969d52292b4304d3583b3cd432c288397b367f75372d06944d629c5d111",
+  "source_manifest_sha256": "c423cbc0bde6636fd07f157b50a2f01d0430ac06973f5f0dfc2dbec1c483a79c",
+  "original_config_sha256": "41945656835987b0adb4f3991a86c58783c41c2c2201cf0e3ed20e4218c86ff6",
+  "preparation_script_sha256": "3edae0789e846ff4d3dc33c3dc7c423b2783467d60a4ebee12087a9b25b34f40",
+  "trajectory_split_rng": "NumPy default_rng(20261004), first80 train, last20 validation, sorted within split",
+  "burst_selection": "Unchanged author loader, np.random.seed(0), 25 unique transitions per training trajectory",
+  "normalization_fit": "train80 only; no clipping added",
+  "data_seed_shared_across_all_training_seeds": true,
+  "train_ids": [
+    0,
+    1,
+    2,
+    3,
+    6,
+    7,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    22,
+    23,
+    25,
+    26,
+    30,
+    31,
+    32,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    43,
+    44,
+    45,
+    46,
+    48,
+    49,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    92,
+    95,
+    96,
+    97,
+    98,
+    99
+  ],
+  "validation_ids": [
+    4,
+    5,
+    8,
+    21,
+    24,
+    27,
+    28,
+    29,
+    33,
+    40,
+    41,
+    42,
+    47,
+    50,
+    67,
+    77,
+    78,
+    91,
+    93,
+    94
+  ],
+  "train_pairs": 2000,
+  "validation_transitions_per_trajectory": 50,
+  "tmin": 0.5006624460220337,
+  "tmax": 1.4997749328613281,
+  "payload_sha256": "1092743121a2c6cc733da44d034f0399d61c88d1d6b0016e75c57313bfc7465b",
+  "payload_bytes": 80076032,
+  "arrays": {
+    "trainX": {
+      "shape": [
+        2000,
+        64,
+        64,
+        2
+      ],
+      "dtype": "float32",
+      "array_bytes_sha256": "881ec8edda362c485c7d180d8e7112d6f5581ef2dac147950a8f11657f589474"
+    },
+    "trainY": {
+      "shape": [
+        2000,
+        64,
+        64,
+        1
+      ],
+      "dtype": "float32",
+      "array_bytes_sha256": "04f6f59f6177509c4e97259307ce94051a7a65f7fd34bad403cbac8b5288532a"
+    },
+    "validation_truth": {
+      "shape": [
+        20,
+        64,
+        64,
+        1,
+        51
+      ],
+      "dtype": "float32",
+      "array_bytes_sha256": "f6a89f95aed42aa02e0dad452cc9a3e61dcab5f17416ce154ed5dbae5d8905ca"
+    },
+    "validation_dt": {
+      "shape": [
+        20,
+        50
+      ],
+      "dtype": "float32",
+      "array_bytes_sha256": "492fd0a06911d6942c5f3fc1ad53755b691f8f9f24b79d1677031abb37ba84a4"
+    },
+    "vmin": {
+      "shape": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "dtype": "float32",
+      "array_bytes_sha256": "35e3f9f0805cb6b50367156da6bd23679cb8bf07d6a6bb80743f8168acc31bb0"
+    },
+    "vmax": {
+      "shape": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "dtype": "float32",
+      "array_bytes_sha256": "99fea2343f1924bea28cbe77866645f100eb51cf709fc2156dbd1800061191b3"
+    },
+    "tmin": {
+      "shape": [],
+      "dtype": "float32",
+      "array_bytes_sha256": "c36c15a2dd2c4a9abb6068f167a7dcc74b6c2cfcf873eb82bd4d989baea48d4b"
+    },
+    "tmax": {
+      "shape": [],
+      "dtype": "float32",
+      "array_bytes_sha256": "682c52d17a80156c5b3145ee186bd201d7c8c44853f2171ec4e0f29db32b5583"
+    },
+    "coordinates": {
+      "shape": [
+        64,
+        64,
+        2
+      ],
+      "dtype": "float32",
+      "array_bytes_sha256": "27beacf00a694133179efa946ecb1b72a8869183bf52fc37c525ec83e6252fca"
+    },
+    "train_trajectory_ids": {
+      "shape": [
+        80
+      ],
+      "dtype": "int64",
+      "array_bytes_sha256": "997a419849b148440602b40ca84d5c287335f8beba9b663889dd8e27632cc58f"
+    },
+    "validation_trajectory_ids": {
+      "shape": [
+        20
+      ],
+      "dtype": "int64",
+      "array_bytes_sha256": "14e6decf1e2738ca16b29fc3b70d64de3336a45dd781322ce9c79a1387a7c6ba"
+    }
+  },
+  "scope": "Development split for all new arms. Does not change completed official reproduction.",
+  "limitations": [
+    "The completed official run used all 100 source training trajectories; it is not a held-out comparator for this split.",
+    "The public benchmark test has already been inspected and is excluded from development payload.",
+    "Every new comparison arm must train from scratch on this same payload."
+  ]
+}

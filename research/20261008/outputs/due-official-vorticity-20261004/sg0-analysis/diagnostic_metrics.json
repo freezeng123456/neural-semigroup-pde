@@ -1,0 +1,504 @@
+{
+  "schema_version": "official-sg0-diagnostic-v1",
+  "scope": "Read-only postprocessing of verified artifacts; no training, inference, or repeated full verification.",
+  "created_at_utc": "2026-10-03T20:39:26.094199+00:00",
+  "script_sha256": "19626d044caa0a29900999863645a75a7a8a354e725e7203311b9d46132c704e",
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "executable": "/Users/Apple_501/Documents/Codex/2026-10-03/guan/work/pfn-env/bin/python",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1"
+  },
+  "input_sha256": {
+    "independent_verification": {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-independent-verification/verification.json",
+      "bytes": 1087558,
+      "sha256": "c891dc611768fa5ae1ce8955acfe4430b628915cba31654a6663b02579b1c0cc"
+    },
+    "prediction": {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-full-recovery/20261004-due-vorticity-1e62910-r1/runs/sg0-full-r1/official_workdir/model/pred.mat",
+      "bytes": 163840216,
+      "sha256": "e342d4b8de33eaf220a282774a26c402def819fbad4205aabf424343961d3b51"
+    },
+    "truth": {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/data/VorticityOSG_test.mat",
+      "bytes": 181969568,
+      "sha256": "a1e0a3a0fdf63c1ec3622bc21bd7889bf4a14078f86d63e07d8ae2bab74d926a"
+    },
+    "training_history": {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-full-recovery/20261004-due-vorticity-1e62910-r1/runs/sg0-full-r1/official_workdir/model/training_history.csv",
+      "bytes": 12500,
+      "sha256": "819c696f99d30ca9a5286e7240fd73867fc04c9c43afe1b3c37ed04b14014c35"
+    },
+    "epoch_events": {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-full-recovery/20261004-due-vorticity-1e62910-r1/runs/sg0-full-r1/audit/epoch_events.jsonl",
+      "bytes": 160744,
+      "sha256": "b30426a441363ca435ac660be8f48ce78a4a718de6fc8ae0591e3ac37661ebe4"
+    }
+  },
+  "inputs_unchanged_after_analysis": true,
+  "definitions": {
+    "time": "Elapsed since the first supplied state, 0..99; absolute time origin unknown.",
+    "diagnostic_precision": "Prediction and original MAT truth cast to float64 before all amplitude/bias arithmetic.",
+    "rms": "sqrt(mean over all spatial/field elements of value squared), per trajectory and time.",
+    "constant_component_fraction": "mean_spatial(pred-truth)^2 / mean_spatial((pred-truth)^2). The spatially constant component is orthogonal to the zero-mean remainder.",
+    "pooled_constant_component_fraction": "sum_trajectories(mean_spatial(pred-truth)^2) / sum_trajectories(mean_spatial((pred-truth)^2)).",
+    "training_percent_decrease": "100 * (1 - objective_at_later_epoch / objective_at_earlier_epoch).",
+    "quantiles": "NumPy quantile(method=\"linear\"); descriptive across 100 test trajectories."
+  },
+  "official_accuracy": {
+    "metric_track": "author_float32; summaries/quantiles of the recorded per-trajectory values use float64",
+    "mean_curve_selected_steps": {
+      "0": 2.272737020803106e-08,
+      "1": 0.0013027915265411139,
+      "10": 0.0035213965456932783,
+      "20": 0.005517302080988884,
+      "30": 0.00977928563952446,
+      "40": 0.024549316614866257,
+      "50": 0.07720091938972473,
+      "60": 0.22243644297122955,
+      "70": 0.4508593678474426,
+      "80": 0.6993182301521301,
+      "90": 1.0453531742095947,
+      "99": 2.8410096168518066
+    },
+    "terminal_elapsed99_quantiles": {
+      "min": 0.29675620794296265,
+      "p10": 0.6517420649528504,
+      "p25": 0.7761228978633881,
+      "median": 0.9942382276058197,
+      "p75": 2.409751057624817,
+      "p90": 4.915512847900398,
+      "p95": 11.564661169052115,
+      "max": 42.84169006347656
+    },
+    "terminal_count_gt_1": 50,
+    "terminal_count_gt_0_5": 96,
+    "terminal_top5_share_of_error_sum": 0.3877110893208338,
+    "terminal_top10_share_of_error_sum": 0.5503255273235663,
+    "strict_increases_between_forecast_steps1to99": 98,
+    "first_elapsed_step_mean_exceeds": {
+      "0.01": 31,
+      "0.1": 53,
+      "1": 90
+    },
+    "time_and_trajectory_mean_relative_l2": 0.360141783952713,
+    "mean_trajectory_joint_spacetime_relative_l2": 0.7029992938041687,
+    "scope": "100 test trajectories, one training seed. Quantiles are descriptive, not confidence intervals."
+  },
+  "amplitude_and_bias_float64": {
+    "0": {
+      "truth_rms": {
+        "min": 0.8571692621920645,
+        "p10": 0.8754924053112195,
+        "p25": 0.8872169156992626,
+        "median": 0.9135712630796102,
+        "p75": 0.9347825939126512,
+        "p90": 0.9465965828898453,
+        "p95": 0.9566307481550884,
+        "max": 0.970549056247408
+      },
+      "prediction_rms": {
+        "min": 0.8571692620913424,
+        "p10": 0.8754924059247323,
+        "p25": 0.8872169157177197,
+        "median": 0.9135712632141818,
+        "p75": 0.9347825933939762,
+        "p90": 0.9465965830522864,
+        "p95": 0.95663074841198,
+        "max": 0.9705490548237786
+      },
+      "prediction_over_truth_rms": {
+        "min": 0.9999999975768415,
+        "p10": 0.999999999010707,
+        "p25": 0.9999999995970779,
+        "median": 1.0000000000786784,
+        "p75": 1.0000000005215828,
+        "p90": 1.0000000009304222,
+        "p95": 1.0000000012527797,
+        "max": 1.0000000023497029
+      },
+      "truth_max_abs_spatial_mean": 1.4016677596373484e-08,
+      "prediction_abs_spatial_mean": {
+        "min": 3.253717295592651e-10,
+        "p10": 2.720076963669271e-09,
+        "p25": 4.189814717392437e-09,
+        "median": 5.754372978117317e-09,
+        "p75": 7.243755817398778e-09,
+        "p90": 8.967668918558047e-09,
+        "p95": 9.795236621812363e-09,
+        "max": 1.4253600966185331e-08
+      },
+      "constant_component_error_fraction_defined_trajectories": 100,
+      "constant_component_error_fraction": {
+        "min": 6.223626003887631e-09,
+        "p10": 1.3798464715619289e-05,
+        "p25": 9.330858647573517e-05,
+        "median": 0.00040962507396106855,
+        "p75": 0.0013094287220110688,
+        "p90": 0.003157419081360087,
+        "p95": 0.0043782258687189,
+        "max": 0.0066401290496290845
+      },
+      "pooled_constant_component_error_fraction": 0.001542638265632747
+    },
+    "1": {
+      "truth_rms": {
+        "min": 0.8571986146988266,
+        "p10": 0.8742895408196063,
+        "p25": 0.884866489985555,
+        "median": 0.9131951000142833,
+        "p75": 0.9374748789488524,
+        "p90": 0.9477990132600781,
+        "p95": 0.9548553078721225,
+        "max": 0.9707188374369939
+      },
+      "prediction_rms": {
+        "min": 0.8575860164840676,
+        "p10": 0.8744511210282072,
+        "p25": 0.8851136474023005,
+        "median": 0.9132114205596175,
+        "p75": 0.9373597618972975,
+        "p90": 0.9475658605014176,
+        "p95": 0.9546970748813479,
+        "max": 0.970439253206422
+      },
+      "prediction_over_truth_rms": {
+        "min": 0.9997119822756194,
+        "p10": 0.9998793234323416,
+        "p25": 0.9999625812096775,
+        "median": 1.0000360787476918,
+        "p75": 1.0002021242662043,
+        "p90": 1.0004092145156025,
+        "p95": 1.0004584009773647,
+        "max": 1.0006677231483356
+      },
+      "truth_max_abs_spatial_mean": 1.3127646525390446e-08,
+      "prediction_abs_spatial_mean": {
+        "min": 1.6329960317307268e-07,
+        "p10": 3.573077458440821e-06,
+        "p25": 1.4065407711427724e-05,
+        "median": 4.154943628975616e-05,
+        "p75": 6.46736892022659e-05,
+        "p90": 0.00010537308054097139,
+        "p95": 0.00011938653948249107,
+        "max": 0.00016055586834795577
+      },
+      "constant_component_error_fraction_defined_trajectories": 100,
+      "constant_component_error_fraction": {
+        "min": 5.2127570183961366e-09,
+        "p10": 1.598599895311298e-05,
+        "p25": 0.0002059386603277949,
+        "median": 0.0010742976860065611,
+        "p75": 0.004052795438858668,
+        "p90": 0.008244369299169356,
+        "p95": 0.016884841767624805,
+        "max": 0.046155437609241956
+      },
+      "pooled_constant_component_error_fraction": 0.0020374770720453794
+    },
+    "40": {
+      "truth_rms": {
+        "min": 0.8574076986360862,
+        "p10": 0.9115712060075093,
+        "p25": 0.9329015039893159,
+        "median": 0.9488503283918917,
+        "p75": 0.9562003898832598,
+        "p90": 0.9608488689854865,
+        "p95": 0.9653184072589763,
+        "max": 0.9726652797712702
+      },
+      "prediction_rms": {
+        "min": 0.853831950202362,
+        "p10": 0.8949285943405891,
+        "p25": 0.9284383405145558,
+        "median": 0.9465956945713269,
+        "p75": 0.9558944249876649,
+        "p90": 0.9611047849253294,
+        "p95": 0.9635028701464697,
+        "max": 0.9724471172395982
+      },
+      "prediction_over_truth_rms": {
+        "min": 0.9498181244403762,
+        "p10": 0.9935658044562647,
+        "p25": 0.9972237785002078,
+        "median": 0.9996631755169769,
+        "p75": 0.9999686536216719,
+        "p90": 1.0002659786182426,
+        "p95": 1.0004117282313998,
+        "max": 1.0006099956432677
+      },
+      "truth_max_abs_spatial_mean": 1.773923941073008e-08,
+      "prediction_abs_spatial_mean": {
+        "min": 3.2566274541068196e-05,
+        "p10": 9.576115044467315e-05,
+        "p25": 0.00016797719068506467,
+        "median": 0.00040688382591724803,
+        "p75": 0.0009553927648653371,
+        "p90": 0.00304478477278849,
+        "p95": 0.004067007437690505,
+        "max": 0.02048326495955166
+      },
+      "constant_component_error_fraction_defined_trajectories": 100,
+      "constant_component_error_fraction": {
+        "min": 2.9090512340876693e-06,
+        "p10": 9.382532551723455e-05,
+        "p25": 0.000389855405625738,
+        "median": 0.0012358654388136955,
+        "p75": 0.007238330741148829,
+        "p90": 0.01288304959668276,
+        "p95": 0.016404166498253325,
+        "max": 0.03308644332197418
+      },
+      "pooled_constant_component_error_fraction": 0.005945394914263687
+    },
+    "60": {
+      "truth_rms": {
+        "min": 0.859366672673461,
+        "p10": 0.9361108840442398,
+        "p25": 0.9480683736955904,
+        "median": 0.9572183976310524,
+        "p75": 0.9631119757466127,
+        "p90": 0.966265233386962,
+        "p95": 0.968404184289489,
+        "max": 0.9741356337859531
+      },
+      "prediction_rms": {
+        "min": 0.7604462027540075,
+        "p10": 0.8434166708857709,
+        "p25": 0.8953932568618543,
+        "median": 0.9409036522289543,
+        "p75": 0.9577231919560536,
+        "p90": 0.9630666591972894,
+        "p95": 0.9653826160815732,
+        "max": 0.9734901049788313
+      },
+      "prediction_over_truth_rms": {
+        "min": 0.8052281055040915,
+        "p10": 0.8898858301439161,
+        "p25": 0.9537345810543761,
+        "median": 0.9943284401592376,
+        "p75": 0.9978133051022563,
+        "p90": 0.999272933731784,
+        "p95": 0.9996069650629934,
+        "max": 1.0018636958012255
+      },
+      "truth_max_abs_spatial_mean": 1.9360413716640323e-08,
+      "prediction_abs_spatial_mean": {
+        "min": 2.9410211794811403e-05,
+        "p10": 0.0003469756251007539,
+        "p25": 0.0007584291377114027,
+        "median": 0.0018258620460755992,
+        "p75": 0.022090578010256934,
+        "p90": 0.054370515927342954,
+        "p95": 0.06279693238358415,
+        "max": 0.13925098662207347
+      },
+      "constant_component_error_fraction_defined_trajectories": 100,
+      "constant_component_error_fraction": {
+        "min": 2.0793774136867545e-06,
+        "p10": 0.0001803222380939366,
+        "p25": 0.0006891231644076667,
+        "median": 0.0015467872810118449,
+        "p75": 0.005510310194622909,
+        "p90": 0.007917900307948322,
+        "p95": 0.009390710991085594,
+        "max": 0.01674693595200804
+      },
+      "pooled_constant_component_error_fraction": 0.008775504192758556
+    },
+    "80": {
+      "truth_rms": {
+        "min": 0.8685578426717957,
+        "p10": 0.9477277811715892,
+        "p25": 0.9557783660789696,
+        "median": 0.9636202262301595,
+        "p75": 0.9673668616169785,
+        "p90": 0.9703311688979472,
+        "p95": 0.9721927478992138,
+        "max": 0.9751169059585318
+      },
+      "prediction_rms": {
+        "min": 0.7150720668693596,
+        "p10": 0.8394607754357909,
+        "p25": 0.8786042348411673,
+        "median": 0.9055939854643158,
+        "p75": 0.9391955124602526,
+        "p90": 0.9683042984025364,
+        "p95": 1.0562716387330435,
+        "max": 1.4010123521719533
+      },
+      "prediction_over_truth_rms": {
+        "min": 0.823286638768589,
+        "p10": 0.8794926301306875,
+        "p25": 0.9167761839833493,
+        "median": 0.940800590650287,
+        "p75": 0.9775063623021147,
+        "p90": 1.0030693643506032,
+        "p95": 1.0839056038309762,
+        "max": 1.4601025070260258
+      },
+      "truth_max_abs_spatial_mean": 2.3611846700077876e-08,
+      "prediction_abs_spatial_mean": {
+        "min": 0.00018474226433795593,
+        "p10": 0.0009789633242263563,
+        "p25": 0.0038296618903501667,
+        "median": 0.016338456398855783,
+        "p75": 0.12729868252866794,
+        "p90": 0.1740828245387377,
+        "p95": 0.21160273185046488,
+        "max": 0.37213462454232626
+      },
+      "constant_component_error_fraction_defined_trajectories": 100,
+      "constant_component_error_fraction": {
+        "min": 2.8006755715456664e-06,
+        "p10": 4.013043936631524e-05,
+        "p25": 0.0002331098199288117,
+        "median": 0.0015668661621539297,
+        "p75": 0.012830746397122023,
+        "p90": 0.021614501038483395,
+        "p95": 0.024696101141379018,
+        "max": 0.11865253458623277
+      },
+      "pooled_constant_component_error_fraction": 0.016424915081478836
+    },
+    "99": {
+      "truth_rms": {
+        "min": 0.8775331755236542,
+        "p10": 0.9573217262429742,
+        "p25": 0.962097499192239,
+        "median": 0.9678161257365574,
+        "p75": 0.9712567726687308,
+        "p90": 0.9723751844223312,
+        "p95": 0.9734415671606881,
+        "max": 0.976454565165315
+      },
+      "prediction_rms": {
+        "min": 0.7905797587640061,
+        "p10": 0.844860917561384,
+        "p25": 0.8644853232452028,
+        "median": 0.9082862099027627,
+        "p75": 2.212731873880434,
+        "p90": 4.682403841188755,
+        "p95": 11.125328519632458,
+        "max": 40.99417930658446
+      },
+      "prediction_over_truth_rms": {
+        "min": 0.8276188386408789,
+        "p10": 0.879567293810284,
+        "p25": 0.897750931597569,
+        "median": 0.9376322116207313,
+        "p75": 2.275242748378924,
+        "p90": 4.828109248463866,
+        "p95": 11.565202503174328,
+        "max": 42.805804633396434
+      },
+      "truth_max_abs_spatial_mean": 2.56284238275839e-08,
+      "prediction_abs_spatial_mean": {
+        "min": 0.002251200911672413,
+        "p10": 0.024580073441197215,
+        "p25": 0.050263179796353086,
+        "median": 0.08557960707616985,
+        "p75": 0.4414734792948778,
+        "p90": 2.022748338921385,
+        "p95": 2.9209562947019037,
+        "max": 11.33333888850936
+      },
+      "constant_component_error_fraction_defined_trajectories": 100,
+      "constant_component_error_fraction": {
+        "min": 6.0896545624417054e-05,
+        "p10": 0.001684867958982725,
+        "p25": 0.00379830283938243,
+        "median": 0.008838146686722717,
+        "p75": 0.03971343154518129,
+        "p90": 0.09865052949271289,
+        "p95": 0.14755128932071185,
+        "max": 0.22836672376143302
+      },
+      "pooled_constant_component_error_fraction": 0.07043603582041537,
+      "worst5_by_official_terminal_error": [
+        {
+          "test_index_zero_based": 53,
+          "official_float32_relative_l2": 42.84169006347656,
+          "truth_rms": 0.9576780452481305,
+          "prediction_rms": 40.99417930658446,
+          "prediction_over_truth_rms": 42.805804633396434,
+          "truth_spatial_mean": 2.254637365695089e-08,
+          "prediction_spatial_mean": -11.33333888850936,
+          "constant_component_error_fraction": 0.07630343898209224
+        },
+        {
+          "test_index_zero_based": 12,
+          "official_float32_relative_l2": 20.522926330566406,
+          "truth_rms": 0.9680767255278303,
+          "prediction_rms": 19.87012573002388,
+          "prediction_over_truth_rms": 20.52536251110672,
+          "truth_spatial_mean": 1.9447270460659638e-08,
+          "prediction_spatial_mean": -5.3905651143443265,
+          "constant_component_error_fraction": 0.07361565836012739
+        },
+        {
+          "test_index_zero_based": 35,
+          "official_float32_relative_l2": 16.917612075805664,
+          "truth_rms": 0.9761252464036638,
+          "prediction_rms": 16.52665667973627,
+          "prediction_over_truth_rms": 16.930877201081927,
+          "truth_spatial_mean": 1.9113485905108973e-08,
+          "prediction_spatial_mean": -2.3369743348767997,
+          "constant_component_error_fraction": 0.020027142006712437
+        },
+        {
+          "test_index_zero_based": 8,
+          "official_float32_relative_l2": 15.587479591369629,
+          "truth_rms": 0.970969943549365,
+          "prediction_rms": 15.123126700082457,
+          "prediction_over_truth_rms": 15.57527789665673,
+          "truth_spatial_mean": 1.7499132809462026e-08,
+          "prediction_spatial_mean": -3.813668191925501,
+          "constant_component_error_fraction": 0.06349262218414696
+        },
+        {
+          "test_index_zero_based": 95,
+          "official_float32_relative_l2": 14.279356002807617,
+          "truth_rms": 0.9599267342657583,
+          "prediction_rms": 13.718404804657828,
+          "prediction_over_truth_rms": 14.291095679454065,
+          "truth_spatial_mean": 2.56284238275839e-08,
+          "prediction_spatial_mean": -2.633875320988409,
+          "constant_component_error_fraction": 0.03692296828582343
+        }
+      ]
+    }
+  },
+  "training": {
+    "online_objective_selected_epochs": {
+      "1": 0.17661114037036896,
+      "100": 0.003403742564842105,
+      "200": 0.0019227347802370787,
+      "300": 0.001342382631264627,
+      "400": 0.0008541060378775001,
+      "450": 0.0007721002912148833,
+      "490": 0.0007391553372144699,
+      "500": 0.0007373421685770154
+    },
+    "initial_over_final_objective": 239.52399292611722,
+    "epoch100_over_final_objective": 4.616232069584372,
+    "epoch500_fraction_of_epoch100_objective": 0.2166268907035335,
+    "percent_decrease_epoch450_to500": 4.501762663912068,
+    "percent_decrease_epoch490_to500": 0.24530278632465263,
+    "increases_across_all499_epoch_transitions": 209,
+    "increases_within_last50_epochs": 9,
+    "best_epoch_original_python_float": 500,
+    "lr_after_selected_epochs": {
+      "1": 0.0009999901304280692,
+      "100": 0.0009045084971874748,
+      "200": 0.0006545084971874694,
+      "300": 0.00034549150281252525,
+      "400": 9.54915028125261e-05,
+      "450": 2.447174185242309e-05,
+      "490": 9.8663578586422e-07,
+      "500": 0.0
+    },
+    "scope": "Online minibatch objective; cosine learning rate reaches zero. These values do not prove optimization convergence."
+  }
+}

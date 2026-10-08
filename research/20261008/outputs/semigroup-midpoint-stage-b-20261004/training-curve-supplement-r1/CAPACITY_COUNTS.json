@@ -1,0 +1,37 @@
+{
+  "scope": "CPU construction and parameter counting only. No optimizer update, inference, or new training.",
+  "models": [
+    {
+      "width": 20,
+      "modes1": 12,
+      "modes2": 12,
+      "depth": 4,
+      "parameter_count_complex_counted_once": 467661,
+      "parameter_count_real_scalar_components": 928461
+    },
+    {
+      "width": 40,
+      "modes1": 12,
+      "modes2": 12,
+      "depth": 4,
+      "parameter_count_complex_counted_once": 1869721,
+      "parameter_count_real_scalar_components": 3712921
+    },
+    {
+      "width": 80,
+      "modes1": 12,
+      "modes2": 12,
+      "depth": 4,
+      "parameter_count_complex_counted_once": 7477041,
+      "parameter_count_real_scalar_components": 14849841
+    },
+    {
+      "width": 20,
+      "modes1": 24,
+      "modes2": 24,
+      "depth": 4,
+      "parameter_count_complex_counted_once": 1850061,
+      "parameter_count_real_scalar_components": 3693261
+    }
+  ]
+}

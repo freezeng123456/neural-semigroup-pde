@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "scope": "Only the changed partial_resources accumulator; pure temporary JSON fixtures, no real runs/models",
+  "checks": [
+    {
+      "name": "missing_forwards",
+      "passed": true,
+      "actual": [
+        0,
+        null,
+        null,
+        true
+      ]
+    },
+    {
+      "name": "invalid_forwards",
+      "passed": true,
+      "actual": [
+        0,
+        null,
+        null,
+        true
+      ]
+    },
+    {
+      "name": "valid_then_missing",
+      "passed": true,
+      "actual": [
+        1,
+        4,
+        2.5,
+        true
+      ]
+    },
+    {
+      "name": "valid_two",
+      "passed": true,
+      "actual": [
+        2,
+        8,
+        6.0,
+        false
+      ]
+    }
+  ],
+  "analyzer_sha256": "d81c8d08b3af567c86d8e46e30b3502237dcc1835fba1e0696b4c241c1304ae9",
+  "prior_arithmetic_and_pairing_report": "analyze_matrix_independent_self_test.json",
+  "prior_check_count": 87,
+  "network_calls": 0,
+  "optimizer_updates": 0,
+  "real_model_loads": 0
+}

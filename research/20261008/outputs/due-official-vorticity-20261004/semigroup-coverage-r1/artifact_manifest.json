@@ -1,0 +1,38 @@
+{
+  "per_sample_defects.npz": {
+    "sha256": "e2b8cdba62d65c47dc7f843263bf80e1914b3f46762ef0369123f625ba399d3a",
+    "bytes": 1327490
+  },
+  "executed_diagnose_semigroup_coverage.py": {
+    "sha256": "adb35b16a5c16aa8ee38d3a2cd36f84bd5873210bd194025a045ea98c314ef29",
+    "bytes": 24885
+  },
+  "gdsg_fixed_box_inputs.npz": {
+    "sha256": "1e1babf8f4dfec9b6ab53d42e8d87f01e01c3b9bd021de2cfb58d20253dd5ed8",
+    "bytes": 37457920
+  },
+  "real_train_inputs.npz": {
+    "sha256": "9572b8c2365cf5232229b725d7c24d993b952953676bdf5ce3d606b4e17cab5c",
+    "bytes": 7513719
+  },
+  "real_test_inputs.npz": {
+    "sha256": "cf197e17ce748118ae3e038276f831aecb9c6e23ed363e7e14e4d10b417db351",
+    "bytes": 7499421
+  },
+  "per_sample_defects.csv": {
+    "sha256": "0107d3fd61bdbbe314ae3094da9686b31a7599c6a4a33c59b6fb13ee6b64c6d7",
+    "bytes": 5089931
+  },
+  "FAILURE.json": {
+    "sha256": "b70967c862c8243a86ac890324321e095cba44bb218319f9d892422c3d1e59b2",
+    "bytes": 657
+  },
+  "SEMIGROUP_COVERAGE_DIAGNOSTIC.json": {
+    "sha256": "ee9b148bb4a06e0203436872e341335aac83bb46709006a704c7c86e9f18a7dd",
+    "bytes": 529849
+  },
+  "fresh_box_inputs.npz": {
+    "sha256": "e672cf6dae56bd4593381f6a7ce2a82250149332e445dc5ef15ea15f928d52b1",
+    "bytes": 37457569
+  }
+}

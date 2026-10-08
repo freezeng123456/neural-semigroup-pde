@@ -1,0 +1,54 @@
+{
+  "schema_version": "due-vorticity-official-public-download-v1",
+  "author_repository": "https://github.com/AI4Equations/due",
+  "author_commit": "1e629104a12a9c3e3064996cbd4e301cec641ad8",
+  "dataset_link_source": "https://github.com/AI4Equations/due/blob/1e629104a12a9c3e3064996cbd4e301cec641ad8/README.md#dataset",
+  "author_data_folder": "https://drive.google.com/drive/folders/1efL-RR_H43Pe6P5BLtcEPFgz7ZmXnl5a?usp=sharing",
+  "files": [
+    {
+      "filename": "VorticityOSG_train.mat",
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/data/VorticityOSG_train.mat",
+      "google_drive_file_id": "1g6RU34K4JFm4e3OqJfKnVYcK75Wd_-Jn",
+      "author_folder_url": "https://drive.google.com/drive/folders/1efL-RR_H43Pe6P5BLtcEPFgz7ZmXnl5a?usp=sharing",
+      "public_file_url": "https://drive.google.com/file/d/1g6RU34K4JFm4e3OqJfKnVYcK75Wd_-Jn/view",
+      "public_download_url": "https://drive.usercontent.google.com/download?id=1g6RU34K4JFm4e3OqJfKnVYcK75Wd_-Jn&export=download&confirm=t",
+      "anonymous_download": true,
+      "public_listing_expected_bytes": 93123263,
+      "bytes": 93123263,
+      "sha256": "0ebdd969d52292b4304d3583b3cd432c288397b367f75372d06944d629c5d111",
+      "mat_header": "MATLAB 5.0 MAT-file, Platform: GLNXA64, Created on: Mon Jan 15 17:41:26 2024",
+      "http": {
+        "http_status": 200,
+        "content_type": "application/octet-stream",
+        "content_length": "93123263",
+        "content_disposition": "attachment; filename=\"VorticityOSG_train.mat\"",
+        "final_host": "drive.usercontent.google.com"
+      },
+      "downloaded_at_utc": "2026-10-03T19:29:33.121814+00:00",
+      "elapsed_seconds": 42.851144417
+    },
+    {
+      "filename": "VorticityOSG_test.mat",
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/data/VorticityOSG_test.mat",
+      "google_drive_file_id": "1bjCYz5jCAmx8t4xK6J_WYJvmyfqRf2Qq",
+      "author_folder_url": "https://drive.google.com/drive/folders/1efL-RR_H43Pe6P5BLtcEPFgz7ZmXnl5a?usp=sharing",
+      "public_file_url": "https://drive.google.com/file/d/1bjCYz5jCAmx8t4xK6J_WYJvmyfqRf2Qq/view",
+      "public_download_url": "https://drive.usercontent.google.com/download?id=1bjCYz5jCAmx8t4xK6J_WYJvmyfqRf2Qq&export=download&confirm=t",
+      "anonymous_download": true,
+      "public_listing_expected_bytes": 181969568,
+      "bytes": 181969568,
+      "sha256": "a1e0a3a0fdf63c1ec3622bc21bd7889bf4a14078f86d63e07d8ae2bab74d926a",
+      "mat_header": "MATLAB 5.0 MAT-file, Platform: GLNXA64, Created on: Mon Jan 15 17:59:03 2024",
+      "http": {
+        "http_status": 200,
+        "content_type": "application/octet-stream",
+        "content_length": "181969568",
+        "content_disposition": "attachment; filename=\"VorticityOSG_test.mat\"",
+        "final_host": "drive.usercontent.google.com"
+      },
+      "downloaded_at_utc": "2026-10-03T19:29:45.059300+00:00",
+      "elapsed_seconds": 54.788464250000004
+    }
+  ],
+  "scope": "Anonymous download of publicly shared author data; no training, no source modifications. The computed hashes are local integrity receipts; no author-published cryptographic checksum was available."
+}

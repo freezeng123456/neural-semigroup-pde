@@ -1,0 +1,12 @@
+{
+  "schema": "stage_b_final_replay_verifier_freeze_v1",
+  "frozen_at_utc": "2026-10-03T23:03:09.510133+00:00",
+  "file": "replay_final_checkpoint.py",
+  "sha256": "942102528eeccb9ba45319c25fdc27673b667ae5c7c4116d41c6b7ad0c1d420d",
+  "bytes": 9188,
+  "review": "AST and independent static comparison against frozen train.py passed, including every Adam step, learning-rate endpoint, scheduler endpoint, checkpoint field interfaces and prediction axes.",
+  "real_checkpoint_execution_completed": false,
+  "optimizer_updates": 0,
+  "cpu_replay_tolerance_per_trajectory_relative_l2": 2e-05,
+  "scope": "Future recovered scheduled final checkpoints only; no new training."
+}

@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-08",
+  "status": "PASS",
+  "source_mapping_checks": 259,
+  "python_ast_checks": 106,
+  "json_parse_checks": 113,
+  "stage_b_runs": 12,
+  "stage_b_seed_pairs": 3,
+  "recomputed_pair_geomeans": {
+    "gdsg500": {
+      "development_joint_mean_ratio": 1.0240397661882958,
+      "training_seconds_ratio": 0.6708383477460277
+    },
+    "single500": {
+      "development_joint_mean_ratio": 1.0152938149906365,
+      "training_seconds_ratio": 0.9901954545756705
+    },
+    "gdsg333": {
+      "development_joint_mean_ratio": 0.789164751764063,
+      "training_seconds_ratio": 1.0317547449887579
+    }
+  },
+  "next_method_success_receipts": 5,
+  "next_method_failure_records": 1,
+  "public_source_files_checked": 75,
+  "public_datasets_checked": 2,
+  "new_training_or_model_replay": false,
+  "scope": "Content preservation, receipt scalar equality, result table consistency, syntax and entry links. No new claim of full scientific revalidation."
+}

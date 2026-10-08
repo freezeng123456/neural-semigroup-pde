@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-03",
+  "run_id": "20261003-burgers-reference-v2",
+  "status": "completed",
+  "evidence_class": "exploratory",
+  "repository": "https://github.com/freezeng123456/neural-semigroup-pde",
+  "training_commit": "4919e3726cb4edd10fa64a7962266974eea1db7f",
+  "branch": "codex/burgers-reference-v2",
+  "canonical_output_root": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/burgers-v2-study",
+  "cache": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/burgers-v2-data/cache.pt",
+  "cache_sha256": "4b96d9397a46c22cbf2d71b92706b756e720a2cfa08fac46f6f823e5931ec9a0",
+  "expected_trained_models": 12,
+  "completed_trained_models": 12,
+  "completed_oracle_evaluations": 3,
+  "python": "/Users/Apple_501/Documents/Codex/2026-09-28/wo-xi/work/beijing-v100-preflight/.venv/bin/python",
+  "runtime": {
+    "python": "3.12.14",
+    "torch": "2.5.1",
+    "device": "cpu",
+    "threads_per_process": 1,
+    "processes": 3
+  },
+  "commands": [
+    {
+      "seed": 31415,
+      "argv": [
+        "/Users/Apple_501/Documents/Codex/2026-09-28/wo-xi/work/beijing-v100-preflight/.venv/bin/python",
+        "experiments/run_burgers_validated.py",
+        "--data-cache",
+        "../burgers-v2-data/cache.pt",
+        "--output-dir",
+        "../burgers-v2-study/s31415",
+        "--seed",
+        "31415",
+        "--epochs",
+        "100",
+        "--architectures",
+        "small",
+        "large",
+        "--device",
+        "cpu",
+        "--threads",
+        "1",
+        "--expect-cache-sha256",
+        "4b96d9397a46c22cbf2d71b92706b756e720a2cfa08fac46f6f823e5931ec9a0"
+      ],
+      "cwd": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/neural-semigroup-pde",
+      "exit_code": 0
+    },
+    {
+      "seed": 271828,
+      "argv": [
+        "/Users/Apple_501/Documents/Codex/2026-09-28/wo-xi/work/beijing-v100-preflight/.venv/bin/python",
+        "experiments/run_burgers_validated.py",
+        "--data-cache",
+        "../burgers-v2-data/cache.pt",
+        "--output-dir",
+        "../burgers-v2-study/s271828",
+        "--seed",
+        "271828",
+        "--epochs",
+        "100",
+        "--architectures",
+        "small",
+        "large",
+        "--device",
+        "cpu",
+        "--threads",
+        "1",
+        "--expect-cache-sha256",
+        "4b96d9397a46c22cbf2d71b92706b756e720a2cfa08fac46f6f823e5931ec9a0"
+      ],
+      "cwd": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/neural-semigroup-pde",
+      "exit_code": 0
+    },
+    {
+      "seed": 161803,
+      "argv": [
+        "/Users/Apple_501/Documents/Codex/2026-09-28/wo-xi/work/beijing-v100-preflight/.venv/bin/python",
+        "experiments/run_burgers_validated.py",
+        "--data-cache",
+        "../burgers-v2-data/cache.pt",
+        "--output-dir",
+        "../burgers-v2-study/s161803",
+        "--seed",
+        "161803",
+        "--epochs",
+        "100",
+        "--architectures",
+        "small",
+        "large",
+        "--device",
+        "cpu",
+        "--threads",
+        "1",
+        "--expect-cache-sha256",
+        "4b96d9397a46c22cbf2d71b92706b756e720a2cfa08fac46f6f823e5931ec9a0"
+      ],
+      "cwd": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/neural-semigroup-pde",
+      "exit_code": 0
+    }
+  ],
+  "selection": "All12 selectedepoch100 before test evaluation",
+  "evaluation": "48 learned rollout cells plus12 oracle cells, 128 held-out ICs; correlated conditions, three training seeds",
+  "aggregate": "aggregate/aggregate.json",
+  "tests": {
+    "command": "python -m pytest experiments/tests -q -p no:cacheprovider",
+    "passed": 273,
+    "elapsed_seconds": 38.28,
+    "exit_code": 0
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "error": "AttributeError(\"'str' object has no attribute 'open'\")",
+  "traceback": "Traceback (most recent call last):\n  File \"/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/operations/diagnose_semigroup_coverage.py\", line 345, in main\n    'script_sha256': sha(__file__), 'parameters_unchanged': True, 'inputs_unchanged': True,\n                     ^^^^^^^^^^^^^\n  File \"/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/operations/replay_official_cpu.py\", line 26, in sha\n    with path.open('rb') as stream:\n         ^^^^^^^^^\nAttributeError: 'str' object has no attribute 'open'\n"
+}

@@ -1,0 +1,27 @@
+{
+  "observed_at_utc": "2026-10-03T21:56:17.676232+00:00",
+  "cluster": "BSCC-N26",
+  "account": "scv7tsq",
+  "partition": "gpu",
+  "squeue_user_jobs_at_check": 0,
+  "association_group_limits": {
+    "cpu": 80,
+    "gres/gpu": 8,
+    "MaxJobs": 16,
+    "MaxSubmit": 16,
+    "QOS": "normal"
+  },
+  "planned_matrix_concurrency": 4,
+  "per_task": {
+    "gpu": 1,
+    "cpu": 10,
+    "requested_wall_seconds": 14400
+  },
+  "evidence": "resources-before-stage-b.png",
+  "evidence_sha256": "fc667478f8ba87cc27c23bec6c6c767f2afc6e5d5641a4b49d00e65b73198490",
+  "notes": [
+    "Observed through authenticated cloud.blsc.cn WebSSH; no job submitted by this inspection.",
+    "Site sinfo wrapper displays public GPU availability and ignores custom formatting; it does not establish the partition maximum wall time.",
+    "Resource limits and queue occupancy must be checked again at submission."
+  ]
+}

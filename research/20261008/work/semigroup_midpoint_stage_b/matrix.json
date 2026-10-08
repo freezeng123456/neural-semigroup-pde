@@ -1,0 +1,130 @@
+{
+  "status": "PLANNED_NOT_SUBMITTED",
+  "tasks": [
+    {
+      "index": 0,
+      "arm": "gdsg500",
+      "seed": 0,
+      "run_name": "gdsg500-seed0-r1",
+      "epochs": 500,
+      "updates": 50000,
+      "forwards_per_batch": 6,
+      "total_forward_calls": 300000
+    },
+    {
+      "index": 1,
+      "arm": "single500",
+      "seed": 0,
+      "run_name": "single500-seed0-r1",
+      "epochs": 500,
+      "updates": 50000,
+      "forwards_per_batch": 4,
+      "total_forward_calls": 200000
+    },
+    {
+      "index": 2,
+      "arm": "midpoint500",
+      "seed": 0,
+      "run_name": "midpoint500-seed0-r1",
+      "epochs": 500,
+      "updates": 50000,
+      "forwards_per_batch": 4,
+      "total_forward_calls": 200000
+    },
+    {
+      "index": 3,
+      "arm": "gdsg333",
+      "seed": 0,
+      "run_name": "gdsg333-seed0-r1",
+      "epochs": 333,
+      "updates": 33300,
+      "forwards_per_batch": 6,
+      "total_forward_calls": 199800
+    },
+    {
+      "index": 4,
+      "arm": "single500",
+      "seed": 1,
+      "run_name": "single500-seed1-r1",
+      "epochs": 500,
+      "updates": 50000,
+      "forwards_per_batch": 4,
+      "total_forward_calls": 200000
+    },
+    {
+      "index": 5,
+      "arm": "midpoint500",
+      "seed": 1,
+      "run_name": "midpoint500-seed1-r1",
+      "epochs": 500,
+      "updates": 50000,
+      "forwards_per_batch": 4,
+      "total_forward_calls": 200000
+    },
+    {
+      "index": 6,
+      "arm": "gdsg333",
+      "seed": 1,
+      "run_name": "gdsg333-seed1-r1",
+      "epochs": 333,
+      "updates": 33300,
+      "forwards_per_batch": 6,
+      "total_forward_calls": 199800
+    },
+    {
+      "index": 7,
+      "arm": "gdsg500",
+      "seed": 1,
+      "run_name": "gdsg500-seed1-r1",
+      "epochs": 500,
+      "updates": 50000,
+      "forwards_per_batch": 6,
+      "total_forward_calls": 300000
+    },
+    {
+      "index": 8,
+      "arm": "midpoint500",
+      "seed": 2,
+      "run_name": "midpoint500-seed2-r1",
+      "epochs": 500,
+      "updates": 50000,
+      "forwards_per_batch": 4,
+      "total_forward_calls": 200000
+    },
+    {
+      "index": 9,
+      "arm": "gdsg333",
+      "seed": 2,
+      "run_name": "gdsg333-seed2-r1",
+      "epochs": 333,
+      "updates": 33300,
+      "forwards_per_batch": 6,
+      "total_forward_calls": 199800
+    },
+    {
+      "index": 10,
+      "arm": "gdsg500",
+      "seed": 2,
+      "run_name": "gdsg500-seed2-r1",
+      "epochs": 500,
+      "updates": 50000,
+      "forwards_per_batch": 6,
+      "total_forward_calls": 300000
+    },
+    {
+      "index": 11,
+      "arm": "single500",
+      "seed": 2,
+      "run_name": "single500-seed2-r1",
+      "epochs": 500,
+      "updates": 50000,
+      "forwards_per_batch": 4,
+      "total_forward_calls": 200000
+    }
+  ],
+  "max_concurrency": 4,
+  "gpu_per_task": 1,
+  "cpu_per_task": 10,
+  "allocation_limit_seconds_per_task": 14400,
+  "comparison": "Four arms per seed, cyclic arm ordering; exact actual allocation and hardware logged by Slurm."
+}

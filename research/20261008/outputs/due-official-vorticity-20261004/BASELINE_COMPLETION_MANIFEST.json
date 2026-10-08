@@ -1,0 +1,38 @@
+{
+  "BASELINE_REPORT.zh.md": {
+    "bytes": 10440,
+    "sha256": "00d370af832d60473b1d1f16aaf1f9588abb3e3978a0adb6f46d349f2a9c8994"
+  },
+  "RUN_STATUS.zh.md": {
+    "bytes": 1827,
+    "sha256": "7560fcc1219d2f07f897730f54f0e8fef7dcfc87082f086dba1a33892296d67a"
+  },
+  "RUN_STATE.json": {
+    "bytes": 4547,
+    "sha256": "ba264eac8d8c87a0206101b626f64553c09da51df37e0d5dd4e8bd56b4ff01d5"
+  },
+  "comparison/INDEPENDENT_BASELINE_REVIEW.zh.md": {
+    "bytes": 11460,
+    "sha256": "2e1f1374acc1a24e4edd0baa5754cfefb01681720a3283f95dd5a85425e5ef8f"
+  },
+  "comparison/REPLAY_DIAGNOSTICS_REVIEW.zh.md": {
+    "bytes": 5131,
+    "sha256": "efb20f19bdb86b6358f4315f483474fa15a73b8c7d64c2071fb22f95d0a118e1"
+  },
+  "comparison/metrics.json": {
+    "bytes": 9114,
+    "sha256": "190801463cefac8eada569cd4154fe326317533f0bc465650fadb51bd040a2e3"
+  },
+  "comparison/local_fit_and_rollout.png": {
+    "bytes": 270381,
+    "sha256": "184cc316a845d9eee42eed348ab48783135de4b49b5bdeb6d4090ec785682c23"
+  },
+  "comparison/local_fit_and_rollout.pdf": {
+    "bytes": 32061,
+    "sha256": "20cdf4f372f2bf9227281852fbbd8dd80b0f37a09b270693d43d8897c76c610a"
+  },
+  "comparison/local_fit_and_rollout.json": {
+    "bytes": 1498,
+    "sha256": "6ba620de629a80f0c16229cd5fe871e8e0f0ed0ba42f9efccef27f6fc5e86814"
+  }
+}

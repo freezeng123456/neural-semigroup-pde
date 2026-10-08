@@ -1,0 +1,191 @@
+{
+  "status": "SUBMITTER_CONTROL_SELF_TEST_PASS",
+  "checks": [
+    {
+      "name": "exact_12_required_engineering_gate_names",
+      "passed": true
+    },
+    {
+      "name": "actual_bscc_assoc_empty_terminal_fields_parsable2_and_optional_delimiter",
+      "passed": true
+    },
+    {
+      "name": "wall_and_cpu_gpu_parser",
+      "passed": true
+    },
+    {
+      "name": "full_12_potential_4_concurrent_with_2_existing_jobs",
+      "passed": true,
+      "resource_result": {
+        "cluster": "bscc26a",
+        "account": "scv7tsq",
+        "partition": "gpu",
+        "limits": {
+          "max_jobs": 16,
+          "max_submit": 16,
+          "cpus": 80,
+          "gpus": 8
+        },
+        "current_usage": {
+          "submitted_tasks": 2,
+          "active_tasks": 2,
+          "active_cpus": 20,
+          "active_gpus": 2
+        },
+        "new_potential_tasks": 12,
+        "new_max_concurrent_tasks": 4,
+        "qos_checked": [
+          "gpu",
+          "normal"
+        ],
+        "queue_snapshot": [
+          {
+            "id": "91",
+            "state": "RUNNING",
+            "account": "scv7tsq",
+            "partition": "gpu",
+            "cpus": 10,
+            "gres": "gres/gpu:1",
+            "qos": "normal",
+            "gpus": 1
+          },
+          {
+            "id": "92",
+            "state": "RUNNING",
+            "account": "scv7tsq",
+            "partition": "gpu",
+            "cpus": 10,
+            "gres": "gres/gpu:1",
+            "qos": "normal",
+            "gpus": 1
+          }
+        ],
+        "limitation": "This is a live pre-submit snapshot, not a reservation; Slurm enforces subsequent changes and physical availability."
+      }
+    },
+    {
+      "name": "only_cluster_name_persisted_from_config",
+      "passed": true
+    },
+    {
+      "name": "validate_is_one_job",
+      "passed": true
+    },
+    {
+      "name": "wrong_live_cluster_rejected",
+      "passed": true,
+      "rejection": "Current Slurm controller is not the authorized Beijing cluster"
+    },
+    {
+      "name": "five_pending_plus_twelve_exceeds_maxsubmit",
+      "passed": true,
+      "rejection": "MaxSubmit headroom insufficient for all potential array tasks"
+    },
+    {
+      "name": "four_pending_plus_twelve_exactly_fills_maxsubmit",
+      "passed": true
+    },
+    {
+      "name": "compressed_array_cannot_undercount",
+      "passed": true,
+      "rejection": "squeue must expand every array task; compressed/unknown ID: 99_[0-11%4]"
+    },
+    {
+      "name": "insufficient_concurrent_cpu_gpu_headroom",
+      "passed": true,
+      "rejection": "Account CPU headroom insufficient"
+    },
+    {
+      "name": "partition_time_below_four_hours_rejected",
+      "passed": true,
+      "rejection": "Partition wall limit below four hours"
+    },
+    {
+      "name": "empty_failed_duplicate_check_lists_rejected",
+      "passed": true
+    },
+    {
+      "name": "missing_gate_author_one_update",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_data_author_loader_replay",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_distinct_initialization_seeds",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_frozen_inputs_unchanged",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_independent_rng",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_loss_cross_branch_identities",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_paired_batches_and_initialization",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_resume_gdsg333",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_resume_gdsg500",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_resume_midpoint500",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_resume_single500",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "missing_gate_two_step_original_predict_after_reload",
+      "passed": true,
+      "rejection": "One or more required engineering gates is missing"
+    },
+    {
+      "name": "nonbitwise_short_predict_cannot_pass",
+      "passed": true,
+      "rejection": "Short original-predict reload replay is incomplete"
+    },
+    {
+      "name": "cpu_report_cannot_replace_gpu_preflight",
+      "passed": true,
+      "rejection": "Preflight must be real V100 CUDA"
+    },
+    {
+      "name": "exclusive_evidence_write_prevents_overwrite",
+      "passed": true
+    }
+  ],
+  "checks_passed": 28,
+  "submitter_sha256": "037438e0944660ccc8d2755c9985a0b1f0f8903a4c684a1d32f3a46a96752d86",
+  "self_test_script_sha256": "d4ff38ff614e44b22daf95d5a5fab4df616200323e9780293d730f62cf76a9af",
+  "real_subprocess_calls": 0,
+  "real_slurm_queries": 0,
+  "sbatch_calls": 0,
+  "optimizer_updates": 0,
+  "fixture_scheduler_calls": 48,
+  "scope": "Synthetic control/parser fixtures only. Does not assert live quotas, real preflight success, or a submitted job."
+}

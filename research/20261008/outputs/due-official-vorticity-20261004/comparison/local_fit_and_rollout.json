@@ -1,0 +1,23 @@
+{
+  "status": "POSTPROCESSING_COMPLETE",
+  "summaries": {
+    "sg0": {
+      "all_9900_true_state_restart_mean": 0.0005883057361010942,
+      "final_step99_true_state_restart_mean": 0.0005639272983292167,
+      "final_step99_free_rollout_mean": 2.8410084716889994
+    },
+    "gdsg": {
+      "all_9900_true_state_restart_mean": 0.0006989469659131046,
+      "final_step99_true_state_restart_mean": 0.0006683768844390256,
+      "final_step99_free_rollout_mean": 0.01739165877976141
+    }
+  },
+  "input_sha256": {
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-true-state-restarts/RESTART_DIAGNOSTIC.json": "41f8bb04b847618590bc1d0a68be879f30511994b5e5c375e71ad757b6d1767b",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-true-state-restarts/per_trajectory_metrics.npz": "40b07e8ee6db8035c8fe97d219690fa87c4eabce0f06845a19b3573525668c57",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-true-state-restarts/RESTART_DIAGNOSTIC.json": "cbf50d93c6745882fe6f93ea67925cdf42c33366e8e7281abaa1e949f0c7cecf",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-true-state-restarts/per_trajectory_metrics.npz": "db91a11c0f8c6473949b5c6944440245e0d60c344125c1121fea75202742011e"
+  },
+  "script_sha256": "d14a4e5646e99be4ceb4c4c24b8ab231980723417aa1d472ba20f32824fc0383",
+  "inference_or_training_performed": false
+}

@@ -1,0 +1,205 @@
+{
+  "status": "SPECTRAL_ENERGY_DIAGNOSTIC_COMPLETE",
+  "run_root": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1",
+  "test_trajectories": 100,
+  "times": [
+    0,
+    1,
+    40,
+    60,
+    80,
+    99
+  ],
+  "summaries": [
+    {
+      "elapsed_time": 0,
+      "groups": {
+        "zero": {
+          "pooled_truth_squared_norm": 1.8175551174669532e-11,
+          "pooled_prediction_squared_norm": 1.6302210945490763e-11,
+          "pooled_error_squared_norm": 2.7955205854130174e-13,
+          "fraction_of_total_error_squared_norm": 0.001542638265632747,
+          "fraction_of_total_truth_squared_norm": 5.336383596881734e-17,
+          "error_rms_over_all_trajectories_and_spatial_points": 8.261356685939059e-10
+        },
+        "author_spectral_indices_nonzero": {
+          "pooled_truth_squared_norm": 340596.7880897984,
+          "pooled_prediction_squared_norm": 340596.7881153632,
+          "pooled_error_squared_norm": 3.4112924221578176e-11,
+          "fraction_of_total_error_squared_norm": 0.18824365855657577,
+          "fraction_of_total_truth_squared_norm": 0.9999999976045023,
+          "error_rms_over_all_trajectories_and_spatial_points": 9.125979750160382e-09
+        },
+        "outside_author_spectral_indices": {
+          "pooled_truth_squared_norm": 0.0008158987943762323,
+          "pooled_prediction_squared_norm": 0.000815900998149172,
+          "pooled_error_squared_norm": 1.468243810799158e-10,
+          "fraction_of_total_error_squared_norm": 0.8102137031777915,
+          "fraction_of_total_truth_squared_norm": 2.39549761169984e-09,
+          "error_rms_over_all_trajectories_and_spatial_points": 1.8932986072484398e-08
+        }
+      }
+    },
+    {
+      "elapsed_time": 1,
+      "groups": {
+        "zero": {
+          "pooled_truth_squared_norm": 2.0891270131273138e-11,
+          "pooled_prediction_squared_norm": 0.008266646454460366,
+          "pooled_error_squared_norm": 0.008266471065967753,
+          "fraction_of_total_error_squared_norm": 0.008206958113494887,
+          "fraction_of_total_truth_squared_norm": 6.132049641215268e-17,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.00014206271194756854
+        },
+        "author_spectral_indices_nonzero": {
+          "pooled_truth_squared_norm": 340689.83951332356,
+          "pooled_prediction_squared_norm": 340739.63473969145,
+          "pooled_error_squared_norm": 0.9486890282315171,
+          "fraction_of_total_error_squared_norm": 0.9418591144027361,
+          "fraction_of_total_truth_squared_norm": 0.9999999976191246,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.001521885449970152
+        },
+        "outside_author_spectral_indices": {
+          "pooled_truth_squared_norm": 0.0008111400286492896,
+          "pooled_prediction_squared_norm": 0.050979800720377076,
+          "pooled_error_squared_norm": 0.05029602454970127,
+          "fraction_of_total_error_squared_norm": 0.049933927483769056,
+          "fraction_of_total_truth_squared_norm": 2.3808753083942337e-09,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.0003504183623696026
+        }
+      }
+    },
+    {
+      "elapsed_time": 40,
+      "groups": {
+        "zero": {
+          "pooled_truth_squared_norm": 4.7552940643724125e-11,
+          "pooled_prediction_squared_norm": 0.17006648782290518,
+          "pooled_error_squared_norm": 0.17006658773079703,
+          "fraction_of_total_error_squared_norm": 0.003440400511297194,
+          "fraction_of_total_truth_squared_norm": 1.3119547478737213e-16,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.0006443614127197106
+        },
+        "author_spectral_indices_nonzero": {
+          "pooled_truth_squared_norm": 362458.69483432977,
+          "pooled_prediction_squared_norm": 362273.4129703208,
+          "pooled_error_squared_norm": 48.27395739115264,
+          "fraction_of_total_error_squared_norm": 0.9765689422413518,
+          "fraction_of_total_truth_squared_norm": 0.9999999982309611,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.010856166049162742
+        },
+        "outside_author_spectral_indices": {
+          "pooled_truth_squared_norm": 0.00064120346777391,
+          "pooled_prediction_squared_norm": 0.9887220734788652,
+          "pooled_error_squared_norm": 0.9881822925526376,
+          "fraction_of_total_error_squared_norm": 0.01999065724735109,
+          "fraction_of_total_truth_squared_norm": 1.7690387229713806e-09,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.0015532399766865833
+        }
+      }
+    },
+    {
+      "elapsed_time": 60,
+      "groups": {
+        "zero": {
+          "pooled_truth_squared_norm": 6.918020204511475e-11,
+          "pooled_prediction_squared_norm": 0.24621991123642611,
+          "pooled_error_squared_norm": 0.24622026390323024,
+          "fraction_of_total_error_squared_norm": 0.002903321777497534,
+          "fraction_of_total_truth_squared_norm": 1.8659445959763546e-16,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.0007753216694830577
+        },
+        "author_spectral_indices_nonzero": {
+          "pooled_truth_squared_norm": 370751.640109956,
+          "pooled_prediction_squared_norm": 370860.2129020663,
+          "pooled_error_squared_norm": 83.14010102270545,
+          "fraction_of_total_error_squared_norm": 0.9803517470740514,
+          "fraction_of_total_truth_squared_norm": 0.9999999983541463,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.01424706153080222
+        },
+        "outside_author_spectral_indices": {
+          "pooled_truth_squared_norm": 0.0006102028748842507,
+          "pooled_prediction_squared_norm": 1.4205107178060599,
+          "pooled_error_squared_norm": 1.4200773053708033,
+          "fraction_of_total_error_squared_norm": 0.01674493114845118,
+          "fraction_of_total_truth_squared_norm": 1.6458534713399369e-09,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.0018619843202388783
+        }
+      }
+    },
+    {
+      "elapsed_time": 80,
+      "groups": {
+        "zero": {
+          "pooled_truth_squared_norm": 9.81399811008787e-11,
+          "pooled_prediction_squared_norm": 0.33877714964809497,
+          "pooled_error_squared_norm": 0.3387766538466174,
+          "fraction_of_total_error_squared_norm": 0.0029347763387264016,
+          "fraction_of_total_truth_squared_norm": 2.606787446435691e-16,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.0009094456773525389
+        },
+        "author_spectral_indices_nonzero": {
+          "pooled_truth_squared_norm": 376478.64661202877,
+          "pooled_prediction_squared_norm": 376622.8773448812,
+          "pooled_error_squared_norm": 113.08612991971353,
+          "fraction_of_total_error_squared_norm": 0.9796498505967778,
+          "fraction_of_total_truth_squared_norm": 0.9999999988083841,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.016615931643284423
+        },
+        "outside_author_spectral_indices": {
+          "pooled_truth_squared_norm": 0.0004486178385860896,
+          "pooled_prediction_squared_norm": 2.010688729429094,
+          "pooled_error_squared_norm": 2.0103480236046707,
+          "fraction_of_total_error_squared_norm": 0.017415373064495726,
+          "fraction_of_total_truth_squared_norm": 1.1916156257165418e-09,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.0022154178453518856
+        }
+      }
+    },
+    {
+      "elapsed_time": 99,
+      "groups": {
+        "zero": {
+          "pooled_truth_squared_norm": 1.2362170406426442e-10,
+          "pooled_prediction_squared_norm": 0.43404419503335506,
+          "pooled_error_squared_norm": 0.4340412989029973,
+          "fraction_of_total_error_squared_norm": 0.0021711923035802024,
+          "fraction_of_total_truth_squared_norm": 3.2466995562646084e-16,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.0010294032931266034
+        },
+        "author_spectral_indices_nonzero": {
+          "pooled_truth_squared_norm": 380761.1446426206,
+          "pooled_prediction_squared_norm": 380940.1775638177,
+          "pooled_error_squared_norm": 196.72443094620314,
+          "fraction_of_total_error_squared_norm": 0.9840689618156557,
+          "fraction_of_total_truth_squared_norm": 0.9999999989575912,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.021915388548683176
+        },
+        "outside_author_spectral_indices": {
+          "pooled_truth_squared_norm": 0.0003969086699027812,
+          "pooled_prediction_squared_norm": 2.7508961211422505,
+          "pooled_error_squared_norm": 2.750719670912498,
+          "fraction_of_total_error_squared_norm": 0.013759845880764045,
+          "fraction_of_total_truth_squared_norm": 1.0424085416109763e-09,
+          "error_rms_over_all_trajectories_and_spatial_points": 0.0025914521405119018
+        }
+      }
+    }
+  ],
+  "source_mask": "due/networks/fno.py: rfft2 rows[:12,:12] and rows[-12:,:12]; zero mode separated",
+  "normalization": "Orthonormal FFT, real FFT conjugate weight 2 except second-axis zero and Nyquist (weight1). Float32 physical states cast to float64 before subtraction and FFT.",
+  "parseval_max_relative_gap": 1.9882406990752643e-14,
+  "scope": "Descriptive allocation of squared error across fixed frequency index sets; no inference or training.",
+  "limitations": [
+    "FNO pointwise paths and nonlinearities can represent frequencies outside the spectral mask.",
+    "Frequency localization does not establish a causal capacity bottleneck.",
+    "This already inspected test set is used for diagnosis, not independent model selection."
+  ],
+  "input_sha256": {
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-independent-verification/verification.json": "d1f79d2d38d5d8c1ce8180d9c2ed05f15d11b1a90501e4ec5a10ddc14364ae0a",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/data/VorticityOSG_test.mat": "a1e0a3a0fdf63c1ec3622bc21bd7889bf4a14078f86d63e07d8ae2bab74d926a",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/official_workdir/model/pred.mat": "9e4a04a0657729cbf89cfc3a697318c32e2d4c3a7f79bfe131d768da273ad7a9"
+  },
+  "inputs_unchanged": true,
+  "script_sha256": "a7abd1a600a3ad802534533a71242ddfb54021adc705862624c305209afcc9d7"
+}

@@ -1,0 +1,26 @@
+{
+  "compare_baselines.py": {
+    "sha256": "a35160b4fd4f7161537517cc938baaad622ac37865ba9e049c6cf7af912f214b",
+    "bytes": 19870
+  },
+  "metrics.json": {
+    "sha256": "190801463cefac8eada569cd4154fe326317533f0bc465650fadb51bd040a2e3",
+    "bytes": 9114
+  },
+  "test_curves_and_paired_changes.csv": {
+    "sha256": "cc90c3b90487e3d24285ef1419d54a9e52bfb40aa3f368f0e2ee027cb7a21921",
+    "bytes": 38121
+  },
+  "paired_trajectory_errors.csv": {
+    "sha256": "0dd1a4cf9dde2235931556b15e3565b41f24e650da710e37ed2c43150bad0cfb",
+    "bytes": 12537
+  },
+  "official_baseline_comparison.png": {
+    "sha256": "66ee1d0cfaeea7529763336bfc66118b1044c71e85c34fe2f75a6d7676000c6e",
+    "bytes": 456517
+  },
+  "official_baseline_comparison.pdf": {
+    "sha256": "b1b62f96aa67cfc12c093deadd034f745eabd7c67d055d9dfc094b0738c18767",
+    "bytes": 45589
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "schema": "stage_b_final_local_verification_v1",
+  "status": "COMPLETE_RECOVERED_REPLAYED_AND_ANALYZED",
+  "verified_at_utc": "2026-10-04T13:32:57.350914+00:00",
+  "training_archives": [
+    {
+      "run_name": "gdsg500-seed0-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg500-seed0-r1-job2349407_0-COMPLETE.tar.gz",
+      "bytes": 117379051,
+      "sha256": "68669d1b95dffc228359fc7f48a09e0ec33f20718a392759ab10a7258932e9a9"
+    },
+    {
+      "run_name": "single500-seed0-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/single500-seed0-r1-job2349407_1-COMPLETE.tar.gz",
+      "bytes": 116365677,
+      "sha256": "f267c1bd703d181dffa7036432ca69db67727c1e187ec43b4777b7c4fcba2fed"
+    },
+    {
+      "run_name": "midpoint500-seed0-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/midpoint500-seed0-r1-job2349407_2-COMPLETE.tar.gz",
+      "bytes": 116381287,
+      "sha256": "c24b8697d466e7b70bbc6a3ed7c8876791e448a1298c1669818bd9e30f8909c6"
+    },
+    {
+      "run_name": "gdsg333-seed0-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg333-seed0-r1-job2349407_3-COMPLETE.tar.gz",
+      "bytes": 93406932,
+      "sha256": "8b12e12289902fc90623142a60c57a57ba8d327f29c086941e90289ebea20332"
+    },
+    {
+      "run_name": "single500-seed1-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/single500-seed1-r1-job2349407_4-COMPLETE.tar.gz",
+      "bytes": 116414005,
+      "sha256": "048dca3b05374ab656d21ed02c807389c9fe6c689f2e997cd1e1bd7c26014949"
+    },
+    {
+      "run_name": "midpoint500-seed1-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/midpoint500-seed1-r1-job2349407_5-COMPLETE.tar.gz",
+      "bytes": 116415302,
+      "sha256": "9bc6ee2047ab4c8f3df958ae6e35114bd428d049bb6bbdee7a9f3d19eb550ffb"
+    },
+    {
+      "run_name": "gdsg333-seed1-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg333-seed1-r1-job2349407_6-COMPLETE.tar.gz",
+      "bytes": 93429705,
+      "sha256": "4ef7e940a787a7e0e8ddc7bae886520d07f942bea31b145f1459c2e99bb2ea37"
+    },
+    {
+      "run_name": "gdsg500-seed1-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg500-seed1-r1-job2349407_7-COMPLETE.tar.gz",
+      "bytes": 117426473,
+      "sha256": "380a8f14fa4299c1b2d428d36a8dcba5b33509b077aae986478e60471a3b748d"
+    },
+    {
+      "run_name": "midpoint500-seed2-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/midpoint500-seed2-r1-job2349407_8-COMPLETE.tar.gz",
+      "bytes": 116329786,
+      "sha256": "64f4ee941cc166172f48b546423f7c4ca2b6bc12fea34a2ea95953003ccbe93c"
+    },
+    {
+      "run_name": "gdsg333-seed2-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg333-seed2-r1-job2349407_9-COMPLETE.tar.gz",
+      "bytes": 93380826,
+      "sha256": "82b708dd5fd5006a248a65648b6a287d939acb3ab1a8d7ac0ab1e9a40ce39043"
+    },
+    {
+      "run_name": "gdsg500-seed2-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg500-seed2-r1-job2349407_10-COMPLETE.tar.gz",
+      "bytes": 117348208,
+      "sha256": "49b135f12ab9a8ab3f1a30f98170319bc8f49e1f820538ef1374a195caa2bf7e"
+    },
+    {
+      "run_name": "single500-seed2-r1",
+      "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/single500-seed2-r1-job2349407_11-COMPLETE.tar.gz",
+      "bytes": 116325498,
+      "sha256": "4208f7eaa63f096fe985171d33d502872e76934e336ced9c57a6461468de4291"
+    }
+  ],
+  "training_archive_count": 12,
+  "evaluation_archive": {
+    "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/evaluate-final-r1-job2349647.tar.gz",
+    "sha256": "7dca83f524d0cedfb76c02c949b0040aa9bfaa06e32329d5d54c6706f69573eb",
+    "bytes": 2357005383,
+    "inventory_files_verified": 242,
+    "archive_members_verified": 243
+  },
+  "replays": [
+    {
+      "run_name": "gdsg500-seed0-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg500-seed0-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "2232b3d9882ccc6c41db1ab6ec6f4c936f2076cf818312a1aac150eb945ab471",
+      "maximum_cpu_gpu_relative_l2": 1.2454743294861977e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "single500-seed0-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/single500-seed0-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "606c068c8339601c016109b85ed3ba403e94fa131850d34430da03fdfc37b6e9",
+      "maximum_cpu_gpu_relative_l2": 1.3069663935997644e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "midpoint500-seed0-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/midpoint500-seed0-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "de40e2aeb7292375c51198bfab37f7a6dc57d4f1fc6cacb6005753b747967d77",
+      "maximum_cpu_gpu_relative_l2": 1.3241164047545105e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "gdsg333-seed0-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg333-seed0-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "20bb4a651f74cfff10ad773186a82dc1e5b597c463220795d7d17b87d0fd22cc",
+      "maximum_cpu_gpu_relative_l2": 1.2535891770110116e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "single500-seed1-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/single500-seed1-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "47f5a4a1559d71f9c0ad5e7329a00ec251df4638f146a3d97ce1c12cecdebf5f",
+      "maximum_cpu_gpu_relative_l2": 1.2367530155207088e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "midpoint500-seed1-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/midpoint500-seed1-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "48da2c021d05c8bfb89334d2cd61d78c70062dc03d57f5d985d8704626154d7d",
+      "maximum_cpu_gpu_relative_l2": 1.232769513463872e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "gdsg333-seed1-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg333-seed1-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "b2cb23077314106cf87a8fc05b406eb2621a37ddfb7a6e268860ebc36df9b7ed",
+      "maximum_cpu_gpu_relative_l2": 1.279024852734312e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "gdsg500-seed1-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg500-seed1-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "04fd591e1344b919a5ef477621ef6a96fcbc796bd3185f62b17633598f3d61ab",
+      "maximum_cpu_gpu_relative_l2": 1.2037805576783215e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "midpoint500-seed2-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/midpoint500-seed2-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "c8e9acd7cb8bf6060d6d5aa222659dc5be64677709981236adf069d9f4c290c3",
+      "maximum_cpu_gpu_relative_l2": 1.322113679485353e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "gdsg333-seed2-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg333-seed2-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "baa73e745a7716cff8fcfc48df65868145d1c4f7007d2c71db4987f148885c14",
+      "maximum_cpu_gpu_relative_l2": 1.3465755011625376e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "gdsg500-seed2-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg500-seed2-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "6ab4c68bb38551683e17ebff38308039af761bd7801313f98064cbdcd6f8a265",
+      "maximum_cpu_gpu_relative_l2": 1.3085622267868446e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    },
+    {
+      "run_name": "single500-seed2-r1",
+      "report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/single500-seed2-r1/FINAL_REPLAY_REPORT.json",
+      "report_sha256": "224d960ba4a4c51bc603af1baa563fe70923fad1790624f0503d30c85d8cdfee",
+      "maximum_cpu_gpu_relative_l2": 1.3811033558113798e-07,
+      "trajectories": 20,
+      "steps_per_trajectory": 2
+    }
+  ],
+  "all_replays_pass": true,
+  "complete_finite_matrix_rows": 12,
+  "all_evaluator_metric_tracks_defined_and_finite": true,
+  "paired_input_integrity_passed": true,
+  "registered_gates": {
+    "practical_utility": {
+      "passed": true,
+      "all_three_pairs_complete": true,
+      "error_ratio_gm": 1.0240397661882958,
+      "error_ratio_gm_limit": 1.1,
+      "training_time_ratio_gm": 0.6708383477460277,
+      "training_time_ratio_gm_limit": 0.8,
+      "seeds_with_error_ratio_at_most_1_10": 3,
+      "required_seed_count": 2
+    },
+    "midpoint_mechanism": {
+      "passed": false,
+      "all_three_pairs_complete": true,
+      "error_ratio_gm": 1.0152938149906365,
+      "error_ratio_gm_limit": 0.9,
+      "seeds_with_strictly_lower_error": 1,
+      "required_seed_count": 2
+    },
+    "all_twelve_runs_complete_finite": true,
+    "all_registered_gates_pass": false,
+    "interpretation_rule": "Report utility/mechanism separately. No seed omission; retain GDSG-333. Empirical utility gates, not significance/equivalence tests."
+  },
+  "new_training_submitted_in_recovery": false,
+  "optimizer_updates_by_local_verifiers": 0,
+  "scope": "All frozen Stage B evidence recovered. Candidate utility passed; midpoint mechanism gate failed. Work completed with negative mechanism conclusion; future capacity plan is unlaunched."
+}

@@ -1,0 +1,18 @@
+{
+  "COMMON_PERTURBATIONS_DIAGNOSTIC.json": {
+    "sha256": "7e4965a29fbfea5b3b0481d18eda9ee973d047168584502f8d5fe0f7598c5b0d",
+    "bytes": 190529
+  },
+  "common_perturbation_arrays.npz": {
+    "sha256": "75a3ecdafeeebce8da56fcb2787311ddbd88fee20d6c2c5d4caab81ec98c6d99",
+    "bytes": 54545242
+  },
+  "one_sided_gains.csv": {
+    "sha256": "1e1f29fd736e91211d216e223bb82a07bf018d0a4f832e6a24760a23f14edd91",
+    "bytes": 824636
+  },
+  "symmetric_gains.csv": {
+    "sha256": "c678fa3a9fe3f53be55695085c890bc07126c88c460dc03172502a0c964be69e",
+    "bytes": 525801
+  }
+}

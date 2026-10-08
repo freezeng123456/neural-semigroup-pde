@@ -1,0 +1,35 @@
+{
+  "status": "POSTPROCESSING_ONLY_COMPLETE",
+  "metric": "Per-trajectory spatial relative L2 in physical units. Float32 truth/model outputs, float64 subtraction and norm accumulation. Same metric for both curves; not bitwise official float32 CSV.",
+  "elapsed_target_times": [
+    1,
+    99
+  ],
+  "n_trajectories": 100,
+  "all_transitions_restart_mean": 0.000588305736101094,
+  "final_time99": {
+    "restart_mean": 0.0005639272983292169,
+    "restart_median": 0.0004746167329714292,
+    "restart_p10": 0.00032489422321473554,
+    "restart_p90": 0.0009143526249793489,
+    "free_mean": 2.8410084716889994,
+    "free_median": 0.9942382557854645,
+    "free_p10": 0.651741832925819,
+    "free_p90": 4.915510992877512
+  },
+  "first_step_cpu_gpu_parity": {
+    "max_abs": 4.76837158203125e-07,
+    "relative_rms_to_gpu": 8.357961439724683e-08
+  },
+  "npz_csv_report_agree": true,
+  "inference_or_training_performed_by_plot_script": false,
+  "input_sha256": {
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-true-state-restarts/RESTART_DIAGNOSTIC.json": "41f8bb04b847618590bc1d0a68be879f30511994b5e5c375e71ad757b6d1767b",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-true-state-restarts/per_trajectory_metrics.npz": "40b07e8ee6db8035c8fe97d219690fa87c4eabce0f06845a19b3573525668c57",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-true-state-restarts/error_by_time.csv": "272bcc7acce7ccc566b7b0860e57044285076d31aea87e634c7bae7572864e58"
+  },
+  "runtime": {
+    "numpy": "1.26.4",
+    "matplotlib": "3.9.4"
+  }
+}

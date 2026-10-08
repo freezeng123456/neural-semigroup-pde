@@ -1,0 +1,138 @@
+{
+  "status": "TWO_STEP_DATA_PREPARED_NO_TRAINING",
+  "script_sha256": "f70da8f8e9c791b346f23d571a24a31d5e64345d2bca644fde2c6f94f8167b1d",
+  "original_train_sha256": "0ebdd969d52292b4304d3583b3cd432c288397b367f75372d06944d629c5d111",
+  "stage_b_data_sha256": "1092743121a2c6cc733da44d034f0399d61c88d1d6b0016e75c57313bfc7465b",
+  "payload_sha256": "49869507406029ce4263dda51150726589593ecbe4ff8bbe59da956aedb2023a",
+  "payload_bytes": 77439608,
+  "split_and_normalization_exactly_reused": true,
+  "historical_single_transition_pairs_matched_exactly": 2000,
+  "state_preprocessing": "Original raw float64 normalization and clipping, followed by float32 cast; all 2000 historical pairs matched",
+  "physical_lag_encoding": "Float32 physical lags re-encoded by network; original float32 normalized time inputs also preserved",
+  "train_trajectories": 80,
+  "validation_trajectories": 20,
+  "windows": 2000,
+  "window_selection": "default_rng(20261011); 25 distinct starts in 0..48 per training trajectory; sorted per trajectory",
+  "first_transition_count": 2000,
+  "second_transition_count": 2000,
+  "unique_transition_union": 3033,
+  "window_start_sha256": "c239d8e503da9378801d6691fc9f5acf3d3320a5079cfd6f0fd21514d1f62451",
+  "arrays": {
+    "vmin": {
+      "shape": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "dtype": "float32",
+      "sha256": "35e3f9f0805cb6b50367156da6bd23679cb8bf07d6a6bb80743f8168acc31bb0"
+    },
+    "vmax": {
+      "shape": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "dtype": "float32",
+      "sha256": "99fea2343f1924bea28cbe77866645f100eb51cf709fc2156dbd1800061191b3"
+    },
+    "tmin": {
+      "shape": [],
+      "dtype": "float32",
+      "sha256": "c36c15a2dd2c4a9abb6068f167a7dcc74b6c2cfcf873eb82bd4d989baea48d4b"
+    },
+    "tmax": {
+      "shape": [],
+      "dtype": "float32",
+      "sha256": "682c52d17a80156c5b3145ee186bd201d7c8c44853f2171ec4e0f29db32b5583"
+    },
+    "coordinates": {
+      "shape": [
+        64,
+        64,
+        2
+      ],
+      "dtype": "float32",
+      "sha256": "27beacf00a694133179efa946ecb1b72a8869183bf52fc37c525ec83e6252fca"
+    },
+    "train_trajectory_ids": {
+      "shape": [
+        80
+      ],
+      "dtype": "int64",
+      "sha256": "997a419849b148440602b40ca84d5c287335f8beba9b663889dd8e27632cc58f"
+    },
+    "validation_trajectory_ids": {
+      "shape": [
+        20
+      ],
+      "dtype": "int64",
+      "sha256": "14e6decf1e2738ca16b29fc3b70d64de3336a45dd781322ce9c79a1387a7c6ba"
+    },
+    "validation_truth": {
+      "shape": [
+        20,
+        64,
+        64,
+        1,
+        51
+      ],
+      "dtype": "float32",
+      "sha256": "f6a89f95aed42aa02e0dad452cc9a3e61dcab5f17416ce154ed5dbae5d8905ca"
+    },
+    "validation_dt": {
+      "shape": [
+        20,
+        50
+      ],
+      "dtype": "float32",
+      "sha256": "492fd0a06911d6942c5f3fc1ad53755b691f8f9f24b79d1677031abb37ba84a4"
+    },
+    "train_states": {
+      "shape": [
+        80,
+        51,
+        64,
+        64,
+        1
+      ],
+      "dtype": "float32",
+      "sha256": "049989e1d73cd3c30ef5691bb31821e9e6d0fb742a8bc1e1655cdf5e8dc5e0f8"
+    },
+    "train_dt": {
+      "shape": [
+        80,
+        50
+      ],
+      "dtype": "float32",
+      "sha256": "5e71f2d6fe65d34f583cb2757884eb51b7ae20226e02c4cd1704fe5b0d2834c3"
+    },
+    "train_time_input": {
+      "shape": [
+        80,
+        50
+      ],
+      "dtype": "float32",
+      "sha256": "28560087e10a3582e534b4ae52aae809544f4ac25c5f903c9ecee4a536f3916c"
+    },
+    "burst_trajectory_index": {
+      "shape": [
+        2000
+      ],
+      "dtype": "int64",
+      "sha256": "2a20be688293abc34b71105340a2d4eaab92086d6020a5ee72455447b07e351d"
+    },
+    "burst_start": {
+      "shape": [
+        2000
+      ],
+      "dtype": "int64",
+      "sha256": "c239d8e503da9378801d6691fc9f5acf3d3320a5079cfd6f0fd21514d1f62451"
+    }
+  },
+  "scope": "New matched-window comparison. Historical Stage B accuracy is contextual, not a matched first-pair comparator."
+}

@@ -1,0 +1,1827 @@
+{
+  "source_head": "7948527673eb46dd3b9049f495df77acda8f68f9",
+  "base": "0263511758b865f635ef472d630707349b459291",
+  "files": [
+    {
+      "source": "work/due_official_vorticity/AUTONOMOUS_FNO_FEASIBILITY.zh.md",
+      "destination": "research/20261008/work/due_official_vorticity/AUTONOMOUS_FNO_FEASIBILITY.zh.md",
+      "source_sha256": "3830984eb4cc259883b568bfd1ed1af940b7030f36e980642a8b30d1b3271755",
+      "source_bytes": 12004,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/due_official_vorticity/METHOD_CANDIDATES_AFTER_BASELINE.zh.md",
+      "destination": "research/20261008/work/due_official_vorticity/METHOD_CANDIDATES_AFTER_BASELINE.zh.md",
+      "source_sha256": "edeef93160086e53ef78dc7380a844be0e543d4fc5ad7d9a5652ededd3a2892b",
+      "source_bytes": 14392,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/due_official_vorticity/OFFICIAL_PROTOCOL_AUDIT.md",
+      "destination": "research/20261008/work/due_official_vorticity/OFFICIAL_PROTOCOL_AUDIT.md",
+      "source_sha256": "982622a91d5a3015138c6a323e46743c469995a1ff390d7293a3b0af5b9d78fb",
+      "source_bytes": 17859,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/due_official_vorticity/PAPER_RESULT_COMPARISON_CRITERIA.zh.md",
+      "destination": "research/20261008/work/due_official_vorticity/PAPER_RESULT_COMPARISON_CRITERIA.zh.md",
+      "source_sha256": "32f55963e4b25d4d2757ee110b428600686f6cebdec17cc2cd55de8ab2772030",
+      "source_bytes": 5154,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/due_official_vorticity/POST_BASELINE_DIAGNOSTICS_R1.zh.md",
+      "destination": "research/20261008/work/due_official_vorticity/POST_BASELINE_DIAGNOSTICS_R1.zh.md",
+      "source_sha256": "e0da2c274735f50fe3895a40e7ca9b2dd3d14416bf785f76f9b4e67133426841",
+      "source_bytes": 5431,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/POST_BASELINE_DIAGNOSTIC_PLAN.zh.md",
+      "destination": "research/20261008/work/due_official_vorticity/POST_BASELINE_DIAGNOSTIC_PLAN.zh.md",
+      "source_sha256": "0e78b29490bf5d9b3d7f5bbfbe587e7807814d4b47a82269448a2dabd97442dd",
+      "source_bytes": 20585,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/due_official_vorticity/POST_BASELINE_METHOD_DECISION.zh.md",
+      "destination": "research/20261008/work/due_official_vorticity/POST_BASELINE_METHOD_DECISION.zh.md",
+      "source_sha256": "e6f535846f6017ead978dba006b6656b37d604e6336d18390b3e380c9a24ee69",
+      "source_bytes": 5607,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/due_official_vorticity/REFERENCE_GENERATOR_PROVENANCE.zh.md",
+      "destination": "research/20261008/work/due_official_vorticity/REFERENCE_GENERATOR_PROVENANCE.zh.md",
+      "source_sha256": "c5979f3dca82eda5ac3ee96013be582679e71302f4e950d98062f2ea9193e864",
+      "source_bytes": 9046,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/due_official_vorticity/ROLLOUT_STABILITY_PRIOR_WORK.zh.md",
+      "destination": "research/20261008/work/due_official_vorticity/ROLLOUT_STABILITY_PRIOR_WORK.zh.md",
+      "source_sha256": "81c34868d1631543569cc305e26f711a3b990ea2fc34a94317343eab58d451d0",
+      "source_bytes": 8515,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/due_official_vorticity/THEORY_AUDIT.zh.md",
+      "destination": "research/20261008/work/due_official_vorticity/THEORY_AUDIT.zh.md",
+      "source_sha256": "6ed767c1b624f4ff32bcfe9ccaec583f39209cb78e7ee948d27faed38f08c326",
+      "source_bytes": 6686,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/due_official_vorticity/download_public_data.py",
+      "destination": "research/20261008/work/due_official_vorticity/download_public_data.py",
+      "source_sha256": "b0839f0ead66b756169c2a17e89dea11c20ffb850360976a0510bb4f9ac1cd96",
+      "source_bytes": 4779,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/verify_official_data.py",
+      "destination": "research/20261008/work/due_official_vorticity/verify_official_data.py",
+      "source_sha256": "8bc95b5a78dd3721ab050f608153b6236321ef2db3d3fd890ecb094d98786e0a",
+      "source_bytes": 7000,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/SG0_CONTROL.md",
+      "destination": "research/20261008/work/due_official_vorticity/operations/SG0_CONTROL.md",
+      "source_sha256": "b3ac0e6c3cd369c0fec5c2ec5e816f16e6cbae213a10d3339045a7e2f3cce479",
+      "source_bytes": 3027,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/WRAPPER_PROTOCOL.md",
+      "destination": "research/20261008/work/due_official_vorticity/operations/WRAPPER_PROTOCOL.md",
+      "source_sha256": "1207b78606b389c0f9a85b5d15be88c021ff241d52246747026867800acbc88f",
+      "source_bytes": 4150,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/config_sg0.review.yaml",
+      "destination": "research/20261008/work/due_official_vorticity/operations/config_sg0.review.yaml",
+      "source_sha256": "a9430877437644acd332118c9ed4b2e8f4679cd44d32bc3f091d798487bada9c",
+      "source_bytes": 652,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/diagnose_common_perturbations.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/diagnose_common_perturbations.py",
+      "source_sha256": "6aeda2d8048dd36cb3b1ae5208ecbcdb5a26538b34468c2348afb09833f4c984",
+      "source_bytes": 23816,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/diagnose_error_propagation.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/diagnose_error_propagation.py",
+      "source_sha256": "f2b9b948708427bf76fd9387a8545f325752f2b92bada44eb162ebd2eb54d821",
+      "source_bytes": 14180,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/diagnose_one_step_restart.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/diagnose_one_step_restart.py",
+      "source_sha256": "edf3105a7f521d772744ade2f90396c9e62b84453439e5c2aa9ee47c63c9be25",
+      "source_bytes": 7198,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/diagnose_semigroup_coverage.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/diagnose_semigroup_coverage.py",
+      "source_sha256": "de6016c37f8ec0f32dfe4afa55432db095d0b4b28ccb8180f7657be163a48835",
+      "source_bytes": 24891,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/diagnose_spectral_error.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/diagnose_spectral_error.py",
+      "source_sha256": "a7abd1a600a3ad802534533a71242ddfb54021adc705862624c305209afcc9d7",
+      "source_bytes": 5489,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/finalize_semigroup_coverage.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/finalize_semigroup_coverage.py",
+      "source_sha256": "b86d157cf11dc1314963c9ebb9c5f668bb3e0051453e67be1e28ca8142846f67",
+      "source_bytes": 11691,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/official_source_manifest.json",
+      "destination": "research/20261008/work/due_official_vorticity/operations/official_source_manifest.json",
+      "source_sha256": "c423cbc0bde6636fd07f157b50a2f01d0430ac06973f5f0dfc2dbec1c483a79c",
+      "source_bytes": 8142,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/pack_official_run.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/pack_official_run.py",
+      "source_sha256": "1ddac0e620d8a9e31faec9be25c218dc123eca95158cc056c3939e0eb241ad17",
+      "source_bytes": 18604,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/pack_preflight.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/pack_preflight.py",
+      "source_sha256": "5309a0ba164f1523fb7847713da19ec97891250ee4194e194c2c2793e7c3a275",
+      "source_bytes": 2491,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/prepare_remote.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/prepare_remote.py",
+      "source_sha256": "567d5e9e01f3e0e391788c518b8260186771b6da3021b731c149f35c78bbfeb9",
+      "source_bytes": 3398,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/reconstruct_official_collocation.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/reconstruct_official_collocation.py",
+      "source_sha256": "adf26a5deb838eb6eb84ff7be62626a82ead8bc7b57ca9da687fead9bbe71cb0",
+      "source_bytes": 15956,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/recover_official_archive.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/recover_official_archive.py",
+      "source_sha256": "c942b016ea21e7e6b07b5259813627ba95b952eac1e4086e21bf8e962745713f",
+      "source_bytes": 5114,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/replay_official_cpu.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/replay_official_cpu.py",
+      "source_sha256": "e45bae103c65d5abf015d7256ec9785081f981a6a3cceea03d1321189a1b2a92",
+      "source_bytes": 12760,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/replay_official_cpu_local.sh",
+      "destination": "research/20261008/work/due_official_vorticity/operations/replay_official_cpu_local.sh",
+      "source_sha256": "8e5b9016222137ecc35ab5a43395bdb66c4e2af026df0de9db86ca46b541720c",
+      "source_bytes": 828,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/requirements-linux-cp311.lock",
+      "destination": "research/20261008/work/due_official_vorticity/operations/requirements-linux-cp311.lock",
+      "source_sha256": "6394ba2a42cb77bc12fa5a1760674dc5093722f8300742c1c4db30adc897b09a",
+      "source_bytes": 1244,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/run_official_observed.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/run_official_observed.py",
+      "source_sha256": "fa2b0951e283df3c6e20a5c4bce74a456504a8cd17428ad8c7ef2d72f6526395",
+      "source_bytes": 27454,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/run_official_sg0_observed.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/run_official_sg0_observed.py",
+      "source_sha256": "77c5e1c4285ea04f1ede56ca127c8222537cc96daa9c98d2b4c462fa9192b434",
+      "source_bytes": 28416,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/sg0_wrapper.diff",
+      "destination": "research/20261008/work/due_official_vorticity/operations/sg0_wrapper.diff",
+      "source_sha256": "1d575123b6b079014b3e4d4e9a84995399db7da5c7844c7c93292fa3e9a11644",
+      "source_bytes": 11756,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/slurm_official.sh",
+      "destination": "research/20261008/work/due_official_vorticity/operations/slurm_official.sh",
+      "source_sha256": "db2afb1ad7fd780a1ad6816e8472758d346ec10df075562392430594b6c46179",
+      "source_bytes": 1133,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/slurm_sg0.sh",
+      "destination": "research/20261008/work/due_official_vorticity/operations/slurm_sg0.sh",
+      "source_sha256": "c5deb772ab55e7c4f27868a5fa72ad07d2fe55d22c75d2c72146ac9cfc2d38d7",
+      "source_bytes": 1206,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/submit_official_full.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/submit_official_full.py",
+      "source_sha256": "847813e864cbf0103d3015fd79ba56cd258ba676ad412b600b2df62b6851c885",
+      "source_bytes": 2734,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/submit_preflight.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/submit_preflight.py",
+      "source_sha256": "322acf3b2f8f6495864c204d98cee87149e7039aaa6fd2b5baa482d72590af5b",
+      "source_bytes": 2555,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/submit_sg0.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/submit_sg0.py",
+      "source_sha256": "2a9715877fb8437cfd1c9332c8ee56a9a5b92257b65f5345c835f9634495325a",
+      "source_bytes": 4329,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/verify_official_results.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/verify_official_results.py",
+      "source_sha256": "bf340a64ce166d857208b26b5e6d4fd0d7c12bb97a3cc7c465bc29a0e6167233",
+      "source_bytes": 25445,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/operations/verify_official_sg0_results.py",
+      "destination": "research/20261008/work/due_official_vorticity/operations/verify_official_sg0_results.py",
+      "source_sha256": "aced411606213c97c3537828b8aae5dc9ddffeb419c47be45afb74b62b12348a",
+      "source_bytes": 30384,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/data/manifest.json",
+      "destination": "research/20261008/work/due_official_vorticity/data/manifest.json",
+      "source_sha256": "83c050f065d8554b92f2a75f070bea38acf275c82e08034c3f42cbc45193f6e8",
+      "source_bytes": 24902,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/due_official_vorticity/data/download_manifest.json",
+      "destination": "research/20261008/work/due_official_vorticity/data/download_manifest.json",
+      "source_sha256": "19b6c5ba99d4f0bce2ff3ae99dea131e7fe9738b5f2e8725d0cbcf8229add72d",
+      "source_bytes": 3209,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/ANALYZER_FREEZE.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/ANALYZER_FREEZE.json",
+      "source_sha256": "58ea7e818af6464e9e6de9d0328bd891ce3014783694b2170cdb47e225c934e2",
+      "source_bytes": 1113,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/EVALUATOR_FREEZE.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/EVALUATOR_FREEZE.json",
+      "source_sha256": "c6b07aa712957f63c2fd60ca09ad32752ee81692b0ff5337582825d7efbba63b",
+      "source_bytes": 743,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/FINAL_REPLAY_VERIFIER_FREEZE.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/FINAL_REPLAY_VERIFIER_FREEZE.json",
+      "source_sha256": "d07b574816995a55d2ef5a5380898929277e08a1edd189536c9a43c0be4c1733",
+      "source_bytes": 671,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/INTERPRETATION_BOUNDARIES.zh.md",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/INTERPRETATION_BOUNDARIES.zh.md",
+      "source_sha256": "435a43f8122c69f882eb2994ed9a3c212ac45098faf9be979145f437f7bb9bad",
+      "source_bytes": 13227,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/PAYLOAD_MANIFEST.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/PAYLOAD_MANIFEST.json",
+      "source_sha256": "c30e2208cff36ba79b91da43b947fd85f7f0c23088d5020e2824f906704df466",
+      "source_bytes": 14124,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/PROTOCOL.zh.md",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/PROTOCOL.zh.md",
+      "source_sha256": "09c36b5c3f41a792ae195fd6dd647884da2d0d1560e45ac82d3d1b6b88f32cd9",
+      "source_bytes": 8325,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/analyze_matrix.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/analyze_matrix.py",
+      "source_sha256": "d81c8d08b3af567c86d8e46e30b3502237dcc1835fba1e0696b4c241c1304ae9",
+      "source_bytes": 38876,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/build_payload.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/build_payload.py",
+      "source_sha256": "e2a1096f46c96fcdbd586b4795f6fe65beab85464cf4433efc12af9d78f71f9d",
+      "source_bytes": 3579,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluate_final.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluate_final.py",
+      "source_sha256": "f1027d00f040d2c53ec70cda8513f216192f07b60699cf3bde7d6f46d183fa2a",
+      "source_bytes": 44878,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/independent_review_analyze_matrix.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/independent_review_analyze_matrix.py",
+      "source_sha256": "77c93183d346589d7e6a8815e3100aacabd49cb191b428b19d7cec5a42417043",
+      "source_bytes": 10512,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/launch_task.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/launch_task.py",
+      "source_sha256": "94596ebac3f0c958716be3f577f7a1964938569ee958a552832ffd2cd863521e",
+      "source_bytes": 3563,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/losses.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/losses.py",
+      "source_sha256": "b12b346c4cb570debb9ddeb7d534c01c9b5ee09c26f885a506f1a225503360ea",
+      "source_bytes": 3317,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/matrix.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/matrix.json",
+      "source_sha256": "af4234a6d2e90d7c64b9085244b729cfce29dd2eab8ebd2c2b7d9f70e48cf389",
+      "source_bytes": 2986,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/pack_evidence.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/pack_evidence.py",
+      "source_sha256": "4406547114b29f6a99b1a68a067cb3095bda5df70f139815ba347e6afcb08bbc",
+      "source_bytes": 10069,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/prepare_data.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/prepare_data.py",
+      "source_sha256": "3edae0789e846ff4d3dc33c3dc7c423b2783467d60a4ebee12087a9b25b34f40",
+      "source_bytes": 6260,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/recover_evidence.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/recover_evidence.py",
+      "source_sha256": "58d8a9e9a0de99a5365cfb1e2f182a548bc0972f23163046b0f0e32c172d07f2",
+      "source_bytes": 6156,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/replay_final_checkpoint.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/replay_final_checkpoint.py",
+      "source_sha256": "942102528eeccb9ba45319c25fdc27673b667ae5c7c4116d41c6b7ad0c1d420d",
+      "source_bytes": 9188,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/self_test_analysis.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/self_test_analysis.py",
+      "source_sha256": "a5550d8abd1d963f2e9daa7017878557d0e61c04c73f601b1f8fb2c4704605b5",
+      "source_bytes": 11119,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/self_test_recovery.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/self_test_recovery.py",
+      "source_sha256": "b0b3d7996f6d5a288b3e24da641e09e0cf4312e12fff2b5a814e3114592e09ff",
+      "source_bytes": 13699,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/self_test_submit.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/self_test_submit.py",
+      "source_sha256": "d4ff38ff614e44b22daf95d5a5fab4df616200323e9780293d730f62cf76a9af",
+      "source_bytes": 10429,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/self_test_submit_r1.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/self_test_submit_r1.py",
+      "source_sha256": "8949953d569a40b1a09e6794cd920c5f48adb722ab3e7f8a20921a153a1bf7d4",
+      "source_bytes": 9961,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/slurm_stage_b.sh",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/slurm_stage_b.sh",
+      "source_sha256": "13765285c033b6dd7a54f4178cff1eb2797289b42ffff0c8702afc238ffa5bdd",
+      "source_bytes": 746,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/submit_stage_b.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/submit_stage_b.py",
+      "source_sha256": "037438e0944660ccc8d2755c9985a0b1f0f8903a4c684a1d32f3a46a96752d86",
+      "source_bytes": 20757,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/train.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/train.py",
+      "source_sha256": "991175b3ac2c2cf4a9ba9f4f5aac1d4215faf5c5c8a81395c3a09e626259423e",
+      "source_bytes": 34363,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/validate_stage_b.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/validate_stage_b.py",
+      "source_sha256": "4ccd9ec53ab4cbb9d77249269f974cb0ff1a998c73934371d360e348d8d5b16c",
+      "source_bytes": 43860,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/verify_preflight_recovery.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/verify_preflight_recovery.py",
+      "source_sha256": "10d3aca704d287006a1ce9c0fbb1aa405bd4297ec30bc372f290a04cf004523f",
+      "source_bytes": 9023,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/LOCAL_RECOVERY_REPLAY_RUNBOOK.zh.md",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/LOCAL_RECOVERY_REPLAY_RUNBOOK.zh.md",
+      "source_sha256": "4496ceeecc97ee43fb6d8d57ae7a6ec8524b2adde217094cfd534cd98d3c5533",
+      "source_bytes": 3746,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/README.md",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/README.md",
+      "source_sha256": "ff8ddf1e3423c29d2fa31ac44fa0f62c0b01c5f79194c0c0826aabd6e5f0d435",
+      "source_bytes": 4468,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/evaluate_matrix.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/evaluate_matrix.py",
+      "source_sha256": "81c1b1c7b8c25476dab7f355b54c06f99c283d2f5e9254afeed97804a0e97ec0",
+      "source_bytes": 23667,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/pack_evaluation_evidence.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/pack_evaluation_evidence.py",
+      "source_sha256": "8488fd7ec596797aa46e88614f7f59292989ecad1309e04d308f2c55a0975529",
+      "source_bytes": 16925,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/pack_training_matrix.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/pack_training_matrix.py",
+      "source_sha256": "039143a0650e9b55c63b88ed838187a11ae7468d1f9288ff100669547b8b3ac2",
+      "source_bytes": 15105,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/pack_training_matrix_r2.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/pack_training_matrix_r2.py",
+      "source_sha256": "3144d301e2663c80193beb5e957a1b8cf6b6e19f392dbe2004d6896701ccfb01",
+      "source_bytes": 18071,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/prepare_local_recovery_replay.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/prepare_local_recovery_replay.py",
+      "source_sha256": "c820d478bc5332a241651671c936b6756a87a47268f078513df1ab57c95cb87d",
+      "source_bytes": 17451,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/recover_evaluation_evidence.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/recover_evaluation_evidence.py",
+      "source_sha256": "29dda14e7e1a88ef82f23a0f3ade760c3794af28ec40934053a0fbfc1401993a",
+      "source_bytes": 10622,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/self_test_evaluation_recovery.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/self_test_evaluation_recovery.py",
+      "source_sha256": "cad3266f216408c0788325a3e33134f6c0d4e4c660f59f68854d8af89499f991",
+      "source_bytes": 11299,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/self_test_evaluation_submit.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/self_test_evaluation_submit.py",
+      "source_sha256": "aa30aca5172c9afbdc7c7b87e846c0bcc4875213befe4c7d7d69346dc2705373",
+      "source_bytes": 11407,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/slurm_evaluate_matrix.sh",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/slurm_evaluate_matrix.sh",
+      "source_sha256": "c19b1bb67c965aa79b3eb2df60b458642f6c447b512af76824d62ac8ea515957",
+      "source_bytes": 1186,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/submit_evaluation.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/submit_evaluation.py",
+      "source_sha256": "f2a3d40f7bcfc8a160aed7ff32b9b93e8f2742d2a0deed64d1137678782b534a",
+      "source_bytes": 17345,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/evaluation-operations/test_pack_training_matrix_r2.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/evaluation-operations/test_pack_training_matrix_r2.py",
+      "source_sha256": "649e897eeb6a6da919afdfee6396247490e8f237c71ab0cdc9f93ea2abdbbf2e",
+      "source_bytes": 12018,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/data-r1/DATA_MANIFEST.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/data-r1/DATA_MANIFEST.json",
+      "source_sha256": "316042482c32a1716e2df92db48ac979f6f6022c70adbb30dbc7e5d32eecf99b",
+      "source_bytes": 4598,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/DIAGNOSTIC_PLAN.zh.md",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/DIAGNOSTIC_PLAN.zh.md",
+      "source_sha256": "5cdf2fdae72228a111a831fb069a36afdc2be010b91884b5f49965dc091e5235",
+      "source_bytes": 2689,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/GENERATOR_PROTOCOL.zh.md",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/GENERATOR_PROTOCOL.zh.md",
+      "source_sha256": "f12f60e4d06c03d0c6c4be0cea6b8f259cb2bd2cd368f5dcf02758e92dfe0957",
+      "source_bytes": 4049,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/NEXT_EXPERIMENT_PROTOCOL.zh.md",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/NEXT_EXPERIMENT_PROTOCOL.zh.md",
+      "source_sha256": "f502c6db2567bdab35eadbfa13e777a6108795595cb82b55515909bda3d7fa72",
+      "source_bytes": 7094,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/PAYLOAD_MANIFEST.json",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/PAYLOAD_MANIFEST.json",
+      "source_sha256": "ffbe1bb1b40c46ba4cd41a9fc1b94ea0dbce130c7ee8c646203fb4f16543d8a1",
+      "source_bytes": 15546,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/build_payload.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/build_payload.py",
+      "source_sha256": "e5b30ca5b941a5d02237cadfa61d76c7e1d6dc8527b27d7a799e5ac8db0fe51a",
+      "source_bytes": 4152,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/diagnose_frozen_models.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/diagnose_frozen_models.py",
+      "source_sha256": "bc3248d43ac2bf5d71b2adfe9af49876ca71a1d8456fa5fe108edd79a9295371",
+      "source_bytes": 13097,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/diagnose_translation_symmetry.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/diagnose_translation_symmetry.py",
+      "source_sha256": "452a3bbf308fa307c4b40784f089fbd200b1b2b5d39a566657c073ef408a26b8",
+      "source_bytes": 7492,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/evaluate_generator.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/evaluate_generator.py",
+      "source_sha256": "1f8e4c1fccabbdccd343f2ef509d7b9b4e2968b4b3f7b9305833454cbcb34a06",
+      "source_bytes": 4386,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/experiment_config.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/experiment_config.py",
+      "source_sha256": "b78ce65f784e0aa44cb666857545204d5828b1b7d88c75cfbb9b8ca41b004245",
+      "source_bytes": 1863,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/flow_numerics.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/flow_numerics.py",
+      "source_sha256": "fd4cad1250bdfe049090c57b08a845ee2442f6d74cf3f710113de06866074dc3",
+      "source_bytes": 4041,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/generator_model.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/generator_model.py",
+      "source_sha256": "f7da7f0315cabbcec03727c40a3cd37e9009a11d8d9fa9921a321582223ca274",
+      "source_bytes": 2537,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/launch_task.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/launch_task.py",
+      "source_sha256": "c9f279a08840dc07f6e326806d6a01e0caceae2b5f126693621ca74710abc6b5",
+      "source_bytes": 2778,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/matrix.json",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/matrix.json",
+      "source_sha256": "5c122a38fdb8756398ac01d78f38bc111cd19397191314aac600d2139892116c",
+      "source_bytes": 7262,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/official_control.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/official_control.py",
+      "source_sha256": "65d19d97a3bb72a2943e2a3c9a8a5fd5970a4c8f5bbea6df4fc33603a85a744f",
+      "source_bytes": 1788,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/pack_evidence.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/pack_evidence.py",
+      "source_sha256": "0511dab6f3cb452ff36c76fe736669b56bf4524c7ad7d7e6c08d628cd1462808",
+      "source_bytes": 4718,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/prepare_flow_data.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/prepare_flow_data.py",
+      "source_sha256": "01123053eee9741e3c9e5da116cadb74be11c3829fae43d0ecb34c52cbfca8d5",
+      "source_bytes": 5279,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/prepare_flow_data.r1-executed.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/prepare_flow_data.r1-executed.py",
+      "source_sha256": "8fc9e3af9f81ac7804117cf1114a11a9e58693c75f1015f4c60b801bff0dab1a",
+      "source_bytes": 4993,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/prepare_two_step_data.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/prepare_two_step_data.py",
+      "source_sha256": "f70da8f8e9c791b346f23d571a24a31d5e64345d2bca644fde2c6f94f8167b1d",
+      "source_bytes": 6424,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/prepare_two_step_data.r1-executed.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/prepare_two_step_data.r1-executed.py",
+      "source_sha256": "974bb2a343a17fee0354cc10e25191acc3c07bdaebee2b76e9c14966f89813dc",
+      "source_bytes": 4871,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/recover_preflight.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/recover_preflight.py",
+      "source_sha256": "4e24558695af15ed4dcb52cff87deb9b15e4115093b98bcecda60b15b1e554c6",
+      "source_bytes": 3421,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/review_diagnostics.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/review_diagnostics.py",
+      "source_sha256": "fa44903ee1265202f7b036fe5b1428c09cbeab90bf2c15624681c2e1ce18a792",
+      "source_bytes": 8640,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/scheduler_limits.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/scheduler_limits.py",
+      "source_sha256": "83063c03e1170992ddb358a5deed1807b3162b083389ddbdd2b6bd0b2e756d11",
+      "source_bytes": 10173,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/slurm_next.sh",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/slurm_next.sh",
+      "source_sha256": "35399ae9e8f9246bfcb7db2301930f321c8a13415810adbbaef4422b8618ac57",
+      "source_bytes": 666,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/submit_experiments.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/submit_experiments.py",
+      "source_sha256": "cf74c39a80bb85b1f89af01d172cb6b789479f652907bde70041751cfc305b44",
+      "source_bytes": 5873,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/train.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/train.py",
+      "source_sha256": "27407a40220253059f4cb9c4a9208589cbd04caa49a33bbededa6384311596c0",
+      "source_bytes": 37740,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/two_step_objectives.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/two_step_objectives.py",
+      "source_sha256": "4e3337f11a25cc3826cb71f43b894b7ea75df00461d01ccbe72acd62b48b7de2",
+      "source_bytes": 3535,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/validate_execution.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/validate_execution.py",
+      "source_sha256": "b78cae6bf4772a0b5f5ad180596be876f71a48a6cce5de20a81f195ff454567e",
+      "source_bytes": 17464,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/validate_objectives.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/validate_objectives.py",
+      "source_sha256": "115ea19c754b42383af047245b982712ab4482024d46d98d263b352d966b1faf",
+      "source_bytes": 6751,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/capture_completed_task.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/capture_completed_task.py",
+      "source_sha256": "f76e15a6c96e14f936722de2e49163117d80dea870daeb56890ed4f93b3ebab7",
+      "source_bytes": 8874,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/capture_failed_task.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/capture_failed_task.py",
+      "source_sha256": "febe9e0351d2cb017de336fd3b0ec00b035a05d65c1084fc89302c80b7347828",
+      "source_bytes": 7152,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/deploy_and_preflight.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/deploy_and_preflight.py",
+      "source_sha256": "3a0c0727650bae63bb9bdbdc7b4d6bc763fdb442cd8ba6ad8468d4b1eb357ec0",
+      "source_bytes": 5721,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/deploy_and_preflight_r2.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/deploy_and_preflight_r2.py",
+      "source_sha256": "c5d49cdabadd99ee6437c5c61a387e1c9ca954cda670f4a805b208a48e164a30",
+      "source_bytes": 5828,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/inspect_fixed_waves.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/inspect_fixed_waves.py",
+      "source_sha256": "ff9b87a9108d312588049867024456f49d34eaa5c3259ae47e42294228911b6b",
+      "source_bytes": 3904,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/inspect_preflight_2351049.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/inspect_preflight_2351049.py",
+      "source_sha256": "47f901529b451975b422f296ca6c8cc62721cb5ad697ae5957e2af5cbe4abc45",
+      "source_bytes": 1969,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/pack_preflight_2351049.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/pack_preflight_2351049.py",
+      "source_sha256": "7e87416888766075f97d04d26b888632e5b9b8a3143ceb64c3d214f84ae7ba00",
+      "source_bytes": 1414,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/remote_readonly_audit.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/remote_readonly_audit.py",
+      "source_sha256": "054d6eda40c24275f1bb20ab8a93b4daa612d89d17a77e05d9fe36d77e4fa645",
+      "source_bytes": 2875,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/remote_readonly_audit_r2.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/remote_readonly_audit_r2.py",
+      "source_sha256": "b8fb32aaf8a5ba6e177da48216c3616b0c01c44c099d50393ff1cf7b77f29dd5",
+      "source_bytes": 3096,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/replay_final_checkpoint.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/replay_final_checkpoint.py",
+      "source_sha256": "a64ffb783d39a2d93d3ef142e077157b7b5d7b9b7bbd7e35b4238c116ac25957",
+      "source_bytes": 9189,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/submit_fixed_wave.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/submit_fixed_wave.py",
+      "source_sha256": "526662e1c577b126042796cdb808e3468d819fea6dd623f978290205287695bb",
+      "source_bytes": 13329,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/verify_failed_archive.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/verify_failed_archive.py",
+      "source_sha256": "819abc084d4a6cd0a88d47cc1d73029fc10c232517800d62716f047868d04ee5",
+      "source_bytes": 6934,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/operations-web-20261005-r1/verify_task_archive.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/operations-web-20261005-r1/verify_task_archive.py",
+      "source_sha256": "222ab615c8b2c67d810256aad0ef211a525508d0e835a527e5b1877b28bfd0a3",
+      "source_bytes": 8438,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/data-r2/DATA_REPORT.json",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/data-r2/DATA_REPORT.json",
+      "source_sha256": "9fc15a41e17eca6fd529c5736e96002aa77fe39429f63837b17da3bfb4b54f01",
+      "source_bytes": 4018,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/flow-data-r2/FLOW_DATA_REPORT.json",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/flow-data-r2/FLOW_DATA_REPORT.json",
+      "source_sha256": "239bb4ad20a1cdc707d5c0b4fbd152864768f0bf531fa50b7ed77100d871d587",
+      "source_bytes": 25525,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/beijing_stage_a/analyze_full_capacity.py",
+      "destination": "research/20261008/work/beijing_stage_a/analyze_full_capacity.py",
+      "source_sha256": "49705efe68db0561cae404b284cbe4221e2ece74a3782523c9f6fb750fc18283",
+      "source_bytes": 9708,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/beijing_stage_a/verify_and_pack_completion.py",
+      "destination": "research/20261008/work/beijing_stage_a/verify_and_pack_completion.py",
+      "source_sha256": "4a1e2a458ea3d890f0b1997188e4b32a7916a5d021f48004f01d36a603bd5006",
+      "source_bytes": 10029,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/literature_baselines/README.txt",
+      "destination": "research/20261008/work/literature_baselines/README.txt",
+      "source_sha256": "8aa940e347ec11992bf903e58594d73cf4d67a5bfc2d5805301ffdcd9041c0c0",
+      "source_bytes": 1954,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/literature_baselines/due_scalar_smoke.json",
+      "destination": "research/20261008/work/literature_baselines/due_scalar_smoke.json",
+      "source_sha256": "ad06d22ed2f0943b8209b7a46180b828c892f3433a9e1bfbc6f82a010888b0dd",
+      "source_bytes": 3903,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/literature_baselines/due_scalar_smoke.py",
+      "destination": "research/20261008/work/literature_baselines/due_scalar_smoke.py",
+      "source_sha256": "eac2c3a3dfddca6a6f63c4301f1a935964259bfd6926b991d7ecd70846defcd7",
+      "source_bytes": 7251,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/BASELINE_REPORT.zh.md",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/BASELINE_REPORT.zh.md",
+      "source_sha256": "00d370af832d60473b1d1f16aaf1f9588abb3e3978a0adb6f46d349f2a9c8994",
+      "source_bytes": 10440,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/POST_BASELINE_DIAGNOSTIC_REPORT.zh.md",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/POST_BASELINE_DIAGNOSTIC_REPORT.zh.md",
+      "source_sha256": "711b1cb98a9f3c90fd5bcc1caa97c1302f924066cd429487a1d37da497b9ad9d",
+      "source_bytes": 9415,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/BASELINE_COMPLETION_MANIFEST.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/BASELINE_COMPLETION_MANIFEST.json",
+      "source_sha256": "5c27e26895cf9479ecf196ac3f94755a8bc3685c7f4966846bfbc3cbff26bdb3",
+      "source_bytes": 1294,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/comparison/INDEPENDENT_BASELINE_REVIEW.zh.md",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/comparison/INDEPENDENT_BASELINE_REVIEW.zh.md",
+      "source_sha256": "2e1f1374acc1a24e4edd0baa5754cfefb01681720a3283f95dd5a85425e5ef8f",
+      "source_bytes": 11460,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/comparison/REPLAY_DIAGNOSTICS_REVIEW.zh.md",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/comparison/REPLAY_DIAGNOSTICS_REVIEW.zh.md",
+      "source_sha256": "efb20f19bdb86b6358f4315f483474fa15a73b8c7d64c2071fb22f95d0a118e1",
+      "source_bytes": 5131,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/comparison/artifact_manifest.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/comparison/artifact_manifest.json",
+      "source_sha256": "6b8e157a91ec200b368ed296e8b8fff872535163ce50f1e8472065beda4d09de",
+      "source_bytes": 845,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/comparison/compare_baselines.py",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/comparison/compare_baselines.py",
+      "source_sha256": "a35160b4fd4f7161537517cc938baaad622ac37865ba9e049c6cf7af912f214b",
+      "source_bytes": 19870,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/comparison/local_fit_and_rollout.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/comparison/local_fit_and_rollout.json",
+      "source_sha256": "6ba620de629a80f0c16229cd5fe871e8e0f0ed0ba42f9efccef27f6fc5e86814",
+      "source_bytes": 1498,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/comparison/local_fit_and_rollout_manifest.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/comparison/local_fit_and_rollout_manifest.json",
+      "source_sha256": "ac91983d2a4aaca195b39a5213ed1b5d026250060a4872382f251f219c774abb",
+      "source_bytes": 559,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/comparison/metrics.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/comparison/metrics.json",
+      "source_sha256": "190801463cefac8eada569cd4154fe326317533f0bc465650fadb51bd040a2e3",
+      "source_bytes": 9114,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/comparison/paired_trajectory_errors.csv",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/comparison/paired_trajectory_errors.csv",
+      "source_sha256": "0dd1a4cf9dde2235931556b15e3565b41f24e650da710e37ed2c43150bad0cfb",
+      "source_bytes": 12537,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/comparison/plot_local_and_rollout.py",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/comparison/plot_local_and_rollout.py",
+      "source_sha256": "d14a4e5646e99be4ceb4c4c24b8ab231980723417aa1d472ba20f32824fc0383",
+      "source_bytes": 4293,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/comparison/test_curves_and_paired_changes.csv",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/comparison/test_curves_and_paired_changes.csv",
+      "source_sha256": "cc90c3b90487e3d24285ef1419d54a9e52bfb40aa3f368f0e2ee027cb7a21921",
+      "source_bytes": 38121,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-analysis/SCIENTIFIC_REVIEW.zh.md",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-analysis/SCIENTIFIC_REVIEW.zh.md",
+      "source_sha256": "37b6f60c0f1f99f8940cfb7c0bede9affe2f1e409a2a1454bd4ad2b554bbdb97",
+      "source_bytes": 17135,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-analysis/diagnose_sg0.py",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-analysis/diagnose_sg0.py",
+      "source_sha256": "19626d044caa0a29900999863645a75a7a8a354e725e7203311b9d46132c704e",
+      "source_bytes": 10747,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-analysis/diagnostic_metrics.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-analysis/diagnostic_metrics.json",
+      "source_sha256": "a9661efb6194addac1c95b412a00d6c72f1d8365422c1a294efbdaaf8563859f",
+      "source_bytes": 19326,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-analysis/final_step_distribution.csv",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-analysis/final_step_distribution.csv",
+      "source_sha256": "b2caad68ade1217ba0a846c79be2b15ce0ee8cf51d80ba83075601de876427ca",
+      "source_bytes": 2612,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-analysis/metrics.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-analysis/metrics.json",
+      "source_sha256": "36dadcc0a05305752616d85fed191b93f238dfc06145ba91031d79d663c55aea",
+      "source_bytes": 3195,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-analysis/plot_artifact_manifest.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-analysis/plot_artifact_manifest.json",
+      "source_sha256": "1bfd527f632b55f82f5e9a03c700eea579d2dfb30ede429b512b0b27b723a35d",
+      "source_bytes": 824,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-analysis/plot_sg0_results.py",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-analysis/plot_sg0_results.py",
+      "source_sha256": "090bddc2a8b7c668caf4b979e44c2e0795f28e20a864295037c68b7544eeb8d8",
+      "source_bytes": 9643,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-analysis/test_error_curve.csv",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-analysis/test_error_curve.csv",
+      "source_sha256": "299cf0964aa47adfc5b7111aadb4ae082d53eac44c3479360b0fc6319f13b2d0",
+      "source_bytes": 8533,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/gdsg-error-propagation/ERROR_PROPAGATION_DIAGNOSTIC.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/gdsg-error-propagation/ERROR_PROPAGATION_DIAGNOSTIC.json",
+      "source_sha256": "aa7e720837b91a2daaa66e69f0d4026a03c5539cc5e284cfa434807a5080c48b",
+      "source_bytes": 58500,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/gdsg-error-propagation/artifact_manifest.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/gdsg-error-propagation/artifact_manifest.json",
+      "source_sha256": "ef1181baba0efa1935b8d5c1a6ad22452c2e4aeef8fa2b545f8994c092a69c15",
+      "source_bytes": 446,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/gdsg-error-propagation/post_diagnostic_integrity.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/gdsg-error-propagation/post_diagnostic_integrity.json",
+      "source_sha256": "68b5f28fc0dc3bd9dbd39dc0025445555fa2d07e4d3cdf2d0a3ee7b408019955",
+      "source_bytes": 574,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-error-propagation/ERROR_PROPAGATION_DIAGNOSTIC.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-error-propagation/ERROR_PROPAGATION_DIAGNOSTIC.json",
+      "source_sha256": "b3d7659194fc64576e9cfdf71a225cc601c944bd9d8c7afd3c0a6e5af066b90d",
+      "source_bytes": 58256,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-error-propagation/artifact_manifest.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-error-propagation/artifact_manifest.json",
+      "source_sha256": "87b3f3616840b1e33a08d7201632e0215bb0cc499b818e19a5dde05e21ff60a7",
+      "source_bytes": 446,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-error-propagation/post_diagnostic_integrity.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-error-propagation/post_diagnostic_integrity.json",
+      "source_sha256": "2268a833655e2c86b40b0e6628a245a35e47a1b8fd93bd55ec0355d30c8d00a8",
+      "source_bytes": 449,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/gdsg-spectral-diagnostic/SPECTRAL_DIAGNOSTIC.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/gdsg-spectral-diagnostic/SPECTRAL_DIAGNOSTIC.json",
+      "source_sha256": "1ef73f11d9080511a22670d53ef0192ea13ffd328af1a78ddc5f60bba4d05fcd",
+      "source_bytes": 10581,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-spectral-diagnostic/SPECTRAL_DIAGNOSTIC.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-spectral-diagnostic/SPECTRAL_DIAGNOSTIC.json",
+      "source_sha256": "ca977eea9486f6c6729b958153bd807f027fa75ccac803b1748bbb002bfb41ad",
+      "source_bytes": 10517,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/gdsg-true-state-restarts/RESTART_DIAGNOSTIC.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/gdsg-true-state-restarts/RESTART_DIAGNOSTIC.json",
+      "source_sha256": "cbf50d93c6745882fe6f93ea67925cdf42c33366e8e7281abaa1e949f0c7cecf",
+      "source_bytes": 4957,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/gdsg-true-state-restarts/error_by_time.csv",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/gdsg-true-state-restarts/error_by_time.csv",
+      "source_sha256": "7ab7896c4d652a256b6eb6fc9dec43b53abda94719fa9a309d138e7e64ebec3f",
+      "source_bytes": 11154,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/gdsg-true-state-restarts/post_restart_integrity.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/gdsg-true-state-restarts/post_restart_integrity.json",
+      "source_sha256": "884db0e5d2f7771db240dd18184cec7a37de055c2c6f8ca646a7ea6a4b5686dc",
+      "source_bytes": 273,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-true-state-restarts/PLOT_METRICS.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-true-state-restarts/PLOT_METRICS.json",
+      "source_sha256": "01acc9dcdc224990e2f6e314c5a679997c87311ece7eba7c892f059bb6715a2e",
+      "source_bytes": 1660,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-true-state-restarts/RESTART_DIAGNOSTIC.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-true-state-restarts/RESTART_DIAGNOSTIC.json",
+      "source_sha256": "41f8bb04b847618590bc1d0a68be879f30511994b5e5c375e71ad757b6d1767b",
+      "source_bytes": 4917,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-true-state-restarts/error_by_time.csv",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-true-state-restarts/error_by_time.csv",
+      "source_sha256": "272bcc7acce7ccc566b7b0860e57044285076d31aea87e634c7bae7572864e58",
+      "source_bytes": 11025,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-true-state-restarts/plot_artifact_manifest.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-true-state-restarts/plot_artifact_manifest.json",
+      "source_sha256": "9191421cc2109885d3b36b6d00e91c709f6d5af05d5e904ddcf213f72fe381dd",
+      "source_bytes": 555,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-true-state-restarts/plot_restart_diagnostic.py",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/sg0-true-state-restarts/plot_restart_diagnostic.py",
+      "source_sha256": "e8a46ec58d24ecd1095580135fdf39aafca0abb630838933bca7223ea170bea7",
+      "source_bytes": 7208,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/common-perturbations-r1/COMMON_PERTURBATIONS_DIAGNOSTIC.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/common-perturbations-r1/COMMON_PERTURBATIONS_DIAGNOSTIC.json",
+      "source_sha256": "7e4965a29fbfea5b3b0481d18eda9ee973d047168584502f8d5fe0f7598c5b0d",
+      "source_bytes": 190529,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/common-perturbations-r1/INDEPENDENT_REVIEW.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/common-perturbations-r1/INDEPENDENT_REVIEW.json",
+      "source_sha256": "a631f5c0ca772087cc91b0c8ce4c3515ad247032b6a6bd710c15f22a0a6024ac",
+      "source_bytes": 5850,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/common-perturbations-r1/artifact_manifest.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/common-perturbations-r1/artifact_manifest.json",
+      "source_sha256": "8674c0eb6c8e19af58f43a75dc5c9e09e86c4cba261541a1e78b38bca7944d43",
+      "source_bytes": 569,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/common-perturbations-r1/independent_review.py",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/common-perturbations-r1/independent_review.py",
+      "source_sha256": "1fdba13607391ca7e1c21fdf16c56e34b1e12ecd499b6c763b4f0390521fadf2",
+      "source_bytes": 4783,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/semigroup-coverage-r1/FAILURE.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/semigroup-coverage-r1/FAILURE.json",
+      "source_sha256": "b70967c862c8243a86ac890324321e095cba44bb218319f9d892422c3d1e59b2",
+      "source_bytes": 657,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/semigroup-coverage-r1/SEMIGROUP_COVERAGE_DIAGNOSTIC.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/semigroup-coverage-r1/SEMIGROUP_COVERAGE_DIAGNOSTIC.json",
+      "source_sha256": "ee9b148bb4a06e0203436872e341335aac83bb46709006a704c7c86e9f18a7dd",
+      "source_bytes": 529849,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/semigroup-coverage-r1/artifact_manifest.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/semigroup-coverage-r1/artifact_manifest.json",
+      "source_sha256": "459db4a2122a5d28f84f313c29663eb02a509ace6cd9a27e324b6bc1e0d29ccc",
+      "source_bytes": 1257,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/semigroup-coverage-r1/executed_diagnose_semigroup_coverage.py",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/semigroup-coverage-r1/executed_diagnose_semigroup_coverage.py",
+      "source_sha256": "adb35b16a5c16aa8ee38d3a2cd36f84bd5873210bd194025a045ea98c314ef29",
+      "source_bytes": 24885,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/collocation-reconstruction-r1/RECONSTRUCTION_PLAN.zh.md",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/collocation-reconstruction-r1/RECONSTRUCTION_PLAN.zh.md",
+      "source_sha256": "81fbe392ea0bca2bce943c7bdb63a181be4c65f44bd8627c940ea58b3a0d451a",
+      "source_bytes": 4736,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/collocation-reconstruction-r1/RECONSTRUCTION_REPORT.json",
+      "destination": "research/20261008/outputs/due-official-vorticity-20261004/collocation-reconstruction-r1/RECONSTRUCTION_REPORT.json",
+      "source_sha256": "f23148de0a1084060888e59b91bceef82139cac5ec59497a13da7c3cb48e3871",
+      "source_bytes": 63474,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/OFFICIAL_COMPLETE.json",
+      "destination": "research/20261008/records/official/gdsg/OFFICIAL_COMPLETE.json",
+      "source_sha256": "303721c149da668f911bf0c36fbef1ef620afdfef0eb99410ea9e53db7b39654",
+      "source_bytes": 4149,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/due-official-vorticity-20261004/sg0-full-recovery/20261004-due-vorticity-1e62910-r1/runs/sg0-full-r1/OFFICIAL_SG0_COMPLETE.json",
+      "destination": "research/20261008/records/official/sg0/OFFICIAL_SG0_COMPLETE.json",
+      "source_sha256": "eb8d5ad75eca4854b92170e26ca32b999b78f910079201e401fa088368db53e7",
+      "source_bytes": 4303,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/RESULTS_REPORT.zh.md",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/RESULTS_REPORT.zh.md",
+      "source_sha256": "da05a5edfc023486c20b5b27e96f474566253882bb663606b9fdf28afa0d0b1f",
+      "source_bytes": 6354,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/NEXT_CAPACITY_PLAN.zh.md",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/NEXT_CAPACITY_PLAN.zh.md",
+      "source_sha256": "26b00c6c44d4ea07a4833e0c24544cf467c9bb386c77efa4cd422de6a30b1f39",
+      "source_bytes": 3404,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/FINAL_VERIFICATION_REPORT.json",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/FINAL_VERIFICATION_REPORT.json",
+      "source_sha256": "8908f5a0f52e9980fb5b76260fc27c72376e974d99fc38d4488ffcd614ac349a",
+      "source_bytes": 10987,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/EXECUTION_RECORD.zh.md",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/EXECUTION_RECORD.zh.md",
+      "source_sha256": "54d9a8e48ca32dd08522359d4ab87d5092426d1b507e998ff4947eb46e359dcd",
+      "source_bytes": 12913,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/EVALUATION_RECOVERY_REPORT.json",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/EVALUATION_RECOVERY_REPORT.json",
+      "source_sha256": "8f75d65dfd974bc065ad59026fcea2f2c83adcf599ebcbf3a707a005d09adf8c",
+      "source_bytes": 7803,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/LOCAL_RECOVERY_REPLAY_PLAN_R5.json",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/LOCAL_RECOVERY_REPLAY_PLAN_R5.json",
+      "source_sha256": "54b6a1bce81c1d4403893c9c5f22e627d9c14ea8b73ccb9f3328294471315846",
+      "source_bytes": 15505,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/MATRIX_ANALYSIS.json",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/MATRIX_ANALYSIS.json",
+      "source_sha256": "b4f0d9c0cfea1b2f5e6ffb8619d121aa3bbe84c150cb5f8dfe6a28099fe45c9e",
+      "source_bytes": 306605,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/artifact_manifest.json",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/artifact_manifest.json",
+      "source_sha256": "7c9ed7302c1309153942a3f1c1445fd9093e66ba0db142d1a637e2e44784e4ac",
+      "source_bytes": 1077,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/error_curves.csv",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/error_curves.csv",
+      "source_sha256": "c9a16f792d883dbe6a41c30a731d53fc7e69826fd6851ce4ff9b2e13d9335c3c",
+      "source_bytes": 121114,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/paired_ratios.csv",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/paired_ratios.csv",
+      "source_sha256": "9ffbe8063ab5d0d5dc9dc891d98774cfe3c851ac0df491d03cb8b03a7021e51c",
+      "source_bytes": 1679,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/per_seed_results.csv",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/per_seed_results.csv",
+      "source_sha256": "3ebb3fda54a2aa4be86e13c6ec7665f81ff22e8ac963d4791e5d5d723de211da",
+      "source_bytes": 4537,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-curve-supplement-r1/CAPACITY_COUNTS.json",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/training-curve-supplement-r1/CAPACITY_COUNTS.json",
+      "source_sha256": "d95e621f09562948d2729de013470ce8a4dff8968cc239f9f99f4e0b27225968",
+      "source_bytes": 932,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-curve-supplement-r1/CURVE_SUMMARY.json",
+      "destination": "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/training-curve-supplement-r1/CURVE_SUMMARY.json",
+      "source_sha256": "3fcd17648b9d0daabad5779cfdc9747fbc51ff7732c748ff13afbd01a02d272d",
+      "source_bytes": 6419,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg333-seed0-r1/20261004-midpoint-stage-b-r1/runs/gdsg333-seed0-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/gdsg333-seed0-r1/RUN_RECORD.json",
+      "source_sha256": "495c7e08cb183d018ac4af9851d3ef079c07764dd72ab4652424df28aa7c665f",
+      "source_bytes": 644856,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg333-seed1-r1/20261004-midpoint-stage-b-r1/runs/gdsg333-seed1-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/gdsg333-seed1-r1/RUN_RECORD.json",
+      "source_sha256": "26f50955b8d0ed641d5522a4c9ee0bc65aa00eb2aef2ead3523bf71c6b8a8397",
+      "source_bytes": 645023,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg333-seed2-r1/20261004-midpoint-stage-b-r1/runs/gdsg333-seed2-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/gdsg333-seed2-r1/RUN_RECORD.json",
+      "source_sha256": "f84740798328de8d4bd20c2bfe0d50e710f395b20826d074373885cf44b668b0",
+      "source_bytes": 644938,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg500-seed0-r1/20261004-midpoint-stage-b-r1/runs/gdsg500-seed0-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/gdsg500-seed0-r1/RUN_RECORD.json",
+      "source_sha256": "e9f151afbff1408191312ece218f36cde7137d684b2f3a773a496d3a89578ad0",
+      "source_bytes": 915091,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg500-seed1-r1/20261004-midpoint-stage-b-r1/runs/gdsg500-seed1-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/gdsg500-seed1-r1/RUN_RECORD.json",
+      "source_sha256": "6a543dbff5f6e1ba841a75d5199eee8a938bbe4bcc06cb96363ad356a8ed1569",
+      "source_bytes": 915302,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg500-seed2-r1/20261004-midpoint-stage-b-r1/runs/gdsg500-seed2-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/gdsg500-seed2-r1/RUN_RECORD.json",
+      "source_sha256": "08665e61667730ac9b2eb916e2c9d9720b34dc09d03dee926f7b436701d1ba1c",
+      "source_bytes": 915096,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/midpoint500-seed0-r1/20261004-midpoint-stage-b-r1/runs/midpoint500-seed0-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/midpoint500-seed0-r1/RUN_RECORD.json",
+      "source_sha256": "b4121fc6c49a59379b56ac2b62966843ae4e4a0ccf78820ba4cd06060fafc127",
+      "source_bytes": 915179,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/midpoint500-seed1-r1/20261004-midpoint-stage-b-r1/runs/midpoint500-seed1-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/midpoint500-seed1-r1/RUN_RECORD.json",
+      "source_sha256": "9a7e924b7ec044c076d5cff331ba2d3c9159c73e18165a6638370b31660f4490",
+      "source_bytes": 915358,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/midpoint500-seed2-r1/20261004-midpoint-stage-b-r1/runs/midpoint500-seed2-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/midpoint500-seed2-r1/RUN_RECORD.json",
+      "source_sha256": "17a218acc6d10852319325cde1d979edaf0a06e93337fdbe300e828e33a86971",
+      "source_bytes": 915153,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/single500-seed0-r1/20261004-midpoint-stage-b-r1/runs/single500-seed0-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/single500-seed0-r1/RUN_RECORD.json",
+      "source_sha256": "3be75a3c3b96bd0af4dabdcb7ac4809c2779cf658f626687a5f0767e3e3bda27",
+      "source_bytes": 915159,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/single500-seed1-r1/20261004-midpoint-stage-b-r1/runs/single500-seed1-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/single500-seed1-r1/RUN_RECORD.json",
+      "source_sha256": "fb8d29c0294c275239a4a8a247eb14bb0f0d93ba9cb2ce1cd0a129d5c0440f64",
+      "source_bytes": 915290,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-midpoint-stage-b-20261004/training-recovery/single500-seed2-r1/20261004-midpoint-stage-b-r1/runs/single500-seed2-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/stage-b/single500-seed2-r1/RUN_RECORD.json",
+      "source_sha256": "e1d4cd288d2387d9c8c616f843b04df1c34c269b8539c75937d948b1c9767804",
+      "source_bytes": 915151,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/EXECUTION_REPORT.zh.md",
+      "destination": "research/20261008/outputs/semigroup-next-methods-20261004/EXECUTION_REPORT.zh.md",
+      "source_sha256": "bde8c7a9579044012810addf71407cfcd8af4ca16dcad56209050ca59ae4e77d",
+      "source_bytes": 9518,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/LAUNCH_SELF_AUDIT_20261005_R1.zh.md",
+      "destination": "research/20261008/outputs/semigroup-next-methods-20261004/LAUNCH_SELF_AUDIT_20261005_R1.zh.md",
+      "source_sha256": "63b8cf3df7e6451913dec8a463208ea478892aa0d950ea4a503c5b6fb9cd2797",
+      "source_bytes": 6121,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/RESEARCH_REPORT.zh.md",
+      "destination": "research/20261008/outputs/semigroup-next-methods-20261004/RESEARCH_REPORT.zh.md",
+      "source_sha256": "7f9c429fa0d156e6e63b2073f4ead55b392130b03fb7ab5c3d82aca671dcb360",
+      "source_bytes": 9496,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/THEORY_AND_LIMITS.zh.md",
+      "destination": "research/20261008/outputs/semigroup-next-methods-20261004/THEORY_AND_LIMITS.zh.md",
+      "source_sha256": "d98155d7cac6688290e28b782be36a6baad6d3710a0dcca7a0153908fe19110a",
+      "source_bytes": 7739,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/RECOVERY_AND_FAILURE_REPORT.zh.md",
+      "destination": "research/20261008/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/RECOVERY_AND_FAILURE_REPORT.zh.md",
+      "source_sha256": "4f47079ec718a71cd2a0062c102d1152b0bebf81898b18c669ae96391609ef24",
+      "source_bytes": 8658,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/PARTIAL_RECOVERY_SUMMARY_20261005_R1.json",
+      "destination": "research/20261008/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/PARTIAL_RECOVERY_SUMMARY_20261005_R1.json",
+      "source_sha256": "bddd2405fa2f170c4a49e483621d44b8826bfff761e4e548fabba4d75667b616",
+      "source_bytes": 4614,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/AUTOMATION_FAILURE_PAUSE_PROOF.json",
+      "destination": "research/20261008/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/AUTOMATION_FAILURE_PAUSE_PROOF.json",
+      "source_sha256": "bcf4fcd7b522987b6365dc29f9bfa2accdfb835031da0b17f87b180e546c8c5d",
+      "source_bytes": 474,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/first20e500-seed0-r1/extracted-r1/20261005-next-methods-r1/runs/first20e500-seed0-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/next-methods/first20e500-seed0-r1/RUN_RECORD.json",
+      "source_sha256": "872cbb5547e25ebb63540332ec6504dbd697281ee303e8eeac920e71019713ca",
+      "source_bytes": 916261,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/pushforward20e500-seed0-r1/extracted-r1/20261005-next-methods-r1/runs/pushforward20e500-seed0-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/next-methods/pushforward20e500-seed0-r1/RUN_RECORD.json",
+      "source_sha256": "a5e5b287f0034652dcbd7b091e2412b519a32f62680af49aba62941d4969a158",
+      "source_bytes": 916173,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/rollout20e500-seed0-r1/extracted-r1/20261005-next-methods-r1/runs/rollout20e500-seed0-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/next-methods/rollout20e500-seed0-r1/RUN_RECORD.json",
+      "source_sha256": "e5d972896fe91111f65fbb54177c308be1cec1f0981b5e75448a4fb1c3b7a711",
+      "source_bytes": 916010,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/teacher20e500-seed0-r1/extracted-r1/20261005-next-methods-r1/runs/teacher20e500-seed0-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/next-methods/teacher20e500-seed0-r1/RUN_RECORD.json",
+      "source_sha256": "75ef9fdf1d300a89f03393705a3692556de4ac6acd0578de20501888998b672e",
+      "source_bytes": 916344,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/time20e500-seed0-r1/extracted-r1/20261005-next-methods-r1/runs/time20e500-seed0-r1/RUN_RECEIPT.json",
+      "destination": "research/20261008/records/next-methods/time20e500-seed0-r1/RUN_RECORD.json",
+      "source_sha256": "319b617d22ff667843f29e9b981574486d0c1377172e4542c422cef0dca3a5d1",
+      "source_bytes": 909082,
+      "treatment": "extract scalar metrics, configuration and integrity metadata; omit arrays"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/failure-recovery/auto20e500-seed0-r1/extracted-r1/20261005-next-methods-r1/runs/auto20e500-seed0-r1/FAILURE.json",
+      "destination": "research/20261008/records/next-methods/auto20e500-seed0-r1/FAILURE.json",
+      "source_sha256": "4efee0fff1fe2182bf0d0994f4f3e8da03bd6f4ad6aa2ec714e912a364cacf46",
+      "source_bytes": 936,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/time20e500-seed0-r1/SAVED_SOLVER_METRICS_RECHECK.json",
+      "destination": "research/20261008/records/next-methods/time20e500-seed0-r1/SAVED_SOLVER_METRICS_RECHECK.json",
+      "source_sha256": "bc88bfdf3ad628a6f53235e4158917984ea022eafebeb4a46bb9c734f851905d",
+      "source_bytes": 1051,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/beijing-stage-a-20261004/FULL_RESULTS.zh.md",
+      "destination": "research/20261008/outputs/beijing-stage-a-20261004/FULL_RESULTS.zh.md",
+      "source_sha256": "5d016e64952cb55d2578bc44c4ea66646163f037ba6d8efc715a6efd8bcf9e8d",
+      "source_bytes": 12094,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/beijing-stage-a-20261004/CAPACITY_HYPOTHESIS.zh.md",
+      "destination": "research/20261008/outputs/beijing-stage-a-20261004/CAPACITY_HYPOTHESIS.zh.md",
+      "source_sha256": "6137a86895b1063b2b536470437facaa7d9800c94766e1d2a608becf0d2dd01a",
+      "source_bytes": 19371,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "outputs/beijing-stage-a-20261004/full_capacity_audit.json",
+      "destination": "research/20261008/outputs/beijing-stage-a-20261004/full_capacity_audit.json",
+      "source_sha256": "951d6dc719b9727b6ce557c1871b4d7a81ead15223e8f55837162edd5f1b5725",
+      "source_bytes": 65385,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/beijing-stage-a-20261004/osg_capacity_condition_ratios.csv",
+      "destination": "research/20261008/outputs/beijing-stage-a-20261004/osg_capacity_condition_ratios.csv",
+      "source_sha256": "f53a6a85d46de506f23c4f93910d962cc85d65493948c622f688298f06d8876b",
+      "source_bytes": 2310,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/beijing-stage-a-20261004/osg_capacity_seed_ratios.csv",
+      "destination": "research/20261008/outputs/beijing-stage-a-20261004/osg_capacity_seed_ratios.csv",
+      "source_sha256": "f64edc07424da59110188aa2e016617a285a8ce9e64f5a27fabc64d125dfa432",
+      "source_bytes": 244,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/beijing-stage-a-20261004/osg_validation_history.csv",
+      "destination": "research/20261008/outputs/beijing-stage-a-20261004/osg_validation_history.csv",
+      "source_sha256": "5285509ce4558d596037b5488269c2d45ae15af0d030ef64f91ec388fcdd9cde",
+      "source_bytes": 5427,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/beijing-stage-a-20261004/plot_capacity_and_training.py",
+      "destination": "research/20261008/outputs/beijing-stage-a-20261004/plot_capacity_and_training.py",
+      "source_sha256": "d718ecadaa2155a8483cb247a27414be0f995a8a138e0c3f1ac98a6e5636ba50",
+      "source_bytes": 11137,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/beijing-stage-a-20261004/RUN_STATUS.zh.md",
+      "destination": "research/20261008/outputs/beijing-stage-a-20261004/RUN_STATUS.zh.md",
+      "source_sha256": "8a0bfe70047f433373aa32bf7ec6f7898ee844d689087b15bdd33dc33002ac95",
+      "source_bytes": 11662,
+      "treatment": "Markdown local links made portable; numerical text unchanged"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/RESOURCE_CHECK.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/RESOURCE_CHECK.json",
+      "source_sha256": "1c4c764d8aa1db2ced924e0858b2558f62dea64cb1ad6a5daf23cc37eb7885b9",
+      "source_bytes": 891,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/SELF_TEST_SUBMIT.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/SELF_TEST_SUBMIT.json",
+      "source_sha256": "df8efc2f59cf609ae583f90238689865b584c20132e5b2e3f04191a21e780e41",
+      "source_bytes": 5550,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/SELF_TEST_SUBMIT.r2.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/SELF_TEST_SUBMIT.r2.json",
+      "source_sha256": "00a8bf27f550fa858dfcb628c643c45e896a51d43e210d821093e5019ff06273",
+      "source_bytes": 5674,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/analyze_matrix_independent_delta_review.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/analyze_matrix_independent_delta_review.json",
+      "source_sha256": "419452d84feed9b9310767e02807588df5e5839ac7a047e16ac2b9a35d2b1ae8",
+      "source_bytes": 1004,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/analyze_matrix_independent_self_test.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/analyze_matrix_independent_self_test.json",
+      "source_sha256": "d4d790fad4f0398e0605f0eae65fdfebcd97cfb2304c3141f31e47dc9c448748",
+      "source_bytes": 7858,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/recovery-self-test.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/recovery-self-test.json",
+      "source_sha256": "2f03d04e07e8320157d2a96637e6173efbaa40d02ee0c17b6713a7aa7efcecee",
+      "source_bytes": 6214,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/recovery-self-test.r1.json",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/recovery-self-test.r1.json",
+      "source_sha256": "81bb5afc7a80d85a300b94a8fb4a3d825d0378ee31e144fafcf79fecfa24bded",
+      "source_bytes": 6016,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "outputs/test_results.txt",
+      "destination": "research/20261008/historical-notes/outputs/test_results.txt",
+      "source_sha256": "949d948b04a5d34dacea9d1cfe8bba50a24020ce6fc574d3c66fef2c3960ef90",
+      "source_bytes": 261,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/semigroup_literature_review_verification.json",
+      "destination": "research/20261008/historical-notes/outputs/semigroup_literature_review_verification.json",
+      "source_sha256": "a8dc57a5aa4e0c930f4997f52628bcb0cf328a5cba6c72d1efd4be841ff41055",
+      "source_bytes": 1681,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/burgers_reference_check.py",
+      "destination": "research/20261008/historical-notes/outputs/burgers_reference_check.py",
+      "source_sha256": "e46d0e3a47edfeaaa3830c2126b9ce6c816848acd8838548c251f4c03ca35ac9",
+      "source_bytes": 5908,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/test_results_v2.txt",
+      "destination": "research/20261008/historical-notes/outputs/test_results_v2.txt",
+      "source_sha256": "68d3b825833de53c9f5e3db0357ed7ea56b623ba54b5abd83a56c97ceccb0e7a",
+      "source_bytes": 341,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/reference_review.json",
+      "destination": "research/20261008/historical-notes/outputs/reference_review.json",
+      "source_sha256": "ff780e2c531c1475d2c2cced028eb118c579cfc7c81e9a5d714be09a851083a8",
+      "source_bytes": 2100,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/reference_review_v2.json",
+      "destination": "research/20261008/historical-notes/outputs/reference_review_v2.json",
+      "source_sha256": "bdacc0bfae4d0bb137ba62afa967b1beaeb19ed18451e1376ec9fbdf52bcf427",
+      "source_bytes": 7797,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/verification.json",
+      "destination": "research/20261008/historical-notes/outputs/verification.json",
+      "source_sha256": "0051d26672d9c8036a76527ca3419c63e6466497c0f577d152d90072b71fc0fc",
+      "source_bytes": 4385,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/reference_review.py",
+      "destination": "research/20261008/historical-notes/outputs/reference_review.py",
+      "source_sha256": "c686fe213afae0636af874c33707badf57968b3b305ddd4e20394a120b7decbc",
+      "source_bytes": 4021,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/reference_review_v2.py",
+      "destination": "research/20261008/historical-notes/outputs/reference_review_v2.py",
+      "source_sha256": "763070643f5ac02941f160ed96e47749966548afb79072768748f1f76a4d0844",
+      "source_bytes": 2702,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/continuation_verification.json",
+      "destination": "research/20261008/historical-notes/outputs/continuation_verification.json",
+      "source_sha256": "b839f75cdb3361629ebe2a60414b6bfe50a40c9ef179d021ef87a864c5da98d6",
+      "source_bytes": 2028,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/burgers_reference_check.json",
+      "destination": "research/20261008/historical-notes/outputs/burgers_reference_check.json",
+      "source_sha256": "559ed3f6b66bfa13c542c16e5bd4269e8f053f86765a0a6a2da3056a0c1eb51a",
+      "source_bytes": 36806,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "outputs/plot_burgers_v2.py",
+      "destination": "research/20261008/historical-notes/outputs/plot_burgers_v2.py",
+      "source_sha256": "d4409380cafaf082430b3e03c1b4161771ff2da9a849cb417ed9e6b7de66927a",
+      "source_bytes": 2624,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/plot_review.py",
+      "destination": "research/20261008/historical-notes/work/plot_review.py",
+      "source_sha256": "5d6336335e06df53799703f31868f9387d2685fd46a47cd6b0cdd6c88cb010b2",
+      "source_bytes": 1847,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/fisher_recovery.json",
+      "destination": "research/20261008/historical-notes/work/fisher_recovery.json",
+      "source_sha256": "a69c8347f3079a0a4edede72649270aa27e69b1ea3ff694a6ccc125659606171",
+      "source_bytes": 19535,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/reference_review.json",
+      "destination": "research/20261008/historical-notes/work/reference_review.json",
+      "source_sha256": "ff780e2c531c1475d2c2cced028eb118c579cfc7c81e9a5d714be09a851083a8",
+      "source_bytes": 2100,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/source_hash_checks.json",
+      "destination": "research/20261008/historical-notes/work/source_hash_checks.json",
+      "source_sha256": "eb58811a3e3fa86d1d61d829ef3d9bfff261bf255d3213d98063af73bc861391",
+      "source_bytes": 3618,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/reference_review_v2.json",
+      "destination": "research/20261008/historical-notes/work/reference_review_v2.json",
+      "source_sha256": "bdacc0bfae4d0bb137ba62afa967b1beaeb19ed18451e1376ec9fbdf52bcf427",
+      "source_bytes": 7797,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/reference_review.py",
+      "destination": "research/20261008/historical-notes/work/reference_review.py",
+      "source_sha256": "c686fe213afae0636af874c33707badf57968b3b305ddd4e20394a120b7decbc",
+      "source_bytes": 4021,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/reference_review_v2.py",
+      "destination": "research/20261008/historical-notes/work/reference_review_v2.py",
+      "source_sha256": "763070643f5ac02941f160ed96e47749966548afb79072768748f1f76a4d0844",
+      "source_bytes": 2702,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/literature/semigroup_notes.md",
+      "destination": "research/20261008/historical-notes/work/literature/semigroup_notes.md",
+      "source_sha256": "3a4c9e69f11ec06aa2cf5abeae07f55e9435246ca1c88411e6406903a4e1a547",
+      "source_bytes": 13242,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/literature/semigroup_papers.json",
+      "destination": "research/20261008/historical-notes/work/literature/semigroup_papers.json",
+      "source_sha256": "ccf427a779f8b1044f03a05981d36600c948330874e3a818ebcd7e2580c95130",
+      "source_bytes": 10870,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/literature/structure_notes.md",
+      "destination": "research/20261008/historical-notes/work/literature/structure_notes.md",
+      "source_sha256": "46724969570541e1e914340e7c71326aa1597aed64c5bf7371e6148b34f91b4d",
+      "source_bytes": 8728,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/literature/structure_papers.json",
+      "destination": "research/20261008/historical-notes/work/literature/structure_papers.json",
+      "source_sha256": "ee8641fc9e15372a774b4c4864e5c69d5c48a8b6dc7853b65b8a73b888e67d28",
+      "source_bytes": 7969,
+      "treatment": "verbatim historical analysis or verification record"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/bscc_terminal.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/bscc_terminal.py",
+      "source_sha256": "78c27c6878b7090c8b124e26e3dac256384ed87c633da450168b7ca305408768",
+      "source_bytes": 9164,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_next_methods_r1/upload_payload_http.py",
+      "destination": "research/20261008/work/semigroup_next_methods_r1/upload_payload_http.py",
+      "source_sha256": "8fc2a6c4eb3172937f07c7d2cb216d666e59a490929b44e94ccfa038f628af73",
+      "source_bytes": 5606,
+      "treatment": "verbatim"
+    },
+    {
+      "source": "work/semigroup_midpoint_stage_b/transport-tools/official_http_recovery.py",
+      "destination": "research/20261008/work/semigroup_midpoint_stage_b/transport-tools/official_http_recovery.py",
+      "source_sha256": "f135cc420b402101cd14410512c0eaf86c48024510e50b70ba18fec95db03eb4",
+      "source_bytes": 13266,
+      "treatment": "verbatim"
+    }
+  ],
+  "omitted_detailed_metric_tables": [
+    "research/20261008/outputs/semigroup-midpoint-stage-b-20261004/analysis-r1/per_trajectory_metrics.csv",
+    "research/20261008/outputs/due-official-vorticity-20261004/semigroup-coverage-r1/per_sample_defects.csv",
+    "research/20261008/outputs/due-official-vorticity-20261004/gdsg-error-propagation/per_trajectory_error_propagation.csv",
+    "research/20261008/outputs/due-official-vorticity-20261004/common-perturbations-r1/symmetric_gains.csv",
+    "research/20261008/outputs/due-official-vorticity-20261004/common-perturbations-r1/one_sided_gains.csv",
+    "research/20261008/outputs/due-official-vorticity-20261004/sg0-error-propagation/per_trajectory_error_propagation.csv"
+  ]
+}

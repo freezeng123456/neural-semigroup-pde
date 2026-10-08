@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "official_source_files_unchanged": 75,
+  "three_frozen_scripts_unchanged": true,
+  "parameters_unchanged": true,
+  "optimizer_updates": 0,
+  "input_files_unchanged": 7,
+  "output_artifact_hashes_verified": 3,
+  "vector_norms_and_cross_recomputed": true,
+  "max_vector_identity_residual_norm": 0.0,
+  "max_corrected_archived_identity_residual_norm": 0.0,
+  "max_scaled_squared_identity_residual": 3.109486277992584e-16,
+  "t0_interpretable_gain_count": 0,
+  "later_interpretable_gain_count": 500,
+  "persistence_reference_exactly_matches_sg0": true
+}

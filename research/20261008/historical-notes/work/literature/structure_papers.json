@@ -1,0 +1,183 @@
+{
+  "checked_date": "2026-10-03",
+  "scope": "targeted primary-source literature reading; not systematic review; author results not independently reproduced",
+  "papers": [
+    {
+      "id": "hnn2019",
+      "title": "Hamiltonian Neural Networks",
+      "authors": [
+        "Sam Greydanus",
+        "Misko Dzamba",
+        "Jason Yosinski"
+      ],
+      "year": 2019,
+      "venue": "NeurIPS 2019",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/26cd8ecadce0d4efd6cc8a8725cbd1f8-Paper.pdf",
+      "code_url": "https://github.com/greydanus/hamiltonian-nn",
+      "read_scope": [
+        "official abstract",
+        "author repository methods",
+        "hnn.py"
+      ],
+      "constraint": "hard continuous learned-energy conservation; generic RK4 is not exact energy preserving",
+      "task": "low-dimensional mechanical ODE",
+      "relevance": "foundational generator baseline; not a PDE or observation-noise result"
+    },
+    {
+      "id": "dgnet2020",
+      "title": "Deep Energy-Based Modeling of Discrete-Time Physics",
+      "authors": [
+        "Takashi Matsubara",
+        "Ai Ishikawa",
+        "Takaharu Yaguchi"
+      ],
+      "year": 2020,
+      "venue": "NeurIPS 2020",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2020/file/98b418276d571e623651fc1d471c7811-Paper.pdf",
+      "code_url": "https://github.com/tksmatsubara/discrete-autograd",
+      "read_scope": [
+        "sections 3.3-3.4",
+        "section 4 comparison setup",
+        "abstract"
+      ],
+      "constraint": "discrete gradient implicit update preserves learned-energy behavior; explicit replacement does not inherit the same guarantee",
+      "limitation": "G assumed known in experiments; solver choice varies between comparisons"
+    },
+    {
+      "id": "mno2022",
+      "title": "Learning Chaotic Dynamics in Dissipative Systems",
+      "arxiv_title": "Learning Dissipative Dynamics in Chaotic Systems",
+      "authors": [
+        "Zongyi Li",
+        "Miguel Liu-Schiaffini",
+        "Nikola Kovachki",
+        "Kamyar Azizzadenesheli",
+        "Burigede Liu",
+        "Kaushik Bhattacharya",
+        "Andrew Stuart",
+        "Anima Anandkumar"
+      ],
+      "year": 2022,
+      "venue": "NeurIPS 2022",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/6ad68277e27b42c60ac228c9859fc1a2-Abstract-Conference.html",
+      "fulltext_url": "https://arxiv.org/html/2106.06898v2",
+      "code_url": "https://github.com/neuraloperator/markov_neural_operator",
+      "version": "arXiv v2 2022-09-28",
+      "read_scope": [
+        "sections 2-4",
+        "Theorem 1",
+        "author repository"
+      ],
+      "constraint": "soft shell contraction training; optional hard dissipativity postprocessing far from attractor",
+      "task": "Lorenz63, KS, Kolmogorov flow; short trajectories and long statistics",
+      "noise_evidence": "large perturbations are not noisy-label robustness; noisy-supervision sweep not verified",
+      "theory_scope": "finite number of compositions on compact initial sets, existence of approximant"
+    },
+    {
+      "id": "eno2025",
+      "title": "Energy-consistent Neural Operators for Hamiltonian and Dissipative Partial Differential Equations",
+      "authors": [
+        "Yusuke Tanaka",
+        "Takaharu Yaguchi",
+        "Tomoharu Iwata",
+        "Naonori Ueda"
+      ],
+      "year": 2025,
+      "venue": "AISTATS 2025, PMLR 258:1882-1890",
+      "status": "published",
+      "url": "https://proceedings.mlr.press/v258/tanaka25a.html",
+      "fulltext_url": "https://raw.githubusercontent.com/mlresearch/v258/main/assets/tanaka25a/tanaka25a.pdf",
+      "code_url": "https://github.com/yusuk-e/eno",
+      "version": "final 21-page proceedings PDF",
+      "read_scope": [
+        "sections 3-6",
+        "appendix B.2/B.4/B.6"
+      ],
+      "constraint": "soft energy-gradient-flow residual, jointly learned solution operator and energy density",
+      "task": "KdV, Cahn-Hilliard, Allen-Cahn, 2D Cahn-Hilliard; sparse-grid super-resolution",
+      "compute": "author reports up to 20x Vanilla NO training time; no matched-compute claim",
+      "noise_evidence": "no dedicated noisy-supervision ablation found",
+      "version_caveat": "final paper selects G from candidates using validation; known-G-only caveat from 2024 preprint is outdated"
+    },
+    {
+      "id": "uepi2025",
+      "title": "UEPI: Universal Energy-Behavior-Preserving Integrators for Energy Conservative/Dissipative Differential Equations",
+      "authors": [
+        "Elena Celledoni",
+        "Brynjulf Owren",
+        "Chong Shen",
+        "Baige Xu",
+        "Takaharu Yaguchi"
+      ],
+      "year": 2025,
+      "venue": "NeurIPS 2025",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/3e467e15cbcbd7b5ecc814cfc27c4ea9-Abstract-Conference.html",
+      "fulltext_url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/3e467e15cbcbd7b5ecc814cfc27c4ea9-Paper-Conference.pdf",
+      "code_url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/3e467e15cbcbd7b5ecc814cfc27c4ea9-Supplemental-Conference.zip",
+      "read_scope": [
+        "sections 3-5",
+        "appendix D.6"
+      ],
+      "constraint": "hard discrete energy behavior with learned skew correction to a reference discrete gradient",
+      "task": "known energy and structure; optimize numerical integrator; nonlinear ODE and KdV",
+      "compute": "second-order, half-step and fourth-order reference methods; some total cost including data and training reported",
+      "noise_evidence": "no substantive noisy-data experiment found",
+      "code_status": "supplemental link verified; ZIP not unpacked"
+    },
+    {
+      "id": "generic_fno2026",
+      "title": "GENERIC-FNO: Embedding Energy Conservation and Entropy Production into Fourier Neural Operators",
+      "authors": [
+        "Jason Sulskis",
+        "Sathya Ravi"
+      ],
+      "year": 2026,
+      "venue": "arXiv; under review at TMLR",
+      "status": "preprint",
+      "url": "https://arxiv.org/abs/2606.08343",
+      "fulltext_url": "https://arxiv.org/html/2606.08343v6",
+      "code_url": "https://anonymous.4open.science/r/GENERIC-FNO-F414/",
+      "version": "v6, 2026-09-16",
+      "read_scope": [
+        "sections 4-6",
+        "Tables 1, 7, 19",
+        "appendices B.3 and E"
+      ],
+      "constraint": "continuous learned-energy/entropy degeneracy identities; Jacobi identity not enforced; explicit time stepping drifts",
+      "task": "heat, advection, Burgers, damped wave; FNO and DeepONet",
+      "compute": "128^2 forward approximately 4.4x, training step approximately 10x; larger FNO approximate compute comparison",
+      "noise_evidence": "no observation-noise experiment found",
+      "limitations": [
+        "learned energy not physical energy",
+        "200-step results single run per cell; headline short horizon five seeds",
+        "bounded long-horizon predictions can be close to persistence",
+        "normalization affects physical dissipation and optimization; removing it helps 1D but fails 2D training"
+      ],
+      "code_status": "paper-provided anonymized link; not executed"
+    }
+  ],
+  "supplementary_lead": {
+    "title": "Identifiable learning of dissipative dynamics",
+    "authors": [
+      "Aiqing Zhu",
+      "Beatrice W. Soh",
+      "Grigorios A. Pavliotis",
+      "Qianxiao Li"
+    ],
+    "venue": "Nature Communications 17:9460",
+    "date": "2026-08-06",
+    "status": "published",
+    "url": "https://www.nature.com/articles/s41467-026-76255-3",
+    "code_url": "https://github.com/MLDS-NUS/UIDD-jax",
+    "read_scope": [
+      "abstract",
+      "Results architecture",
+      "Theorem 1"
+    ],
+    "caveat": "nondegenerate stochastic dynamics with unique invariant density; process noise differs from noisy labels; not direct Burgers baseline"
+  }
+}
