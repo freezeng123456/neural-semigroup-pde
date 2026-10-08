@@ -37,3 +37,20 @@ env/
 
 # Experiment logs are reproducible outputs; retain JSON summaries instead.
 experiments/*log*.txt
+
+# Keep research code and compact result records; regenerate large products.
+*.pt
+*.pth
+*.npz
+*.npy
+*.mat
+*.pkl
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.whl
+*.jsonl
+research/**/work/literature_baselines/due/
+research/**/wheelhouse/
+research/**/runs/

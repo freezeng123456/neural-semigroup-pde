@@ -1,0 +1,152 @@
+{
+  "status": "DESCRIPTIVE_COMPARISON_COMPLETE",
+  "evaluation_track": "author_float32",
+  "seed": 0,
+  "training_seeds_per_arm": 1,
+  "n_test_trajectories": 100,
+  "model_selection": "Each arm uses its in-memory final epoch 500 prediction; best-training checkpoints are not substituted.",
+  "configuration_difference": {
+    "training.sg_pairing": {
+      "sg0": 0,
+      "gdsg": 1
+    }
+  },
+  "time_axis": "elapsed 0..99 relative to the first test state; first absolute time unknown",
+  "metric_definitions": {
+    "per_time": "Spatial L2(prediction-truth)/L2(truth), separately per test trajectory and time.",
+    "joint_spacetime": "For each trajectory, flatten all spatial points and elapsed states 0..99 before taking the norm ratio; then average the 100 ratios. This is the author stdout metric, not final-step or time-mean error.",
+    "globally_pooled": "A single norm ratio pooling all trajectories, spatial points and times; separately named, not the author stdout metric.",
+    "paired_delta": "GDSG minus SG0 on the same test trajectory; a negative value favors GDSG.",
+    "bands": "10th\u201390th trajectory quantiles; descriptive spread, not a confidence interval."
+  },
+  "paired_final_step99": {
+    "n_trajectories": 100,
+    "gdsg_lower_error_count": 100,
+    "equal_count": 0,
+    "gdsg_higher_error_count": 0,
+    "gdsg_lower_error_fraction": 1.0,
+    "equal_fraction": 0.0,
+    "gdsg_higher_error_fraction": 0.0,
+    "mean_difference_gdsg_minus_sg0": -2.823617203393951,
+    "median_difference_gdsg_minus_sg0": -0.9814728801138699,
+    "p10_difference": -4.9066378846764565,
+    "p90_difference": -0.6353664515540003,
+    "tie_rule": "Exactly equal stored author-float32 trajectory errors; no arbitrary tolerance or significance test."
+  },
+  "paired_joint_spacetime": {
+    "n_trajectories": 100,
+    "gdsg_lower_error_count": 100,
+    "equal_count": 0,
+    "gdsg_higher_error_count": 0,
+    "gdsg_lower_error_fraction": 1.0,
+    "equal_fraction": 0.0,
+    "gdsg_higher_error_fraction": 0.0,
+    "mean_difference_gdsg_minus_sg0": -0.6923167003178969,
+    "median_difference_gdsg_minus_sg0": -0.3420520971994847,
+    "p10_difference": -1.1235151147004216,
+    "p90_difference": -0.18559769052080805,
+    "tie_rule": "Exactly equal stored author-float32 trajectory errors; no arbitrary tolerance or significance test."
+  },
+  "training_significance": "Not assessed: one training seed per arm. Test trajectories are not independent retrainings; paired win fractions do not establish training-run significance.",
+  "randomness_scope": "Same seed and initialization; the author sg_pairing=0 branch consumes no GDSG-pair random draws, so minibatch shuffles can differ. No artificial reseed was added.",
+  "cost_ratio_gdsg_over_sg0": {
+    "observed_training_seconds": 5.3935315821543535,
+    "slurm_elapsed_seconds": 5.277205040091638
+  },
+  "input_sha256": {
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-independent-verification/verification.json": "c891dc611768fa5ae1ce8955acfe4430b628915cba31654a6663b02579b1c0cc",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-full-recovery/20261004-due-vorticity-1e62910-r1/runs/sg0-full-r1/OFFICIAL_SG0_COMPLETE.json": "eb8d5ad75eca4854b92170e26ca32b999b78f910079201e401fa088368db53e7",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-full-recovery/20261004-due-vorticity-1e62910-r1/runs/sg0-full-r1/audit/environment.json": "23cb452e27e7e3d2fc11f5ec225b24cba42dde9dc10e7365b71e1002b7afceab",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-full-recovery/20261004-due-vorticity-1e62910-r1/runs/sg0-full-r1/official_workdir/model/training_history.csv": "819c696f99d30ca9a5286e7240fd73867fc04c9c43afe1b3c37ed04b14014c35",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-full-recovery/20261004-due-vorticity-1e62910-r1/recovery/sg0-full-r1-job2349398-COMPLETE/accounting.json": "34d8d2fc4c81b9cfbd6e8a0169e4fe070a49e65bc0cab53e2b6ac2c248ec942f",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-independent-verification/verification.json": "d1f79d2d38d5d8c1ce8180d9c2ed05f15d11b1a90501e4ec5a10ddc14364ae0a",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/OFFICIAL_COMPLETE.json": "303721c149da668f911bf0c36fbef1ef620afdfef0eb99410ea9e53db7b39654",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/environment.json": "167e38eecaf4144dbafbc08d36f45bf929979cce04d97e779a9317b608fb02d4",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/official_workdir/model/training_history.csv": "29b2404b129a0230d077caa059417e8e409ba5651ddc7d2ddba988dcebcfec4d",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/recovery/official-gdsg-r1-job2349396-COMPLETE/accounting.json": "287b9fe11b42c9fb70f093cb1c842e44b2edfbf3a6327511badbf5383be97a1c"
+  },
+  "runtime": {
+    "numpy": "2.5.3",
+    "matplotlib": "3.11.2"
+  },
+  "sg0": {
+    "final_step99": {
+      "mean_author_float32": 2.8410096168518066,
+      "median": 0.9942382276058197,
+      "p10": 0.6517420649528504,
+      "p90": 4.915512847900398,
+      "minimum": 0.29675620794296265,
+      "maximum": 42.84169006347656
+    },
+    "mean_trajectory_joint_spacetime_relative_l2_author_float32": 0.7029992938041687,
+    "time_and_trajectory_mean_relative_l2_author_float32": 0.360141783952713,
+    "globally_pooled_spacetime_relative_l2_author_track": 1.142768621961802,
+    "training": {
+      "initial_objective": 0.17661114037036896,
+      "final_objective": 0.0007373421685770154,
+      "objective": "supervised relative L2",
+      "comparison_warning": "Different objectives; numerical loss values are not a shared measure of superiority."
+    },
+    "cost": {
+      "job_id": "2349398",
+      "slurm_state": "COMPLETED",
+      "slurm_exit_code": "0:0",
+      "slurm_start": "2026-10-04T04:00:30",
+      "slurm_end": "2026-10-04T04:15:03",
+      "node": "g0028",
+      "slurm_elapsed_seconds": 873,
+      "slurm_allocated_gpus": 1,
+      "slurm_allocated_cpus": 10,
+      "allocated_gpu_hours": 0.2425,
+      "allocated_cpu_hours": 2.425,
+      "observed_training_seconds": 847.8689745273441,
+      "observed_wrapper_wall_seconds": 864.2402844359167,
+      "training_peak_cuda_allocated_bytes": 300565504,
+      "training_peak_cuda_reserved_bytes": 392167424,
+      "gpu_model": "Tesla V100-SXM2-32GB",
+      "optimizer_updates": 62500,
+      "forward_calls_per_batch_from_author_branch": 1,
+      "cost_scope": "Actual single-run elapsed allocation and observed training; excludes preflights, queue wait, downloads and monetary charges. GPU/CPU hours are allocated resource-hours, not measured utilization."
+    }
+  },
+  "gdsg": {
+    "final_step99": {
+      "mean_author_float32": 0.017391664907336235,
+      "median": 0.011791368015110493,
+      "p10": 0.008207587338984013,
+      "p90": 0.03176184073090555,
+      "minimum": 0.005962247494608164,
+      "maximum": 0.10383957624435425
+    },
+    "mean_trajectory_joint_spacetime_relative_l2_author_float32": 0.010682535357773304,
+    "time_and_trajectory_mean_relative_l2_author_float32": 0.009499595500528812,
+    "globally_pooled_spacetime_relative_l2_author_track": 0.014047113574466944,
+    "training": {
+      "initial_objective": 0.09267756342887878,
+      "final_objective": 0.00045009952737018466,
+      "objective": "(supervised relative L2 + GDSG relative L2 terms) / 2",
+      "comparison_warning": "Different objectives; numerical loss values are not a shared measure of superiority."
+    },
+    "cost": {
+      "job_id": "2349396",
+      "slurm_state": "COMPLETED",
+      "slurm_exit_code": "0:0",
+      "slurm_start": "2026-10-04T03:56:27",
+      "slurm_end": "2026-10-04T05:13:14",
+      "node": "g0028",
+      "slurm_elapsed_seconds": 4607,
+      "slurm_allocated_gpus": 1,
+      "slurm_allocated_cpus": 10,
+      "allocated_gpu_hours": 1.2797222222222222,
+      "allocated_cpu_hours": 12.797222222222222,
+      "observed_training_seconds": 4573.008091642056,
+      "observed_wrapper_wall_seconds": 4591.619176510256,
+      "training_peak_cuda_allocated_bytes": 1297859584,
+      "training_peak_cuda_reserved_bytes": 1428160512,
+      "gpu_model": "Tesla V100-SXM2-32GB",
+      "optimizer_updates": 62500,
+      "forward_calls_per_batch_from_author_branch": 6,
+      "cost_scope": "Actual single-run elapsed allocation and observed training; excludes preflights, queue wait, downloads and monetary charges. GPU/CPU hours are allocated resource-hours, not measured utilization."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "stage_b_final_evaluator_freeze_v1",
+  "frozen_at_utc": "2026-10-03T22:49:31.228120+00:00",
+  "training_payload_changed": false,
+  "optimizer_updates": 0,
+  "model_inference_executed": false,
+  "files": {
+    "evaluate_final.py": {
+      "bytes": 44878,
+      "sha256": "f1027d00f040d2c53ec70cda8513f216192f07b60699cf3bde7d6f46d183fa2a"
+    },
+    "evaluation-preparation-r2/AST_AND_MATH_REVIEW.json": {
+      "bytes": 2208,
+      "sha256": "4e84a22fb4341587f9c695cdb92caf50d5f4781da94fd73328100a9592e2568c"
+    }
+  },
+  "review": "Independent code and pure numerical fixtures passed before full matrix submission; preserve original float32 metrics, explicit invalid aggregate quality, strict source/checkpoint/Slurm binding."
+}

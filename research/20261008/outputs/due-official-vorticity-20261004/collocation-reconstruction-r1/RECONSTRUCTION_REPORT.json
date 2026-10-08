@@ -1,0 +1,2916 @@
+{
+  "status": "VERIFIED_DETERMINISTIC_RECONSTRUCTION",
+  "checks": [
+    {
+      "name": "frozen_commit_and_75_files",
+      "passed": true
+    },
+    {
+      "name": "source:.gitignore",
+      "passed": true
+    },
+    {
+      "name": "source:LICENSE",
+      "passed": true
+    },
+    {
+      "name": "source:README.md",
+      "passed": true
+    },
+    {
+      "name": "source:due.png",
+      "passed": true
+    },
+    {
+      "name": "source:due/__init__.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/datasets/__init__.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/datasets/ode.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/datasets/pde.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/datasets/sde.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/models/__init__.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/models/ode.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/models/ode_osg.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/models/pde.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/models/pde_osg.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/models/sde_diffusion.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/networks/__init__.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/networks/fcn.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/networks/fno.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/networks/nn.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/networks/transformer.py",
+      "passed": true
+    },
+    {
+      "name": "source:due/utils.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/DampedPendulum/DampedPendulum.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/DampedPendulum/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/DampedPendulum_partial/DampedPendulum_partial.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/DampedPendulum_partial/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/DampedPendulum_partial_noise/DampedPendulum_partial.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/DampedPendulum_partial_noise/add_noise.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/DampedPendulum_partial_noise/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/DoubleOscillator/DoubleOscillator.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/DoubleOscillator/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/Lorenz63/Lorenz63.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/Lorenz63/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/OrnsteinUhlenbeck/OrnsteinUhlenbeck.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/OrnsteinUhlenbeck/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/OrnsteinUhlenbeck/generate_1dOU.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/OrnsteinUhlenbeck/plot_utils.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/RobertsonOSG/DataRobertson.m",
+      "passed": true
+    },
+    {
+      "name": "source:examples/RobertsonOSG/RobertsonOSG.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/RobertsonOSG/Robertsondae.m",
+      "passed": true
+    },
+    {
+      "name": "source:examples/RobertsonOSG/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/RobertsonOSG/full_dt_100000.csv",
+      "passed": true
+    },
+    {
+      "name": "source:examples/RobertsonOSG/full_t_100000.csv",
+      "passed": true
+    },
+    {
+      "name": "source:examples/RobertsonOSG/full_true.csv",
+      "passed": true
+    },
+    {
+      "name": "source:examples/RobertsonOSG/generate_dt.m",
+      "passed": true
+    },
+    {
+      "name": "source:examples/RobertsonOSG/plot_pred.m",
+      "passed": true
+    },
+    {
+      "name": "source:examples/SDE_ExpNoise/Exponential_Noise.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/SDE_ExpNoise/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/SDE_ExpNoise/generate_1d_exponential_noise.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/SDE_ExpNoise/plot_utils.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/ViscousBurgers/ViscousBurgers.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/ViscousBurgers/burgers_example.csv",
+      "passed": true
+    },
+    {
+      "name": "source:examples/ViscousBurgers/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/VorticityOSG/VorticityOSG.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/VorticityOSG/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/VorticityOSG/network.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/WakeCylinder/WakeCylinder.py",
+      "passed": true
+    },
+    {
+      "name": "source:examples/WakeCylinder/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source:examples/WakeCylinder/elements.csv",
+      "passed": true
+    },
+    {
+      "name": "source:examples/WakeCylinder/vertices.csv",
+      "passed": true
+    },
+    {
+      "name": "source:examples/WakeCylinder/vertices_small.csv",
+      "passed": true
+    },
+    {
+      "name": "source:setup.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_dual_osgnet.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_evaluate.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_linear_regression.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_ode_dataset.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_ode_dataset_osg.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_ode_model.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_ode_osg_model.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_osgnet.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_pde_dataset.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_pde_dataset_osg.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_pde_model.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_pde_osg_model.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_pit.py",
+      "passed": true
+    },
+    {
+      "name": "source:tests/test_resnet.py",
+      "passed": true
+    },
+    {
+      "name": "data:VorticityOSG_train.mat",
+      "passed": true
+    },
+    {
+      "name": "data:VorticityOSG_test.mat",
+      "passed": true
+    },
+    {
+      "name": "preflight:environment",
+      "passed": true
+    },
+    {
+      "name": "preflight:receipt",
+      "passed": true
+    },
+    {
+      "name": "preflight:initial_parameter_digest",
+      "passed": true
+    },
+    {
+      "name": "preflight:training_shapes",
+      "passed": true
+    },
+    {
+      "name": "full:environment",
+      "passed": true
+    },
+    {
+      "name": "full:receipt",
+      "passed": true
+    },
+    {
+      "name": "full:initial_parameter_digest",
+      "passed": true
+    },
+    {
+      "name": "full:training_shapes",
+      "passed": true
+    },
+    {
+      "name": "same_historical_official_config",
+      "passed": true
+    },
+    {
+      "name": "preflight:inventory:epoch1_profile_training_state.pt",
+      "passed": true
+    },
+    {
+      "name": "preflight:inventory:epoch1_profile_network.pt",
+      "passed": true
+    },
+    {
+      "name": "full:inventory:epoch500_final_training_state.pt",
+      "passed": true
+    },
+    {
+      "name": "full:inventory:epoch500_final_network.pt",
+      "passed": true
+    },
+    {
+      "name": "correct_imports",
+      "passed": true
+    },
+    {
+      "name": "compatible_cpu_rng_runtime",
+      "passed": true
+    },
+    {
+      "name": "official_config_unchanged",
+      "passed": true
+    },
+    {
+      "name": "reconstructed_initial_parameters_match_both_runs",
+      "passed": true
+    },
+    {
+      "name": "constructor_preserves_parameters",
+      "passed": true
+    },
+    {
+      "name": "no_optimizer_updates",
+      "passed": true
+    },
+    {
+      "name": "official_point_shapes",
+      "passed": true
+    },
+    {
+      "name": "official_loader_settings",
+      "passed": true
+    },
+    {
+      "name": "preflight:saved_epoch_updates",
+      "passed": true
+    },
+    {
+      "name": "preflight:numpy_rng_exact",
+      "passed": true
+    },
+    {
+      "name": "preflight:normalization_exact",
+      "passed": true
+    },
+    {
+      "name": "full:saved_epoch_updates",
+      "passed": true
+    },
+    {
+      "name": "full:numpy_rng_exact",
+      "passed": true
+    },
+    {
+      "name": "full:normalization_exact",
+      "passed": true
+    },
+    {
+      "name": "loading_evidence_did_not_consume_cpu_rng",
+      "passed": true
+    },
+    {
+      "name": "epoch1_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch1_historical_cpu_rng_exact",
+      "passed": true
+    },
+    {
+      "name": "epoch2_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch3_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch4_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch5_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch6_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch7_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch8_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch9_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch10_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch11_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch12_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch13_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch14_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch15_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch16_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch17_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch18_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch19_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch20_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch21_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch22_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch23_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch24_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch25_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch26_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch27_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch28_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch29_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch30_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch31_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch32_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch33_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch34_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch35_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch36_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch37_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch38_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch39_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch40_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch41_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch42_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch43_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch44_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch45_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch46_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch47_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch48_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch49_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch50_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch51_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch52_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch53_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch54_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch55_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch56_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch57_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch58_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch59_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch60_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch61_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch62_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch63_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch64_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch65_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch66_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch67_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch68_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch69_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch70_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch71_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch72_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch73_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch74_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch75_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch76_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch77_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch78_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch79_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch80_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch81_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch82_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch83_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch84_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch85_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch86_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch87_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch88_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch89_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch90_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch91_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch92_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch93_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch94_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch95_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch96_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch97_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch98_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch99_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch100_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch101_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch102_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch103_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch104_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch105_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch106_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch107_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch108_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch109_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch110_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch111_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch112_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch113_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch114_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch115_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch116_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch117_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch118_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch119_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch120_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch121_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch122_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch123_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch124_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch125_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch126_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch127_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch128_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch129_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch130_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch131_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch132_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch133_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch134_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch135_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch136_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch137_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch138_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch139_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch140_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch141_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch142_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch143_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch144_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch145_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch146_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch147_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch148_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch149_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch150_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch151_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch152_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch153_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch154_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch155_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch156_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch157_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch158_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch159_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch160_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch161_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch162_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch163_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch164_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch165_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch166_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch167_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch168_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch169_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch170_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch171_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch172_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch173_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch174_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch175_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch176_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch177_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch178_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch179_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch180_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch181_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch182_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch183_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch184_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch185_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch186_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch187_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch188_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch189_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch190_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch191_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch192_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch193_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch194_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch195_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch196_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch197_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch198_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch199_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch200_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch201_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch202_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch203_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch204_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch205_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch206_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch207_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch208_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch209_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch210_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch211_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch212_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch213_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch214_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch215_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch216_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch217_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch218_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch219_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch220_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch221_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch222_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch223_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch224_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch225_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch226_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch227_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch228_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch229_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch230_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch231_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch232_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch233_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch234_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch235_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch236_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch237_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch238_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch239_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch240_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch241_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch242_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch243_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch244_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch245_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch246_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch247_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch248_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch249_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch250_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch251_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch252_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch253_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch254_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch255_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch256_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch257_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch258_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch259_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch260_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch261_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch262_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch263_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch264_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch265_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch266_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch267_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch268_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch269_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch270_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch271_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch272_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch273_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch274_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch275_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch276_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch277_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch278_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch279_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch280_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch281_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch282_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch283_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch284_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch285_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch286_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch287_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch288_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch289_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch290_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch291_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch292_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch293_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch294_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch295_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch296_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch297_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch298_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch299_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch300_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch301_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch302_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch303_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch304_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch305_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch306_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch307_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch308_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch309_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch310_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch311_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch312_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch313_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch314_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch315_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch316_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch317_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch318_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch319_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch320_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch321_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch322_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch323_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch324_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch325_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch326_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch327_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch328_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch329_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch330_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch331_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch332_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch333_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch334_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch335_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch336_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch337_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch338_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch339_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch340_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch341_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch342_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch343_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch344_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch345_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch346_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch347_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch348_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch349_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch350_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch351_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch352_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch353_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch354_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch355_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch356_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch357_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch358_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch359_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch360_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch361_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch362_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch363_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch364_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch365_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch366_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch367_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch368_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch369_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch370_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch371_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch372_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch373_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch374_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch375_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch376_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch377_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch378_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch379_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch380_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch381_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch382_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch383_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch384_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch385_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch386_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch387_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch388_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch389_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch390_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch391_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch392_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch393_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch394_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch395_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch396_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch397_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch398_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch399_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch400_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch401_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch402_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch403_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch404_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch405_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch406_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch407_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch408_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch409_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch410_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch411_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch412_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch413_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch414_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch415_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch416_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch417_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch418_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch419_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch420_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch421_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch422_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch423_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch424_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch425_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch426_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch427_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch428_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch429_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch430_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch431_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch432_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch433_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch434_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch435_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch436_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch437_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch438_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch439_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch440_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch441_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch442_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch443_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch444_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch445_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch446_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch447_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch448_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch449_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch450_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch451_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch452_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch453_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch454_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch455_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch456_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch457_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch458_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch459_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch460_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch461_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch462_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch463_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch464_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch465_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch466_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch467_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch468_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch469_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch470_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch471_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch472_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch473_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch474_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch475_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch476_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch477_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch478_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch479_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch480_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch481_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch482_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch483_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch484_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch485_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch486_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch487_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch488_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch489_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch490_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch491_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch492_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch493_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch494_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch495_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch496_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch497_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch498_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch499_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch500_index_count",
+      "passed": true
+    },
+    {
+      "name": "epoch500_historical_cpu_rng_exact",
+      "passed": true
+    },
+    {
+      "name": "numpy_rng_still_unchanged",
+      "passed": true
+    },
+    {
+      "name": "parameters_unchanged_after_index_replay",
+      "passed": true
+    },
+    {
+      "name": "lag_field_spatially_constant",
+      "passed": true
+    },
+    {
+      "name": "sum_encoding_exact",
+      "passed": true
+    },
+    {
+      "name": "finite_box_and_lag_bounds",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/operations/official_source_manifest.json",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/data/VorticityOSG_train.mat",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/data/VorticityOSG_test.mat",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/runs/preflight-r1/audit/environment.json",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/runs/preflight-r1/audit/model_and_training_plan.json",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/runs/preflight-r1/PREFLIGHT_PROFILE_PASSED.json",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/runs/preflight-r1/audit/epoch1_profile_training_state.pt",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/runs/preflight-r1/audit/epoch1_profile_network.pt",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/environment.json",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/model_and_training_plan.json",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/OFFICIAL_COMPLETE.json",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/epoch500_final_training_state.pt",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/epoch500_final_network.pt",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/recovery/preflight-inventory-2349393.json",
+      "passed": true
+    },
+    {
+      "name": "input_unchanged:/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/recovery/official-gdsg-r1-job2349396-COMPLETE/INVENTORY.json",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:.gitignore",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:LICENSE",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:README.md",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due.png",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/__init__.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/datasets/__init__.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/datasets/ode.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/datasets/pde.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/datasets/sde.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/models/__init__.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/models/ode.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/models/ode_osg.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/models/pde.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/models/pde_osg.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/models/sde_diffusion.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/networks/__init__.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/networks/fcn.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/networks/fno.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/networks/nn.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/networks/transformer.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:due/utils.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/DampedPendulum/DampedPendulum.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/DampedPendulum/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/DampedPendulum_partial/DampedPendulum_partial.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/DampedPendulum_partial/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/DampedPendulum_partial_noise/DampedPendulum_partial.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/DampedPendulum_partial_noise/add_noise.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/DampedPendulum_partial_noise/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/DoubleOscillator/DoubleOscillator.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/DoubleOscillator/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/Lorenz63/Lorenz63.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/Lorenz63/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/OrnsteinUhlenbeck/OrnsteinUhlenbeck.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/OrnsteinUhlenbeck/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/OrnsteinUhlenbeck/generate_1dOU.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/OrnsteinUhlenbeck/plot_utils.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/RobertsonOSG/DataRobertson.m",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/RobertsonOSG/RobertsonOSG.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/RobertsonOSG/Robertsondae.m",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/RobertsonOSG/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/RobertsonOSG/full_dt_100000.csv",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/RobertsonOSG/full_t_100000.csv",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/RobertsonOSG/full_true.csv",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/RobertsonOSG/generate_dt.m",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/RobertsonOSG/plot_pred.m",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/SDE_ExpNoise/Exponential_Noise.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/SDE_ExpNoise/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/SDE_ExpNoise/generate_1d_exponential_noise.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/SDE_ExpNoise/plot_utils.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/ViscousBurgers/ViscousBurgers.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/ViscousBurgers/burgers_example.csv",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/ViscousBurgers/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/VorticityOSG/VorticityOSG.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/VorticityOSG/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/VorticityOSG/network.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/WakeCylinder/WakeCylinder.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/WakeCylinder/config.yaml",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/WakeCylinder/elements.csv",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/WakeCylinder/vertices.csv",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:examples/WakeCylinder/vertices_small.csv",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:setup.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_dual_osgnet.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_evaluate.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_linear_regression.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_ode_dataset.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_ode_dataset_osg.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_ode_model.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_ode_osg_model.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_osgnet.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_pde_dataset.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_pde_dataset_osg.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_pde_model.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_pde_osg_model.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_pit.py",
+      "passed": true
+    },
+    {
+      "name": "source_unchanged:tests/test_resnet.py",
+      "passed": true
+    }
+  ],
+  "script_sha256": "adf26a5deb838eb6eb84ff7be62626a82ead8bc7b57ca9da687fead9bbe71cb0",
+  "optimizer_updates": 0,
+  "network_forward_calls": 0,
+  "historical_collocation_array_hash_available": false,
+  "scope": "Deterministic reconstruction checked against historical RNG and model anchors; no directly archived original point arrays exist.",
+  "runtime_packages": {
+    "torch": "2.5.1",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "matplotlib": "3.9.4",
+    "PyYAML": "6.0.2"
+  },
+  "initial_parameter_sha256": "3c15e9d2181515a55cb0583ea93a5f076789d249444c403856d4ffa1705f0651",
+  "historical_rng_anchors": [
+    {
+      "epoch": 1,
+      "cpu_rng_sha256": "78baf7365a85572105d7b293b6b13427e41dc032d29b5e195e66814aeecb49d2",
+      "reconstructed_batch_order_prefix_sha256": "43ece95df548f7df7808987702dbfb1f3c252a9856585e7076af6def18338d43"
+    },
+    {
+      "epoch": 500,
+      "cpu_rng_sha256": "be437386b0f05132efff061ebb4c0c18677bdd63323b4b78dde577f69e97dd32",
+      "reconstructed_batch_order_prefix_sha256": "a6c026551a16cb758c77e65861b7ded021fbd694a0f3ae5ef41038b0b767df4e"
+    }
+  ],
+  "constructor_cpu_rng_sha256": "3c4bb8930df974fe5bc3b35fb20b93a015965fd77470e44bb36bb35dcd702499",
+  "reconstructed_500_epoch_batch_order_sha256": "a6c026551a16cb758c77e65861b7ded021fbd694a0f3ae5ef41038b0b767df4e",
+  "point_count": 2500,
+  "point_shape": [
+    2500,
+    64,
+    64,
+    1
+  ],
+  "normalized_lag_shape": [
+    2500,
+    3
+  ],
+  "tmin": 0.5006624460220337,
+  "tmax": 1.4997749328613281,
+  "vmin": [
+    -2.1540215015411377
+  ],
+  "vmax": [
+    2.148057460784912
+  ],
+  "point_min": -0.9999997615814209,
+  "point_max": 0.9999997615814209,
+  "sum_exceeds_tmax_count": 2185,
+  "evidence_limit": "Original arrays were not archived. Seed, original constructors, original CPU draw order, original initial parameter digest, NumPy state, normalization bounds, and epoch1/500 CPU RNG endpoints are checked. The reconstructed batch-order digest is newly generated, not a historical digest.",
+  "execution_differences": {
+    "training_device": "cpu instead of cuda; no forward/backward/optimization",
+    "save_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/collocation-reconstruction-r1/artifacts/unused_model_directory",
+    "sampler_replay": "same Torch DataLoader, integer dataset in place of deterministic tensor dataset"
+  },
+  "artifacts": {
+    "torch_random_sampler_source.py": {
+      "bytes": 1020,
+      "sha256": "a58dbac69fddad947285d07d1b091d10f959448753bafc335c4d2772a03e45b8"
+    },
+    "fixed_u0_normalized.npy": {
+      "bytes": 40960128,
+      "sha256": "5e03c331dbcc8b66389413cae8b14af4d7a425d8c2d01e18862127c4fd07b113"
+    },
+    "official_loader_stdout.txt": {
+      "bytes": 205,
+      "sha256": "031c5a42ce774d8b6b4d2f1f9460ac2972d1c64bc5054761c76e3059ca345673"
+    },
+    "torch_loader_iterator_source.py": {
+      "bytes": 2378,
+      "sha256": "cef4ef2f1b2f4c9d839c19fcb09b511e044bd9a6bb3c8c6f70c596cf707e4475"
+    },
+    "fixed_substeps_physical.npy": {
+      "bytes": 20128,
+      "sha256": "c9b7b1509d35698398f10ee641b2b7d5838cc5a28439ffffbea02c524d08f8f6"
+    },
+    "fixed_dt_normalized.npy": {
+      "bytes": 30128,
+      "sha256": "450ca5203ecfa5b128c8e67a91a781a90caa1af077e90bba8b95ba5c42fc054d"
+    }
+  },
+  "input_sha256": {
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/operations/official_source_manifest.json": "c423cbc0bde6636fd07f157b50a2f01d0430ac06973f5f0dfc2dbec1c483a79c",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/data/VorticityOSG_train.mat": "0ebdd969d52292b4304d3583b3cd432c288397b367f75372d06944d629c5d111",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/data/VorticityOSG_test.mat": "a1e0a3a0fdf63c1ec3622bc21bd7889bf4a14078f86d63e07d8ae2bab74d926a",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/runs/preflight-r1/audit/environment.json": "83233a940a83a97199cf15aba105133050a0b9875eca1794cfe8d3c55693d4f4",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/runs/preflight-r1/audit/model_and_training_plan.json": "f85d07598bc683c9a4d0f137f989f6e310cb1c90ce8a2d3ef62f217530340da5",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/runs/preflight-r1/PREFLIGHT_PROFILE_PASSED.json": "81df5c017815f84441b66ded638fa3c934898eef13ca233ce2dce0170a6bd17b",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/runs/preflight-r1/audit/epoch1_profile_training_state.pt": "69d7818153f99917ed83823f0b4c08d2f8a9060b9a0162b5000a499c0795a036",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/runs/preflight-r1/audit/epoch1_profile_network.pt": "ef6580aa0857442fdec30dab490a9304ac487f1d349f6a7d3097b132961af2bb",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/environment.json": "167e38eecaf4144dbafbc08d36f45bf929979cce04d97e779a9317b608fb02d4",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/model_and_training_plan.json": "f85d07598bc683c9a4d0f137f989f6e310cb1c90ce8a2d3ef62f217530340da5",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/OFFICIAL_COMPLETE.json": "303721c149da668f911bf0c36fbef1ef620afdfef0eb99410ea9e53db7b39654",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/epoch500_final_training_state.pt": "2c975ec241460fdab18ad23382e7e61918ea0b9ea779d81d496e4fcb699c971e",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/epoch500_final_network.pt": "1957df87abed4e9f88e200c88a2d0063f6685ce6e64157f2e2e6751de0c6ef9e",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/preflight-recovery/recovery/preflight-inventory-2349393.json": "ffe89198bb4e559e3764d4791d4973652ca8a1aea28eff8e7a42566afcb1c92d",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/recovery/official-gdsg-r1-job2349396-COMPLETE/INVENTORY.json": "604873065e147095bceecb394258749e0f65d0f670f7ff1c9d370fe59ee4c697"
+  },
+  "elapsed_seconds": 18.209216166986153
+}

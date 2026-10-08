@@ -1,0 +1,10 @@
+{
+  "status": "NEXT_METHODS_FAILED",
+  "error": "FloatingPointError('Non-finite scheduled final validation prediction (retained)')",
+  "traceback": "Traceback (most recent call last):\n  File \"/data02/run01/scv7tsq/neural-semigroup/20261005-next-methods-r1/train.py\", line 572, in main\n    trainer.run()\n  File \"/data02/run01/scv7tsq/neural-semigroup/20261005-next-methods-r1/train.py\", line 521, in run\n    final_validation = self.validate(final=True)\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data02/run01/scv7tsq/neural-semigroup/20261005-next-methods-r1/train.py\", line 473, in validate\n    raise FloatingPointError('Non-finite scheduled final validation prediction (retained)')\nFloatingPointError: Non-finite scheduled final validation prediction (retained)\n",
+  "checkpoint_errors": [],
+  "updates_completed": 50000,
+  "epoch": 500,
+  "batch": 0,
+  "whole_process_wall_seconds": 1294.0038666389883
+}

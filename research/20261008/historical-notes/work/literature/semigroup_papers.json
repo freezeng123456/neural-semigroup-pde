@@ -1,0 +1,224 @@
+[
+  {
+    "id": "chen_wu_2023_deep_osg",
+    "title": "Deep-OSG: Deep Learning of Operators in Semigroup",
+    "authors": [
+      "Junfeng Chen",
+      "Kailiang Wu"
+    ],
+    "year": 2023,
+    "status": "peer-reviewed journal article",
+    "venue": "Journal of Computational Physics 493:112498",
+    "arxiv": "2302.03358",
+    "primary_urls": [
+      "https://arxiv.org/html/2302.03358v2",
+      "https://www.sciencedirect.com/science/article/abs/pii/S0021999123005934"
+    ],
+    "code_url": null,
+    "related_code_url": "https://github.com/AI4Equations/due",
+    "code_status": "Original paper code link not found; author-maintained successor DUE verified.",
+    "method": "直接学习 u+ΔNθ(u,Δ)，零时刻恒等为硬结构，GDSG 为软半群组合正则；LISG 为轨迹多步监督。",
+    "evidence": "ODE、刚性反应、平流、Burgers、Navier–Stokes。线性 ODE 展示 2%/5% 乘性均匀测量噪声。",
+    "limitations": "Theorem 1 假设均匀逼近误差、Lipschitz 性和可达域；Theorem 2 假设时间划分间预测接近。无 SGD 保证或准确性普适提升保证。噪声展示不是硬/软半群、有效容量匹配的因果实验；部分 ODE 使用100000 epochs。",
+    "sections_pages_read": [
+      "§3.1 OSG-Net Eq.(8)",
+      "§3.2 GDSG/LISG",
+      "§3.3 Theorems 1–2",
+      "§5.1.1 noisy linear ODE",
+      "§5.1.2 periodic attractor",
+      "§5.2 PDEs"
+    ],
+    "relevance": "最接近的直接变时滞软半群基线；抗噪半群学习本身已非新命题。"
+  },
+  {
+    "id": "rotman_2023_semisupervised",
+    "title": "Semi-supervised learning of partial differential operators and dynamical flows",
+    "authors": [
+      "Michael Rotman",
+      "Amit Dekel",
+      "Ran Ilan Ber",
+      "Lior Wolf",
+      "Yaron Oz"
+    ],
+    "year": 2023,
+    "status": "peer-reviewed conference paper",
+    "venue": "UAI 2023; PMLR 216:1785–1794",
+    "primary_urls": [
+      "https://proceedings.mlr.press/v216/rotman23a.html",
+      "https://proceedings.mlr.press/v216/rotman23a/rotman23a.pdf"
+    ],
+    "code_url": "https://github.com/rotmanmi/Semi-Supervised-Learning-of-Dynamical-Flows",
+    "code_status": "Official repository linked in paper and opened; not executed.",
+    "method": "时间超网络产生 FNO 权重，终点标签、初始恒等、二段组合和多段终点损失共同训练；软约束。",
+    "evidence": "广义 Burgers、Chafee–Infante、2D Burgers、2D/3D Navier–Stokes；1000训练/100测试；组合损失与激活消融。",
+    "limitations": "未找到噪声实验。模型和损失同时变化，未隔离半群结构的单因素收益。Lemma 4.1 的单时滞唯一辨识论证需要额外条件；独立反例分析见 notes，属于已有 system-aliasing 问题，不当作我们的新贡献。",
+    "sections_pages_read": [
+      "PDF pp.2–3 §3 Eq.(1) assumptions",
+      "PDF p.3 printed1787 Lemma4.1 / Eq.(10)",
+      "PDF p.4 §4.1 losses",
+      "PDF pp.5–7 §5 data/results/ablations"
+    ],
+    "relevance": "必须区分半群一致性和生成元辨识；单终点监督已有明确先例。"
+  },
+  {
+    "id": "feng_2025_singer",
+    "title": "SINGER: Stochastic Network Graph Evolving Operator for High Dimensional PDEs",
+    "authors": [
+      "Mingquan Feng",
+      "Yixin Huang",
+      "Weixin Liao",
+      "Yuhong Liu",
+      "Yizhou Liu",
+      "Junchi Yan"
+    ],
+    "year": 2025,
+    "status": "peer-reviewed conference paper",
+    "venue": "ICLR 2025",
+    "primary_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2025/hash/5b288823575bb29654b0953a251e933b-Abstract-Conference.html",
+      "https://proceedings.iclr.cc/paper_files/paper/2025/file/5b288823575bb29654b0953a251e933b-Paper-Conference.pdf"
+    ],
+    "code_url": "https://github.com/FengMingquan-sjtu/SINGER",
+    "code_status": "Official repository linked in paper and opened; not executed.",
+    "method": "子网络表示空间解，GNN 在网络参数空间随机演化；用方程残差学习。论文的连续随机模型有半群与稳定性定理；离散实现使用 dropout/数值积分。",
+    "evidence": "8 PDE ×5/10/15/20维；去噪声 SINGER(-N)、非图 NODE(+N)、NODE、改造的参数空间 PINO 对照。",
+    "limitations": "定理有可微性、Lipschitz、噪声强度等条件，非物理解误差保证。PINO 是修改后的权重映射；NODE 与GNN规模不同；初值需单独拟合。dropout噪声不等于观测噪声。",
+    "sections_pages_read": [
+      "§3.1 assumptions/Table1",
+      "§3.2 formulation",
+      "§3.3 Theorems1–5",
+      "§4.1 settings/Tables2–3",
+      "Appendix B proofs"
+    ],
+    "relevance": "高维参数空间路线，不可直接与1D未知方程快照监督模型作绝对误差比较。"
+  },
+  {
+    "id": "chen_2025_due",
+    "title": "DUE: A Deep Learning Framework and Library for Modeling Unknown Equations",
+    "authors": [
+      "Junfeng Chen",
+      "Kailiang Wu",
+      "Dongbin Xiu"
+    ],
+    "year": 2025,
+    "status": "peer-reviewed journal article",
+    "venue": "SIAM Review 67(4):873–902",
+    "arxiv": "2504.10373",
+    "doi": "10.1137/24M1671827",
+    "primary_urls": [
+      "https://epubs.siam.org/doi/10.1137/24M1671827",
+      "https://arxiv.org/html/2504.10373v1"
+    ],
+    "code_url": "https://github.com/AI4Equations/due",
+    "code_status": "Official repository verified; not executed.",
+    "method": "流映射工具框架：ResNet/gResNet/OSG-Net、多步损失、GDSG、时滞门控dual-OSG-Net、部分观测的历史窗口。",
+    "evidence": "摆、耦合振子实测数据、Lorenz、Robertson、Burgers、NS、绕柱流。摆部分观测场景5%/10%噪声；Burgers用模态降维，NS用OSG-FNO。",
+    "limitations": "教育/软件框架，不是统一预算的算法排名；噪声和记忆展示不隔离半群约束的因果效应。",
+    "sections_pages_read": [
+      "§2.2 data pairs",
+      "§2.3 networks",
+      "§2.5 partially observed systems",
+      "§3.1–3.3 losses/dual network",
+      "§5.1.2–5.2 noise/memory",
+      "§5.5–5.6 Burgers/NS"
+    ],
+    "relevance": "最实用的复现入口；多步训练、记忆和多尺度时滞已是成熟基础。"
+  },
+  {
+    "id": "hou_2026_cfo",
+    "title": "CFO: Learning Continuous-Time PDE Dynamics via Flow-Matched Neural Operators",
+    "authors": [
+      "Xianglong Hou",
+      "Xinquan Huang",
+      "Paris Perdikaris"
+    ],
+    "year": 2026,
+    "preprint_year": 2025,
+    "status": "peer-reviewed conference paper",
+    "venue": "ICLR 2026",
+    "arxiv": "2512.05297",
+    "primary_urls": [
+      "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8bfbf4ec87e1e331f0b1adc483b53b6b-Abstract-Conference.html",
+      "https://arxiv.org/html/2512.05297"
+    ],
+    "code_url": "https://github.com/shannon-hou/CFO_official",
+    "code_status": "Official repository verified; not executed.",
+    "method": "样条插值轨迹构造速度监督，flow matching 训练 Nθ(t,u)，无需反传穿过ODE求解器；推理积分。显含时间，通常是二参数演化族。",
+    "evidence": "Lorenz/Burgers/2D diffusion–reaction/shallow water；25%/50%/100%不规则时间采样；同骨干NFE/实测时间和 Neural ODE/PDE-Refiner 对照。",
+    "limitations": "Appendix A.2 在理想总体最优下保证边缘分布运输，非生成元/样本路径辨识。AR主对照为teacher forcing；插值噪声非观测误差。没有自治一参数半群保证。",
+    "sections_pages_read": [
+      "§3 method of lines",
+      "§4.1 spline paths",
+      "§4.2 training/inference/probability-flow transport",
+      "§5.1 benchmarks",
+      "§5.2 Tables2–3 NFE/cost/noise",
+      "Appendix A.2 Propositions A.1–A.2",
+      "Appendix A.4.8 ablations"
+    ],
+    "relevance": "直接检验本项目的优化和穿过积分器训练成本瓶颈；连续时间强基线。"
+  },
+  {
+    "id": "taylor_2025_diffeomorphic",
+    "title": "Diffeomorphic Neural Operator Learning",
+    "authors": [
+      "Seth Taylor",
+      "Alex Bihlo",
+      "Jean-Christophe Nave"
+    ],
+    "year": 2025,
+    "status": "preprint; formal publication not verified",
+    "venue": "arXiv",
+    "arxiv": "2508.06690",
+    "primary_urls": [
+      "https://arxiv.org/abs/2508.06690",
+      "https://arxiv.org/html/2508.06690v1"
+    ],
+    "code_url": null,
+    "unverified_code_url": "https://github.com/seth-tl/Diff_flow_learning",
+    "code_status": "Link printed in paper but opening failed; availability unverified.",
+    "method": "把演化提升为空间微分同胚，再用群作用作用于初始场；时间复合在映射空间完成。",
+    "evidence": "不连续场输运、Euler湍流能量级联；FNO-maps/FNO-fields；五帧输入、相同隐藏设置，但输出通道与损失不同。",
+    "limitations": "仅适用具有相应平流几何的方程；并非通用耗散半群架构。映射插值与微分同胚条件影响数值保证；历史映射存储随步数增长；作者定位概念验证。",
+    "sections_pages_read": [
+      "§2.2 evolution operators",
+      "§3/§3.1 group action",
+      "§3.2 resolution properties",
+      "§4.1 lifting",
+      "§4.2 implementation",
+      "§4.3–4.4 experiments"
+    ],
+    "relevance": "说明更具体的物理几何约束可有作用；不可直接移植为黏性Burgers耗散项。"
+  },
+  {
+    "id": "blessing_2026_chernoff",
+    "title": "Neural operators approximate strongly continuous convex monotone semigroups",
+    "authors": [
+      "Jonas Blessing",
+      "Philipp Schmocker",
+      "Alessandro Sgarabottolo"
+    ],
+    "year": 2026,
+    "status": "preprint",
+    "venue": "arXiv",
+    "arxiv": "2609.02727",
+    "first_posted": "2026-09-02",
+    "primary_urls": [
+      "https://arxiv.org/abs/2609.02727",
+      "https://arxiv.org/html/2609.02727v1"
+    ],
+    "code_url": "https://github.com/sgarale/chernoff_neural",
+    "code_status": "Official numerical repository linked in paper and opened; not executed.",
+    "method": "学习Chernoff一步算子，稳定迭代逼近凸单调半群；envelope 网络以有限候选最大值替代控制参数上确界。",
+    "evidence": "Theorems3.5–3.6统一逼近；§4覆盖数/步长/一步误差速率；§5一维半线性PDE splitting、随机控制、模型不确定性例子。",
+    "limitations": "受限半群类别与正则/一致/稳定性假设；存在性/逼近定理不保证SGD或有限数据性能。没有大规模通用PDE排名。",
+    "sections_pages_read": [
+      "§2 assumptions2.2/theorem2.3",
+      "§3.1 theorem3.5",
+      "§3.2 theorem3.6",
+      "§4.1 envelope definition4.4",
+      "§4.2 propositions4.9–4.10",
+      "§5.1–5.3 examples"
+    ],
+    "relevance": "当前理论前沿已超过一般神经流半群存在性；需明确方程类别、误差和可辨识条件。"
+  }
+]

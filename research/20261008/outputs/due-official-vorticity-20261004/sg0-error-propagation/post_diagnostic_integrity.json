@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "input_files_unchanged": 7,
+  "official_source_files_unchanged": 75,
+  "script_hash_unchanged": true,
+  "vector_norms_and_cross_terms_recomputed_from_saved_vectors": true,
+  "max_vector_identity_residual_norm": 0.0,
+  "max_archived_corrected_identity_residual_norm": 0.0,
+  "max_scaled_squared_identity_residual": 3.815194876808697e-16,
+  "t0_valid_gain_count": 0,
+  "later_valid_gain_count": 500,
+  "optimizer_updates": 0
+}

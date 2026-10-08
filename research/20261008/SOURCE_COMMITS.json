@@ -1,0 +1,11 @@
+{
+  "local_head": "7948527673eb46dd3b9049f495df77acda8f68f9",
+  "base": "0263511758b865f635ef472d630707349b459291",
+  "commits": [
+    "7948527673eb46dd3b9049f495df77acda8f68f9 Normalize literature CSV line endings",
+    "dcc3dfd42af5958088b7024a69a1213600f4d32c Add literature-grounded OSG stage A and bounded Beijing validation",
+    "917ea2bb31ddf4793c349597cb43b2332994ebe5 Record validated Burgers study and add verified checkpoint diagnostics",
+    "4919e3726cb4edd10fa64a7962266974eea1db7f Add validated Burgers reference and preregistered paired study"
+  ],
+  "publication": "One compact snapshot from local source commits; generated binaries are excluded."
+}

@@ -1,0 +1,89 @@
+{
+  "variant": "author_supported_sg_pairing_0",
+  "seed": 0,
+  "model": "final epoch 500",
+  "n_test_trajectories": 100,
+  "evaluation_track": "author_float32",
+  "time_axis": "elapsed from initial state: 0..99; first absolute time unknown",
+  "relative_l2_definition": "spatial norm(prediction-truth) / spatial norm(truth), separately for each trajectory and time",
+  "mean_reduction": "Author float32 mean_over_trajectories_curve from the verified result",
+  "percentiles": "Linear interpolation over the 100 author-float32 trajectory ratios; trajectory spread, not CI",
+  "training": {
+    "epochs": 500,
+    "initial_objective": 0.17661114037036896,
+    "final_objective": 0.0007373421685770154,
+    "best_epoch": 500,
+    "objective": "Supervised relative L2 only; not compared directly with GDSG composite objective"
+  },
+  "selected_elapsed_time_statistics": [
+    {
+      "elapsed_step": 0,
+      "mean_author_float32": 2.272737020803106e-08,
+      "median": 2.155357492483745e-08,
+      "p10": 2.0001972167449368e-08,
+      "p90": 2.640116871788223e-08
+    },
+    {
+      "elapsed_step": 1,
+      "mean_author_float32": 0.0013027915265411139,
+      "median": 0.0010232861968688667,
+      "p10": 0.0005193648103158921,
+      "p90": 0.0023593859514221558
+    },
+    {
+      "elapsed_step": 10,
+      "mean_author_float32": 0.0035213965456932783,
+      "median": 0.0026801717467606068,
+      "p10": 0.0013885549269616604,
+      "p90": 0.006788809504359962
+    },
+    {
+      "elapsed_step": 25,
+      "mean_author_float32": 0.007081163581460714,
+      "median": 0.005711354780942202,
+      "p10": 0.002148233726620674,
+      "p90": 0.014382995292544366
+    },
+    {
+      "elapsed_step": 50,
+      "mean_author_float32": 0.07720091938972473,
+      "median": 0.0223621828481555,
+      "p10": 0.008355821575969457,
+      "p90": 0.18357605189085008
+    },
+    {
+      "elapsed_step": 75,
+      "mean_author_float32": 0.5778272747993469,
+      "median": 0.329028457403183,
+      "p10": 0.09032261595129967,
+      "p90": 1.2789525032043458
+    },
+    {
+      "elapsed_step": 99,
+      "mean_author_float32": 2.8410096168518066,
+      "median": 0.9942382276058197,
+      "p10": 0.6517420649528504,
+      "p90": 4.915512847900398
+    }
+  ],
+  "final_step": {
+    "elapsed_step": 99,
+    "mean_author_float32": 2.8410096168518066,
+    "median": 0.9942382276058197,
+    "p10": 0.6517420649528504,
+    "p90": 4.915512847900398,
+    "minimum": 0.29675620794296265,
+    "maximum": 42.84169006347656,
+    "count_above_relative_error_1": 50,
+    "count_above_relative_error_2": 30
+  },
+  "verification_status": "verified",
+  "input_sha256": {
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-independent-verification/verification.json": "c891dc611768fa5ae1ce8955acfe4430b628915cba31654a6663b02579b1c0cc",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/sg0-full-recovery/20261004-due-vorticity-1e62910-r1/runs/sg0-full-r1/official_workdir/model/training_history.csv": "819c696f99d30ca9a5286e7240fd73867fc04c9c43afe1b3c37ed04b14014c35"
+  },
+  "runtime": {
+    "numpy": "1.26.4",
+    "matplotlib": "3.9.4"
+  }
+}

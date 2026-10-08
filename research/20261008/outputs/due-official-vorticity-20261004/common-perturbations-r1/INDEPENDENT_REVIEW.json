@@ -1,0 +1,152 @@
+{
+  "status": "INDEPENDENT_POSTPROCESS_AUDIT_PASSED",
+  "artifact_hashes_checked": 4,
+  "input_hashes_unchanged": 18,
+  "csv_and_json_summary_checks": 24120,
+  "new_network_calls": 0,
+  "optimizer_updates": 0,
+  "pooled_direction_amplitude_summary": [
+    {
+      "direction": "sg0_actual_error",
+      "relative_amplitude": 0.001,
+      "symmetric_mean_gain": {
+        "paired_count": 500,
+        "sg0_mean": 1.0277880639563624,
+        "gdsg_mean": 0.9855164201823634,
+        "sg0_median": 1.024378908440143,
+        "gdsg_median": 0.9852595921773799,
+        "mean_paired_difference_gdsg_minus_sg0": -0.04227164377399902,
+        "gdsg_lower_count": 466
+      },
+      "central_secant_gain": {
+        "paired_count": 500,
+        "sg0_mean": 1.0277768327021923,
+        "gdsg_mean": 0.9855162819230785,
+        "sg0_median": 1.0243748581833536,
+        "gdsg_median": 0.985259514942967,
+        "mean_paired_difference_gdsg_minus_sg0": -0.04226055077911366,
+        "gdsg_lower_count": 466
+      }
+    },
+    {
+      "direction": "sg0_actual_error",
+      "relative_amplitude": 0.01,
+      "symmetric_mean_gain": {
+        "paired_count": 500,
+        "sg0_mean": 1.028393099515456,
+        "gdsg_mean": 0.9855171797892024,
+        "sg0_median": 1.024577835538014,
+        "gdsg_median": 0.985267769571349,
+        "mean_paired_difference_gdsg_minus_sg0": -0.04287591972625358,
+        "gdsg_lower_count": 466
+      },
+      "central_secant_gain": {
+        "paired_count": 500,
+        "sg0_mean": 1.0272970540377033,
+        "gdsg_mean": 0.9855038198640489,
+        "sg0_median": 1.0239255291507403,
+        "gdsg_median": 0.9852606590394299,
+        "mean_paired_difference_gdsg_minus_sg0": -0.04179323417365445,
+        "gdsg_lower_count": 466
+      }
+    },
+    {
+      "direction": "gdsg_actual_error",
+      "relative_amplitude": 0.001,
+      "symmetric_mean_gain": {
+        "paired_count": 500,
+        "sg0_mean": 0.9828969295708283,
+        "gdsg_mean": 1.004170174487671,
+        "sg0_median": 0.9813620041419937,
+        "gdsg_median": 1.003544679747224,
+        "mean_paired_difference_gdsg_minus_sg0": 0.021273244916842706,
+        "gdsg_lower_count": 77
+      },
+      "central_secant_gain": {
+        "paired_count": 500,
+        "sg0_mean": 0.9828928405350582,
+        "gdsg_mean": 1.004170056556421,
+        "sg0_median": 0.9813544106858537,
+        "gdsg_median": 1.0035444781173473,
+        "mean_paired_difference_gdsg_minus_sg0": 0.021277216021362975,
+        "gdsg_lower_count": 77
+      }
+    },
+    {
+      "direction": "gdsg_actual_error",
+      "relative_amplitude": 0.01,
+      "symmetric_mean_gain": {
+        "paired_count": 500,
+        "sg0_mean": 0.9830176258159407,
+        "gdsg_mean": 1.0041575817036632,
+        "sg0_median": 0.9816582616950937,
+        "gdsg_median": 1.0035170070847306,
+        "mean_paired_difference_gdsg_minus_sg0": 0.021139955887722613,
+        "gdsg_lower_count": 77
+      },
+      "central_secant_gain": {
+        "paired_count": 500,
+        "sg0_mean": 0.9826129744930288,
+        "gdsg_mean": 1.004146238009112,
+        "sg0_median": 0.9809989648160193,
+        "gdsg_median": 1.0034977776340201,
+        "mean_paired_difference_gdsg_minus_sg0": 0.021533263516083277,
+        "gdsg_lower_count": 76
+      }
+    },
+    {
+      "direction": "zero_mean_gaussian",
+      "relative_amplitude": 0.001,
+      "symmetric_mean_gain": {
+        "paired_count": 500,
+        "sg0_mean": 0.9853743441460259,
+        "gdsg_mean": 0.9970528008090664,
+        "sg0_median": 0.9853586334121471,
+        "gdsg_median": 0.9970787601160195,
+        "mean_paired_difference_gdsg_minus_sg0": 0.011678456663040617,
+        "gdsg_lower_count": 0
+      },
+      "central_secant_gain": {
+        "paired_count": 500,
+        "sg0_mean": 0.9853738431807163,
+        "gdsg_mean": 0.9970527948807197,
+        "sg0_median": 0.9853580342496511,
+        "gdsg_median": 0.9970787539385182,
+        "mean_paired_difference_gdsg_minus_sg0": 0.011678951700003477,
+        "gdsg_lower_count": 0
+      }
+    },
+    {
+      "direction": "zero_mean_gaussian",
+      "relative_amplitude": 0.01,
+      "symmetric_mean_gain": {
+        "paired_count": 500,
+        "sg0_mean": 0.9854061182207738,
+        "gdsg_mean": 0.9970528542593997,
+        "sg0_median": 0.985393384994272,
+        "gdsg_median": 0.9970789666997291,
+        "mean_paired_difference_gdsg_minus_sg0": 0.011646736038625906,
+        "gdsg_lower_count": 0
+      },
+      "central_secant_gain": {
+        "paired_count": 500,
+        "sg0_mean": 0.9853565533324429,
+        "gdsg_mean": 0.9970526817196319,
+        "sg0_median": 0.9853371794678923,
+        "gdsg_median": 0.997078801586486,
+        "mean_paired_difference_gdsg_minus_sg0": 0.011696128387189036,
+        "gdsg_lower_count": 0
+      }
+    }
+  ],
+  "pooling": "100 trajectories \u00d7 5 specified state times. Repeated times on the same trajectory are correlated; no independence, confidence interval, or significance claim.",
+  "interpretation": "GDSG response is lower mostly along SG0 error directions; along GDSG error and zero-mean Gaussian directions it is usually higher. These data reject a universal contraction description. Response is not true-PDE accuracy.",
+  "input_sha256": {
+    "COMMON_PERTURBATIONS_DIAGNOSTIC.json": "7e4965a29fbfea5b3b0481d18eda9ee973d047168584502f8d5fe0f7598c5b0d",
+    "common_perturbation_arrays.npz": "75a3ecdafeeebce8da56fcb2787311ddbd88fee20d6c2c5d4caab81ec98c6d99",
+    "one_sided_gains.csv": "1e1f29fd736e91211d216e223bb82a07bf018d0a4f832e6a24760a23f14edd91",
+    "symmetric_gains.csv": "c678fa3a9fe3f53be55695085c890bc07126c88c460dc03172502a0c964be69e",
+    "artifact_manifest.json": "8674c0eb6c8e19af58f43a75dc5c9e09e86c4cba261541a1e78b38bca7944d43"
+  },
+  "script_sha256": "1fdba13607391ca7e1c21fdf16c56e34b1e12ecd499b6c763b4f0390521fadf2"
+}

@@ -1,0 +1,160 @@
+--- run_official_observed.py
++++ run_official_sg0_observed.py
+@@ -1,7 +1,9 @@
+ #!/usr/bin/env python3
+-"""Observe the unchanged official VorticityOSG example in a fresh process.
+-
+-No network, objective, optimizer, scheduler, data, seed or config substitutions.
++"""Observe the author-supported sg_pairing=0 VorticityOSG control.
++
++Only the copied working config changes training.sg_pairing from 1 to 0.
++The official sg_pairing=0 branch supplies the supervised relative-L2 objective.
++Source, network, optimizer, scheduler, data, seed and 500 epochs are preserved.
+ An external train-boundary wrapper records artifacts. Preflight deliberately
+ interrupts after the original trainer has completed and printed epoch 1 while
+ its configured budget remains 500. Formal mode runs the original entrypoint to
+@@ -128,7 +130,7 @@
+     def train(self, original_train, trainer):
+         self.trainer = trainer
+         assert trainer.nepochs == 500 and trainer.bsize == 20
+-        assert trainer.sg_pairing == 1 and trainer.sg_weight == 1.0
++        assert trainer.sg_pairing == 0 and trainer.sg_weight == 1.0
+         assert trainer.device == 'cuda'
+         self.initial_digest = self.state_digest(trainer.mynet)
+         params = list(trainer.mynet.parameters())
+@@ -139,7 +141,8 @@
+             'parameter_tensors': [{'shape': list(p.shape), 'dtype': str(p.dtype), 'requires_grad': p.requires_grad} for p in params],
+             'trainX_shape': list(trainer.trainX.shape), 'trainY_shape': list(trainer.trainY.shape),
+             'batches_per_epoch': len(trainer.train_loader), 'official_batch_size': trainer.bsize,
+-            'configured_epochs': trainer.nepochs, 'expected_forward_calls_per_batch': 6,
++            'configured_epochs': trainer.nepochs, 'expected_forward_calls_per_batch': 1,
++            'variant': 'author_supported_sg_pairing_0', 'sg_pairing': 0,
+             'initial_parameter_sha256': self.initial_digest,
+             'torch_cudnn_benchmark': self.torch.backends.cudnn.benchmark,
+             'torch_cudnn_deterministic': self.torch.backends.cudnn.deterministic}
+@@ -224,8 +227,6 @@
+         rng, before, updates_before = self.rng_state(), self.state_digest(trainer.mynet), self.updates
+         saved = torch.load(self.root / (label + '_training_state.pt'), map_location='cpu', weights_only=False)
+         xx, yy = trainer.trainX[:20].to('cuda'), trainer.trainY[:20].to('cuda')
+-        uu = trainer.u0_rand[:20].view(-1, *trainer.trainY.shape[1:]).to('cuda')
+-        tt = trainer.dt_rand[:20].view(-1, *trainer.trainY.shape[1:-1], 3).to('cuda')
+         branches = []
+         try:
+             for reload_saved in (False, True):
+@@ -241,13 +242,8 @@
+                 net.train()
+                 initial = self.state_digest(net)
+                 pred = net(xx)
+-                pred01 = net(torch.cat((uu, tt[..., 0:1]), dim=-1))
+-                pred012 = net(torch.cat((pred01, tt[..., 1:2]), dim=-1))
+-                pred02 = net(torch.cat((uu, tt[..., 1:2]), dim=-1))
+-                pred021 = net(torch.cat((pred02, tt[..., 0:1]), dim=-1))
+-                pred2 = net(torch.cat((uu, tt[..., 2:3]), dim=-1))
+-                loss = (trainer.loss_func(yy, pred) + trainer.sg_weight * 0.5 *
+-                    (trainer.loss_func(pred012, pred2) + trainer.loss_func(pred021, pred2))) / (1.0 + trainer.sg_weight)
++                # Exact original PDE_osg.train sg_pairing=0 branch.
++                loss = trainer.loss_func(yy, pred)
+                 self.finite(loss)
+                 opt.zero_grad(); loss.backward()
+                 for p in net.parameters():
+@@ -262,7 +258,7 @@
+                     'loss': float(loss.item())}
+                 # Release each GPU branch before constructing the next one.
+                 branches.append(result)
+-                del net, opt, sched, pred, pred01, pred012, pred02, pred021, pred2, loss
++                del net, opt, sched, pred, loss
+             def close(a, b):
+                 if torch.is_tensor(a): torch.testing.assert_close(a.cpu(), b.cpu(), atol=1e-6, rtol=1e-5)
+                 elif isinstance(a, dict):
+@@ -274,11 +270,11 @@
+                 else: assert a == b
+             close(branches[0], branches[1])
+             torch.save(branches[1], self.root / 'isolated_resumed_update.pt')
+-            receipt = {'passed': True, 'official_batch_size': 20, 'forward_calls_per_branch': 6,
++            receipt = {'passed': True, 'official_batch_size': 20, 'forward_calls_per_branch': 1,
+                 'branches': ['copy of epoch-1 live state', 'reloaded epoch-1 saved state'],
+                 'loss': branches[1]['loss'], 'parameters_changed': True, 'optimizer_step_increment': 1,
+                 'reloaded_matches_live_copy': True,
+-                'scope': 'Fixed first 20 training examples and existing GDSG pairs, outside official trajectory; does not claim shuffled-iterator resume support.'}
++                'scope': 'Fixed first 20 training examples, supervised author sg_pairing=0 loss, outside official trajectory; does not claim shuffled-iterator resume support.'}
+         finally:
+             self.restore_rng(rng)
+             assert self.state_digest(trainer.mynet) == before and self.updates == updates_before
+@@ -373,6 +369,7 @@
+     parser.add_argument('--mode', choices=('preflight', 'full'), required=True)
+     args = parser.parse_args()
+     source, data, root = args.source_root.resolve(), args.data_dir.resolve(), args.run_root.resolve()
++    assert root.name.startswith('sg0-' + args.mode + '-'), 'Use a fresh sg0-<mode>-<run-id> output directory'
+     manifest = json.loads(args.source_manifest.read_text())
+     input_hashes = verify_inputs(source, data, manifest)
+     root.mkdir(parents=True, exist_ok=False)
+@@ -381,6 +378,12 @@
+     for filename in ('VorticityOSG.py', 'network.py', 'config.yaml'):
+         shutil.copyfile(source / 'examples/VorticityOSG' / filename, workdir / filename)
+         assert sha(workdir / filename) == manifest['files']['examples/VorticityOSG/' + filename]
++    # Change only this experiment's copied config; preserve both originals and hashes.
++    config_path = workdir / 'config.yaml'
++    original_config_text = config_path.read_text()
++    assert original_config_text.count('    sg_pairing: 1\n') == 1
++    (audit / 'author_default_config.yaml').write_text(original_config_text)
++    config_path.write_text(original_config_text.replace('    sg_pairing: 1\n', '    sg_pairing: 0\n'))
+     for filename in input_hashes: (workdir / filename).symlink_to(data / filename)
+     os.chdir(workdir)
+     sys.path.insert(0, str(source)); sys.path.insert(0, str(workdir))
+@@ -394,6 +397,10 @@
+     import numpy as np
+     import yaml
+     raw_config = yaml.safe_load((workdir / 'config.yaml').read_text())
++    original_config = yaml.safe_load(original_config_text)
++    expected_config = copy.deepcopy(original_config)
++    expected_config['training']['sg_pairing'] = 0
++    assert raw_config == expected_config and raw_config['training']['sg_pairing'] == 0
+     assert raw_config['seed'] == 0 and raw_config['training']['epochs'] == 500
+     assert raw_config['training']['batch_size'] == 20 and raw_config['training']['device'] == 'cuda'
+     assert torch.cuda.is_available() and torch.cuda.device_count() == 1
+@@ -401,7 +408,10 @@
+     versions = {name: importlib.metadata.version(name) for name in ('torch','numpy','scipy','matplotlib','PyYAML')}
+     assert versions['torch'] == '2.5.1+cu121' and versions['numpy'] == '1.26.4'
+     environment = {'mode': args.mode, 'source_commit': manifest['commit'], 'source_manifest_sha256': sha(args.source_manifest),
+-        'wrapper_sha256': sha(Path(__file__).resolve()), 'data_sha256': input_hashes, 'official_config': raw_config,
++        'wrapper_sha256': sha(Path(__file__).resolve()), 'data_sha256': input_hashes,
++        'variant': 'author_supported_sg_pairing_0', 'author_default_config': original_config, 'effective_config': raw_config,
++        'configuration_change': {'training.sg_pairing': {'from': 1, 'to': 0}},
++        'effective_config_sha256': sha(config_path), 'author_config_sha256': sha(audit / 'author_default_config.yaml'),
+         'python': sys.version, 'executable': sys.executable, 'hostname': socket.gethostname(), 'packages': versions,
+         'gpu': torch.cuda.get_device_name(0), 'gpu_total_memory_bytes': torch.cuda.get_device_properties(0).total_memory,
+         'torch_cuda_runtime': torch.version.cuda, 'slurm_job_id': os.environ.get('SLURM_JOB_ID'),
+@@ -426,27 +436,29 @@
+             except ProfileStop:
+                 assert args.mode == 'preflight' and observer.last_epoch == 1
+                 prediction = observer.predict_and_replay()
+-                receipt = {'status': 'PROFILE_AND_ENGINEERING_CHECKS_PASSED', 'complete_official_reproduction': False,
++                receipt = {'status': 'SG0_PROFILE_AND_ENGINEERING_CHECKS_PASSED', 'complete_official_reproduction': False,
++                    'variant': 'author_supported_sg_pairing_0', 'configuration_change': {'training.sg_pairing': {'from': 1, 'to': 0}},
+                     'configured_epochs': 500, 'completed_epochs': 1, 'scope': 'Full-data, full-batch epoch-1 profile only; formal run must start in a fresh process.',
+                     'first_epoch': observer.events[0], 'training': observer.training, 'prediction': prediction,
+                     'checkpoints': observer.replays, 'wall_seconds': time.perf_counter() - start,
+                     'max_rss_kib_linux': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+                     'full_training_linear_projection_seconds': observer.training['observed_train_seconds'] * 500,
+                     'projection_warning': 'Single first epoch includes cold-start overhead. Use measured full-data memory/time to choose a bounded full-run allocation; do not present this projection as observed 500-epoch duration.'}
+-                write_json(root / 'PREFLIGHT_PROFILE_PASSED.json', receipt)
++                write_json(root / 'SG0_PREFLIGHT_PROFILE_PASSED.json', receipt)
+             else:
+                 assert args.mode == 'full' and observer.last_epoch == 500
+                 prediction = observer.predict_and_replay(namespace['pred'])
+                 assert len(observer.events) == 500 and np.isfinite(observer.trainer.hist.cpu().numpy()).all()
+                 required = ('model','training_history.csv','training_history.png','pred.mat','rel_err.csv','rel_err.png')
+                 outputs = {name: sha(workdir / 'model' / name) for name in required}
+-                receipt = {'status': 'OFFICIAL_500_EPOCHS_COMPLETE', 'complete_official_reproduction': True,
++                receipt = {'status': 'AUTHOR_SUPPORTED_SG0_500_EPOCHS_COMPLETE', 'complete_official_reproduction': True,
++                    'variant': 'author_supported_sg_pairing_0', 'configuration_change': {'training.sg_pairing': {'from': 1, 'to': 0}},
+                     'configured_epochs': 500, 'completed_epochs': 500, 'seed': 0,
+                     'main_prediction_model': 'In-memory final epoch 500, unchanged official entrypoint behavior',
+                     'training': observer.training, 'prediction': prediction, 'checkpoints': observer.replays,
+                     'official_artifact_sha256': outputs, 'wall_seconds': time.perf_counter() - start,
+                     'max_rss_kib_linux': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss}
+-                write_json(root / 'OFFICIAL_COMPLETE.json', receipt)
++                write_json(root / 'OFFICIAL_SG0_COMPLETE.json', receipt)
+         verify_inputs(source, data, manifest)
+         print(json.dumps({'mode': args.mode, 'status': receipt['status'], 'run_root': str(root)}, allow_nan=False))
+     except BaseException as error:

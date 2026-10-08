@@ -1,0 +1,81 @@
+{
+  "schema": "next_methods_partial_recovery_summary_v1",
+  "status": "STOPPED_AFTER_FAILURE",
+  "expected_fixed_trainings": 24,
+  "submitted_fixed_trainings": 12,
+  "unsubmitted_wave2_trainings": 12,
+  "successful_terminal_trainings": 5,
+  "failed_terminal_trainings": 1,
+  "running": 4,
+  "pending": 2,
+  "complete_evidence_archives_verified": 5,
+  "failed_evidence_archives_verified": 1,
+  "archive_bytes_total": 857477183,
+  "archive_members_total": 1075,
+  "checkpoint_files_verified": 131,
+  "selected_cpu_checkpoint_replays_passed": 4,
+  "successful_scheduled_final_endpoints_verified": 5,
+  "full_matrix_complete": false,
+  "automation_status": "PAUSED",
+  "wave2_submitted": false,
+  "complete_tasks": [
+    {
+      "job": "2351151_0",
+      "run_name": "first20e500-seed0-r1",
+      "archive_bytes": 114012756,
+      "archive_members": 174,
+      "checkpoint_file_count": 22,
+      "development_joint_mean": 0.0105581137965205,
+      "gate": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/first20e500-seed0-r1/extracted-r1/LOCAL_TASK_RECOVERY_GATE.json",
+      "cpu_checkpoint_replayed": true,
+      "replay_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/first20e500-seed0-r1/replay-final-r1/CHECKPOINT_REPLAY_REPORT.json"
+    },
+    {
+      "job": "2351151_3",
+      "run_name": "pushforward20e500-seed0-r1",
+      "archive_bytes": 114847344,
+      "archive_members": 175,
+      "checkpoint_file_count": 22,
+      "development_joint_mean": 0.01034461441244906,
+      "gate": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/pushforward20e500-seed0-r1/extracted-r1/LOCAL_TASK_RECOVERY_GATE.json",
+      "cpu_checkpoint_replayed": true,
+      "replay_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/pushforward20e500-seed0-r1/replay-final-r1/CHECKPOINT_REPLAY_REPORT.json"
+    },
+    {
+      "job": "2351151_2",
+      "run_name": "rollout20e500-seed0-r1",
+      "archive_bytes": 114789308,
+      "archive_members": 175,
+      "checkpoint_file_count": 22,
+      "development_joint_mean": 0.00962710393516306,
+      "gate": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/rollout20e500-seed0-r1/extracted-r1/LOCAL_TASK_RECOVERY_GATE.json",
+      "cpu_checkpoint_replayed": true,
+      "replay_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/rollout20e500-seed0-r1/replay-final-r1/CHECKPOINT_REPLAY_REPORT.json"
+    },
+    {
+      "job": "2351151_1",
+      "run_name": "teacher20e500-seed0-r1",
+      "archive_bytes": 114882698,
+      "archive_members": 175,
+      "checkpoint_file_count": 22,
+      "development_joint_mean": 0.009804768665974396,
+      "gate": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/teacher20e500-seed0-r1/extracted-r1/LOCAL_TASK_RECOVERY_GATE.json",
+      "cpu_checkpoint_replayed": true,
+      "replay_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/teacher20e500-seed0-r1/replay-final-r1/CHECKPOINT_REPLAY_REPORT.json"
+    },
+    {
+      "job": "2351151_7",
+      "run_name": "time20e500-seed0-r1",
+      "archive_bytes": 180475817,
+      "archive_members": 183,
+      "checkpoint_file_count": 22,
+      "development_joint_mean": 1.021304012112169e+27,
+      "gate": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/time20e500-seed0-r1/extracted-r1/LOCAL_TASK_RECOVERY_GATE.json",
+      "cpu_checkpoint_replayed": false,
+      "replay_report": null
+    }
+  ],
+  "failure_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/failure-recovery/auto20e500-seed0-r1/extracted-r1/FAILED_RECOVERY_REPORT.json",
+  "time_control_saved_solver_metrics_recheck": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-next-methods-20261004/web-execution-20261005-r1/training-recovery/time20e500-seed0-r1/SAVED_SOLVER_METRICS_RECHECK.json",
+  "last_verified_slurm_utc": "2026-10-05T04:37:05.472035+00:00"
+}

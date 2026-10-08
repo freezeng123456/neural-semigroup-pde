@@ -1,0 +1,122 @@
+[
+  {
+    "bundle": "20260905-burgers-flux-ablation-3seed-cpu-r1",
+    "file": "experiments/run_burgers_flux_ablation.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-flux-ablation-3seed-cpu-r1",
+    "file": "experiments/aggregate_burgers_flux_ablation.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-flux-ablation-3seed-cpu-r1",
+    "file": "experiments/run_burgers_semigroup_screen.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-flux-ablation-3seed-cpu-r1",
+    "file": "experiments/seed_utils.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-flux-ablation-3seed-cpu-r1",
+    "file": "experiments/experiment_artifacts.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-flux-ablation-3seed-cpu-r1",
+    "file": "experiments/tests/test_burgers_flux_ablation.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-flux-ablation-3seed-cpu-r1",
+    "file": "experiments/tests/test_burgers_flux_ablation_aggregation.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-matched-semigroup-screen-e479174-3seed-cpu-r1",
+    "file": "experiments/run_burgers_semigroup_screen.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-matched-semigroup-screen-e479174-3seed-cpu-r1",
+    "file": "experiments/aggregate_burgers_semigroup_screen.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-matched-semigroup-screen-e479174-3seed-cpu-r1",
+    "file": "experiments/pde_solver.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-matched-semigroup-screen-e479174-3seed-cpu-r1",
+    "file": "experiments/seed_utils.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-matched-semigroup-screen-e479174-3seed-cpu-r1",
+    "file": "experiments/experiment_artifacts.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-matched-semigroup-screen-e479174-3seed-cpu-r1",
+    "file": "experiments/tests/test_burgers_semigroup_screen.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-matched-semigroup-screen-e479174-3seed-cpu-r1",
+    "file": "experiments/tests/test_burgers_semigroup_aggregation.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-query-conditioning-attribution-fd27d7d-r1",
+    "file": "experiments/evaluate_burgers_query_conditioning.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-query-conditioning-attribution-fd27d7d-r1",
+    "file": "experiments/aggregate_burgers_query_conditioning.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-query-conditioning-attribution-fd27d7d-r1",
+    "file": "experiments/run_burgers_semigroup_screen.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-query-conditioning-attribution-fd27d7d-r1",
+    "file": "experiments/experiment_artifacts.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-query-conditioning-attribution-fd27d7d-r1",
+    "file": "experiments/tests/test_burgers_query_conditioning.py",
+    "exists": true,
+    "matches": true
+  },
+  {
+    "bundle": "20260905-burgers-query-conditioning-attribution-fd27d7d-r1",
+    "file": "experiments/tests/test_burgers_query_conditioning_aggregation.py",
+    "exists": true,
+    "matches": true
+  }
+]

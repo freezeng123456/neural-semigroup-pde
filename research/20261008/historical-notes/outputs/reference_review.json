@@ -1,0 +1,60 @@
+{
+  "full_solver_invariants": {
+    "max_positive_energy_step": 0.0,
+    "max_mean_drift": 3.642919299551295e-17
+  },
+  "refined_solver_invariants": {
+    "max_positive_energy_step": 0.0,
+    "max_mean_drift": 3.686287386450715e-17
+  },
+  "fine_to_refined_at_0.8_full512": {
+    "mse_mean": 7.85098420267147e-09,
+    "mse_max": 5.902687223161183e-08,
+    "relative_l2_mean": 0.00012842228724817622,
+    "relative_l2_max": 0.0005136196807368875,
+    "relative_l2_pooled": 0.00019470449520900789
+  },
+  "fine_to_refined_at_0.8_projected64": {
+    "mse_mean": 3.998174467329219e-16,
+    "mse_max": 5.900723843396919e-15,
+    "relative_l2_mean": 2.024376712562307e-08,
+    "relative_l2_max": 1.6344928298060834e-07,
+    "relative_l2_pooled": 4.399628589009455e-08
+  },
+  "dt_half_at_0.8_full512": {
+    "mse_mean": 6.553955087983486e-25,
+    "mse_max": 6.902819515115444e-24,
+    "relative_l2_mean": 1.254063917869223e-12,
+    "relative_l2_max": 6.084174697034861e-12,
+    "relative_l2_pooled": 1.7789578348267026e-12
+  },
+  "projected_restart_every_0.04": {
+    "mse_mean": 0.00012344923762415622,
+    "mse_max": 0.0008586502856294423,
+    "relative_l2_mean": 0.018333353409348985,
+    "relative_l2_max": 0.06235030462536421,
+    "relative_l2_pooled": 0.024447212923707128
+  },
+  "projected_restart_every_0.08": {
+    "mse_mean": 2.7267147198127285e-05,
+    "mse_max": 0.00019723597024917254,
+    "relative_l2_mean": 0.008548650442539857,
+    "relative_l2_max": 0.029882950863413082,
+    "relative_l2_pooled": 0.011489602403616269
+  },
+  "projected_restart_every_0.4": {
+    "mse_mean": 7.339392168938381e-09,
+    "mse_max": 1.3633749514320999e-07,
+    "relative_l2_mean": 8.304644910021069e-05,
+    "relative_l2_max": 0.0007856662104654412,
+    "relative_l2_pooled": 0.00018850166734547927
+  },
+  "cole_hopf_exact_at_0.8": {
+    "mse_mean": 1.8030014471556443e-32,
+    "mse_max": 1.8030014471556443e-32,
+    "relative_l2_mean": 6.619751184203248e-16,
+    "relative_l2_max": 6.619751184203248e-16,
+    "relative_l2_pooled": 6.619751184203248e-16
+  },
+  "cole_hopf_max_abs_error": 6.38378239159465e-16
+}

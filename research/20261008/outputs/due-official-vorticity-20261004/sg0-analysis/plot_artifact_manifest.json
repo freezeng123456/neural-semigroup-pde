@@ -1,0 +1,26 @@
+{
+  "plot_sg0_results.py": {
+    "sha256": "090bddc2a8b7c668caf4b979e44c2e0795f28e20a864295037c68b7544eeb8d8",
+    "bytes": 9643
+  },
+  "metrics.json": {
+    "sha256": "36dadcc0a05305752616d85fed191b93f238dfc06145ba91031d79d663c55aea",
+    "bytes": 3195
+  },
+  "test_error_curve.csv": {
+    "sha256": "299cf0964aa47adfc5b7111aadb4ae082d53eac44c3479360b0fc6319f13b2d0",
+    "bytes": 8533
+  },
+  "final_step_distribution.csv": {
+    "sha256": "b2caad68ade1217ba0a846c79be2b15ce0ee8cf51d80ba83075601de876427ca",
+    "bytes": 2612
+  },
+  "sg0_training_and_test_error.png": {
+    "sha256": "b2327c51a589fb17ce540f8cb5cc02ffce1510d4797f7b2cac870056debb6379",
+    "bytes": 276108
+  },
+  "sg0_training_and_test_error.pdf": {
+    "sha256": "2b5827949cb7c3005e525d965369b12a4fa3a2cd13bca8063175d2213865ac30",
+    "bytes": 27906
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "status": "PASS",
+  "synthetic_only": true,
+  "slurm_calls": "Mocked sacct only; no subprocess executed",
+  "network_calls": 0,
+  "model_inference_or_training": false,
+  "temporary_directory": "/var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/stage-b-recovery-selftest-07j3f8_8",
+  "cases": [
+    {
+      "name": "normal_full_pack_recover_and_operations",
+      "passed": true
+    },
+    {
+      "name": "normal_preflight_pack_recover",
+      "passed": true
+    },
+    {
+      "name": "pack_refuses_existing_archive",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": "Inspect/reuse existing capture; no overwrite"
+    },
+    {
+      "name": "archive_sha_mismatch",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "archive_size_mismatch",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "existing_target_not_overwritten",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "existing_report_not_overwritten",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "duplicate_member",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": "Duplicate archive members"
+    },
+    {
+      "name": "path_traversal_member",
+      "passed": true,
+      "expected_rejection": "ValueError",
+      "detail": "Unsafe/noncanonical path: 20261004-midpoint-stage-b-normal/../escape.txt"
+    },
+    {
+      "name": "absolute_member",
+      "passed": true,
+      "expected_rejection": "ValueError",
+      "detail": "Unsafe/noncanonical path: /escape.txt"
+    },
+    {
+      "name": "noncanonical_member",
+      "passed": true,
+      "expected_rejection": "ValueError",
+      "detail": "Unsafe/noncanonical path: 20261004-midpoint-stage-b-normal//alias.txt"
+    },
+    {
+      "name": "unlisted_member",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "inventory_omits_member",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "duplicate_inventory_entry",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "inventory_path_traversal",
+      "passed": true,
+      "expected_rejection": "ValueError",
+      "detail": "Unsafe/noncanonical path: ../outside"
+    },
+    {
+      "name": "inventory_run_path_traversal",
+      "passed": true,
+      "expected_rejection": "ValueError",
+      "detail": "Unsafe/noncanonical path: ../outside"
+    },
+    {
+      "name": "inventory_mode_mismatch",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "inventory_capture_mismatch",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "inventory_content_hash_mismatch",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": "PAYLOAD_MANIFEST.json"
+    },
+    {
+      "name": "member_content_corruption",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": "runs/gdsg500-seed0-r1/final_network.pt"
+    },
+    {
+      "name": "symbolic_link_member",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "hard_link_member",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "complete_pack_rejects_missing_final",
+      "passed": true,
+      "expected_rejection": "FileNotFoundError",
+      "detail": "[Errno 2] No such file or directory: '/private/var/folders/w1/rsm74mfs3txfbnbn2_5fbssr0000gn/T/stage-b-recovery-selftest-07j3f8_8/20261004-midpoint-stage-b-missing-final/runs/gdsg500-seed0-r1/final_network.pt'"
+    },
+    {
+      "name": "complete_pack_rejects_changed_final",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": "final_network.pt"
+    },
+    {
+      "name": "complete_pack_rejects_omitted_required",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": "Run manifest omits mandatory outputs"
+    },
+    {
+      "name": "complete_pack_rejects_wrong_arm",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "complete_pack_rejects_unsafe_manifest_path",
+      "passed": true,
+      "expected_rejection": "ValueError",
+      "detail": "Unsafe/noncanonical path: ../outside"
+    },
+    {
+      "name": "reject_running_scheduler",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "explicit_failed_capture_allows_partial",
+      "passed": true
+    },
+    {
+      "name": "preflight_rejects_wrong_job",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "preflight_rejects_cpu_device",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "preflight_rejects_empty_checks",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "preflight_rejects_failed_check",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    },
+    {
+      "name": "preflight_rejects_wrong_payload",
+      "passed": true,
+      "expected_rejection": "AssertionError",
+      "detail": ""
+    }
+  ],
+  "passed_cases": 34,
+  "source_sha256": {
+    "pack_evidence.py": "bb710d0466f7e4f9ce3e9f527ef22faafea4519d3efefda0a3911215acb82e8f",
+    "recover_evidence.py": "fdd609908660560a03ddddad3ae8657b42c56c5a9a1d7130ac0f2f2cd404c7ab",
+    "self_test_recovery.py": "d9e10175299bb1bd0fcdc71cf200c8d62bac6721455f9d343eec18f226018b9f"
+  }
+}

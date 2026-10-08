@@ -1,0 +1,12 @@
+{
+  "schema": "automation_failure_pause_proof_v1",
+  "id": "a",
+  "name": "跟进半群两路线正式实验2351151",
+  "kind": "heartbeat",
+  "status": "PAUSED",
+  "target_thread_id": "01a0fd5d-48e9-7d10-a231-72e5a11d4ef0",
+  "prompt_sha256": "64170ad691bbf6d7ec2a8f6eaa835aa93a19e7f70a40ccfc071268b893d227f7",
+  "updated_at": 1791173984225,
+  "verified_at_utc": "2026-10-05T04:45:22.154542+00:00",
+  "trigger": "2351151_6 FAILED 1:0; scheduled final non-finite rollout"
+}

@@ -1,0 +1,360 @@
+{
+  "status": "PASS",
+  "scope": "Pure synthetic arithmetic, failure handling and pairing checks; no real predictions, checkpoints, network calls or training.",
+  "checks": [
+    {
+      "name": "nominal_all_registered_gates",
+      "passed": true
+    },
+    {
+      "name": "row_order_invariant",
+      "passed": true
+    },
+    {
+      "name": "utility_error_at_inclusive_boundary",
+      "passed": true
+    },
+    {
+      "name": "utility_error_one_ulp_above",
+      "passed": true
+    },
+    {
+      "name": "utility_time_one_ulp_above",
+      "passed": true
+    },
+    {
+      "name": "utility_two_directions_and_gm",
+      "passed": true
+    },
+    {
+      "name": "utility_one_direction_despite_good_gm",
+      "passed": true
+    },
+    {
+      "name": "mechanism_at_inclusive_boundary",
+      "passed": true
+    },
+    {
+      "name": "mechanism_one_ulp_above",
+      "passed": true
+    },
+    {
+      "name": "mechanism_two_strict_wins",
+      "passed": true
+    },
+    {
+      "name": "mechanism_one_strict_win_despite_good_gm",
+      "passed": true
+    },
+    {
+      "name": "mechanism_ties_are_not_strict_wins",
+      "passed": true
+    },
+    {
+      "name": "utility_and_mechanism_are_separate",
+      "passed": true
+    },
+    {
+      "name": "MISSING_TRAINING_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "MISSING_TRAINING_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "MISSING_TRAINING_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "INCOMPLETE_TRAINING_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "INCOMPLETE_TRAINING_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "INCOMPLETE_TRAINING_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "TRAINING_FAILED_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "TRAINING_FAILED_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "TRAINING_FAILED_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "NONFINITE_OR_UNDEFINED_DEVELOPMENT_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "NONFINITE_OR_UNDEFINED_DEVELOPMENT_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "NONFINITE_OR_UNDEFINED_DEVELOPMENT_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "MISSING_EVALUATION_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "MISSING_EVALUATION_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "MISSING_EVALUATION_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "INCOMPLETE_EVALUATION_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "INCOMPLETE_EVALUATION_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "INCOMPLETE_EVALUATION_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "EVALUATION_FAILED_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "EVALUATION_FAILED_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "EVALUATION_FAILED_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "NONFINITE_OR_UNDEFINED_TEST_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "NONFINITE_OR_UNDEFINED_TEST_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "NONFINITE_OR_UNDEFINED_TEST_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "NONFINITE_FINAL_DIAGNOSTIC_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "NONFINITE_FINAL_DIAGNOSTIC_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "NONFINITE_FINAL_DIAGNOSTIC_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "INVALID_EVIDENCE_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "INVALID_EVIDENCE_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "INVALID_EVIDENCE_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "PAIRED_INPUT_INTEGRITY_FAILED_seed0_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "PAIRED_INPUT_INTEGRITY_FAILED_seed1_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "PAIRED_INPUT_INTEGRITY_FAILED_seed2_not_omitted",
+      "passed": true
+    },
+    {
+      "name": "gdsg500_failure_retained",
+      "passed": true
+    },
+    {
+      "name": "single500_failure_retained",
+      "passed": true
+    },
+    {
+      "name": "gdsg333_failure_retained",
+      "passed": true
+    },
+    {
+      "name": "gdsg333_failure_does_not_change_two_other_comparisons",
+      "passed": true
+    },
+    {
+      "name": "invalid_12_cell_identity_50",
+      "passed": true
+    },
+    {
+      "name": "invalid_12_cell_identity_51",
+      "passed": true
+    },
+    {
+      "name": "invalid_12_cell_identity_52",
+      "passed": true
+    },
+    {
+      "name": "geometric_mean_[0.55, 1.1, 2.2]",
+      "passed": true
+    },
+    {
+      "name": "geometric_mean_[0.45, 0.9, 1.8]",
+      "passed": true
+    },
+    {
+      "name": "geometric_mean_[0.4, 0.8, 1.6]",
+      "passed": true
+    },
+    {
+      "name": "geometric_mean_[1e-300, 1e+300, 1.0]",
+      "passed": true
+    },
+    {
+      "name": "geometric_mean_[0.0, 1.0, 2.0]",
+      "passed": true
+    },
+    {
+      "name": "undefined_gm_[]",
+      "passed": true
+    },
+    {
+      "name": "undefined_gm_[None, 1.0, 1.0]",
+      "passed": true
+    },
+    {
+      "name": "undefined_gm_[nan, 1.0, 1.0]",
+      "passed": true
+    },
+    {
+      "name": "undefined_gm_[inf, 1.0, 1.0]",
+      "passed": true
+    },
+    {
+      "name": "undefined_gm_[-1.0, 1.0, 1.0]",
+      "passed": true
+    },
+    {
+      "name": "zero_numerator_allowed",
+      "passed": true
+    },
+    {
+      "name": "zero_denominator_not_regularized",
+      "passed": true
+    },
+    {
+      "name": "undefined_comparator_blocks_utility",
+      "passed": true
+    },
+    {
+      "name": "joint_mean_is_mean_of_ratios",
+      "passed": true
+    },
+    {
+      "name": "per_time_reduction",
+      "passed": true
+    },
+    {
+      "name": "joint_differs_from_mean_time_ratio",
+      "passed": true
+    },
+    {
+      "name": "initial_snapshot_in_joint_denominator",
+      "passed": true
+    },
+    {
+      "name": "memory_layout_C",
+      "passed": true
+    },
+    {
+      "name": "memory_layout_F",
+      "passed": true
+    },
+    {
+      "name": "zero_truth_retains_undefined_not_dropped",
+      "passed": true
+    },
+    {
+      "name": "single_zero_time_not_hidden_by_joint_norm",
+      "passed": true
+    },
+    {
+      "name": "nonfinite_prediction_nan",
+      "passed": true
+    },
+    {
+      "name": "nonfinite_prediction_inf",
+      "passed": true
+    },
+    {
+      "name": "finite_float32_states_use_float64_norms",
+      "passed": true
+    },
+    {
+      "name": "wrong_state_dtype_rejected",
+      "passed": true
+    },
+    {
+      "name": "matching_pairs_and_short_budget_prefix",
+      "passed": true
+    },
+    {
+      "name": "pairing_detects_input_by_name",
+      "passed": true
+    },
+    {
+      "name": "pairing_detects_initial_rng",
+      "passed": true
+    },
+    {
+      "name": "pairing_detects_collocations",
+      "passed": true
+    },
+    {
+      "name": "pairing_detects_environment",
+      "passed": true
+    },
+    {
+      "name": "pairing_detects_indices",
+      "passed": true
+    },
+    {
+      "name": "pairing_detects_coins",
+      "passed": true
+    },
+    {
+      "name": "pairing_detects_history",
+      "passed": true
+    },
+    {
+      "name": "pairing_detects_diagnostic_common_inputs",
+      "passed": true
+    }
+  ],
+  "check_count": 87,
+  "analyzer_sha256": "708c7b58017c21ccc3d276a320fff4994572a47f13bb9e38eb92f3026b2cc9ed",
+  "review_script_sha256": "77c93183d346589d7e6a8815e3100aacabd49cb191b428b19d7cec5a42417043",
+  "network_calls": 0,
+  "optimizer_updates": 0,
+  "real_model_loads": 0
+}

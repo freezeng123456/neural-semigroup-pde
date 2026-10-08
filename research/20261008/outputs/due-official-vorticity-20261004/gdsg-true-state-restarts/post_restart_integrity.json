@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "official_source_files_unchanged": 75,
+  "three_frozen_scripts_unchanged": true,
+  "parameters_unchanged": true,
+  "optimizer_updates": 0,
+  "input_files_unchanged": 7,
+  "npz_csv_report_consistent": true,
+  "metrics_shape": [
+    100,
+    99
+  ]
+}

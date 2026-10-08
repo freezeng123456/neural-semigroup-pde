@@ -3,6 +3,10 @@
 Research code and LaTeX materials for learning boundary-admissible
 time-evolution operators of autonomous partial differential equations.
 
+## October 2026 code and results
+
+[Core code and result records](research/20261008/README.zh.md) include the official DUE baseline, the 12-run Stage B comparison, and the partial two-step/generator follow-up. [Negative findings](research/20261008/NEGATIVE_RESULTS.zh.md) are recorded explicitly. Model checkpoints, raw predictions and experiment archives are intentionally omitted under the current [retention policy](research/20261008/RETENTION_POLICY.zh.md); historical completion and replay reports describe checks performed before those products were discarded.
+
 ## Project goal
 
 The project studies a learned family of evolution operators
@@ -67,6 +71,30 @@ and the required
 [PDE theorem card](docs/research/PDE_THEOREM_CARD.md).
 
 ## Current status
+
+### October 3: validated Burgers reference and paired study
+
+The new dealiased reference passed independent refinement and physical checks.
+All 12 models completed the frozen 100-epoch study on independent projected
+targets. Autonomous/query MSE ratios are **1.0750** for the 33-parameter model
+and **1.0154** for the 1,313-parameter model; both miss the material accuracy
+threshold. Small/large ratios are **0.1408** and **0.1330**, favoring the small
+architecture in all three seeds. Both small variants passed every measured
+energy-monotonicity check. All models selected epoch 100.
+
+See the [results and scope](docs/research/BURGERS_REFERENCE_V2_RESULTS.md),
+[frozen protocol](docs/research/BURGERS_REFERENCE_V2_PROTOCOL.md), and
+[compact result record](results/20261003-burgers-reference-v2/README.md).
+The complete CPU suite passes 273 tests. A tested Fisher checkpoint evaluator
+is also available; its historical inputs still need recovery, as listed in
+the [usage guide](docs/research/FISHER_INRANGE_ATTRIBUTION_USAGE.md).
+
+Later GitHub branches also contain a six-seed noisy-data confirmation:
+A/B MSE is 1.3379 without noise and 0.3328 at noise 0.01. Its effective
+parameter counts differ, making noise and capacity controls the next research
+question. The historical results below retain their original scope.
+
+### Earlier work in the main snapshot
 
 This is a research prototype and an active mathematical draft. The repository contains the reviewed/fixed snapshot supplied with the project, including experiments, results, model checkpoints, figures, and paper/presentation sources.
 

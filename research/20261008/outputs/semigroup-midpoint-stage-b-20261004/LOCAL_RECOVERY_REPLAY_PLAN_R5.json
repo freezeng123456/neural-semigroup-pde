@@ -1,0 +1,238 @@
+{
+  "schema": "stage_b_local_recovery_replay_command_plan_v1",
+  "created_at_utc": "2026-10-04T13:05:17.661742+00:00",
+  "capture_report_sha256": "2ec7dea32846dd4cfa79d4702ecdcf6c8c5a77d27adfa385ecfb8a977555ecf0",
+  "capture_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/remote-receipts/MATRIX_CAPTURE_REPORT_R2.http-verified.json",
+  "generator_sha256": "c820d478bc5332a241651671c936b6756a87a47268f078513df1ab57c95cb87d",
+  "frozen_files": {
+    "PAYLOAD_MANIFEST.json": "c30e2208cff36ba79b91da43b947fd85f7f0c23088d5020e2824f906704df466",
+    "pack_evidence.py": "4406547114b29f6a99b1a68a067cb3095bda5df70f139815ba347e6afcb08bbc",
+    "recover_evidence.py": "58d8a9e9a0de99a5365cfb1e2f182a548bc0972f23163046b0f0e32c172d07f2",
+    "replay_final_checkpoint.py": "942102528eeccb9ba45319c25fdc27673b667ae5c7c4116d41c6b7ad0c1d420d"
+  },
+  "development_data": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/semigroup_midpoint_stage_b/data-r1/development_data.npz",
+  "public_test_data_used": false,
+  "commands_executed": 0,
+  "optimizer_updates": 0,
+  "runs": [
+    {
+      "run_name": "gdsg500-seed0-r1",
+      "job_id": "2349407_0",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg500-seed0-r1-job2349407_0-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg500-seed0-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/gdsg500-seed0-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg500-seed0-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "2232b3d9882ccc6c41db1ab6ec6f4c936f2076cf818312a1aac150eb945ab471",
+        "prediction_sha256": "4d33f262a34bc96d83ae73887b86e10be07f0f1cb9b38f2daea335fcada699da",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "single500-seed0-r1",
+      "job_id": "2349407_1",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/single500-seed0-r1-job2349407_1-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/single500-seed0-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/single500-seed0-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/single500-seed0-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "606c068c8339601c016109b85ed3ba403e94fa131850d34430da03fdfc37b6e9",
+        "prediction_sha256": "3bd2e3e8f1eb2a1d3f8be727c9dfbf99487c8a94185f89f017ad6400b2186eff",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "midpoint500-seed0-r1",
+      "job_id": "2349407_2",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/midpoint500-seed0-r1-job2349407_2-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/midpoint500-seed0-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/midpoint500-seed0-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/midpoint500-seed0-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "de40e2aeb7292375c51198bfab37f7a6dc57d4f1fc6cacb6005753b747967d77",
+        "prediction_sha256": "7e30801e21e67b3575f5a4a57d18756a95a93af92df4c19a09fb7f17a5c87057",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "gdsg333-seed0-r1",
+      "job_id": "2349407_3",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg333-seed0-r1-job2349407_3-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg333-seed0-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/gdsg333-seed0-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg333-seed0-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "20bb4a651f74cfff10ad773186a82dc1e5b597c463220795d7d17b87d0fd22cc",
+        "prediction_sha256": "82c90378c6f8692ac7e64935c6f63bf9c15bb55d71e48fdb69a264c21bca637e",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "single500-seed1-r1",
+      "job_id": "2349407_4",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/single500-seed1-r1-job2349407_4-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/single500-seed1-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/single500-seed1-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/single500-seed1-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "47f5a4a1559d71f9c0ad5e7329a00ec251df4638f146a3d97ce1c12cecdebf5f",
+        "prediction_sha256": "18fd4463df178f5fce0181af88b98b25ed366a298c38c41685277f67a209ef2e",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "midpoint500-seed1-r1",
+      "job_id": "2349407_5",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/midpoint500-seed1-r1-job2349407_5-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/midpoint500-seed1-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/midpoint500-seed1-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/midpoint500-seed1-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "48da2c021d05c8bfb89334d2cd61d78c70062dc03d57f5d985d8704626154d7d",
+        "prediction_sha256": "848c5c92686be1a482c99f4ccd936a55756e1c477b70794d70b9bbb96d64ff2f",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "gdsg333-seed1-r1",
+      "job_id": "2349407_6",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg333-seed1-r1-job2349407_6-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg333-seed1-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/gdsg333-seed1-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg333-seed1-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "b2cb23077314106cf87a8fc05b406eb2621a37ddfb7a6e268860ebc36df9b7ed",
+        "prediction_sha256": "f3b66a84bb5999009516e5ae1812a9545a3c80eb96ee8fde5e8817ada4d22577",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "gdsg500-seed1-r1",
+      "job_id": "2349407_7",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg500-seed1-r1-job2349407_7-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg500-seed1-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/gdsg500-seed1-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg500-seed1-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "04fd591e1344b919a5ef477621ef6a96fcbc796bd3185f62b17633598f3d61ab",
+        "prediction_sha256": "942551be323964e6da6cdde946ddbac510ba856189f35d81aaa3ad199fa19f48",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "midpoint500-seed2-r1",
+      "job_id": "2349407_8",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/midpoint500-seed2-r1-job2349407_8-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/midpoint500-seed2-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/midpoint500-seed2-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/midpoint500-seed2-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "c8e9acd7cb8bf6060d6d5aa222659dc5be64677709981236adf069d9f4c290c3",
+        "prediction_sha256": "2626b8c5d2f36e31d4551151bda539999eb6768cacc28b0ef6d1669650e15512",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "gdsg333-seed2-r1",
+      "job_id": "2349407_9",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg333-seed2-r1-job2349407_9-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg333-seed2-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/gdsg333-seed2-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg333-seed2-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "baa73e745a7716cff8fcfc48df65868145d1c4f7007d2c71db4987f148885c14",
+        "prediction_sha256": "6d010b284b71a5595c8085d9e10ead11dd6d1e65c733d61e9e8f41e721278934",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "gdsg500-seed2-r1",
+      "job_id": "2349407_10",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/gdsg500-seed2-r1-job2349407_10-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/gdsg500-seed2-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/gdsg500-seed2-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/gdsg500-seed2-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "6ab4c68bb38551683e17ebff38308039af761bd7801313f98064cbdcd6f8a265",
+        "prediction_sha256": "d332653f0ec0eb253d1e52526324b5790a5e8b1a89d167baf50ff33dfd8835b7",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    },
+    {
+      "run_name": "single500-seed2-r1",
+      "job_id": "2349407_11",
+      "commands": [],
+      "status": "RECOVERY_AND_REPLAY_REVERIFIED",
+      "paths": {
+        "archive": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/archives/single500-seed2-r1-job2349407_11-COMPLETE.tar.gz",
+        "recovery": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery/single500-seed2-r1",
+        "recovery_report": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/training-recovery-reports/single500-seed2-r1.json",
+        "replay": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup-midpoint-stage-b-20261004/replay/single500-seed2-r1"
+      },
+      "recovery_status": "COMPLETED_OUTPUTS_REVERIFIED",
+      "replay_verification": {
+        "report_sha256": "224d960ba4a4c51bc603af1baa563fe70923fad1790624f0503d30c85d8cdfee",
+        "prediction_sha256": "e31fcb3c818a094339c3e6d05d73c31ad0b7bf8ef016cb7c6cd41386954d3c65",
+        "status": "PASS_RECORD_AND_INPUTS_REVERIFIED"
+      }
+    }
+  ],
+  "completion_verified": true,
+  "execution_rule": "Run each ready cell in listed phase order. Save return code/stdout/stderr outside recovered/replay inputs; do not run its replay after recovery failure. Never repeat failed commands automatically. Regenerate a NEW plan after execution to verify existing complete outputs.",
+  "reuse_limit": "Rechecks authentic archive/current recovered hashes and bound PASS replay outputs; it does not independently repeat prior numerical inference or prove the environment used by externally generated historical replay records."
+}

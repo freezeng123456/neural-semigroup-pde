@@ -1,0 +1,34 @@
+{
+  "MATRIX_ANALYSIS.json": {
+    "sha256": "b4f0d9c0cfea1b2f5e6ffb8619d121aa3bbe84c150cb5f8dfe6a28099fe45c9e",
+    "bytes": 306605
+  },
+  "error_curves.csv": {
+    "sha256": "c9a16f792d883dbe6a41c30a731d53fc7e69826fd6851ce4ff9b2e13d9335c3c",
+    "bytes": 121114
+  },
+  "matrix_overview.pdf": {
+    "sha256": "45db75f33c1c192d0f1ce4b1b1883d4047a3b2b85c74b3496ecd8da4075c82ca",
+    "bytes": 32883
+  },
+  "matrix_overview.png": {
+    "sha256": "35b9e587d1487dd2c49362881d5e6a173efafec24adabc94e0fea4509b8acb7b",
+    "bytes": 269376
+  },
+  "paired_ratios.csv": {
+    "sha256": "9ffbe8063ab5d0d5dc9dc891d98774cfe3c851ac0df491d03cb8b03a7021e51c",
+    "bytes": 1679
+  },
+  "per_seed_results.csv": {
+    "sha256": "3ebb3fda54a2aa4be86e13c6ec7665f81ff22e8ac963d4791e5d5d723de211da",
+    "bytes": 4537
+  },
+  "per_trajectory_metrics.csv": {
+    "sha256": "1bd5e9e9d042192b322743e10c45bb2e7b917b3eca700a4c046138b5da020cd6",
+    "bytes": 90886
+  },
+  "recomputed_metrics.npz": {
+    "sha256": "7d2db0103c51bffb8083248b991ab43a7a11f786f563b985ac5935107c26b533",
+    "bytes": 1028712
+  }
+}

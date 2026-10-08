@@ -1,0 +1,1128 @@
+{
+  "review_date": "2026-10-03",
+  "scope": "Targeted primary-source review, not exhaustive; author code not run; no new model training.",
+  "count": 28,
+  "papers": [
+    {
+      "id": "gouasmi2017memory",
+      "title": "A priori estimation of memory effects in coarse-grained nonlinear systems using the Mori-Zwanzig formalism",
+      "authors": [
+        "Ayoub Gouasmi",
+        "Eric J. Parish",
+        "Karthik Duraisamy"
+      ],
+      "year": 2017,
+      "venue": "Proceedings of the Royal Society A",
+      "status": "Journal article; arXiv v2 read, linked journal DOI verified on arXiv; publisher page unavailable",
+      "arxiv": "1611.06277v2",
+      "url": "https://arxiv.org/abs/1611.06277",
+      "fulltext": "https://arxiv.org/html/1611.06277v2",
+      "doi": "10.1098/rspa.2017.0385",
+      "code_url": null,
+      "code_status": "No author code link verified in this review",
+      "read_sections": [
+        "2.1 reduced linear system and exact memory identity",
+        "2.2-2.5 Liouville/projection/GLE",
+        "3 pseudo-orthogonal dynamics",
+        "4 Burgers and KS",
+        "5 conclusion"
+      ],
+      "method_zh": "将未解析模态作用写为记忆积分与初始未解析状态项；用伪正交动力学和完整轨迹先验估计记忆核。",
+      "evidence_zh": "线性情形精确；Burgers、KS 的欠分辨率案例支持该近似重构未解析尺度作用。",
+      "limits_zh": "MZ 恒等式本身不降低计算成本；非线性记忆核计算依赖近似。不是自治神经网络泛化优势定理。",
+      "relevance_zh": "帮助定义粗状态闭合误差及记忆诊断。我们的投影重启差异只验证特定补零闭合存在信息损失，不是所有 N64 自治模型误差下界。",
+      "category": "记忆与粗尺度闭合",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/abs/1611.06277",
+      "fulltext_url": "https://arxiv.org/html/1611.06277v2",
+      "method": "将未解析模态作用写为记忆积分与初始未解析状态项；用伪正交动力学和完整轨迹先验估计记忆核。",
+      "evidence": "线性情形精确；Burgers、KS 的欠分辨率案例支持该近似重构未解析尺度作用。",
+      "limitations": "MZ 恒等式本身不降低计算成本；非线性记忆核计算依赖近似。不是自治神经网络泛化优势定理。",
+      "relevance": "帮助定义粗状态闭合误差及记忆诊断。我们的投影重启差异只验证特定补零闭合存在信息损失，不是所有 N64 自治模型误差下界。",
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "neural_ode2018",
+      "title": "Neural Ordinary Differential Equations",
+      "authors": [
+        "Ricky T. Q. Chen",
+        "Yulia Rubanova",
+        "Jesse Bettencourt",
+        "David Duvenaud"
+      ],
+      "year": 2018,
+      "venue": "NeurIPS 2018",
+      "status": "published",
+      "url": "https://arxiv.org/abs/1806.07366",
+      "read_scope": [
+        "abstract and bibliographic record"
+      ],
+      "method": "用神经网络参数化连续时间向量场，再以数值积分产生预测。",
+      "limitations": "背景阅读；一般形式允许显含时间，并不自动形成自治一参数半群。",
+      "category": "基础与评测",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/abs/1806.07366",
+      "fulltext_url": null,
+      "evidence": "",
+      "relevance": "",
+      "read_sections": [
+        "abstract and bibliographic record"
+      ],
+      "read_depth": "摘要/书目/仓库背景核对",
+      "publication_label": "已发表",
+      "code_status": "本次未核实完整作者实现；未运行代码。"
+    },
+    {
+      "id": "deeponet2019",
+      "title": "DeepONet: Learning nonlinear operators for identifying differential equations based on the universal approximation theorem of operators",
+      "authors": [
+        "Lu Lu",
+        "Pengzhan Jin",
+        "George Em Karniadakis"
+      ],
+      "year": 2019,
+      "venue": "arXiv:1910.03193; related expanded journal paper in Nature Machine Intelligence (2021)",
+      "status": "preprint record linked to later journal article; title and authors here follow the arXiv version",
+      "url": "https://arxiv.org/abs/1910.03193",
+      "related_doi": "10.1038/s42256-021-00302-5",
+      "read_scope": [
+        "arXiv abstract and linked journal DOI; journal full text not read"
+      ],
+      "method": "branch/trunk 网络分别编码输入函数与输出坐标。",
+      "limitations": "仅作算子学习背景；通用逼近不保证优化、泛化或半群一致性。",
+      "category": "基础与评测",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/abs/1910.03193",
+      "fulltext_url": null,
+      "evidence": "",
+      "relevance": "",
+      "read_sections": [
+        "arXiv abstract and linked journal DOI; journal full text not read"
+      ],
+      "read_depth": "摘要/书目/仓库背景核对",
+      "publication_label": "预印本记录关联2021期刊扩展版",
+      "code_status": "本次未核实完整作者实现；未运行代码。"
+    },
+    {
+      "id": "hnn2019",
+      "title": "Hamiltonian Neural Networks",
+      "authors": [
+        "Sam Greydanus",
+        "Misko Dzamba",
+        "Jason Yosinski"
+      ],
+      "year": 2019,
+      "venue": "NeurIPS 2019",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/26cd8ecadce0d4efd6cc8a8725cbd1f8-Paper.pdf",
+      "code_url": "https://github.com/greydanus/hamiltonian-nn",
+      "read_scope": [
+        "official abstract",
+        "author repository methods",
+        "hnn.py"
+      ],
+      "constraint": "hard continuous learned-energy conservation; generic RK4 is not exact energy preserving",
+      "task": "low-dimensional mechanical ODE",
+      "relevance": "foundational generator baseline; not a PDE or observation-noise result",
+      "category": "能量与物理结构",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2019/file/26cd8ecadce0d4efd6cc8a8725cbd1f8-Paper.pdf",
+      "fulltext_url": null,
+      "method": "以学习的Hamiltonian梯度构造连续动力学。",
+      "evidence": "低维机械系统；核查了作者仓库方法和hnn.py。",
+      "limitations": "保持的是学习能量；一般RK4不精确保能量。不是PDE或观测噪声实验。",
+      "read_sections": [
+        "official abstract",
+        "author repository methods",
+        "hnn.py"
+      ],
+      "read_depth": "摘要/书目/仓库背景核对",
+      "publication_label": "已发表",
+      "code_status": "本次未核实完整作者实现；未运行代码。"
+    },
+    {
+      "id": "dgnet2020",
+      "title": "Deep Energy-Based Modeling of Discrete-Time Physics",
+      "authors": [
+        "Takashi Matsubara",
+        "Ai Ishikawa",
+        "Takaharu Yaguchi"
+      ],
+      "year": 2020,
+      "venue": "NeurIPS 2020",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2020/file/98b418276d571e623651fc1d471c7811-Paper.pdf",
+      "code_url": "https://github.com/tksmatsubara/discrete-autograd",
+      "read_scope": [
+        "sections 3.3-3.4",
+        "section 4 comparison setup",
+        "abstract"
+      ],
+      "constraint": "discrete gradient implicit update preserves learned-energy behavior; explicit replacement does not inherit the same guarantee",
+      "limitation": "G assumed known in experiments; solver choice varies between comparisons",
+      "category": "能量与物理结构",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2020/file/98b418276d571e623651fc1d471c7811-Paper.pdf",
+      "fulltext_url": null,
+      "method": "离散梯度配合隐式更新，保持学习能量的守恒或耗散行为。",
+      "evidence": "读取方法与对照设置；实验中结构算子G已知。",
+      "limitations": "显式替换不继承相同保证；比较中的求解器选择不同。",
+      "relevance": "",
+      "read_sections": [
+        "sections 3.3-3.4",
+        "section 4 comparison setup",
+        "abstract"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表",
+      "code_status": "本次未核实完整作者实现；未运行代码。"
+    },
+    {
+      "id": "fno2021",
+      "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+      "authors": [
+        "Zongyi Li",
+        "Nikola Kovachki",
+        "Kamyar Azizzadenesheli",
+        "Burigede Liu",
+        "Kaushik Bhattacharya",
+        "Andrew Stuart",
+        "Anima Anandkumar"
+      ],
+      "year": 2021,
+      "preprint_year": 2020,
+      "venue": "ICLR 2021",
+      "status": "published",
+      "url": "https://arxiv.org/abs/2010.08895",
+      "read_scope": [
+        "abstract and bibliographic record"
+      ],
+      "method": "在 Fourier 空间参数化积分核，学习函数到函数的映射。",
+      "limitations": "背景阅读；骨干本身没有半群或长期准确性保证。",
+      "category": "基础与评测",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/abs/2010.08895",
+      "fulltext_url": null,
+      "evidence": "",
+      "relevance": "",
+      "read_sections": [
+        "abstract and bibliographic record"
+      ],
+      "read_depth": "摘要/书目/仓库背景核对",
+      "publication_label": "已发表",
+      "code_status": "本次未核实完整作者实现；未运行代码。"
+    },
+    {
+      "id": "mno2022",
+      "title": "Learning Chaotic Dynamics in Dissipative Systems",
+      "arxiv_title": "Learning Dissipative Dynamics in Chaotic Systems",
+      "authors": [
+        "Zongyi Li",
+        "Miguel Liu-Schiaffini",
+        "Nikola Kovachki",
+        "Kamyar Azizzadenesheli",
+        "Burigede Liu",
+        "Kaushik Bhattacharya",
+        "Andrew Stuart",
+        "Anima Anandkumar"
+      ],
+      "year": 2022,
+      "venue": "NeurIPS 2022",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/6ad68277e27b42c60ac228c9859fc1a2-Abstract-Conference.html",
+      "fulltext_url": "https://arxiv.org/html/2106.06898v2",
+      "code_url": "https://github.com/neuraloperator/markov_neural_operator",
+      "version": "arXiv v2 2022-09-28",
+      "read_scope": [
+        "sections 2-4",
+        "Theorem 1",
+        "author repository"
+      ],
+      "constraint": "soft shell contraction training; optional hard dissipativity postprocessing far from attractor",
+      "task": "Lorenz63, KS, Kolmogorov flow; short trajectories and long statistics",
+      "noise_evidence": "large perturbations are not noisy-label robustness; noisy-supervision sweep not verified",
+      "theory_scope": "finite number of compositions on compact initial sets, existence of approximant",
+      "category": "能量与物理结构",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/6ad68277e27b42c60ac228c9859fc1a2-Abstract-Conference.html",
+      "method": "Markov神经算子，以吸引子外收缩训练及可选后处理维持耗散。",
+      "evidence": "Lorenz63、KS和Kolmogorov流；关注长程统计。",
+      "limitations": "有限次组合的逼近存在性不等于任意长程保证；大扰动实验不是带噪标签实验。",
+      "relevance": "",
+      "read_sections": [
+        "sections 2-4",
+        "Theorem 1",
+        "author repository"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表",
+      "code_status": "本次未核实完整作者实现；未运行代码。"
+    },
+    {
+      "id": "sampling2022",
+      "title": "A Sampling Theorem for Exact Identification of Continuous-time Nonlinear Dynamical Systems",
+      "authors": [
+        "Zhexuan Zeng",
+        "Zuogong Yue",
+        "Alexandre Mauroy",
+        "Jorge Goncalves",
+        "Ye Yuan"
+      ],
+      "year": 2022,
+      "venue": "arXiv:2204.14021",
+      "status": "preprint record; later formal publication not verified",
+      "url": "https://arxiv.org/abs/2204.14021",
+      "fulltext_url": "https://arxiv.org/pdf/2204.14021",
+      "read_scope": [
+        "§II system aliasing definitions",
+        "§IV valid Koopman eigenspace",
+        "§IV.C aliasing-space restriction",
+        "§IV.D Proposition2/Theorem1"
+      ],
+      "method": "将固定采样间隔下生成元辨识写为算子对数问题，给出特定Koopman空间和候选谱限制下的采样条件。",
+      "limitations": "读取的条件依赖有效特征函数、候选类与谱限制，不是所有非线性PDE的无条件采样定理。",
+      "relevance": "单终点加半群律不能普遍辨识真实生成元；时滞设计和候选类限制已有系统辨识先例。",
+      "category": "半群与连续时间",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/abs/2204.14021",
+      "evidence": "",
+      "read_sections": [
+        "§II system aliasing definitions",
+        "§IV valid Koopman eigenspace",
+        "§IV.C aliasing-space restriction",
+        "§IV.D Proposition2/Theorem1"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "预印本/正式发表未核实",
+      "code_status": "本次未核实完整作者实现；未运行代码。"
+    },
+    {
+      "id": "chen_wu_2023_deep_osg",
+      "title": "Deep-OSG: Deep Learning of Operators in Semigroup",
+      "authors": [
+        "Junfeng Chen",
+        "Kailiang Wu"
+      ],
+      "year": 2023,
+      "status": "peer-reviewed journal article",
+      "venue": "Journal of Computational Physics 493:112498",
+      "arxiv": "2302.03358",
+      "primary_urls": [
+        "https://arxiv.org/html/2302.03358v2",
+        "https://www.sciencedirect.com/science/article/abs/pii/S0021999123005934"
+      ],
+      "code_url": null,
+      "related_code_url": "https://github.com/AI4Equations/due",
+      "code_status": "Original paper code link not found; author-maintained successor DUE verified.",
+      "method": "直接学习 u+ΔNθ(u,Δ)，零时刻恒等为硬结构，GDSG 为软半群组合正则；LISG 为轨迹多步监督。",
+      "evidence": "ODE、刚性反应、平流、Burgers、Navier–Stokes。线性 ODE 展示 2%/5% 乘性均匀测量噪声。",
+      "limitations": "Theorem 1 假设均匀逼近误差、Lipschitz 性和可达域；Theorem 2 假设时间划分间预测接近。无 SGD 保证或准确性普适提升保证。噪声展示不是硬/软半群、有效容量匹配的因果实验；部分 ODE 使用100000 epochs。",
+      "sections_pages_read": [
+        "§3.1 OSG-Net Eq.(8)",
+        "§3.2 GDSG/LISG",
+        "§3.3 Theorems 1–2",
+        "§5.1.1 noisy linear ODE",
+        "§5.1.2 periodic attractor",
+        "§5.2 PDEs"
+      ],
+      "relevance": "最接近的直接变时滞软半群基线；抗噪半群学习本身已非新命题。",
+      "category": "半群与连续时间",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/html/2302.03358v2",
+      "fulltext_url": null,
+      "read_sections": [
+        "§3.1 OSG-Net Eq.(8)",
+        "§3.2 GDSG/LISG",
+        "§3.3 Theorems 1–2",
+        "§5.1.1 noisy linear ODE",
+        "§5.1.2 periodic attractor",
+        "§5.2 PDEs"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "lippe2023pderefiner",
+      "title": "PDE-Refiner: Achieving Accurate Long Rollouts with Neural PDE Solvers",
+      "authors": [
+        "Phillip Lippe",
+        "Bastiaan S. Veeling",
+        "Paris Perdikaris",
+        "Richard E. Turner",
+        "Johannes Brandstetter"
+      ],
+      "year": 2023,
+      "venue": "NeurIPS 2023",
+      "status": "Peer-reviewed conference paper",
+      "arxiv": "2308.05732",
+      "url": "https://papers.nips.cc/paper_files/paper/2023/hash/d529b943af3dba734f8a7d49efcb6d09-Abstract-Conference.html",
+      "fulltext": "https://arxiv.org/pdf/2308.05732",
+      "code_url": "https://github.com/pdearena/pdearena",
+      "code_status": "Official paper links microsoft/pdearena, now redirects to pdearena/pdearena; training instructions explicitly include pderefiner_train.py",
+      "code_docs": "https://pdearena.github.io/pdearena/train/",
+      "read_sections": [
+        "2 frequency analysis",
+        "3 denoising refinement and 3.1 diffusion interpretation (PDF p4-5)",
+        "4.1 refinements and baselines (PDF p6-7)",
+        "4.2 Kolmogorov flow",
+        "5 limitations (PDF p10)",
+        "Appendix A reproducibility"
+      ],
+      "method_zh": "先预测下一状态，再以逐渐减小的人工高斯噪声训练去噪修正，补足普通 MSE 忽略的低幅频率。",
+      "evidence_zh": "KS 单次修正已比其最佳基线延长稳定滚动约20%，收益约在3至4次修正趋缓；也评估2D Kolmogorov flow。",
+      "limits_zh": "每步需多次模型调用，FNO收益较小；主要同分布测试。去噪过程使用的人造噪声不是对自治结构抗真实观测噪声的证明。",
+      "relevance_zh": "应加入频谱误差、有效预测时长和等推理成本对照，而非只比较一步 MSE 或组合缺陷。",
+      "category": "记忆与粗尺度闭合",
+      "review_date": "2026-10-03",
+      "primary_url": "https://papers.nips.cc/paper_files/paper/2023/hash/d529b943af3dba734f8a7d49efcb6d09-Abstract-Conference.html",
+      "fulltext_url": "https://arxiv.org/pdf/2308.05732",
+      "method": "先预测下一状态，再以逐渐减小的人工高斯噪声训练去噪修正，补足普通 MSE 忽略的低幅频率。",
+      "evidence": "KS 单次修正已比其最佳基线延长稳定滚动约20%，收益约在3至4次修正趋缓；也评估2D Kolmogorov flow。",
+      "limitations": "每步需多次模型调用，FNO收益较小；主要同分布测试。去噪过程使用的人造噪声不是对自治结构抗真实观测噪声的证明。",
+      "relevance": "应加入频谱误差、有效预测时长和等推理成本对照，而非只比较一步 MSE 或组合缺陷。",
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "rotman_2023_semisupervised",
+      "title": "Semi-supervised learning of partial differential operators and dynamical flows",
+      "authors": [
+        "Michael Rotman",
+        "Amit Dekel",
+        "Ran Ilan Ber",
+        "Lior Wolf",
+        "Yaron Oz"
+      ],
+      "year": 2023,
+      "status": "peer-reviewed conference paper",
+      "venue": "UAI 2023; PMLR 216:1785–1794",
+      "primary_urls": [
+        "https://proceedings.mlr.press/v216/rotman23a.html",
+        "https://proceedings.mlr.press/v216/rotman23a/rotman23a.pdf"
+      ],
+      "code_url": "https://github.com/rotmanmi/Semi-Supervised-Learning-of-Dynamical-Flows",
+      "code_status": "Official repository linked in paper and opened; not executed.",
+      "method": "时间超网络产生 FNO 权重，终点标签、初始恒等、二段组合和多段终点损失共同训练；软约束。",
+      "evidence": "广义 Burgers、Chafee–Infante、2D Burgers、2D/3D Navier–Stokes；1000训练/100测试；组合损失与激活消融。",
+      "limitations": "未找到噪声实验。模型和损失同时变化，未隔离半群结构的单因素收益。Lemma 4.1 的单时滞唯一辨识论证需要额外条件；独立反例分析见 notes，属于已有 system-aliasing 问题，不当作我们的新贡献。",
+      "sections_pages_read": [
+        "PDF pp.2–3 §3 Eq.(1) assumptions",
+        "PDF p.3 printed1787 Lemma4.1 / Eq.(10)",
+        "PDF p.4 §4.1 losses",
+        "PDF pp.5–7 §5 data/results/ablations"
+      ],
+      "relevance": "必须区分半群一致性和生成元辨识；单终点监督已有明确先例。",
+      "category": "半群与连续时间",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.mlr.press/v216/rotman23a.html",
+      "fulltext_url": null,
+      "read_sections": [
+        "PDF pp.2–3 §3 Eq.(1) assumptions",
+        "PDF p.3 printed1787 Lemma4.1 / Eq.(10)",
+        "PDF p.4 §4.1 losses",
+        "PDF pp.5–7 §5 data/results/ablations"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "apebench2024",
+      "title": "APEBench: A Benchmark for Autoregressive Neural Emulators of PDEs",
+      "authors": [
+        "Felix Koehler",
+        "Simon Niedermayr",
+        "Rüdiger Westermann",
+        "Nils Thuerey"
+      ],
+      "year": 2024,
+      "venue": "NeurIPS 2024 Datasets and Benchmarks",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/d9875ebcf74bccdc5076acab0dbee62c-Abstract-Datasets_and_Benchmarks_Track.html",
+      "fulltext_url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/d9875ebcf74bccdc5076acab0dbee62c-Paper-Datasets_and_Benchmarks_Track.pdf",
+      "code_url": "https://github.com/tum-pbs/apebench",
+      "code_status": "Official repository and paper ablation inventory verified; not executed.",
+      "read_scope": [
+        "§2 motivational advection example",
+        "§4 unrolling taxonomy and metrics",
+        "§5 architecture/training examples",
+        "§6 limitations",
+        "§7 conclusions"
+      ],
+      "method": "46种1D/2D/3D动力学，伪谱可微求解器和统一多步训练框架；评估滚动误差及混合求解器。",
+      "evidence": "简单线性模型也存在一步误差与长程误差取舍；作者代码列出参数量、训练数据量、unrolling与训练时间消融。",
+      "limitations": "当前框架主要限于周期边界、均匀Cartesian网格；不同难度和分辨率定义需按其协议理解。",
+      "relevance": "可复用评测和数据生成思想，避免只用单个Burgers算例形成结论。",
+      "category": "基础与评测",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/d9875ebcf74bccdc5076acab0dbee62c-Abstract-Datasets_and_Benchmarks_Track.html",
+      "read_sections": [
+        "§2 motivational advection example",
+        "§4 unrolling taxonomy and metrics",
+        "§5 architecture/training examples",
+        "§6 limitations",
+        "§7 conclusions"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "poseidon2024",
+      "title": "Poseidon: Efficient Foundation Models for PDEs",
+      "authors": [
+        "Maximilian Herde",
+        "Bogdan Raonić",
+        "Tobias Rohner",
+        "Roger Käppeli",
+        "Roberto Molinaro",
+        "Emmanuel de Bézenac",
+        "Siddhartha Mishra"
+      ],
+      "year": 2024,
+      "venue": "NeurIPS 2024",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/84e1b1ec17bb11c57234e96433022a9a-Abstract-Conference.html",
+      "fulltext_url": "https://arxiv.org/html/2405.19101v2",
+      "version": "v2, 2024-11-05",
+      "code_url": "https://github.com/camlab-ethz/poseidon",
+      "data_url": "https://huggingface.co/camlab-ethz",
+      "code_status": "Official repository and model/data links verified; not executed.",
+      "read_scope": [
+        "§2 Eqs.5-8 all2all",
+        "§3 pretraining/downstream tasks",
+        "Appendix D.6.1 all2all ablations",
+        "D.6.2 direct/autoregressive inference",
+        "D.6.7 initial-condition noise"
+      ],
+      "method": "scOT 时间条件 transformer；all2all 从同一轨迹构造多个起止时刻训练对，利用真解半群性质提高数据利用率。",
+      "evidence": "流体预训练后在15项下游任务微调，其中包含预训练未见物理。all2all 的收益有消融。",
+      "limitations": "all2all 不强制网络满足半群律；新物理结果含微调。初值噪声测试不等于带噪标签训练。大规模预训练成本不能忽略。",
+      "relevance": "借鉴轨迹内部配对并公平施加到各基线；当前小模型无需直接与大型预训练模型竞争。",
+      "category": "半群与连续时间",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/84e1b1ec17bb11c57234e96433022a9a-Abstract-Conference.html",
+      "read_sections": [
+        "§2 Eqs.5-8 all2all",
+        "§3 pretraining/downstream tasks",
+        "Appendix D.6.1 all2all ablations",
+        "D.6.2 direct/autoregressive inference",
+        "D.6.7 initial-condition noise"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "well2024",
+      "title": "The Well: a Large-Scale Collection of Diverse Physics Simulations for Machine Learning",
+      "authors": [
+        "Ruben Ohana",
+        "Michael McCabe",
+        "and collaborators"
+      ],
+      "year": 2024,
+      "venue": "NeurIPS 2024 Datasets and Benchmarks",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/4f9a5acd91ac76569f2fe291b1f4772b-Abstract-Datasets_and_Benchmarks_Track.html",
+      "code_url": "https://github.com/PolymathicAI/the_well",
+      "read_scope": [
+        "official abstract and repository description"
+      ],
+      "method": "原论文发布16类物理数据集，约15TB，支持多种复杂物理与统一数据访问。",
+      "limitations": "只作领域评测规模的背景；本次未读完整实验，不据此作算法排名或下载全部数据。",
+      "category": "基础与评测",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/4f9a5acd91ac76569f2fe291b1f4772b-Abstract-Datasets_and_Benchmarks_Track.html",
+      "fulltext_url": null,
+      "evidence": "",
+      "relevance": "",
+      "read_sections": [
+        "official abstract and repository description"
+      ],
+      "read_depth": "摘要/书目/仓库背景核对",
+      "publication_label": "已发表",
+      "code_status": "本次未核实完整作者实现；未运行代码。"
+    },
+    {
+      "id": "buitrago2025memno",
+      "title": "On the Benefits of Memory for Modeling Time-Dependent PDEs",
+      "authors": [
+        "Ricardo Buitrago Ruiz",
+        "Tanya Marwah",
+        "Albert Gu",
+        "Andrej Risteski"
+      ],
+      "year": 2025,
+      "venue": "ICLR 2025",
+      "status": "Peer-reviewed conference paper; arXiv v2 dated 2025-04-24",
+      "arxiv": "2409.02313v2",
+      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/89379d5fc6eb34ff98488202fb52b9d0-Abstract-Conference.html",
+      "fulltext": "https://arxiv.org/html/2409.02313v2",
+      "code_url": null,
+      "data_generation_code": "https://github.com/r-buitrago/LPSDA",
+      "code_status": "Author data generation fork verified; complete MemNO training repository not verified. Do not present LPSDA as full MemNO implementation.",
+      "read_sections": [
+        "3 MZ",
+        "4 theoretical example",
+        "5 architecture and training",
+        "6.1 resolution and memory-length/model-size ablations",
+        "6.2 observation noise",
+        "6.3 unobserved-mode fraction",
+        "Appendices B,C,E,F,K"
+      ],
+      "method_zh": "MemNO 将 FFNO 空间层与 S4 时间记忆层结合，研究缺失高频信息时历史是否补偿当前观测不足。",
+      "evidence_zh": "在低分辨率 KS 报告最高约6倍误差改善，低分辨率 Burgers 超过4倍；扩大无记忆 FFNO 仍未消除差距。噪声实验向训练和测试输入加 iid Gaussian，目标保持干净。",
+      "limits_zh": "依赖分辨率、黏性与频谱；理论是构造例，非所有 PDE 的优势定理。噪声仅 iid Gaussian，不能外推到有色或状态相关噪声。",
+      "relevance_zh": "最贴合我们 N64 投影目标；应优先对照简单历史堆叠、FFNO+S4，并独立控制分辨率和噪声。",
+      "category": "记忆与粗尺度闭合",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/89379d5fc6eb34ff98488202fb52b9d0-Abstract-Conference.html",
+      "fulltext_url": "https://arxiv.org/html/2409.02313v2",
+      "method": "MemNO 将 FFNO 空间层与 S4 时间记忆层结合，研究缺失高频信息时历史是否补偿当前观测不足。",
+      "evidence": "在低分辨率 KS 报告最高约6倍误差改善，低分辨率 Burgers 超过4倍；扩大无记忆 FFNO 仍未消除差距。噪声实验向训练和测试输入加 iid Gaussian，目标保持干净。",
+      "limitations": "依赖分辨率、黏性与频谱；理论是构造例，非所有 PDE 的优势定理。噪声仅 iid Gaussian，不能外推到有色或状态相关噪声。",
+      "relevance": "最贴合我们 N64 投影目标；应优先对照简单历史堆叠、FFNO+S4，并独立控制分辨率和噪声。",
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "chen_2025_due",
+      "title": "DUE: A Deep Learning Framework and Library for Modeling Unknown Equations",
+      "authors": [
+        "Junfeng Chen",
+        "Kailiang Wu",
+        "Dongbin Xiu"
+      ],
+      "year": 2025,
+      "status": "peer-reviewed journal article",
+      "venue": "SIAM Review 67(4):873–902",
+      "arxiv": "2504.10373",
+      "doi": "10.1137/24M1671827",
+      "primary_urls": [
+        "https://epubs.siam.org/doi/10.1137/24M1671827",
+        "https://arxiv.org/html/2504.10373v1"
+      ],
+      "code_url": "https://github.com/AI4Equations/due",
+      "code_status": "Official repository verified; not executed.",
+      "method": "流映射工具框架：ResNet/gResNet/OSG-Net、多步损失、GDSG、时滞门控dual-OSG-Net、部分观测的历史窗口。",
+      "evidence": "摆、耦合振子实测数据、Lorenz、Robertson、Burgers、NS、绕柱流。摆部分观测场景5%/10%噪声；Burgers用模态降维，NS用OSG-FNO。",
+      "limitations": "教育/软件框架，不是统一预算的算法排名；噪声和记忆展示不隔离半群约束的因果效应。",
+      "sections_pages_read": [
+        "§2.2 data pairs",
+        "§2.3 networks",
+        "§2.5 partially observed systems",
+        "§3.1–3.3 losses/dual network",
+        "§5.1.2–5.2 noise/memory",
+        "§5.5–5.6 Burgers/NS"
+      ],
+      "relevance": "最实用的复现入口；多步训练、记忆和多尺度时滞已是成熟基础。",
+      "category": "半群与连续时间",
+      "review_date": "2026-10-03",
+      "primary_url": "https://epubs.siam.org/doi/10.1137/24M1671827",
+      "fulltext_url": null,
+      "read_sections": [
+        "§2.2 data pairs",
+        "§2.3 networks",
+        "§2.5 partially observed systems",
+        "§3.1–3.3 losses/dual network",
+        "§5.1.2–5.2 noise/memory",
+        "§5.5–5.6 Burgers/NS"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "dong2025stochasticclosure",
+      "title": "Data-driven stochastic closure modeling via conditional diffusion model and neural operator",
+      "authors": [
+        "Xinghao Dong",
+        "Chuanqi Chen",
+        "Jin-Long Wu"
+      ],
+      "year": 2025,
+      "venue": "Journal of Computational Physics 534, 114005",
+      "status": "Peer-reviewed journal article; arXiv v3 dated 2025-04-18",
+      "arxiv": "2408.02965v3",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0021999125002888",
+      "fulltext": "https://arxiv.org/html/2408.02965v3",
+      "code_url": "https://github.com/AIMS-Madison/SBM_FNO_Closure",
+      "code_status": "Official implementation verified; article says data and trained models available on reasonable request",
+      "read_sections": [
+        "2 conditional score/FNO closure",
+        "3 unknown viscous/convection terms and conditional observations",
+        "4 accelerated sampling experiments",
+        "data availability"
+      ],
+      "method_zh": "用 FNO 估计条件 score，以扩散生成未知闭合项，再作为传统 PDE 求解器的修正；条件可含当前状态、稀疏闭合观测及已有物理闭合。",
+      "evidence_zh": "2D Navier-Stokes 未知项实验和采样加速对照，分别测重构及部署动力学误差。",
+      "limits_zh": "部分实验使用额外稀疏真值信息，不能当成仅由粗状态推断的公平基线；随机闭合不自动解决记忆一致性。",
+      "relevance_zh": "若粗状态给定后未来仍有明显条件方差，应讨论随机闭合和统计量，而不是强求单一确定性轨迹。",
+      "category": "记忆与粗尺度闭合",
+      "review_date": "2026-10-03",
+      "primary_url": "https://www.sciencedirect.com/science/article/pii/S0021999125002888",
+      "fulltext_url": "https://arxiv.org/html/2408.02965v3",
+      "method": "用 FNO 估计条件 score，以扩散生成未知闭合项，再作为传统 PDE 求解器的修正；条件可含当前状态、稀疏闭合观测及已有物理闭合。",
+      "evidence": "2D Navier-Stokes 未知项实验和采样加速对照，分别测重构及部署动力学误差。",
+      "limitations": "部分实验使用额外稀疏真值信息，不能当成仅由粗状态推断的公平基线；随机闭合不自动解决记忆一致性。",
+      "relevance": "若粗状态给定后未来仍有明显条件方差，应讨论随机闭合和统计量，而不是强求单一确定性轨迹。",
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "eno2025",
+      "title": "Energy-consistent Neural Operators for Hamiltonian and Dissipative Partial Differential Equations",
+      "authors": [
+        "Yusuke Tanaka",
+        "Takaharu Yaguchi",
+        "Tomoharu Iwata",
+        "Naonori Ueda"
+      ],
+      "year": 2025,
+      "venue": "AISTATS 2025, PMLR 258:1882-1890",
+      "status": "published",
+      "url": "https://proceedings.mlr.press/v258/tanaka25a.html",
+      "fulltext_url": "https://raw.githubusercontent.com/mlresearch/v258/main/assets/tanaka25a/tanaka25a.pdf",
+      "code_url": "https://github.com/yusuk-e/eno",
+      "version": "final 21-page proceedings PDF",
+      "read_scope": [
+        "sections 3-6",
+        "appendix B.2/B.4/B.6"
+      ],
+      "constraint": "soft energy-gradient-flow residual, jointly learned solution operator and energy density",
+      "task": "KdV, Cahn-Hilliard, Allen-Cahn, 2D Cahn-Hilliard; sparse-grid super-resolution",
+      "compute": "author reports up to 20x Vanilla NO training time; no matched-compute claim",
+      "noise_evidence": "no dedicated noisy-supervision ablation found",
+      "version_caveat": "final paper selects G from candidates using validation; known-G-only caveat from 2024 preprint is outdated",
+      "category": "能量与物理结构",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.mlr.press/v258/tanaka25a.html",
+      "method": "联合学习能量密度和解算子，用能量梯度流残差软约束。",
+      "evidence": "KdV、Cahn–Hilliard、Allen–Cahn和稀疏网格超分辨率。",
+      "limitations": "不严格保证输出能量行为；作者报告训练可达普通NO约20倍。最终版可验证选择G，已知G限定不适用于最终版。",
+      "relevance": "",
+      "read_sections": [
+        "sections 3-6",
+        "appendix B.2/B.4/B.6"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表",
+      "code_status": "本次未核实完整作者实现；未运行代码。"
+    },
+    {
+      "id": "feng_2025_singer",
+      "title": "SINGER: Stochastic Network Graph Evolving Operator for High Dimensional PDEs",
+      "authors": [
+        "Mingquan Feng",
+        "Yixin Huang",
+        "Weixin Liao",
+        "Yuhong Liu",
+        "Yizhou Liu",
+        "Junchi Yan"
+      ],
+      "year": 2025,
+      "status": "peer-reviewed conference paper",
+      "venue": "ICLR 2025",
+      "primary_urls": [
+        "https://proceedings.iclr.cc/paper_files/paper/2025/hash/5b288823575bb29654b0953a251e933b-Abstract-Conference.html",
+        "https://proceedings.iclr.cc/paper_files/paper/2025/file/5b288823575bb29654b0953a251e933b-Paper-Conference.pdf"
+      ],
+      "code_url": "https://github.com/FengMingquan-sjtu/SINGER",
+      "code_status": "Official repository linked in paper and opened; not executed.",
+      "method": "子网络表示空间解，GNN 在网络参数空间随机演化；用方程残差学习。论文的连续随机模型有半群与稳定性定理；离散实现使用 dropout/数值积分。",
+      "evidence": "8 PDE ×5/10/15/20维；去噪声 SINGER(-N)、非图 NODE(+N)、NODE、改造的参数空间 PINO 对照。",
+      "limitations": "定理有可微性、Lipschitz、噪声强度等条件，非物理解误差保证。PINO 是修改后的权重映射；NODE 与GNN规模不同；初值需单独拟合。dropout噪声不等于观测噪声。",
+      "sections_pages_read": [
+        "§3.1 assumptions/Table1",
+        "§3.2 formulation",
+        "§3.3 Theorems1–5",
+        "§4.1 settings/Tables2–3",
+        "Appendix B proofs"
+      ],
+      "relevance": "高维参数空间路线，不可直接与1D未知方程快照监督模型作绝对误差比较。",
+      "category": "半群与连续时间",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/5b288823575bb29654b0953a251e933b-Abstract-Conference.html",
+      "fulltext_url": null,
+      "read_sections": [
+        "§3.1 assumptions/Table1",
+        "§3.2 formulation",
+        "§3.3 Theorems1–5",
+        "§4.1 settings/Tables2–3",
+        "Appendix B proofs"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "taylor_2025_diffeomorphic",
+      "title": "Diffeomorphic Neural Operator Learning",
+      "authors": [
+        "Seth Taylor",
+        "Alex Bihlo",
+        "Jean-Christophe Nave"
+      ],
+      "year": 2025,
+      "status": "preprint; formal publication not verified",
+      "venue": "arXiv",
+      "arxiv": "2508.06690",
+      "primary_urls": [
+        "https://arxiv.org/abs/2508.06690",
+        "https://arxiv.org/html/2508.06690v1"
+      ],
+      "code_url": null,
+      "unverified_code_url": "https://github.com/seth-tl/Diff_flow_learning",
+      "code_status": "Link printed in paper but opening failed; availability unverified.",
+      "method": "把演化提升为空间微分同胚，再用群作用作用于初始场；时间复合在映射空间完成。",
+      "evidence": "不连续场输运、Euler湍流能量级联；FNO-maps/FNO-fields；五帧输入、相同隐藏设置，但输出通道与损失不同。",
+      "limitations": "仅适用具有相应平流几何的方程；并非通用耗散半群架构。映射插值与微分同胚条件影响数值保证；历史映射存储随步数增长；作者定位概念验证。",
+      "sections_pages_read": [
+        "§2.2 evolution operators",
+        "§3/§3.1 group action",
+        "§3.2 resolution properties",
+        "§4.1 lifting",
+        "§4.2 implementation",
+        "§4.3–4.4 experiments"
+      ],
+      "relevance": "说明更具体的物理几何约束可有作用；不可直接移植为黏性Burgers耗散项。",
+      "category": "半群与连续时间",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/abs/2508.06690",
+      "fulltext_url": null,
+      "read_sections": [
+        "§2.2 evolution operators",
+        "§3/§3.1 group action",
+        "§3.2 resolution properties",
+        "§4.1 lifting",
+        "§4.2 implementation",
+        "§4.3–4.4 experiments"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "预印本/正式发表未核实"
+    },
+    {
+      "id": "uepi2025",
+      "title": "UEPI: Universal Energy-Behavior-Preserving Integrators for Energy Conservative/Dissipative Differential Equations",
+      "authors": [
+        "Elena Celledoni",
+        "Brynjulf Owren",
+        "Chong Shen",
+        "Baige Xu",
+        "Takaharu Yaguchi"
+      ],
+      "year": 2025,
+      "venue": "NeurIPS 2025",
+      "status": "published",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/3e467e15cbcbd7b5ecc814cfc27c4ea9-Abstract-Conference.html",
+      "fulltext_url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/3e467e15cbcbd7b5ecc814cfc27c4ea9-Paper-Conference.pdf",
+      "code_url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/3e467e15cbcbd7b5ecc814cfc27c4ea9-Supplemental-Conference.zip",
+      "read_scope": [
+        "sections 3-5",
+        "appendix D.6"
+      ],
+      "constraint": "hard discrete energy behavior with learned skew correction to a reference discrete gradient",
+      "task": "known energy and structure; optimize numerical integrator; nonlinear ODE and KdV",
+      "compute": "second-order, half-step and fourth-order reference methods; some total cost including data and training reported",
+      "noise_evidence": "no substantive noisy-data experiment found",
+      "code_status": "supplemental link verified; ZIP not unpacked",
+      "category": "能量与物理结构",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/3e467e15cbcbd7b5ecc814cfc27c4ea9-Abstract-Conference.html",
+      "method": "对参考离散梯度学习斜对称修正，使离散更新保持已知能量行为。",
+      "evidence": "非线性ODE及KdV；比较多阶传统积分方法。",
+      "limitations": "已知能量和结构的积分器设计，监督条件不同于未知PDE学习；未发现实质性带噪观测实验。",
+      "relevance": "",
+      "read_sections": [
+        "sections 3-5",
+        "appendix D.6"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "armegioiu2026memoryflow",
+      "title": "Memory-Conditioned Flow-Matching for Stable Autoregressive PDE Rollouts",
+      "authors": [
+        "Victor Armegioiu"
+      ],
+      "year": 2026,
+      "venue": null,
+      "status": "arXiv preprint, submitted 2026-02-06; no peer-reviewed venue verified",
+      "arxiv": "2602.06689v1",
+      "url": "https://arxiv.org/abs/2602.06689",
+      "fulltext": "https://arxiv.org/html/2602.06689v1",
+      "code_url": null,
+      "code_status": "No dedicated author repository verified in this review",
+      "read_sections": [
+        "2-3 MZ and conditional-law formulation",
+        "4 implementation, conditioning degradation and deployment",
+        "Tables1-3 and6 rollout comparison",
+        "conclusions",
+        "Appendix J protocol"
+      ],
+      "method_zh": "为条件流匹配维护在线记忆，注入生成器中间表示，并用降采样再上采样的条件退化增强模拟滚动漂移。",
+      "evidence_zh": "两个二维可压缩 Euler 数据集；训练短窗口至5步、测试10至20步及不同时间间隔。论文给出有假设的 Wasserstein/Grönwall 误差传播分析。",
+      "limits_zh": "未核实独立复现或正式审稿；条件分布误差界不能证明每个训练模型必然长期稳定。",
+      "relevance_zh": "说明2026关注点已到记忆、生成闭合及自回归分布变化组合；不是简单给自治生成元加时间输入的消融。",
+      "category": "记忆与粗尺度闭合",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/abs/2602.06689",
+      "fulltext_url": "https://arxiv.org/html/2602.06689v1",
+      "method": "为条件流匹配维护在线记忆，注入生成器中间表示，并用降采样再上采样的条件退化增强模拟滚动漂移。",
+      "evidence": "两个二维可压缩 Euler 数据集；训练短窗口至5步、测试10至20步及不同时间间隔。论文给出有假设的 Wasserstein/Grönwall 误差传播分析。",
+      "limitations": "未核实独立复现或正式审稿；条件分布误差界不能证明每个训练模型必然长期稳定。",
+      "relevance": "说明2026关注点已到记忆、生成闭合及自回归分布变化组合；不是简单给自治生成元加时间输入的消融。",
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "预印本/正式发表未核实"
+    },
+    {
+      "id": "blessing_2026_chernoff",
+      "title": "Neural operators approximate strongly continuous convex monotone semigroups",
+      "authors": [
+        "Jonas Blessing",
+        "Philipp Schmocker",
+        "Alessandro Sgarabottolo"
+      ],
+      "year": 2026,
+      "status": "preprint",
+      "venue": "arXiv",
+      "arxiv": "2609.02727",
+      "first_posted": "2026-09-02",
+      "primary_urls": [
+        "https://arxiv.org/abs/2609.02727",
+        "https://arxiv.org/html/2609.02727v1"
+      ],
+      "code_url": "https://github.com/sgarale/chernoff_neural",
+      "code_status": "Official numerical repository linked in paper and opened; not executed.",
+      "method": "学习Chernoff一步算子，稳定迭代逼近凸单调半群；envelope 网络以有限候选最大值替代控制参数上确界。",
+      "evidence": "Theorems3.5–3.6统一逼近；§4覆盖数/步长/一步误差速率；§5一维半线性PDE splitting、随机控制、模型不确定性例子。",
+      "limitations": "受限半群类别与正则/一致/稳定性假设；存在性/逼近定理不保证SGD或有限数据性能。没有大规模通用PDE排名。",
+      "sections_pages_read": [
+        "§2 assumptions2.2/theorem2.3",
+        "§3.1 theorem3.5",
+        "§3.2 theorem3.6",
+        "§4.1 envelope definition4.4",
+        "§4.2 propositions4.9–4.10",
+        "§5.1–5.3 examples"
+      ],
+      "relevance": "当前理论前沿已超过一般神经流半群存在性；需明确方程类别、误差和可辨识条件。",
+      "category": "半群与连续时间",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/abs/2609.02727",
+      "fulltext_url": null,
+      "read_sections": [
+        "§2 assumptions2.2/theorem2.3",
+        "§3.1 theorem3.5",
+        "§3.2 theorem3.6",
+        "§4.1 envelope definition4.4",
+        "§4.2 propositions4.9–4.10",
+        "§5.1–5.3 examples"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "预印本/正式发表未核实"
+    },
+    {
+      "id": "chen2026fluxmemory",
+      "title": "Flux-form spatiotemporal neural operators for coarse-grained dynamics of multiscale PDEs",
+      "authors": [
+        "Junfeng Chen"
+      ],
+      "year": 2026,
+      "venue": null,
+      "status": "arXiv preprint, submitted 2026-08-11; no peer-reviewed venue verified",
+      "arxiv": "2608.18148v1",
+      "url": "https://arxiv.org/abs/2608.18148",
+      "fulltext": "https://arxiv.org/html/2608.18148v1",
+      "code_url": null,
+      "code_status": "No dedicated author repository verified in this review",
+      "read_sections": [
+        "2 coarse graining and closure",
+        "3 causal time kernel and flux-form update",
+        "3.4 decorrelation memory length",
+        "4.1 Burgers",
+        "4.2-4.3 KS/NS statistics",
+        "4.5 history mixing ablation",
+        "5 limitations"
+      ],
+      "method_zh": "从粗轨迹历史窗口预测未来窗口，组合空间 Fourier 混合、因果时间核和散度形式更新；用闭合作用去相关时间选择历史长度。",
+      "evidence_zh": "Burgers、KS、NS；比较局部守恒/全局守恒/无守恒及不同历史编码，混沌问题同时评估长期统计。",
+      "limits_zh": "近期预印本且未独立复现；训练窗口/计算预算和基线仍需审计。守恒并不自动给出能量稳定。",
+      "relevance_zh": "与“通量形式+记忆”的潜在改进高度接近，单纯拼接这两项已不足以声明新颖性。",
+      "category": "记忆与粗尺度闭合",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/abs/2608.18148",
+      "fulltext_url": "https://arxiv.org/html/2608.18148v1",
+      "method": "从粗轨迹历史窗口预测未来窗口，组合空间 Fourier 混合、因果时间核和散度形式更新；用闭合作用去相关时间选择历史长度。",
+      "evidence": "Burgers、KS、NS；比较局部守恒/全局守恒/无守恒及不同历史编码，混沌问题同时评估长期统计。",
+      "limitations": "近期预印本且未独立复现；训练窗口/计算预算和基线仍需审计。守恒并不自动给出能量稳定。",
+      "relevance": "与“通量形式+记忆”的潜在改进高度接近，单纯拼接这两项已不足以声明新颖性。",
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "预印本/正式发表未核实"
+    },
+    {
+      "id": "generic_fno2026",
+      "title": "GENERIC-FNO: Embedding Energy Conservation and Entropy Production into Fourier Neural Operators",
+      "authors": [
+        "Jason Sulskis",
+        "Sathya Ravi"
+      ],
+      "year": 2026,
+      "venue": "arXiv; under review at TMLR",
+      "status": "preprint",
+      "url": "https://arxiv.org/abs/2606.08343",
+      "fulltext_url": "https://arxiv.org/html/2606.08343v6",
+      "code_url": "https://anonymous.4open.science/r/GENERIC-FNO-F414/",
+      "version": "v6, 2026-09-16",
+      "read_scope": [
+        "sections 4-6",
+        "Tables 1, 7, 19",
+        "appendices B.3 and E"
+      ],
+      "constraint": "continuous learned-energy/entropy degeneracy identities; Jacobi identity not enforced; explicit time stepping drifts",
+      "task": "heat, advection, Burgers, damped wave; FNO and DeepONet",
+      "compute": "128^2 forward approximately 4.4x, training step approximately 10x; larger FNO approximate compute comparison",
+      "noise_evidence": "no observation-noise experiment found",
+      "limitations": "学习能量不等于真实能量；显式积分有漂移。200步表每格单次运行，部分结果接近恒等预测；成本较高。",
+      "code_status": "paper-provided anonymized link; not executed",
+      "category": "能量与物理结构",
+      "review_date": "2026-10-03",
+      "primary_url": "https://arxiv.org/abs/2606.08343",
+      "method": "将学习能量、熵及退化恒等式嵌入FNO连续向量场。",
+      "evidence": "热、平流、Burgers和阻尼波；报告结构指标、真物理量与成本。",
+      "relevance": "",
+      "read_sections": [
+        "sections 4-6",
+        "Tables 1, 7, 19",
+        "appendices B.3 and E"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "预印本/正式发表未核实"
+    },
+    {
+      "id": "hou_2026_cfo",
+      "title": "CFO: Learning Continuous-Time PDE Dynamics via Flow-Matched Neural Operators",
+      "authors": [
+        "Xianglong Hou",
+        "Xinquan Huang",
+        "Paris Perdikaris"
+      ],
+      "year": 2026,
+      "preprint_year": 2025,
+      "status": "peer-reviewed conference paper",
+      "venue": "ICLR 2026",
+      "arxiv": "2512.05297",
+      "primary_urls": [
+        "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8bfbf4ec87e1e331f0b1adc483b53b6b-Abstract-Conference.html",
+        "https://arxiv.org/html/2512.05297"
+      ],
+      "code_url": "https://github.com/shannon-hou/CFO_official",
+      "code_status": "Official repository verified; not executed.",
+      "method": "样条插值轨迹构造速度监督，flow matching 训练 Nθ(t,u)，无需反传穿过ODE求解器；推理积分。显含时间，通常是二参数演化族。",
+      "evidence": "Lorenz/Burgers/2D diffusion–reaction/shallow water；25%/50%/100%不规则时间采样；同骨干NFE/实测时间和 Neural ODE/PDE-Refiner 对照。",
+      "limitations": "Appendix A.2 在理想总体最优下保证边缘分布运输，非生成元/样本路径辨识。AR主对照为teacher forcing；插值噪声非观测误差。没有自治一参数半群保证。",
+      "sections_pages_read": [
+        "§3 method of lines",
+        "§4.1 spline paths",
+        "§4.2 training/inference/probability-flow transport",
+        "§5.1 benchmarks",
+        "§5.2 Tables2–3 NFE/cost/noise",
+        "Appendix A.2 Propositions A.1–A.2",
+        "Appendix A.4.8 ablations"
+      ],
+      "relevance": "直接检验本项目的优化和穿过积分器训练成本瓶颈；连续时间强基线。",
+      "category": "半群与连续时间",
+      "review_date": "2026-10-03",
+      "primary_url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/8bfbf4ec87e1e331f0b1adc483b53b6b-Abstract-Conference.html",
+      "fulltext_url": null,
+      "read_sections": [
+        "§3 method of lines",
+        "§4.1 spline paths",
+        "§4.2 training/inference/probability-flow transport",
+        "§5.1 benchmarks",
+        "§5.2 Tables2–3 NFE/cost/noise",
+        "Appendix A.2 Propositions A.1–A.2",
+        "Appendix A.4.8 ablations"
+      ],
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "id": "koren2026ssno",
+      "title": "Merging Memory and Space: A State Space Neural Operator",
+      "earlier_title": "Merging Memory and Space: A Spatiotemporal State Space Neural Operator",
+      "authors": [
+        "Nodens F. Koren",
+        "Samuel Lanthaler"
+      ],
+      "year": 2026,
+      "venue": "Transactions on Machine Learning Research (03/2026)",
+      "status": "TMLR publication banner verified in indexed official OpenReview PDF; live OpenReview view encountered browser challenge. Full arXiv v5 read, dated 2026-03-05.",
+      "arxiv": "2507.23428v5",
+      "url": "https://openreview.net/forum?id=SwLxxz0x58",
+      "publication_evidence": "https://openreview.net/pdf/39d711ae5f38e5a722716ff2a380e87150a31ecf.pdf",
+      "fulltext": "https://arxiv.org/html/2507.23428v5",
+      "code_url": null,
+      "code_status": "No dedicated official SS-NO implementation URL verified; appendix pseudocode and data-generation reference available",
+      "read_sections": [
+        "3 spatial S4D and temporal memory",
+        "4 universality statement",
+        "5 setup",
+        "6 benchmark evidence",
+        "Appendices C.2-C.4 missing context, memory window, teacher forcing",
+        "E training",
+        "H cost/accuracy",
+        "L limitations"
+      ],
+      "method_zh": "用空间 S4D 与时间 S4 结合，并学习阻尼和频率；核心是空间表示、局部性、记忆与参数效率的联合设计。",
+      "evidence_zh": "评估 Burgers、KS、2D Navier-Stokes 与 Euler；多数基线同样加4步 S4 记忆，5种子比较。缺失物理参数时记忆也能帮助。",
+      "limits_zh": "自回归训练反传内存随序列增长；扫描不自动保持旋转/反射等变性。通用逼近不等于长期稳定证明。",
+      "relevance_zh": "比只对照无记忆 FNO 更强的2026基线；需要比较等参数和等成本，不能把所有收益归因于半群。",
+      "category": "记忆与粗尺度闭合",
+      "review_date": "2026-10-03",
+      "primary_url": "https://openreview.net/forum?id=SwLxxz0x58",
+      "fulltext_url": "https://arxiv.org/html/2507.23428v5",
+      "method": "用空间 S4D 与时间 S4 结合，并学习阻尼和频率；核心是空间表示、局部性、记忆与参数效率的联合设计。",
+      "evidence": "评估 Burgers、KS、2D Navier-Stokes 与 Euler；多数基线同样加4步 S4 记忆，5种子比较。缺失物理参数时记忆也能帮助。",
+      "limitations": "自回归训练反传内存随序列增长；扫描不自动保持旋转/反射等变性。通用逼近不等于长期稳定证明。",
+      "relevance": "比只对照无记忆 FNO 更强的2026基线；需要比较等参数和等成本，不能把所有收益归因于半群。",
+      "read_depth": "已读相关方法与实验/理论章节",
+      "publication_label": "已发表"
+    },
+    {
+      "title": "Identifiable learning of dissipative dynamics",
+      "authors": [
+        "Aiqing Zhu",
+        "Beatrice W. Soh",
+        "Grigorios A. Pavliotis",
+        "Qianxiao Li"
+      ],
+      "venue": "Nature Communications 17:9460",
+      "date": "2026-08-06",
+      "status": "published",
+      "url": "https://www.nature.com/articles/s41467-026-76255-3",
+      "code_url": "https://github.com/MLDS-NUS/UIDD-jax",
+      "read_scope": [
+        "abstract",
+        "Results architecture",
+        "Theorem 1"
+      ],
+      "caveat": "nondegenerate stochastic dynamics with unique invariant density; process noise differs from noisy labels; not direct Burgers baseline",
+      "id": "uidd2026",
+      "year": 2026,
+      "method": "随机耗散动力学的可辨识学习；读取架构与Theorem 1作为补充线索。",
+      "limitations": "nondegenerate stochastic dynamics with unique invariant density; process noise differs from noisy labels; not direct Burgers baseline",
+      "category": "能量与物理结构",
+      "review_date": "2026-10-03",
+      "primary_url": "https://www.nature.com/articles/s41467-026-76255-3",
+      "fulltext_url": null,
+      "evidence": "",
+      "relevance": "",
+      "read_sections": [
+        "abstract",
+        "Results architecture",
+        "Theorem 1"
+      ],
+      "read_depth": "补充局部阅读",
+      "publication_label": "已发表",
+      "code_status": "本次未核实完整作者实现；未运行代码。"
+    }
+  ]
+}

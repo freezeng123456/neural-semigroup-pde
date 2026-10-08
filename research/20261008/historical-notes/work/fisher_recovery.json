@@ -1,0 +1,461 @@
+{
+  "checked_date": "2026-10-03",
+  "repository": "freezeng123456/neural-semigroup-pde",
+  "status": "frozen_fisher_inputs_not_recovered",
+  "missing_input_count": 11,
+  "inputs": [
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260830-semigroup-novelty-frozen-inputs-s31415-r1/latent_best.pt",
+      "sha256": "4330c5760e5ec28d5150db8d7876282f83a474d3a62836988c92919f55441adb",
+      "category": "tube_attribution_input",
+      "local_status": "missing"
+    },
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260830-semigroup-novelty-frozen-inputs-s31415-r1/latent_query_time_best.pt",
+      "sha256": "e57f1eccb1714357a832f5f9fa1e805b2e26869078e7429fdd81a7c22f991cd6",
+      "category": "formal_input",
+      "local_status": "missing"
+    },
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/seeds/s271828/cells/latent/output/latent/checkpoints/latent_best.pt",
+      "sha256": "0fa5f3067ef58999e575705db516cab9b94481a4a768eae7ced58034bd8ac1cb",
+      "category": "tube_attribution_input",
+      "local_status": "missing"
+    },
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/seeds/s271828/cells/latent_query_time/output/latent_query_time/checkpoints/latent_query_time_best.pt",
+      "sha256": "c87e71f8a11c5c848802880b8f2f685d8f6778d9534ce41746ba20b75ae51f42",
+      "category": "formal_input",
+      "local_status": "missing"
+    },
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/seeds/s161803/cells/latent/output/latent/checkpoints/latent_best.pt",
+      "sha256": "84dcd009982fbc2167aa0f08233ceb2af1ca8cc059623bf29078f64799bf3f9e",
+      "category": "tube_attribution_input",
+      "local_status": "missing"
+    },
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/seeds/s161803/cells/latent_query_time/output/latent_query_time/checkpoints/latent_query_time_best.pt",
+      "sha256": "f580c9c91441565932a706de4044ab1d62992673ba1e649eb67fd8ed3a9d673a",
+      "category": "formal_input",
+      "local_status": "missing"
+    },
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/locked-input/fisher_kpp_n64_test_s314163_h4p8.pt",
+      "sha256": "29d0e4b36e9d758f87264ae1d555d865c9e037776903e1cab448a0a8782b490e",
+      "category": "tube_attribution_input",
+      "local_status": "missing"
+    },
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260830-fisher-kpp-formal-s271828-s161803-6373455-scnet-r1-a72ad8/source.tar.gz",
+      "sha256": "a370efa4af9bbb11fbcd72ef422410f651f8f2ad28eee561c45e766c88fcadf5",
+      "category": "formal_input",
+      "local_status": "missing"
+    },
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260901-fisher-generator-tube-abd1c2f-3seed-r3/cells/s31415/train/output/latent/checkpoints/latent_best.pt",
+      "sha256": "7b1d8a36af0389e4271e6dab15e12dae2259cdd03581b918ea070f7ec6d8abba",
+      "category": "tube_attribution_input",
+      "local_status": "missing"
+    },
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260901-fisher-generator-tube-abd1c2f-3seed-r3/cells/s271828/train/output/latent/checkpoints/latent_best.pt",
+      "sha256": "4bbc6b44d37295f62233b398edc574c9e0c0600a5eb1c56798767fc1a91b0039",
+      "category": "tube_attribution_input",
+      "local_status": "missing"
+    },
+    {
+      "source_path": "/work/home/zenghang/semigroup_runs/20260901-fisher-generator-tube-abd1c2f-3seed-r3/cells/s161803/train/output/latent/checkpoints/latent_best.pt",
+      "sha256": "d500ee6f749c57787e7e23e390e4c88efa24bbd775018fe2b9e9a6565625ff32",
+      "category": "tube_attribution_input",
+      "local_status": "missing"
+    }
+  ],
+  "local_candidate_checks": [
+    {
+      "path": "experiments/checkpoints/latent_best.pt",
+      "sha256": "65f61da47111a5d1467e437fa97cf6587fc033898d0b8d9fe302f10c9ba1057e",
+      "matches_frozen_input": false
+    },
+    {
+      "path": "experiments/checkpoints/nu_0.05/latent_best.pt",
+      "sha256": "f96c2ca02cf238770b37f6af88563a0740a5c18bc9903ca902fbc6ebb0d452b0",
+      "matches_frozen_input": false
+    },
+    {
+      "path": "experiments/checkpoints/nu_0.005/latent_best.pt",
+      "sha256": "7552c07fdb5f5e9fa8c1461ae88c159b6f6399d61287a4ffbc6387e86a6cae2d",
+      "matches_frozen_input": false
+    },
+    {
+      "path": "experiments/checkpoints/nu_0.1/latent_best.pt",
+      "sha256": "62e38869dd7bc49051430dc714dfd6ae803f628c82aa218fa5204c6fa31f1452",
+      "matches_frozen_input": false
+    },
+    {
+      "path": "experiments/checkpoints/fisher_kpp_new/latent_best.pt",
+      "sha256": "82fbb9387ede1a59c78a884dcc0708d92c6cf3dfa44e28ab26d4d3853c233199",
+      "matches_frozen_input": false
+    },
+    {
+      "path": "experiments/checkpoints/nu_0.001/latent_best.pt",
+      "sha256": "26552404edf1aba8bb0812a62a96d226aa6a71e02687e2ec490c948e80ff9d65",
+      "matches_frozen_input": false
+    },
+    {
+      "path": "experiments/checkpoints/nu_0.01/latent_best.pt",
+      "sha256": "f0551d879874b6a6c366a37edd9c9d7fea2f4affe969e47728f769c23392c83a",
+      "matches_frozen_input": false
+    }
+  ],
+  "evidence": {
+    "formal_hash_list": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/neural-semigroup-pde/results/20260831-fisher-generator-stability-e60a142-3seed-r1/input-sha256-before.txt",
+    "tube_light_archive": {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/neural-semigroup-pde/results/20260901-fisher-generator-tube-abd1c2f-3seed-r3/fisher-generator-tube-abd1c2f-3seed-r3-light.tar.gz",
+      "sha256": "fde9c5039769ed29ecfbf0c6a11d1380286a535c253238f2d00da485e4bdbd13",
+      "contains_checkpoints_or_cache": false
+    },
+    "local_search": "Filename search under /Users/Apple_501/Documents/Codex found only the downloaded repository Fisher sources and legacy checkpoints; matching local checkpoint candidates were hashed and no required digest matched.",
+    "github_releases": [],
+    "github_release_check": "GET /repos/freezeng123456/neural-semigroup-pde/releases?per_page=100 returned []",
+    "ssh_config_exists": false,
+    "scnet_live_access": "Not attempted beyond local tool/runtime discovery. Parent directed prioritizing newer GitHub branches first; remote historical paths are unverified live."
+  },
+  "newer_branch_evidence": [
+    {
+      "branch": "results/generator-coverage-h20-20260908",
+      "commit": "3b600ad472d40d0a8c9c3e7b7726f601fea43b1a",
+      "fisher_binary_paths": [
+        "experiments/checkpoints/fisher_kpp_2d/data_N32x32.pt",
+        "experiments/checkpoints/fisher_kpp_new/latent_best.pt"
+      ],
+      "evidence_files": [
+        {
+          "repository_path": "results/generator-coverage-h20-20260908/analysis-final/REPORT.zh.md",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/generator-coverage-h20-20260908/analysis-final/REPORT.zh.md",
+          "sha256": "4b906bf3a95c2c5affacf164d930d73b3fc23bd1bb56682f351b2d6614565bf8"
+        },
+        {
+          "repository_path": "results/generator-coverage-h20-20260908/analysis-final/RESULTS.md",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/generator-coverage-h20-20260908/analysis-final/RESULTS.md",
+          "sha256": "51451cc031281c846d143b15c4a3d333c03b0d93010ceefcbe34b44a4c99a4c2"
+        }
+      ],
+      "has_new_formal_fisher_inputs": false,
+      "has_completed_fisher_attribution": false
+    },
+    {
+      "branch": "results/scnet-semigroup-discovery-20260909",
+      "commit": "6337ed4b525f1955da9d95ae9e6c78e48bb16888",
+      "fisher_binary_paths": [
+        "experiments/checkpoints/fisher_kpp_2d/data_N32x32.pt",
+        "experiments/checkpoints/fisher_kpp_new/latent_best.pt"
+      ],
+      "evidence_files": [
+        {
+          "repository_path": "results/scnet-semigroup-discovery-20260909/README.zh.md",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/scnet-semigroup-discovery-20260909/README.zh.md",
+          "sha256": "d369ae2d15af81e207b55264ce9d17101afc3e2c3c233ffcd46699ce37b77193"
+        },
+        {
+          "repository_path": "results/scnet-semigroup-discovery-20260909/analysis-final/REPORT.zh.md",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/scnet-semigroup-discovery-20260909/analysis-final/REPORT.zh.md",
+          "sha256": "d4a447856a9b4b6732ebb5fb6ccd2f327e299594ea00c9442009bf5cdbcddda4"
+        },
+        {
+          "repository_path": "results/scnet-semigroup-discovery-20260909/verification/RECOVERY_VERIFICATION.json",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/scnet-semigroup-discovery-20260909/verification/RECOVERY_VERIFICATION.json",
+          "sha256": "80884472377e1ddd0e3f0fb5d77eca1de3fc9e215642dc00e8f7f3db52b4dc73"
+        }
+      ],
+      "has_new_formal_fisher_inputs": false,
+      "has_completed_fisher_attribution": false
+    },
+    {
+      "branch": "results/scnet-new-equations-20260910",
+      "commit": "a865d61ae057f04362a40632a17c8adb469a0b71",
+      "fisher_binary_paths": [
+        "experiments/checkpoints/fisher_kpp_2d/data_N32x32.pt",
+        "experiments/checkpoints/fisher_kpp_new/latent_best.pt"
+      ],
+      "evidence_files": [
+        {
+          "repository_path": "results/scnet-new-equations-20260910/NEW_EQUATIONS_STATUS.zh.md",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/scnet-new-equations-20260910/NEW_EQUATIONS_STATUS.zh.md",
+          "sha256": "3252a04bb0eaaca3c756bec544a72d50f16fe3c9ebc4a6972edda4d42ef63870"
+        },
+        {
+          "repository_path": "results/scnet-new-equations-20260910/confirmation_REPORT.zh.md",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/scnet-new-equations-20260910/confirmation_REPORT.zh.md",
+          "sha256": "9ed1bbc8f49a9b892bd21f147e5af743fc57e5123ecdede8ff6a92a971f778aa"
+        },
+        {
+          "repository_path": "results/scnet-new-equations-20260910/confirmation/confirmation_summary.json",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/scnet-new-equations-20260910/confirmation/confirmation_summary.json",
+          "sha256": "4b2a2ad31153b2427ac6440468482d36d2f79fccf02901ca35319bbd66fc3766"
+        },
+        {
+          "repository_path": "results/scnet-new-equations-20260910/confirmation/confirmation_cells.csv",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/scnet-new-equations-20260910/confirmation/confirmation_cells.csv",
+          "sha256": "c5d60b94fb3d57ecdcd7cbb26f2609b7eef7bee77738381ba6ee8be7ecf13fe3"
+        },
+        {
+          "repository_path": "results/scnet-new-equations-20260910/confirmation/run/CPU_REPLAY_AUDIT.json",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/scnet-new-equations-20260910/confirmation/run/CPU_REPLAY_AUDIT.json",
+          "sha256": "d95563221d18ba7b54ade5673ca631c2780b7a3f9d80615d9b43f2bebb91ae2d"
+        },
+        {
+          "repository_path": "results/scnet-new-equations-20260910/CONFIRMATION_RECEIPT.json",
+          "local_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/branch_evidence/results/scnet-new-equations-20260910/CONFIRMATION_RECEIPT.json",
+          "sha256": "dc91e19dc26b25808d44ce91cb2b9f861293e8f1266b02c325e26f516003ab91"
+        }
+      ],
+      "has_new_formal_fisher_inputs": false,
+      "has_completed_fisher_attribution": false
+    }
+  ],
+  "newer_confirmation": {
+    "cells": 24,
+    "total_updates": 480000,
+    "ratios": [
+      {
+        "budget": 2000,
+        "noise": 0.0,
+        "ratios": [
+          1.0278367262201944,
+          1.0667334212808148,
+          1.327867162117443,
+          1.0144061843997056,
+          1.008237317752212,
+          1.0337029498144372
+        ],
+        "gm": 1.0745274456019438,
+        "gate": false,
+        "recomputed_gm": 1.0745274456019438,
+        "recomputed_gate": false
+      },
+      {
+        "budget": 2000,
+        "noise": 0.01,
+        "ratios": [
+          1.0294023278462443,
+          1.0805790991263984,
+          1.0527559827429436,
+          0.9642157354702561,
+          0.9704241825546558,
+          1.0555633273571914
+        ],
+        "gm": 1.0245463039821845,
+        "gate": false,
+        "recomputed_gm": 1.0245463039821845,
+        "recomputed_gate": false
+      },
+      {
+        "budget": 5000,
+        "noise": 0.0,
+        "ratios": [
+          1.2181566334090468,
+          1.9125730016869473,
+          1.0041685240173914,
+          1.1465595478592927,
+          0.6253443417389819,
+          1.1083183261701695
+        ],
+        "gm": 1.1088803449722482,
+        "gate": false,
+        "recomputed_gm": 1.1088803449722482,
+        "recomputed_gate": false
+      },
+      {
+        "budget": 5000,
+        "noise": 0.01,
+        "ratios": [
+          0.941186934820499,
+          0.9732020910044331,
+          0.572995022916712,
+          0.5657934041815469,
+          0.21725394114211904,
+          1.1791306471963499
+        ],
+        "gm": 0.6509328772065992,
+        "gate": false,
+        "recomputed_gm": 0.6509328772065992,
+        "recomputed_gate": false
+      },
+      {
+        "budget": 10000,
+        "noise": 0.0,
+        "ratios": [
+          1.2714513738580067,
+          1.2954821069977307,
+          0.8421548549225908,
+          1.561198439327947,
+          1.7112735615154344,
+          0.4427913318464386
+        ],
+        "gm": 1.0860503630503857,
+        "gate": false,
+        "recomputed_gm": 1.0860503630503857,
+        "recomputed_gate": false
+      },
+      {
+        "budget": 10000,
+        "noise": 0.01,
+        "ratios": [
+          1.083077244925545,
+          0.37651045807437133,
+          0.19145215155130926,
+          0.29765345101026774,
+          0.1016955946849122,
+          0.9389729669325537
+        ],
+        "gm": 0.36115515070265863,
+        "gate": false,
+        "recomputed_gm": 0.36115515070265863,
+        "recomputed_gate": false
+      },
+      {
+        "budget": 20000,
+        "noise": 0.0,
+        "ratios": [
+          1.0291845668338535,
+          1.2455641171982257,
+          1.2050256679607307,
+          1.573543906212798,
+          1.7627847191691282,
+          1.3382243136102243
+        ],
+        "gm": 1.337859329939039,
+        "gate": false,
+        "recomputed_gm": 1.337859329939039,
+        "recomputed_gate": false
+      },
+      {
+        "budget": 20000,
+        "noise": 0.01,
+        "ratios": [
+          0.8871859935174982,
+          0.37651045807437133,
+          0.29236650659844116,
+          0.15743139589882338,
+          0.09402643140835183,
+          0.9389729669325537
+        ],
+        "gm": 0.33275068230545163,
+        "gate": true,
+        "recomputed_gm": 0.33275068230545163,
+        "recomputed_gate": true
+      }
+    ],
+    "plateau_cells": 14
+  },
+  "recommended_fisher_resume": "Retrieve exactly the 6 formal A/B checkpoints, 3 A+Tube checkpoints, locked test cache, and formal source archive from the recorded SCNet paths. Verify every SHA256 before loading. Do not substitute legacy fisher_kpp_new checkpoint or regenerate the locked cache.",
+  "burgers_reference_diff_check": {
+    "base_commit": "0263511758b865f635ef472d630707349b459291",
+    "paths": [
+      "experiments/pde_solver.py",
+      "experiments/burgers_models.py",
+      "experiments/run_burgers_matched.py"
+    ],
+    "branches": [
+      {
+        "branch": "results/generator-coverage-h20-20260908",
+        "commit": "3b600ad472d40d0a8c9c3e7b7726f601fea43b1a",
+        "changed_files": []
+      },
+      {
+        "branch": "results/scnet-semigroup-discovery-20260909",
+        "commit": "6337ed4b525f1955da9d95ae9e6c78e48bb16888",
+        "changed_files": []
+      },
+      {
+        "branch": "results/scnet-new-equations-20260910",
+        "commit": "a865d61ae057f04362a40632a17c8adb469a0b71",
+        "changed_files": []
+      }
+    ]
+  },
+  "latest_branch_conclusions": {
+    "h20": "132 completed exploratory trainings, 126 snapshot-only and 6 privileged reaction-label diagnostics. 8/21 ordinary settings passed prediction gates; no setting met 10% global generator-error improvement. A/B effective capacity 49/65.",
+    "discovery": "36 fixed-budget trainings and 108 high-frequency endpoints stored. About 15% n128 benefit at 2000 updates was exploratory; independent six-seed confirmation failed to reproduce that at 2000 updates.",
+    "confirmation": "24 cells, 20000 updates, six paired seeds. Primary no-noise A/B 1.337859329939039; noise .01 A/B 0.33275068230545163. Effective capacity A97/B129 remains unmatched.",
+    "new_equations": "Historical Sept10 report: only 4/24 completed; account shared storage full (50 GB), no rerun. This is a repository snapshot, not current remote status.",
+    "fisher": "No new Fisher frozen inputs or completed attribution appeared in the inspected result branch trees; the old Fisher result objects are unchanged."
+  },
+  "current_confirmation_verification": {
+    "result_path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/fisher_inputs/confirmation_replay/CURRENT_REPLAY_VERIFICATION.json",
+    "sha256": "733cb8c9227ca406f109be527d4e3e9ca1c5624545c905fb8922d26274c89b0a",
+    "verified_manifest_files": 54,
+    "status": "passed",
+    "replayed_checkpoints": 4,
+    "replayed_endpoints": 16,
+    "raw_summary_models": 24,
+    "runtime": {
+      "python": "3.12.14",
+      "torch": "2.5.1",
+      "device": "cpu"
+    },
+    "raw_primary_comparison": [
+      {
+        "noise": 0.0,
+        "primary_gm_from_all_raw_summaries": 1.3378593299390384,
+        "ratios": [
+          {
+            "seed": 3101,
+            "ratio": 1.02918456683385
+          },
+          {
+            "seed": 3102,
+            "ratio": 1.2455641171982257
+          },
+          {
+            "seed": 3103,
+            "ratio": 1.205025667960733
+          },
+          {
+            "seed": 3104,
+            "ratio": 1.573543906212798
+          },
+          {
+            "seed": 3105,
+            "ratio": 1.7627847191691282
+          },
+          {
+            "seed": 3106,
+            "ratio": 1.338224313610222
+          }
+        ]
+      },
+      {
+        "noise": 0.01,
+        "primary_gm_from_all_raw_summaries": 0.33275068230545146,
+        "ratios": [
+          {
+            "seed": 3101,
+            "ratio": 0.8871859935174965
+          },
+          {
+            "seed": 3102,
+            "ratio": 0.37651045807437133
+          },
+          {
+            "seed": 3103,
+            "ratio": 0.29236650659844066
+          },
+          {
+            "seed": 3104,
+            "ratio": 0.15743139589882363
+          },
+          {
+            "seed": 3105,
+            "ratio": 0.09402643140835167
+          },
+          {
+            "seed": 3106,
+            "ratio": 0.9389729669325537
+          }
+        ]
+      }
+    ]
+  }
+}

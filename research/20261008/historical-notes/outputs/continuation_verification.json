@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-03",
+  "status": "completed",
+  "local_repository": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/neural-semigroup-pde",
+  "branch": "codex/burgers-reference-v2",
+  "final_commit": "917ea2bb31ddf4793c349597cb43b2332994ebe5",
+  "training_commit": "4919e3726cb4edd10fa64a7962266974eea1db7f",
+  "working_tree_clean": true,
+  "publication": "saved locally",
+  "tests": {
+    "passed": 273,
+    "elapsed_seconds": 38.28,
+    "exit_code": 0,
+    "output": "test_results_v2.txt"
+  },
+  "training": {
+    "completed_models": 12,
+    "completed_seed_processes": 3,
+    "seed_exit_codes": {
+      "31415": 0,
+      "271828": 0,
+      "161803": 0
+    },
+    "selected_epoch": 100,
+    "cache_sha256": "4b96d9397a46c22cbf2d71b92706b756e720a2cfa08fac46f6f823e5931ec9a0",
+    "frozen_source_hashes_still_match": true
+  },
+  "aggregation": {
+    "learned_rollout_cells": 48,
+    "oracle_cells": 12,
+    "csv_rows": 60,
+    "receipt": "burgers-v2-study/aggregate/aggregate.json",
+    "sample_metrics_and_hashes_verified": true
+  },
+  "repository_export": {
+    "directory": "neural-semigroup-pde/results/20261003-burgers-reference-v2",
+    "verified_original_study_and_cache_files": 90,
+    "verified_inventory_files": 97,
+    "inventory": "ARTIFACTS.sha256.json"
+  },
+  "recovered_confirmation": {
+    "raw_summary_count": 24,
+    "replayed_checkpoints": 4,
+    "replayed_endpoints": 16,
+    "status": "passed",
+    "receipt": "recovered-branch-evidence/confirmation_replay/CURRENT_REPLAY_VERIFICATION.json"
+  },
+  "fisher_attribution": {
+    "code_tests_passed": 21,
+    "experiment_status": "not_run_missing_frozen_inputs",
+    "required_missing_input_count": 12,
+    "requirements": "recovered-branch-evidence/fisher_evaluator_requirements.json"
+  },
+  "figures": "burgers_v2_results.png/pdf/svg",
+  "report": "semigroup_progress.html",
+  "deliverable_link_check": {
+    "checked_local_links": 33,
+    "missing": 0
+  },
+  "report_sha256": "aca8c506b0e8c3e0370762e6713f4b376370f1349708efeeceb78b7e62719adf"
+}

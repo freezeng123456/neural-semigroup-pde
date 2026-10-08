@@ -1,0 +1,26 @@
+{
+  "schema": "stage_b_matrix_analyzer_freeze_v1",
+  "frozen_at_utc": "2026-10-03T23:05:43.679986+00:00",
+  "files": {
+    "analyze_matrix.py": {
+      "sha256": "d81c8d08b3af567c86d8e46e30b3502237dcc1835fba1e0696b4c241c1304ae9",
+      "bytes": 38876
+    },
+    "analyze_matrix_independent_self_test.json": {
+      "sha256": "d4d790fad4f0398e0605f0eae65fdfebcd97cfb2304c3141f31e47dc9c448748",
+      "bytes": 7858
+    },
+    "analyze_matrix_independent_delta_review.json": {
+      "sha256": "419452d84feed9b9310767e02807588df5e5839ac7a047e16ac2b9a35d2b1ae8",
+      "bytes": 1004
+    },
+    "analysis-self-test-r2/SYNTHETIC_SELF_TEST.json": {
+      "sha256": "2c33aecbec8f6179a4189c7f3447e84453e3098f4b0b9cb2cd3e2472118798a5",
+      "bytes": 2568
+    }
+  },
+  "validation": "20 author synthetic fixtures and 87 independent arithmetic/pairing fixtures passed on the prior version; the final partial-cost accumulator change passed 4 independent targeted JSON fixtures. No new gate or experiment budget was introduced.",
+  "actual_experiment_analysis_executed": false,
+  "network_calls": 0,
+  "optimizer_updates": 0
+}

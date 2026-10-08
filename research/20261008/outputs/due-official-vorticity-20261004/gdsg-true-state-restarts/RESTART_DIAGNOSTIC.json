@@ -1,0 +1,94 @@
+{
+  "status": "TRUE_STATE_RESTART_DIAGNOSTIC_COMPLETE",
+  "variant": "default_gdsg",
+  "source_commit": "1e629104a12a9c3e3064996cbd4e301cec641ad8",
+  "slurm_training_job": "2349396",
+  "model": "final epoch500",
+  "device": "cpu",
+  "batch_size": 100,
+  "test_trajectories": 100,
+  "transitions_per_trajectory": 99,
+  "total_one_step_predictions": 9900,
+  "optimizer_updates": 0,
+  "parameters_unchanged": true,
+  "inputs_unchanged": true,
+  "metric": "Per-trajectory spatial relative L2 in physical units. Float32 truth/model outputs, float64 subtraction and norm accumulation. Same metric for both curves; not bitwise official float32 CSV.",
+  "first_step_cpu_gpu_parity": {
+    "max_abs": 5.960464477539062e-07,
+    "relative_rms_to_gpu": 9.327010933120886e-08
+  },
+  "restart_all_time_mean": 0.0006989469659131045,
+  "restart_max": 0.0053475572443666235,
+  "selected_times": [
+    {
+      "elapsed_target_time": 1,
+      "restart_mean": 0.001543378444974019,
+      "restart_median": 0.0013219128785818873,
+      "restart_p90": 0.0028683427950891554,
+      "free_rollout_mean": 0.0015433775628462304,
+      "free_rollout_median": 0.0013219093047770972
+    },
+    {
+      "elapsed_target_time": 20,
+      "restart_mean": 0.0007823601177819333,
+      "restart_median": 0.0004868900395649335,
+      "restart_p90": 0.0016751938692562232,
+      "free_rollout_mean": 0.006125836237179775,
+      "free_rollout_median": 0.004830168559772996
+    },
+    {
+      "elapsed_target_time": 40,
+      "restart_mean": 0.0005995622477182647,
+      "restart_median": 0.0004246970053800495,
+      "restart_p90": 0.0011607573071141723,
+      "free_rollout_mean": 0.008476924312060494,
+      "free_rollout_median": 0.005235457392084256
+    },
+    {
+      "elapsed_target_time": 60,
+      "restart_mean": 0.0005572227672374575,
+      "restart_median": 0.0004161627042409903,
+      "restart_p90": 0.0009327492965249856,
+      "free_rollout_mean": 0.010510870319238643,
+      "free_rollout_median": 0.00643616658048898
+    },
+    {
+      "elapsed_target_time": 80,
+      "restart_mean": 0.0005792077921500687,
+      "restart_median": 0.00046118367913649253,
+      "restart_p90": 0.0008601545929889076,
+      "free_rollout_mean": 0.013164047397471573,
+      "free_rollout_median": 0.008592024565691723
+    },
+    {
+      "elapsed_target_time": 99,
+      "restart_mean": 0.0006683768844390256,
+      "restart_median": 0.0005355198874266344,
+      "restart_p90": 0.0011571318818665776,
+      "free_rollout_mean": 0.01739165877976141,
+      "free_rollout_median": 0.011791364516310323
+    }
+  ],
+  "wall_seconds": 54.52160933392588,
+  "input_sha256": {
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/OFFICIAL_COMPLETE.json": "303721c149da668f911bf0c36fbef1ef620afdfef0eb99410ea9e53db7b39654",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/environment.json": "167e38eecaf4144dbafbc08d36f45bf929979cce04d97e779a9317b608fb02d4",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/audit/epoch500_final_network.pt": "1957df87abed4e9f88e200c88a2d0063f6685ce6e64157f2e2e6751de0c6ef9e",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-full-recovery/20261004-due-vorticity-1e62910-r1/runs/official-gdsg-r1/official_workdir/model/pred.mat": "9e4a04a0657729cbf89cfc3a697318c32e2d4c3a7f79bfe131d768da273ad7a9",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/data/VorticityOSG_test.mat": "a1e0a3a0fdf63c1ec3622bc21bd7889bf4a14078f86d63e07d8ae2bab74d926a",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/work/due_official_vorticity/operations/official_source_manifest.json": "c423cbc0bde6636fd07f157b50a2f01d0430ac06973f5f0dfc2dbec1c483a79c",
+    "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/due-official-vorticity-20261004/gdsg-independent-verification/verification.json": "d1f79d2d38d5d8c1ce8180d9c2ed05f15d11b1a90501e4ec5a10ddc14364ae0a"
+  },
+  "script_sha256": "edf3105a7f521d772744ade2f90396c9e62b84453439e5c2aa9ee47c63c9be25",
+  "runtime": {
+    "torch": "2.5.1",
+    "numpy": "1.26.4",
+    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]"
+  },
+  "limitations": [
+    "Post-hoc diagnosis on an already inspected benchmark test set; not a new confirmation set.",
+    "True-state restart measures local fit on real states; free rollout includes accumulated error and changed input states.",
+    "Their difference does not separately identify capacity, optimization, data coverage, or dynamical sensitivity.",
+    "Cross-device numerical differences remain; first-step parity is measured, not assumed."
+  ]
+}

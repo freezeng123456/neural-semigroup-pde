@@ -1,0 +1,18 @@
+{
+  "plot_local_and_rollout.py": {
+    "sha256": "d14a4e5646e99be4ceb4c4c24b8ab231980723417aa1d472ba20f32824fc0383",
+    "bytes": 4293
+  },
+  "local_fit_and_rollout.png": {
+    "sha256": "184cc316a845d9eee42eed348ab48783135de4b49b5bdeb6d4090ec785682c23",
+    "bytes": 270381
+  },
+  "local_fit_and_rollout.pdf": {
+    "sha256": "20cdf4f372f2bf9227281852fbbd8dd80b0f37a09b270693d43d8897c76c610a",
+    "bytes": 32061
+  },
+  "local_fit_and_rollout.json": {
+    "sha256": "6ba620de629a80f0c16229cd5fe871e8e0f0ed0ba42f9efccef27f6fc5e86814",
+    "bytes": 1498
+  }
+}

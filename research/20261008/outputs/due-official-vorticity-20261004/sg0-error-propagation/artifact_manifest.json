@@ -1,0 +1,14 @@
+{
+  "ERROR_PROPAGATION_DIAGNOSTIC.json": {
+    "sha256": "b3d7659194fc64576e9cfdf71a225cc601c944bd9d8c7afd3c0a6e5af066b90d",
+    "bytes": 58256
+  },
+  "error_propagation_arrays.npz": {
+    "sha256": "350d823b3ffd1d3125ba731ab4e17e8063e38d930c8e34cd7dff7d2b0fddb7e9",
+    "bytes": 26472290
+  },
+  "per_trajectory_error_propagation.csv": {
+    "sha256": "1afd42e1a8550e5ac7538daf1d0979828fab0216e998b9e7ebdde74e475a5e2d",
+    "bytes": 327510
+  }
+}

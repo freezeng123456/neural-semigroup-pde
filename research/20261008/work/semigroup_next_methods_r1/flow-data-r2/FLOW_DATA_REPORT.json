@@ -1,0 +1,626 @@
+{
+  "status": "FLOW_DERIVATIVE_PROXIES_FROZEN",
+  "script_sha256": "01123053eee9741e3c9e5da116cadb74be11c3829fae43d0ecb34c52cbfca8d5",
+  "numerics_sha256": "fd4cad1250bdfe049090c57b08a845ee2442f6d74cf3f710113de06866074dc3",
+  "shared_data_sha256": "49869507406029ce4263dda51150726589593ecbe4ff8bbe59da956aedb2023a",
+  "training_trajectories_only": true,
+  "derivative_scheme": "Official CFO three-point nonuniform stencil; one-sided endpoints",
+  "five_point_results_are_sensitivity_only": true,
+  "official_cfo_commit": "3f208668ad67ca4643ef22dfeda29b4c0bf56c30",
+  "velocity_scale_sq": 0.006834265296626076,
+  "midpoint_vs_linear_relative_l2_mean": 0.011995186540822033,
+  "sensitivity_per_training_trajectory": [
+    {
+      "training_trajectory_id": 0,
+      "three_vs_five_d1_relative_l2": 0.062033209598698826,
+      "three_vs_five_d2_relative_l2": 0.10434514679981756,
+      "coarsened_d1_vs_five_relative_l2": 0.15948481821245278,
+      "coarsened_d2_vs_five_relative_l2": 0.23521881608230513
+    },
+    {
+      "training_trajectory_id": 1,
+      "three_vs_five_d1_relative_l2": 0.07376266117155453,
+      "three_vs_five_d2_relative_l2": 0.14207516676238136,
+      "coarsened_d1_vs_five_relative_l2": 0.2062095600366125,
+      "coarsened_d2_vs_five_relative_l2": 0.2824256115484279
+    },
+    {
+      "training_trajectory_id": 2,
+      "three_vs_five_d1_relative_l2": 0.07351276562735073,
+      "three_vs_five_d2_relative_l2": 0.12976688948866666,
+      "coarsened_d1_vs_five_relative_l2": 0.20839529565146922,
+      "coarsened_d2_vs_five_relative_l2": 0.2980241123628862
+    },
+    {
+      "training_trajectory_id": 3,
+      "three_vs_five_d1_relative_l2": 0.06824328954436489,
+      "three_vs_five_d2_relative_l2": 0.1167332271175964,
+      "coarsened_d1_vs_five_relative_l2": 0.18106209916065194,
+      "coarsened_d2_vs_five_relative_l2": 0.2577129151936336
+    },
+    {
+      "training_trajectory_id": 6,
+      "three_vs_five_d1_relative_l2": 0.0657516689936108,
+      "three_vs_five_d2_relative_l2": 0.12027393188588141,
+      "coarsened_d1_vs_five_relative_l2": 0.17219351884620993,
+      "coarsened_d2_vs_five_relative_l2": 0.2662968526513539
+    },
+    {
+      "training_trajectory_id": 7,
+      "three_vs_five_d1_relative_l2": 0.070450625462595,
+      "three_vs_five_d2_relative_l2": 0.11490233094849718,
+      "coarsened_d1_vs_five_relative_l2": 0.18687905268065172,
+      "coarsened_d2_vs_five_relative_l2": 0.27392006765063937
+    },
+    {
+      "training_trajectory_id": 9,
+      "three_vs_five_d1_relative_l2": 0.060255847628142865,
+      "three_vs_five_d2_relative_l2": 0.11171684168332281,
+      "coarsened_d1_vs_five_relative_l2": 0.15097307071869653,
+      "coarsened_d2_vs_five_relative_l2": 0.21963815618702617
+    },
+    {
+      "training_trajectory_id": 10,
+      "three_vs_five_d1_relative_l2": 0.07175467698988384,
+      "three_vs_five_d2_relative_l2": 0.12611788490399656,
+      "coarsened_d1_vs_five_relative_l2": 0.19923266706694664,
+      "coarsened_d2_vs_five_relative_l2": 0.27950090290562635
+    },
+    {
+      "training_trajectory_id": 11,
+      "three_vs_five_d1_relative_l2": 0.07026671930376426,
+      "three_vs_five_d2_relative_l2": 0.13091711684733498,
+      "coarsened_d1_vs_five_relative_l2": 0.19748205825690454,
+      "coarsened_d2_vs_five_relative_l2": 0.2856277773731093
+    },
+    {
+      "training_trajectory_id": 12,
+      "three_vs_five_d1_relative_l2": 0.061773930162419395,
+      "three_vs_five_d2_relative_l2": 0.11539467698267501,
+      "coarsened_d1_vs_five_relative_l2": 0.15504402878824303,
+      "coarsened_d2_vs_five_relative_l2": 0.22692129154573495
+    },
+    {
+      "training_trajectory_id": 13,
+      "three_vs_five_d1_relative_l2": 0.058226174334771445,
+      "three_vs_five_d2_relative_l2": 0.11302354016253145,
+      "coarsened_d1_vs_five_relative_l2": 0.1424306746549191,
+      "coarsened_d2_vs_five_relative_l2": 0.2065601294669697
+    },
+    {
+      "training_trajectory_id": 14,
+      "three_vs_five_d1_relative_l2": 0.054265345575373665,
+      "three_vs_five_d2_relative_l2": 0.11358380634928567,
+      "coarsened_d1_vs_five_relative_l2": 0.13511947240821426,
+      "coarsened_d2_vs_five_relative_l2": 0.19072019149271666
+    },
+    {
+      "training_trajectory_id": 15,
+      "three_vs_five_d1_relative_l2": 0.06591444800087265,
+      "three_vs_five_d2_relative_l2": 0.1275410076409527,
+      "coarsened_d1_vs_five_relative_l2": 0.1709963542953197,
+      "coarsened_d2_vs_five_relative_l2": 0.2520327786153916
+    },
+    {
+      "training_trajectory_id": 16,
+      "three_vs_five_d1_relative_l2": 0.07110902402782601,
+      "three_vs_five_d2_relative_l2": 0.12166525608937029,
+      "coarsened_d1_vs_five_relative_l2": 0.18849395904719235,
+      "coarsened_d2_vs_five_relative_l2": 0.27489511781190423
+    },
+    {
+      "training_trajectory_id": 17,
+      "three_vs_five_d1_relative_l2": 0.07108451760243822,
+      "three_vs_five_d2_relative_l2": 0.13055400918395238,
+      "coarsened_d1_vs_five_relative_l2": 0.19647784163584175,
+      "coarsened_d2_vs_five_relative_l2": 0.2668836487314589
+    },
+    {
+      "training_trajectory_id": 18,
+      "three_vs_five_d1_relative_l2": 0.07270256599922144,
+      "three_vs_five_d2_relative_l2": 0.12436437166941502,
+      "coarsened_d1_vs_five_relative_l2": 0.20133147373696417,
+      "coarsened_d2_vs_five_relative_l2": 0.2794408552762185
+    },
+    {
+      "training_trajectory_id": 19,
+      "three_vs_five_d1_relative_l2": 0.06301194239825943,
+      "three_vs_five_d2_relative_l2": 0.10709053896964872,
+      "coarsened_d1_vs_five_relative_l2": 0.16207702857197956,
+      "coarsened_d2_vs_five_relative_l2": 0.2382736698781413
+    },
+    {
+      "training_trajectory_id": 20,
+      "three_vs_five_d1_relative_l2": 0.05887039972516505,
+      "three_vs_five_d2_relative_l2": 0.11677345830931607,
+      "coarsened_d1_vs_five_relative_l2": 0.149416601108664,
+      "coarsened_d2_vs_five_relative_l2": 0.22207448809176422
+    },
+    {
+      "training_trajectory_id": 22,
+      "three_vs_five_d1_relative_l2": 0.07988269555669396,
+      "three_vs_five_d2_relative_l2": 0.13063405373126943,
+      "coarsened_d1_vs_five_relative_l2": 0.22555116048069568,
+      "coarsened_d2_vs_five_relative_l2": 0.31509661296176755
+    },
+    {
+      "training_trajectory_id": 23,
+      "three_vs_five_d1_relative_l2": 0.06513852212966957,
+      "three_vs_five_d2_relative_l2": 0.12180459599460941,
+      "coarsened_d1_vs_five_relative_l2": 0.16810360263897742,
+      "coarsened_d2_vs_five_relative_l2": 0.24556642362464415
+    },
+    {
+      "training_trajectory_id": 25,
+      "three_vs_five_d1_relative_l2": 0.0729864663262428,
+      "three_vs_five_d2_relative_l2": 0.13522263829973177,
+      "coarsened_d1_vs_five_relative_l2": 0.2015549884373911,
+      "coarsened_d2_vs_five_relative_l2": 0.28905862517262215
+    },
+    {
+      "training_trajectory_id": 26,
+      "three_vs_five_d1_relative_l2": 0.060665542237509626,
+      "three_vs_five_d2_relative_l2": 0.11860572469728434,
+      "coarsened_d1_vs_five_relative_l2": 0.15453112965266433,
+      "coarsened_d2_vs_five_relative_l2": 0.22352886323184382
+    },
+    {
+      "training_trajectory_id": 30,
+      "three_vs_five_d1_relative_l2": 0.06331808488041527,
+      "three_vs_five_d2_relative_l2": 0.1192918134820282,
+      "coarsened_d1_vs_five_relative_l2": 0.17018394075674734,
+      "coarsened_d2_vs_five_relative_l2": 0.23290413377740293
+    },
+    {
+      "training_trajectory_id": 31,
+      "three_vs_five_d1_relative_l2": 0.0675385567620202,
+      "three_vs_five_d2_relative_l2": 0.13176974311443376,
+      "coarsened_d1_vs_five_relative_l2": 0.173537378881089,
+      "coarsened_d2_vs_five_relative_l2": 0.2534969849495021
+    },
+    {
+      "training_trajectory_id": 32,
+      "three_vs_five_d1_relative_l2": 0.05813674029577996,
+      "three_vs_five_d2_relative_l2": 0.1048193297762876,
+      "coarsened_d1_vs_five_relative_l2": 0.14873892363823782,
+      "coarsened_d2_vs_five_relative_l2": 0.21437574392998462
+    },
+    {
+      "training_trajectory_id": 34,
+      "three_vs_five_d1_relative_l2": 0.052580785330093714,
+      "three_vs_five_d2_relative_l2": 0.11327524220787268,
+      "coarsened_d1_vs_five_relative_l2": 0.12580384451152682,
+      "coarsened_d2_vs_five_relative_l2": 0.1872862874738602
+    },
+    {
+      "training_trajectory_id": 35,
+      "three_vs_five_d1_relative_l2": 0.05452116394926307,
+      "three_vs_five_d2_relative_l2": 0.11002307586966727,
+      "coarsened_d1_vs_five_relative_l2": 0.12697252339737625,
+      "coarsened_d2_vs_five_relative_l2": 0.19235853234615288
+    },
+    {
+      "training_trajectory_id": 36,
+      "three_vs_five_d1_relative_l2": 0.05905821119439076,
+      "three_vs_five_d2_relative_l2": 0.11999051193425211,
+      "coarsened_d1_vs_five_relative_l2": 0.14765141107671562,
+      "coarsened_d2_vs_five_relative_l2": 0.210909456558306
+    },
+    {
+      "training_trajectory_id": 37,
+      "three_vs_five_d1_relative_l2": 0.07278591678063405,
+      "three_vs_five_d2_relative_l2": 0.135522351993787,
+      "coarsened_d1_vs_five_relative_l2": 0.20129194249075405,
+      "coarsened_d2_vs_five_relative_l2": 0.2760986060664983
+    },
+    {
+      "training_trajectory_id": 38,
+      "three_vs_five_d1_relative_l2": 0.055222059655661335,
+      "three_vs_five_d2_relative_l2": 0.11427607009418554,
+      "coarsened_d1_vs_five_relative_l2": 0.13553233126181616,
+      "coarsened_d2_vs_five_relative_l2": 0.20295458485510962
+    },
+    {
+      "training_trajectory_id": 39,
+      "three_vs_five_d1_relative_l2": 0.057367020407796114,
+      "three_vs_five_d2_relative_l2": 0.12038570267401945,
+      "coarsened_d1_vs_five_relative_l2": 0.14714454151870013,
+      "coarsened_d2_vs_five_relative_l2": 0.2145049017425508
+    },
+    {
+      "training_trajectory_id": 43,
+      "three_vs_five_d1_relative_l2": 0.06132277044485365,
+      "three_vs_five_d2_relative_l2": 0.11613046952166138,
+      "coarsened_d1_vs_five_relative_l2": 0.1572477979240595,
+      "coarsened_d2_vs_five_relative_l2": 0.22326812684557065
+    },
+    {
+      "training_trajectory_id": 44,
+      "three_vs_five_d1_relative_l2": 0.06479842927566862,
+      "three_vs_five_d2_relative_l2": 0.12686969478877527,
+      "coarsened_d1_vs_five_relative_l2": 0.17501945855072676,
+      "coarsened_d2_vs_five_relative_l2": 0.2555945148074496
+    },
+    {
+      "training_trajectory_id": 45,
+      "three_vs_five_d1_relative_l2": 0.05672248441296483,
+      "three_vs_five_d2_relative_l2": 0.10969256527209904,
+      "coarsened_d1_vs_five_relative_l2": 0.14135744191959965,
+      "coarsened_d2_vs_five_relative_l2": 0.21369533506881708
+    },
+    {
+      "training_trajectory_id": 46,
+      "three_vs_five_d1_relative_l2": 0.05781423881547425,
+      "three_vs_five_d2_relative_l2": 0.11373799200026134,
+      "coarsened_d1_vs_five_relative_l2": 0.14033532463418685,
+      "coarsened_d2_vs_five_relative_l2": 0.21087144641663225
+    },
+    {
+      "training_trajectory_id": 48,
+      "three_vs_five_d1_relative_l2": 0.06047007167903914,
+      "three_vs_five_d2_relative_l2": 0.11721123277896978,
+      "coarsened_d1_vs_five_relative_l2": 0.1500236148615448,
+      "coarsened_d2_vs_five_relative_l2": 0.2257524030794436
+    },
+    {
+      "training_trajectory_id": 49,
+      "three_vs_five_d1_relative_l2": 0.05699488396626088,
+      "three_vs_five_d2_relative_l2": 0.09941658243683485,
+      "coarsened_d1_vs_five_relative_l2": 0.13942918867342055,
+      "coarsened_d2_vs_five_relative_l2": 0.20836263363581523
+    },
+    {
+      "training_trajectory_id": 51,
+      "three_vs_five_d1_relative_l2": 0.05807323207636324,
+      "three_vs_five_d2_relative_l2": 0.11587864709701855,
+      "coarsened_d1_vs_five_relative_l2": 0.14167140983940305,
+      "coarsened_d2_vs_five_relative_l2": 0.2177362193134966
+    },
+    {
+      "training_trajectory_id": 52,
+      "three_vs_five_d1_relative_l2": 0.05705889149391613,
+      "three_vs_five_d2_relative_l2": 0.11411789448322625,
+      "coarsened_d1_vs_five_relative_l2": 0.14098037581550568,
+      "coarsened_d2_vs_five_relative_l2": 0.20821626759416165
+    },
+    {
+      "training_trajectory_id": 53,
+      "three_vs_five_d1_relative_l2": 0.05949944087452228,
+      "three_vs_five_d2_relative_l2": 0.10491928141737313,
+      "coarsened_d1_vs_five_relative_l2": 0.15168166351642942,
+      "coarsened_d2_vs_five_relative_l2": 0.22319377599530527
+    },
+    {
+      "training_trajectory_id": 54,
+      "three_vs_five_d1_relative_l2": 0.06119140157030789,
+      "three_vs_five_d2_relative_l2": 0.12624213626628916,
+      "coarsened_d1_vs_five_relative_l2": 0.1636958662756273,
+      "coarsened_d2_vs_five_relative_l2": 0.23334953709772133
+    },
+    {
+      "training_trajectory_id": 55,
+      "three_vs_five_d1_relative_l2": 0.07338904342105093,
+      "three_vs_five_d2_relative_l2": 0.12102329820769522,
+      "coarsened_d1_vs_five_relative_l2": 0.2034408211705689,
+      "coarsened_d2_vs_five_relative_l2": 0.28715375140605137
+    },
+    {
+      "training_trajectory_id": 56,
+      "three_vs_five_d1_relative_l2": 0.05798470937856645,
+      "three_vs_five_d2_relative_l2": 0.12232575114466261,
+      "coarsened_d1_vs_five_relative_l2": 0.1542972382901992,
+      "coarsened_d2_vs_five_relative_l2": 0.216168257927829
+    },
+    {
+      "training_trajectory_id": 57,
+      "three_vs_five_d1_relative_l2": 0.07317064927949168,
+      "three_vs_five_d2_relative_l2": 0.12282558521465876,
+      "coarsened_d1_vs_five_relative_l2": 0.2063516625779521,
+      "coarsened_d2_vs_five_relative_l2": 0.293246615194347
+    },
+    {
+      "training_trajectory_id": 58,
+      "three_vs_five_d1_relative_l2": 0.055204291320725435,
+      "three_vs_five_d2_relative_l2": 0.11678330527572596,
+      "coarsened_d1_vs_five_relative_l2": 0.13347682304048888,
+      "coarsened_d2_vs_five_relative_l2": 0.20529572217159983
+    },
+    {
+      "training_trajectory_id": 59,
+      "three_vs_five_d1_relative_l2": 0.05540010782208508,
+      "three_vs_five_d2_relative_l2": 0.10492320471919875,
+      "coarsened_d1_vs_five_relative_l2": 0.13382372215931684,
+      "coarsened_d2_vs_five_relative_l2": 0.20604780558275235
+    },
+    {
+      "training_trajectory_id": 60,
+      "three_vs_five_d1_relative_l2": 0.06647150030903631,
+      "three_vs_five_d2_relative_l2": 0.10992111945221217,
+      "coarsened_d1_vs_five_relative_l2": 0.17759391617956047,
+      "coarsened_d2_vs_five_relative_l2": 0.25514817140532114
+    },
+    {
+      "training_trajectory_id": 61,
+      "three_vs_five_d1_relative_l2": 0.06673592755911063,
+      "three_vs_five_d2_relative_l2": 0.1298635146589919,
+      "coarsened_d1_vs_five_relative_l2": 0.18132329938550715,
+      "coarsened_d2_vs_five_relative_l2": 0.26297757407573935
+    },
+    {
+      "training_trajectory_id": 62,
+      "three_vs_five_d1_relative_l2": 0.06666785382555852,
+      "three_vs_five_d2_relative_l2": 0.1296785360686958,
+      "coarsened_d1_vs_five_relative_l2": 0.18334430727186318,
+      "coarsened_d2_vs_five_relative_l2": 0.26154745882915603
+    },
+    {
+      "training_trajectory_id": 63,
+      "three_vs_five_d1_relative_l2": 0.06512997991677083,
+      "three_vs_five_d2_relative_l2": 0.12160246226933658,
+      "coarsened_d1_vs_five_relative_l2": 0.16731439851468327,
+      "coarsened_d2_vs_five_relative_l2": 0.24723580132667064
+    },
+    {
+      "training_trajectory_id": 64,
+      "three_vs_five_d1_relative_l2": 0.05768843192361517,
+      "three_vs_five_d2_relative_l2": 0.11478625150466952,
+      "coarsened_d1_vs_five_relative_l2": 0.13706183858028526,
+      "coarsened_d2_vs_five_relative_l2": 0.21810826045090606
+    },
+    {
+      "training_trajectory_id": 65,
+      "three_vs_five_d1_relative_l2": 0.06435692259752088,
+      "three_vs_five_d2_relative_l2": 0.11500885384169572,
+      "coarsened_d1_vs_five_relative_l2": 0.16914671800944778,
+      "coarsened_d2_vs_five_relative_l2": 0.24298945587857657
+    },
+    {
+      "training_trajectory_id": 66,
+      "three_vs_five_d1_relative_l2": 0.058198394810000116,
+      "three_vs_five_d2_relative_l2": 0.10747940750419932,
+      "coarsened_d1_vs_five_relative_l2": 0.14390420141218413,
+      "coarsened_d2_vs_five_relative_l2": 0.2314650870125052
+    },
+    {
+      "training_trajectory_id": 68,
+      "three_vs_five_d1_relative_l2": 0.06408019927440524,
+      "three_vs_five_d2_relative_l2": 0.11319494330026136,
+      "coarsened_d1_vs_five_relative_l2": 0.16001900228581675,
+      "coarsened_d2_vs_five_relative_l2": 0.24466814938139722
+    },
+    {
+      "training_trajectory_id": 69,
+      "three_vs_five_d1_relative_l2": 0.06290005776856517,
+      "three_vs_five_d2_relative_l2": 0.11395019485654928,
+      "coarsened_d1_vs_five_relative_l2": 0.16650000303747475,
+      "coarsened_d2_vs_five_relative_l2": 0.24618763604359487
+    },
+    {
+      "training_trajectory_id": 70,
+      "three_vs_five_d1_relative_l2": 0.04859022994657281,
+      "three_vs_five_d2_relative_l2": 0.11421112923024039,
+      "coarsened_d1_vs_five_relative_l2": 0.10953731734135799,
+      "coarsened_d2_vs_five_relative_l2": 0.17699881026235137
+    },
+    {
+      "training_trajectory_id": 71,
+      "three_vs_five_d1_relative_l2": 0.061065355900529056,
+      "three_vs_five_d2_relative_l2": 0.11761173873986454,
+      "coarsened_d1_vs_five_relative_l2": 0.15894579568452588,
+      "coarsened_d2_vs_five_relative_l2": 0.2290043758233061
+    },
+    {
+      "training_trajectory_id": 72,
+      "three_vs_five_d1_relative_l2": 0.0523603066669311,
+      "three_vs_five_d2_relative_l2": 0.10226082299771312,
+      "coarsened_d1_vs_five_relative_l2": 0.13231642827368137,
+      "coarsened_d2_vs_five_relative_l2": 0.19518479470983208
+    },
+    {
+      "training_trajectory_id": 73,
+      "three_vs_five_d1_relative_l2": 0.06493094604349098,
+      "three_vs_five_d2_relative_l2": 0.11929625995917732,
+      "coarsened_d1_vs_five_relative_l2": 0.1679854274922234,
+      "coarsened_d2_vs_five_relative_l2": 0.24023577775598107
+    },
+    {
+      "training_trajectory_id": 74,
+      "three_vs_five_d1_relative_l2": 0.05778991875352362,
+      "three_vs_five_d2_relative_l2": 0.10900654908906922,
+      "coarsened_d1_vs_five_relative_l2": 0.14304170364401173,
+      "coarsened_d2_vs_five_relative_l2": 0.21834328708263503
+    },
+    {
+      "training_trajectory_id": 75,
+      "three_vs_five_d1_relative_l2": 0.07192138679371018,
+      "three_vs_five_d2_relative_l2": 0.13185758196299197,
+      "coarsened_d1_vs_five_relative_l2": 0.20943145474310215,
+      "coarsened_d2_vs_five_relative_l2": 0.28337981964975123
+    },
+    {
+      "training_trajectory_id": 76,
+      "three_vs_five_d1_relative_l2": 0.055607972976332146,
+      "three_vs_five_d2_relative_l2": 0.10566932631411355,
+      "coarsened_d1_vs_five_relative_l2": 0.14315975990079904,
+      "coarsened_d2_vs_five_relative_l2": 0.2053967592524066
+    },
+    {
+      "training_trajectory_id": 79,
+      "three_vs_five_d1_relative_l2": 0.07151091763871018,
+      "three_vs_five_d2_relative_l2": 0.1284956889943156,
+      "coarsened_d1_vs_five_relative_l2": 0.19238447587864704,
+      "coarsened_d2_vs_five_relative_l2": 0.28283049071079436
+    },
+    {
+      "training_trajectory_id": 80,
+      "three_vs_five_d1_relative_l2": 0.0524401339312866,
+      "three_vs_five_d2_relative_l2": 0.11276113774967486,
+      "coarsened_d1_vs_five_relative_l2": 0.126158339090275,
+      "coarsened_d2_vs_five_relative_l2": 0.18844579867332129
+    },
+    {
+      "training_trajectory_id": 81,
+      "three_vs_five_d1_relative_l2": 0.0685444924907833,
+      "three_vs_five_d2_relative_l2": 0.14556626396152986,
+      "coarsened_d1_vs_five_relative_l2": 0.19694700872214901,
+      "coarsened_d2_vs_five_relative_l2": 0.27661913202325455
+    },
+    {
+      "training_trajectory_id": 82,
+      "three_vs_five_d1_relative_l2": 0.078351596266503,
+      "three_vs_five_d2_relative_l2": 0.1289450470896383,
+      "coarsened_d1_vs_five_relative_l2": 0.22230907575553716,
+      "coarsened_d2_vs_five_relative_l2": 0.30899660746046614
+    },
+    {
+      "training_trajectory_id": 83,
+      "three_vs_five_d1_relative_l2": 0.0563491411647747,
+      "three_vs_five_d2_relative_l2": 0.1024927212777072,
+      "coarsened_d1_vs_five_relative_l2": 0.14088155569539568,
+      "coarsened_d2_vs_five_relative_l2": 0.20731221536787015
+    },
+    {
+      "training_trajectory_id": 84,
+      "three_vs_five_d1_relative_l2": 0.05612797779391446,
+      "three_vs_five_d2_relative_l2": 0.1047646749830662,
+      "coarsened_d1_vs_five_relative_l2": 0.1495123573570354,
+      "coarsened_d2_vs_five_relative_l2": 0.21122403921301114
+    },
+    {
+      "training_trajectory_id": 85,
+      "three_vs_five_d1_relative_l2": 0.06272718217380206,
+      "three_vs_five_d2_relative_l2": 0.11973657953672119,
+      "coarsened_d1_vs_five_relative_l2": 0.1545635025311611,
+      "coarsened_d2_vs_five_relative_l2": 0.2357950460622249
+    },
+    {
+      "training_trajectory_id": 86,
+      "three_vs_five_d1_relative_l2": 0.05410535462509153,
+      "three_vs_five_d2_relative_l2": 0.10654049540172054,
+      "coarsened_d1_vs_five_relative_l2": 0.13493128661267034,
+      "coarsened_d2_vs_five_relative_l2": 0.19896282147936054
+    },
+    {
+      "training_trajectory_id": 87,
+      "three_vs_five_d1_relative_l2": 0.05975232711615014,
+      "three_vs_five_d2_relative_l2": 0.12903359871709663,
+      "coarsened_d1_vs_five_relative_l2": 0.14801309506153312,
+      "coarsened_d2_vs_five_relative_l2": 0.21687009134965055
+    },
+    {
+      "training_trajectory_id": 88,
+      "three_vs_five_d1_relative_l2": 0.0569233797091264,
+      "three_vs_five_d2_relative_l2": 0.10917876349958126,
+      "coarsened_d1_vs_five_relative_l2": 0.14148370269043206,
+      "coarsened_d2_vs_five_relative_l2": 0.20979134811589858
+    },
+    {
+      "training_trajectory_id": 89,
+      "three_vs_five_d1_relative_l2": 0.06962133928902806,
+      "three_vs_five_d2_relative_l2": 0.12233492547417335,
+      "coarsened_d1_vs_five_relative_l2": 0.18251034477360756,
+      "coarsened_d2_vs_five_relative_l2": 0.2692862953845344
+    },
+    {
+      "training_trajectory_id": 90,
+      "three_vs_five_d1_relative_l2": 0.06320815465783211,
+      "three_vs_five_d2_relative_l2": 0.1103781075237826,
+      "coarsened_d1_vs_five_relative_l2": 0.16956706589143883,
+      "coarsened_d2_vs_five_relative_l2": 0.23841331482260247
+    },
+    {
+      "training_trajectory_id": 92,
+      "three_vs_five_d1_relative_l2": 0.056366258609913095,
+      "three_vs_five_d2_relative_l2": 0.10747391977007542,
+      "coarsened_d1_vs_five_relative_l2": 0.1377205037675222,
+      "coarsened_d2_vs_five_relative_l2": 0.20045453126758955
+    },
+    {
+      "training_trajectory_id": 95,
+      "three_vs_five_d1_relative_l2": 0.05148550029046563,
+      "three_vs_five_d2_relative_l2": 0.09716746599324959,
+      "coarsened_d1_vs_five_relative_l2": 0.11875874881928693,
+      "coarsened_d2_vs_five_relative_l2": 0.18918909975555645
+    },
+    {
+      "training_trajectory_id": 96,
+      "three_vs_five_d1_relative_l2": 0.06052641525740167,
+      "three_vs_five_d2_relative_l2": 0.1244301403251394,
+      "coarsened_d1_vs_five_relative_l2": 0.15354725776475564,
+      "coarsened_d2_vs_five_relative_l2": 0.2171421165036265
+    },
+    {
+      "training_trajectory_id": 97,
+      "three_vs_five_d1_relative_l2": 0.06743029877000466,
+      "three_vs_five_d2_relative_l2": 0.1201740827649007,
+      "coarsened_d1_vs_five_relative_l2": 0.19133733831475316,
+      "coarsened_d2_vs_five_relative_l2": 0.26885317712606494
+    },
+    {
+      "training_trajectory_id": 98,
+      "three_vs_five_d1_relative_l2": 0.04924848853040823,
+      "three_vs_five_d2_relative_l2": 0.12076425024051189,
+      "coarsened_d1_vs_five_relative_l2": 0.11520114924004549,
+      "coarsened_d2_vs_five_relative_l2": 0.18153007237771607
+    },
+    {
+      "training_trajectory_id": 99,
+      "three_vs_five_d1_relative_l2": 0.0682847599485049,
+      "three_vs_five_d2_relative_l2": 0.12698601411645036,
+      "coarsened_d1_vs_five_relative_l2": 0.19519503680356134,
+      "coarsened_d2_vs_five_relative_l2": 0.2688455499441374
+    }
+  ],
+  "sensitivity_mean": {
+    "three_vs_five_d1_relative_l2": 0.06260981658516433,
+    "three_vs_five_d2_relative_l2": 0.11808975331822047,
+    "coarsened_d1_vs_five_relative_l2": 0.1630547139924498,
+    "coarsened_d2_vs_five_relative_l2": 0.23714615647837944
+  },
+  "limitations": [
+    "Derivatives are proxies; no instantaneous PDE RHS or true midpoint is available",
+    "Stencil agreement does not bound true derivative bias",
+    "Derivatives follow frozen normalized/clipped snapshots",
+    "Neighbor snapshots enlarge label access compared with two-step mapping"
+  ],
+  "payload_sha256": "2024e030bf4d12bc20b2376529cae89b0e1e40af2ecf6749cbe5f053512c706e",
+  "payload_bytes": 121554992,
+  "elapsed_seconds": 4.503926333039999,
+  "arrays": {
+    "d1": {
+      "shape": [
+        80,
+        51,
+        64,
+        64,
+        1
+      ],
+      "dtype": "float32",
+      "sha256": "805ffa4ead97734a91ff6ce99267059c4934801beacf1b5527d7b866f9113fbb"
+    },
+    "d2": {
+      "shape": [
+        80,
+        51,
+        64,
+        64,
+        1
+      ],
+      "dtype": "float32",
+      "sha256": "a73310d3466a9cd24c04a3a13b86d3fb80a04bff5a9910cf5d9b62c6f6af3742"
+    },
+    "times": {
+      "shape": [
+        80,
+        51
+      ],
+      "dtype": "float64",
+      "sha256": "66a0bfd4540cc311af0f26d7a8683ddb7326ffabd738806003a34362fa54270b"
+    },
+    "velocity_scale_sq": {
+      "shape": [],
+      "dtype": "float64",
+      "sha256": "8e3ee34ef58793c02a368ac63b85b7ff92e85c79f91d18e8d77ba50a4ea86373"
+    }
+  }
+}

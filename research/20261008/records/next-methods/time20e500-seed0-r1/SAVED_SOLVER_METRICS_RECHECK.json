@@ -1,0 +1,35 @@
+{
+  "schema": "saved_generator_solver_metrics_recheck_v1",
+  "status": "SAVED_METRICS_VERIFIED",
+  "run_name": "time20e500-seed0-r1",
+  "optimizer_updates": 0,
+  "new_network_forwards": 0,
+  "data_sha256": "49869507406029ce4263dda51150726589593ecbe4ff8bbe59da956aedb2023a",
+  "predictions": {
+    "1": {
+      "status": "NONFINITE",
+      "nonfinite_values": 413696
+    },
+    "2": {
+      "status": "FINITE",
+      "joint_mean": 1.021304012112169e+27
+    },
+    "4": {
+      "status": "FINITE",
+      "joint_mean": 8.381706743668425e+18
+    },
+    "8": {
+      "status": "FINITE",
+      "joint_mean": 1.47803431779415e+19
+    }
+  },
+  "prediction_relative_differences": {
+    "1_vs_2": null,
+    "2_vs_4": 8280553.826797077,
+    "4_vs_8": 2303.8330227744473
+  },
+  "primary_matches_saved_substeps2_bitwise": true,
+  "primary_2_substeps_controlled": false,
+  "method_status": "INACCURATE_AND_NOT_SOLVER_CONTROLLED",
+  "scope": "Recomputed from frozen archived predictions; finite files and successful Slurm exit do not establish usable predictions"
+}

@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-03T13:31:35.392Z",
+  "initial": "显示 28 / 28 篇",
+  "filtered": "显示 3 / 28 篇",
+  "expanded": 3,
+  "local_links_checked": 9,
+  "anchor_links_checked": 10,
+  "broken_links": [],
+  "javascript_errors": [],
+  "mobile": {
+    "width": 390,
+    "body": 390
+  },
+  "external_paper_results_reproduced": false,
+  "new_training_launched": false,
+  "files": [
+    {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/semigroup_literature_review_20261003.html",
+      "bytes": 80720,
+      "sha256": "a092ba3051f93fe3b081b4284da2f2112c67a0c130d1dda01ca9beeb9f65e592"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/neural-semigroup-pde/docs/research/LITERATURE_REVIEW_20261003.zh.md",
+      "bytes": 18198,
+      "sha256": "3afdced16e068bfffeb65cc6e4da6f22ae22e30019a300fe5e76be84c446a27a"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/neural-semigroup-pde/docs/research/literature_20261003/references.bib",
+      "bytes": 11205,
+      "sha256": "254d9790bfb5d84be5d020b8e08d25ee23e25cb94530bb64ad74b04f2d5645ca"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/neural-semigroup-pde/docs/research/literature_20261003/papers.json",
+      "bytes": 58286,
+      "sha256": "6e4d9b89600d4a3dda515ab6959fec9f138660c1f24d59c4d5a1e78d0dfd2a21"
+    },
+    {
+      "path": "/Users/Apple_501/Documents/Codex/2026-10-03/cha/outputs/neural-semigroup-pde/docs/research/literature_20261003/papers.csv",
+      "bytes": 25827,
+      "sha256": "0b4a25dea9dfacc1be489aa5ac96d1300ca3bd37aa01cd38a2084b51b5589e50"
+    }
+  ]
+}
