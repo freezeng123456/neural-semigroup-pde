@@ -1,0 +1,111 @@
+{
+  "schema": "autoregressive_engineering_preflight_v1",
+  "status": "PASS",
+  "device": "cuda",
+  "gpu_name": "Tesla V100-SXM2-32GB",
+  "gpu_capability": [
+    7,
+    0
+  ],
+  "torch": "2.5.1+cu121",
+  "numpy": "1.26.4",
+  "slurm_job_id": "2420812",
+  "checks": [
+    {
+      "name": "independent_objective_values_gradients_calls",
+      "passed": true,
+      "tests": 4
+    },
+    {
+      "name": "exact_next_optimizer_update_first",
+      "passed": true
+    },
+    {
+      "name": "short_rollout_reload_and_frozen_inputs_first",
+      "passed": true
+    },
+    {
+      "name": "exact_next_optimizer_update_rollout2",
+      "passed": true
+    },
+    {
+      "name": "short_rollout_reload_and_frozen_inputs_rollout2",
+      "passed": true
+    },
+    {
+      "name": "paired_seed0_initialization_and_batch_order",
+      "passed": true
+    },
+    {
+      "name": "paired_seed1_initialization_and_shuffle",
+      "passed": true
+    },
+    {
+      "name": "paired_seed2_initialization_and_shuffle",
+      "passed": true
+    },
+    {
+      "name": "distinct_seed_initializations",
+      "passed": true
+    }
+  ],
+  "benchmarks": {
+    "first": {
+      "continuous_updates": 10,
+      "observed_training_forwards": 10,
+      "observed_optimizer_updates": 10,
+      "post_warmup_mean_update_seconds": 0.022024791894687548,
+      "estimated_training_hours": 0.30589988742621593,
+      "cuda_peak_allocated_bytes": 301221888,
+      "checkpoint_sha256": "65317dbdfad65d5eb8305e23b4926e96ad903e1082536656d500c397e92ab543",
+      "short_rollout_shape": [
+        2,
+        64,
+        64,
+        1,
+        9
+      ]
+    },
+    "rollout2": {
+      "continuous_updates": 10,
+      "observed_training_forwards": 20,
+      "observed_optimizer_updates": 10,
+      "post_warmup_mean_update_seconds": 0.03576117619458172,
+      "estimated_training_hours": 0.49668300270252386,
+      "cuda_peak_allocated_bytes": 455524864,
+      "checkpoint_sha256": "e56223b58f1e1a168961510649269724d6a710c1d2257025f85b4b89d7b0d8db",
+      "short_rollout_shape": [
+        2,
+        64,
+        64,
+        1,
+        9
+      ]
+    }
+  },
+  "paired": {
+    "first": {
+      "initial_parameter_sha256": "3c15e9d2181515a55cb0583ea93a5f076789d249444c403856d4ffa1705f0651",
+      "first_indices_sha256": "cd4ed825d1b286847ca59fb5594726ad114e1a11d25993a1c70a21f54bad12c6",
+      "second_indices_sha256": "727d4df1429a4713b8a879ba7904f0079c50bd2bf62bbbf11818fda443de59b5"
+    },
+    "rollout2": {
+      "initial_parameter_sha256": "3c15e9d2181515a55cb0583ea93a5f076789d249444c403856d4ffa1705f0651",
+      "first_indices_sha256": "cd4ed825d1b286847ca59fb5594726ad114e1a11d25993a1c70a21f54bad12c6",
+      "second_indices_sha256": "727d4df1429a4713b8a879ba7904f0079c50bd2bf62bbbf11818fda443de59b5"
+    }
+  },
+  "actual_optimizer_updates": 22,
+  "source_manifest_sha256": "c423cbc0bde6636fd07f157b50a2f01d0430ac06973f5f0dfc2dbec1c483a79c",
+  "data_payload_sha256": "49869507406029ce4263dda51150726589593ecbe4ff8bbe59da956aedb2023a",
+  "code_sha256": {
+    "train.py": "b451587a727ec818633634ae35cb08e9ebc462a863be3f41e5355b31ed50ac4f",
+    "objectives.py": "b3e274ee1b784b65a5331d576045da699fd3d37e898353ab72d8c4a1c8dd6849",
+    "preflight.py": "999c06a5148c9587dee6da380ca5a28ef9df5d6eea29ee1c72be3cbf8780efc3",
+    "test_objectives.py": "ba2064cf5abcdcc44edc2f8bdec70dbcf7afec6b48d82357a079f4428f780cd8",
+    "matrix.json": "d00d9054b87a3054cf0ba26e6700b38e3ca6f9b8219ff01d5b0e19c497980e24",
+    "PROTOCOL.zh.md": "c261e6a911fcccf337eae00114997702bdd0d21db6be7c38f79d1707a1d88c5c"
+  },
+  "whole_process_wall_seconds": 76.41238681972027,
+  "scope": "Engineering preflight: bounded optimizer updates and short 8-transition rollouts. No full50 untrained-model accuracy gate and no method-effect claim."
+}

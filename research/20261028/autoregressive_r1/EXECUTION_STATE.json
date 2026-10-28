@@ -1,0 +1,40 @@
+{
+  "date_beijing": "2026-10-28",
+  "status": "TRAINING_HEALTH_VERIFIED",
+  "preflight_job": "2420812",
+  "main_job": "2420813",
+  "preflight_local_verified": true,
+  "code_commit": "c0e1b4d",
+  "branch": "codex/autoregressive-20261028",
+  "full_tasks": 6,
+  "updates_per_task": 50000,
+  "max_concurrency": 2,
+  "raw_model_retention_local": false,
+  "method_effect": "NOT_YET_EVALUATED",
+  "timestamp_utc": "2026-10-28T05:43:39.417954+00:00",
+  "initial_progress_sha256": "cc5bc9b87fe60520fccd0264d0cf590cc27f37ef7791ae511f47e5b48e6c4765",
+  "progress": [
+    {
+      "run": "first-seed0",
+      "first_epoch_loss": 0.1901297515630722,
+      "epoch": 30,
+      "updates": 3000,
+      "latest_loss": 0.0058230954338796435,
+      "latest_dev": {
+        "epoch": 25,
+        "status": "FINITE_ROLLOUT",
+        "joint_mean": 0.14292866595816828
+      },
+      "latest_checkpoint_exists": true
+    },
+    {
+      "run": "rollout2-seed0",
+      "first_epoch_loss": 0.2739555260539055,
+      "epoch": 19,
+      "updates": 1900,
+      "latest_loss": 0.008884031800553202,
+      "latest_dev": null,
+      "latest_checkpoint_exists": true
+    }
+  ]
+}
