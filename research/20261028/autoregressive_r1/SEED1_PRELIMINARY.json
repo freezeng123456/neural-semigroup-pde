@@ -1,0 +1,58 @@
+{
+  "schema": "autoregressive_preliminary_paired_seed_v1",
+  "seed": 1,
+  "status": "FINAL_RECEIPTS_RECOVERED_REPLAY_AND_SLURM_PROOF_PENDING",
+  "main_job": "2420813",
+  "scheduled_updates_each": 50000,
+  "initialization_paired": true,
+  "input_hashes_paired": true,
+  "development_joint_relative_l2": {
+    "first": 0.11570669521477125,
+    "rollout2": 0.0076520205638652234
+  },
+  "ratio_rollout2_over_first": 0.06613291088870679,
+  "training_seconds": {
+    "first": 1135.6019066935405,
+    "rollout2": 1768.278521604836
+  },
+  "training_time_ratio": 1.5571288769260871,
+  "horizon_step_mean": {
+    "first": {
+      "1": 0.0021889816480151515,
+      "2": 0.003433402397378824,
+      "4": 0.0045781988430090206,
+      "8": 0.0055094554878817635,
+      "16": 0.009387973766329032,
+      "32": 0.053248864834503695,
+      "50": 0.3434675551948087
+    },
+    "rollout2": {
+      "1": 0.0022232516105866163,
+      "2": 0.0033677816628164144,
+      "4": 0.004331916195293847,
+      "8": 0.004794655682993567,
+      "16": 0.006185724009882871,
+      "32": 0.008592110639418397,
+      "50": 0.009541393412652506
+    }
+  },
+  "receipt_integrity": {
+    "first": {
+      "bytes": 65171,
+      "sha256": "6f188b0759acbf35dda8d52dc60416255e6802f7f0b4d809585c8c39f7532f22"
+    },
+    "rollout2": {
+      "bytes": 65872,
+      "sha256": "708c90890a2def12def03743eb8d43596133a75d667d1076e02010e277845153"
+    }
+  },
+  "rollout_receipt_verified_against_separate_remote_inventory": true,
+  "three_seed_practical_gate": "PENDING_THIRD_SEED_AND_CHECKPOINT_REPLAY",
+  "limits": [
+    "Single seed1 paired result on reused development trajectories",
+    "Second targets and compute differ; no isolated mechanism attribution",
+    "Live Slurm query unavailable since browser control disabled; await job2420820 independent saved scheduler evidence",
+    "Final checkpoint replay pending job2420820"
+  ],
+  "recorded_at_utc": "2026-10-28T06:46:45.412633+00:00"
+}
