@@ -1,0 +1,56 @@
+{
+  "schema": "autoregressive_preliminary_paired_seed_v1",
+  "seed": 0,
+  "status": "TWO_RECEIPTS_BYTE_VERIFIED_FINAL_CHECKPOINT_REPLAY_PENDING",
+  "main_job": "2420813",
+  "scheduled_updates_each": 50000,
+  "initialization_paired": true,
+  "input_hashes_paired": true,
+  "development_joint_relative_l2": {
+    "first": 0.10151423340254229,
+    "rollout2": 0.0069880706569811464
+  },
+  "ratio_rollout2_over_first": 0.06883833352975051,
+  "training_seconds": {
+    "first": 1256.9997487794608,
+    "rollout2": 1721.5904106767848
+  },
+  "training_time_ratio": 1.3696028279627253,
+  "horizon_step_mean": {
+    "first": {
+      "1": 0.002289076016520529,
+      "2": 0.003761819620847851,
+      "4": 0.005092179690235573,
+      "8": 0.006353421797505655,
+      "16": 0.00941821008517694,
+      "32": 0.04080305444725586,
+      "50": 0.2973060203052073
+    },
+    "rollout2": {
+      "1": 0.0024158471779380957,
+      "2": 0.003731851102541582,
+      "4": 0.004928682728450819,
+      "8": 0.005785165907896987,
+      "16": 0.005655013185971221,
+      "32": 0.00802977914719166,
+      "50": 0.008479642195047567
+    }
+  },
+  "receipt_integrity": {
+    "first": {
+      "bytes": 65206,
+      "sha256": "e34e4c3ea83094a467623fda8aa7346baba04363f9ac0573375c2f6bbe64f2cd"
+    },
+    "rollout2": {
+      "bytes": 65834,
+      "sha256": "095675bfefeb4e216afb25c21d40d4be18fd7d70d67caa6f75d0962200a57c56"
+    }
+  },
+  "three_seed_practical_gate": "PENDING_TWO_SEEDS_AND_CHECKPOINT_REPLAY",
+  "limitations": [
+    "One paired training seed on previously used development trajectories",
+    "Rollout2 adds second targets and training compute; this is a training-recipe comparison",
+    "Independent checkpoint replay remains scheduled as job2420820 after all six tasks end"
+  ],
+  "recorded_at_utc": "2026-10-28T06:17:23.611516+00:00"
+}
