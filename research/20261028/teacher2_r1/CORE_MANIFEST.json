@@ -1,0 +1,31 @@
+{
+  "schema": "teacher2_control_core_v1",
+  "base_repository_commit": "df4ecb5f642f48b34607708e66afcb4b87c2104d",
+  "reference_results_commit": "bea14bad55437e1e05d1e6d59598c6bfc7df4270",
+  "files": {
+    "PROTOCOL.zh.md": {
+      "bytes": 4446,
+      "sha256": "d882c3c9b830fc6527409414e6b678cfc0d297a3b619bf029ed553df2d2fbe70"
+    },
+    "matrix.json": {
+      "bytes": 1649,
+      "sha256": "977b7d2eec6f8906c8b3f9febb329011bc802ae853dddba96c5c42c97d68cd69"
+    },
+    "objectives.py": {
+      "bytes": 1968,
+      "sha256": "dff7e1fc8d960013ca19188e2ffdaa69cdd061ad9c1bed6cde2cc7c86edfe6cb"
+    },
+    "preflight.py": {
+      "bytes": 11551,
+      "sha256": "241784fd77961343cbcaea7ed8a91e8785570e2fb0641f4d485901e721aa9e35"
+    },
+    "test_objectives.py": {
+      "bytes": 5820,
+      "sha256": "aeae1edf0329f71bd417028a7bbd72849a110f00edc1aff18b1111d3f75df7c5"
+    },
+    "train.py": {
+      "bytes": 34053,
+      "sha256": "ae386e4b68af572e095918523054898a208d85335d3002427930ddc9aa5516db"
+    }
+  }
+}

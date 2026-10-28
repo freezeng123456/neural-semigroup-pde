@@ -1,0 +1,58 @@
+{
+  "schema": "teacher2_control_matrix_v1",
+  "status": "FROZEN_BEFORE_TRAINING",
+  "arms": [
+    "teacher2"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "epochs": 500,
+  "updates_per_epoch": 100,
+  "batch_size": 20,
+  "width": 20,
+  "modes_per_axis": 12,
+  "depth": 4,
+  "tasks": [
+    {
+      "index": 0,
+      "arm": "teacher2",
+      "seed": 0,
+      "run_name": "teacher2-seed0"
+    },
+    {
+      "index": 1,
+      "arm": "teacher2",
+      "seed": 1,
+      "run_name": "teacher2-seed1"
+    },
+    {
+      "index": 2,
+      "arm": "teacher2",
+      "seed": 2,
+      "run_name": "teacher2-seed2"
+    }
+  ],
+  "selection": "scheduled final endpoint only",
+  "regularizer": null,
+  "max_concurrency": 2,
+  "scope": "Only three new teacher2 runs; reuse immutable completed first/rollout2 controls. Match architecture, windows, two labels, two forwards, initialization, 500 shuffle sequences and fixed 50000 updates to rollout2; truth versus predicted second input also removes the cross-step gradient path.",
+  "reference_main_job": "2420813",
+  "reference_results_commit": "bea14bad55437e1e05d1e6d59598c6bfc7df4270",
+  "primary_comparison": {
+    "numerator": "rollout2",
+    "denominator": "teacher2",
+    "geometric_ratio_threshold": 0.9,
+    "minimum_seeds_favoring_numerator": 2,
+    "all_final_rollouts_finite": true
+  },
+  "secondary_comparison": {
+    "numerator": "teacher2",
+    "denominator": "first",
+    "geometric_ratio_threshold": 0.9,
+    "minimum_seeds_favoring_numerator": 2,
+    "interpretation": "Additional adjacent truth-labelled transition and training compute compared with first; not a compute-isolated label effect"
+  }
+}
