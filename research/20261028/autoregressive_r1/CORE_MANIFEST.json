@@ -1,0 +1,30 @@
+{
+  "schema": "autoregressive_core_v1",
+  "base_repository_commit": "dc965d5330924369b5e5bbf5e7f7aeda954365fd",
+  "files": {
+    "PROTOCOL.zh.md": {
+      "bytes": 3164,
+      "sha256": "c261e6a911fcccf337eae00114997702bdd0d21db6be7c38f79d1707a1d88c5c"
+    },
+    "matrix.json": {
+      "bytes": 1031,
+      "sha256": "d00d9054b87a3054cf0ba26e6700b38e3ca6f9b8219ff01d5b0e19c497980e24"
+    },
+    "objectives.py": {
+      "bytes": 1743,
+      "sha256": "b3e274ee1b784b65a5331d576045da699fd3d37e898353ab72d8c4a1c8dd6849"
+    },
+    "preflight.py": {
+      "bytes": 9107,
+      "sha256": "999c06a5148c9587dee6da380ca5a28ef9df5d6eea29ee1c72be3cbf8780efc3"
+    },
+    "test_objectives.py": {
+      "bytes": 4057,
+      "sha256": "ba2064cf5abcdcc44edc2f8bdec70dbcf7afec6b48d82357a079f4428f780cd8"
+    },
+    "train.py": {
+      "bytes": 26936,
+      "sha256": "b451587a727ec818633634ae35cb08e9ebc462a863be3f41e5355b31ed50ac4f"
+    }
+  }
+}

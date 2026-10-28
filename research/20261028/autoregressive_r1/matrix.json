@@ -1,0 +1,24 @@
+{
+  "schema": "autoregressive_comparison_matrix_v1",
+  "status": "FROZEN_BEFORE_TRAINING",
+  "arms": ["first", "rollout2"],
+  "seeds": [0, 1, 2],
+  "epochs": 500,
+  "updates_per_epoch": 100,
+  "batch_size": 20,
+  "width": 20,
+  "modes_per_axis": 12,
+  "depth": 4,
+  "tasks": [
+    {"index": 0, "arm": "first", "seed": 0, "run_name": "first-seed0"},
+    {"index": 1, "arm": "rollout2", "seed": 0, "run_name": "rollout2-seed0"},
+    {"index": 2, "arm": "first", "seed": 1, "run_name": "first-seed1"},
+    {"index": 3, "arm": "rollout2", "seed": 1, "run_name": "rollout2-seed1"},
+    {"index": 4, "arm": "first", "seed": 2, "run_name": "first-seed2"},
+    {"index": 5, "arm": "rollout2", "seed": 2, "run_name": "rollout2-seed2"}
+  ],
+  "selection": "scheduled final endpoint only",
+  "regularizer": null,
+  "max_concurrency": 2,
+  "scope": "Matched architecture, initialization, shuffle and windows; two-step arm uses an additional target and more compute, so this tests a training recipe rather than isolating self-input exposure"
+}
