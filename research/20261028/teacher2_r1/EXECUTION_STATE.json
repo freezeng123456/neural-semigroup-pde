@@ -1,0 +1,55 @@
+{
+  "status": "TRAINING_HEALTH_VERIFIED",
+  "preflight_job": "2420984",
+  "preflight_slurm": "COMPLETED0:0",
+  "checks_passed": 9,
+  "actual_preflight_optimizer_updates": 11,
+  "preflight_report_sha256": "b042d9a09c109ec644536d480edaf6545b92c5b00fa5446c284e7fd918494ad0",
+  "core_manifest_sha256": "ced9d94a89da7611b6cbf7e686825aa08a572e62dcc8b974b0ed418c1be57580",
+  "code_commit": "62f9385",
+  "branch": "codex/teacher2-20261028",
+  "remote_root": "/data02/run01/scv7tsq/neural-semigroup/20261028-teacher2-r1",
+  "reference_main_job": "2420813",
+  "full_tasks": 3,
+  "epochs_per_task": 500,
+  "updates_per_task": 50000,
+  "max_concurrency": 2,
+  "arms": [
+    "teacher2"
+  ],
+  "retrain_old_arms": false,
+  "local_weights_or_raw_predictions": false,
+  "main_job": "2421028",
+  "scheduler_code_commit": "ba8e7dc",
+  "recovery_job": "2421036",
+  "recovery_status": "SUBMITTED_AFTERANY_DEPENDENCY",
+  "recovery_dependency": "afterany:2421028",
+  "recovery_optimizer_updates": 0,
+  "monitor_automation_id": "teacher2-2421028",
+  "monitor_interval_minutes": 5,
+  "progress_captured_at_utc": "2026-10-28T09:33:20.028803+00:00",
+  "initial_progress": [
+    {
+      "run": "teacher2-seed0",
+      "updates": 30000,
+      "first_loss": 0.19146864011883735,
+      "latest_loss": 0.0012596699129790068,
+      "failure": false
+    },
+    {
+      "run": "teacher2-seed1",
+      "updates": 28200,
+      "first_loss": 0.1954931354522705,
+      "latest_loss": 0.0013164212269475683,
+      "failure": false
+    },
+    {
+      "run": "teacher2-seed2",
+      "updates": null,
+      "first_loss": null,
+      "latest_loss": null,
+      "failure": false
+    }
+  ],
+  "initial_progress_sha256": "f10c2bbc17b499c64c5b5d84d516a2589df89eeda936613edb39b9f3fe7ef7da"
+}

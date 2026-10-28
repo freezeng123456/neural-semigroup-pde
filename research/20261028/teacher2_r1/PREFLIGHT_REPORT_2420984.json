@@ -1,0 +1,122 @@
+{
+  "schema": "teacher2_engineering_preflight_v1",
+  "status": "PASS",
+  "device": "cuda",
+  "gpu_name": "Tesla V100-SXM2-32GB",
+  "gpu_capability": [
+    7,
+    0
+  ],
+  "torch": "2.5.1+cu121",
+  "numpy": "1.26.4",
+  "slurm_job_id": "2420984",
+  "checks": [
+    {
+      "name": "independent_objective_values_gradients_calls",
+      "passed": true,
+      "tests": 6
+    },
+    {
+      "name": "teacher2_truth_second_input_on_allocated_device",
+      "passed": true,
+      "first_input_sha256": "1e12b5f9134a9f585c92a00c479b62baa20809bf78bc57ac7216177e9e29fcca",
+      "second_truth_input_sha256": "c5cb5e07c8d9ec5bd892c2f5e9c8230d4c0ba079a4cf16eeb5e2eddd453cf5b7",
+      "device": "cuda"
+    },
+    {
+      "name": "exact_next_optimizer_update_teacher2",
+      "passed": true
+    },
+    {
+      "name": "short_rollout_reload_and_frozen_inputs_teacher2",
+      "passed": true
+    },
+    {
+      "name": "paired_seed0_historical_initialization_and_batch_order",
+      "passed": true
+    },
+    {
+      "name": "paired_seed1_historical_initialization_and_shuffle",
+      "passed": true
+    },
+    {
+      "name": "paired_seed2_historical_initialization_and_shuffle",
+      "passed": true
+    },
+    {
+      "name": "distinct_seed_initializations",
+      "passed": true
+    },
+    {
+      "name": "historical_fixed_endpoints_and_source_hashes",
+      "passed": true,
+      "historical_runs": 6,
+      "reference_input_sha256": {
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/first-seed0/RUN_RECEIPT.json": "e34e4c3ea83094a467623fda8aa7346baba04363f9ac0573375c2f6bbe64f2cd",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/first-seed0/artifact_manifest.json": "70d3684a819201a0d794b53849dbfc153acb54afdb37548f5866f21895a8ad76",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/first-seed0/epochs.jsonl": "5754d0656844676042fb44831bcce2b7f5ca128cc01bad212f2b6eefc15d703f",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/rollout2-seed0/RUN_RECEIPT.json": "095675bfefeb4e216afb25c21d40d4be18fd7d70d67caa6f75d0962200a57c56",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/rollout2-seed0/artifact_manifest.json": "68841f7261b950520c484c489196a8a4547d53754df72ae1a02d203b57d913fb",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/rollout2-seed0/epochs.jsonl": "609b6e9804b2432ded8a4d60cc2d36cc630f3d622562640fbf643d010911d5bb",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/first-seed1/RUN_RECEIPT.json": "6f188b0759acbf35dda8d52dc60416255e6802f7f0b4d809585c8c39f7532f22",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/first-seed1/artifact_manifest.json": "eb6e634c0a939743fac7762a390ee24479fdc522105e7060dc71fe4f355f0d6f",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/first-seed1/epochs.jsonl": "991aed3a28ab253bf52f92f3c3937ee8562f2b2da924ecd0aeca42c0e736686d",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/rollout2-seed1/RUN_RECEIPT.json": "708c90890a2def12def03743eb8d43596133a75d667d1076e02010e277845153",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/rollout2-seed1/artifact_manifest.json": "56dc09c208419f4f526dc60c10dc12ca0942485b66361e108b2a2dc145f4737f",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/rollout2-seed1/epochs.jsonl": "9162771128578d9ef3a17d2e6ffb00d65bda7f9fbd500add7579e9b4515d82e3",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/first-seed2/RUN_RECEIPT.json": "4cdf965daed1aec7501888fb63536a413a9d91926c8caa475b93009d2e16c61d",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/first-seed2/artifact_manifest.json": "c1a68cc7c7c727829736fe9d01f4cb98e4a61fd0aca58af9399cd1affca913f5",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/first-seed2/epochs.jsonl": "8ed061f46ff60be65b0fff6b8282ea1dba795e53857dafe494fa1b77042789bb",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/rollout2-seed2/RUN_RECEIPT.json": "8e8906e2fc9f8f7f32453b8b58d190095d67adece291b18f5d4759a606fea490",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/rollout2-seed2/artifact_manifest.json": "5b68c4970b063da1e7dc006b67b3e14e7793d40a8fd727fad48a501a37d8911c",
+        "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/runs/rollout2-seed2/epochs.jsonl": "a82304573881658de7a4c5b3e0eda56fc4215aa53886610cbac7384556eee9ca"
+      }
+    }
+  ],
+  "benchmarks": {
+    "teacher2": {
+      "continuous_updates": 10,
+      "observed_training_forwards": 20,
+      "observed_optimizer_updates": 10,
+      "post_warmup_mean_update_seconds": 0.04182075119266907,
+      "estimated_training_hours": 0.5808437665648482,
+      "cuda_peak_allocated_bytes": 500421120,
+      "checkpoint_sha256": "c0a091f102cd62903fd2a084c81aa463992e4b9b33974074faa429fab4b7d834",
+      "short_rollout_shape": [
+        2,
+        64,
+        64,
+        1,
+        9
+      ]
+    }
+  },
+  "paired": {
+    "teacher2": {
+      "initial_parameter_sha256": "3c15e9d2181515a55cb0583ea93a5f076789d249444c403856d4ffa1705f0651",
+      "first_indices_sha256": "cd4ed825d1b286847ca59fb5594726ad114e1a11d25993a1c70a21f54bad12c6",
+      "second_indices_sha256": "727d4df1429a4713b8a879ba7904f0079c50bd2bf62bbbf11818fda443de59b5"
+    },
+    "seed1": {
+      "initial_parameter_sha256": "84bb931012950928e709c5a4ff44f4dc1c3aa95343358c003369f0b855176763",
+      "full_500_shuffle_sequence_matched": true
+    },
+    "seed2": {
+      "initial_parameter_sha256": "bac9421746150b1dc43f70dd89542845460e8eb82e9ddb373c5fa3dddda8e744",
+      "full_500_shuffle_sequence_matched": true
+    }
+  },
+  "actual_optimizer_updates": 11,
+  "source_manifest_sha256": "c423cbc0bde6636fd07f157b50a2f01d0430ac06973f5f0dfc2dbec1c483a79c",
+  "data_payload_sha256": "49869507406029ce4263dda51150726589593ecbe4ff8bbe59da956aedb2023a",
+  "code_sha256": {
+    "train.py": "ae386e4b68af572e095918523054898a208d85335d3002427930ddc9aa5516db",
+    "objectives.py": "dff7e1fc8d960013ca19188e2ffdaa69cdd061ad9c1bed6cde2cc7c86edfe6cb",
+    "preflight.py": "241784fd77961343cbcaea7ed8a91e8785570e2fb0641f4d485901e721aa9e35",
+    "test_objectives.py": "aeae1edf0329f71bd417028a7bbd72849a110f00edc1aff18b1111d3f75df7c5",
+    "matrix.json": "977b7d2eec6f8906c8b3f9febb329011bc802ae853dddba96c5c42c97d68cd69",
+    "PROTOCOL.zh.md": "d882c3c9b830fc6527409414e6b678cfc0d297a3b619bf029ed553df2d2fbe70"
+  },
+  "whole_process_wall_seconds": 25.939332403242588,
+  "scope": "Teacher2-only bounded optimization and exact resume/reload, true second-input observation, historical initialization/config/input/500-shuffle audit. No baseline retraining and no method-effect claim."
+}
