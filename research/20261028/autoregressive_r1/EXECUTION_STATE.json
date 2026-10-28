@@ -36,5 +36,10 @@
       "latest_dev": null,
       "latest_checkpoint_exists": true
     }
-  ]
+  ],
+  "recovery_job": "2420820",
+  "recovery_dependency": "afterany:2420813",
+  "recovery_status": "SUBMITTED_DEPENDENCY_PENDING",
+  "monitor_automation_id": "a",
+  "monitor_interval_minutes": 5
 }
