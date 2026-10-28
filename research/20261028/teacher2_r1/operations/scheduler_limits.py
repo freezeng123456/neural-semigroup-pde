@@ -208,10 +208,10 @@ def resources(mode, evidence):
     require({row['Name'] for row in qos_rows} == qos_names, 'Incomplete QoS limits')
     queue_raw = query(['squeue', '--array', '--noheader', '--user=' + USER, '--format=%i|%T|%a|%P|%C|%b|%q'], evidence)
     jobs = resolve_queue_gpus(parse_queue(queue_raw), evidence)
-    # --array gives every potential task, so six pending elements consume six
+    # --array gives every potential task, so three pending elements consume three
     # MaxSubmit slots even though this matrix can run at most two together.
     active = [row for row in jobs if row['state'] != 'PENDING']
-    potential, concurrent = (6, 2) if mode == 'full' else (1, 1)
+    potential, concurrent = (3, 2) if mode == 'full' else (1, 1)
     maxjobs = [positive_limit(r['MaxJobs']) for r in assocs]
     maxsubmit = [positive_limit(r['MaxSubmit']) for r in assocs]
     cpulimits, gpulimits = [], []
