@@ -1,0 +1,525 @@
+{
+  "schema": "official_apebench_exponax_source_lock_v1",
+  "packages": {
+    "apebench": {
+      "version": "0.1.1",
+      "repository": "https://github.com/Ceyron/apebench",
+      "commit": "dca24a00eeacbe5524a99542f6d5c2bc2deb8da8",
+      "files": {
+        "apebench/scenarios/physical/_nonlinear.py": {
+          "bytes": 3214,
+          "sha256": "afcd8e2441f191b987d4b99607ac5c247e46b0ef031cb1d09a6d065593a584c6"
+        },
+        "apebench/scenarios/physical/_convection.py": {
+          "bytes": 3083,
+          "sha256": "6d54c873eec4bc870b428de2d66cdc1099d7ee3b14662b5bf4e9b12c3836e59b"
+        },
+        "apebench/_base_scenario.py": {
+          "bytes": 43831,
+          "sha256": "129a140907752c26b0cc709ef359301eddd6971377306b8a99aa823c08044868"
+        },
+        "apebench/components/_initial_condition.py": {
+          "bytes": 1193,
+          "sha256": "f828004014307b6972aaf38cbf5756807376273122932d4d1daeb35f378a790f"
+        }
+      },
+      "pypi_artifacts": [
+        {
+          "filename": "apebench-0.1.1-py3-none-any.whl",
+          "sha256": "ad06abd3adfc4aa9c497a53650bc5eed86abe56ab24c7c523a31cd6ef9278731",
+          "url": "https://files.pythonhosted.org/packages/36/6c/811b2dd61da9caecbb9b967dab09314303274ec08e3ed77143098070c438/apebench-0.1.1-py3-none-any.whl"
+        },
+        {
+          "filename": "apebench-0.1.1.tar.gz",
+          "sha256": "c5ddd47799f0799b2c2e72c27d3d81993f6fa218a04b1df93d4c1850e4893bf9",
+          "url": "https://files.pythonhosted.org/packages/ff/03/ca6da80d8ba7516acc04745733c65f97193afcf554fafe405223a92dde5f/apebench-0.1.1.tar.gz"
+        }
+      ],
+      "wheel_python_files": {
+        "apebench/__init__.py": {
+          "bytes": 1273,
+          "sha256": "a0fb448e8cfeda92a67760d9d9b523d551cb2c978108d4fb83d6580f52e13fa8"
+        },
+        "apebench/__main__.py": {
+          "bytes": 60,
+          "sha256": "982713744db5c8852e1936b35fdb0ce6023172dc3a90b8cca711646ec42ad27e"
+        },
+        "apebench/_base_scenario.py": {
+          "bytes": 43831,
+          "sha256": "129a140907752c26b0cc709ef359301eddd6971377306b8a99aa823c08044868"
+        },
+        "apebench/_cli.py": {
+          "bytes": 3916,
+          "sha256": "fe047c3fa2e59b1fb7c90849a7687037ea402b155577347f78fcbe876d322bbd"
+        },
+        "apebench/_corrected_stepper.py": {
+          "bytes": 1263,
+          "sha256": "1d01ce2d58a72aa42df0dd6195b3cb76c0eb6cf0879e5a488a92abbf31a4f7f4"
+        },
+        "apebench/_run.py": {
+          "bytes": 12835,
+          "sha256": "bdc72e0bc14782b05487c7b7e152a215eaed5ae8ce91f7fc11b7ca55ca962f5b"
+        },
+        "apebench/_scraper.py": {
+          "bytes": 6966,
+          "sha256": "aba8a14ecc453c3fa1dbef79ce1bcb929e95a39c56032c02294d626ee06636f1"
+        },
+        "apebench/_utils.py": {
+          "bytes": 6714,
+          "sha256": "93ff49ffd112898eb8d69a570d98b3c98f1d692f287bb3132feb7b28843e9d90"
+        },
+        "apebench/components/__init__.py": {
+          "bytes": 381,
+          "sha256": "bb178e70862b0f16eae30977b44ac9bb4148a751ef4d9c8132bc893fc0d130e0"
+        },
+        "apebench/components/_activation_function.py": {
+          "bytes": 550,
+          "sha256": "ca12e0c3778989b47c61f3c55fc61976df8108b281216b1f879fb350c6dc3269"
+        },
+        "apebench/components/_architectures.py": {
+          "bytes": 4964,
+          "sha256": "2c67130838eba1bb9b8b0a45cb35e9c86f8533e2a4325fab473c813ef1a6d229"
+        },
+        "apebench/components/_initial_condition.py": {
+          "bytes": 1193,
+          "sha256": "f828004014307b6972aaf38cbf5756807376273122932d4d1daeb35f378a790f"
+        },
+        "apebench/components/_metrics.py": {
+          "bytes": 4567,
+          "sha256": "d19df6c22386a700077d07002ab70eb82a60c635b5a78f5f9ee0ace52775ba65"
+        },
+        "apebench/components/_optimization.py": {
+          "bytes": 1425,
+          "sha256": "e1d963f1d82d7cadd8b0ebee4a5925d0893d5783892f3a7cf1c90d0887202a53"
+        },
+        "apebench/scenarios/__init__.py": {
+          "bytes": 1462,
+          "sha256": "5120afc17c69bd02932e2f1fcef7a3160e15cd0afe6da6f9ad098875745be7d6"
+        },
+        "apebench/scenarios/difficulty/__init__.py": {
+          "bytes": 925,
+          "sha256": "a6baf7140880bcbc1e90a0986b67f57fee312240a5ef6ed0775b53bb04ddd496"
+        },
+        "apebench/scenarios/difficulty/_convection.py": {
+          "bytes": 3225,
+          "sha256": "69a8b077c3a79ba52d6d11ca65fd5f31151b2d8eebea62632252ff411de1e07c"
+        },
+        "apebench/scenarios/difficulty/_linear.py": {
+          "bytes": 3022,
+          "sha256": "1f504c426b0cc290a9f5856d0175d08388a99b543c5670931b390bc6f6505257"
+        },
+        "apebench/scenarios/difficulty/_nonlinear.py": {
+          "bytes": 3914,
+          "sha256": "b463804ab79f054b55c003109232137cc9c1b4ef6e374dc228d326c2f7495467"
+        },
+        "apebench/scenarios/normalized/__init__.py": {
+          "bytes": 924,
+          "sha256": "9dc6bf7262939884d563ab2679d0fdaba01de594439c321507f4a9198ebdd74c"
+        },
+        "apebench/scenarios/normalized/_convection.py": {
+          "bytes": 3224,
+          "sha256": "a27e141289c8ad3fb7b9a807eed3ca3db42af844649fa3b087af5c8a70f134e6"
+        },
+        "apebench/scenarios/normalized/_linear.py": {
+          "bytes": 3083,
+          "sha256": "e114907fc4e4a81d6641be25b87bc86938f1faefbb6da94326e25369288d31d0"
+        },
+        "apebench/scenarios/normalized/_nonlinear.py": {
+          "bytes": 3823,
+          "sha256": "d43be300f56ffc559d299f1a3b224185f15ada7366118115c103685f5f698b43"
+        },
+        "apebench/scenarios/physical/__init__.py": {
+          "bytes": 1745,
+          "sha256": "ad1836d2d7da407b8ff829e58d20021135da149230292b8583df8feff3175bd2"
+        },
+        "apebench/scenarios/physical/_convection.py": {
+          "bytes": 3083,
+          "sha256": "6d54c873eec4bc870b428de2d66cdc1099d7ee3b14662b5bf4e9b12c3836e59b"
+        },
+        "apebench/scenarios/physical/_gray_scott.py": {
+          "bytes": 6040,
+          "sha256": "302d0e7b263f4731d1b21a54170be96232f439c47bfd42d79ee56c810785aad7"
+        },
+        "apebench/scenarios/physical/_linear.py": {
+          "bytes": 3303,
+          "sha256": "ec4173d1e448209751de8dcc6805932ed4d5ae6120f1670e5fd65aaae73f29b9"
+        },
+        "apebench/scenarios/physical/_navier_stokes.py": {
+          "bytes": 3380,
+          "sha256": "d882e98d4cdf97ffbe7fba1b12b9929c2c0fc3766588c41f874678f748899607"
+        },
+        "apebench/scenarios/physical/_nonlinear.py": {
+          "bytes": 3214,
+          "sha256": "afcd8e2441f191b987d4b99607ac5c247e46b0ef031cb1d09a6d065593a584c6"
+        },
+        "apebench/scenarios/physical/_poisson.py": {
+          "bytes": 1160,
+          "sha256": "5a0a009e735c3172259d97700a9b1bf218ecdaaf6f1544d00703f31f82b339a5"
+        },
+        "apebench/scenarios/physical/_polynomial.py": {
+          "bytes": 2039,
+          "sha256": "bd3db461874b7d56dd894777fd4c9744134485bbf2af9bf372fe1afeaa19d2c0"
+        },
+        "apebench/scenarios/physical/_special_linear.py": {
+          "bytes": 7316,
+          "sha256": "a0bf9a3473a19ed017c984190ff97d231ab91e946ea8d4dec436be03fa71b0d2"
+        },
+        "apebench/scenarios/physical/_swift_hohenberg.py": {
+          "bytes": 1435,
+          "sha256": "18a7f58ac9c60ee26c02b749973caef3474e0ab1634542cbd99f6cc526e4dc98"
+        }
+      }
+    },
+    "exponax": {
+      "version": "0.1.0",
+      "repository": "https://github.com/Ceyron/exponax",
+      "commit": "b39a5edec4b5fde4bd7e7feefa2fa2104242e011",
+      "files": {
+        "exponax/_utils.py": {
+          "bytes": 11683,
+          "sha256": "3230925f13dcb22d790624d9a824b2c26ab0dbcead599f7ee1c9305a5dfd61ba"
+        },
+        "exponax/_interpolation.py": {
+          "bytes": 10337,
+          "sha256": "e5a3fa42955e9fec2c5fe98598ccf72925c3b6468236c161dc88e1c5d1eb1e6c"
+        },
+        "exponax/_spectral.py": {
+          "bytes": 36354,
+          "sha256": "1c1b5566e26b48444152487dd63029c6d6845b3654d7f0cdd9ff7791f1798e70"
+        },
+        "exponax/_base_stepper.py": {
+          "bytes": 9704,
+          "sha256": "de0b448838fa85b181584e17fa3be74d026495aa74c3690012fb0e445b933778"
+        },
+        "exponax/stepper/generic/_convection.py": {
+          "bytes": 16930,
+          "sha256": "2dcac920649662536bc6801f91f56531c54960891f21df2aea676a3fae32e0b2"
+        },
+        "exponax/stepper/generic/_nonlinear.py": {
+          "bytes": 18834,
+          "sha256": "eefcd001752cec5bccbd0712545a0f61ca653f4a993e1b527dfeb1b6c1f6ece2"
+        },
+        "exponax/ic/_truncated_fourier_series.py": {
+          "bytes": 5229,
+          "sha256": "97265146f821fdc7a4fd9d1fc1bd881c55d578aba2e73a6572635205edb19a07"
+        }
+      },
+      "pypi_artifacts": [
+        {
+          "filename": "exponax-0.1.0-py3-none-any.whl",
+          "sha256": "a8033244769c2cb126a700aa9f39d4d793ba25ed2c9d0bc1fa81c96ba277b770",
+          "url": "https://files.pythonhosted.org/packages/9f/a3/481311930def9fe06b53694afb0172b15d3134cbc38929978e012d5165f8/exponax-0.1.0-py3-none-any.whl"
+        },
+        {
+          "filename": "exponax-0.1.0.tar.gz",
+          "sha256": "25acdb5c1b76f5706316750a3133f427f0faec441a1ffe3b90697d5f32abb5e7",
+          "url": "https://files.pythonhosted.org/packages/ee/dd/8e48b06b76e8cdb1a6400f31f4d26e876c86560a19b52f492d032cb285e7/exponax-0.1.0.tar.gz"
+        }
+      ],
+      "wheel_python_files": {
+        "exponax/__init__.py": {
+          "bytes": 1014,
+          "sha256": "5129897ab44a03bf0d148004970e745f5aa0d2c87297c5976ed4914cb4b22ddb"
+        },
+        "exponax/_base_stepper.py": {
+          "bytes": 9704,
+          "sha256": "de0b448838fa85b181584e17fa3be74d026495aa74c3690012fb0e445b933778"
+        },
+        "exponax/_forced_stepper.py": {
+          "bytes": 3243,
+          "sha256": "2121e396a7e3294d28b376f374275f99a2a02508827a3f1d995214167e67db15"
+        },
+        "exponax/_interpolation.py": {
+          "bytes": 10337,
+          "sha256": "e5a3fa42955e9fec2c5fe98598ccf72925c3b6468236c161dc88e1c5d1eb1e6c"
+        },
+        "exponax/_poisson.py": {
+          "bytes": 3381,
+          "sha256": "81df9d946eea1808ddc8f02effd7df899c629f7a3974c24fe590ad0edae9b66d"
+        },
+        "exponax/_repeated_stepper.py": {
+          "bytes": 4132,
+          "sha256": "cd9b7cfcff1b632f34cbcd1b544cd4002c9fe4df19fb10d4a398d6248e149387"
+        },
+        "exponax/_spectral.py": {
+          "bytes": 36354,
+          "sha256": "1c1b5566e26b48444152487dd63029c6d6845b3654d7f0cdd9ff7791f1798e70"
+        },
+        "exponax/_utils.py": {
+          "bytes": 11683,
+          "sha256": "3230925f13dcb22d790624d9a824b2c26ab0dbcead599f7ee1c9305a5dfd61ba"
+        },
+        "exponax/etdrk/__init__.py": {
+          "bytes": 444,
+          "sha256": "4da7a67e479abf2c980526c34e8ec197dcdbb6d04e69f9cce8ffc1778e3814ab"
+        },
+        "exponax/etdrk/_base_etdrk.py": {
+          "bytes": 2299,
+          "sha256": "239a711c97c991babf46689619b66114cdebb42dc0cd12da8b128024a72a2fad"
+        },
+        "exponax/etdrk/_etdrk_0.py": {
+          "bytes": 982,
+          "sha256": "5d07b0df9977ad906755efe8ae9a430da9d983c964a121a092dd1e3059989422"
+        },
+        "exponax/etdrk/_etdrk_1.py": {
+          "bytes": 2699,
+          "sha256": "b5169d38b9b9aa3a1144dca2fb6c3f99a0946b7f0b3060f2af317087ec976493"
+        },
+        "exponax/etdrk/_etdrk_2.py": {
+          "bytes": 3521,
+          "sha256": "242a2677dcd54b765024dc87870f4a1f5a03bdd606ba94db548e8d760ac36ce9"
+        },
+        "exponax/etdrk/_etdrk_3.py": {
+          "bytes": 5483,
+          "sha256": "c0bd08b8d300091227c140476d1247910a8a285b3d53dcd6a2b53cd2c3cecf19"
+        },
+        "exponax/etdrk/_etdrk_4.py": {
+          "bytes": 5974,
+          "sha256": "e4b8b864865cce367441c40a0675876032dcbe5a73a8ef82aa6f19fe802d889b"
+        },
+        "exponax/etdrk/_utils.py": {
+          "bytes": 575,
+          "sha256": "14aa14c1af3d2ee38cba0c50fe3304c456a7db8353b47d39ce29df3bb450aabf"
+        },
+        "exponax/ic/__init__.py": {
+          "bytes": 1510,
+          "sha256": "41424ed8f41e7627c6297d467ffb428e4aa21e8bb931551c7c2486d84d120abc"
+        },
+        "exponax/ic/_base_ic.py": {
+          "bytes": 1762,
+          "sha256": "186a2781a6e35366650fadb742a2893ec1dafb94a9fb24fdade5cf1a6cc55db0"
+        },
+        "exponax/ic/_clamping.py": {
+          "bytes": 1222,
+          "sha256": "da9d2e4a24b2d35fd5d36c3dac2c8c58346e8e44359b7f46a09898ebba994255"
+        },
+        "exponax/ic/_diffused_noise.py": {
+          "bytes": 2790,
+          "sha256": "a3e2d681546babe1536271aee1e1b7d95c38080c31c1e1baf04e8d93df928c28"
+        },
+        "exponax/ic/_discontinuities.py": {
+          "bytes": 5501,
+          "sha256": "61cc96ab9e5414260c951a5dc50ed15acc601b1627a8af4d9a0b6a51921fb051"
+        },
+        "exponax/ic/_gaussian_blob.py": {
+          "bytes": 5061,
+          "sha256": "531e13bf9813e44c8d8f00ff60bcf2661b010ec3fd34364ffa8e46268f6a0292"
+        },
+        "exponax/ic/_gaussian_random_field.py": {
+          "bytes": 3502,
+          "sha256": "082a1a1d9abc86db5fc5adbdad7d029e3e6646df3868d2960c9ef63e2ef9466f"
+        },
+        "exponax/ic/_multi_channel.py": {
+          "bytes": 2814,
+          "sha256": "aad0646e1daf7d0d7c069f97db61e90c77118c992c2bd6f5cd895b44e2d92714"
+        },
+        "exponax/ic/_scaled.py": {
+          "bytes": 1187,
+          "sha256": "009e0de380ea0f0eb7e85618fbc1051de33ae34868b23e92096221848f5122f1"
+        },
+        "exponax/ic/_sine_waves_1d.py": {
+          "bytes": 6230,
+          "sha256": "694a2cb1f860d4d152dd2b099450f32d07d0bb4cb08a42b69c0294542c8b5b53"
+        },
+        "exponax/ic/_truncated_fourier_series.py": {
+          "bytes": 5229,
+          "sha256": "97265146f821fdc7a4fd9d1fc1bd881c55d578aba2e73a6572635205edb19a07"
+        },
+        "exponax/metrics/__init__.py": {
+          "bytes": 941,
+          "sha256": "66962415a064f8785512093103b85f0b2a7119564f626d89876b6205957e08f9"
+        },
+        "exponax/metrics/_correlation.py": {
+          "bytes": 1838,
+          "sha256": "b3fe0c4cafcd7922b16a9f8cf5ada930451910c8550c668a167a5ae9f9d32414"
+        },
+        "exponax/metrics/_derivative.py": {
+          "bytes": 12370,
+          "sha256": "91c5f2fca62a4f52821b18bf979b771eb4987d5935a4167e02dc86686b6e8b71"
+        },
+        "exponax/metrics/_fourier.py": {
+          "bytes": 22262,
+          "sha256": "da7bd93a851bdec39deea3c390f79d06e18f3d0e6aa0729e65bc171863dcb106"
+        },
+        "exponax/metrics/_spatial.py": {
+          "bytes": 22751,
+          "sha256": "66241f70e9e92af6043dbaa72c4220244d2bf2c5410ace9266d6d0f4960d523c"
+        },
+        "exponax/metrics/_utils.py": {
+          "bytes": 356,
+          "sha256": "2f28809343768461595b29ab30c75f20e26022e7c3ca068429412cc1c284e082"
+        },
+        "exponax/nonlin_fun/__init__.py": {
+          "bytes": 1586,
+          "sha256": "aa4cf04b4f978258956b6648b2fe145b68587899051fd92dbf34b81a80e2e161"
+        },
+        "exponax/nonlin_fun/_base.py": {
+          "bytes": 4786,
+          "sha256": "5c727fb2df3c9a189f28401c89dbfee981fd7bd6306c952f199a460f4f48989b"
+        },
+        "exponax/nonlin_fun/_convection.py": {
+          "bytes": 8364,
+          "sha256": "0deaf2df2de07d915cda546c7b89232c0c0413d13811621572821f8f41f9767f"
+        },
+        "exponax/nonlin_fun/_general_nonlinear.py": {
+          "bytes": 5160,
+          "sha256": "7ebe2edaf301cc0494069a356d2a93c82d3163fef4a6577d3a654549632562fd"
+        },
+        "exponax/nonlin_fun/_gradient_norm.py": {
+          "bytes": 3843,
+          "sha256": "025f0c706a6f2fcdae594d7889857292b2ec8b5f37a98ccbad751f4e1d3685f0"
+        },
+        "exponax/nonlin_fun/_polynomial.py": {
+          "bytes": 2972,
+          "sha256": "17e45d39168ac1713659d9f859dcec989b48b12762e4108a266e5bb29439dd60"
+        },
+        "exponax/nonlin_fun/_vorticity_convection.py": {
+          "bytes": 7497,
+          "sha256": "75a8554d8415bb8dedc46a53ec539d1117441e8eaa0696c34f4519a18b569502"
+        },
+        "exponax/nonlin_fun/_zero.py": {
+          "bytes": 1036,
+          "sha256": "805b5dd17dbdbcbbf2148b4bf5668d3d4aa3334a7b5a39bd137066ee3746346d"
+        },
+        "exponax/stepper/__init__.py": {
+          "bytes": 3624,
+          "sha256": "a8e6eefe4eb967ce31e548cf875f45ce25df6c12559f5926eeb1ea13db8c5209"
+        },
+        "exponax/stepper/_advection.py": {
+          "bytes": 3732,
+          "sha256": "5770908f81ea52eeb1c77fb3bcd87a01fb8e139b5a06082813957d4d453bdebf"
+        },
+        "exponax/stepper/_advection_diffusion.py": {
+          "bytes": 5388,
+          "sha256": "811e6cdd68c80885d2c2d21a1cc9a237724bb0f328344b3aa9500505390f4165"
+        },
+        "exponax/stepper/_burgers.py": {
+          "bytes": 6536,
+          "sha256": "f63ec4131d6d0e0dbdb0311946c331ca1dfe631b4560f6f4f3844f6a6508d6b4"
+        },
+        "exponax/stepper/_diffusion.py": {
+          "bytes": 4520,
+          "sha256": "5536229721a8faa256c3b5044eb74b07813432bfe3425f528a1872fbaccc60d2"
+        },
+        "exponax/stepper/_dispersion.py": {
+          "bytes": 4707,
+          "sha256": "0baec5ddd713e930fe35a9a00be6a199211a45b8093d40d2ffb77b1ba087a86d"
+        },
+        "exponax/stepper/_hyper_diffusion.py": {
+          "bytes": 4284,
+          "sha256": "137ce322374628f357e71bffaca9a4b5a0d5e99ef63d2fa00cf6a7bc6254fe67"
+        },
+        "exponax/stepper/_korteweg_de_vries.py": {
+          "bytes": 9374,
+          "sha256": "aa933cf36302fd8b83bfc637afbd61930e16362ca7e6e7e5fa5e3a0b71050db2"
+        },
+        "exponax/stepper/_kuramoto_sivashinsky.py": {
+          "bytes": 14424,
+          "sha256": "c6740945659cdfcd0276e6659c656195f3f269a5d9756eeb19577892340f038d"
+        },
+        "exponax/stepper/_navier_stokes.py": {
+          "bytes": 13467,
+          "sha256": "a82e773258e539dd7099656b00e71c365baa953501a6e33e357f89bf9c79aa02"
+        },
+        "exponax/stepper/generic/__init__.py": {
+          "bytes": 2550,
+          "sha256": "d59bc2156176bb0c84066b4237bd640ad6c50ae96551d2aa25445ea51e07fb68"
+        },
+        "exponax/stepper/generic/_convection.py": {
+          "bytes": 16930,
+          "sha256": "2dcac920649662536bc6801f91f56531c54960891f21df2aea676a3fae32e0b2"
+        },
+        "exponax/stepper/generic/_gradient_norm.py": {
+          "bytes": 15501,
+          "sha256": "f4fb8399581dd876c10ebce58695c064b3fc514b5bbb9f011655ff81d269ae9b"
+        },
+        "exponax/stepper/generic/_linear.py": {
+          "bytes": 14256,
+          "sha256": "e2313fdf247f4fe9e37ba213fa76d992150c3f06c5dc002fe518e81eb431c528"
+        },
+        "exponax/stepper/generic/_nonlinear.py": {
+          "bytes": 18834,
+          "sha256": "eefcd001752cec5bccbd0712545a0f61ca653f4a993e1b527dfeb1b6c1f6ece2"
+        },
+        "exponax/stepper/generic/_polynomial.py": {
+          "bytes": 14909,
+          "sha256": "ebb9ef67ba172b3db478f12a819a12831bf570a33949dfcc8eefd7dfc3a07e06"
+        },
+        "exponax/stepper/generic/_utils.py": {
+          "bytes": 17244,
+          "sha256": "933fa5df7fe265eb4c9eae9bdb12b614785d6bf229460bde06ca189df600a59e"
+        },
+        "exponax/stepper/generic/_vorticity_convection.py": {
+          "bytes": 6292,
+          "sha256": "c6ed2ea133ff00914e7af63de28cb83fd1e90e408c7a1bc80da392634afd82a5"
+        },
+        "exponax/stepper/reaction/__init__.py": {
+          "bytes": 813,
+          "sha256": "ec0384a9acc88e6d743062e3d6cf9a0530527bb1ea7290b4905872bfa559c3bf"
+        },
+        "exponax/stepper/reaction/_allen_cahn.py": {
+          "bytes": 5268,
+          "sha256": "a72c75e7a5aa1044e2464629ca7ebc7760191dd922441297c345a0547c758d11"
+        },
+        "exponax/stepper/reaction/_belousov_zhabotinsky.py": {
+          "bytes": 3065,
+          "sha256": "8d6d1bc8027d92ef8f8480cc9e0c0b88578674f9aca3350ef047c74f82030e3b"
+        },
+        "exponax/stepper/reaction/_cahn_hilliard.py": {
+          "bytes": 5992,
+          "sha256": "95d40cfdd8b962736a78518af21fdaad6718450119a17bff53c9c4f8c82ff47c"
+        },
+        "exponax/stepper/reaction/_fisher_kpp.py": {
+          "bytes": 5270,
+          "sha256": "d51da0ca542a66138b4eb2f360885a372c608743334579e72f586fb155ad8729"
+        },
+        "exponax/stepper/reaction/_gray_scott.py": {
+          "bytes": 6544,
+          "sha256": "c7d5ecf145eea5fd74cd60e8e04981a31b6c82e2079ae067fe4c121564ba21ed"
+        },
+        "exponax/stepper/reaction/_swift_hohenberg.py": {
+          "bytes": 5208,
+          "sha256": "ce98e60d416e1b69c207a838d4ebcbf9c7205d9fcd9d615380885e6f1a25d13a"
+        },
+        "exponax/viz/__init__.py": {
+          "bytes": 1970,
+          "sha256": "2cc927e109b2694508a59e593463b8beccb2bf0513fb43f278bf0b373e37cd0f"
+        },
+        "exponax/viz/_animate.py": {
+          "bytes": 11118,
+          "sha256": "7c9118b4ac99def5192945208273f7c6c484df872a846e44e087483269691c08"
+        },
+        "exponax/viz/_animate_facet.py": {
+          "bytes": 16341,
+          "sha256": "bdb87f43a3bd900e0236e42446336b6772a2b62e929133477f37dad520f1f9b7"
+        },
+        "exponax/viz/_plot.py": {
+          "bytes": 13151,
+          "sha256": "19eee70d25aa89a871ef330d384b4efafa3a6d2eea65b2bb51459cb24dbb14d6"
+        },
+        "exponax/viz/_plot_facet.py": {
+          "bytes": 16763,
+          "sha256": "ef0812c67cd74f7eeb56f6d25902285018073bef8d9073b6e19ad83d185083be"
+        },
+        "exponax/viz/_volume.py": {
+          "bytes": 4641,
+          "sha256": "80386bdd98fd114aeb20253ac824ef78f274c87dbc748a73526171d02e28b26c"
+        }
+      }
+    }
+  },
+  "runtime_versions": {
+    "jax": "0.4.38",
+    "jaxlib": "0.4.38",
+    "equinox": "0.11.12",
+    "numpy": "1.26.4",
+    "apebench": "0.1.1",
+    "exponax": "0.1.0",
+    "pdequinox": "0.1.2",
+    "trainax": "0.0.2",
+    "optax": "0.2.4",
+    "chex": "0.1.88",
+    "jaxtyping": "0.2.36"
+  },
+  "source_basis": "Official release-tag sources matched selected11criticalfiles toofficialPyPIwheels; allpackagePythonfilesarehashlockedfromverifiedofficialwheelbytes"
+}

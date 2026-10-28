@@ -1,0 +1,29 @@
+{
+  "schema": "burgers_ks_runtime_v1",
+  "training_python": "/data02/run01/scv7tsq/apolarity/20261002-v100-paper-r1/env/runtime/bin/python",
+  "data_python": "/data02/run01/scv7tsq/neural-semigroup/20261028-burgers-ks-r1/env-data/bin/python",
+  "data_generation_command": [
+    "/data02/run01/scv7tsq/neural-semigroup/20261028-burgers-ks-r1/env-data/bin/python",
+    "/data02/run01/scv7tsq/neural-semigroup/20261028-burgers-ks-r1/prepare_data.py",
+    "--output-root",
+    "/data02/run01/scv7tsq/neural-semigroup/20261028-burgers-ks-r1/data",
+    "--device",
+    "cpu"
+  ],
+  "training_runtime": {
+    "python": "3.11",
+    "torch": "2.5.1",
+    "numpy": "1.26.4",
+    "gpu": "V100 sm70"
+  },
+  "data_runtime": {
+    "apebench": "0.1.1",
+    "exponax": "0.1.0",
+    "jax": "0.4.38",
+    "jaxlib": "0.4.38",
+    "equinox": "0.11.12",
+    "numpy": "1.26.4"
+  },
+  "source_commit_apebench": "dca24a00eeacbe5524a99542f6d5c2bc2deb8da8",
+  "source_commit_exponax": "b39a5edec4b5fde4bd7e7feefa2fa2104242e011"
+}

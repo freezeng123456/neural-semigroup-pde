@@ -1,0 +1,202 @@
+{
+  "schema": "burgers_ks_benchmark_matrix_v1",
+  "revision": "r2",
+  "status": "FROZEN_BEFORE_TRAINING",
+  "pdes": [
+    "burgers",
+    "ks"
+  ],
+  "arms": [
+    "first",
+    "teacher2",
+    "rollout2"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "epochs": 500,
+  "updates_per_epoch": 100,
+  "batch_size": 20,
+  "training_windows": 2000,
+  "max_concurrency": 2,
+  "network": {
+    "name": "native_state_only_FNO1D",
+    "width": 32,
+    "modes": 16,
+    "depth": 4,
+    "projection_width": 128,
+    "activation": "gelu",
+    "real_parameter_count": 139713
+  },
+  "reference_integration": {
+    "macro_dt": 0.1,
+    "label_substeps_per_macro_step": {
+      "burgers": 1,
+      "ks": 2
+    },
+    "warmup_substeps_per_macro_step": 1,
+    "warmup_macro_steps": {
+      "burgers": 0,
+      "ks": 500
+    }
+  },
+  "tasks": [
+    {
+      "index": 0,
+      "pde": "burgers",
+      "arm": "first",
+      "seed": 0,
+      "run_name": "burgers-first-seed0"
+    },
+    {
+      "index": 1,
+      "pde": "burgers",
+      "arm": "teacher2",
+      "seed": 0,
+      "run_name": "burgers-teacher2-seed0"
+    },
+    {
+      "index": 2,
+      "pde": "burgers",
+      "arm": "rollout2",
+      "seed": 0,
+      "run_name": "burgers-rollout2-seed0"
+    },
+    {
+      "index": 3,
+      "pde": "burgers",
+      "arm": "first",
+      "seed": 1,
+      "run_name": "burgers-first-seed1"
+    },
+    {
+      "index": 4,
+      "pde": "burgers",
+      "arm": "teacher2",
+      "seed": 1,
+      "run_name": "burgers-teacher2-seed1"
+    },
+    {
+      "index": 5,
+      "pde": "burgers",
+      "arm": "rollout2",
+      "seed": 1,
+      "run_name": "burgers-rollout2-seed1"
+    },
+    {
+      "index": 6,
+      "pde": "burgers",
+      "arm": "first",
+      "seed": 2,
+      "run_name": "burgers-first-seed2"
+    },
+    {
+      "index": 7,
+      "pde": "burgers",
+      "arm": "teacher2",
+      "seed": 2,
+      "run_name": "burgers-teacher2-seed2"
+    },
+    {
+      "index": 8,
+      "pde": "burgers",
+      "arm": "rollout2",
+      "seed": 2,
+      "run_name": "burgers-rollout2-seed2"
+    },
+    {
+      "index": 9,
+      "pde": "ks",
+      "arm": "first",
+      "seed": 0,
+      "run_name": "ks-first-seed0"
+    },
+    {
+      "index": 10,
+      "pde": "ks",
+      "arm": "teacher2",
+      "seed": 0,
+      "run_name": "ks-teacher2-seed0"
+    },
+    {
+      "index": 11,
+      "pde": "ks",
+      "arm": "rollout2",
+      "seed": 0,
+      "run_name": "ks-rollout2-seed0"
+    },
+    {
+      "index": 12,
+      "pde": "ks",
+      "arm": "first",
+      "seed": 1,
+      "run_name": "ks-first-seed1"
+    },
+    {
+      "index": 13,
+      "pde": "ks",
+      "arm": "teacher2",
+      "seed": 1,
+      "run_name": "ks-teacher2-seed1"
+    },
+    {
+      "index": 14,
+      "pde": "ks",
+      "arm": "rollout2",
+      "seed": 1,
+      "run_name": "ks-rollout2-seed1"
+    },
+    {
+      "index": 15,
+      "pde": "ks",
+      "arm": "first",
+      "seed": 2,
+      "run_name": "ks-first-seed2"
+    },
+    {
+      "index": 16,
+      "pde": "ks",
+      "arm": "teacher2",
+      "seed": 2,
+      "run_name": "ks-teacher2-seed2"
+    },
+    {
+      "index": 17,
+      "pde": "ks",
+      "arm": "rollout2",
+      "seed": 2,
+      "run_name": "ks-rollout2-seed2"
+    }
+  ],
+  "selection": "scheduled final endpoint only",
+  "regularizer": null,
+  "waves": [
+    {
+      "wave": 1,
+      "pde": "burgers",
+      "tasks": 9,
+      "max_concurrency": 2
+    },
+    {
+      "wave": 2,
+      "pde": "ks",
+      "tasks": 9,
+      "max_concurrency": 2
+    }
+  ],
+  "primary_comparison": {
+    "numerator": "rollout2",
+    "denominator": "teacher2",
+    "geometric_ratio_threshold": 0.9,
+    "minimum_seeds_favoring_numerator": 2,
+    "all_final_rollouts_finite": true,
+    "interpretation": "Predicted intermediate input and cross-step gradient path differ jointly"
+  },
+  "secondary_comparisons": [
+    "teacher2_over_first",
+    "rollout2_over_first"
+  ],
+  "held_out_test_policy": "Seal all18 fixed endpoints and both successful actual Slurm arrays before one final test rollout per endpoint; zero recovery optimization"
+}

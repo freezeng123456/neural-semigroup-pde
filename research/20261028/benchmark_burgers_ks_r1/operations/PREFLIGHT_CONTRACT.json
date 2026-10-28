@@ -1,0 +1,15 @@
+{
+  "schema": "burgers_ks_engineering_preflight_v1",
+  "actual_optimizer_updates": 66,
+  "checks": [
+    "independent_objective_values_gradients_calls",
+    "engine_burgers_first",
+    "engine_burgers_teacher2",
+    "engine_burgers_rollout2",
+    "engine_ks_first",
+    "engine_ks_teacher2",
+    "engine_ks_rollout2",
+    "paired_initializations_shuffles_and_data_burgers",
+    "paired_initializations_shuffles_and_data_ks"
+  ]
+}
