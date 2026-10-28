@@ -46,5 +46,8 @@
       "latest_checkpoint_exists": true
     }
   ],
-  "monitor_status": "RETIRING_AFTER_GITHUB_VERIFICATION"
+  "monitor_status": "DELETED_AFTER_VERIFIED_PUBLICATION",
+  "monitor_deleted_at_utc": "2026-10-28T07:54:05.655212+00:00",
+  "results_commit": "bea14bad55437e1e05d1e6d59598c6bfc7df4270",
+  "github_publication_verified": true
 }
