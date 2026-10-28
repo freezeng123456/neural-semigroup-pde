@@ -1,0 +1,24 @@
+{
+  "schema": "autoregressive_recovery_execution_v1",
+  "status": "COMPACT_EVIDENCE_RECOVERED",
+  "identity": {
+    "main_job_id": "2420813",
+    "preflight_job_id": "2420812",
+    "core_manifest_sha256": "3b5658061b7d6512406c6ff58c8a50ff6b5b010e46731394418b0f736c5a16a9",
+    "main_submission_receipt_sha256": "bff4646eb32987be1bf33f8b3b7c5cca51d9f63bf13f9196c8e03e38ed96589c",
+    "matrix_sha256": "d00d9054b87a3054cf0ba26e6700b38e3ca6f9b8219ff01d5b0e19c497980e24"
+  },
+  "slurm_job_id": "2420820",
+  "scientific_status": "COMPLETE",
+  "scientific_practical_gate": {
+    "threshold": 0.9,
+    "required_favoring_seeds": 2,
+    "passed": true
+  },
+  "aggregate_report_sha256": "d68b62678ab1ce8c1dd4879684576a9360eaceee49c706086c0ddc939a3a8cfa",
+  "archive": "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/recovery/autoregressive-compact-r1.tar.gz",
+  "archive_sha256": "e72d8b8ef9f80266c2f687f6e881b207f693ca032abe45f81f45f15ac47497dc",
+  "archive_bytes": 3424628,
+  "completed_at_utc": "2026-10-28T07:14:00.353570+00:00",
+  "optimizer_updates": 0
+}

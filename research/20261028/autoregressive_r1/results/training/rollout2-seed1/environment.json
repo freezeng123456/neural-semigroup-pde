@@ -1,0 +1,35 @@
+{
+  "python": "3.11.7 (main, Dec 15 2023, 18:12:31) [GCC 11.2.0]",
+  "platform": "Linux-3.10.0-1127.19.1.el7.x86_64-x86_64-with-glibc2.17",
+  "torch": "2.5.1+cu121",
+  "numpy": "1.26.4",
+  "cuda_runtime": "12.1",
+  "gpu_name": "Tesla V100-SXM2-32GB",
+  "gpu_capability": [
+    7,
+    0
+  ],
+  "cpu_threads": 4,
+  "device": "cuda",
+  "cudnn_benchmark": true,
+  "cudnn_deterministic": true,
+  "cuda_matmul_allow_tf32": true,
+  "slurm": {
+    "SLURM_JOB_ID": "2420835",
+    "SLURM_JOB_NODELIST": "g0012",
+    "SLURM_CPUS_PER_TASK": "10",
+    "CUDA_VISIBLE_DEVICES": "0"
+  },
+  "input_sha256": {
+    "/data02/run01/scv7tsq/neural-semigroup/20261005-next-methods-r1/official_source_manifest.json": "c423cbc0bde6636fd07f157b50a2f01d0430ac06973f5f0dfc2dbec1c483a79c",
+    "/data02/run01/scv7tsq/neural-semigroup/20261005-next-methods-r1/data-r2/two_step_data.npz": "49869507406029ce4263dda51150726589593ecbe4ff8bbe59da956aedb2023a",
+    "/data02/run01/scv7tsq/neural-semigroup/20261005-next-methods-r1/data-r2/DATA_REPORT.json": "9fc15a41e17eca6fd529c5736e96002aa77fe39429f63837b17da3bfb4b54f01",
+    "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/train.py": "b451587a727ec818633634ae35cb08e9ebc462a863be3f41e5355b31ed50ac4f",
+    "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/objectives.py": "b3e274ee1b784b65a5331d576045da699fd3d37e898353ab72d8c4a1c8dd6849",
+    "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/preflight.py": "999c06a5148c9587dee6da380ca5a28ef9df5d6eea29ee1c72be3cbf8780efc3",
+    "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/test_objectives.py": "ba2064cf5abcdcc44edc2f8bdec70dbcf7afec6b48d82357a079f4428f780cd8",
+    "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/matrix.json": "d00d9054b87a3054cf0ba26e6700b38e3ca6f9b8219ff01d5b0e19c497980e24",
+    "/data02/run01/scv7tsq/neural-semigroup/20261028-autoregressive-r1/PROTOCOL.zh.md": "c261e6a911fcccf337eae00114997702bdd0d21db6be7c38f79d1707a1d88c5c"
+  },
+  "initial_parameter_sha256": "84bb931012950928e709c5a4ff44f4dc1c3aa95343358c003369f0b855176763"
+}

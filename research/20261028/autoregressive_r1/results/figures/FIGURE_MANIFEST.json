@@ -1,0 +1,14 @@
+{
+  "schema": "autoregressive_scalar_figure_v1",
+  "input_layout": "aggregate_plus_compact_csv",
+  "inputs_sha256": {
+    "analysis-r1/AGGREGATE_REPORT.json": "d68b62678ab1ce8c1dd4879684576a9360eaceee49c706086c0ddc939a3a8cfa",
+    "development_curves.csv": "795173af09d56d6f3021f20fb8e933328820534bc85ec81a815ecd9354dd90d5"
+  },
+  "figures": {
+    "FINAL_COMPARISON.png": "c875e02c3e42212e206c153a9ea6ae915e2644c1d17f86e1c1d41ec409f9a1d4",
+    "FINAL_COMPARISON.pdf": "1c8ce3b2537b48c875419e8113e3f9d589b788e08e335590affaa0f0deb60b1b"
+  },
+  "transforms": "No smoothing; exact development evaluations at epochs 25..500; snapshot means across20 development trajectories; paired final errors",
+  "weight_or_prediction_arrays_loaded": false
+}

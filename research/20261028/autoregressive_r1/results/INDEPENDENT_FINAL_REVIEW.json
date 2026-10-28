@@ -1,0 +1,161 @@
+{
+  "schema": "autoregressive_independent_compact_audit_v1",
+  "status": "PASS",
+  "archive_sha256": "e72d8b8ef9f80266c2f687f6e881b207f693ca032abe45f81f45f15ac47497dc",
+  "aggregate_report_sha256": "d68b62678ab1ce8c1dd4879684576a9360eaceee49c706086c0ddc939a3a8cfa",
+  "archive_member_count": 231,
+  "all_230_inventory_files_match": true,
+  "all_six_real_main_slurm_terminal_records_completed_zero": true,
+  "recovery_2420820_real_slurm_completed_zero": true,
+  "recovery_2420820_elapsed_seconds": 34,
+  "final_main_and_recovery_live_rows": 0,
+  "supplemental_slurm_records_sha256": {
+    "FINAL_SLURM_ACCOUNTING.txt": "a0701ca92df596c9ef7d37ab8c581b75a42109ae5f01c9b748688eff48751f40",
+    "FINAL_SQUEUE.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "remote_hash_screenshot_observed": true,
+  "slurm_raw_to_array_map": [
+    {
+      "array_index": 0,
+      "run_name": "first-seed0",
+      "raw_slurm_job_id": "2420814",
+      "state": "COMPLETED",
+      "exit_code": "0:0"
+    },
+    {
+      "array_index": 1,
+      "run_name": "rollout2-seed0",
+      "raw_slurm_job_id": "2420815",
+      "state": "COMPLETED",
+      "exit_code": "0:0"
+    },
+    {
+      "array_index": 2,
+      "run_name": "first-seed1",
+      "raw_slurm_job_id": "2420830",
+      "state": "COMPLETED",
+      "exit_code": "0:0"
+    },
+    {
+      "array_index": 3,
+      "run_name": "rollout2-seed1",
+      "raw_slurm_job_id": "2420835",
+      "state": "COMPLETED",
+      "exit_code": "0:0"
+    },
+    {
+      "array_index": 4,
+      "run_name": "first-seed2",
+      "raw_slurm_job_id": "2420840",
+      "state": "COMPLETED",
+      "exit_code": "0:0"
+    },
+    {
+      "array_index": 5,
+      "run_name": "rollout2-seed2",
+      "raw_slurm_job_id": "2420813",
+      "state": "COMPLETED",
+      "exit_code": "0:0"
+    }
+  ],
+  "all_six_exact_cuda_replay_passed": true,
+  "all_300000_training_updates_and_3000_epoch_rows_verified": true,
+  "all_120_scheduled_final_and_intermediate_rollouts_finite": true,
+  "all_paired_initializations_inputs_and_500_shuffles_match": true,
+  "paired": [
+    {
+      "seed": 0,
+      "first_joint": 0.10151423340254229,
+      "rollout2_joint": 0.0069880706569811464,
+      "ratio": 0.06883833352975051,
+      "horizon50_first": 0.2973060203052073,
+      "horizon50_rollout2": 0.008479642195047567
+    },
+    {
+      "seed": 1,
+      "first_joint": 0.11570669521477125,
+      "rollout2_joint": 0.0076520205638652234,
+      "ratio": 0.06613291088870679,
+      "horizon50_first": 0.3434675551948087,
+      "horizon50_rollout2": 0.009541393412652506
+    },
+    {
+      "seed": 2,
+      "first_joint": 0.17197657089100554,
+      "rollout2_joint": 0.007871633402374612,
+      "ratio": 0.04577154528429025,
+      "horizon50_first": 0.5222978844521347,
+      "horizon50_rollout2": 0.009898170183146334
+    }
+  ],
+  "joint_ratio_geometric_mean": 0.05928541359091519,
+  "relative_reduction": 0.9407145864090848,
+  "seeds_favoring_rollout2": 3,
+  "first_training_seconds_sum": 3705.302564321086,
+  "rollout2_training_seconds_sum": 5237.197989212349,
+  "summed_training_time_ratio": 1.4134332887257612,
+  "training_forward_ratio": 2,
+  "peak_allocated_memory_ratio": 1.6634796472691917,
+  "curves": [
+    {
+      "run_name": "first-seed0",
+      "final_joint": 0.10151423340254229,
+      "epoch450_joint": 0.10351280608342832,
+      "epoch475_joint": 0.10221739785198744,
+      "final_vs_epoch450_ratio": 0.9806925079465507,
+      "finite_scheduled_validations_including_final": 20,
+      "final_training_one_step_loss": 0.0008664750959724188
+    },
+    {
+      "run_name": "rollout2-seed0",
+      "final_joint": 0.0069880706569811464,
+      "epoch450_joint": 0.007223540876156205,
+      "epoch475_joint": 0.007119355570457002,
+      "final_vs_epoch450_ratio": 0.9674023829570467,
+      "finite_scheduled_validations_including_final": 20,
+      "final_training_one_step_loss": 0.000962585040833801
+    },
+    {
+      "run_name": "first-seed1",
+      "final_joint": 0.11570669521477125,
+      "epoch450_joint": 0.11735176593834362,
+      "epoch475_joint": 0.115819736645597,
+      "final_vs_epoch450_ratio": 0.9859817130963612,
+      "finite_scheduled_validations_including_final": 20,
+      "final_training_one_step_loss": 0.0008110701775876806
+    },
+    {
+      "run_name": "rollout2-seed1",
+      "final_joint": 0.0076520205638652234,
+      "epoch450_joint": 0.007911536947909945,
+      "epoch475_joint": 0.0076445660338568975,
+      "final_vs_epoch450_ratio": 0.9671977283613293,
+      "finite_scheduled_validations_including_final": 20,
+      "final_training_one_step_loss": 0.0009072331624338404
+    },
+    {
+      "run_name": "first-seed2",
+      "final_joint": 0.17197657089100554,
+      "epoch450_joint": 0.17157635373216254,
+      "epoch475_joint": 0.1716097917602755,
+      "final_vs_epoch450_ratio": 1.0023325892533406,
+      "finite_scheduled_validations_including_final": 20,
+      "final_training_one_step_loss": 0.0009108384186401964
+    },
+    {
+      "run_name": "rollout2-seed2",
+      "final_joint": 0.007871633402374612,
+      "epoch450_joint": 0.008007762599078021,
+      "epoch475_joint": 0.007882422040447751,
+      "final_vs_epoch450_ratio": 0.9830003455997706,
+      "finite_scheduled_validations_including_final": 20,
+      "final_training_one_step_loss": 0.001000595215591602
+    }
+  ],
+  "limits": [
+    "No local checkpoint replay: evidence verifies independently executed remote exact CUDA replay and checkpoint hashes, as required by no-weight-download policy",
+    "Development set already explored; additional second labels and compute confound mechanism attribution",
+    "Three seeds and practical threshold are exploratory, not a significance test",
+    "Same-capacity recipe improvement does not exclude additional benefits from larger models or prove generalization to other PDEs"
+  ]
+}

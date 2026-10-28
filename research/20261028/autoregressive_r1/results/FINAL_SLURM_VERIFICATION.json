@@ -1,0 +1,75 @@
+{
+  "status": "ALL_SIX_TRAINING_AND_RECOVERY_SLURM_COMPLETED_0_0",
+  "checked_at_utc": "2026-10-28T07:39:37.818180+00:00",
+  "channel": "Authenticated WebSSH sacct/squeue; text downloaded through assigned official file API",
+  "records": {
+    "FINAL_SLURM_ACCOUNTING.txt": {
+      "bytes": 1947,
+      "sha256": "a0701ca92df596c9ef7d37ab8c581b75a42109ae5f01c9b748688eff48751f40"
+    },
+    "FINAL_SQUEUE.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "live_main_or_recovery_rows": 0,
+  "terminal_rows": [
+    [
+      "2420813_0",
+      "2420814",
+      "COMPLETED",
+      "0:0",
+      "00:21:50",
+      "billing=10,cpu=10,gres/gpu=1,mem=38000M,node=1"
+    ],
+    [
+      "2420813_1",
+      "2420815",
+      "COMPLETED",
+      "0:0",
+      "00:29:41",
+      "billing=10,cpu=10,gres/gpu=1,mem=38000M,node=1"
+    ],
+    [
+      "2420813_2",
+      "2420830",
+      "COMPLETED",
+      "0:0",
+      "00:19:46",
+      "billing=10,cpu=10,gres/gpu=1,mem=38000M,node=1"
+    ],
+    [
+      "2420813_3",
+      "2420835",
+      "COMPLETED",
+      "0:0",
+      "00:30:27",
+      "billing=10,cpu=10,gres/gpu=1,mem=38000M,node=1"
+    ],
+    [
+      "2420813_4",
+      "2420840",
+      "COMPLETED",
+      "0:0",
+      "00:22:39",
+      "billing=10,cpu=10,gres/gpu=1,mem=38000M,node=1"
+    ],
+    [
+      "2420813_5",
+      "2420813",
+      "COMPLETED",
+      "0:0",
+      "00:30:06",
+      "billing=10,cpu=10,gres/gpu=1,mem=38000M,node=1"
+    ],
+    [
+      "2420820",
+      "2420820",
+      "COMPLETED",
+      "0:0",
+      "00:00:34",
+      "billing=10,cpu=10,gres/gpu=1,mem=38000M,node=1"
+    ]
+  ],
+  "remote_hash_observation": "evidence/final-slurm-sha256.png"
+}

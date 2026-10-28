@@ -1,0 +1,60 @@
+{
+  "schema": "autoregressive_analysis_provenance_v1",
+  "identity": {
+    "main_job_id": "2420813",
+    "preflight_job_id": "2420812",
+    "core_manifest_sha256": "3b5658061b7d6512406c6ff58c8a50ff6b5b010e46731394418b0f736c5a16a9",
+    "main_submission_receipt_sha256": "bff4646eb32987be1bf33f8b3b7c5cca51d9f63bf13f9196c8e03e38ed96589c",
+    "matrix_sha256": "d00d9054b87a3054cf0ba26e6700b38e3ca6f9b8219ff01d5b0e19c497980e24"
+  },
+  "recovery_payload": {
+    "operations/submit_recovery.py": {
+      "bytes": 15884,
+      "sha256": "de42b6b38753be46cd70c5dd5dcf61fe78e7edb5cb7a228ddacc57ea392b0ebd"
+    },
+    "operations/recover.sh": {
+      "bytes": 613,
+      "sha256": "e2277e1ac33984865b1bb534f5a309200efb2b4deff8cf94b83fd773d8bba16b"
+    },
+    "operations/replay_and_aggregate.py": {
+      "bytes": 15094,
+      "sha256": "28339edd4758d83eee7b7dabb22b6420c8f0ad3fa4ec2e488a8a697344709087"
+    },
+    "operations/pack_compact.py": {
+      "bytes": 7614,
+      "sha256": "bb3fd62f8ffc569790ada67f360f4a3ff61c650045fda3da55926dda32cd7b68"
+    },
+    "operations/launch.py": {
+      "bytes": 2998,
+      "sha256": "e7be00d801869d275c4719a8fe6b8a4eec5ce5b080679be31c8d2d9f4c50a131"
+    },
+    "operations/scheduler_limits.py": {
+      "bytes": 13721,
+      "sha256": "0d1879c9de97a50d3107d100a05df21c4ddad6da6b1dd5e70f649677ccecbfe1"
+    }
+  },
+  "aggregate_report_sha256": "d68b62678ab1ce8c1dd4879684576a9360eaceee49c706086c0ddc939a3a8cfa",
+  "main_accounting_snapshot": {
+    "command": [
+      "sacct",
+      "-nP",
+      "-j",
+      "2420813",
+      "--format=JobIDRaw,State,ExitCode"
+    ],
+    "stdout": "2420814|COMPLETED|0:0\n2420814.batch|COMPLETED|0:0\n2420814.extern|COMPLETED|0:0\n2420815|COMPLETED|0:0\n2420815.batch|COMPLETED|0:0\n2420815.extern|COMPLETED|0:0\n2420830|COMPLETED|0:0\n2420830.batch|COMPLETED|0:0\n2420830.extern|COMPLETED|0:0\n2420835|COMPLETED|0:0\n2420835.batch|COMPLETED|0:0\n2420835.extern|COMPLETED|0:0\n2420840|COMPLETED|0:0\n2420840.batch|COMPLETED|0:0\n2420840.extern|COMPLETED|0:0\n2420813|COMPLETED|0:0\n2420813.batch|COMPLETED|0:0\n2420813.extern|COMPLETED|0:0\n",
+    "returncode": 0,
+    "controller_live_queue_check": {
+      "command": [
+        "squeue",
+        "--array",
+        "--noheader",
+        "--user=scv7tsq",
+        "--format=%i|%T"
+      ],
+      "returncode": 0,
+      "matched_main_rows": []
+    }
+  },
+  "slurm_job_id": "2420820"
+}

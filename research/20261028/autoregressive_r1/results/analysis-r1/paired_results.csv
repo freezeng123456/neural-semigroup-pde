@@ -1,0 +1,4 @@
+seed,ratio_rollout2_over_first,paired_initialization,paired_shuffle,training_time_ratio
+0,0.06883833352975051,True,True,1.3696028279627253
+1,0.06613291088870679,True,True,1.5571288769260871
+2,0.04577154528429025,True,True,1.3310945739071947

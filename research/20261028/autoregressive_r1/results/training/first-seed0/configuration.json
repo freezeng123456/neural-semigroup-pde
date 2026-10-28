@@ -1,0 +1,37 @@
+{
+  "schema": "autoregressive_training_config_v1",
+  "arm": "first",
+  "seed": 0,
+  "epochs": 500,
+  "planned_updates": 50000,
+  "batch_size": 20,
+  "ntrain_windows": 2000,
+  "batches_per_epoch": 100,
+  "network": {
+    "modes1": 12,
+    "modes2": 12,
+    "depth": 4,
+    "width": 20,
+    "activation": "gelu",
+    "seed": 0,
+    "dtype": "single",
+    "device": "cuda",
+    "problem_dim": 1
+  },
+  "parameter_count_real_components": 928461,
+  "regularizer": null,
+  "loss": "rel_l2",
+  "optimizer": "adam",
+  "lr": 0.001,
+  "scheduler": "cosine",
+  "scheduler_T_max": 50000,
+  "source_commit": "1e629104a12a9c3e3064996cbd4e301cec641ad8",
+  "data_sha256": "49869507406029ce4263dda51150726589593ecbe4ff8bbe59da956aedb2023a",
+  "rng_seeds": {
+    "initialization": 0,
+    "shuffle": 30000
+  },
+  "expected_training_forward_calls": 50000,
+  "validation_every_epochs": 25,
+  "selection": "scheduled final endpoint only"
+}

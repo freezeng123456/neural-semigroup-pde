@@ -1,6 +1,6 @@
 {
   "date_beijing": "2026-10-28",
-  "status": "TRAINING_HEALTH_VERIFIED",
+  "status": "COMPLETE_RECOVERED_REPLAYED",
   "preflight_job": "2420812",
   "main_job": "2420813",
   "preflight_local_verified": true,
@@ -10,10 +10,19 @@
   "updates_per_task": 50000,
   "max_concurrency": 2,
   "raw_model_retention_local": false,
-  "method_effect": "NOT_YET_EVALUATED",
-  "timestamp_utc": "2026-10-28T05:43:39.417954+00:00",
+  "method_effect": "PRACTICAL_GATE_PASSED_EXPLORATORY",
+  "timestamp_utc": "2026-10-28T07:48:33.228320+00:00",
   "initial_progress_sha256": "cc5bc9b87fe60520fccd0264d0cf590cc27f37ef7791ae511f47e5b48e6c4765",
-  "progress": [
+  "recovery_job": "2420820",
+  "recovery_dependency": "afterany:2420813",
+  "recovery_status": "COMPLETED_0_0_AND_EXACT_CUDA_REPLAY_VERIFIED",
+  "monitor_automation_id": "a",
+  "monitor_interval_minutes": null,
+  "joint_ratio_geometric_mean": 0.05928541359091519,
+  "seeds_favoring_rollout2": 3,
+  "final_results": "results/README.zh.md",
+  "final_slurm_verified": true,
+  "initial_progress": [
     {
       "run": "first-seed0",
       "first_epoch_loss": 0.1901297515630722,
@@ -37,9 +46,5 @@
       "latest_checkpoint_exists": true
     }
   ],
-  "recovery_job": "2420820",
-  "recovery_dependency": "afterany:2420813",
-  "recovery_status": "SUBMITTED_DEPENDENCY_PENDING",
-  "monitor_automation_id": "a",
-  "monitor_interval_minutes": 5
+  "monitor_status": "RETIRING_AFTER_GITHUB_VERIFICATION"
 }
